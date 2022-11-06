@@ -1,0 +1,129 @@
+
+/* RESET */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, a,
+abbr, acronym, address, big, cite, code, del,
+dfn, em, img, ins, kbd, q, s, samp, small, strike,
+strong, tt, var, b, u, i, center, dl, dt, dd, ol,
+ul, li, fieldset, form, label, legend, table,
+caption, tbody, tfoot, thead, tr, th, td, article,
+aside, canvas, details, embed, figure, figcaption,
+footer, header, hgroup, menu, nav, output, ruby,
+section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+
+sup {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: smaller;
+  vertical-align: top;
+}
+
+sub {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: smaller;
+  vertical-align: bottom;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+input, button, select, option, .contenteditable {
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  background: inherit;
+  font-size: inherit;
+}
+
+img {
+  vertical-align: middle;
+}
+
+:focus {
+  outline: none;
+}
+
+::-moz-focus-inner {
+  border: 0;
+}
+
+@keyframes global-blink-animation-0-1 {
+  from { box-shadow: 0 0 0 2px red inset; }
+}
+
+@keyframes global-blink-animation-0-2 {
+  from { box-shadow: 0 0 0 2px red inset; }
+}
+
+@keyframes global-blink-animation-1-1 {
+  from { box-shadow: 0 0 0 2px #0000BB inset; }
+}
+
+@keyframes global-blink-animation-1-2 {
+  from { box-shadow: 0 0 0 2px #0000BB inset; }
+}
+
+@keyframes global-blink-animation-2-1 {
+  from { box-shadow: 0 0 0 2px #00BB00 inset; }
+}
+
+@keyframes global-blink-animation-2-2 {
+  from { box-shadow: 0 0 0 2px #00BB00 inset; }
+}
+
+.blink-0-0 {
+  animation: global-blink-animation-0-1 1.5s ease-in 1 !important;
+}
+
+.blink-0-1 {
+  animation: global-blink-animation-0-2 1.5s ease-in 1 !important;
+}
+
+.blink-1-0 {
+  animation: global-blink-animation-1-1 1.5s ease-in 1 !important;
+}
+
+.blink-1-1 {
+  animation: global-blink-animation-1-2 1.5s ease-in 1 !important;
+}
+
+.blink-2-0 {
+  animation: global-blink-animation-2-1 1.5s ease-in 1 !important;
+}
+
+.blink-2-1 {
+  animation: global-blink-animation-2-2 1.5s ease-in 1 !important;
+}

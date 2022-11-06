@@ -1,2 +1,8 @@
-# verstak-demo
-Verstak Demo
+# Verstak Demo
+
+Tech Stack:
+
+- Vite
+- TypeScript
+- Reactronic
+- Verstak
