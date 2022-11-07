@@ -13,16 +13,16 @@ export function Main(name: string, app: App, options?: BlockOptions<HTMLElement,
 
       br()
       Panel("Logo", "...")
-      Panel("Toolbar", "...", { box: { wGrow: 1 } })
-      Panel("Account", "...", { box: { wGrow: 1 } })
+      Panel("Toolbar", "...", { box: { widthGrow: 1 } })
+      Panel("Account", "...", { box: { widthGrow: 1 } })
 
       br()
       Panel("Navigation-Bar", "...")
-      Panel("Main", "...", { box: { wGrow: 1, hGrow: 1 } })
-      Panel("Inspector", "...")
+      Panel("Main-Working-Area", "...", { box: { widthGrow: 1, heightGrow: 1 } })
+      Panel("Property-Inspector", "...")
 
       br()
-      Panel("Status-Bar", "...", { box: { wGrow: 1 } })
+      Panel("Status-Bar", "...", { box: { widthGrow: 1 } })
       Panel("Indicator-1", "...")
       Panel("Indicator-2", "...")
       Panel("Indicator-3", "...")

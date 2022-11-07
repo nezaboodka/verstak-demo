@@ -14,7 +14,7 @@ export function Panel(name: string, content: string, options?: BlockOptions<HTML
         e.innerText = content
         e.style.border = "1px solid green"
         e.style.margin = "0.25em"
-      }, { box: { hGrow: 1 } })
+      }, { box: { heightGrow: 1 } })
     })
   )
 }
