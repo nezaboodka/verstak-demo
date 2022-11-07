@@ -127,3 +127,8 @@ img {
 .blink-2-1 {
   animation: global-blink-animation-2-2 1.5s ease-in 1 !important;
 }
+
+div, section {
+  display: flex;
+  flex-direction: row;
+}

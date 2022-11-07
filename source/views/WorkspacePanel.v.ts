@@ -1,4 +1,4 @@
-import { block } from "verstak"
+import { block, sep, text } from "verstak"
 import { App } from "models/App"
 
 export function WorkspacePanel(name: string, app: App) {
@@ -9,7 +9,9 @@ export function WorkspacePanel(name: string, app: App) {
         e.addEventListener("contextmenu", event => event.preventDefault())
         e.dataForSensor.window = app
       }
-      e.innerHTML = "Hello"
+      text("Text1")
+      sep()
+      text("Text2")
     })
   )
 }

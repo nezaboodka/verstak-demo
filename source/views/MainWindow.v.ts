@@ -1,12 +1,16 @@
-import { block } from "verstak"
+import { block, sep } from "verstak"
 import { App } from "models/App"
 import { WorkspacePanel } from "./WorkspacePanel.v"
 
 export function MainWindow(name: string, app: App) {
   return (
     block(name, { rx: true }, e => {
-      e.id = name
-      WorkspacePanel("WorkspacePanel", app)
+      WorkspacePanel("workspace-panel1", app)
+      WorkspacePanel("workspace-panel2", app)
+      WorkspacePanel("workspace-panel3", app)
+      sep()
+      WorkspacePanel("workspace-panel4", app)
+      WorkspacePanel("workspace-panel5", app)
     })
   )
 }

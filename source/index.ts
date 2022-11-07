@@ -23,6 +23,6 @@ Block.root(() => {
       body.style.height = body.style.maxHeight = "100vh"
       body.style.fontSize = ""
     }
-    MainWindow("Main", app)
+    MainWindow("main", app)
   })
 })
