@@ -14,7 +14,7 @@ export function Main(name: string, app: App, options?: BlockOptions<HTMLElement,
       br()
       Panel("Logo", "...")
       Panel("Toolbar", "...", { box: { wGrow: 1 } })
-      Panel("Account", "...")
+      Panel("Account", "...", { box: { wGrow: 1 } })
 
       br()
       Panel("Navigation-Bar", "...")
@@ -22,9 +22,10 @@ export function Main(name: string, app: App, options?: BlockOptions<HTMLElement,
       Panel("Inspector", "...")
 
       br()
-      Panel("Settings", "...")
-      Panel("Status", "...", { box: { wGrow: 1 } })
-      Panel("Nope", "...")
+      Panel("Status-Bar", "...", { box: { wGrow: 1 } })
+      Panel("Indicator-1", "...")
+      Panel("Indicator-2", "...")
+      Panel("Indicator-3", "...")
     })
   )
 }
