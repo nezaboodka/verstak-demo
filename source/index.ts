@@ -1,8 +1,8 @@
 import { Transaction } from "reactronic"
-import { Block, ReactiveHtmlBody } from "verstak"
+import { Block, HtmlBody } from "verstak"
 import { configureDebugging } from "dbg"
 import { App } from "models/App"
-import { MainWindow } from "views/MainWindow.v"
+import { Main } from "views/Main.v"
 
 const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
 const version: string = "0.1"
@@ -12,7 +12,7 @@ configureDebugging()
 const app = Transaction.run(null, () => new App(version))
 
 Block.root(() => {
-  ReactiveHtmlBody("html > body", null, body => {
+  HtmlBody("html > body", body => {
     if (isMobile) {
       body.style.width = body.style.maxWidth = `${window.innerWidth}px`
       body.style.height = body.style.maxHeight = `${window.innerHeight}px`
@@ -23,6 +23,6 @@ Block.root(() => {
       body.style.height = body.style.maxHeight = "100vh"
       body.style.fontSize = ""
     }
-    MainWindow("main", app)
+    Main("main", app)
   })
 })

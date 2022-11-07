@@ -128,7 +128,30 @@ img {
   animation: global-blink-animation-2-2 1.5s ease-in 1 !important;
 }
 
-div, section {
+body > *[block] {
+  flex-grow: 1;
+}
+
+*[block], body {
+  display: flex;
+  flex-direction: column;
+}
+
+*[grid] {
+  display: flex;
+  flex-direction: column;
+}
+
+*[group] {
+  display: contents;
+}
+
+div, section { /* part */
   display: flex;
   flex-direction: row;
+}
+
+article { /* text */
+  display: block;
+  flex-grow: 1;
 }
