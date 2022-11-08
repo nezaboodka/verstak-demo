@@ -1,12 +1,12 @@
-import { Block, BlockPreset, section, $ } from "verstak"
+import { Block, BlockArgs, section, $ } from "verstak"
 import * as css from "theme/Common.css"
 import { Panel } from "./Panel.v"
 
-export function ToolBar(name: string, preset?: BlockPreset<HTMLElement, void, void>) {
+export function ToolBar(name: string, args?: BlockArgs<HTMLElement, void, void>) {
   return (
-    Block(name, preset, (e, b) => {
-      Block("logo", [css.Panel, css.Brand], e => {
-        $`Logo`
+    Block(name, args, (e, b) => {
+      Block("Logo", [css.Panel, css.Brand], e => {
+        $`N*`
       })
 
       Panel("Toolbar", { widthGrow: 1, use: [css.Panel] }, (e, b) => {
@@ -16,7 +16,7 @@ export function ToolBar(name: string, preset?: BlockPreset<HTMLElement, void, vo
         section(s => $`text`)
       })
 
-      Block("account", [css.Panel, css.Unimportant], e => {
+      Block("Account", [css.Panel, css.Unimportant], e => {
         $`Account`
       })
     })

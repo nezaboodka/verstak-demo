@@ -1,10 +1,10 @@
-import { Block, BlockPreset, $, section } from "verstak"
+import { Block, BlockArgs, $, section } from "verstak"
 import { Panel } from "./Panel.v"
 import * as css from "theme/Common.css"
 
-export function StatusBar(name: string, preset?: BlockPreset<HTMLElement, void, void>) {
+export function StatusBar(name: string, args?: BlockArgs<HTMLElement, void, void>) {
   return (
-    Block(name, preset, (e, b) => {
+    Block(name, args, (e, b) => {
       Panel("Status", { widthGrow: 1, use: [css.Panel] }, (e, b) => {
         b.render() // base render
         section(s => $`status bar content`)

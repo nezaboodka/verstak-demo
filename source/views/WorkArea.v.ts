@@ -1,8 +1,8 @@
-import { Block, BlockPreset, text, $} from "verstak"
+import { Block, BlockArgs, $} from "verstak"
 
-export function WorkArea(name: string, preset?: BlockPreset<HTMLElement, void, void>) {
+export function WorkArea(name: string, args?: BlockArgs<HTMLElement, void, void>) {
   return (
-    Block(name, preset, (e, b) => {
+    Block(name, args, (e, b) => {
       $`Hello`
     })
   )
