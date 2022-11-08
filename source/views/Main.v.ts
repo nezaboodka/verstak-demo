@@ -3,7 +3,6 @@ import { App } from "models/App"
 import { ToolBar } from "./ToolBar.v"
 import { StatusBar } from "./StatusBar.v"
 import { WorkArea } from "./WorkArea.v"
-import { Panel } from "./Panel.v"
 import * as css from "theme/Common.css"
 
 export function Main(name: string, app: App, options?: BlockOptions<HTMLElement, void, void>) {
