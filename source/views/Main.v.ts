@@ -1,4 +1,4 @@
-import { $bounds, Block, BlockOptions, $br, $ } from "verstak"
+import { Block, BlockOptions, $, $br, $bounds} from "verstak"
 import { App } from "models/App"
 import { Panel } from "./Panel.v"
 import * as css from "theme/Common.css"

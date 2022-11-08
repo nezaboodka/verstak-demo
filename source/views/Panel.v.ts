@@ -1,4 +1,4 @@
-import { Block, $br, $, BlockPreset, Render, presetsToOptions } from "verstak"
+import { Block, BlockPreset, Render, presetsToOptions, $ } from "verstak"
 
 export function Panel(name: string,
   preset?: BlockPreset<HTMLElement, void, void>,
