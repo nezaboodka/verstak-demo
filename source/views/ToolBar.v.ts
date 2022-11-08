@@ -6,7 +6,7 @@ export function ToolBar(name: string, args?: BlockArgs<HTMLElement, void, void>)
   return (
     Block(name, args, (e, b) => {
       Block("Logo", [css.Panel, css.Brand], e => {
-        $`N*`
+        $`N*V`
       })
 
       Panel("Toolbar", { widthGrow: 1, use: [css.Panel] }, (e, b) => {
