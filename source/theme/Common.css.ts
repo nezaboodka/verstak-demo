@@ -1,10 +1,11 @@
 import { Render } from "verstak"
 
-export const Content: Render<HTMLElement> = e => {
+export const Panel: Render<HTMLElement> = e => {
   const z = e.style
   z.margin = "0.5rem"
   z.padding = "0.25rem"
-  z.border = "1px solid gray"
+  z.boxShadow = "0.025rem 0.025rem 0.35rem 0 gray"
+  z.borderRadius = "0.25rem"
 }
 
 export const Brand: Render<HTMLElement> = e => {

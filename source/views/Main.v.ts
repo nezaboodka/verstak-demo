@@ -1,5 +1,8 @@
 import { Block, BlockOptions, $, $br, $bounds} from "verstak"
 import { App } from "models/App"
+import { ToolBar } from "./ToolBar.v"
+import { StatusBar } from "./StatusBar.v"
+import { WorkArea } from "./WorkArea.v"
 import { Panel } from "./Panel.v"
 import * as css from "theme/Common.css"
 
@@ -12,58 +15,23 @@ export function Main(name: string, app: App, options?: BlockOptions<HTMLElement,
         e.dataForSensor.window = app
       }
 
-      $br() // =====
-
-      Block("logo", [css.Content, css.Brand], e => {
-        $("Logo")
-      })
-
+      $br()
       $bounds({ widthGrow: 1 })
-      Block("toolbar", [css.Content], e => {
-        $("Toolbar")
-        $br()
-        $("Toolbar can be multi-line")
+      ToolBar("ToolBar")
+
+      $br()
+      Block("Navigation-Bar", [css.Panel], e => {
+        $("Navigation-Bar")
       })
-
-      Block("account", [css.Content, css.Unimportant], e => {
-        $("Account")
-      })
-
-      $br() // =====
-
-      Panel("Navigation-Bar", [css.Content])
-
       $bounds({ widthGrow: 1, heightGrow: 1 })
-      Panel("Main-Working-Area", [css.Content, css.Important])
+      WorkArea("WorkArea", [css.Panel, css.Important])
+      Block("Property-Inspector", [css.Panel], e => {
+        $("Property-Inspector")
+      })
 
-      Panel("Property-Inspector", [css.Content])
-
-      $br() // =====
-
+      $br()
       $bounds({ widthGrow: 1 })
-      Panel("Status-Bar", [css.Content], (e, b) => {
-        b.render() // base render
-        $br()
-        $("status bar content")
-      })
-
-      Panel("Ind-1", [css.Content, css.Center], (e, b) => {
-        b.render() // base render
-        $br()
-        $("[1]")
-      })
-
-      Panel("Ind-2", [css.Content, css.Center], (e, b) => {
-        b.render() // base render
-        $br()
-        $("[2]")
-      })
-
-      Panel("Ind-3", [css.Content, css.Center], (e, b) => {
-        b.render() // base render
-        $br()
-        $("[3]")
-      })
+      StatusBar("StatusBar")
     })
   )
 }
