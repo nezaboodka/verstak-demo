@@ -1,7 +1,7 @@
-import { $bounds, Block, BlockOptions, br, $ } from "verstak"
+import { $bounds, Block, BlockOptions, $br, Txt } from "verstak"
 import { App } from "models/App"
 import { Panel } from "./Panel.v"
-import * as z from "theme/Common.css"
+import * as css from "theme/Common.css"
 
 export function Main(name: string, app: App, options?: BlockOptions<HTMLElement, void, void>) {
   return (
@@ -12,41 +12,57 @@ export function Main(name: string, app: App, options?: BlockOptions<HTMLElement,
         e.dataForSensor.window = app
       }
 
-      br() // =====
+      $br() // =====
 
-      Block("logo", [z.Content, z.Brand], e => {
-        $("Logo")
+      Block("logo", [css.Content, css.Brand], e => {
+        Txt("Logo")
       })
 
       $bounds({ widthGrow: 1 })
-      Block("toolbar", [z.Content], e => {
-        $("Toolbar")
-        br(); $("Toolbar can be multi-line")
+      Block("toolbar", [css.Content], e => {
+        Txt("Toolbar")
+        $br(); Txt("Toolbar can be multi-line")
       })
 
-      Block("account", [z.Content, z.Unimportant], e => {
-        $("Account")
+      Block("account", [css.Content, css.Unimportant], e => {
+        Txt("Account")
       })
 
-      br() // =====
+      $br() // =====
 
-      Panel("Navigation-Bar", "...")
+      Panel("Navigation-Bar", [css.Content])
 
       $bounds({ widthGrow: 1, heightGrow: 1 })
-      Panel("Main-Working-Area", "...")
+      Panel("Main-Working-Area", [css.Content, css.Important])
 
-      Panel("Property-Inspector", "...")
+      Panel("Property-Inspector", [css.Content])
 
-      br() // =====
+      $br() // =====
 
       $bounds({ widthGrow: 1 })
-      Panel("Status-Bar", "...")
+      Panel("Status-Bar", [css.Content], (e, b) => {
+        b.render()
+        $br()
+        Txt("status bar content")
+      })
 
-      Panel("Indicator-1", "...")
+      Panel("Indicator-1", [css.Content, css.Center], (e, b) => {
+        b.render()
+        $br()
+        Txt("(1)")
+      })
 
-      Panel("Indicator-2", "...")
+      Panel("Indicator-2", [css.Content, css.Center], (e, b) => {
+        b.render()
+        $br()
+        Txt("(1)")
+      })
 
-      Panel("Indicator-3", "...")
+      Panel("Indicator-3", [css.Content, css.Center], (e, b) => {
+        b.render()
+        $br()
+        Txt("(1)")
+      })
     })
   )
 }

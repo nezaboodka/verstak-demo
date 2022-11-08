@@ -1,19 +1,12 @@
-import { $bounds, Block, BlockOptions, br, $ } from "verstak"
-import * as z from "theme/Common.css"
+import { Block, $br, Txt, BlockPreset, Render, presetsToOptions } from "verstak"
 
-export function Panel(name: string, content: string, options?: BlockOptions<HTMLElement, void, void>) {
+export function Panel(name: string,
+  preset?: BlockPreset<HTMLElement, void, void>,
+  render?: Render<HTMLElement, void, void>) {
+  preset = presetsToOptions(preset, { wrapper: render })
   return (
-    Block(name, { as: [z.Content], ...options }, (e, b) => {
-
-      br()
-      $(name)
-
-      br()
-      $bounds({ heightGrow: 1 })
-      $(e => {
-        e.innerText = content
-        e.style.margin = "0.25em"
-      }, [z.Content])
+    Block(name, preset, (e, b) => {
+      Txt(name)
     })
   )
 }
