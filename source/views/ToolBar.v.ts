@@ -1,4 +1,4 @@
-import { Block, BlockArgs, section, $ } from "verstak"
+import { Block, BlockArgs, row, $ } from "verstak"
 import { Panel } from "./Panel.v"
 import * as css from "theme/Common.css"
 
@@ -11,9 +11,9 @@ export function ToolBar(name: string, args?: BlockArgs<HTMLElement, void, void>)
 
       Panel("Toolbar", { as: [css.Panel], widthGrow: 1 }, (e, b) => {
         b.baseRender()
-        section(s => $`multi`)
-        section(s => $`line`)
-        section(s => $`text`)
+        row(s => $`multi`)
+        row(s => $`line`)
+        row(s => $`text`)
       })
 
       Block("Account", [css.Panel, css.Unimportant], e => {

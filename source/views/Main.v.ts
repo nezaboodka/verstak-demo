@@ -1,4 +1,4 @@
-import { Block, section, $, Align} from "verstak"
+import { Block, row, $, Align} from "verstak"
 import { App } from "models/App"
 import { ToolBar } from "./ToolBar.v"
 import { StatusBar } from "./StatusBar.v"
@@ -13,11 +13,11 @@ export function Main(name: string, app: App) {
         e.dataForSensor.window = app
       }
 
-      section(s => {
+      row(s => {
         ToolBar("ToolBar", { widthGrow: 1 })
       })
 
-      section(s => {
+      row(s => {
         Block("NavBar", {
           as: [css.Panel],
           widthMin: "10rem",
@@ -41,13 +41,13 @@ export function Main(name: string, app: App) {
           align: Align.FitButTop,
         }, e => {
           $`СПРАВКА`
-          section(s => {
+          row(s => {
             $`<br/>Верстак – это система построения визуальных интерфейсов на основе табличной вёрстки. В основе лежит идея размещения визуальных элементов интерфейса в одиночных или смежных ячейках таблицы. Размещаемые элементы называются блоками. При этом сама таблица с размещёнными внутри неё блоками также считается блоком и в свою очередь может быть размещена в другом блоке уже на его табличной сетке.`
           })
         })
       })
 
-      section(() => {
+      row(() => {
         StatusBar("StatusBar", { widthGrow: 1 } )
       })
     })
