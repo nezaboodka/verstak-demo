@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { Block, HtmlBody } from "verstak"
+import { VBlock, HtmlBody } from "verstak"
 import { configureDebugging } from "dbg"
 import { App } from "models/App"
 import { Main } from "views/Main.v"
@@ -11,7 +11,7 @@ configureDebugging()
 
 const app = Transaction.run(null, () => new App(version))
 
-Block.root(() => {
+VBlock.root(() => {
   HtmlBody("html > body", body => {
     if (isMobile) {
       body.style.width = body.style.maxWidth = `${window.innerWidth}px`

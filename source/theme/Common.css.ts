@@ -1,24 +1,28 @@
 import { Render } from "verstak"
 
 export const Content: Render<HTMLElement> = e => {
-  e.style.margin = "1rem"
-  e.style.border = "1px solid gray"
+  const z = e.style
+  z.margin = "1rem"
+  z.border = "1px solid gray"
 }
 
 export const Brand: Render<HTMLElement> = e => {
-  e.style.color = "blue"
-  e.style.backgroundColor = "rgba(0, 0, 255, 0.1)"
-  e.style.border = "1px solid blue"
+  const z = e.style
+  z.color = "blue"
+  z.backgroundColor = "rgba(0, 0, 255, 0.1)"
+  z.border = "1px solid blue"
 }
 
 export const Important: Render<HTMLElement> = e => {
-  e.style.color = "red"
-  e.style.backgroundColor = "rgba(255, 0, 0, 0.1)"
-  e.style.border = "1px solid red"
+  const z = e.style
+  z.color = "red"
+  z.backgroundColor = "rgba(255, 0, 0, 0.1)"
+  z.border = "1px solid red"
 }
 
 export const Unimportant: Render<HTMLElement> = e => {
-  e.style.color = "silver"
-  e.style.fontSize = "smaller"
-  e.style.border = "1px solid silver"
+  const z = e.style
+  z.color = "silver"
+  z.fontSize = "smaller"
+  z.border = "1px solid silver"
 }
