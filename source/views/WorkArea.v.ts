@@ -1,4 +1,4 @@
-import { Block, BlockArgs, $, Render} from "verstak"
+import { Block, BlockArgs, Render, $ } from "verstak"
 
 export function WorkArea(name: string,
   args?: BlockArgs<HTMLElement, void, void>,

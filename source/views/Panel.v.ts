@@ -1,4 +1,4 @@
-import { Block, BlockArgs, Render, $ } from "verstak"
+import { Block, BlockArgs, $ } from "verstak"
 import * as css from "theme/Common.css"
 
 export function Panel(name: string,
