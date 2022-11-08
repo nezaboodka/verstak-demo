@@ -13,7 +13,7 @@ export function Main(name: string, app: App, options?: BlockOptions<HTMLElement,
       }
 
       br()
-      block("logo", { as: [z.Content, z.Important] }, e => {
+      block("logo", { as: [z.Content, z.Brand] }, e => {
         text("Logo")
       })
       block("toolbar", { as: [z.Content], box: { widthGrow: 1 } }, e => {

@@ -2,6 +2,12 @@ import { Render } from "verstak"
 
 export const Content: Render<HTMLElement> = e => {
   e.style.margin = "1rem"
+  e.style.border = "1px solid gray"
+}
+
+export const Brand: Render<HTMLElement> = e => {
+  e.style.color = "blue"
+  e.style.backgroundColor = "rgba(0, 0, 255, 0.1)"
   e.style.border = "1px solid blue"
 }
 
