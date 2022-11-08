@@ -1,4 +1,4 @@
-import { Block, BlockPreset, row, $ } from "verstak"
+import { Block, BlockPreset, section, $ } from "verstak"
 import * as css from "theme/Common.css"
 import { Panel } from "./Panel.v"
 
@@ -11,9 +11,9 @@ export function ToolBar(name: string, preset?: BlockPreset<HTMLElement, void, vo
 
       Panel("Toolbar", { widthGrow: 1, mixins: [css.Panel] }, (e, b) => {
         b.render() // base render
-        row(() => $`multi`)
-        row(() => $`line`)
-        row(() => $`text`)
+        section(() => $`multi`)
+        section(() => $`line`)
+        section(() => $`text`)
       })
 
       Block("account", [css.Panel, css.Unimportant], e => {

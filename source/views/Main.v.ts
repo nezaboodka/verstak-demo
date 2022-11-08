@@ -1,4 +1,4 @@
-import { Block, BlockOptions, row, $} from "verstak"
+import { Block, BlockOptions, section, $} from "verstak"
 import { App } from "models/App"
 import { ToolBar } from "./ToolBar.v"
 import { StatusBar } from "./StatusBar.v"
@@ -14,13 +14,11 @@ export function Main(name: string, app: App, options?: BlockOptions<HTMLElement,
         e.dataForSensor.window = app
       }
 
-      row(() => {
-        ToolBar("ToolBar", {
-          widthGrow: 1,
-        })
+      section(() => {
+        ToolBar("ToolBar", { widthGrow: 1 })
       })
 
-      row(() => {
+      section(() => {
         Block("Navigation-Bar", [css.Panel], e => {
           $`Navigation-Bar`
         })
@@ -35,7 +33,7 @@ export function Main(name: string, app: App, options?: BlockOptions<HTMLElement,
         })
       })
 
-      row(() => {
+      section(() => {
         StatusBar("StatusBar", { widthGrow: 1 } )
       })
     })

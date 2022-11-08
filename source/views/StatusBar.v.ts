@@ -1,4 +1,4 @@
-import { Block, BlockPreset, $, row } from "verstak"
+import { Block, BlockPreset, $, section } from "verstak"
 import { Panel } from "./Panel.v"
 import * as css from "theme/Common.css"
 
@@ -7,22 +7,22 @@ export function StatusBar(name: string, preset?: BlockPreset<HTMLElement, void, 
     Block(name, preset, (e, b) => {
       Panel("Status", { widthGrow: 1, mixins: [css.Panel] }, (e, b) => {
         b.render() // base render
-        row(() => $`status bar content`)
+        section(() => $`status bar content`)
       })
 
       Panel("Ind-1", [css.Panel, css.Center], (e, b) => {
         b.render() // base render
-        row(() => $`[1]`)
+        section(() => $`[1]`)
       })
 
       Panel("Ind-2", [css.Panel, css.Center], (e, b) => {
         b.render() // base render
-        row(() => $`[2]`)
+        section(() => $`[2]`)
       })
 
       Panel("Ind-3", [css.Panel, css.Center], (e, b) => {
         b.render() // base render
-        row(() => $`[3]`)
+        section(() => $`[3]`)
       })
     })
   )
