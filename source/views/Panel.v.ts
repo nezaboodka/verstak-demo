@@ -7,7 +7,7 @@ export function Panel(name: string,
   args = argsToOptions(args, { wrapper: render })
   return (
     Block(name, args, (e, b) => {
-      Block("title", { widthGrow: 1, apply: [css.PanelTitle] }, e => {
+      Block("title", { as: [css.PanelTitle], widthGrow: 1 }, e => {
         text(name)
       })
     })
