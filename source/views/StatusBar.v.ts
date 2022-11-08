@@ -1,4 +1,4 @@
-import { Block, BlockArgs, $, row, Align } from "verstak"
+import { Block, BlockArgs, $, $row, Align } from "verstak"
 import { Panel } from "./Panel.v"
 import * as css from "theme/Common.css"
 
@@ -11,7 +11,7 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
         align: Align.BottomCenter,
         render(e, b) {
           b.baseRender()
-          row(s => $`status bar content`)
+          $row(s => $`status bar content`)
         }
       })
 
@@ -19,7 +19,7 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
         reuse: [css.Panel, css.Center],
         render(e, b) {
           b.baseRender()
-          row(s => $`[1]`)
+          $row(s => $`[1]`)
         }
       })
 
@@ -27,7 +27,7 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
         reuse: [css.Panel, css.Center],
         render(e, b) {
           b.baseRender()
-          row(s => $`[2]`)
+          $row(s => $`[2]`)
         }
       })
 
@@ -35,7 +35,7 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
         reuse: [css.Panel, css.Center],
         render(e, b) {
           b.baseRender()
-          row(s => $`[3]`)
+          $row(s => $`[3]`)
         }
       })
     }})
