@@ -5,7 +5,7 @@ import * as css from "theme/Common.css"
 export function StatusBar(name: string, args?: BlockArgs<HTMLElement, void, void>) {
   return (
     Block(name, args, (e, b) => {
-      Panel("Status", { widthGrow: 1, use: [css.Panel] }, (e, b) => {
+      Panel("Status", { widthGrow: 1, apply: [css.Panel] }, (e, b) => {
         b.baseRender()
         section(s => $`status bar content`)
       })

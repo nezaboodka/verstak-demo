@@ -9,7 +9,7 @@ export function ToolBar(name: string, args?: BlockArgs<HTMLElement, void, void>)
         $`N*V`
       })
 
-      Panel("Toolbar", { widthGrow: 1, use: [css.Panel] }, (e, b) => {
+      Panel("Toolbar", { widthGrow: 1, apply: [css.Panel] }, (e, b) => {
         b.baseRender()
         section(s => $`multi`)
         section(s => $`line`)
