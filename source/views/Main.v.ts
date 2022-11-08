@@ -19,17 +19,18 @@ export function Main(name: string, app: App) {
       })
 
       section(s => {
-        Block("Navigation-Bar", [css.Panel], e => {
-          $`Navigation-Bar`
+        Block("NavBar", [css.Panel], e => {
+          $`Navigation Bar`
         })
-
-        WorkArea("WorkArea", {
+        Block("WorkArea", {
           widthGrow: 1, heightGrow: 1,
           apply: [css.Panel, css.Important],
+        }, e => {
+          // work area contents can be placed here
+          $`Hello, Verstak!`
         })
-
-        Block("Property-Inspector", [css.Panel], e => {
-          $`Property-Inspector`
+        Block("PropInspector", [css.Panel], e => {
+          $`Property Inspector`
         })
       })
 
