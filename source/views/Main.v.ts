@@ -7,7 +7,7 @@ import * as css from "theme/Common.css"
 
 export function Main(name: string, app: App, options?: BlockOptions<HTMLElement, void, void>) {
   return (
-    Block(name, { rx: true }, (e, b) => {
+    Block(name, { observer: true }, (e, b) => {
       if (b.isInitialRendering) {
         app.sensors.listen(e)
         e.addEventListener("contextmenu", event => event.preventDefault())
