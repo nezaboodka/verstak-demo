@@ -1,4 +1,4 @@
-import { Block, $br, Txt, BlockPreset, Render, presetsToOptions } from "verstak"
+import { Block, $br, $, BlockPreset, Render, presetsToOptions } from "verstak"
 
 export function Panel(name: string,
   preset?: BlockPreset<HTMLElement, void, void>,
@@ -6,7 +6,7 @@ export function Panel(name: string,
   preset = presetsToOptions(preset, { wrapper: render })
   return (
     Block(name, preset, (e, b) => {
-      Txt(name)
+      $(name)
     })
   )
 }
