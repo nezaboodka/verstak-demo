@@ -1,7 +1,7 @@
 import { block, BlockOptions, br, P, text } from "verstak"
 import { App } from "models/App"
 import { Panel } from "./Panel.v"
-import * as z from "./Main.p"
+import * as z from "theme/Common.css"
 
 export function Main(name: string, app: App, options?: BlockOptions<HTMLElement, void, void>) {
   return (
