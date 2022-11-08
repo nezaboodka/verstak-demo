@@ -1,4 +1,4 @@
-import { Block, $, $br, $bounds, BlockPreset} from "verstak"
+import { Block, text, lbr, useBounds, BlockPreset} from "verstak"
 import * as css from "theme/Common.css"
 import { Panel } from "./Panel.v"
 
@@ -6,19 +6,19 @@ export function ToolBar(name: string, preset?: BlockPreset<HTMLElement, void, vo
   return (
     Block(name, preset, (e, b) => {
       Block("logo", [css.Panel, css.Brand], e => {
-        $("Logo")
+        text("Logo")
       })
 
-      $bounds({ widthGrow: 1 })
+      useBounds({ widthGrow: 1 })
       Panel("Toolbar", [css.Panel], (e, b) => {
         b.render() // base render
-        $("multi"); $br()
-        $("line"); $br()
-        $("text"); $br()
+        lbr(); text("multi")
+        lbr(); text("line")
+        lbr(); text("text")
       })
 
       Block("account", [css.Panel, css.Unimportant], e => {
-        $("Account")
+        text("Account")
       })
     })
   )

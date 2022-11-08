@@ -1,4 +1,4 @@
-import { Block, BlockPreset, Render, presetsToOptions, $, $br, $bounds } from "verstak"
+import { Block, BlockPreset, Render, presetsToOptions, text, lbr, useBounds } from "verstak"
 import * as css from "theme/Common.css"
 
 export function Panel(name: string,
@@ -7,11 +7,10 @@ export function Panel(name: string,
   preset = presetsToOptions(preset, { wrapper: render })
   return (
     Block(name, preset, (e, b) => {
-      $bounds({ widthGrow: 1 })
+      useBounds({ widthGrow: 1 })
       Block("title", [css.PanelTitle], e => {
-        $(name)
+        text(name)
       })
-      $br()
     })
   )
 }

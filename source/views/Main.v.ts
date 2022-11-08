@@ -1,4 +1,4 @@
-import { Block, BlockOptions, $, $br, $bounds} from "verstak"
+import { Block, BlockOptions, text, lbr, useBounds} from "verstak"
 import { App } from "models/App"
 import { ToolBar } from "./ToolBar.v"
 import { StatusBar } from "./StatusBar.v"
@@ -14,22 +14,22 @@ export function Main(name: string, app: App, options?: BlockOptions<HTMLElement,
         e.dataForSensor.window = app
       }
 
-      $br()
-      $bounds({ widthGrow: 1 })
+      lbr()
+      useBounds({ widthGrow: 1 })
       ToolBar("ToolBar")
 
-      $br()
+      lbr()
       Block("Navigation-Bar", [css.Panel], e => {
-        $("Navigation-Bar")
+        text("Navigation-Bar")
       })
-      $bounds({ widthGrow: 1, heightGrow: 1 })
+      useBounds({ widthGrow: 1, heightGrow: 1 })
       WorkArea("WorkArea", [css.Panel, css.Important])
       Block("Property-Inspector", [css.Panel], e => {
-        $("Property-Inspector")
+        text("Property-Inspector")
       })
 
-      $br()
-      $bounds({ widthGrow: 1 })
+      lbr()
+      useBounds({ widthGrow: 1 })
       StatusBar("StatusBar")
     })
   )
