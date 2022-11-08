@@ -1,6 +1,6 @@
 import { Block, BlockArgs, section, $ } from "verstak"
-import * as css from "theme/Common.css"
 import { Panel } from "./Panel.v"
+import * as css from "theme/Common.css"
 
 export function ToolBar(name: string, args?: BlockArgs<HTMLElement, void, void>) {
   return (
