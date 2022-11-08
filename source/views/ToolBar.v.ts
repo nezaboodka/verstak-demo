@@ -1,4 +1,4 @@
-import { Block, text, lbr, useBounds, BlockPreset} from "verstak"
+import { Block, BlockPreset, row, $ } from "verstak"
 import * as css from "theme/Common.css"
 import { Panel } from "./Panel.v"
 
@@ -6,19 +6,18 @@ export function ToolBar(name: string, preset?: BlockPreset<HTMLElement, void, vo
   return (
     Block(name, preset, (e, b) => {
       Block("logo", [css.Panel, css.Brand], e => {
-        text("Logo")
+        $`Logo`
       })
 
-      useBounds({ widthGrow: 1 })
-      Panel("Toolbar", [css.Panel], (e, b) => {
+      Panel("Toolbar", { widthGrow: 1, mixins: [css.Panel] }, (e, b) => {
         b.render() // base render
-        lbr(); text("multi")
-        lbr(); text("line")
-        lbr(); text("text")
+        row(() => $`multi`)
+        row(() => $`line`)
+        row(() => $`text`)
       })
 
       Block("account", [css.Panel, css.Unimportant], e => {
-        text("Account")
+        $`Account`
       })
     })
   )
