@@ -9,7 +9,7 @@ export function ToolBar(name: string, preset?: BlockPreset<HTMLElement, void, vo
         $`Logo`
       })
 
-      Panel("Toolbar", { widthGrow: 1, mixins: [css.Panel] }, (e, b) => {
+      Panel("Toolbar", { widthGrow: 1, use: [css.Panel] }, (e, b) => {
         b.render() // base render
         section(s => $`multi`)
         section(s => $`line`)

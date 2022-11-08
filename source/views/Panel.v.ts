@@ -7,7 +7,7 @@ export function Panel(name: string,
   preset = presetsToOptions(preset, { wrapper: render })
   return (
     Block(name, preset, (e, b) => {
-      Block("title", { widthGrow: 1, mixins: [css.PanelTitle] }, e => {
+      Block("title", { widthGrow: 1, use: [css.PanelTitle] }, e => {
         text(name)
       })
     })

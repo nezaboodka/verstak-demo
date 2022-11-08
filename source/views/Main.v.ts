@@ -25,7 +25,7 @@ export function Main(name: string, app: App, options?: BlockOptions<HTMLElement,
 
         WorkArea("WorkArea", {
           widthGrow: 1, heightGrow: 1,
-          mixins: [css.Panel, css.Important],
+          use: [css.Panel, css.Important],
         })
 
         Block("Property-Inspector", [css.Panel], e => {
