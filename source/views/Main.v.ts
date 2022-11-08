@@ -1,4 +1,4 @@
-import { block, BlockOptions, br, P, text } from "verstak"
+import { $bounds, block, BlockOptions, br, P, text } from "verstak"
 import { App } from "models/App"
 import { Panel } from "./Panel.v"
 import * as z from "theme/Common.css"
@@ -13,24 +13,27 @@ export function Main(name: string, app: App, options?: BlockOptions<HTMLElement,
       }
 
       br()
-      block("logo", { as: [z.Content, z.Brand] }, e => {
+      block("logo", [z.Content, z.Brand], e => {
         text("Logo")
       })
-      block("toolbar", { as: [z.Content], box: { widthGrow: 1 } }, e => {
+      $bounds({ widthGrow: 1 })
+      block("toolbar", [z.Content], e => {
         text("Toolbar")
         br(); text("Toolbar can be multi-line")
       })
-      block("account", { as: [z.Content, z.Unimportant] } , e => {
+      block("account", [z.Content, z.Unimportant], e => {
         text("Account")
       })
 
       br()
       Panel("Navigation-Bar", "...")
-      Panel("Main-Working-Area", "...", { box: { widthGrow: 1, heightGrow: 1 } })
+      $bounds({ widthGrow: 1, heightGrow: 1 })
+      Panel("Main-Working-Area", "...")
       Panel("Property-Inspector", "...")
 
       br()
-      Panel("Status-Bar", "...", { box: { widthGrow: 1 } })
+      $bounds({ widthGrow: 1 })
+      Panel("Status-Bar", "...")
       Panel("Indicator-1", "...")
       Panel("Indicator-2", "...")
       Panel("Indicator-3", "...")

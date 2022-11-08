@@ -1,4 +1,4 @@
-import { block, BlockOptions, br, text } from "verstak"
+import { $bounds, block, BlockOptions, br, text } from "verstak"
 import * as z from "theme/Common.css"
 
 export function Panel(name: string, content: string, options?: BlockOptions<HTMLElement, void, void>) {
@@ -9,10 +9,11 @@ export function Panel(name: string, content: string, options?: BlockOptions<HTML
       text(name)
 
       br()
+      $bounds({ heightGrow: 1 })
       text(e => {
         e.innerText = content
         e.style.margin = "0.25em"
-      }, { as: [z.Content], box: { heightGrow: 1 } })
+      }, [z.Content])
     })
   )
 }
