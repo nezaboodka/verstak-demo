@@ -6,7 +6,7 @@ export function StatusBar(name: string, preset?: BlockPreset<HTMLElement, void, 
   return (
     Block(name, preset, (e, b) => {
       $bounds({ widthGrow: 1 })
-      Block("Status", [css.Panel], (e, b) => {
+      Panel("Status", [css.Panel], (e, b) => {
         b.render() // base render
         $br()
         $("status bar content")

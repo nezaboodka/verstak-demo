@@ -1,5 +1,6 @@
 import { Block, $, $br, $bounds, BlockPreset} from "verstak"
 import * as css from "theme/Common.css"
+import { Panel } from "./Panel.v"
 
 export function ToolBar(name: string, preset?: BlockPreset<HTMLElement, void, void>) {
   return (
@@ -9,10 +10,11 @@ export function ToolBar(name: string, preset?: BlockPreset<HTMLElement, void, vo
       })
 
       $bounds({ widthGrow: 1 })
-      Block("toolbar", [css.Panel], e => {
-        $("Toolbar")
-        $br()
-        $("Toolbar can be multi-line")
+      Panel("Toolbar", [css.Panel], (e, b) => {
+        b.render() // base render
+        $("multi"); $br()
+        $("line"); $br()
+        $("text"); $br()
       })
 
       Block("account", [css.Panel, css.Unimportant], e => {

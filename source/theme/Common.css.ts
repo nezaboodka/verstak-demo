@@ -8,6 +8,11 @@ export const Panel: Render<HTMLElement> = e => {
   z.borderRadius = "0.25rem"
 }
 
+export const PanelTitle: Render<HTMLElement> = e => {
+  const z = e.style
+  z.fontWeight = "bold"
+}
+
 export const Brand: Render<HTMLElement> = e => {
   const z = e.style
   z.color = "blue"
