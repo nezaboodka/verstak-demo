@@ -14,21 +14,23 @@ export function Main(name: string, app: App, options?: BlockOptions<HTMLElement,
         e.dataForSensor.window = app
       }
 
-      lbr()
+      lbr() // line break
       useBounds({ widthGrow: 1 })
       ToolBar("ToolBar")
 
-      lbr()
+      lbr() // line break
       Block("Navigation-Bar", [css.Panel], e => {
         text("Navigation-Bar")
       })
+
       useBounds({ widthGrow: 1, heightGrow: 1 })
       WorkArea("WorkArea", [css.Panel, css.Important])
+
       Block("Property-Inspector", [css.Panel], e => {
         text("Property-Inspector")
       })
 
-      lbr()
+      lbr() // line break
       useBounds({ widthGrow: 1 })
       StatusBar("StatusBar")
     })
