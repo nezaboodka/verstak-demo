@@ -1,11 +1,11 @@
-import { Block, BlockOptions, section, $} from "verstak"
+import { Block, section, $} from "verstak"
 import { App } from "models/App"
 import { ToolBar } from "./ToolBar.v"
 import { StatusBar } from "./StatusBar.v"
 import { WorkArea } from "./WorkArea.v"
 import * as css from "theme/Common.css"
 
-export function Main(name: string, app: App, options?: BlockOptions<HTMLElement, void, void>) {
+export function Main(name: string, app: App) {
   return (
     Block(name, { observer: true }, (e, b) => {
       if (b.isInitialRendering) {
