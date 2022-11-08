@@ -11,9 +11,9 @@ export function ToolBar(name: string, preset?: BlockPreset<HTMLElement, void, vo
 
       Panel("Toolbar", { widthGrow: 1, mixins: [css.Panel] }, (e, b) => {
         b.render() // base render
-        section(() => $`multi`)
-        section(() => $`line`)
-        section(() => $`text`)
+        section(s => $`multi`)
+        section(s => $`line`)
+        section(s => $`text`)
       })
 
       Block("account", [css.Panel, css.Unimportant], e => {

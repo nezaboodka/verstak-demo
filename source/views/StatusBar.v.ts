@@ -7,22 +7,22 @@ export function StatusBar(name: string, preset?: BlockPreset<HTMLElement, void, 
     Block(name, preset, (e, b) => {
       Panel("Status", { widthGrow: 1, mixins: [css.Panel] }, (e, b) => {
         b.render() // base render
-        section(() => $`status bar content`)
+        section(s => $`status bar content`)
       })
 
       Panel("Ind-1", [css.Panel, css.Center], (e, b) => {
         b.render() // base render
-        section(() => $`[1]`)
+        section(s => $`[1]`)
       })
 
       Panel("Ind-2", [css.Panel, css.Center], (e, b) => {
         b.render() // base render
-        section(() => $`[2]`)
+        section(s => $`[2]`)
       })
 
       Panel("Ind-3", [css.Panel, css.Center], (e, b) => {
         b.render() // base render
-        section(() => $`[3]`)
+        section(s => $`[3]`)
       })
     })
   )

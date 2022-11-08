@@ -14,11 +14,11 @@ export function Main(name: string, app: App, options?: BlockOptions<HTMLElement,
         e.dataForSensor.window = app
       }
 
-      section(() => {
+      section(s => {
         ToolBar("ToolBar", { widthGrow: 1 })
       })
 
-      section(() => {
+      section(s => {
         Block("Navigation-Bar", [css.Panel], e => {
           $`Navigation-Bar`
         })
