@@ -10,7 +10,7 @@ export function ToolBar(name: string, args?: BlockArgs<HTMLElement, void, void>)
       })
 
       Panel("Toolbar", { widthGrow: 1, use: [css.Panel] }, (e, b) => {
-        b.render() // base render
+        b.baseRender()
         section(s => $`multi`)
         section(s => $`line`)
         section(s => $`text`)
