@@ -20,14 +20,16 @@ export function Main(name: string, app: App) {
       section(s => {
         Block("NavBar", {
           as: [css.Panel],
-          widthMin: "10rem", align: Align.TopCenter,
+          widthMin: "10rem",
+          align: Align.TopCenter,
         }, e => {
           $`Navigation Bar`
         })
 
         Block("WorkArea", {
           as: [css.Panel, css.Important],
-          widthGrow: 1, heightGrow: 1, align: Align.MiddleCenter,
+          widthGrow: 1, heightGrow: 1,
+          align: Align.MiddleCenter,
         }, e => {
           // work area contents can be placed here
           $`Hello, Verstak!<br/>How are you doing today?`
@@ -35,7 +37,8 @@ export function Main(name: string, app: App) {
 
         Block("PropInspector", {
           as: [css.Panel],
-          widthMin: "15rem", widthMax: "15rem", align: Align.FitButTop,
+          widthMin: "15rem", widthMax: "15rem",
+          align: Align.FitButTop,
         }, e => {
           $`СПРАВКА`
           section(s => {
