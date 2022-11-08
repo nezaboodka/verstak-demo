@@ -37,7 +37,6 @@ export function Main(name: string, app: App) {
             heightGrow: 1,
             align: Align.MiddleCenter,
             render() {
-              // work area contents can be placed here
               $`Hello, Verstak!<br/>How are you doing today?`
             }
           })
