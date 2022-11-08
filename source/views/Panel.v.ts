@@ -1,15 +1,17 @@
-import { Block, BlockArgs, Render, argsToOptions, text } from "verstak"
+import { Block, BlockArgs, Render, $ } from "verstak"
 import * as css from "theme/Common.css"
 
 export function Panel(name: string,
-  args?: BlockArgs<HTMLElement, void, void>,
-  render?: Render<HTMLElement, void, void>) {
-  args = argsToOptions(args, { wrapper: render })
+  args: BlockArgs<HTMLElement, void, void>) {
   return (
-    Block(name, args, (e, b) => {
-      Block("title", { as: [css.PanelTitle], widthGrow: 1 }, e => {
-        text(name)
+    Block(name, { ...args, wrapper: args.render, render(e, b) {
+      Block("title", {
+        reuse: [css.PanelTitle],
+        widthGrow: 1,
+        render(e) {
+          $`${name}`
+        }
       })
-    })
+    }})
   )
 }
