@@ -1,46 +1,43 @@
 
 /* Verstak Layout Presets */
 
-*[block] {
+v-block {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-*[grid] {
+v-grid {
   display: grid;
 }
 
-*[group] {
+v-group {
   display: contents;
 }
 
-/* *[block] > div:last-child,
-*[block] > section:last-child {
+v-block > v-line:last-child {
   flex-grow: 1;
-} */
+}
 
-*[block] > div, *[block] > section {
+v-block > v-line {
   display: flex;
   flex-direction: row;
 }
 
-*[grid] > div, *[grid] > section {
+v-grid > v-line {
   display: contents;
 }
 
-*[grid] > *[block] > div:last-child,
-*[grid] > *[block] > section:last-child {
+v-grid > v-block > v-line:last-child {
   flex-grow: 1; /* TODO: To think more */
 }
 
-*[grid] > *[block] > div:only-child,
-*[grid] > *[block] > section:only-child {
+v-grid > v-block > v-line:only-child {
   flex-grow: 0; /* TODO: To think more */
 }
 
-*[block] > div > article, /* text */
-*[grid] > div > article {
+v-block > v-line > v-text,
+v-grid > v-line {
   display: block;
   flex-grow: 1;
 }
