@@ -1,4 +1,4 @@
-import { Block, BlockArgs, Txt, $rowBegin } from "verstak"
+import { Block, BlockArgs, Txt, rowBegin } from "verstak"
 import { Panel } from "./Panel.v"
 import * as css from "theme/Common.css"
 
@@ -17,9 +17,9 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
         widthGrow: 1,
         render(e, b) {
           b.baseRender()
-          $rowBegin(); Txt("multi")
-          $rowBegin(); Txt("line")
-          $rowBegin(); Txt("text")
+          rowBegin(); Txt("multi")
+          rowBegin(); Txt("line")
+          rowBegin(); Txt("text")
         }
       })
 
