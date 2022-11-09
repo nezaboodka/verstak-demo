@@ -1,4 +1,4 @@
-import { Block, BlockArgs, $ } from "verstak"
+import { Block, BlockArgs, $text } from "verstak"
 import * as css from "theme/Common.css"
 
 export function Panel(name: string,
@@ -9,7 +9,7 @@ export function Panel(name: string,
         reuse: [css.PanelTitle],
         widthGrow: 1,
         render(e) {
-          $`${name}`
+          $text`${name}`
         }
       })
     }})
