@@ -8,7 +8,7 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
       Panel("Status", {
         mixins: [m.Panel],
         widthGrow: 1,
-        align: Align.BottomCenter,
+        align: Align.Center + Align.Bottom,
         render(e, b) {
           b.baseRender()
           rowBegin()

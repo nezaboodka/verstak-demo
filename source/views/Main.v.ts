@@ -20,7 +20,7 @@ export function Main(name: string, app: App) {
         Block("NavBar", {
           mixins: [m.Panel],
           widthMin: "10rem",
-          align: Align.TopCenter,
+          align: Align.Center + Align.Top,
           render() {
             Txt("Navigation Bar")
           }
@@ -29,7 +29,7 @@ export function Main(name: string, app: App) {
           mixins: [m.Panel, m.Important],
           widthGrow: 1,
           heightGrow: 1,
-          align: Align.MiddleCenter,
+          align: Align.Center + Align.CenterV,
           render() {
             $html`<b>Verstak</b> is a front-end library<br/>for building interactive user interfaces`
           }
@@ -37,7 +37,7 @@ export function Main(name: string, app: App) {
         Block("PropInspector", {
           mixins: [m.Panel],
           widthMin: "15rem", widthMax: "15rem",
-          align: Align.FitButTop,
+          align: Align.Top,
           render() {
             $html`СПРАВКА`
             rowBegin()
