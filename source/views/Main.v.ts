@@ -1,4 +1,4 @@
-import { Block, Align, Plain, Markdown, lineFeed } from "verstak"
+import { Block, Grid, Align, Plain, Markdown, lineFeed } from "verstak"
 import { App } from "models/App"
 import { ToolBar } from "./ToolBar.v"
 import { StatusBar } from "./StatusBar.v"

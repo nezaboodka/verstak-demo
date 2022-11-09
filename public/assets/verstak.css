@@ -11,6 +11,11 @@ v-grid {
   display: grid;
 }
 
+v-text {
+  display: block;
+  flex-grow: 1;
+}
+
 v-group {
   display: contents;
 }
@@ -34,12 +39,6 @@ v-grid > v-block > v-line:last-child {
 
 v-grid > v-block > v-line:only-child {
   flex-grow: 0; /* TODO: To think more */
-}
-
-v-block > v-line > v-text,
-v-grid > v-line {
-  display: block;
-  flex-grow: 1;
 }
 
 /* Verstak Blinking Effect */
