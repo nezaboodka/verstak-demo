@@ -1,4 +1,4 @@
-import { Block, Align, $row, $text, $rowBegin, $html} from "verstak"
+import { Block, Align, $rowBegin, $html, Txt} from "verstak"
 import { App } from "models/App"
 import { ToolBar } from "./ToolBar.v"
 import { StatusBar } from "./StatusBar.v"
@@ -22,7 +22,7 @@ export function Main(name: string, app: App) {
           widthMin: "10rem",
           align: Align.TopCenter,
           render() {
-            $text`Navigation Bar`
+            Txt("Navigation Bar")
           }
         })
         Block("WorkArea", {
