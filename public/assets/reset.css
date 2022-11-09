@@ -80,52 +80,10 @@ img {
   border: 0;
 }
 
-@keyframes global-blink-animation-0-1 {
-  from { box-shadow: 0 0 0 2px red inset; }
-}
-
-@keyframes global-blink-animation-0-2 {
-  from { box-shadow: 0 0 0 2px red inset; }
-}
-
-@keyframes global-blink-animation-1-1 {
-  from { box-shadow: 0 0 0 2px #0000BB inset; }
-}
-
-@keyframes global-blink-animation-1-2 {
-  from { box-shadow: 0 0 0 2px #0000BB inset; }
-}
-
-@keyframes global-blink-animation-2-1 {
-  from { box-shadow: 0 0 0 2px #00BB00 inset; }
-}
-
-@keyframes global-blink-animation-2-2 {
-  from { box-shadow: 0 0 0 2px #00BB00 inset; }
-}
-
-.blink-0-0 {
-  animation: global-blink-animation-0-1 1.5s ease-in 1 !important;
-}
-
-.blink-0-1 {
-  animation: global-blink-animation-0-2 1.5s ease-in 1 !important;
-}
-
-.blink-1-0 {
-  animation: global-blink-animation-1-1 1.5s ease-in 1 !important;
-}
-
-.blink-1-1 {
-  animation: global-blink-animation-1-2 1.5s ease-in 1 !important;
-}
-
-.blink-2-0 {
-  animation: global-blink-animation-2-1 1.5s ease-in 1 !important;
-}
-
-.blink-2-1 {
-  animation: global-blink-animation-2-2 1.5s ease-in 1 !important;
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 body > *[block],
@@ -136,50 +94,6 @@ body > *[grid] {
   max-height: 100vh;
   font-family: sans-serif;
   font-size: min(5vw, 0.5cm);
-}
-
-body,
-*[block] {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-*[grid] {
-  display: grid;
-}
-
-*[group] {
-  display: contents;
-}
-
-/* *[block] > div:last-child,
-*[block] > section:last-child {
-  flex-grow: 1;
-} */
-
-*[grid] > div, *[grid] > section {
-  display: contents;
-}
-
-*[grid] > *[block] > div:last-child,
-*[grid] > *[block] > section:last-child {
-  flex-grow: 1; /* TODO: To think more */
-}
-
-*[grid] > *[block] > div:only-child,
-*[grid] > *[block] > section:only-child {
-  flex-grow: 0; /* TODO: To think more */
-}
-
-div, section { /* part */
-  display: flex;
-  flex-direction: row;
-}
-
-article { /* text */
-  display: block;
-  flex-grow: 1;
 }
 
 @media only screen and (max-width: 760px) {

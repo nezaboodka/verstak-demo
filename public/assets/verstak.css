@@ -1,0 +1,98 @@
+
+/* Verstak Layout Presets */
+
+*[block] {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+*[grid] {
+  display: grid;
+}
+
+*[group] {
+  display: contents;
+}
+
+/* *[block] > div:last-child,
+*[block] > section:last-child {
+  flex-grow: 1;
+} */
+
+*[block] > div, *[block] > section {
+  display: flex;
+  flex-direction: row;
+}
+
+*[grid] > div, *[grid] > section {
+  display: contents;
+}
+
+*[grid] > *[block] > div:last-child,
+*[grid] > *[block] > section:last-child {
+  flex-grow: 1; /* TODO: To think more */
+}
+
+*[grid] > *[block] > div:only-child,
+*[grid] > *[block] > section:only-child {
+  flex-grow: 0; /* TODO: To think more */
+}
+
+*[block] > div > article, /* text */
+*[grid] > div > article {
+  display: block;
+  flex-grow: 1;
+}
+
+/* Verstak Blinking Effect */
+
+.verstak-blinking-effect-0-0 {
+  animation: verstak-blinking-animation-0-1 1.5s ease-in 1 !important;
+}
+
+.verstak-blinking-effect-0-1 {
+  animation: verstak-blinking-animation-0-2 1.5s ease-in 1 !important;
+}
+
+.verstak-blinking-effect-1-0 {
+  animation: verstak-blinking-animation-1-1 1.5s ease-in 1 !important;
+}
+
+.verstak-blinking-effect-1-1 {
+  animation: verstak-blinking-animation-1-2 1.5s ease-in 1 !important;
+}
+
+.verstak-blinking-effect-2-0 {
+  animation: verstak-blinking-animation-2-1 1.5s ease-in 1 !important;
+}
+
+.verstak-blinking-effect-2-1 {
+  animation: verstak-blinking-animation-2-2 1.5s ease-in 1 !important;
+}
+
+/* Verstak Blinking Animation */
+
+@keyframes verstak-blinking-animation-0-1 {
+  from { box-shadow: 0 0 0 2px red inset; }
+}
+
+@keyframes verstak-blinking-animation-0-2 {
+  from { box-shadow: 0 0 0 2px red inset; }
+}
+
+@keyframes verstak-blinking-animation-1-1 {
+  from { box-shadow: 0 0 0 2px #0000BB inset; }
+}
+
+@keyframes verstak-blinking-animation-1-2 {
+  from { box-shadow: 0 0 0 2px #0000BB inset; }
+}
+
+@keyframes verstak-blinking-animation-2-1 {
+  from { box-shadow: 0 0 0 2px #00BB00 inset; }
+}
+
+@keyframes verstak-blinking-animation-2-2 {
+  from { box-shadow: 0 0 0 2px #00BB00 inset; }
+}

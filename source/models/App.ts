@@ -20,6 +20,6 @@ export class App extends ObservableObject {
 
   @reactive
   applyBlinkingEffect(): void {
-    BaseHtmlDriver.blinkingEffect = this.blinkingEffect ? "blink" : undefined
+    BaseHtmlDriver.blinkingEffect = this.blinkingEffect ? "verstak-blinking-effect" : undefined
   }
 }
