@@ -1,8 +1,8 @@
-import { Block, Align, rowBegin, $html, Txt} from "verstak"
+import { Block, Align, Txt, rowBegin, $html } from "verstak"
 import { App } from "models/App"
 import { ToolBar } from "./ToolBar.v"
 import { StatusBar } from "./StatusBar.v"
-import * as css from "theme/Common.css"
+import * as m from "theme/Common.m"
 
 export function Main(name: string, app: App) {
   return (
@@ -18,7 +18,7 @@ export function Main(name: string, app: App) {
         rowBegin()
 
         Block("NavBar", {
-          reuse: [css.Panel],
+          mixins: [m.Panel],
           widthMin: "10rem",
           align: Align.TopCenter,
           render() {
@@ -26,7 +26,7 @@ export function Main(name: string, app: App) {
           }
         })
         Block("WorkArea", {
-          reuse: [css.Panel, css.Important],
+          mixins: [m.Panel, m.Important],
           widthGrow: 1,
           heightGrow: 1,
           align: Align.MiddleCenter,
@@ -35,7 +35,7 @@ export function Main(name: string, app: App) {
           }
         })
         Block("PropInspector", {
-          reuse: [css.Panel],
+          mixins: [m.Panel],
           widthMin: "15rem", widthMax: "15rem",
           align: Align.FitButTop,
           render() {

@@ -1,12 +1,12 @@
-import { Block, BlockArgs, Align, Txt, Row, rowBegin } from "verstak"
+import { Block, BlockArgs, Align, Txt, rowBegin } from "verstak"
 import { Panel } from "./Panel.v"
-import * as css from "theme/Common.css"
+import * as m from "theme/Common.m"
 
 export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, void, void>>) {
   return (
     Block(name, { ...args, render(e, b) {
       Panel("Status", {
-        reuse: [css.Panel],
+        mixins: [m.Panel],
         widthGrow: 1,
         align: Align.BottomCenter,
         render(e, b) {
@@ -17,7 +17,7 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
       })
 
       Panel("Ind-1", {
-        reuse: [css.Panel, css.Center],
+        mixins: [m.Panel, m.Center],
         render(e, b) {
           b.baseRender()
           rowBegin()
@@ -26,7 +26,7 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
       })
 
       Panel("Ind-2", {
-        reuse: [css.Panel, css.Center],
+        mixins: [m.Panel, m.Center],
         render(e, b) {
           b.baseRender()
           Txt("[2]")
@@ -34,7 +34,7 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
       })
 
       Panel("Ind-3", {
-        reuse: [css.Panel, css.Center],
+        mixins: [m.Panel, m.Center],
         render(e, b) {
           b.baseRender()
           Txt("[3]")
