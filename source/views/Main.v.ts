@@ -36,7 +36,8 @@ export function Main(name: string, app: App) {
         })
         Block("PropInspector", {
           mixins: [m.Panel],
-          widthMin: "15rem", widthMax: "15rem",
+          widthMin: "15rem",
+          widthMax: "15rem",
           align: Align.Top,
           render() {
             $html`СПРАВКА`
