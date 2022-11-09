@@ -138,7 +138,8 @@ body > *[grid] {
   font-size: min(5vw, 0.5cm);
 }
 
-*[block], body {
+body,
+*[block] {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -148,12 +149,27 @@ body > *[grid] {
   display: grid;
 }
 
-*[grid] > div {
+*[group] {
   display: contents;
 }
 
-*[group] {
+/* *[block] > div:last-child,
+*[block] > section:last-child {
+  flex-grow: 1;
+} */
+
+*[grid] > div, *[grid] > section {
   display: contents;
+}
+
+*[grid] > *[block] > div:last-child,
+*[grid] > *[block] > section:last-child {
+  flex-grow: 1; /* TODO: To think more */
+}
+
+*[grid] > *[block] > div:only-child,
+*[grid] > *[block] > section:only-child {
+  flex-grow: 0; /* TODO: To think more */
 }
 
 div, section { /* part */
