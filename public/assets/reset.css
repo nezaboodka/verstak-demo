@@ -128,7 +128,8 @@ img {
   animation: global-blink-animation-2-2 1.5s ease-in 1 !important;
 }
 
-body > *[block] {
+body > *[block],
+body > *[grid] {
   width: 100vw;
   max-width: 100vw;
   height: 100vh;
@@ -144,8 +145,11 @@ body > *[block] {
 }
 
 *[grid] {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+}
+
+*[grid] > div {
+  display: contents;
 }
 
 *[group] {
