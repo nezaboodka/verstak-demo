@@ -1,4 +1,4 @@
-import { Block, Align, Plain, Markdown, rowBegin, Mark } from "verstak"
+import { Block, Align, Plain, Markdown, lineFeed, Mark } from "verstak"
 import { App } from "models/App"
 import { ToolBar } from "./ToolBar.v"
 import { StatusBar } from "./StatusBar.v"
@@ -9,13 +9,12 @@ export function Main(name: string, app: App) {
     Block(name, {
       reactor: true,
       render(e, b) {
-        rowBegin()
 
         ToolBar("ToolBar", {
           widthGrow: 1,
         })
 
-        rowBegin()
+        lineFeed()
 
         Block("NavBar", {
           mixins: [m.Panel],
@@ -41,12 +40,12 @@ export function Main(name: string, app: App) {
           align: Align.Top,
           render() {
             Plain("СПРАВКА")
-            rowBegin()
+            lineFeed()
             Markdown("<br/><b>Верстак</b> – это система построения визуальных интерфейсов на основе табличной вёрстки. В основе лежит идея размещения визуальных элементов интерфейса в одиночных или смежных ячейках таблицы. Размещаемые элементы называются блоками. При этом сама таблица с размещёнными внутри неё блоками также считается блоком и в свою очередь может быть размещена в другом блоке уже на его табличной сетке.")
           }
         })
 
-        rowBegin()
+        lineFeed()
 
         StatusBar("StatusBar", {
           widthGrow: 1,

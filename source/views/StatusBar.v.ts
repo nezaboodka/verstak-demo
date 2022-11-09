@@ -1,4 +1,4 @@
-import { Block, BlockArgs, Align, Plain, rowBegin } from "verstak"
+import { Block, BlockArgs, Align, Plain, lineFeed } from "verstak"
 import { Panel } from "./Panel.v"
 import * as m from "theme/Common.m"
 
@@ -11,7 +11,7 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
         align: Align.Center + Align.Bottom,
         render(e, b) {
           b.baseRender()
-          rowBegin()
+          lineFeed()
           Plain("status bar content")
         }
       })
@@ -20,7 +20,7 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
         mixins: [m.Panel, m.Center],
         render(e, b) {
           b.baseRender()
-          rowBegin()
+          lineFeed()
           Plain("[1]")
         }
       })
