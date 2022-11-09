@@ -1,4 +1,4 @@
-import { Block, BlockArgs, Txt, rowBegin } from "verstak"
+import { Block, BlockArgs, Plain, rowBegin } from "verstak"
 import { Panel } from "./Panel.v"
 import * as m from "theme/Common.m"
 
@@ -8,7 +8,7 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
       Block("Logo", {
         mixins: [m.Panel, m.Brand],
         render() {
-          Txt("N*V")
+          Plain("N*V")
         }
       })
 
@@ -17,16 +17,16 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
         widthGrow: 1,
         render(e, b) {
           b.baseRender()
-          rowBegin(); Txt("multi")
-          rowBegin(); Txt("line")
-          rowBegin(); Txt("text")
+          rowBegin(); Plain("multi")
+          rowBegin(); Plain("line")
+          rowBegin(); Plain("text")
         }
       })
 
       Block("Account", {
         mixins: [m.Panel, m.Unimportant],
         render(e) {
-          Txt("Account")
+          Plain("Account")
         }
       })
     }})

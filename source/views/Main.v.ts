@@ -1,4 +1,4 @@
-import { Block, Align, Txt, rowBegin, $html } from "verstak"
+import { Block, Align, Plain, Markdown, rowBegin, Mark } from "verstak"
 import { App } from "models/App"
 import { ToolBar } from "./ToolBar.v"
 import { StatusBar } from "./StatusBar.v"
@@ -22,7 +22,7 @@ export function Main(name: string, app: App) {
           widthMin: "10rem",
           align: Align.Center + Align.Top,
           render() {
-            Txt("Navigation Bar")
+            Plain("Navigation Bar")
           }
         })
         Block("WorkArea", {
@@ -31,7 +31,7 @@ export function Main(name: string, app: App) {
           heightGrow: 1,
           align: Align.Center + Align.CenterV,
           render() {
-            $html`<b>Verstak</b> is a front-end library<br/>for building interactive user interfaces`
+            Markdown("<b>Verstak</b> is a front-end library<br/>for building interactive user interfaces")
           }
         })
         Block("PropInspector", {
@@ -40,9 +40,9 @@ export function Main(name: string, app: App) {
           widthMax: "15rem",
           align: Align.Top,
           render() {
-            $html`СПРАВКА`
+            Plain("СПРАВКА")
             rowBegin()
-            $html`<br/><b>Верстак</b> – это система построения визуальных интерфейсов на основе табличной вёрстки. В основе лежит идея размещения визуальных элементов интерфейса в одиночных или смежных ячейках таблицы. Размещаемые элементы называются блоками. При этом сама таблица с размещёнными внутри неё блоками также считается блоком и в свою очередь может быть размещена в другом блоке уже на его табличной сетке.`
+            Markdown("<br/><b>Верстак</b> – это система построения визуальных интерфейсов на основе табличной вёрстки. В основе лежит идея размещения визуальных элементов интерфейса в одиночных или смежных ячейках таблицы. Размещаемые элементы называются блоками. При этом сама таблица с размещёнными внутри неё блоками также считается блоком и в свою очередь может быть размещена в другом блоке уже на его табличной сетке.")
           }
         })
 
