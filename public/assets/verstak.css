@@ -20,9 +20,11 @@ v-group {
   display: contents;
 }
 
+/*
 v-block > v-line:last-child {
   flex-grow: 1;
 }
+*/
 
 v-block > v-line {
   display: flex;
