@@ -1,4 +1,4 @@
-import { Block, BlockArgs, Plain, lineFeed } from "verstak"
+import { Block, BlockArgs, Plain, lineFeed, Align } from "verstak"
 import { Panel } from "./Panel.v"
 import * as m from "theme/Common.m"
 
@@ -14,7 +14,7 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
 
       Panel("Toolbar", {
         mixins: [m.Panel],
-        widthGrow: 1,
+        widthGrab: 1,
         render(e, b) {
           b.baseRender()
           lineFeed(); Plain("multi")

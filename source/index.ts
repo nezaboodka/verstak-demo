@@ -13,16 +13,6 @@ const app = Transaction.run(null, () => new App(version))
 
 VBlock.root(() => {
   HtmlBody("html > body", body => {
-    if (isMobile) {
-      body.style.width = body.style.maxWidth = `${window.innerWidth}px`
-      body.style.height = body.style.maxHeight = `${window.innerHeight}px`
-      body.style.fontSize = "5vw"
-    }
-    else {
-      body.style.width = body.style.maxWidth = "100vw"
-      body.style.height = body.style.maxHeight = "100vh"
-      body.style.fontSize = ""
-    }
     Main("main", app)
   })
 })

@@ -5,24 +5,29 @@ v-block {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  flex-basis: 0;
 }
 
 v-grid {
   display: grid;
+  flex-basis: 0;
 }
 
 v-text {
   display: block;
   flex-grow: 1;
+  flex-basis: 0;
 }
 
 v-group {
   display: contents;
 }
 
+/*
 v-block > v-line:only-child {
   flex-grow: 1;
 }
+*/
 
 v-block > v-line {
   display: flex;
@@ -33,13 +38,19 @@ v-grid > v-line {
   display: contents;
 }
 
+v-line > v-block {
+  align-self: center;
+}
+
+/*
 v-grid > v-block > v-line:last-child {
-  flex-grow: 1; /* TODO: To think more */
+  flex-grow: 1;
 }
 
 v-grid > v-block > v-line:only-child {
-  flex-grow: 0; /* TODO: To think more */
+  flex-grow: 0;
 }
+*/
 
 /* Verstak Blinking Effect */
 

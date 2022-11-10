@@ -8,10 +8,11 @@ export function Main(name: string, app: App) {
   return (
     Block(name, {
       reactor: true,
+      align: Align.Top,
       render(e, b) {
 
         ToolBar("ToolBar", {
-          widthGrow: 1,
+          widthGrab: 1,
         })
 
         lineFeed()
@@ -19,25 +20,23 @@ export function Main(name: string, app: App) {
         Block("NavBar", {
           mixins: [m.Panel],
           widthMin: "10rem",
-          align: Align.Center + Align.Top,
+          // align: Align.Center + Align.Top,
           render() {
             Plain("Navigation Bar")
           }
         })
-        Block("WorkArea", {
+        Block("GridExample1", {
           mixins: [m.Panel, m.Important],
-          widthGrow: 1,
-          heightGrow: 1,
-          align: Align.Center + Align.CenterV,
+          widthGrab: 1,
+          heightGrab: 1,
           render() {
             Markdown("<b>Verstak</b> is a front-end library<br/>for building interactive user interfaces")
           }
         })
-        Block("PropInspector", {
+        Block("GridExample2", {
           mixins: [m.Panel],
-          widthMin: "15rem",
-          widthMax: "15rem",
-          align: Align.Top,
+          widthGrab: 1,
+          // heightGrab: 1,
           render() {
             Plain("СПРАВКА")
             lineFeed()
@@ -48,7 +47,7 @@ export function Main(name: string, app: App) {
         lineFeed()
 
         StatusBar("StatusBar", {
-          widthGrow: 1,
+          widthGrab: 1,
         })
       },
     })
