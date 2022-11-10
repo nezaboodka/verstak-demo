@@ -1,4 +1,4 @@
-import { Block, BlockArgs, Plain, lineFeed, To } from "verstak"
+import { Block, BlockArgs, Plain, lineFeed, To, Img } from "verstak"
 import { Panel } from "./Panel.v"
 import * as m from "theme/Common.m"
 
@@ -6,9 +6,17 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
   return (
     Block(name, { ...args, render(e, b) {
       Block("Logo", {
-        mixins: [m.Panel, m.Brand],
-        render() {
-          Plain("N*V")
+        mixins: [m.Panel],
+        render(e) {
+          e.style.backgroundColor = "white"
+          e.style.padding = "0.5rem"
+          Img("N*", {
+            render(e) {
+              e.src = "https://nezaboodka.com/img/star-768x768-circle.png"
+              e.style.height = "3em"
+              e.style.width = "auto"
+            }
+          })
         }
       })
 
@@ -18,9 +26,8 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
         align: To.Center,
         render(e, b) {
           b.baseRender()
-          lineFeed(); Plain("multi")
-          lineFeed(); Plain("line")
-          lineFeed(); Plain("text")
+          lineFeed(); Plain("Пример многострочного текста")
+          lineFeed(); Plain("Попробуйте изменить размеры окна браузера")
         }
       })
 

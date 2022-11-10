@@ -19,36 +19,24 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
           }
         })
 
-        Panel("Ind-1", {
+        Panel("[1]", {
           mixins: [m.Panel, m.Center],
-          dock: To.Bottom,
           render(e, b) {
             b.baseRender()
-            e.style.whiteSpace = "nowrap"
-            lineFeed()
-            Plain("[1]")
           }
         })
 
-        Panel("Ind-2", {
+        Panel("[2]", {
           mixins: [m.Panel, m.Center],
-          dock: To.Bottom,
           render(e, b) {
             b.baseRender()
-            e.style.whiteSpace = "nowrap"
-            lineFeed()
-            Plain("[2]")
           }
         })
 
-        Panel("Ind-3", {
+        Panel("[3]", {
           mixins: [m.Panel, m.Center],
-          dock: To.Bottom,
           render(e, b) {
             b.baseRender()
-            e.style.whiteSpace = "nowrap"
-            lineFeed()
-            Plain("[3]")
           }
         })
       }

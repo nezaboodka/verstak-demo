@@ -3,9 +3,10 @@ import { Render } from "verstak"
 export const Panel: Render<HTMLElement> = e => {
   const z = e.style
   z.margin = "0.5rem"
-  z.padding = "0.25rem"
+  z.padding = "1rem"
   z.boxShadow = "0.025rem 0.025rem 0.35rem 0 gray"
   z.borderRadius = "0.25rem"
+  z.backgroundColor = "white"
 }
 
 export const PanelTitle: Render<HTMLElement> = e => {
@@ -23,7 +24,7 @@ export const Brand: Render<HTMLElement> = e => {
 export const Important: Render<HTMLElement> = e => {
   const z = e.style
   z.color = "red"
-  z.backgroundColor = "rgba(255, 0, 0, 0.1)"
+  z.backgroundColor = "#fef5f4"
   z.border = "1px solid red"
 }
 
