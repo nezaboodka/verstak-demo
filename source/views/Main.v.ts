@@ -37,7 +37,7 @@ export function Main(name: string, app: App) {
           mixins: [m.Panel],
           widthGrab: 1,
           // heightGrab: 1,
-          blockAlign: Align.Bottom,
+          docking: Align.Bottom,
           render() {
             Plain("СПРАВКА")
             lineFeed()
