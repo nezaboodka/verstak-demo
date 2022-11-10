@@ -1,56 +1,62 @@
-import { Grid, BlockArgs, Block, Plain, lineFeed } from "verstak"
+import { Grid, BlockArgs, Block, Plain, lineFeed, To, Markdown } from "verstak"
 import * as m from "theme/Common.m"
 
 export function WorkArea(name: string,
   args?: Partial<BlockArgs<HTMLElement, void, void>>) {
   return (
     Grid(name, { ...args, wrapper: args?.render, render(e, b) {
-      Block("A1:C1", {
+      Ruler("1", To.Left, true)
+      Ruler("A", To.Top)
+      Ruler("B", To.Top)
+      Ruler("C", To.Top); lineFeed()
+      Ruler("2", To.Left); lineFeed()
+      Ruler("3", To.Left); lineFeed()
+
+      Block("B2", {
         mixins: [m.Important],
-        place: "A1:C1",
+        place: "B2",
         render(e, b) {
-          Plain("Верстка на основе табличной сетки")
-          lineFeed()
-          Plain("(A1:C1)")
+          Plain("B2")
         }
       })
-      Block("B3", {
+      Block("A1:B1", {
         mixins: [m.Important],
-        place: "B3",
+        place: "A1:B1",
         render(e, b) {
-          Plain("Центр")
-          lineFeed()
-          Plain("(B3)")
+          Plain("A1:B1")
         }
       })
-      Block("A2:B2", {
+      Block("C1:C2", {
         mixins: [m.Important],
-        place: "A2:B2",
+        place: "C1:C2",
         render(e, b) {
-          Plain("(A2:B2)")
+          Plain("C1:C2")
         }
       })
-      Block("C2:C3", {
+      Block("B3:C3", {
         mixins: [m.Important],
-        place: "C2:C3",
+        place: "B3:C3",
         render(e, b) {
-          Plain("(C2:C3)")
+          Plain("B3:C3")
         }
       })
-      Block("B4:C4", {
+      Block("A2:A3", {
         mixins: [m.Important],
-        place: "B4:C4",
+        place: "A2:A3",
         render(e, b) {
-          Plain("(B4:C4)")
-        }
-      })
-      Block("A3:A4", {
-        mixins: [m.Important],
-        place: "A3:A4",
-        render(e, b) {
-          Plain("(A3:A4)")
+          Plain("A2:A3")
         }
       })
     }})
   )
+}
+
+function Ruler(title: string, dock: To, overlap?: boolean) {
+  Block(`#${title}`, {
+    dock,
+    widthOverlap: overlap,
+    render(e) {
+      Markdown(`&nbsp;${title}`)
+    }
+  })
 }
