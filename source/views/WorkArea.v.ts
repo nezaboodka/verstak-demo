@@ -5,6 +5,8 @@ export function WorkArea(name: string,
   args?: Partial<BlockArgs<HTMLElement, void, void>>) {
   return (
     Grid(name, { ...args, wrapper: args?.render, render(e, b) {
+
+      // Grid Flow: rightwards-downwards
       Ruler("1", To.Left, true)
       Ruler("A", To.Top)
       Ruler("B", To.Top)
@@ -12,6 +14,7 @@ export function WorkArea(name: string,
       Ruler("2", To.Left); lineFeed()
       Ruler("3", To.Left); lineFeed()
 
+      // Absolute positioning inside grid
       Block("B2", {
         mixins: [m.Important],
         place: "B2",
