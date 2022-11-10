@@ -15,37 +15,27 @@ export function WorkArea(name: string,
       Block("B2", {
         mixins: [m.Important],
         place: "B2",
-        render(e, b) {
-          Plain("B2")
-        }
+        render(e, b) { Plain("B2") }
       })
       Block("A1:B1", {
         mixins: [m.Important],
         place: "A1:B1",
-        render(e, b) {
-          Plain("A1:B1")
-        }
+        render(e, b) { Plain("A1:B1") }
       })
       Block("C1:C2", {
         mixins: [m.Important],
         place: "C1:C2",
-        render(e, b) {
-          Plain("C1:C2")
-        }
+        render(e, b) { Plain("C1:C2") }
       })
       Block("B3:C3", {
         mixins: [m.Important],
         place: "B3:C3",
-        render(e, b) {
-          Plain("B3:C3")
-        }
+        render(e, b) { Plain("B3:C3") }
       })
       Block("A2:A3", {
         mixins: [m.Important],
         place: "A2:A3",
-        render(e, b) {
-          Plain("A2:A3")
-        }
+        render(e, b) { Plain("A2:A3") }
       })
     }})
   )
