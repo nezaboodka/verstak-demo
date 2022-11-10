@@ -2,6 +2,7 @@ import { Block, Grid, Align, Plain, Markdown, lineFeed } from "verstak"
 import { App } from "models/App"
 import { ToolBar } from "./ToolBar.v"
 import { StatusBar } from "./StatusBar.v"
+import { WorkArea } from "./WorkArea.v"
 import * as m from "theme/Common.m"
 
 export function Main(name: string, app: App) {
@@ -25,13 +26,11 @@ export function Main(name: string, app: App) {
             Plain("Navigation Bar")
           }
         })
-        Block("GridExample1", {
+        WorkArea("GridExample1", {
           mixins: [m.Panel, m.Important],
           widthGrab: 3,
           heightGrab: 1,
-          render() {
-            Markdown("<b>Verstak</b> is a front-end library<br/>for building interactive user interfaces")
-          }
+          align: Align.Center + Align.CenterV,
         })
         Block("GridExample2", {
           mixins: [m.Panel],

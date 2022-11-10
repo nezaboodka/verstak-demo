@@ -3,14 +3,16 @@
 
 v-block {
   display: flex;
+  flex-basis: 0;
   flex-direction: column;
   justify-content: center;
-  flex-basis: 0;
 }
 
 v-grid {
   display: grid;
   flex-basis: 0;
+  grid-auto-rows: minmax(min-content, 1fr);
+  grid-auto-columns: minmax(min-content, 1fr);
 }
 
 v-text {
