@@ -10,7 +10,8 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
         Panel("Status", {
           mixins: [m.Panel],
           widthGrab: 1,
-          docking: Align.Bottom,
+          align: Align.Center,
+          fit: Align.Bottom,
           render(e, b) {
             b.baseRender()
             lineFeed()
@@ -20,7 +21,7 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
 
         Panel("Ind-1", {
           mixins: [m.Panel, m.Center],
-          docking: Align.Bottom,
+          fit: Align.Bottom,
           render(e, b) {
             b.baseRender()
             lineFeed()
@@ -30,7 +31,7 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
 
         Panel("Ind-2", {
           mixins: [m.Panel, m.Center],
-          docking: Align.Bottom,
+          fit: Align.Bottom,
           render(e, b) {
             b.baseRender()
             Plain("[2]")
@@ -39,7 +40,7 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
 
         Panel("Ind-3", {
           mixins: [m.Panel, m.Center],
-          docking: Align.Bottom,
+          fit: Align.Bottom,
           render(e, b) {
             b.baseRender()
             Plain("[3]")

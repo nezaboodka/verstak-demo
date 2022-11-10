@@ -25,7 +25,7 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
       })
 
       Block("Account", {
-        mixins: [m.Panel, m.Unimportant],
+        mixins: [m.Panel, m.Hint],
         render(e) {
           Plain("Account")
         }

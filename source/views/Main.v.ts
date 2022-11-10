@@ -21,21 +21,21 @@ export function Main(name: string, app: App) {
         Block("NavBar", {
           mixins: [m.Panel],
           widthMin: "10rem",
-          docking: Align.Fit,
+          fit: Align.Stretch,
           render() {
             Plain("Navigation Bar")
           }
         })
         WorkArea("GridExample1", {
           mixins: [m.Panel, m.Important],
-          widthGrab: 3,
+          widthGrab: 1,
           heightGrab: 1,
           align: Align.Center + Align.CenterV,
         })
         Block("GridExample2", {
-          mixins: [m.Panel],
-          widthGrab: 1,
-          docking: Align.Top,
+          mixins: [m.Panel, m.Hint],
+          widthMin: "15rem",
+          fit: Align.Top,
           render() {
             Plain("СПРАВКА")
             lineFeed()

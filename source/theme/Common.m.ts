@@ -27,9 +27,8 @@ export const Important: Render<HTMLElement> = e => {
   z.border = "1px solid red"
 }
 
-export const Unimportant: Render<HTMLElement> = e => {
+export const Hint: Render<HTMLElement> = e => {
   const z = e.style
-  z.color = "silver"
   z.fontSize = "smaller"
   z.border = "1px solid silver"
 }

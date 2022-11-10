@@ -25,12 +25,6 @@ v-group {
   display: contents;
 }
 
-/*
-v-block > v-line:only-child {
-  flex-grow: 1;
-}
-*/
-
 v-block > v-line {
   display: flex;
   flex-direction: row;
@@ -40,19 +34,13 @@ v-grid > v-line {
   display: contents;
 }
 
+v-grid > v-block {
+  place-self: stretch;
+}
+
 v-line > v-block {
   align-self: center;
 }
-
-/*
-v-grid > v-block > v-line:last-child {
-  flex-grow: 1;
-}
-
-v-grid > v-block > v-line:only-child {
-  flex-grow: 0;
-}
-*/
 
 /* Verstak Blinking Effect */
 
