@@ -1,4 +1,4 @@
-import { Block, Grid, Align, Plain, Markdown, lineFeed } from "verstak"
+import { Block, Grid, To, Plain, Markdown, lineFeed } from "verstak"
 import { App } from "models/App"
 import { ToolBar } from "./ToolBar.v"
 import { StatusBar } from "./StatusBar.v"
@@ -9,7 +9,7 @@ export function Main(name: string, app: App) {
   return (
     Block(name, {
       reactor: true,
-      align: Align.Top,
+      align: To.Top,
       render(e, b) {
 
         ToolBar("ToolBar", {
@@ -21,21 +21,20 @@ export function Main(name: string, app: App) {
         Block("NavBar", {
           mixins: [m.Panel],
           widthMin: "10rem",
-          fit: Align.Stretch,
+          dock: To.Fit,
           render() {
             Plain("Navigation Bar")
           }
         })
         WorkArea("GridExample1", {
           mixins: [m.Panel, m.Important],
-          widthGrab: 1,
-          heightGrab: 1,
-          align: Align.Center + Align.CenterV,
+          widthGrab: 1, heightGrab: 1,
+          align: To.Center + To.CenterV,
         })
         Block("GridExample2", {
           mixins: [m.Panel, m.Hint],
           widthMin: "15rem",
-          fit: Align.Top,
+          dock: To.Top,
           render() {
             Plain("СПРАВКА")
             lineFeed()
