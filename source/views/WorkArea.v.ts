@@ -5,7 +5,6 @@ export function WorkArea(name: string,
   args?: Partial<BlockArgs<HTMLElement, void, void>>) {
   return (
     Grid(name, { ...args, wrapper: args?.render, render(e, b) {
-      // Markdown("<b>Verstak</b> is a front-end library<br/>for building interactive user interfaces")
       Block("A1:C1", {
         mixins: [m.Important],
         place: "A1:C1",
@@ -13,7 +12,7 @@ export function WorkArea(name: string,
         render(e, b) {
           Markdown("Верстка на основе табличной сетки")
           lineFeed()
-          Markdown("(A1:C1)")
+          Markdown("(это ячейки A1:C1)")
         }
       })
       Block("B3", {
@@ -21,7 +20,9 @@ export function WorkArea(name: string,
         place: "B3",
         docking: Align.Fit,
         render(e, b) {
-          Markdown("(B3) Центр")
+          Markdown("Центр")
+          lineFeed()
+          Markdown("(это ячейка B3)")
         }
       })
       Block("A2:B2", {
