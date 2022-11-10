@@ -11,8 +11,8 @@ export function Main(name: string, app: App) {
       reacting: true,
       align: To.Top,
       render(e, b) {
-
         e.style.backgroundColor = "rgba(230, 230, 230)"
+
         ToolBar("ToolBar", {
           widthGrab: 1,
         })
