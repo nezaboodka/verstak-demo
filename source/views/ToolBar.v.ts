@@ -15,6 +15,7 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
       Panel("Toolbar", {
         mixins: [m.Panel],
         widthGrab: 1,
+        align: Align.Center,
         render(e, b) {
           b.baseRender()
           lineFeed(); Plain("multi")

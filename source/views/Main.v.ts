@@ -27,7 +27,7 @@ export function Main(name: string, app: App) {
         })
         Block("GridExample1", {
           mixins: [m.Panel, m.Important],
-          widthGrab: 1,
+          widthGrab: 3,
           heightGrab: 1,
           render() {
             Markdown("<b>Verstak</b> is a front-end library<br/>for building interactive user interfaces")
@@ -37,6 +37,7 @@ export function Main(name: string, app: App) {
           mixins: [m.Panel],
           widthGrab: 1,
           // heightGrab: 1,
+          blockAlign: Align.Bottom,
           render() {
             Plain("СПРАВКА")
             lineFeed()
