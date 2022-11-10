@@ -8,7 +8,7 @@ import * as m from "theme/Common.m"
 export function Main(name: string, app: App) {
   return (
     Block(name, {
-      reactor: true,
+      reacting: true,
       align: To.Top,
       render(e, b) {
 
