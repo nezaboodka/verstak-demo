@@ -20,7 +20,7 @@ export function Main(name: string, app: App) {
         Block("NavBar", {
           mixins: [m.Panel],
           widthMin: "10rem",
-          // align: Align.Center + Align.Top,
+          docking: Align.Fit,
           render() {
             Plain("Navigation Bar")
           }
@@ -36,8 +36,7 @@ export function Main(name: string, app: App) {
         Block("GridExample2", {
           mixins: [m.Panel],
           widthGrab: 1,
-          // heightGrab: 1,
-          docking: Align.Bottom,
+          docking: Align.Top,
           render() {
             Plain("СПРАВКА")
             lineFeed()
