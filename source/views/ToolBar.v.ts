@@ -19,8 +19,8 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
             Img("N*", {
               render(e, b) {
                 e.src = "https://nezaboodka.com/img/star-768x768-circle.png"
-                e.style.width = "3em"
-                e.style.height = "3em"
+                e.style.width = "2.5em"
+                e.style.height = "2.5em"
               }
             })
           }
