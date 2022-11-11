@@ -6,8 +6,8 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
   return (
     Block(name, { ...args, render(e, b) {
       Block("Logo", {
-        mixins: [m.Panel],
         render(e, b) {
+          b.apply(m.Panel)
           e.style.backgroundColor = "white"
           e.style.padding = "0.5rem"
           e.style.borderRadius = "100%"
@@ -22,19 +22,19 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
       })
 
       Panel("Verstak", {
-        mixins: [m.Panel],
         widthGrowth: 1,
         align: To.Center,
         render(e, b) {
           b.baseRender()
+          b.apply(m.Panel)
           lineFeed(); PlainText("Block may contain multiple lines")
           lineFeed(); PlainText("Try to change window size")
         }
       })
 
       Block("Account", {
-        mixins: [m.Panel, m.Hint],
         render(e, b) {
+          b.apply(m.Panel, m.Hint)
           PlainText("[=]")
         }
       })

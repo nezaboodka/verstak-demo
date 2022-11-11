@@ -38,10 +38,10 @@ function Ruler(title: string, dock: To, overlap?: boolean) {
 
 function ExampleData(place: string) {
   Block(place, {
-    mixins: [m.Important],
     place, // absolute position inside grid
     align: To.Center + To.CenterV,
     render(e, b) {
+      b.apply(m.Important)
       PlainText(place)
     }
   })

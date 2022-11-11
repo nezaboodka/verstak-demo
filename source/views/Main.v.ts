@@ -20,25 +20,28 @@ export function Main(name: string, app: App) {
 
         lineFeed()
         Block("NavBar", {
-          mixins: [m.Panel],
           widthMin: "10rem",
           dock: To.Fit,
           render(e, b) {
+            b.apply(m.Panel)
             PlainText("Navigation Panel")
           }
         })
         WorkArea("GridExample", {
-          mixins: [m.Panel, m.Important],
           widthGrowth: 3,
           heightGrowth: 1,
+          render(e, b) {
+            b.baseRender()
+            b.apply(m.Panel, m.Important)
+          }
         })
         Block("MarkdownExample", {
-          mixins: [m.Panel, m.Hint],
           widthMin: "16rem",
           widthGrowth: 2,
           align: To.Left,
           dock: To.Top,
           render(e, b) {
+            b.apply(m.Panel, m.Hint)
             Markdown("Verstak", `
 Sizings of blocks are automatically adjusted to size of
 table cells, while grid is automatically adjusted to
