@@ -1,0 +1,69 @@
+
+/* Print theme */
+
+.print .toc-inner {
+  background-color: unset;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  /* box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25) inset; */
+}
+
+.print pre {
+  color: #000000;
+  background-color: inherit;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25) inset;
+}
+
+.print .substitution {
+  color: #000000;
+}
+
+.print .token.comment {
+  color: #808080;
+  font-style: italic;
+}
+
+.print .token.number,
+.print .token.string,
+.print .token.string-line {
+  color: #000000;
+}
+
+.print .token.string .token.substitution > .token.brace-curly {
+  font-weight: bold;
+}
+
+.print .token.type {
+  color: #5F5F5F;
+}
+
+.print .token.operation,
+.print .token.function {
+  color: #000000;
+  text-decoration: underline;
+  text-decoration-thickness: from-font;
+  text-decoration-color: #707070;
+}
+
+.print .token.keyword,
+.print .token.brace-curly,
+.print .token.brace-square {
+  font-weight: bold;
+}
+
+.print .token.kw {
+  font-weight: bold;
+}
+
+.print .token.tag {
+  /* font-size: 80%; */
+  font-weight: bold;
+  font-style: italic;
+}
+
+.print .token.symbol {
+  color: #000000;
+}
+
+.print .token.punctuation {
+  color: #808080;
+}

@@ -14,6 +14,24 @@ body > v-block {
   flex-grow: 1;
 }
 
+p {
+  margin-bottom: 1em;
+}
+
+pre {
+  border-radius: 0.2em;
+  padding: 0.25em 0.5em;
+  overflow: scroll;
+}
+
+code {
+  white-space: nowrap;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+}
+
 @media only screen and (max-width: 760px) {
   div, section { /* part */
     flex-direction: column;

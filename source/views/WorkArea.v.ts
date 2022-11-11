@@ -5,18 +5,16 @@ export function WorkArea(name: string,
   args?: Partial<BlockArgs<HTMLElement, void, void>>) {
   return (
     Grid(name, { ...args, wrapper: args?.render, render(e, b) {
-      // When "place" arg is not provided, then cells are
-      // assigned to blocks sequentially rightwards-downwards
-      // with the respect to line feeds.
+      // Blocks can be layout out automatically
+      // based on their order and line feeds.
       Ruler("1", To.Left, true)
       Ruler("A", To.Top + To.Center)
       Ruler("B", To.Top + To.Center)
       Ruler("C", To.Top + To.Center); lineFeed()
       Ruler("2", To.Left); lineFeed()
       Ruler("3", To.Left); lineFeed()
-      // When "place" arg is provided, then blocks are
-      // positioned exactly at the provided cell or
-      // cell range.
+      // And blocks be be layout out
+      // explicitly in given cells.
       ExampleData("B2")
       ExampleData("A1:B1")
       ExampleData("C1:C2")
@@ -32,6 +30,7 @@ function Ruler(title: string, dock: To, overlap?: boolean) {
     widthOverlap: overlap,
     render(e) {
       e.style.zIndex = "1"
+      e.style.fontSize = "smaller"
       HtmlText(`&nbsp;${title}`)
     }
   })

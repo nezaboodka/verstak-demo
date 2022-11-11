@@ -13,6 +13,7 @@ const app = Transaction.run(null, () => new App(version))
 
 VBlock.root(() => {
   HtmlBody("html > body", body => {
+    body.className = "light"
     Main("main", app)
   })
 })

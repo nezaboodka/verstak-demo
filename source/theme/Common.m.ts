@@ -23,9 +23,9 @@ export const Brand: Render<HTMLElement> = e => {
 
 export const Important: Render<HTMLElement> = e => {
   const z = e.style
-  z.color = "red"
+  z.color = "#029111"
   z.backgroundColor = "#fef5f4"
-  z.border = "1px solid red"
+  z.border = "1px solid #D30505"
 }
 
 export const Hint: Render<HTMLElement> = e => {
