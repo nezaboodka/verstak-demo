@@ -8,7 +8,7 @@ import * as m from "theme/Common.m"
 export function Main(name: string, app: App) {
   return (
     Block(name, {
-      reacting: true,
+      reacting: true, // re-rendering point
       align: To.Top,
       render(e, b) {
         e.style.backgroundColor = "rgba(230, 230, 230)"
@@ -18,7 +18,6 @@ export function Main(name: string, app: App) {
         })
 
         lineFeed()
-
         Block("NavBar", {
           mixins: [m.Panel],
           widthMin: "10rem",
@@ -45,7 +44,6 @@ export function Main(name: string, app: App) {
         })
 
         lineFeed()
-
         StatusBar("StatusBar", {
           widthGrab: 1,
         })
