@@ -23,7 +23,7 @@ export function Main(name: string, app: App) {
           mixins: [m.Panel],
           widthMin: "10rem",
           dock: To.Fit,
-          render() {
+          render(e, b) {
             PlainText("Navigation Panel")
           }
         })
@@ -38,7 +38,7 @@ export function Main(name: string, app: App) {
           widthGrowth: 2.0,
           align: To.Left,
           dock: To.Top,
-          render() {
+          render(e, b) {
             Markdown("Verstak", `
 Sizings of blocks are automatically adjusted to size of
 table cells, while grid is automatically adjusted to

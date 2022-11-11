@@ -7,12 +7,12 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
     Block(name, { ...args, render(e, b) {
       Block("Logo", {
         mixins: [m.Panel],
-        render(e) {
+        render(e, b) {
           e.style.backgroundColor = "white"
           e.style.padding = "0.5rem"
           e.style.borderRadius = "100%"
           Img("N*", {
-            render(e) {
+            render(e, b) {
               e.src = "https://nezaboodka.com/img/star-768x768-circle.png"
               e.style.width = "3em"
               e.style.height = "3em"
@@ -34,7 +34,7 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
 
       Block("Account", {
         mixins: [m.Panel, m.Hint],
-        render(e) {
+        render(e, b) {
           PlainText("[=]")
         }
       })

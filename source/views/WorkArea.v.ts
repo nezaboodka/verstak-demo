@@ -28,7 +28,7 @@ function Ruler(title: string, dock: To, overlap?: boolean) {
   Block(`#${title}`, {
     dock,
     widthOverlap: overlap,
-    render(e) {
+    render(e, b) {
       e.style.zIndex = "1"
       e.style.fontSize = "smaller"
       HtmlText(`&nbsp;${title}`)
