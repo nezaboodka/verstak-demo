@@ -10,11 +10,12 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
         render(e) {
           e.style.backgroundColor = "white"
           e.style.padding = "0.5rem"
+          e.style.borderRadius = "100%"
           Img("N*", {
             render(e) {
               e.src = "https://nezaboodka.com/img/star-768x768-circle.png"
+              e.style.width = "3em"
               e.style.height = "3em"
-              e.style.width = "auto"
             }
           })
         }
