@@ -25,6 +25,7 @@
     "prismjs": "1.29.0"
   },
   "devDependencies": {
+    "@emotion/css": "11.10.5",
     "@types/jsdom": "20.0.0",
     "@types/medium-editor": "5.0.5",
     "@types/node-fetch": "3.0.3",

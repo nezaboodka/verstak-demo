@@ -10,7 +10,7 @@ export function Main(name: string, app: App) {
   return (
     Block(name, {
       reacting: true, // re-rendering point
-      align: To.Top,
+      alignContent: To.Top,
       render(e, b) {
         e.style.backgroundColor = "rgba(230, 230, 230)"
 
@@ -21,7 +21,7 @@ export function Main(name: string, app: App) {
         lineFeed()
         Block("NavBar", {
           widthMin: "10rem",
-          dock: To.Fit,
+          alignFrame: To.Fit,
           initialize: z.Panel,
           render(e, b) {
             PlainText("Navigation Panel")
@@ -35,8 +35,8 @@ export function Main(name: string, app: App) {
         Block("MarkdownExample", {
           widthMin: "16rem",
           widthGrowth: 2,
-          align: To.Left,
-          dock: To.Top,
+          alignContent: To.Left,
+          alignFrame: To.Top,
           initialize: [z.Panel, z.Hint],
           render(e, b) {
             Markdown("Verstak", `

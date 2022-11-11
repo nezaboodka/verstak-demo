@@ -25,7 +25,7 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
 
         Panel("Verstak", {
           widthGrowth: 1,
-          align: To.Center,
+          alignContent: To.Center,
           initialize: z.Panel,
           render(e, b) {
             b.baseRender()

@@ -9,8 +9,8 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
       render(e, b) {
         Panel("Status Line", {
           widthGrowth: 1,
-          align: To.Center,
-          dock: To.Bottom,
+          alignContent: To.Center,
+          alignFrame: To.Bottom,
           initialize: z.Panel,
           render(e, b) {
             b.baseRender()

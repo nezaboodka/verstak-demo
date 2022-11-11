@@ -28,9 +28,9 @@ export function WorkArea(name: string,
   )
 }
 
-function Ruler(title: string, dock: To, overlap?: boolean) {
+function Ruler(title: string, alignFrame: To, overlap?: boolean) {
   Block(`#${title}`, {
-    dock,
+    alignFrame,
     widthOverlap: overlap,
     render(e, b) {
       e.style.zIndex = "1"
@@ -43,7 +43,7 @@ function Ruler(title: string, dock: To, overlap?: boolean) {
 function ExampleData(place: string) {
   Block(place, {
     place, // absolute position inside grid
-    align: To.Center + To.CenterV,
+    alignContent: To.Center + To.CenterV,
     initialize: z.Important,
     render(e, b) {
       PlainText(place)
