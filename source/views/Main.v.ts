@@ -61,11 +61,10 @@ export function Main(name: string, app: App) {
 }
 
 const CODE = `
-Sizings of blocks are automatically adjusted to size of
-table cells, while grid is automatically adjusted to
-screen size on a screen of each user. System fits well
-both to layout application panels and to create reusable
-components.
+Block size is automatically adjusted to size of table
+cells, while cells are automatically adjusted to screen
+size of each user. System is suitable both to lay out
+application panels and to create reusable components.
 
 \`\`\` js
 Grid("Example", {
