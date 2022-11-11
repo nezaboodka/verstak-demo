@@ -1,6 +1,7 @@
+import { cx } from "@emotion/css"
 import { Block, BlockArgs, PlainText, lineFeed, To, Img } from "verstak"
 import { Panel } from "./Panel.v"
-import * as z from "theme/Common.z"
+import * as s from "theme/Common.s"
 
 export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void, void>>) {
   return (
@@ -8,7 +9,9 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
       ...args,
       render(e, b) {
         Block("Logo", {
-          initialize: z.Panel,
+          initialize(e, b) {
+            e.className = s.Panel
+          },
           render(e, b) {
             e.style.backgroundColor = "white"
             e.style.padding = "0.5rem"
@@ -26,7 +29,9 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
         Panel("Verstak", {
           widthGrowth: 1,
           alignContent: To.Center,
-          initialize: z.Panel,
+          initialize(e, b) {
+            e.className = s.Panel
+          },
           render(e, b) {
             b.baseRender()
             lineFeed(); PlainText("Block may contain multiple lines")
@@ -35,7 +40,9 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
         })
 
         Block("Account", {
-          initialize: [z.Panel, z.Hint],
+          initialize(e, b) {
+            e.className = cx(s.Panel, s.Hint)
+          },
           render(e, b) {
             PlainText("[=]")
           }

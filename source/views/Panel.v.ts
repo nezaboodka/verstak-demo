@@ -1,5 +1,5 @@
 import { Block, BlockArgs, PlainText } from "verstak"
-import * as z from "theme/Common.z"
+import * as s from "theme/Common.s"
 
 export function Panel(name: string,
   args: BlockArgs<HTMLElement, void, void>) {
@@ -10,7 +10,9 @@ export function Panel(name: string,
       render(e, b) {
         Block("title", {
           widthGrowth: 1,
-          initialize: z.PanelTitle,
+          initialize(e, b) {
+            e.className = s.PanelTitle
+          },
           render(e, b) {
             PlainText(name)
           }

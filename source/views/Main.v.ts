@@ -1,10 +1,11 @@
+import { cx } from "@emotion/css"
 import { Block, To, PlainText, lineFeed } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { App } from "models/App"
 import { ToolBar } from "./ToolBar.v"
 import { StatusBar } from "./StatusBar.v"
 import { WorkArea } from "./WorkArea.v"
-import * as z from "theme/Common.z"
+import * as s from "theme/Common.s"
 
 export function Main(name: string, app: App) {
   return (
@@ -22,7 +23,9 @@ export function Main(name: string, app: App) {
         Block("NavBar", {
           widthMin: "10rem",
           alignFrame: To.Fit,
-          initialize: z.Panel,
+          initialize(e, b) {
+            e.className = s.Panel
+          },
           render(e, b) {
             PlainText("Navigation Panel")
           }
@@ -30,14 +33,18 @@ export function Main(name: string, app: App) {
         WorkArea("GridExample", {
           widthGrowth: 3,
           heightGrowth: 1,
-          initialize: [z.Panel, z.Important],
+          initialize(e, b) {
+            e.className = cx(s.Panel, s.Important)
+          },
         })
         Block("MarkdownExample", {
           widthMin: "16rem",
           widthGrowth: 2,
           alignContent: To.Left,
           alignFrame: To.Top,
-          initialize: [z.Panel, z.Hint],
+          initialize(e, b) {
+            e.className = cx(s.Panel, s.Hint)
+          },
           render(e, b) {
             Markdown("Verstak", `
 Sizings of blocks are automatically adjusted to size of

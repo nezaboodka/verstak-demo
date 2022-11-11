@@ -1,5 +1,5 @@
 import { Grid, BlockArgs, Block, PlainText, HtmlText, lineFeed, To } from "verstak"
-import * as z from "theme/Common.z"
+import * as s from "theme/Common.s"
 
 export function WorkArea(name: string,
   args?: Partial<BlockArgs<HTMLElement, void, void>>) {
@@ -44,7 +44,9 @@ function ExampleData(place: string) {
   Block(place, {
     place, // absolute position inside grid
     alignContent: To.Center + To.CenterV,
-    initialize: z.Important,
+    initialize(e, b) {
+      e.className = s.Important
+    },
     render(e, b) {
       PlainText(place)
     }

@@ -1,6 +1,6 @@
 import { Block, BlockArgs, To, PlainText, lineFeed } from "verstak"
 import { Panel } from "./Panel.v"
-import * as z from "theme/Common.z"
+import * as s from "theme/Common.s"
 
 export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, void, void>>) {
   return (
@@ -11,7 +11,9 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
           widthGrowth: 1,
           alignContent: To.Center,
           alignFrame: To.Bottom,
-          initialize: z.Panel,
+          initialize(e, b) {
+            e.className = s.Panel
+          },
           render(e, b) {
             b.baseRender()
             lineFeed()
@@ -20,21 +22,30 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
         })
 
         Panel("[1]", {
-          initialize: [z.Panel, z.Center],
+          alignContent: To.Center,
+          initialize(e, b) {
+            e.className = s.Panel
+          },
           render(e, b) {
             b.baseRender()
           }
         })
 
         Panel("[2]", {
-          initialize: [z.Panel, z.Center],
+          alignContent: To.Center,
+          initialize(e, b) {
+            e.className = s.Panel
+          },
           render(e, b) {
             b.baseRender()
           }
         })
 
         Panel("[3]", {
-          initialize: [z.Panel, z.Center],
+          alignContent: To.Center,
+          initialize(e, b) {
+            e.className = s.Panel
+          },
           render(e, b) {
             b.baseRender()
           }
