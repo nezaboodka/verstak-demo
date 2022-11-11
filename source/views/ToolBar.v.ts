@@ -27,7 +27,7 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
         align: To.Center,
         render(e, b) {
           b.baseRender()
-          lineFeed(); PlainText("Black may contain multiple lines")
+          lineFeed(); PlainText("Block may contain multiple lines")
           lineFeed(); PlainText("Try to change window size")
         }
       })
