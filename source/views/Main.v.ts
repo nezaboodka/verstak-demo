@@ -29,12 +29,13 @@ export function Main(name: string, app: App) {
         })
         WorkArea("GridExample", {
           mixins: [m.Panel, m.Important],
-          widthGrowth: 1, heightGrowth: 1,
+          widthGrowth: 3.0,
+          heightGrowth: 1,
         })
         Block("MarkdownExample", {
           mixins: [m.Panel, m.Hint],
           widthMin: "16rem",
-          widthGrowth: 1,
+          widthGrowth: 2.0,
           align: To.Left,
           dock: To.Top,
           render() {
