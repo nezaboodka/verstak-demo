@@ -9,9 +9,9 @@ export function WorkArea(name: string,
       // assigned to blocks sequentially rightwards-downwards
       // with the respect to line feeds.
       Ruler("1", To.Left, true)
-      Ruler("A", To.Top)
-      Ruler("B", To.Top)
-      Ruler("C", To.Top); lineFeed()
+      Ruler("A", To.Top + To.Center)
+      Ruler("B", To.Top + To.Center)
+      Ruler("C", To.Top + To.Center); lineFeed()
       Ruler("2", To.Left); lineFeed()
       Ruler("3", To.Left); lineFeed()
       // When "place" arg is provided, then blocks are
