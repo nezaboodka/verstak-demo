@@ -29,7 +29,6 @@ export function Main(name: string, app: App) {
         WorkArea("GridExample", {
           mixins: [m.Panel, m.Important],
           widthGrab: 1, heightGrab: 1,
-          align: To.Center + To.CenterV,
         })
         Block("Hint", {
           mixins: [m.Panel, m.Hint],
