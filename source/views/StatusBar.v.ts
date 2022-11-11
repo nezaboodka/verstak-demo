@@ -7,7 +7,7 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
     Block(name, {
       ...args,
       render(e, b) {
-        Panel("Status", {
+        Panel("Status Line", {
           mixins: [m.Panel],
           widthGrab: 1,
           align: To.Center,
@@ -15,7 +15,7 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
           render(e, b) {
             b.baseRender()
             lineFeed()
-            PlainText("status bar content")
+            PlainText("one more status line")
           }
         })
 

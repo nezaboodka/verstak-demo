@@ -20,21 +20,21 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
         }
       })
 
-      Panel("Toolbar", {
+      Panel("Verstak", {
         mixins: [m.Panel],
         widthGrab: 1,
         align: To.Center,
         render(e, b) {
           b.baseRender()
-          lineFeed(); PlainText("Пример многострочного текста")
-          lineFeed(); PlainText("Попробуйте изменить размеры окна браузера")
+          lineFeed(); PlainText("Black may contain multiple lines")
+          lineFeed(); PlainText("Try to change window size")
         }
       })
 
       Block("Account", {
         mixins: [m.Panel, m.Hint],
         render(e) {
-          PlainText("Account")
+          PlainText("[=]")
         }
       })
     }})

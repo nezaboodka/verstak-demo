@@ -24,7 +24,7 @@ export function Main(name: string, app: App) {
           widthMin: "10rem",
           dock: To.Fit,
           render() {
-            PlainText("Navigation Bar")
+            PlainText("Navigation Panel")
           }
         })
         WorkArea("GridExample", {
@@ -38,14 +38,12 @@ export function Main(name: string, app: App) {
           align: To.Left,
           dock: To.Top,
           render() {
-            Markdown("Верстак", `
-### Верстак
-
-Размеры блоков автоматически подстраиваются под размеры ячеек,
-а табличная сетка автоматически подстраивается под размеры экрана
-у каждого пользователя. Система хорошо подходит как для сбора
-воедино панелей приложения, так и для создания небольших
-визуальных элементов.
+            Markdown("Verstak", `
+Sizings of blocks are automatically adjusted to size of
+table cells, while grid is automatically adjusted to
+screen size on a screen of each user. System fits well
+both to layout application panels and to create reusable
+components.
 
 \`\`\` js
 Grid("Example", {
