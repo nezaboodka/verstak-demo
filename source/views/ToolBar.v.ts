@@ -34,7 +34,6 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
           },
           render(e, b) {
             b.baseRender()
-            lineFeed(); PlainText("Block may contain multiple lines")
             lineFeed(); PlainText("Try to change window size")
           }
         })

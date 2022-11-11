@@ -47,7 +47,20 @@ export function Main(name: string, app: App) {
             e.className = s.Panel
           },
           render(e, b) {
-            Markdown("Verstak", `
+            Markdown("Verstak", CODE)
+          }
+        })
+
+        lineFeed()
+        StatusBar("StatusBar", {
+          widthGrowth: 1,
+        })
+      },
+    })
+  )
+}
+
+const CODE = `
 Sizings of blocks are automatically adjusted to size of
 table cells, while grid is automatically adjusted to
 screen size on a screen of each user. System fits well
@@ -55,8 +68,6 @@ both to layout application panels and to create reusable
 components.
 
 \`\`\` js
-// TypeScript
-
 Grid("Example", {
   render(e, b) {
     // Blocks can be layout out automatically
@@ -77,15 +88,4 @@ Grid("Example", {
   },
 })
 \`\`\`
-`)
-          }
-        })
-
-        lineFeed()
-        StatusBar("StatusBar", {
-          widthGrowth: 1,
-        })
-      },
-    })
-  )
-}
+`

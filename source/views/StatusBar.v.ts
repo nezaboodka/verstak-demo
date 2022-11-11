@@ -14,11 +14,6 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
           initialize(e, b) {
             e.className = s.Panel
           },
-          render(e, b) {
-            b.baseRender()
-            lineFeed()
-            PlainText("one more status line")
-          }
         })
 
         Panel("[1]", {
