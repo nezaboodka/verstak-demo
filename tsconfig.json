@@ -45,6 +45,9 @@
       "verstak": [
         "../library/verstak/source/api.ts"
       ],
+      "verstak-markdown": [
+        "../library/verstak-markdown/source/api.ts"
+      ],
     },
     "plugins": [
       {

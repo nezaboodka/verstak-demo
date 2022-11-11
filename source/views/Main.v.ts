@@ -1,4 +1,5 @@
-import { Block, To, PlainText, MdText, lineFeed } from "verstak"
+import { Block, To, PlainText, lineFeed } from "verstak"
+import { Markdown } from "verstak-markdown"
 import { App } from "models/App"
 import { ToolBar } from "./ToolBar.v"
 import { StatusBar } from "./StatusBar.v"
@@ -30,15 +31,46 @@ export function Main(name: string, app: App) {
           mixins: [m.Panel, m.Important],
           widthGrab: 1, heightGrab: 1,
         })
-        Block("Hint", {
+        Block("MarkdownExample", {
           mixins: [m.Panel, m.Hint],
           widthMin: "16rem",
+          widthGrab: 1,
           align: To.Left,
           dock: To.Top,
           render() {
-            PlainText("СПРАВКА")
-            lineFeed()
-            MdText("<br/><b>Верстак</b> – это система построения визуальных интерфейсов на основе табличной вёрстки. В основе лежит идея размещения визуальных элементов интерфейса в одиночных или смежных ячейках таблицы. Размещаемые элементы называются блоками. При этом сама таблица с размещёнными внутри неё блоками также считается блоком и в свою очередь может быть размещена в другом блоке уже на его табличной сетке.<br/><br/>Размеры блоков автоматически подстраиваются под размеры ячеек, а табличная сетка автоматически подстраивается под размеры экрана у каждого пользователя. Система хорошо подходит как для сбора воедино панелей приложения, так и для создания небольших визуальных элементов.")
+            Markdown("Верстак", `
+### Верстак
+
+Размеры блоков автоматически подстраиваются под размеры ячеек,
+а табличная сетка автоматически подстраивается под размеры экрана
+у каждого пользователя. Система хорошо подходит как для сбора
+воедино панелей приложения, так и для создания небольших
+визуальных элементов.
+
+\`\`\` js
+Grid("Example", {
+  render(e, b) {
+    // When "place" arg is not provided, then cells are
+    // assigned to blocks sequentially rightwards-downwards
+    // with the respect to line feeds.
+    Ruler("1", To.Left, true)
+    Ruler("A", To.Top + To.Center)
+    Ruler("B", To.Top + To.Center)
+    Ruler("C", To.Top + To.Center); lineFeed()
+    Ruler("2", To.Left); lineFeed()
+    Ruler("3", To.Left); lineFeed()
+    // When "place" arg is provided, then blocks are
+    // positioned exactly at the provided cell or
+    // cell range.
+    ExampleData("B2")
+    ExampleData("A1:B1")
+    ExampleData("C1:C2")
+    ExampleData("B3:C3")
+    ExampleData("A2:A3")
+  },
+})
+\`\`\`
+`)
           }
         })
 

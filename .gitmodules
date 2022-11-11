@@ -4,3 +4,6 @@
 [submodule "library/verstak"]
 	path = library/verstak
 	url = https://github.com/nezaboodka/verstak.git
+[submodule "library/verstak-markdown"]
+	path = library/verstak-markdown
+	url = https://github.com/nezaboodka/verstak-markdown.git

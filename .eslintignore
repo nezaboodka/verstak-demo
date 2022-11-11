@@ -2,3 +2,4 @@ node_modules
 build
 .eslintrc.*s
 ava.config.*s
+vite.config.*s
