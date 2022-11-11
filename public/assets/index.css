@@ -25,6 +25,7 @@ pre {
 }
 
 code {
+  font-family: Consolas, monospace;
   white-space: nowrap;
   text-align: left;
   white-space: pre;

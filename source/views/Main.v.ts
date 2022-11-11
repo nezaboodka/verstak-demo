@@ -9,7 +9,8 @@ import * as s from "theme/Common.s"
 
 export function Main(name: string, app: App) {
   return (
-    Block(name, {
+    Block<App>(name, {
+      context: app,
       reacting: true, // re-rendering point
       alignContent: To.Top,
       render(e, b) {
@@ -43,7 +44,7 @@ export function Main(name: string, app: App) {
           alignContent: To.Left,
           alignFrame: To.Top,
           initialize(e, b) {
-            e.className = cx(s.Panel, s.Hint)
+            e.className = s.Panel
           },
           render(e, b) {
             Markdown("Verstak", `
