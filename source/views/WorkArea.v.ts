@@ -16,7 +16,7 @@ export function WorkArea(name: string,
       Ruler("3", To.Left); lineFeed()
       // When "place" arg is provided, then blocks are
       // positioned exactly at the provided cell or
-      // cell range address.
+      // cell range.
       ExampleData("B2")
       ExampleData("A1:B1")
       ExampleData("C1:C2")
