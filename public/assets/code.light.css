@@ -42,6 +42,8 @@
 }
 
 .light .token.keyword,
+.light .token.operator,
+.light .token.boolean,
 .light .token.symbol,
 .light .token.brace-curly,
 .light .token.brace-square {

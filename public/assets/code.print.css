@@ -45,6 +45,8 @@
 }
 
 .print .token.keyword,
+.print .token.operator,
+.print .token.boolean,
 .print .token.brace-curly,
 .print .token.brace-square {
   font-weight: bold;
