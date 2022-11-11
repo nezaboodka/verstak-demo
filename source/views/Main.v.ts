@@ -26,7 +26,7 @@ export function Main(name: string, app: App) {
             Plain("Navigation Bar")
           }
         })
-        WorkArea("WorkArea", {
+        WorkArea("GridExample", {
           mixins: [m.Panel, m.Important],
           widthGrab: 1, heightGrab: 1,
           align: To.Center + To.CenterV,
