@@ -49,6 +49,7 @@ function Ruler(title: string, dock: To, overlap?: boolean) {
     dock,
     widthOverlap: overlap,
     render(e) {
+      e.style.zIndex = "1"
       Markdown(`&nbsp;${title}`)
     }
   })
