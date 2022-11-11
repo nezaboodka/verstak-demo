@@ -1,4 +1,4 @@
-import { Block, BlockArgs, Plain } from "verstak"
+import { Block, BlockArgs, PlainText } from "verstak"
 import * as m from "theme/Common.m"
 
 export function Panel(name: string,
@@ -9,7 +9,7 @@ export function Panel(name: string,
         mixins: [m.PanelTitle],
         widthGrab: 1,
         render(e) {
-          Plain(name)
+          PlainText(name)
         }
       })
     }})

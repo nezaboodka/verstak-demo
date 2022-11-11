@@ -1,4 +1,4 @@
-import { Grid, BlockArgs, Block, Plain, lineFeed, To, Markdown } from "verstak"
+import { Grid, BlockArgs, Block, PlainText, HtmlText, lineFeed, To } from "verstak"
 import * as m from "theme/Common.m"
 
 export function WorkArea(name: string,
@@ -32,7 +32,7 @@ function Ruler(title: string, dock: To, overlap?: boolean) {
     widthOverlap: overlap,
     render(e) {
       e.style.zIndex = "1"
-      Markdown(`&nbsp;${title}`)
+      HtmlText(`&nbsp;${title}`)
     }
   })
 }
@@ -43,7 +43,7 @@ function ExampleData(place: string) {
     place, // absolute position inside grid
     align: To.Center + To.CenterV,
     render(e, b) {
-      Plain(place)
+      PlainText(place)
     }
   })
 }

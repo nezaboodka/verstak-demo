@@ -1,4 +1,4 @@
-import { Block, BlockArgs, Plain, lineFeed, To, Img } from "verstak"
+import { Block, BlockArgs, PlainText, lineFeed, To, Img } from "verstak"
 import { Panel } from "./Panel.v"
 import * as m from "theme/Common.m"
 
@@ -26,15 +26,15 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
         align: To.Center,
         render(e, b) {
           b.baseRender()
-          lineFeed(); Plain("Пример многострочного текста")
-          lineFeed(); Plain("Попробуйте изменить размеры окна браузера")
+          lineFeed(); PlainText("Пример многострочного текста")
+          lineFeed(); PlainText("Попробуйте изменить размеры окна браузера")
         }
       })
 
       Block("Account", {
         mixins: [m.Panel, m.Hint],
         render(e) {
-          Plain("Account")
+          PlainText("Account")
         }
       })
     }})

@@ -1,4 +1,4 @@
-import { Block, BlockArgs, To, Plain, lineFeed } from "verstak"
+import { Block, BlockArgs, To, PlainText, lineFeed } from "verstak"
 import { Panel } from "./Panel.v"
 import * as m from "theme/Common.m"
 
@@ -15,7 +15,7 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
           render(e, b) {
             b.baseRender()
             lineFeed()
-            Plain("status bar content")
+            PlainText("status bar content")
           }
         })
 
