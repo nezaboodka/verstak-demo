@@ -15,7 +15,7 @@ export function Main(name: string, app: App) {
         e.style.backgroundColor = "rgba(230, 230, 230)"
 
         ToolBar("ToolBar", {
-          widthGrab: 1,
+          widthGrowth: 1,
         })
 
         lineFeed()
@@ -29,12 +29,12 @@ export function Main(name: string, app: App) {
         })
         WorkArea("GridExample", {
           mixins: [m.Panel, m.Important],
-          widthGrab: 1, heightGrab: 1,
+          widthGrowth: 1, heightGrowth: 1,
         })
         Block("MarkdownExample", {
           mixins: [m.Panel, m.Hint],
           widthMin: "16rem",
-          widthGrab: 1,
+          widthGrowth: 1,
           align: To.Left,
           dock: To.Top,
           render() {
@@ -74,7 +74,7 @@ Grid("Example", {
 
         lineFeed()
         StatusBar("StatusBar", {
-          widthGrab: 1,
+          widthGrowth: 1,
         })
       },
     })

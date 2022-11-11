@@ -23,7 +23,7 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
 
       Panel("Verstak", {
         mixins: [m.Panel],
-        widthGrab: 1,
+        widthGrowth: 1,
         align: To.Center,
         render(e, b) {
           b.baseRender()

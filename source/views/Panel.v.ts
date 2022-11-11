@@ -7,7 +7,7 @@ export function Panel(name: string,
     Block(name, { ...args, wrapper: args.render, render(e, b) {
       Block("title", {
         mixins: [m.PanelTitle],
-        widthGrab: 1,
+        widthGrowth: 1,
         render(e) {
           PlainText(name)
         }
