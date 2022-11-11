@@ -18,7 +18,7 @@ v-grid {
 }
 
 v-text {
-  display: block;
+  display: inline-grid;
   flex-grow: 1;
   flex-basis: 0;
 }
