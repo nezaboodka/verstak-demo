@@ -1,17 +1,21 @@
 import { Block, BlockArgs, PlainText } from "verstak"
-import * as m from "theme/Common.m"
+import * as z from "theme/Common.z"
 
 export function Panel(name: string,
   args: BlockArgs<HTMLElement, void, void>) {
   return (
-    Block(name, { ...args, wrapper: args.render, render(e, b) {
-      Block("title", {
-        widthGrowth: 1,
-        render(e, b) {
-          b.apply(m.PanelTitle)
-          PlainText(name)
-        }
-      })
-    }})
+    Block(name, {
+      ...args,
+      wrapper: args.render,
+      render(e, b) {
+        Block("title", {
+          widthGrowth: 1,
+          initialize: z.PanelTitle,
+          render(e, b) {
+            PlainText(name)
+          }
+        })
+      }
+    })
   )
 }

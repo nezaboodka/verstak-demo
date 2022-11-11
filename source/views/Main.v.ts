@@ -4,7 +4,7 @@ import { App } from "models/App"
 import { ToolBar } from "./ToolBar.v"
 import { StatusBar } from "./StatusBar.v"
 import { WorkArea } from "./WorkArea.v"
-import * as m from "theme/Common.m"
+import * as z from "theme/Common.z"
 
 export function Main(name: string, app: App) {
   return (
@@ -22,26 +22,23 @@ export function Main(name: string, app: App) {
         Block("NavBar", {
           widthMin: "10rem",
           dock: To.Fit,
+          initialize: z.Panel,
           render(e, b) {
-            b.apply(m.Panel)
             PlainText("Navigation Panel")
           }
         })
         WorkArea("GridExample", {
           widthGrowth: 3,
           heightGrowth: 1,
-          render(e, b) {
-            b.baseRender()
-            b.apply(m.Panel, m.Important)
-          }
+          initialize: [z.Panel, z.Important],
         })
         Block("MarkdownExample", {
           widthMin: "16rem",
           widthGrowth: 2,
           align: To.Left,
           dock: To.Top,
+          initialize: [z.Panel, z.Hint],
           render(e, b) {
-            b.apply(m.Panel, m.Hint)
             Markdown("Verstak", `
 Sizings of blocks are automatically adjusted to size of
 table cells, while grid is automatically adjusted to
