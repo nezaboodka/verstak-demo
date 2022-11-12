@@ -69,7 +69,7 @@ application panels and to create reusable components.
 \`\`\` js
 Grid("Example", {
   render(e, b) {
-    // Blocks can be layout out automatically
+    // Blocks can be layed out automatically
     // based on their order and line feeds.
     Ruler("1", To.Left, true)
     Ruler("A", To.Top + To.Center)
@@ -77,8 +77,8 @@ Grid("Example", {
     Ruler("C", To.Top + To.Center); lineFeed()
     Ruler("2", To.Left); lineFeed()
     Ruler("3", To.Left); lineFeed()
-    // And blocks be be layout out
-    // explicitly in given cells.
+    // Blocks can also be layed out explicitly
+    // in given cells.
     ExampleData("B2")
     ExampleData("A1:B1")
     ExampleData("C1:C2")

@@ -8,7 +8,7 @@ export function WorkArea(name: string,
       ...args,
       wrapper: args?.render,
       render(e, b) {
-        // Blocks can be layout out automatically
+        // Blocks can be layed out automatically
         // based on their order and line feeds.
         Ruler("1", To.Left, true)
         Ruler("A", To.Top + To.Center)
@@ -16,7 +16,7 @@ export function WorkArea(name: string,
         Ruler("C", To.Top + To.Center); lineFeed()
         Ruler("2", To.Left); lineFeed()
         Ruler("3", To.Left); lineFeed()
-        // And blocks be be layout out
+        // And blocks be be layed out
         // explicitly in given cells.
         ExampleData("B2")
         ExampleData("A1:B1")
