@@ -10,8 +10,8 @@ import * as s from "theme/Common.s"
 export function Main(name: string, app: App) {
   return (
     Block<App>(name, {
-      current: app,
       reacting: true, // re-rendering point
+      current: app,
       alignContent: To.Top,
       render(e, b) {
         e.style.backgroundColor = "rgba(230, 230, 230)"
