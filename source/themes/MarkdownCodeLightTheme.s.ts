@@ -2,6 +2,7 @@ import { css } from "@emotion/css"
 import { Theme } from "./Theme"
 
 export class MarkdownCodeLightTheme extends Theme {
+  toggleColor = "rgb(27, 135, 251)"
   markdown = css`
     .toc-inner {
       background-color: unset;

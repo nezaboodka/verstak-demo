@@ -5,25 +5,43 @@ import { Panel } from "./Panel.v"
 import * as s from "themes/Common.s"
 import { App } from "models/App"
 import { Ref } from "reactronic"
+import { Theme } from "themes/Theme"
 
 export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, void, void>>) {
   return (
     Block(name, { ...args,
       wrapping: true,
       render(e, b) {
+        // We get app and theme as a context variables
+        // (instead of functional parameters) in order
+        // to avoid passing app/workspace in each and
+        // every view.
         const app = use(App)
-        Block<ToggleModel>("Status", {
-          widthGrowth: 1,
-          alignContent: To.Center,
+        const theme = use(Theme)
+
+        Block<ToggleModel>("BlinkMode", {
           initialize(e, b) {
+            // We compose model from different pieces,
+            // such as app and theme. Without the need
+            // to implement interface in form of class.
             b.model = compose({
               label: "Blinking Rendering",
               checked: refs(app).blinkingEffect,
+              color: refs(theme).toggleColor,
             })
-            e.className = s.Panel
           },
           render(e, b) {
+            // Style is not inside "initialize", because of theming
+            e.className = s.Panel
             Toggle("DebugMode", b.model)
+          }
+        })
+
+        Block<ToggleModel>("Spacer", {
+          widthGrowth: 1,
+          alignContent: To.Center,
+          render(e, b) {
+            // Do nothing
           }
         })
 
