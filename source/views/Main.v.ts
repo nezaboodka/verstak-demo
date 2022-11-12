@@ -10,7 +10,7 @@ import * as s from "theme/Common.s"
 export function Main(name: string, app: App) {
   return (
     Block<App>(name, {
-      context: app,
+      current: app,
       reacting: true, // re-rendering point
       alignContent: To.Top,
       render(e, b) {
@@ -41,8 +41,8 @@ export function Main(name: string, app: App) {
         Block("MarkdownExample", {
           widthMin: "16rem",
           widthGrowth: 2,
-          alignContent: To.Left,
-          alignFrame: To.Top,
+          alignContent: To.Left + To.Top,
+          alignFrame: To.Fit,
           initialize(e, b) {
             e.className = s.Panel
           },

@@ -1,4 +1,4 @@
-import { Block, BlockArgs, To, PlainText, lineFeed } from "verstak"
+import { Block, BlockArgs, To } from "verstak"
 import { Panel } from "./Panel.v"
 import * as s from "theme/Common.s"
 

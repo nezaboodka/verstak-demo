@@ -1,6 +1,7 @@
 import { cx } from "@emotion/css"
-import { Block, BlockArgs, PlainText, lineFeed, To, Img } from "verstak"
+import { Block, BlockArgs, PlainText, lineFeed, To, Img, current } from "verstak"
 import { Panel } from "./Panel.v"
+import { App } from "models/App"
 import * as s from "theme/Common.s"
 
 export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void, void>>) {
@@ -8,6 +9,7 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
     Block(name, {
       ...args,
       render(e, b) {
+
         Block("Logo", {
           initialize(e, b) {
             e.className = s.Panel
@@ -26,7 +28,8 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
           }
         })
 
-        Panel("Verstak", {
+        const app = current(App)
+        Panel(`Verstak ${app.version}`, {
           widthGrowth: 1,
           alignContent: To.Center,
           initialize(e, b) {
