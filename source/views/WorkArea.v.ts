@@ -1,5 +1,5 @@
 import { Grid, BlockArgs, Block, PlainText, HtmlText, lineFeed, To } from "verstak"
-import * as s from "theme/Common.s"
+import * as s from "themes/Common.s"
 
 export function WorkArea(name: string,
   args?: Partial<BlockArgs<HTMLElement, void, void>>) {

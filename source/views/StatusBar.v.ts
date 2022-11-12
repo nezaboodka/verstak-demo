@@ -1,6 +1,6 @@
 import { Block, BlockArgs, To } from "verstak"
 import { Panel } from "./Panel.v"
-import * as s from "theme/Common.s"
+import * as s from "themes/Common.s"
 
 export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, void, void>>) {
   return (

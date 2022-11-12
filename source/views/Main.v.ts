@@ -1,13 +1,14 @@
 import { cx } from "@emotion/css"
-import { Block, To, PlainText, lineFeed } from "verstak"
+import { Block, To, PlainText, lineFeed, useContext } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { App } from "models/App"
 import { ToolBar } from "./ToolBar.v"
 import { StatusBar } from "./StatusBar.v"
 import { WorkArea } from "./WorkArea.v"
-import * as s from "theme/Common.s"
+import { Theme } from "themes/Theme"
+import * as s from "themes/Common.s"
 
-export function Main(name: string, app: App) {
+export function Main(name: string, app: App, theme: Theme) {
   return (
     Block<App>(name, {
       reacting: true, // re-rendering point
@@ -39,12 +40,15 @@ export function Main(name: string, app: App) {
           },
         })
         Block("MarkdownExample", {
+          // subTreeContext: theme,
+          // subTreeContextType: Theme,
           widthMin: "16rem",
           widthGrowth: 2,
           alignContent: To.Left + To.Top,
           alignFrame: To.Fit,
           initialize(e, b) {
             e.className = s.Panel
+            // e.className = cx(s.Panel, useContext(Theme).markdown)
           },
           render(e, b) {
             Markdown("Verstak", CODE)
