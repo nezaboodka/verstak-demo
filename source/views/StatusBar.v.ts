@@ -10,7 +10,7 @@ import { Theme } from "themes/Theme"
 export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, void, void>>) {
   return (
     Block(name, { ...args,
-      wrapping: true,
+      flowWrap: true,
       render(e, b) {
         // We get app and theme as a context variables
         // (instead of functional parameters) in order
