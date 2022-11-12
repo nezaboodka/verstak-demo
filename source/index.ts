@@ -14,12 +14,11 @@ const version: string = "0.1"
 
 configureDebugging()
 
-const app = Transaction.run(null, () => new App(version))
-const theme = new MarkdownCodeLightTheme()
+const app = Transaction.run(null, () =>
+  new App(version, new MarkdownCodeLightTheme()))
 
 VBlock.root(() => {
-  HtmlBody("html > body", body => {
-    body.className = theme.markdown
-    Main("main", app, theme)
+  HtmlBody("html > body", app, body => {
+    Main("main")
   })
 })

@@ -8,12 +8,14 @@ import { WorkArea } from "./WorkArea.v"
 import { Theme } from "themes/Theme"
 import * as s from "themes/Common.s"
 
-export function Main(name: string, app: App, theme: Theme) {
+export function Main(name: string) {
+  const app = useContext(App)
   return (
-    Block<App>(name, {
+    Block(name, {
+      subTreeContext: app.theme,
+      subTreeContextType: Theme, // "useContext(Theme)"
       reacting: true, // re-rendering point
-      subTreeContext: app,
-      alignContent: To.Top,
+      alignFrame: To.Fit,
       render(e, b) {
         e.style.backgroundColor = "rgba(230, 230, 230)"
 
@@ -40,15 +42,12 @@ export function Main(name: string, app: App, theme: Theme) {
           },
         })
         Block("MarkdownExample", {
-          // subTreeContext: theme,
-          // subTreeContextType: Theme,
           widthMin: "16rem",
           widthGrowth: 2,
           alignContent: To.Left + To.Top,
           alignFrame: To.Fit,
           initialize(e, b) {
-            e.className = s.Panel
-            // e.className = cx(s.Panel, useContext(Theme).markdown)
+            e.className = cx(s.Panel, useContext(Theme).markdown)
           },
           render(e, b) {
             Markdown("Verstak", CODE)
