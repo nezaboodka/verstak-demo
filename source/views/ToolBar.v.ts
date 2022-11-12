@@ -6,8 +6,7 @@ import * as s from "theme/Common.s"
 
 export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void, void>>) {
   return (
-    Block(name, {
-      ...args,
+    Block(name, { ...args,
       render(e, b) {
 
         Block("Logo", {

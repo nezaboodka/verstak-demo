@@ -4,8 +4,7 @@ import * as s from "theme/Common.s"
 export function Panel(name: string,
   args: Partial<BlockArgs<HTMLElement, void, void>>) {
   return (
-    Block(name, {
-      ...args,
+    Block(name, { ...args,
       render(e, b) {
         Block("title", {
           widthGrowth: 1,

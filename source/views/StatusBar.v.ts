@@ -4,8 +4,7 @@ import * as s from "theme/Common.s"
 
 export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, void, void>>) {
   return (
-    Block(name, {
-      ...args,
+    Block(name, { ...args,
       render(e, b) {
         Panel("Status Line", {
           widthGrowth: 1,

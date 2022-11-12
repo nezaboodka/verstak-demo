@@ -4,8 +4,7 @@ import * as s from "theme/Common.s"
 export function WorkArea(name: string,
   args?: Partial<BlockArgs<HTMLElement, void, void>>) {
   return (
-    Grid(name, {
-      ...args,
+    Grid(name, { ...args,
       render(e, b) {
         // Blocks can be layed out automatically
         // based on their order and line feeds.
