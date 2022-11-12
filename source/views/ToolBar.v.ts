@@ -35,8 +35,8 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
           initialize(e, b) {
             e.className = s.Panel
           },
-          render(e, b) {
-            b.baseRender()
+          override(e, b) {
+            b.render()
             lineFeed(); PlainText("Try to change window size")
           }
         })

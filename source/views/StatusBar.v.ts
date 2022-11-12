@@ -21,8 +21,8 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
           initialize(e, b) {
             e.className = s.Panel
           },
-          render(e, b) {
-            b.baseRender()
+          override(e, b) {
+            b.render()
           }
         })
 
@@ -31,8 +31,8 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
           initialize(e, b) {
             e.className = s.Panel
           },
-          render(e, b) {
-            b.baseRender()
+          override(e, b) {
+            b.render()
           }
         })
 
@@ -41,8 +41,8 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
           initialize(e, b) {
             e.className = s.Panel
           },
-          render(e, b) {
-            b.baseRender()
+          override(e, b) {
+            b.render()
           }
         })
       }

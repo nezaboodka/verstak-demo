@@ -6,7 +6,6 @@ export function WorkArea(name: string,
   return (
     Grid(name, {
       ...args,
-      wrapper: args?.render,
       render(e, b) {
         // Blocks can be layed out automatically
         // based on their order and line feeds.

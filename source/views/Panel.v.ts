@@ -6,7 +6,6 @@ export function Panel(name: string,
   return (
     Block(name, {
       ...args,
-      wrapper: args.render,
       render(e, b) {
         Block("title", {
           widthGrowth: 1,
