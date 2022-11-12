@@ -12,10 +12,10 @@ export function Main(name: string) {
   const app = useContext(App)
   return (
     Block(name, {
+      reacting: true, // re-rendering point
       subTreeContext: app.theme,
       subTreeContextType: Theme, // "useContext(Theme)"
-      reacting: true, // re-rendering point
-      alignFrame: To.Fit,
+      alignContent: To.Top,
       render(e, b) {
         e.style.backgroundColor = "rgba(230, 230, 230)"
 
