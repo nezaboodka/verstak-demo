@@ -14,8 +14,8 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
       render(e, b) {
         // We get app and theme as a context variables
         // (instead of functional parameters) in order
-        // to avoid passing app/workspace in each and
-        // every view.
+        // to avoid passing app/theme in each and every
+        // node through rendering tree.
         const app = use(App)
         const theme = use(Theme)
 
