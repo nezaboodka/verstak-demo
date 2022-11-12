@@ -1,9 +1,10 @@
 import { cx } from "@emotion/css"
 import { Transaction } from "reactronic"
-import { Block, BlockArgs, PlainText, lineFeed, To, Img, use } from "verstak"
-import { Panel } from "./Panel.v"
-import { App } from "models/App"
+import { Block, BlockArgs, PlainText, lineFeed, To, Img, use, I } from "verstak"
+import { Icon } from "components/Icon.v"
 import { MarkdownCodeDarkTheme } from "themes/MarkdownCodeDarkTheme.s"
+import { App } from "models/App"
+import { Panel } from "./Panel.v"
 import * as s from "themes/Common.s"
 
 export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void, void>>) {
@@ -50,7 +51,7 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
             e.onclick = () => Transaction.run(null, () => app.theme = new MarkdownCodeDarkTheme())
           },
           render(e, b) {
-            PlainText("[=]")
+            Icon("fa-solid fa-bars")
           }
         })
       }

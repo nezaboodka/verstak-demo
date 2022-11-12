@@ -1,18 +1,23 @@
 import { Block, BlockArgs, To } from "verstak"
+import { Toggle } from "components/Toggle.v"
+import { oo } from "common/Utils"
 import { Panel } from "./Panel.v"
 import * as s from "themes/Common.s"
 
 export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, void, void>>) {
   return (
     Block(name, { ...args,
+      wrapping: true,
       render(e, b) {
-        Panel("Status Line", {
+        Block("Status", {
           widthGrowth: 1,
           alignContent: To.Center,
-          alignFrame: To.Bottom,
           initialize(e, b) {
             e.className = s.Panel
           },
+          render(e, b) {
+            Toggle("DebugMode", oo({ label: "Blinking Rendering", checked: false }))
+          }
         })
 
         Panel("[1]", {

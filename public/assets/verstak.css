@@ -3,10 +3,15 @@
 
 v-block {
   display: flex;
-  flex-basis: 0;
   flex-direction: column;
   justify-content: center;
   text-align: initial;
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+v-block[wrapping] > v-part {
+  flex-flow: wrap;
 }
 
 v-grid {
@@ -17,22 +22,32 @@ v-grid {
   text-align: initial;
 }
 
+v-part {
+  display: flex;
+  flex-direction: row;
+}
+
 v-text {
-  display: inline-grid;
   flex-grow: 1;
-  flex-basis: 0;
+  flex-shrink: 1;
+}
+
+v-text:not([wrapping]), v-text[wrapping="false"] {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+v-text[wrapping], v-text[wrapping="true"] {
+  display: inline-grid;
 }
 
 v-group {
   display: contents;
 }
 
-v-block > v-line {
-  display: flex;
-  flex-direction: row;
-}
-
-v-grid > v-line {
+v-grid > v-part {
   display: none;
 }
 
@@ -40,7 +55,7 @@ v-grid > v-block {
   place-self: stretch;
 }
 
-v-line > v-block {
+v-part > * {
   align-self: center;
 }
 
