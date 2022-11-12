@@ -33,7 +33,7 @@ v-block > v-line {
 }
 
 v-grid > v-line {
-  display: contents;
+  display: none;
 }
 
 v-grid > v-block {
@@ -47,34 +47,30 @@ v-line > v-block {
 /* Verstak Blinking Effect */
 
 .verstak-blinking-effect-0-0 {
-  animation: verstak-blinking-animation-0-1 1.5s ease-in 1 !important;
+  animation: verstak-blinking-animation-ex-0-1 1.5s ease-in 1 !important;
 }
 
 .verstak-blinking-effect-0-1 {
-  animation: verstak-blinking-animation-0-2 1.5s ease-in 1 !important;
+  animation: verstak-blinking-animation-ex-0-2 1.5s ease-in 1 !important;
 }
 
 .verstak-blinking-effect-1-0 {
-  animation: verstak-blinking-animation-1-1 1.5s ease-in 1 !important;
+  animation: verstak-blinking-animation-ex-1-1 1.5s ease-in 1 !important;
 }
 
 .verstak-blinking-effect-1-1 {
-  animation: verstak-blinking-animation-1-2 1.5s ease-in 1 !important;
+  animation: verstak-blinking-animation-ex-1-2 1.5s ease-in 1 !important;
 }
 
 .verstak-blinking-effect-2-0 {
-  animation: verstak-blinking-animation-2-1 1.5s ease-in 1 !important;
+  animation: verstak-blinking-animation-ex-2-1 1.5s ease-in 1 !important;
 }
 
 .verstak-blinking-effect-2-1 {
-  animation: verstak-blinking-animation-2-2 1.5s ease-in 1 !important;
+  animation: verstak-blinking-animation-ex-2-2 1.5s ease-in 1 !important;
 }
 
 /* Verstak Blinking Animation */
-
-@keyframes verstak-blinking-animation-0-1 {
-  from { box-shadow: 0 0 0 2px red inset; }
-}
 
 @keyframes verstak-blinking-animation-0-2 {
   from { box-shadow: 0 0 0 2px red inset; }
@@ -94,4 +90,36 @@ v-line > v-block {
 
 @keyframes verstak-blinking-animation-2-2 {
   from { box-shadow: 0 0 0 2px #00BB00 inset; }
+}
+
+/* Verstak Blinking Animation */
+
+@keyframes verstak-blinking-animation-ex-0-1 {
+  from { outline-offset: -1px; outline: 2px solid red; }
+  to { outline-offset: -1px; outline: 2px solid transparent; }
+}
+
+@keyframes verstak-blinking-animation-ex-0-2 {
+  from { outline-offset: -1px; outline: 2px solid red; }
+  to { outline-offset: -1px; outline: 2px solid transparent; }
+}
+
+@keyframes verstak-blinking-animation-ex-1-1 {
+  from { outline-offset: -1px; outline: 2px solid #0000BB; }
+  to { outline-offset: -1px; outline: 2px solid transparent; }
+}
+
+@keyframes verstak-blinking-animation-ex-1-2 {
+  from { outline-offset: -1px; outline: 2px solid #0000BB; }
+  to { outline-offset: -1px; outline: 2px solid transparent; }
+}
+
+@keyframes verstak-blinking-animation-ex-2-1 {
+  from { outline-offset: -1px; outline: 2px solid #00BB00; }
+  to { outline-offset: -1px; outline: 2px solid transparent; }
+}
+
+@keyframes verstak-blinking-animation-ex-2-2 {
+  from { outline-offset: -1px; outline: 2px solid #00BB00; }
+  to { outline-offset: -1px; outline: 2px solid transparent; }
 }

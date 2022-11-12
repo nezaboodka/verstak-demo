@@ -1,22 +1,27 @@
 import { cx } from "@emotion/css"
-import { Block, BlockArgs, PlainText, lineFeed, To, Img, useContext } from "verstak"
+import { Transaction } from "reactronic"
+import { Block, BlockArgs, PlainText, lineFeed, To, Img, use } from "verstak"
 import { Panel } from "./Panel.v"
 import { App } from "models/App"
+import { MarkdownCodeDarkTheme } from "themes/MarkdownCodeDarkTheme.s"
 import * as s from "themes/Common.s"
 
 export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void, void>>) {
   return (
     Block(name, { ...args,
       render(e, b) {
+        const app = use(App)
 
         Block("Logo", {
           initialize(e, b) {
-            e.className = s.Panel
+            e.className = cx(s.Panel, s.Clickable)
+            e.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
           },
           render(e, b) {
             e.style.backgroundColor = "white"
             e.style.padding = "0.5rem"
             e.style.borderRadius = "100%"
+            e.style.backgroundColor = app.blinkingEffect ? "red" : ""
             Img("N*", {
               render(e, b) {
                 e.src = "https://nezaboodka.com/img/star-768x768-circle.png"
@@ -27,7 +32,6 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
           }
         })
 
-        const app = useContext(App)
         Panel(`Verstak ${app.version}`, {
           widthGrowth: 1,
           alignContent: To.Center,
@@ -42,7 +46,8 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
 
         Block("Account", {
           initialize(e, b) {
-            e.className = cx(s.Panel, s.Hint)
+            e.className = cx(s.Panel, s.Hint, s.Clickable)
+            e.onclick = () => Transaction.run(null, () => app.theme = new MarkdownCodeDarkTheme())
           },
           render(e, b) {
             PlainText("[=]")

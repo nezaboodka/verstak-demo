@@ -28,3 +28,8 @@ export const Hint = css`
   font-size: smaller;
   border: 1px solid silver;
 `
+
+export const Clickable = css`
+  cursor: pointer;
+  user-select: none;
+`

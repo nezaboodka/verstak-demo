@@ -1,5 +1,5 @@
 import { cx } from "@emotion/css"
-import { Block, To, PlainText, lineFeed, useContext } from "verstak"
+import { Block, To, PlainText, lineFeed, use, setContext } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { App } from "models/App"
 import { ToolBar } from "./ToolBar.v"
@@ -9,14 +9,14 @@ import { Theme } from "themes/Theme"
 import * as s from "themes/Common.s"
 
 export function Main(name: string) {
-  const app = useContext(App)
   return (
     Block(name, {
       reacting: true, // re-rendering point
-      nestedContext: app.theme,
-      nestedContextType: Theme, // "useContext(Theme)"
       alignContent: To.Top,
+      heightGrowth: 1,
       render(e, b) {
+        const app = use(App)
+        setContext(Theme, app.theme)
         e.style.backgroundColor = "rgba(230, 230, 230)"
 
         ToolBar("ToolBar", {
@@ -42,14 +42,14 @@ export function Main(name: string) {
           },
         })
         Block("MarkdownExample", {
+          reacting: true,
           widthMin: "16rem",
           widthGrowth: 2,
           alignContent: To.Left + To.Top,
           alignFrame: To.Fit,
-          initialize(e, b) {
-            e.className = cx(s.Panel, useContext(Theme).markdown)
-          },
           render(e, b) {
+            const theme = use(Theme)
+            e.className = cx(s.Panel, theme.markdown)
             Markdown("Verstak", CODE)
           }
         })

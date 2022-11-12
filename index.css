@@ -10,7 +10,8 @@ body {
   font-size: min(5vw, 0.5cm);
 }
 
-body > v-block {
+body > v-block,
+body > v-group > v-block {
   flex-grow: 1;
 }
 
