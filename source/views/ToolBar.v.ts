@@ -1,5 +1,5 @@
 import { cx } from "@emotion/css"
-import { Block, BlockArgs, PlainText, lineFeed, To, Img, current } from "verstak"
+import { Block, BlockArgs, PlainText, lineFeed, To, Img, useContext } from "verstak"
 import { Panel } from "./Panel.v"
 import { App } from "models/App"
 import * as s from "theme/Common.s"
@@ -28,7 +28,7 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
           }
         })
 
-        const app = current(App)
+        const app = useContext(App)
         Panel(`Verstak ${app.version}`, {
           widthGrowth: 1,
           alignContent: To.Center,

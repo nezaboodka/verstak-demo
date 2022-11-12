@@ -11,7 +11,7 @@ export function Main(name: string, app: App) {
   return (
     Block<App>(name, {
       reacting: true, // re-rendering point
-      current: app,
+      subTreeContext: app,
       alignContent: To.Top,
       render(e, b) {
         e.style.backgroundColor = "rgba(230, 230, 230)"
