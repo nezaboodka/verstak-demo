@@ -2,10 +2,9 @@ import { Block, BlockArgs, To, use } from "verstak"
 import { Toggle, ToggleModel } from "components/Toggle.v"
 import { compose, refs } from "common/Utils"
 import { Panel } from "./Panel.v"
-import * as s from "themes/Common.s"
 import { App } from "models/App"
-import { Ref } from "reactronic"
 import { Theme } from "themes/Theme"
+import * as s from "themes/Common.s"
 
 export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, void, void>>) {
   return (
