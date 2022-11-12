@@ -1,4 +1,4 @@
-import { Block, BlockArgs, PlainText } from "verstak"
+import { Block, BlockArgs, PlainText, To } from "verstak"
 import * as s from "themes/Common.s"
 
 export function Panel(name: string,
@@ -8,6 +8,8 @@ export function Panel(name: string,
       render(e, b) {
         Block("title", {
           widthGrowth: 1,
+          alignContent: args.alignContent,
+          alignFrame: args.alignFrame,
           initialize(e, b) {
             e.className = s.PanelTitle
           },
