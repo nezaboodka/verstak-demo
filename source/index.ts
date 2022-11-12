@@ -7,7 +7,7 @@ import { Main } from "views/Main.v"
 import "../index.reset.css"
 import "../public/assets/verstak.css"
 import "../index.css"
-import { MarkdownCodeDarkTheme } from "themes/MarkdownCodeDarkTheme.s"
+import { MarkdownCodeLightTheme } from "themes/MarkdownCodeLightTheme.s"
 
 const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
 const version: string = "0.1"
@@ -15,10 +15,11 @@ const version: string = "0.1"
 configureDebugging()
 
 const app = Transaction.run(null, () => new App(version))
-const theme = new MarkdownCodeDarkTheme()
+const theme = new MarkdownCodeLightTheme()
 
 VBlock.root(() => {
   HtmlBody("html > body", body => {
+    body.className = theme.markdown
     Main("main", app, theme)
   })
 })
