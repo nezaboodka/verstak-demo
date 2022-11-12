@@ -13,8 +13,8 @@ export function Main(name: string) {
   return (
     Block(name, {
       reacting: true, // re-rendering point
-      subTreeContext: app.theme,
-      subTreeContextType: Theme, // "useContext(Theme)"
+      nestedContext: app.theme,
+      nestedContextType: Theme, // "useContext(Theme)"
       alignContent: To.Top,
       render(e, b) {
         e.style.backgroundColor = "rgba(230, 230, 230)"
