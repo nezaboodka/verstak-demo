@@ -77,8 +77,8 @@ Grid("Example", {
     Ruler("C", To.Top + To.Center); lineFeed()
     Ruler("2", To.Left); lineFeed()
     Ruler("3", To.Left); lineFeed()
-    // Blocks can also be layed out explicitly
-    // in given cells.
+    // Blocks can also be layed out
+    // explicitly in exact cells.
     ExampleData("B2")
     ExampleData("A1:B1")
     ExampleData("C1:C2")
