@@ -1,5 +1,5 @@
 import { Block, BlockArgs, Input, To, asComponent } from "verstak"
-import { composeModel } from "common/Utils"
+import { observableModel } from "common/Utils"
 
 export interface DropdownModel {
   focused: boolean
@@ -39,7 +39,7 @@ export function Dropdown(name: string, args?: BlockArgs<HTMLElement, DropdownMod
 
 function createLocalModel(): DropdownModel
 {
-  return composeModel({
+  return observableModel({
     focused: false,
     filter: "",
     values: ["Value1", "Value2", "Value3"],

@@ -4,7 +4,7 @@ export type ValuesOrRefs<T> = {
   [K in keyof T]: T[K] | Ref<T[K]>
 }
 
-export function composeModel<T extends Object>(modelProps: ValuesOrRefs<T>): T {
+export function observableModel<T extends Object>(modelProps: ValuesOrRefs<T>): T {
   return new ObservableComposition(modelProps) as unknown as T
 }
 

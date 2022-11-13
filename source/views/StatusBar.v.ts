@@ -1,7 +1,7 @@
 import { refs } from "reactronic"
 import { Block, BlockArgs, use, asComponent } from "verstak"
 import { Toggle } from "components/Toggle.v"
-import { composeModel } from "common/Utils"
+import { observableModel } from "common/Utils"
 import { Dropdown } from "components/Dropdown.v"
 import { App } from "models/App"
 import { Theme } from "themes/Theme"
@@ -21,18 +21,18 @@ export function StatusBar(name: string, args: BlockArgs<HTMLElement, void, void>
 
         Toggle("BlinkMode", {
           initialize(e, b, base) {
-            base?.(e, b)
+            base()
             // We compose model from different pieces,
             // such as app and theme. Without the need
             // to implement interface in form of class.
-            b.model = composeModel({
+            b.model = observableModel({
               label: "Blinking Rendering",
               checked: refs(app).blinkingEffect,
               color: refs(theme).toggleColor,
             })
           },
           render(e, b, base) {
-            base?.(e, b)
+            base()
             // Style is not inside "initialize", because of theming
             e.classList.toggle(s.Panel, true)
           }
@@ -41,28 +41,28 @@ export function StatusBar(name: string, args: BlockArgs<HTMLElement, void, void>
         Dropdown("Dropdown1", {
           widthGrowth: 1,
           render(e, b, base) {
-            base?.(e, b)
+            base()
             e.classList.toggle(s.Panel, true)
           },
         })
 
         Toggle("A", {
           render(e, b, base) {
-            base?.(e, b)
+            base()
             e.classList.toggle(s.Panel, true)
           }
         })
 
         Toggle("B", {
           render(e, b, base) {
-            base?.(e, b)
+            base()
             e.classList.toggle(s.Panel, true)
           }
         })
 
         Toggle("C", {
           render(e, b, base) {
-            base?.(e, b)
+            base()
             e.classList.toggle(s.Panel, true)
           }
         })
