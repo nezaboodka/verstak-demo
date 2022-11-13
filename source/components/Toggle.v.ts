@@ -16,7 +16,7 @@ export function Toggle(name: string, args?: BlockArgs<HTMLElement, ToggleModel>)
     Block<ToggleModel>(name ?? "", asComponent(args, {
       initialize(e, b) {
         // Model is either taken from parameter or created internally
-        b.model ??= composeModel({ label: "", checked: true, color: "green" })
+        b.model ??= composeModel({ label: name, checked: true, color: "green" })
         e.onclick = () => Transaction.run(null, () => b.model.checked = !b.model.checked)
       },
       render(e, b) {

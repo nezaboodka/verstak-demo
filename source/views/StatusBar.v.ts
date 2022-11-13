@@ -43,46 +43,25 @@ export function StatusBar(name: string, args: BlockArgs<HTMLElement, void, void>
           widthGrowth: 1,
           render(e, b, base) {
             base?.(e, b)
-            e.className = s.Panel
+            e.classList.toggle(s.Panel, true)
           },
         })
 
-        Toggle("[1]", {
-          initialize(e, b, base) {
-            b.model = composeModel({
-              checked: true,
-              label: "A",
-            }),
-            base?.(e, b)
-          },
+        Toggle("A", {
           render(e, b, base) {
             base?.(e, b)
             e.classList.toggle(s.Panel, true)
           }
         })
 
-        Toggle("[2]", {
-          initialize(e, b, base) {
-            b.model = composeModel({
-              checked: true,
-              label: "B",
-            }),
-            base?.(e, b)
-          },
+        Toggle("B", {
           render(e, b, base) {
             base?.(e, b)
             e.classList.toggle(s.Panel, true)
           }
         })
 
-        Toggle("[3]", {
-          initialize(e, b, base) {
-            b.model = composeModel({
-              checked: false,
-              label: "C",
-            }),
-            base?.(e, b)
-          },
+        Toggle("C", {
           render(e, b, base) {
             base?.(e, b)
             e.classList.toggle(s.Panel, true)
