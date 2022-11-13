@@ -1,4 +1,4 @@
-import { Block, BlockArgs, Input, To, asComponent, PlainText, ReactingFocuser, FocusModel, lineFeed, use, Group } from "verstak"
+import { Block, BlockArgs, Input, Align, asComponent, PlainText, ReactingFocuser, FocusModel, lineFeed, use, Group } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
 import { Transaction } from "reactronic"
 
@@ -50,7 +50,6 @@ export function Field(name: string, args?: BlockArgs<HTMLElement, FieldModel>) {
 export function FieldInput(name: string, model: FieldModel) {
   return (
     PlainText(model.text, name, {
-      widthGrowth: To.Fit,
       initialize(e) {
         e.onkeydown = event => {
           const m = model

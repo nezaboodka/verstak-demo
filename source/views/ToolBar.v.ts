@@ -1,6 +1,6 @@
 import { cx } from "@emotion/css"
 import { refs, Transaction } from "reactronic"
-import { Block, BlockArgs, PlainText, lineFeed, To, Img, use, asComponent, HtmlText } from "verstak"
+import { Block, BlockArgs, PlainText, lineFeed, Align, Img, use, asComponent, HtmlText } from "verstak"
 import { Icon } from "components/Icon.v"
 import { MarkdownCodeDarkTheme } from "themes/MarkdownCodeDarkTheme.s"
 import { App } from "models/App"

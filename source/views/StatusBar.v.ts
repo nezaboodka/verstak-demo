@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { Block, BlockArgs, use, asComponent, To } from "verstak"
+import { Block, BlockArgs, use, asComponent, Align } from "verstak"
 import { observableModel } from "common/Utils"
 import { Toggle } from "components/Toggle.v"
 import { createFieldModel, Field } from "components/Field.v"
@@ -54,9 +54,9 @@ export function StatusBar(name: string, args: BlockArgs<HTMLElement, void, void>
             e.classList.toggle(s.Panel, true)
           }
         })
-        Block("Spacing", {
+        Block("Fields", {
           widthGrowth: 1,
-          alignContent: To.Right,
+          alignContent: Align.Right,
           render(e, b) {
             e.className = s.Panel
             Field("Dropdown1", {

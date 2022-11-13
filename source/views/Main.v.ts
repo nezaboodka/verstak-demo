@@ -1,5 +1,5 @@
 import { cx } from "@emotion/css"
-import { Block, To, PlainText, lineFeed, use, setContext } from "verstak"
+import { Block, Align, PlainText, lineFeed, use, setContext } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { Theme } from "themes/Theme"
 import { App } from "models/App"
@@ -12,7 +12,7 @@ export function Main(name: string) {
   return (
     Block(name, {
       reacting: true, // re-rendering point
-      alignContent: To.Top,
+      alignContent: Align.Top,
       heightGrowth: 1,
       render(e, b) {
         const app = use(App)
@@ -24,8 +24,8 @@ export function Main(name: string) {
         // Main row
         Block("NavBar", {
           widthMin: "10rem",
-          alignContent: To.Top,
-          alignFrame: To.Fit,
+          alignContent: Align.Top,
+          alignFrame: Align.Stretch,
           render(e, b) {
             e.className = s.Panel
             PlainText("Navigation Bar")
@@ -43,8 +43,8 @@ export function Main(name: string) {
           reacting: true,
           widthMin: "16rem",
           widthGrowth: 2,
-          alignContent: To.Left + To.Top,
-          alignFrame: To.Fit,
+          alignContent: Align.Left + Align.Top,
+          alignFrame: Align.Stretch,
           render(e, b) {
             const theme = use(Theme)
             e.className = cx(s.Panel, theme.markdown)

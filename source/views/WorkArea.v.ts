@@ -1,4 +1,4 @@
-import { Grid, BlockArgs, Block, PlainText, HtmlText, lineFeed, To, asComponent } from "verstak"
+import { Grid, BlockArgs, Block, PlainText, HtmlText, lineFeed, Align, asComponent } from "verstak"
 import * as s from "themes/Common.s"
 
 export function WorkArea(name: string,
@@ -8,12 +8,12 @@ export function WorkArea(name: string,
       render(e, b) {
         // Blocks can be layed out automatically
         // based on their order and line feeds.
-        Ruler("1", To.Left, true)
-        Ruler("A", To.Top + To.Center)
-        Ruler("B", To.Top + To.Center)
-        Ruler("C", To.Top + To.Center); lineFeed()
-        Ruler("2", To.Left); lineFeed()
-        Ruler("3", To.Left); lineFeed()
+        Ruler("1", Align.Left, true)
+        Ruler("A", Align.Top + Align.Center)
+        Ruler("B", Align.Top + Align.Center)
+        Ruler("C", Align.Top + Align.Center); lineFeed()
+        Ruler("2", Align.Left); lineFeed()
+        Ruler("3", Align.Left); lineFeed()
         // Blocks can also be layed out
         // explicitly in exact cells.
         ExampleData("B2")
@@ -26,7 +26,7 @@ export function WorkArea(name: string,
   )
 }
 
-function Ruler(title: string, alignFrame: To, overlap?: boolean) {
+function Ruler(title: string, alignFrame: Align, overlap?: boolean) {
   Block(`#${title}`, {
     alignFrame,
     widthOverlap: overlap,
@@ -41,7 +41,7 @@ function Ruler(title: string, alignFrame: To, overlap?: boolean) {
 function ExampleData(place: string) {
   Block(place, {
     place, // absolute position inside grid
-    alignContent: To.Center + To.CenterV,
+    alignContent: Align.Center + Align.CenterV,
     initialize(e, b) {
       e.className = s.Important
     },
