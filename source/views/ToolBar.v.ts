@@ -4,7 +4,6 @@ import { Block, BlockArgs, PlainText, lineFeed, To, Img, use, asComponent, HtmlT
 import { Icon } from "components/Icon.v"
 import { MarkdownCodeDarkTheme } from "themes/MarkdownCodeDarkTheme.s"
 import { App } from "models/App"
-import { Panel } from "./Panel.v"
 import * as s from "themes/Common.s"
 import { createFieldModel, Field } from "components/Field.v"
 
@@ -16,19 +15,14 @@ export function ToolBar(name: string, args?: BlockArgs<HTMLElement, void, void>)
 
         Block("Logo", {
           initialize(e, b) {
-            e.className = cx(s.Panel, s.Clickable)
+            e.className = cx(s.Panel, s.Clickable, s.Logo)
             e.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
           },
           render(e, b) {
-            e.style.backgroundColor = "white"
-            e.style.padding = "0.5rem"
-            e.style.borderRadius = "100%"
             e.style.backgroundColor = app.blinkingEffect ? "red" : ""
             Img("N*", {
               render(e, b) {
                 e.src = "https://nezaboodka.com/img/star-768x768-circle.png"
-                e.style.width = "2.5em"
-                e.style.height = "2.5em"
               }
             })
           }
@@ -36,18 +30,19 @@ export function ToolBar(name: string, args?: BlockArgs<HTMLElement, void, void>)
 
         Block(`Verstak ${app.version}`, {
           widthGrowth: 1,
-          initialize(e, b) {
-            e.className = s.Panel
-          },
-          override(e, b) {
-            b.render()
+          render(e, b, base) {
+            base()
+            e.classList.toggle(s.Panel, true)
+
             Block("Welcome", {
               widthGrowth: 1,
               render(e, b) {
                 HtmlText(`<b>Verstak</b> v${app.version}`)
-                lineFeed(); PlainText("Try to change window size")
+                lineFeed()
+                PlainText("Try to change window size")
               },
             })
+
             Field("Dropdown1", {
               widthMin: "7em",
               initialize(e, b, base) {
@@ -58,9 +53,6 @@ export function ToolBar(name: string, args?: BlockArgs<HTMLElement, void, void>)
                   isHotText: true,
                   isMultiLineText: false,
                 })
-                base()
-              },
-              render(e, b, base) {
                 base()
               },
             })

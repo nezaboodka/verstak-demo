@@ -64,8 +64,9 @@ export function StatusBar(name: string, args: BlockArgs<HTMLElement, void, void>
           alignContent: To.Right,
           render(e, b) {
             e.className = s.Panel
+
             Field("Dropdown1", {
-              widthMin: "7em",
+              widthMin: "15em",
               initialize(e, b, base) {
                 const loader = app.loader
                 b.model = createFieldModel({
@@ -74,9 +75,6 @@ export function StatusBar(name: string, args: BlockArgs<HTMLElement, void, void>
                   isHotText: true,
                   isMultiLineText: false,
                 })
-                base()
-              },
-              render(e, b, base) {
                 base()
               },
             })

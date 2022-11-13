@@ -98,41 +98,36 @@ export function FieldInput(name: string, model: FieldModel) {
 
 function FieldOptions(name: string, model: FieldModel) {
   return (
-    Block(name, { // container
-      widthGrowth: 1,
-      render(container, b) {
-        Block("Popup", { // popup itself
-          widthMin: "20em",
-          floating: true,
-          initialize(e, b) {
-            e.onscroll = () => model.position = e.scrollTop
-            const focused = document.activeElement
-            if (focused) {
-              const bounds = focused.getBoundingClientRect()
-              const x = document.body.offsetWidth - bounds.left
-              if (x < document.body.offsetWidth / 2)
-                e.style.right = `${document.body.offsetWidth - bounds.right}px`
-              if (bounds.top > document.body.clientHeight / 2)
-                e.style.bottom = `${document.body.offsetHeight - bounds.top - 1}px`
-            }
-          },
-          render(e, b) {
-            e.style.outline = "2px solid rgba(255, 127, 127, 1)"
-            e.style.outlineOffset = "-1px"
-            e.style.borderRadius = "0.2rem"
-            e.style.padding = "0.25em"
-            e.style.backgroundColor = "white"
-            const options = model.options
-            if (options.length > 0) {
-              for (const x of model.options) {
-                lineFeed()
-                PlainText(x, x)
-              }
-            }
-            else
-              PlainText("nothing found")
-          },
-        })
+    Block(name, { // popup itself
+      widthMin: "10em",
+      floating: true,
+      initialize(e, b) {
+        e.onscroll = () => model.position = e.scrollTop
+        const focused = document.activeElement
+        if (focused) {
+          const bounds = focused.getBoundingClientRect()
+          const x = document.body.offsetWidth - bounds.left
+          if (x < document.body.offsetWidth / 2)
+            e.style.right = `${document.body.offsetWidth - bounds.right}px`
+          if (bounds.top > document.body.clientHeight / 2)
+            e.style.bottom = `${document.body.offsetHeight - bounds.top - 1}px`
+        }
+      },
+      render(e, b) {
+        e.style.outline = "2px solid rgba(255, 127, 127, 1)"
+        e.style.outlineOffset = "-1px"
+        e.style.borderRadius = "0.2rem"
+        e.style.padding = "0.25em"
+        e.style.backgroundColor = "white"
+        const options = model.options
+        if (options.length > 0) {
+          for (const x of model.options) {
+            lineFeed()
+            PlainText(x, x)
+          }
+        }
+        else
+          PlainText("nothing found")
       },
     })
   )

@@ -1,5 +1,16 @@
 import { css } from "@emotion/css"
 
+export const Logo = css`
+  background-color: white;
+  padding: 0.25rem !important;
+  border-radius: 100% !important;
+
+  img {
+    width: 2.5em;
+    height: 2.5em;
+  }
+`
+
 export const Panel = css`
   margin: 0.5rem;
   padding: 1rem;
