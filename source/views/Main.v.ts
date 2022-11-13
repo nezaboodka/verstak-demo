@@ -18,8 +18,10 @@ export function Main(name: string) {
         const app = use(App)
         setContext(Theme, app.theme)
         e.style.backgroundColor = "rgba(230, 230, 230)"
+        // Tool bar row
         ToolBar("ToolBar", { widthGrowth: 1 })
         lineFeed()
+        // Main row
         Block("NavBar", {
           widthMin: "10rem",
           alignContent: To.Top,
@@ -49,6 +51,7 @@ export function Main(name: string) {
             Markdown("Verstak", CODE)
           }
         })
+        // Status bar row
         lineFeed()
         StatusBar("StatusBar", { widthGrowth: 1 })
       },
