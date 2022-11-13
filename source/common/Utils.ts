@@ -1,21 +1,21 @@
 import { ObservableObject, Ref } from "reactronic"
 
-export type Composition<T> = {
+export type ValuesOrRefs<T> = {
   [K in keyof T]: T[K] | Ref<T[K]>
 }
 
-export function compose<T extends Object>(init: Composition<T>): T {
-  return new ObservableComposition(init) as unknown as T
+export function composeModel<T extends Object>(modelProps: ValuesOrRefs<T>): T {
+  return new ObservableComposition(modelProps) as unknown as T
 }
 
 class ObservableComposition<T> extends ObservableObject {
-  constructor(composition: Composition<T>) {
+  constructor(composition: ValuesOrRefs<T>) {
     super()
     convertValuesToFieldsAndRefsToGetSet(this, composition)
   }
 }
 
-function convertValuesToFieldsAndRefsToGetSet<T>(target: Object, composition: Composition<T>): void {
+function convertValuesToFieldsAndRefsToGetSet<T>(target: Object, composition: ValuesOrRefs<T>): void {
   for (const key in composition) {
     const x = composition[key]
     if (x instanceof Ref) {

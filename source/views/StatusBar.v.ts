@@ -1,7 +1,7 @@
 import { refs } from "reactronic"
 import { Block, BlockArgs, To, use } from "verstak"
 import { Toggle, ToggleModel } from "components/Toggle.v"
-import { compose } from "common/Utils"
+import { composeModel } from "common/Utils"
 import { Panel } from "./Panel.v"
 import { App } from "models/App"
 import { Theme } from "themes/Theme"
@@ -24,7 +24,7 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
             // We compose model from different pieces,
             // such as app and theme. Without the need
             // to implement interface in form of class.
-            b.model = compose({
+            b.model = composeModel({
               label: "Blinking Rendering",
               checked: refs(app).blinkingEffect,
               color: refs(theme).toggleColor,

@@ -1,6 +1,6 @@
 import { Ref, Transaction } from "reactronic"
 import { Block } from "verstak"
-import { compose } from "common/Utils"
+import { composeModel } from "common/Utils"
 import { Icon } from "./Icon.v"
 import { Label } from "./Label.v"
 import * as s from "themes/Common.s"
@@ -16,7 +16,7 @@ export function Toggle(name: string, model?: ToggleModel) {
     Block<ToggleModel>(name ?? "", {
       initialize(e, b) {
         // Model is either taken from parameter or created internally
-        b.model = model ?? compose({ label: "Sample Toggle", checked: true, color: "green" })
+        b.model = model ?? composeModel({ label: "Sample Toggle", checked: true, color: "green" })
         e.onclick = () => Transaction.run(null, () => b.model.checked = !b.model.checked)
       },
       render(e, b) {
