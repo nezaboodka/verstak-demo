@@ -2,7 +2,7 @@ import { refs } from "reactronic"
 import { Block, BlockArgs, use, asComponent } from "verstak"
 import { observableModel } from "common/Utils"
 import { Toggle } from "components/Toggle.v"
-import { Field } from "components/Field.v"
+import { createFieldModel, Field } from "components/Field.v"
 import { Theme } from "themes/Theme"
 import { App } from "models/App"
 import * as s from "themes/Common.s"
@@ -41,8 +41,10 @@ export function StatusBar(name: string, args: BlockArgs<HTMLElement, void, void>
         Field("Dropdown1", {
           widthGrowth: 1,
           initialize(e, b, base) {
+            b.model = createFieldModel({
+              text: refs(app).version,
+            })
             base()
-            b.model.text = "initial text"
           },
           render(e, b, base) {
             base()

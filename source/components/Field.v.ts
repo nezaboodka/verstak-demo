@@ -1,9 +1,9 @@
 import { Block, BlockArgs, Input, To, asComponent, PlainText, ReactingFocuser, FocusModel, lineFeed } from "verstak"
-import { observableModel } from "common/Utils"
+import { observableModel, ValuesOrRefs } from "common/Utils"
 import { Transaction } from "reactronic"
 
 export interface FieldModel<T = string> extends FocusModel {
-  text: T
+  text: string
   options: Array<T>
   selected: T | undefined
   multiSelected: Set<T>
@@ -12,13 +12,27 @@ export interface FieldModel<T = string> extends FocusModel {
   inputStyle: string
 }
 
+export function createFieldModel<T>(props?: Partial<ValuesOrRefs<FieldModel<T>>>): FieldModel<T>
+{
+  return observableModel({
+    text: props?.text ?? "",
+    options: props?.options ?? [],
+    selected: props?.selected,
+    multiSelected: props?.multiSelected ?? new Set<T>(),
+    position: 0,
+    isMultiLineText: props?.isMultiLineText ?? false,
+    isEditMode: props?.isEditMode ?? false,
+    inputStyle: props?.inputStyle ?? "",
+  })
+}
+
 export function Field(name: string, args?: BlockArgs<HTMLElement, FieldModel>) {
   return (
     Block<FieldModel>(name ?? "", asComponent(args, {
       widthMin: "3em",
       initialize(e, b) {
         // Model is either taken from parameter or created internally
-        b.model ??= createLocalModel()
+        b.model ??= createFieldModel()
         e.onscroll = () => b.model.position = e.scrollTop
       },
       render(e, b) {
@@ -63,21 +77,6 @@ export function Field(name: string, args?: BlockArgs<HTMLElement, FieldModel>) {
       },
     }))
   )
-}
-
-function createLocalModel(): FieldModel<any>
-{
-  return observableModel({
-    text: "",
-    options: ["Value1", "Value2", "Value3"],
-    selected: undefined,
-    multiSelected: new Set<string>(),
-    focused: false,
-    position: 0,
-    isMultiLineText: false,
-    isEditMode: false,
-    inputStyle: "",
-  })
 }
 
 function selectAllAndPreventDefault(event: KeyboardEvent, e: HTMLElement): void {
