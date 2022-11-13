@@ -39,6 +39,7 @@ export function Field(name: string, args?: BlockArgs<HTMLElement, FieldModel>) {
             e.onblur = () => {
               Transaction.run(null, () => b.model.isEditMode = false)
             }
+            e.innerText = b.model.text
           },
           render(e) {
             e.tabIndex = 0
@@ -73,7 +74,7 @@ function createLocalModel(): FieldModel<any>
     multiSelected: new Set<string>(),
     focused: false,
     position: 0,
-    isMultiLineText: true,
+    isMultiLineText: false,
     isEditMode: false,
     inputStyle: "",
   })

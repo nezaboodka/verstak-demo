@@ -40,6 +40,10 @@ export function StatusBar(name: string, args: BlockArgs<HTMLElement, void, void>
 
         Field("Dropdown1", {
           widthGrowth: 1,
+          initialize(e, b, base) {
+            base()
+            b.model.text = "initial text"
+          },
           render(e, b, base) {
             base()
             e.classList.toggle(s.Panel, true)
