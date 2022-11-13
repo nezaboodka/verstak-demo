@@ -13,6 +13,7 @@ export function Dropdown(name: string, args?: BlockArgs<HTMLElement, DropdownMod
   return (
     Block<DropdownModel>(name ?? "", asComponent(args, {
       widthGrowth: 1,
+      widthMin: "3em",
       initialize(e, b) {
         // Model is either taken from parameter or created internally
         b.model ??= createLocalModel()
@@ -22,12 +23,13 @@ export function Dropdown(name: string, args?: BlockArgs<HTMLElement, DropdownMod
         const m = b.model
         // Style is not inside "initialize", because of theming
         Input("Filter", {
-          alignFrame: To.Fit,
           render(e, b) {
             e.style.flexGrow = "1"
-            e.style.maxWidth = "auto"
             e.style.width = "100%"
-            e.style.outline = "1px solid red"
+            e.style.outline = "1px solid rgba(127, 127, 127, 0.25)"
+            e.style.padding = "0 0.25em"
+            e.style.borderRadius = "0.25rem"
+            e.placeholder = "Search..."
           }
         })
       },

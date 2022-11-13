@@ -4,6 +4,7 @@ import { css } from "@emotion/css"
 export function Label(text: string, name?: string) {
   return (
     Block(name ?? "", {
+      widthMin: "2em",
       render(e, b) {
         e.className = LabelStyle
         PlainText(text, undefined, { flowWrap: false })
