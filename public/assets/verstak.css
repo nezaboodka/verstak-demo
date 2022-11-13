@@ -55,8 +55,12 @@ v-grid > v-block {
   place-self: stretch;
 }
 
-v-row > * {
+v-row > *:not([popup]), v-row > *[popup="false"] {
   align-self: center;
+}
+
+[popup], [popup="true"] {
+  position: absolute;
 }
 
 /* Verstak Blinking Effect */
