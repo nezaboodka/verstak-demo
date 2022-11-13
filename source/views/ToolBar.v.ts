@@ -12,7 +12,6 @@ export function ToolBar(name: string, args?: BlockArgs<HTMLElement, void, void>)
     Block(name, asComponent(args, {
       render(e, b) {
         const app = use(App)
-
         Block("Logo", {
           initialize(e, b) {
             e.className = cx(s.Panel, s.Clickable, s.Logo)
@@ -27,13 +26,11 @@ export function ToolBar(name: string, args?: BlockArgs<HTMLElement, void, void>)
             })
           }
         })
-
         Block(`Verstak ${app.version}`, {
           widthGrowth: 1,
           render(e, b, base) {
             base()
             e.classList.toggle(s.Panel, true)
-
             Block("Welcome", {
               widthGrowth: 1,
               render(e, b) {
@@ -42,7 +39,6 @@ export function ToolBar(name: string, args?: BlockArgs<HTMLElement, void, void>)
                 PlainText("Try to change window size")
               },
             })
-
             Field("Dropdown1", {
               widthMin: "7em",
               initialize(e, b, base) {
@@ -58,13 +54,12 @@ export function ToolBar(name: string, args?: BlockArgs<HTMLElement, void, void>)
             })
           }
         })
-
         Block("Account", {
           initialize(e, b) {
-            e.className = cx(s.Panel, s.Hint, s.Clickable)
             e.onclick = () => Transaction.run(null, () => app.theme = new MarkdownCodeDarkTheme())
           },
           render(e, b) {
+            e.className = cx(s.Panel, s.Hint, s.Clickable)
             Icon("fa-solid fa-bars")
           }
         })

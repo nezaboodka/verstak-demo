@@ -18,27 +18,22 @@ export function Main(name: string) {
         const app = use(App)
         setContext(Theme, app.theme)
         e.style.backgroundColor = "rgba(230, 230, 230)"
-
-        ToolBar("ToolBar", {
-          widthGrowth: 1,
-        })
-
+        ToolBar("ToolBar", { widthGrowth: 1 })
         lineFeed()
         Block("NavBar", {
           widthMin: "10rem",
           alignContent: To.Top,
           alignFrame: To.Fit,
-          initialize(e, b) {
-            e.className = s.Panel
-          },
           render(e, b) {
+            e.className = s.Panel
             PlainText("Navigation Bar")
           }
         })
         WorkArea("GridExample", {
           widthGrowth: 3,
           heightGrowth: 1,
-          initialize(e, b) {
+          render(e, b, base) {
+            base()
             e.className = cx(s.Panel, s.Important)
           },
         })
@@ -54,11 +49,8 @@ export function Main(name: string) {
             Markdown("Verstak", CODE)
           }
         })
-
         lineFeed()
-        StatusBar("StatusBar", {
-          widthGrowth: 1,
-        })
+        StatusBar("StatusBar", { widthGrowth: 1 })
       },
     })
   )
