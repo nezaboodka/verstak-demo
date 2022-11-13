@@ -1,4 +1,4 @@
-import { Block, BlockArgs, Input, To, asComponent, PlainText, ReactingFocuser, FocusModel } from "verstak"
+import { Block, BlockArgs, Input, To, asComponent, PlainText, ReactingFocuser, FocusModel, lineFeed } from "verstak"
 import { observableModel } from "common/Utils"
 import { Transaction } from "reactronic"
 
@@ -22,13 +22,15 @@ export function InputField(name: string, args?: BlockArgs<HTMLElement, DropdownM
         e.onscroll = () => b.model.position = e.scrollTop
       },
       render(e, b) {
-        PlainText("", "Input", {
+        PlainText(b.model.text, "Input", {
           widthGrowth: To.Fit,
           initialize(e) {
             e.onkeydown = event => {
-              if (event.key === "Enter" && !b.model.isMultiLineText) {
-                selectAllAndPreventDefault(event, e)
-                b.model.text = e.innerHTML
+              if (event.key === "Enter") {
+                if (!b.model.isMultiLineText || event.shiftKey || event.ctrlKey || event.metaKey) {
+                  selectAllAndPreventDefault(event, e)
+                  Transaction.run(null, () => b.model.text = e.innerHTML)
+                }
               }
             }
             e.onfocus = () => {
@@ -42,14 +44,21 @@ export function InputField(name: string, args?: BlockArgs<HTMLElement, DropdownM
             e.tabIndex = 0
             e.contentEditable = "true"
             e.style.outline = b.model.isEditMode ? "2px solid rgba(255, 127, 127, 1)" : "1px solid rgba(127, 127, 127, 0.25)"
+            e.style.outlineOffset = "-1px"
             e.style.padding = "0 0.25em"
             e.style.borderRadius = "0.2rem"
             e.style.whiteSpace = "nowrap"
             e.style.minWidth = "3em"
-            e.style.minHeight = "1.2em"
+            e.style.minHeight = "1em"
             // ReactingFocuser("Focuser", e, b.model)
           },
         })
+        if (b.model.isEditMode) {
+          lineFeed()
+          PlainText(b.model.text, "Options", {
+            popup: true,
+          })
+        }
       },
     }))
   )
