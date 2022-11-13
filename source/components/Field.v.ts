@@ -9,8 +9,8 @@ export interface FieldModel<T = string> extends FocusModel {
   multiSelected: Set<T>
   position: number // scroll
   isMultiLineText: boolean
-  inputStyle: string
   isHotText: boolean
+  inputStyle: string
 }
 
 export function createFieldModel<T>(props?: Partial<ValuesOrRefs<FieldModel<T>>>): FieldModel<T>
@@ -23,8 +23,8 @@ export function createFieldModel<T>(props?: Partial<ValuesOrRefs<FieldModel<T>>>
     position: 0,
     isMultiLineText: props?.isMultiLineText ?? false,
     isEditMode: props?.isEditMode ?? false,
-    inputStyle: props?.inputStyle ?? "",
     isHotText: props?.isHotText ?? false,
+    inputStyle: props?.inputStyle ?? "",
   })
 }
 
@@ -69,10 +69,7 @@ export function FieldInput(name: string, model: FieldModel) {
             Transaction.run(null, () => m.text = e.innerText)
           }
           else if (m.isHotText)
-            Transaction.run(null, () => {
-              console.log(`"${m.text}" -> "${e.innerText}"`)
-              m.text = e.innerText
-            })
+            Transaction.run(null, () => { m.text = e.innerText })
         }
         e.onfocus = () => {
           Transaction.run(null, () => model.isEditMode = true)
@@ -80,7 +77,6 @@ export function FieldInput(name: string, model: FieldModel) {
         e.onblur = () => {
           Transaction.run(null, () => model.isEditMode = false)
         }
-        e.innerText = model.text
       },
       render(e) {
         e.tabIndex = 0
@@ -92,6 +88,8 @@ export function FieldInput(name: string, model: FieldModel) {
         e.style.whiteSpace = "nowrap"
         e.style.minWidth = "3em"
         e.style.minHeight = "1em"
+        if (!model.isEditMode)
+          e.innerText = model.text
         // ReactingFocuser("Focuser", e, model)
       },
     })
@@ -100,17 +98,24 @@ export function FieldInput(name: string, model: FieldModel) {
 
 function FieldOptions(name: string, model: FieldModel) {
   return (
-    Block(name, {
+    Block(name, { // container
       widthGrowth: 1,
-      initialize(e, b) {
-        e.onscroll = () => model.position = e.scrollTop
-        e.style.height = "0"
-      },
-      render(e, b) {
-        Block("Popup", {
-          widthGrowth: 1,
+      render(container, b) {
+        Block("Popup", { // popup itself
           widthMin: "20em",
-          popup: true,
+          floating: true,
+          initialize(e, b) {
+            e.onscroll = () => model.position = e.scrollTop
+            const focused = document.activeElement
+            if (focused) {
+              const bounds = focused.getBoundingClientRect()
+              const x = document.body.offsetWidth - bounds.left
+              if (x < document.body.offsetWidth / 2)
+                e.style.right = `${document.body.offsetWidth - bounds.right}px`
+              if (bounds.top > document.body.clientHeight / 2)
+                e.style.bottom = `${document.body.offsetHeight - bounds.top - 1}px`
+            }
+          },
           render(e, b) {
             e.style.outline = "2px solid rgba(255, 127, 127, 1)"
             e.style.outlineOffset = "-1px"

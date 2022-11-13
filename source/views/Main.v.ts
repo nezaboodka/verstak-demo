@@ -3,12 +3,9 @@ import { Block, To, PlainText, lineFeed, use, setContext } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { Theme } from "themes/Theme"
 import { App } from "models/App"
-import { Loader } from "models/Loader"
 import { ToolBar } from "./ToolBar.v"
 import { StatusBar } from "./StatusBar.v"
 import { WorkArea } from "./WorkArea.v"
-import { createFieldModel, Field } from "components/Field.v"
-import { refs } from "reactronic"
 import * as s from "themes/Common.s"
 
 export function Main(name: string) {
@@ -35,23 +32,7 @@ export function Main(name: string) {
             e.className = s.Panel
           },
           render(e, b) {
-            Field("Dropdown1", {
-              widthGrowth: 1,
-              initialize(e, b, base) {
-                const loader = app.loader
-                b.model = createFieldModel({
-                  text: refs(loader).filter,
-                  options: refs(loader).loaded,
-                  isHotText: true,
-                })
-                base()
-              },
-              render(e, b, base) {
-                base()
-              },
-            })
-            lineFeed()
-            PlainText("Type text above")
+            PlainText("Navigation Bar")
           }
         })
         WorkArea("GridExample", {

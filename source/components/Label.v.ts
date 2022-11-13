@@ -6,7 +6,7 @@ export function Label(text: string, name?: string) {
     Block(name ?? "", {
       render(e, b) {
         e.className = LabelStyle
-        PlainText(text, undefined, { flowWrap: false })
+        PlainText(text, undefined, { wrapping: false })
       }
     })
   )

@@ -1,11 +1,12 @@
 import { cx } from "@emotion/css"
-import { Transaction } from "reactronic"
-import { Block, BlockArgs, PlainText, lineFeed, To, Img, use, asComponent } from "verstak"
+import { refs, Transaction } from "reactronic"
+import { Block, BlockArgs, PlainText, lineFeed, To, Img, use, asComponent, HtmlText } from "verstak"
 import { Icon } from "components/Icon.v"
 import { MarkdownCodeDarkTheme } from "themes/MarkdownCodeDarkTheme.s"
 import { App } from "models/App"
 import { Panel } from "./Panel.v"
 import * as s from "themes/Common.s"
+import { createFieldModel, Field } from "components/Field.v"
 
 export function ToolBar(name: string, args?: BlockArgs<HTMLElement, void, void>) {
   return (
@@ -33,15 +34,36 @@ export function ToolBar(name: string, args?: BlockArgs<HTMLElement, void, void>)
           }
         })
 
-        Panel(`Verstak ${app.version}`, {
+        Block(`Verstak ${app.version}`, {
           widthGrowth: 1,
-          alignContent: To.Center,
           initialize(e, b) {
             e.className = s.Panel
           },
           override(e, b) {
             b.render()
-            lineFeed(); PlainText("Try to change window size")
+            Block("Welcome", {
+              widthGrowth: 1,
+              render(e, b) {
+                HtmlText(`<b>Verstak</b> v${app.version}`)
+                lineFeed(); PlainText("Try to change window size")
+              },
+            })
+            Field("Dropdown1", {
+              widthMin: "7em",
+              initialize(e, b, base) {
+                const loader = app.loader
+                b.model = createFieldModel({
+                  text: refs(loader).filter,
+                  options: refs(loader).loaded,
+                  isHotText: true,
+                  isMultiLineText: false,
+                })
+                base()
+              },
+              render(e, b, base) {
+                base()
+              },
+            })
           }
         })
 

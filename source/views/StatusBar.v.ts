@@ -1,16 +1,16 @@
 import { refs } from "reactronic"
-import { Block, BlockArgs, use, asComponent } from "verstak"
+import { Block, BlockArgs, use, asComponent, To } from "verstak"
 import { observableModel } from "common/Utils"
 import { Toggle } from "components/Toggle.v"
-import { createFieldModel, Field } from "components/Field.v"
 import { Theme } from "themes/Theme"
 import { App } from "models/App"
 import * as s from "themes/Common.s"
+import { createFieldModel, Field } from "components/Field.v"
 
 export function StatusBar(name: string, args: BlockArgs<HTMLElement, void, void>) {
   return (
     Block(name, asComponent(args, {
-      flowWrap: true,
+      wrapping: true,
       render(e, b) {
         // We get app and theme as a context variables
         // (instead of functional parameters) in order
@@ -58,6 +58,31 @@ export function StatusBar(name: string, args: BlockArgs<HTMLElement, void, void>
             e.classList.toggle(s.Panel, true)
           }
         })
+
+        Block("Spacing", {
+          widthGrowth: 1,
+          alignContent: To.Right,
+          render(e, b) {
+            e.className = s.Panel
+            Field("Dropdown1", {
+              widthMin: "7em",
+              initialize(e, b, base) {
+                const loader = app.loader
+                b.model = createFieldModel({
+                  text: refs(loader).filter,
+                  options: refs(loader).loaded,
+                  isHotText: true,
+                  isMultiLineText: false,
+                })
+                base()
+              },
+              render(e, b, base) {
+                base()
+              },
+            })
+          },
+        })
+
       },
     }))
   )
