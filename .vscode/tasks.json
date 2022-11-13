@@ -56,7 +56,7 @@
     {
       "label": "Install Modules - npm",
       "type": "shell",
-      "command": "npm install",
+      "command": "npm run install-all",
       "isBackground": true,
       "group": "build",
       "problemMatcher": [],
