@@ -3,6 +3,7 @@ import { Block, BlockArgs, To, use } from "verstak"
 import { Toggle, ToggleModel } from "components/Toggle.v"
 import { composeModel } from "common/Utils"
 import { Panel } from "./Panel.v"
+import { Dropdown } from "components/Dropdown.v"
 import { App } from "models/App"
 import { Theme } from "themes/Theme"
 import * as s from "themes/Common.s"
@@ -37,11 +38,11 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
           }
         })
 
-        Block<ToggleModel>("Spacer", {
+        Block<ToggleModel>("DropdownExample", {
           widthGrowth: 1,
-          alignContent: To.Center,
           render(e, b) {
             e.className = s.Panel
+            Dropdown("Dropdown1")
           }
         })
 
