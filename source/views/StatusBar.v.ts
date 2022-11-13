@@ -1,6 +1,7 @@
+import { refs } from "reactronic"
 import { Block, BlockArgs, To, use } from "verstak"
 import { Toggle, ToggleModel } from "components/Toggle.v"
-import { compose, refs } from "common/Utils"
+import { compose } from "common/Utils"
 import { Panel } from "./Panel.v"
 import { App } from "models/App"
 import { Theme } from "themes/Theme"
@@ -40,7 +41,7 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
           widthGrowth: 1,
           alignContent: To.Center,
           render(e, b) {
-            // Do nothing
+            e.className = s.Panel
           }
         })
 

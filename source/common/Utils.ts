@@ -4,10 +4,6 @@ export type Composition<T> = {
   [K in keyof T]: T[K] | Ref<T[K]>
 }
 
-export function refs<O extends object = object>(owner: O): { readonly [P in keyof O]-?: Ref<O[P]> } {
-  return Ref.to(owner)
-}
-
 export function compose<T extends Object>(init: Composition<T>): T {
   return new ObservableComposition(init) as unknown as T
 }
@@ -15,11 +11,11 @@ export function compose<T extends Object>(init: Composition<T>): T {
 class ObservableComposition<T> extends ObservableObject {
   constructor(composition: Composition<T>) {
     super()
-    convertValuesToFieldsButRefsToGetSet(this, composition)
+    convertValuesToFieldsAndRefsToGetSet(this, composition)
   }
 }
 
-function convertValuesToFieldsButRefsToGetSet<T>(target: Object, composition: Composition<T>): void {
+function convertValuesToFieldsAndRefsToGetSet<T>(target: Object, composition: Composition<T>): void {
   for (const key in composition) {
     const x = composition[key]
     if (x instanceof Ref) {
