@@ -2,7 +2,7 @@ import { Block, BlockArgs, Input, To, asComponent, PlainText, ReactingFocuser, F
 import { observableModel } from "common/Utils"
 import { Transaction } from "reactronic"
 
-export interface DropdownModel<T = string> extends FocusModel {
+export interface FieldModel<T = string> extends FocusModel {
   text: T
   options: Array<T>
   selected: T | undefined
@@ -12,9 +12,9 @@ export interface DropdownModel<T = string> extends FocusModel {
   inputStyle: string
 }
 
-export function InputField(name: string, args?: BlockArgs<HTMLElement, DropdownModel>) {
+export function Field(name: string, args?: BlockArgs<HTMLElement, FieldModel>) {
   return (
-    Block<DropdownModel>(name ?? "", asComponent(args, {
+    Block<FieldModel>(name ?? "", asComponent(args, {
       widthMin: "3em",
       initialize(e, b) {
         // Model is either taken from parameter or created internally
@@ -64,7 +64,7 @@ export function InputField(name: string, args?: BlockArgs<HTMLElement, DropdownM
   )
 }
 
-function createLocalModel(): DropdownModel<any>
+function createLocalModel(): FieldModel<any>
 {
   return observableModel({
     text: "",
