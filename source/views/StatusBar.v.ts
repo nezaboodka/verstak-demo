@@ -39,41 +39,53 @@ export function StatusBar(name: string, args: BlockArgs<HTMLElement, void, void>
           }
         })
 
-        Block<ToggleModel>("DropdownExample", {
+        Dropdown("Dropdown1", {
           widthGrowth: 1,
-          render(e, b) {
+          render(e, b, base) {
+            base?.(e, b)
             e.className = s.Panel
-            Dropdown("Dropdown1")
+          },
+        })
+
+        Toggle("[1]", {
+          initialize(e, b, base) {
+            b.model = composeModel({
+              checked: true,
+              label: "A",
+            }),
+            base?.(e, b)
+          },
+          render(e, b, base) {
+            base?.(e, b)
+            e.classList.toggle(s.Panel, true)
           }
         })
 
-        Panel("[1]", {
-          alignContent: To.Center,
-          initialize(e, b) {
-            e.className = s.Panel
+        Toggle("[2]", {
+          initialize(e, b, base) {
+            b.model = composeModel({
+              checked: true,
+              label: "B",
+            }),
+            base?.(e, b)
           },
-          override(e, b) {
-            b.render()
+          render(e, b, base) {
+            base?.(e, b)
+            e.classList.toggle(s.Panel, true)
           }
         })
 
-        Panel("[2]", {
-          alignContent: To.Center,
-          initialize(e, b) {
-            e.className = s.Panel
+        Toggle("[3]", {
+          initialize(e, b, base) {
+            b.model = composeModel({
+              checked: false,
+              label: "C",
+            }),
+            base?.(e, b)
           },
-          override(e, b) {
-            b.render()
-          }
-        })
-
-        Panel("[3]", {
-          alignContent: To.Center,
-          initialize(e, b) {
-            e.className = s.Panel
-          },
-          override(e, b) {
-            b.render()
+          render(e, b, base) {
+            base?.(e, b)
+            e.classList.toggle(s.Panel, true)
           }
         })
       },

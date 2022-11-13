@@ -13,5 +13,5 @@ export function Label(text: string, name?: string) {
 }
 
 const LabelStyle = css`
-  padding: 0 0.5em;
+  padding-left: 0.5em;
 `

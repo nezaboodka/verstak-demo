@@ -6,9 +6,9 @@ import { Label } from "./Label.v"
 import * as s from "themes/Common.s"
 
 export interface ToggleModel {
-  label: string
-  checked: boolean
-  color: string
+  label?: string
+  checked?: boolean
+  color?: string
 }
 
 export function Toggle(name: string, args?: BlockArgs<HTMLElement, ToggleModel>) {
@@ -16,7 +16,7 @@ export function Toggle(name: string, args?: BlockArgs<HTMLElement, ToggleModel>)
     Block<ToggleModel>(name ?? "", asComponent(args, {
       initialize(e, b) {
         // Model is either taken from parameter or created internally
-        b.model ??= composeModel({ label: "Sample Toggle", checked: true, color: "green" })
+        b.model ??= composeModel({ label: "", checked: true, color: "green" })
         e.onclick = () => Transaction.run(null, () => b.model.checked = !b.model.checked)
       },
       render(e, b) {
@@ -27,10 +27,11 @@ export function Toggle(name: string, args?: BlockArgs<HTMLElement, ToggleModel>)
         Icon(`fa-solid fa-toggle-${m.checked ? "on" : "off"}`, "Icon", {
           override(e, b) {
             b.render()
-            e.style.color = m.checked ? m.color : ""
+            e.style.color = m.checked ? (m.color ?? "") : ""
           }
         })
-        Label(m.label, "Label")
+        if (m.label)
+          Label(m.label, "Label")
       },
     }))
   )
