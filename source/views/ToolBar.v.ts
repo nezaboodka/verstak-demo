@@ -1,15 +1,15 @@
 import { cx } from "@emotion/css"
 import { Transaction } from "reactronic"
-import { Block, BlockArgs, PlainText, lineFeed, To, Img, use, I } from "verstak"
+import { Block, BlockArgs, PlainText, lineFeed, To, Img, use, asComponent } from "verstak"
 import { Icon } from "components/Icon.v"
 import { MarkdownCodeDarkTheme } from "themes/MarkdownCodeDarkTheme.s"
 import { App } from "models/App"
 import { Panel } from "./Panel.v"
 import * as s from "themes/Common.s"
 
-export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void, void>>) {
+export function ToolBar(name: string, args?: BlockArgs<HTMLElement, void, void>) {
   return (
-    Block(name, { ...args,
+    Block(name, asComponent(args, {
       render(e, b) {
         const app = use(App)
 
@@ -54,7 +54,7 @@ export function ToolBar(name: string, args?: Partial<BlockArgs<HTMLElement, void
             Icon("fa-solid fa-bars")
           }
         })
-      }
-    })
+      },
+    }))
   )
 }

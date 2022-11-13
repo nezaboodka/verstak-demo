@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { Block, BlockArgs, To, use } from "verstak"
+import { Block, BlockArgs, To, use, asComponent } from "verstak"
 import { Toggle, ToggleModel } from "components/Toggle.v"
 import { composeModel } from "common/Utils"
 import { Panel } from "./Panel.v"
@@ -8,9 +8,9 @@ import { App } from "models/App"
 import { Theme } from "themes/Theme"
 import * as s from "themes/Common.s"
 
-export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, void, void>>) {
+export function StatusBar(name: string, args: BlockArgs<HTMLElement, void, void>) {
   return (
-    Block(name, { ...args,
+    Block(name, asComponent(args, {
       flowWrap: true,
       render(e, b) {
         // We get app and theme as a context variables
@@ -20,8 +20,9 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
         const app = use(App)
         const theme = use(Theme)
 
-        Block<ToggleModel>("BlinkMode", {
-          initialize(e, b) {
+        Toggle("BlinkMode", {
+          initialize(e, b, base) {
+            base?.(e, b)
             // We compose model from different pieces,
             // such as app and theme. Without the need
             // to implement interface in form of class.
@@ -31,10 +32,10 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
               color: refs(theme).toggleColor,
             })
           },
-          render(e, b) {
+          render(e, b, base) {
+            base?.(e, b)
             // Style is not inside "initialize", because of theming
-            e.className = s.Panel
-            Toggle("DebugMode", b.model)
+            e.classList.toggle(s.Panel, true)
           }
         })
 
@@ -75,7 +76,7 @@ export function StatusBar(name: string, args?: Partial<BlockArgs<HTMLElement, vo
             b.render()
           }
         })
-      }
-    })
+      },
+    }))
   )
 }

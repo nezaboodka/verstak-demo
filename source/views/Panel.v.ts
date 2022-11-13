@@ -1,10 +1,10 @@
-import { Block, BlockArgs, PlainText, To } from "verstak"
+import { Block, BlockArgs, PlainText, asComponent } from "verstak"
 import * as s from "themes/Common.s"
 
 export function Panel(name: string,
-  args: Partial<BlockArgs<HTMLElement, void, void>>) {
+  args: BlockArgs<HTMLElement, void, void>) {
   return (
-    Block(name, { ...args,
+    Block(name, asComponent(args, {
       render(e, b) {
         Block("title", {
           widthGrowth: 1,
@@ -17,7 +17,7 @@ export function Panel(name: string,
             PlainText(name)
           }
         })
-      }
-    })
+      },
+    }))
   )
 }

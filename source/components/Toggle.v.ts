@@ -1,5 +1,5 @@
-import { Ref, Transaction } from "reactronic"
-import { Block } from "verstak"
+import { Transaction } from "reactronic"
+import { Block, BlockArgs, asComponent } from "verstak"
 import { composeModel } from "common/Utils"
 import { Icon } from "./Icon.v"
 import { Label } from "./Label.v"
@@ -11,12 +11,12 @@ export interface ToggleModel {
   color: string
 }
 
-export function Toggle(name: string, model?: ToggleModel) {
+export function Toggle(name: string, args?: BlockArgs<HTMLElement, ToggleModel>) {
   return (
-    Block<ToggleModel>(name ?? "", {
+    Block<ToggleModel>(name ?? "", asComponent(args, {
       initialize(e, b) {
         // Model is either taken from parameter or created internally
-        b.model = model ?? composeModel({ label: "Sample Toggle", checked: true, color: "green" })
+        b.model ??= composeModel({ label: "Sample Toggle", checked: true, color: "green" })
         e.onclick = () => Transaction.run(null, () => b.model.checked = !b.model.checked)
       },
       render(e, b) {
@@ -31,7 +31,7 @@ export function Toggle(name: string, model?: ToggleModel) {
           }
         })
         Label(m.label, "Label")
-      }
-    })
+      },
+    }))
   )
 }

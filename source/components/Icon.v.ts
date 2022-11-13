@@ -1,13 +1,13 @@
-import { Block, BlockArgs } from "verstak"
+import { Block, BlockArgs, asComponent } from "verstak"
 
-export function Icon(className: string, name?: string, args?: Partial<BlockArgs<HTMLElement, void, void>>) {
+export function Icon(className: string, name?: string, args?: BlockArgs<HTMLElement, void, void>) {
   return (
-    Block(name ?? "", { ...args,
+    Block(name ?? "", asComponent(args, {
       widthMin: "auto",
       heightMin: "auto",
       render(e, b) {
         e.className = className
-      }
-    })
+      },
+    }))
   )
 }

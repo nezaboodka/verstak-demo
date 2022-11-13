@@ -1,4 +1,4 @@
-import { Block, Input, To } from "verstak"
+import { Block, BlockArgs, Input, To, asComponent } from "verstak"
 import { composeModel } from "common/Utils"
 
 export interface DropdownModel {
@@ -9,13 +9,13 @@ export interface DropdownModel {
   position: number // scroll
 }
 
-export function Dropdown(name: string, model?: DropdownModel) {
+export function Dropdown(name: string, args?: BlockArgs<HTMLElement, DropdownModel>) {
   return (
-    Block<DropdownModel>(name ?? "", {
+    Block<DropdownModel>(name ?? "", asComponent(args, {
       widthGrowth: 1,
       initialize(e, b) {
         // Model is either taken from parameter or created internally
-        b.model = model ?? createLocalModel()
+        b.model ??= createLocalModel()
         e.onscroll = () => b.model.position = e.scrollTop
       },
       render(e, b) {
@@ -30,8 +30,8 @@ export function Dropdown(name: string, model?: DropdownModel) {
             e.style.outline = "1px solid red"
           }
         })
-      }
-    })
+      },
+    }))
   )
 }
 
