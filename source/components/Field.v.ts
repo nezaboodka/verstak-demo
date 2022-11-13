@@ -53,17 +53,12 @@ export function FieldInput(name: string, model: FieldModel) {
       initialize(e) {
         e.onkeydown = event => {
           const m = model
-          if (event.key === "Enter" && (
-            !m.isMultiLineText || event.shiftKey ||
-            event.ctrlKey || event.metaKey)) {
+          if (isApplyKey(m, event))
             selectAllAndPreventDefault(event, e)
-          }
         }
         e.onkeyup = event => {
           const m = model
-          if (event.key === "Enter" && (
-            !m.isMultiLineText || event.shiftKey ||
-            event.ctrlKey || event.metaKey)) {
+          if (isApplyKey(m, event)) {
             selectAllAndPreventDefault(event, e)
             Transaction.run(null, () => m.text = e.innerText)
           }
@@ -130,6 +125,11 @@ function FieldOptions(name: string, model: FieldModel) {
       },
     })
   )
+}
+
+function isApplyKey(m: FieldModel, event: KeyboardEvent): boolean {
+  return event.key === "Enter" && (
+    !m.isMultiLineText || event.shiftKey || event.ctrlKey || event.metaKey)
 }
 
 function selectAllAndPreventDefault(event: KeyboardEvent, e: HTMLElement): void {
