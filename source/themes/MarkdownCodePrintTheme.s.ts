@@ -1,7 +1,8 @@
 import { css } from "@emotion/css"
 import { Theme } from "./Theme"
 
-export class MarkdownCodeLightTheme extends Theme {
+export class MarkdownCodePrintTheme extends Theme {
+  name = "Print"
   toggleColor = "black"
   markdown = css`
     .toc-inner {

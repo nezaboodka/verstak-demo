@@ -2,6 +2,7 @@ import { css } from "@emotion/css"
 import { Theme } from "./Theme"
 
 export class MarkdownCodeDarkTheme extends Theme {
+  name = "Dark"
   toggleColor = "red"
   markdown = css`
     .toc-inner {
