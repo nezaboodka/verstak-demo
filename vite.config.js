@@ -19,6 +19,7 @@ export default defineConfig({
   server: {
     base: "./-/ui/",
     port: 1234,
+    hmr: false,
   },
   build: {
     target: 'es2016',
