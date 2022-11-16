@@ -36,13 +36,13 @@ export function MainWindow(name: string) {
             b.native.className = s.Panel
             PlainText("Navigation Bar")
           })
-          WorkArea("GridExample", (b, base) => {
+          WorkArea("WorkArea", (b, base) => {
             b.widthGrowth = 3
             b.heightGrowth = 1
             b.native.className = cx(s.Panel, s.Important)
             base()
           })
-          Block("MarkdownExample", {
+          Block("Markdown", {
             reacting: true,
             render(b) {
               const theme = use(Theme)
