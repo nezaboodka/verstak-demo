@@ -1,5 +1,5 @@
 import { cx } from "@emotion/css"
-import { Block, Align, PlainText, lineFeed, use, setContext } from "verstak"
+import { Block, Align, PlainText, lineFeed, use, setContext, Line } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { Theme } from "themes/Theme"
 import { App } from "models/App"
@@ -20,43 +20,47 @@ export function MainWindow(name: string) {
         const app = use(App)
         setContext(Theme, app.theme)
 
-        // Tool bar row
-        ToolBar("ToolBar", (b, base) => {
-          b.widthGrowth = 1
-          base()
+        Line(l => {
+          ToolBar("ToolBar", (b, base) => {
+            b.widthGrowth = 1
+            base()
+          })
         })
-        lineFeed()
-        // Main row
-        Block("NavBar", b => {
-          b.minWidth = "10rem"
-          b.contentAlignment = Align.Top
-          b.frameAlignment = Align.Stretch
-          b.native.className = s.Panel
-          PlainText("Navigation Bar")
+
+        Line(l => {
+          // Main row
+          Block("NavBar", b => {
+            b.minWidth = "10rem"
+            b.contentAlignment = Align.Top
+            b.frameAlignment = Align.Stretch
+            b.native.className = s.Panel
+            PlainText("Navigation Bar")
+          })
+          WorkArea("GridExample", (b, base) => {
+            b.widthGrowth = 3
+            b.heightGrowth = 1
+            b.native.className = cx(s.Panel, s.Important)
+            base()
+          })
+          Block("MarkdownExample", {
+            reacting: true,
+            render(b) {
+              const theme = use(Theme)
+              b.minWidth = "16rem"
+              b.widthGrowth = 2
+              b.contentAlignment = Align.Left + Align.Top,
+              b.frameAlignment = Align.Stretch,
+              b.native.className = cx(s.Panel, theme.markdown)
+              Markdown("Verstak", CODE)
+            }
+          })
         })
-        WorkArea("GridExample", (b, base) => {
-          b.widthGrowth = 3
-          b.heightGrowth = 1
-          b.native.className = cx(s.Panel, s.Important)
-          base()
-        })
-        Block("MarkdownExample", {
-          reacting: true,
-          render(b) {
-            const theme = use(Theme)
-            b.minWidth = "16rem"
-            b.widthGrowth = 2
-            b.contentAlignment = Align.Left + Align.Top,
-            b.frameAlignment = Align.Stretch,
-            b.native.className = cx(s.Panel, theme.markdown)
-            Markdown("Verstak", CODE)
-          }
-        })
-        // Status bar row
-        lineFeed()
-        StatusBar("StatusBar", (b, base) => {
-          b.widthGrowth = 1
-          base()
+
+        Line(l => {
+          StatusBar("StatusBar", (b, base) => {
+            b.widthGrowth = 1
+            base()
+          })
         })
       },
     })
