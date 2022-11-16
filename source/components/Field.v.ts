@@ -16,10 +16,10 @@ export interface FieldModel<T = string> extends FocusModel {
 export function Field(name: string, args?: BlockArgs<HTMLElement, FieldModel>) {
   return (
     Block<FieldModel>(name ?? "", asComponent(args, {
-      widthMin: "3em",
       initialize(e, b) {
         b.model ??= createFieldModel()
         e.onscroll = () => b.model.position = e.scrollTop
+        b.widthMin = "3em"
       },
       render(e, b) {
         FieldInput("Input", b.model)
@@ -93,9 +93,9 @@ function FieldInput(name: string, model: FieldModel) {
 function FieldOptions(name: string, model: FieldModel) {
   return (
     Block(name, { // popup itself
-      widthMin: "10em",
-      dangling: true,
       initialize(e, b) {
+        b.widthMin = "10em"
+        b.dangling = true
         e.onscroll = () => model.position = e.scrollTop
         const focused = document.activeElement
         if (focused) {

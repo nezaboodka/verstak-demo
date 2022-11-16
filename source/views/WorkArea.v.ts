@@ -28,9 +28,9 @@ export function WorkArea(name: string,
 
 function Ruler(title: string, alignFrame: Align, overlap?: boolean) {
   Block(`#${title}`, {
-    alignFrame,
-    widthOverlap: overlap,
     render(e, b) {
+      b.alignFrame = alignFrame
+      b.cells = { horizontalOverlap: overlap }
       e.style.zIndex = "1"
       e.style.fontSize = "smaller"
       HtmlText(`&nbsp;${title}`)
@@ -40,12 +40,12 @@ function Ruler(title: string, alignFrame: Align, overlap?: boolean) {
 
 function ExampleData(place: string) {
   Block(place, {
-    place, // absolute position inside grid
-    alignContent: Align.Center + Align.CenterV,
     initialize(e, b) {
+      b.alignContent = Align.Center + Align.CenterV
       e.className = s.Important
     },
     render(e, b) {
+      b.cells = place
       PlainText(place)
     }
   })

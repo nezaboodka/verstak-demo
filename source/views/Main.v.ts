@@ -12,48 +12,56 @@ export function Main(name: string) {
   return (
     Block(name, {
       reacting: true, // re-rendering point
-      alignContent: Align.Top,
-      heightGrowth: 1,
       render(e, b) {
         const app = use(App)
         setContext(Theme, app.theme)
+        b.alignContent = Align.Top
+        b.heightGrowth = 1
         e.style.backgroundColor = "rgba(230, 230, 230)"
         // Tool bar row
-        ToolBar("ToolBar", { widthGrowth: 1 })
+        ToolBar("ToolBar", {
+          initialize(e, b) {
+            b.widthGrowth = 1
+          },
+        })
         lineFeed()
         // Main row
         Block("NavBar", {
-          widthMin: "10rem",
-          alignContent: Align.Top,
-          alignFrame: Align.Stretch,
           render(e, b) {
             e.className = s.Panel
+            b.widthMin = "10rem"
+            b.alignContent = Align.Top
+            b.alignFrame = Align.Stretch
             PlainText("Navigation Bar")
           }
         })
         WorkArea("GridExample", {
-          widthGrowth: 3,
-          heightGrowth: 1,
           render(e, b, base) {
             base()
+            b.widthGrowth = 3
+            b.heightGrowth = 1
             e.className = cx(s.Panel, s.Important)
           },
         })
         Block("MarkdownExample", {
           reacting: true,
-          widthMin: "16rem",
-          widthGrowth: 2,
-          alignContent: Align.Left + Align.Top,
-          alignFrame: Align.Stretch,
           render(e, b) {
             const theme = use(Theme)
+            b.widthMin = "16rem"
+            b.widthGrowth = 2
+            b.alignContent = Align.Left + Align.Top,
+            b.alignFrame = Align.Stretch,
             e.className = cx(s.Panel, theme.markdown)
             Markdown("Verstak", CODE)
           }
         })
         // Status bar row
         lineFeed()
-        StatusBar("StatusBar", { widthGrowth: 1 })
+        StatusBar("StatusBar", {
+          initialize(e, b) {
+            b.widthGrowth = 1
+          },
+        })
       },
     })
   )

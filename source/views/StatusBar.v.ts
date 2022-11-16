@@ -10,7 +10,6 @@ import * as s from "themes/Common.s"
 export function StatusBar(name: string, args: BlockArgs<HTMLElement, void, void>) {
   return (
     Block(name, asComponent(args, {
-      wrapping: true,
       render(e, b) {
         // We get app and theme as a context variables
         // (instead of functional parameters) in order
@@ -18,6 +17,7 @@ export function StatusBar(name: string, args: BlockArgs<HTMLElement, void, void>
         // node through rendering tree.
         const app = use(App)
         const theme = use(Theme)
+        b.wrapping = true
         Toggle("BlinkMode", {
           initialize(e, b, base) {
             // We compose model from different pieces,
@@ -55,12 +55,11 @@ export function StatusBar(name: string, args: BlockArgs<HTMLElement, void, void>
           }
         })
         Block("Fields", {
-          widthGrowth: 1,
-          alignContent: Align.Right,
           render(e, b) {
+            b.widthGrowth = 1
+            b.alignContent = Align.Right
             e.className = s.Panel
             Field("Dropdown1", {
-              widthMin: "15em",
               initialize(e, b, base) {
                 const loader = app.loader
                 b.model = createFieldModel({
@@ -69,6 +68,7 @@ export function StatusBar(name: string, args: BlockArgs<HTMLElement, void, void>
                   isHotText: true,
                   isMultiLineText: false,
                 })
+                b.widthMin = "15em"
                 base()
               },
             })

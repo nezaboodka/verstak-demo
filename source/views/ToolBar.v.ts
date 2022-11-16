@@ -27,20 +27,19 @@ export function ToolBar(name: string, args?: BlockArgs<HTMLElement, void, void>)
           }
         })
         Block(`Verstak ${app.version}`, {
-          widthGrowth: 1,
           render(e, b, base) {
             base()
+            b.widthGrowth = 1
             e.classList.toggle(s.Panel, true)
             Block("Welcome", {
-              widthGrowth: 1,
               render(e, b) {
+                b.widthGrowth = 1
                 HtmlText(`<b>Verstak</b> v${app.version}`)
                 lineFeed()
                 PlainText("Try to change window size")
               },
             })
             Field("Dropdown1", {
-              widthMin: "7em",
               initialize(e, b, base) {
                 const loader = app.loader
                 b.model = createFieldModel({
@@ -49,6 +48,7 @@ export function ToolBar(name: string, args?: BlockArgs<HTMLElement, void, void>)
                   isHotText: true,
                   isMultiLineText: false,
                 })
+                b.widthMin = "7em"
                 base()
               },
             })
