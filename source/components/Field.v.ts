@@ -19,8 +19,8 @@ export function Field(name: string, body?: BlockBody<HTMLElement, FieldModel>) {
       initialize(b) {
         b.model ??= createFieldModel()
         b.widthMin = "3em"
-        const e = b.native
-        e.onscroll = () => b.model.position = e.scrollTop
+        b.native.onscroll = () =>
+          b.model.position = b.native.scrollTop
       },
       render(b) {
         const m = b.model
