@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { Block, BlockArgs, use, asComponent, Align } from "verstak"
+import { Block, BlockVmt, use, asComponent, Align } from "verstak"
 import { observableModel } from "common/Utils"
 import { Toggle } from "components/Toggle.v"
 import { createFieldModel, Field } from "components/Field.v"
@@ -7,9 +7,9 @@ import { Theme } from "themes/Theme"
 import { App } from "models/App"
 import * as s from "themes/Common.s"
 
-export function StatusBar(name: string, args: BlockArgs<HTMLElement, void, void>) {
+export function StatusBar(name: string, vmt: BlockVmt<HTMLElement, void, void>) {
   return (
-    Block(name, asComponent(args, {
+    Block(name, asComponent(vmt, {
       render(e, b) {
         // We get app and theme as a context variables
         // (instead of functional parameters) in order

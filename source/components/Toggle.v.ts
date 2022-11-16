@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { Block, BlockArgs, asComponent } from "verstak"
+import { Block, BlockVmt, asComponent } from "verstak"
 import { observableModel } from "common/Utils"
 import { Icon } from "./Icon.v"
 import { Label } from "./Label.v"
@@ -11,9 +11,9 @@ export interface ToggleModel {
   color?: string
 }
 
-export function Toggle(name: string, args?: BlockArgs<HTMLElement, ToggleModel>) {
+export function Toggle(name: string, vmt?: BlockVmt<HTMLElement, ToggleModel>) {
   return (
-    Block<ToggleModel>(name ?? "", asComponent(args, {
+    Block<ToggleModel>(name ?? "", asComponent(vmt, {
       initialize(e, b) {
         // Model is either taken from parameter or created internally
         b.model ??= observableModel({ label: name, checked: true, color: "green" })

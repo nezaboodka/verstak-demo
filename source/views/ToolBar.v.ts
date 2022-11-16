@@ -1,15 +1,15 @@
 import { cx } from "@emotion/css"
 import { refs, Transaction } from "reactronic"
-import { Block, BlockArgs, PlainText, lineFeed, Align, Img, use, asComponent, HtmlText } from "verstak"
+import { Block, BlockVmt, PlainText, lineFeed, Align, Img, use, asComponent, HtmlText } from "verstak"
 import { Icon } from "components/Icon.v"
 import { MarkdownCodeDarkTheme } from "themes/MarkdownCodeDarkTheme.s"
 import { App } from "models/App"
 import * as s from "themes/Common.s"
 import { createFieldModel, Field } from "components/Field.v"
 
-export function ToolBar(name: string, args?: BlockArgs<HTMLElement, void, void>) {
+export function ToolBar(name: string, vmt?: BlockVmt<HTMLElement, void, void>) {
   return (
-    Block(name, asComponent(args, {
+    Block(name, asComponent(vmt, {
       render(e, b) {
         const app = use(App)
         Block("Logo", {

@@ -1,10 +1,10 @@
-import { Grid, BlockArgs, Block, PlainText, HtmlText, lineFeed, Align, asComponent } from "verstak"
+import { Grid, BlockVmt, Block, PlainText, HtmlText, lineFeed, Align, asComponent } from "verstak"
 import * as s from "themes/Common.s"
 
 export function WorkArea(name: string,
-  args?: BlockArgs<HTMLElement, void, void>) {
+  vmt?: BlockVmt<HTMLElement, void, void>) {
   return (
-    Grid(name, asComponent(args, {
+    Grid(name, asComponent(vmt, {
       render(e, b) {
         // Blocks can be layed out automatically
         // based on their order and line feeds.

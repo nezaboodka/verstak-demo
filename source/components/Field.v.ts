@@ -1,4 +1,4 @@
-import { Block, BlockArgs, Input, Align, asComponent, PlainText, ReactingFocuser, FocusModel, lineFeed, use, Group } from "verstak"
+import { Block, BlockVmt, Input, Align, asComponent, PlainText, ReactingFocuser, FocusModel, lineFeed, use, Group } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
 import { Transaction } from "reactronic"
 
@@ -13,9 +13,9 @@ export interface FieldModel<T = string> extends FocusModel {
   inputStyle: string
 }
 
-export function Field(name: string, args?: BlockArgs<HTMLElement, FieldModel>) {
+export function Field(name: string, vmt?: BlockVmt<HTMLElement, FieldModel>) {
   return (
-    Block<FieldModel>(name ?? "", asComponent(args, {
+    Block<FieldModel>(name ?? "", asComponent(vmt, {
       initialize(e, b) {
         b.model ??= createFieldModel()
         e.onscroll = () => b.model.position = e.scrollTop
