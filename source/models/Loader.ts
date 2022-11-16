@@ -15,7 +15,7 @@ export class Loader extends ObservableObject {
 
   @reactive
   protected async load(): Promise<void> {
-    await pause(1000)
+    await pause(100)
     const f = this.filter.toLocaleLowerCase()
     this.loaded = technologies.filter(x => x.toLocaleLowerCase().indexOf(f) >= 0)
   }
