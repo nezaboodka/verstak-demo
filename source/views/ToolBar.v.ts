@@ -1,11 +1,11 @@
 import { cx } from "@emotion/css"
 import { refs, Transaction } from "reactronic"
-import { Block, BlockBody, PlainText, lineFeed, Align, Img, use, baseFor, HtmlText } from "verstak"
+import { Block, BlockBody, PlainText, lineFeed, Img, use, baseFor, HtmlText } from "verstak"
 import { Icon } from "components/Icon.v"
+import { createFieldModel, Field } from "components/Field.v"
 import { MarkdownCodeDarkTheme } from "themes/MarkdownCodeDarkTheme.s"
 import { App } from "models/App"
 import * as s from "themes/Common.s"
-import { createFieldModel, Field } from "components/Field.v"
 
 export function ToolBar(name: string, body?: BlockBody<HTMLElement, void, void>) {
   return (
