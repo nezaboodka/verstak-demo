@@ -25,8 +25,8 @@ export function Toggle(name: string, args?: BlockArgs<HTMLElement, ToggleModel>)
         e.className = s.Clickable
         // Render with subscribing to ToggleModel.checked
         Icon(`fa-solid fa-toggle-${m.checked ? "on" : "off"}`, "Icon", {
-          override(e, b) {
-            b.render()
+          render(e, b, base) {
+            base()
             e.style.color = m.checked ? (m.color ?? "") : ""
           }
         })
