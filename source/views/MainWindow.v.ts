@@ -1,5 +1,5 @@
 import { cx } from "@emotion/css"
-import { Block, Align, PlainText, lineFeed, use, setContext } from "verstak"
+import { Block, Align, PlainText, lineFeed, use, setSubTreeContext } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { Theme } from "themes/Theme"
 import { App } from "models/App"
@@ -13,32 +13,31 @@ export function MainWindow(name: string) {
     Block(name, {
       reacting: true, // re-rendering point
       render(b) {
-        setContext(Theme, use(App).theme)
         b.alignContent = Align.Top
         b.heightGrowth = 1
         b.native.style.backgroundColor = "rgba(230, 230, 230)"
+
+        setSubTreeContext(Theme, use(App).theme)
+
         // Tool bar row
-        ToolBar("ToolBar", {
-          initialize(b) {
-            b.widthGrowth = 1
-          },
+        ToolBar("ToolBar", (b, base) => {
+          b.widthGrowth = 1
+          base()
         })
         lineFeed()
         // Main row
-        Block("NavBar", {
-          render(b) {
-            b.widthMin = "10rem"
-            b.alignContent = Align.Top
-            b.alignFrame = Align.Stretch
-            b.native.className = s.Panel
-            PlainText("Navigation Bar")
-          }
+        Block("NavBar", b => {
+          b.widthMin = "10rem"
+          b.alignContent = Align.Top
+          b.alignFrame = Align.Stretch
+          b.native.className = s.Panel
+          PlainText("Navigation Bar")
         })
         WorkArea("GridExample", (b, base) => {
-          base()
           b.widthGrowth = 3
           b.heightGrowth = 1
           b.native.className = cx(s.Panel, s.Important)
+          base()
         })
         Block("MarkdownExample", {
           reacting: true,
@@ -54,10 +53,9 @@ export function MainWindow(name: string) {
         })
         // Status bar row
         lineFeed()
-        StatusBar("StatusBar", {
-          initialize(b) {
-            b.widthGrowth = 1
-          },
+        StatusBar("StatusBar", (b, base) => {
+          b.widthGrowth = 1
+          base()
         })
       },
     })
