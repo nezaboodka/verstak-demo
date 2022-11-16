@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { VBlock, HtmlBody, defineSubTreeContext } from "verstak"
+import { VBlock, HtmlBody, setContext } from "verstak"
 import { configureDebugging } from "dbg"
 import { App } from "models/App"
 import { MainWindow } from "views/MainWindow.v"
@@ -19,7 +19,7 @@ const app = Transaction.run(null, () =>
 
 VBlock.root(() => {
   HtmlBody("body", b => {
-    defineSubTreeContext(App, app)
+    setContext(App, app)
     MainWindow("Main")
   })
 })
