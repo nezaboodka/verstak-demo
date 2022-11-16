@@ -55,11 +55,11 @@ v-grid > v-block {
   place-self: stretch;
 }
 
-v-row > *:not([dangling]), v-row > *[dangling="false"] {
+v-row > *:not([floating]), v-row > *[floating="false"] {
   align-self: center;
 }
 
-[dangling], [dangling="true"] {
+[floating], [floating="true"] {
   position: absolute;
 }
 
