@@ -19,7 +19,7 @@ export function Field(name: string, body?: BlockBody<HTMLElement, FieldModel>) {
       baseFor(body, {
         initialize(b) {
           b.model ??= createFieldModel()
-          b.widthMin = "3em"
+          b.minWidth = "3em"
           b.native.onscroll = () =>
             b.model.position = b.native.scrollTop
         },
@@ -100,7 +100,7 @@ function FieldOptions(name: string, model: FieldModel) {
   return (
     Block(name, { // popup itself
       initialize(b) {
-        b.widthMin = "10em"
+        b.minWidth = "10em"
         b.floating = true
         const e = b.native
         e.onscroll = () => model.position = e.scrollTop

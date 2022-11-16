@@ -5,8 +5,8 @@ export function Icon(className: string, name?: string, body?: BlockBody<HTMLElem
     Block(name ?? "",
       baseFor(body, {
         render(b) {
-          b.widthMin = "auto"
-          b.heightMin = "auto"
+          b.minWidth = "auto"
+          b.minHeight = "auto"
           b.native.className = className
         },
       })

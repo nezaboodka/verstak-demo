@@ -13,7 +13,7 @@ export function MainWindow(name: string) {
     Block(name, {
       reacting: true, // re-rendering point
       render(b) {
-        b.alignContent = Align.Top
+        b.contentAlignment = Align.Top
         b.heightGrowth = 1
         b.native.style.backgroundColor = "rgba(230, 230, 230)"
 
@@ -27,9 +27,9 @@ export function MainWindow(name: string) {
         lineFeed()
         // Main row
         Block("NavBar", b => {
-          b.widthMin = "10rem"
-          b.alignContent = Align.Top
-          b.alignFrame = Align.Stretch
+          b.minWidth = "10rem"
+          b.contentAlignment = Align.Top
+          b.frameAlignment = Align.Stretch
           b.native.className = s.Panel
           PlainText("Navigation Bar")
         })
@@ -43,10 +43,10 @@ export function MainWindow(name: string) {
           reacting: true,
           render(b) {
             const theme = use(Theme)
-            b.widthMin = "16rem"
+            b.minWidth = "16rem"
             b.widthGrowth = 2
-            b.alignContent = Align.Left + Align.Top,
-            b.alignFrame = Align.Stretch,
+            b.contentAlignment = Align.Left + Align.Top,
+            b.frameAlignment = Align.Stretch,
             b.native.className = cx(s.Panel, theme.markdown)
             Markdown("Verstak", CODE)
           }
@@ -73,12 +73,12 @@ Grid("Example", {
   render(b) {
     // Blocks can be layed out automatically
     // based on their order and line feeds.
-    Ruler("1", To.Left, true)
-    Ruler("A", To.Top + To.Center)
-    Ruler("B", To.Top + To.Center)
-    Ruler("C", To.Top + To.Center); lineFeed()
-    Ruler("2", To.Left); lineFeed()
-    Ruler("3", To.Left); lineFeed()
+    Ruler("1", Align.Left, true)
+    Ruler("A", Align.Top + Align.Center)
+    Ruler("B", Align.Top + Align.Center)
+    Ruler("C", Align.Top + Align.Center); lineFeed()
+    Ruler("2", Align.Left); lineFeed()
+    Ruler("3", Align.Left); lineFeed()
     // Blocks can also be layed out
     // explicitly in exact cells.
     ExampleData("B2")

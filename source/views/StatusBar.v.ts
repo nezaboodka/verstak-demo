@@ -17,7 +17,7 @@ export function StatusBar(name: string, body: BlockBody<HTMLElement, void, void>
         // node through rendering tree.
         const app = use(App)
         const theme = use(Theme)
-        b.wrapContent = true
+        b.contentWrapping = true
         Toggle("BlinkMode", {
           initialize(b, base) {
             // We compose model from different pieces,
@@ -50,7 +50,7 @@ export function StatusBar(name: string, body: BlockBody<HTMLElement, void, void>
         })
         Block("Fields", b => {
           b.widthGrowth = 1
-          b.alignContent = Align.Right
+          b.contentAlignment = Align.Right
           b.native.className = s.Panel
           Field("Dropdown1", {
             initialize(b, base) {
@@ -61,7 +61,7 @@ export function StatusBar(name: string, body: BlockBody<HTMLElement, void, void>
                 isHotText: true,
                 isMultiLineText: false,
               })
-              b.widthMin = "15em"
+              b.minWidth = "15em"
               base()
             },
           })

@@ -25,9 +25,9 @@ export function WorkArea(name: string, body?: BlockBody<HTMLElement, void, void>
   )
 }
 
-function Ruler(title: string, alignFrame: Align, overlap?: boolean) {
+function Ruler(title: string, frameAlignment: Align, overlap?: boolean) {
   Block(`#${title}`, (b) => {
-    b.alignFrame = alignFrame
+    b.frameAlignment = frameAlignment
     b.cells = { horizontalOverlap: overlap }
     b.native.style.zIndex = "1"
     b.native.style.fontSize = "smaller"
@@ -38,7 +38,7 @@ function Ruler(title: string, alignFrame: Align, overlap?: boolean) {
 function ExampleData(place: string) {
   Block(place, {
     initialize(b) {
-      b.alignContent = Align.Center + Align.CenterV
+      b.contentAlignment = Align.Center + Align.CenterV
       b.native.className = s.Important
     },
     render(b) {

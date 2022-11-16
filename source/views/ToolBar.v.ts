@@ -42,7 +42,7 @@ export function ToolBar(name: string, body?: BlockBody<HTMLElement, void, void>)
                 isHotText: true,
                 isMultiLineText: false,
               })
-              b.widthMin = "7em"
+              b.minWidth = "7em"
               base()
             },
           })
