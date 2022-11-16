@@ -1,5 +1,5 @@
 import { cx } from "@emotion/css"
-import { Block, Align, PlainText, lineFeed, use, setSubTreeContext } from "verstak"
+import { Block, Align, PlainText, lineFeed, use, defineSubTreeContext } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { Theme } from "themes/Theme"
 import { App } from "models/App"
@@ -17,7 +17,7 @@ export function MainWindow(name: string) {
         b.heightGrowth = 1
         b.native.style.backgroundColor = "rgba(230, 230, 230)"
 
-        setSubTreeContext(Theme, use(App).theme)
+        defineSubTreeContext(Theme, use(App).theme)
 
         // Tool bar row
         ToolBar("ToolBar", (b, base) => {
