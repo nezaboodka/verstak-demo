@@ -15,24 +15,22 @@ export interface FieldModel<T = string> extends FocusModel {
 
 export function Field(body?: BlockBody<HTMLElement, FieldModel>) {
   return (
-    Block<FieldModel>(
-      asBaseFor(body, {
-        initialize(b) {
-          b.model ??= createFieldModel()
-          b.minWidth = "3em"
-          b.native.onscroll = () =>
-            b.model.position = b.native.scrollTop
-        },
-        render(b) {
-          const m = b.model
-          FieldInput(m)
-          if (m.isEditMode) {
-            lineFeed()
-            FieldPopup(m)
-          }
-        },
-      })
-    )
+    Block<FieldModel>(asBaseFor(body, { key: Field.name,
+      initialize(b) {
+        b.model ??= createFieldModel()
+        b.minWidth = "3em"
+        b.native.onscroll = () =>
+          b.model.position = b.native.scrollTop
+      },
+      render(b) {
+        const m = b.model
+        FieldInput(m)
+        if (m.isEditMode) {
+          lineFeed()
+          FieldPopup(m)
+        }
+      },
+    }))
   )
 }
 

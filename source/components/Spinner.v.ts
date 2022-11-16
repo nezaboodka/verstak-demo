@@ -8,18 +8,16 @@ export interface SpinnerModel {
 
 export function Spinner(body?: BlockBody<HTMLElement, SpinnerModel>) {
   return (
-    Block<SpinnerModel>(
-      asBaseFor(body, {
-        initialize(b) {
-          b.model ??= createLocalModel()
-        },
-        render(b, base) {
-          const m = b.model
-          base()
-          m.active && PlainText("loading...")
-        },
-      })
-    )
+    Block<SpinnerModel>(asBaseFor(body, { key: Spinner.name,
+      initialize(b) {
+        b.model ??= createLocalModel()
+      },
+      render(b, base) {
+        const m = b.model
+        base()
+        m.active && PlainText("loading...")
+      },
+    }))
   )
 }
 

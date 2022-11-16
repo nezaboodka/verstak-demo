@@ -1,9 +1,9 @@
-import { Block, PlainText } from "verstak"
+import { asBaseFor, Block, BlockBody, PlainText } from "verstak"
 import { css } from "@emotion/css"
 
-export function Label(text: string) {
+export function Label(text: string, body?: BlockBody<HTMLElement>) {
   return (
-    Block({
+    Block(asBaseFor(body, { key: Label.name,
       render(b) {
         b.native.className = LabelStyle
         PlainText(text, {
@@ -12,7 +12,7 @@ export function Label(text: string) {
           },
         })
       }
-    })
+    }))
   )
 }
 

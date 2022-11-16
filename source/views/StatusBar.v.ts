@@ -18,7 +18,7 @@ export function StatusBar(body?: BlockBody<HTMLElement, void, void>) {
         const app = use(App)
         const theme = use(Theme)
         b.contentWrapping = true
-        Toggle({
+        Toggle({ key: "Blinking",
           initialize(b, base) {
             // We compose model from different pieces,
             // such as app and theme. Without the need
@@ -36,17 +36,23 @@ export function StatusBar(body?: BlockBody<HTMLElement, void, void>) {
             b.native.classList.toggle(s.Panel, true)
           }
         })
-        Toggle((b, base) => {
-          base()
-          b.native.classList.toggle(s.Panel, true)
+        Toggle({ key: "A",
+          render(b, base) {
+            base()
+            b.native.classList.toggle(s.Panel, true)
+          }
         })
-        Toggle((b, base) => {
-          base()
-          b.native.classList.toggle(s.Panel, true)
+        Toggle({ key: "B",
+          render(b, base) {
+            base()
+            b.native.classList.toggle(s.Panel, true)
+          }
         })
-        Toggle((b, base) => {
-          base()
-          b.native.classList.toggle(s.Panel, true)
+        Toggle({ key: "C",
+          render(b, base) {
+            base()
+            b.native.classList.toggle(s.Panel, true)
+          }
         })
         Block(b => {
           b.widthGrowth = 1
