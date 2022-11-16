@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { Block, BlockBody, baseFor } from "verstak"
+import { Block, BlockBody, asBaseFor } from "verstak"
 import { observableModel } from "common/Utils"
 import { Icon } from "./Icon.v"
 import { Label } from "./Label.v"
@@ -11,12 +11,12 @@ export interface ToggleModel {
   color?: string
 }
 
-export function Toggle(name: string, body?: BlockBody<HTMLElement, ToggleModel>) {
+export function Toggle(body?: BlockBody<HTMLElement, ToggleModel>) {
   return (
-    Block<ToggleModel>(name || Toggle.name,
-      baseFor(body, {
+    Block<ToggleModel>(
+      asBaseFor(body, {
         initialize(b) {
-          b.model ??= observableModel({ label: name, checked: true, color: "green" }) // model is either taken from parameter or created internally
+          b.model ??= observableModel({ label: b.body.key, checked: true, color: "green" }) // model is either taken from parameter or created internally
           b.native.onclick = () => Transaction.run(null, () => b.model.checked = !b.model.checked)
         },
         render(b) {
@@ -27,7 +27,7 @@ export function Toggle(name: string, body?: BlockBody<HTMLElement, ToggleModel>)
             b.native.style.color = m.checked ? (m.color ?? "") : "" // subscribe to ToggleModel.checked
           })
           if (m.label)
-            Label(m.label, "Label")
+            Label(m.label)
         },
       })
     )

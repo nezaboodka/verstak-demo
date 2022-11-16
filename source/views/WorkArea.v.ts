@@ -1,9 +1,9 @@
-import { Grid, BlockBody, Block, PlainText, HtmlText, lineFeed, Align, baseFor } from "verstak"
+import { Grid, BlockBody, Block, PlainText, HtmlText, lineFeed, Align, asBaseFor } from "verstak"
 import * as s from "themes/Common.s"
 
-export function WorkArea(name: string, body?: BlockBody<HTMLElement, void, void>) {
+export function WorkArea(body?: BlockBody<HTMLElement, void, void>) {
   return (
-    Grid(name, baseFor(body, {
+    Grid(asBaseFor(body, {
       render(b) {
         // Blocks can be layed out automatically
         // based on their order and line feeds.
@@ -26,7 +26,7 @@ export function WorkArea(name: string, body?: BlockBody<HTMLElement, void, void>
 }
 
 function Ruler(title: string, frameAlignment: Align, overlap?: boolean) {
-  Block(`#${title}`, (b) => {
+  Block(b => {
     b.frameAlignment = frameAlignment
     b.cells = { horizontalOverlap: overlap }
     b.native.style.zIndex = "1"
@@ -36,7 +36,7 @@ function Ruler(title: string, frameAlignment: Align, overlap?: boolean) {
 }
 
 function ExampleData(place: string) {
-  Block(place, {
+  Block({
     initialize(b) {
       b.contentAlignment = Align.Center + Align.CenterV
       b.native.className = s.Important

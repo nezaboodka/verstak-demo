@@ -1,9 +1,9 @@
-import { Block, BlockBody, baseFor } from "verstak"
+import { Block, BlockBody, asBaseFor } from "verstak"
 
-export function Icon(className: string, name?: string, body?: BlockBody<HTMLElement, void, void>) {
+export function Icon(className: string, key?: string, body?: BlockBody<HTMLElement, void, void>) {
   return (
-    Block(name || Icon.name,
-      baseFor(body, {
+    Block(
+      asBaseFor(body, {
         render(b) {
           b.minWidth = "auto"
           b.minHeight = "auto"

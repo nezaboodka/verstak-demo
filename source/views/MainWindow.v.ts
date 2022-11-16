@@ -8,9 +8,9 @@ import { StatusBar } from "./StatusBar.v"
 import { WorkArea } from "./WorkArea.v"
 import * as s from "themes/Common.s"
 
-export function MainWindow(name: string) {
+export function MainWindow() {
   return (
-    Block(name, {
+    Block({
       reacting: true, // re-rendering point
       render(b) {
         b.contentAlignment = Align.Top
@@ -21,28 +21,27 @@ export function MainWindow(name: string) {
         setContext(Theme, app.theme)
 
         Line(l => {
-          ToolBar("ToolBar", (b, base) => {
+          ToolBar((b, base) => {
             b.widthGrowth = 1
             base()
           })
         })
 
-        Line(l => {
-          // Main row
-          Block("NavBar", b => {
+        Line(l => { // main row
+          Block(b => {
             b.minWidth = "10rem"
             b.contentAlignment = Align.Top
             b.frameAlignment = Align.Stretch
             b.native.className = s.Panel
             PlainText("Navigation Bar")
           })
-          WorkArea("WorkArea", (b, base) => {
+          WorkArea((b, base) => {
             b.widthGrowth = 3
             b.heightGrowth = 1
             b.native.className = cx(s.Panel, s.Important)
             base()
           })
-          Block("Markdown", {
+          Block({
             reacting: true,
             render(b) {
               const theme = use(Theme)
@@ -51,13 +50,13 @@ export function MainWindow(name: string) {
               b.contentAlignment = Align.Left + Align.Top,
               b.frameAlignment = Align.Stretch,
               b.native.className = cx(s.Panel, theme.markdown)
-              Markdown("Verstak", CODE)
+              Markdown(CODE)
             }
           })
         })
 
         Line(l => {
-          StatusBar("StatusBar", (b, base) => {
+          StatusBar((b, base) => {
             b.widthGrowth = 1
             base()
           })

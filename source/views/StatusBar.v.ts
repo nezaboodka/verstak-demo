@@ -1,16 +1,15 @@
 import { refs } from "reactronic"
-import { Block, BlockBody, use, baseFor, Align } from "verstak"
+import { Block, BlockBody, use, asBaseFor, Align } from "verstak"
 import { observableModel } from "common/Utils"
 import { Toggle } from "components/Toggle.v"
 import { createFieldModel, Field } from "components/Field.v"
 import { Theme } from "themes/Theme"
 import { App } from "models/App"
 import * as s from "themes/Common.s"
-import { Spinner } from "components/Spinner.v"
 
-export function StatusBar(name: string, body: BlockBody<HTMLElement, void, void>) {
+export function StatusBar(body?: BlockBody<HTMLElement, void, void>) {
   return (
-    Block(name, baseFor(body, {
+    Block(asBaseFor(body, {
       render(b) {
         // We get app and theme as a context variables
         // (instead of functional parameters) in order
@@ -19,7 +18,7 @@ export function StatusBar(name: string, body: BlockBody<HTMLElement, void, void>
         const app = use(App)
         const theme = use(Theme)
         b.contentWrapping = true
-        Toggle("BlinkMode", {
+        Toggle({
           initialize(b, base) {
             // We compose model from different pieces,
             // such as app and theme. Without the need
@@ -37,23 +36,23 @@ export function StatusBar(name: string, body: BlockBody<HTMLElement, void, void>
             b.native.classList.toggle(s.Panel, true)
           }
         })
-        Toggle("A", (b, base) => {
+        Toggle((b, base) => {
           base()
           b.native.classList.toggle(s.Panel, true)
         })
-        Toggle("B", (b, base) => {
+        Toggle((b, base) => {
           base()
           b.native.classList.toggle(s.Panel, true)
         })
-        Toggle("C", (b, base) => {
+        Toggle((b, base) => {
           base()
           b.native.classList.toggle(s.Panel, true)
         })
-        Block("Fields", b => {
+        Block(b => {
           b.widthGrowth = 1
           b.contentAlignment = Align.Right
           b.native.className = s.Panel
-          Field("Dropdown1", {
+          Field({
             initialize(b, base) {
               const loader = app.loader
               b.model = createFieldModel({

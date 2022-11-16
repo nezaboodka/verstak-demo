@@ -1,4 +1,4 @@
-import { Block, BlockBody, baseFor, PlainText, FocusModel, lineFeed } from "verstak"
+import { Block, BlockBody, asBaseFor, PlainText, FocusModel, lineFeed } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
 import { Transaction } from "reactronic"
 
@@ -13,10 +13,10 @@ export interface FieldModel<T = string> extends FocusModel {
   inputStyle: string
 }
 
-export function Field(name: string, body?: BlockBody<HTMLElement, FieldModel>) {
+export function Field(body?: BlockBody<HTMLElement, FieldModel>) {
   return (
-    Block<FieldModel>(name || Field.name,
-      baseFor(body, {
+    Block<FieldModel>(
+      asBaseFor(body, {
         initialize(b) {
           b.model ??= createFieldModel()
           b.minWidth = "3em"
@@ -25,10 +25,10 @@ export function Field(name: string, body?: BlockBody<HTMLElement, FieldModel>) {
         },
         render(b) {
           const m = b.model
-          FieldInput("Input", m)
+          FieldInput(m)
           if (m.isEditMode) {
             lineFeed()
-            FieldOptions("Options", m)
+            FieldPopup(m)
           }
         },
       })
@@ -51,9 +51,9 @@ export function createFieldModel<T>(props?: Partial<ValuesOrRefs<FieldModel<T>>>
   })
 }
 
-function FieldInput(name: string, model: FieldModel) {
+function FieldInput(model: FieldModel) {
   return (
-    PlainText(model.text, name || FieldInput.name, {
+    PlainText(model.text, {
       initialize(b) {
         const e = b.native
         e.onkeydown = event => {
@@ -96,9 +96,9 @@ function FieldInput(name: string, model: FieldModel) {
   )
 }
 
-function FieldOptions(name: string, model: FieldModel) {
+function FieldPopup(model: FieldModel) {
   return (
-    Block(name || FieldOptions.name, { // popup itself
+    Block({ // popup itself
       initialize(b) {
         b.minWidth = "10em"
         b.floating = true
@@ -125,7 +125,9 @@ function FieldOptions(name: string, model: FieldModel) {
         if (options.length > 0) {
           for (const x of model.options) {
             lineFeed()
-            PlainText(x, x)
+            PlainText(x, {
+              key: x,
+            })
           }
         }
         else

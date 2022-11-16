@@ -1,4 +1,4 @@
-import { Block, BlockBody, baseFor, PlainText, FocusModel, lineFeed } from "verstak"
+import { Block, BlockBody, asBaseFor, PlainText, FocusModel, lineFeed } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
 
 export interface SpinnerModel {
@@ -6,10 +6,10 @@ export interface SpinnerModel {
   color: string
 }
 
-export function Spinner(name: string, body?: BlockBody<HTMLElement, SpinnerModel>) {
+export function Spinner(body?: BlockBody<HTMLElement, SpinnerModel>) {
   return (
-    Block<SpinnerModel>(name || Spinner.name,
-      baseFor(body, {
+    Block<SpinnerModel>(
+      asBaseFor(body, {
         initialize(b) {
           b.model ??= createLocalModel()
         },
