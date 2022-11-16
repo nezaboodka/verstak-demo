@@ -15,17 +15,15 @@ export function Toggle(name: string, body?: BlockBody<HTMLElement, ToggleModel>)
   return (
     Block<ToggleModel>(name ?? "", asComponent(body, {
       initialize(b) {
-        // Model is either taken from parameter or created internally
-        b.model ??= observableModel({ label: name, checked: true, color: "green" })
+        b.model ??= observableModel({ label: name, checked: true, color: "green" }) // model is either taken from parameter or created internally
         b.native.onclick = () => Transaction.run(null, () => b.model.checked = !b.model.checked)
       },
       render(b) {
-        const m = b.model
         b.native.className = s.Clickable // style is not inside "initialize", because of theming
-        // Render with subscribing to ToggleModel.checked
+        const m = b.model
         Icon(`fa-solid fa-toggle-${m.checked ? "on" : "off"}`, "Icon", (b, base) => {
           base()
-          b.native.style.color = m.checked ? (m.color ?? "") : ""
+          b.native.style.color = m.checked ? (m.color ?? "") : "" // subscribe to ToggleModel.checked
         })
         if (m.label)
           Label(m.label, "Label")
