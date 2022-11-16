@@ -17,7 +17,7 @@ export function StatusBar(name: string, args: BlockArgs<HTMLElement, void, void>
         // node through rendering tree.
         const app = use(App)
         const theme = use(Theme)
-        b.wrapping = true
+        b.wrapContent = true
         Toggle("BlinkMode", {
           initialize(e, b, base) {
             // We compose model from different pieces,

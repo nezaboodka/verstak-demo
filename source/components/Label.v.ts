@@ -8,7 +8,7 @@ export function Label(text: string, name?: string) {
         e.className = LabelStyle
         PlainText(text, undefined, {
           initialize(e, b) {
-            b.wrapping = false
+            b.wrapContent = false
           },
         })
       }
