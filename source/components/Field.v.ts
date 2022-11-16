@@ -94,7 +94,7 @@ function FieldOptions(name: string, model: FieldModel) {
   return (
     Block(name, { // popup itself
       widthMin: "10em",
-      floating: true,
+      dangling: true,
       initialize(e, b) {
         e.onscroll = () => model.position = e.scrollTop
         const focused = document.activeElement
