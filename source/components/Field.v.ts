@@ -1,4 +1,4 @@
-import { Block, BlockBody, asComponent, PlainText, FocusModel, lineFeed } from "verstak"
+import { Block, BlockBody, asBaseFor, PlainText, FocusModel, lineFeed } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
 import { Transaction } from "reactronic"
 
@@ -15,22 +15,24 @@ export interface FieldModel<T = string> extends FocusModel {
 
 export function Field(name: string, body?: BlockBody<HTMLElement, FieldModel>) {
   return (
-    Block<FieldModel>(name ?? "", asComponent(body, {
-      initialize(b) {
-        b.model ??= createFieldModel()
-        b.widthMin = "3em"
-        b.native.onscroll = () =>
-          b.model.position = b.native.scrollTop
-      },
-      render(b) {
-        const m = b.model
-        FieldInput("Input", m)
-        if (m.isEditMode) {
-          lineFeed()
-          FieldOptions("Options", m)
-        }
-      },
-    }))
+    Block<FieldModel>(name ?? "",
+      asBaseFor(body, {
+        initialize(b) {
+          b.model ??= createFieldModel()
+          b.widthMin = "3em"
+          b.native.onscroll = () =>
+            b.model.position = b.native.scrollTop
+        },
+        render(b) {
+          const m = b.model
+          FieldInput("Input", m)
+          if (m.isEditMode) {
+            lineFeed()
+            FieldOptions("Options", m)
+          }
+        },
+      })
+    )
   )
 }
 
