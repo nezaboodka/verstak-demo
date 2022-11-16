@@ -2,7 +2,7 @@ import { Transaction } from "reactronic"
 import { VBlock, HtmlBody, setContext } from "verstak"
 import { configureDebugging } from "dbg"
 import { App } from "models/App"
-import { Main } from "views/Main.v"
+import { MainWindow } from "views/MainWindow.v"
 
 import "../index.reset.css"
 import "../public/assets/verstak.css"
@@ -20,6 +20,6 @@ const app = Transaction.run(null, () =>
 VBlock.root(() => {
   HtmlBody("body", b => {
     setContext(App, app)
-    Main("Main")
+    MainWindow("Main")
   })
 })

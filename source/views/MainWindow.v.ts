@@ -8,7 +8,7 @@ import { StatusBar } from "./StatusBar.v"
 import { WorkArea } from "./WorkArea.v"
 import * as s from "themes/Common.s"
 
-export function Main(name: string) {
+export function MainWindow(name: string) {
   return (
     Block(name, {
       reacting: true, // re-rendering point
