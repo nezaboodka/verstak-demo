@@ -13,8 +13,7 @@ export function MainWindow(name: string) {
     Block(name, {
       reacting: true, // re-rendering point
       render(b) {
-        const app = use(App)
-        setContext(Theme, app.theme)
+        setContext(Theme, use(App).theme)
         b.alignContent = Align.Top
         b.heightGrowth = 1
         b.native.style.backgroundColor = "rgba(230, 230, 230)"
