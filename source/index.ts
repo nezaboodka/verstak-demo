@@ -18,10 +18,8 @@ const app = Transaction.run(null, () =>
   new App(version, new MarkdownCodeLightTheme()))
 
 VBlock.root(() => {
-  HtmlBody("body", {
-    render(e, b) {
-      setContext(App, app)
-      Main("Main")
-    },
+  HtmlBody("body", b => {
+    setContext(App, app)
+    Main("Main")
   })
 })

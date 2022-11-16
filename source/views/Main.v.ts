@@ -12,53 +12,51 @@ export function Main(name: string) {
   return (
     Block(name, {
       reacting: true, // re-rendering point
-      render(e, b) {
+      render(b) {
         const app = use(App)
         setContext(Theme, app.theme)
         b.alignContent = Align.Top
         b.heightGrowth = 1
-        e.style.backgroundColor = "rgba(230, 230, 230)"
+        b.native.style.backgroundColor = "rgba(230, 230, 230)"
         // Tool bar row
         ToolBar("ToolBar", {
-          initialize(e, b) {
+          initialize(b) {
             b.widthGrowth = 1
           },
         })
         lineFeed()
         // Main row
         Block("NavBar", {
-          render(e, b) {
-            e.className = s.Panel
+          render(b) {
             b.widthMin = "10rem"
             b.alignContent = Align.Top
             b.alignFrame = Align.Stretch
+            b.native.className = s.Panel
             PlainText("Navigation Bar")
           }
         })
-        WorkArea("GridExample", {
-          render(e, b, base) {
-            base()
-            b.widthGrowth = 3
-            b.heightGrowth = 1
-            e.className = cx(s.Panel, s.Important)
-          },
+        WorkArea("GridExample", (b, base) => {
+          base()
+          b.widthGrowth = 3
+          b.heightGrowth = 1
+          b.native.className = cx(s.Panel, s.Important)
         })
         Block("MarkdownExample", {
           reacting: true,
-          render(e, b) {
+          render(b) {
             const theme = use(Theme)
             b.widthMin = "16rem"
             b.widthGrowth = 2
             b.alignContent = Align.Left + Align.Top,
             b.alignFrame = Align.Stretch,
-            e.className = cx(s.Panel, theme.markdown)
+            b.native.className = cx(s.Panel, theme.markdown)
             Markdown("Verstak", CODE)
           }
         })
         // Status bar row
         lineFeed()
         StatusBar("StatusBar", {
-          initialize(e, b) {
+          initialize(b) {
             b.widthGrowth = 1
           },
         })
@@ -75,7 +73,7 @@ application panels and to create reusable components.
 
 \`\`\` js
 Grid("Example", {
-  render(e, b) {
+  render(b) {
     // Blocks can be layed out automatically
     // based on their order and line feeds.
     Ruler("1", To.Left, true)

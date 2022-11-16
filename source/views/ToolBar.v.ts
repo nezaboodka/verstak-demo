@@ -10,33 +10,31 @@ import { createFieldModel, Field } from "components/Field.v"
 export function ToolBar(name: string, body?: BlockBody<HTMLElement, void, void>) {
   return (
     Block(name, asComponent(body, {
-      render(e, b) {
+      render(b) {
         const app = use(App)
         Block("Logo", {
-          initialize(e, b) {
-            e.className = cx(s.Panel, s.Clickable, s.Logo)
-            e.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
+          initialize(b) {
+            b.native.className = cx(s.Panel, s.Clickable, s.Logo)
+            b.native.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
           },
-          render(e, b) {
-            e.style.backgroundColor = app.blinkingEffect ? "red" : ""
-            Img("N*", {
-              render(e, b) {
-                e.src = "https://nezaboodka.com/img/star-768x768-circle.png"
-              }
+          render(b) {
+            b.native.style.backgroundColor = app.blinkingEffect ? "red" : ""
+            Img("N*", b => {
+              b.native.src = "https://nezaboodka.com/img/star-768x768-circle.png"
             })
           }
         })
-        Block(`Verstak ${app.version}`, (e, b, base) => {
+        Block(`Verstak ${app.version}`, b => {
           b.widthGrowth = 1
-          e.classList.toggle(s.Panel, true)
-          Block("Welcome", (e, b) => {
+          b.native.classList.toggle(s.Panel, true)
+          Block("Welcome", b => {
             b.widthGrowth = 1
             HtmlText(`<b>Verstak</b> v${app.version}`)
             lineFeed()
             PlainText("Try to change window size")
           })
           Field("Dropdown1", {
-            initialize(e, b, base) {
+            initialize(b, base) {
               const loader = app.loader
               b.model = createFieldModel({
                 text: refs(loader).filter,
@@ -50,11 +48,11 @@ export function ToolBar(name: string, body?: BlockBody<HTMLElement, void, void>)
           })
         })
         Block("Account", {
-          initialize(e, b) {
-            e.onclick = () => Transaction.run(null, () => app.theme = new MarkdownCodeDarkTheme())
+          initialize(b) {
+            b.native.onclick = () => Transaction.run(null, () => app.theme = new MarkdownCodeDarkTheme())
           },
-          render(e, b) {
-            e.className = cx(s.Panel, s.Hint, s.Clickable)
+          render(b) {
+            b.native.className = cx(s.Panel, s.Hint, s.Clickable)
             Icon("fa-solid fa-bars")
           }
         })

@@ -5,7 +5,7 @@ export function WorkArea(name: string,
   body?: BlockBody<HTMLElement, void, void>) {
   return (
     Grid(name, asComponent(body, {
-      render(e, b) {
+      render(b) {
         // Blocks can be layed out automatically
         // based on their order and line feeds.
         Ruler("1", Align.Left, true)
@@ -27,22 +27,22 @@ export function WorkArea(name: string,
 }
 
 function Ruler(title: string, alignFrame: Align, overlap?: boolean) {
-  Block(`#${title}`, (e, b) => {
+  Block(`#${title}`, (b) => {
     b.alignFrame = alignFrame
     b.cells = { horizontalOverlap: overlap }
-    e.style.zIndex = "1"
-    e.style.fontSize = "smaller"
+    b.native.style.zIndex = "1"
+    b.native.style.fontSize = "smaller"
     HtmlText(`&nbsp;${title}`)
   })
 }
 
 function ExampleData(place: string) {
   Block(place, {
-    initialize(e, b) {
+    initialize(b) {
       b.alignContent = Align.Center + Align.CenterV
-      e.className = s.Important
+      b.native.className = s.Important
     },
-    render(e, b) {
+    render(b) {
       b.cells = place
       PlainText(place)
     }

@@ -4,10 +4,10 @@ import { css } from "@emotion/css"
 export function Label(text: string, name?: string) {
   return (
     Block(name ?? "", {
-      render(e, b) {
-        e.className = LabelStyle
+      render(b) {
+        b.native.className = LabelStyle
         PlainText(text, undefined, {
-          initialize(e, b) {
+          initialize(b) {
             b.wrapContent = false
           },
         })

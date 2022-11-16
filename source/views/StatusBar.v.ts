@@ -10,7 +10,7 @@ import * as s from "themes/Common.s"
 export function StatusBar(name: string, body: BlockBody<HTMLElement, void, void>) {
   return (
     Block(name, asComponent(body, {
-      render(e, b) {
+      render(b) {
         // We get app and theme as a context variables
         // (instead of functional parameters) in order
         // to avoid passing app/theme in each and every
@@ -19,7 +19,7 @@ export function StatusBar(name: string, body: BlockBody<HTMLElement, void, void>
         const theme = use(Theme)
         b.wrapContent = true
         Toggle("BlinkMode", {
-          initialize(e, b, base) {
+          initialize(b, base) {
             // We compose model from different pieces,
             // such as app and theme. Without the need
             // to implement interface in form of class.
@@ -30,30 +30,30 @@ export function StatusBar(name: string, body: BlockBody<HTMLElement, void, void>
             })
             base()
           },
-          render(e, b, base) {
+          render(b, base) {
             base()
             // Style is not inside "initialize", because of theming
-            e.classList.toggle(s.Panel, true)
+            b.native.classList.toggle(s.Panel, true)
           }
         })
-        Toggle("A", (e, b, base) => {
+        Toggle("A", (b, base) => {
           base()
-          e.classList.toggle(s.Panel, true)
+          b.native.classList.toggle(s.Panel, true)
         })
-        Toggle("B", (e, b, base) => {
+        Toggle("B", (b, base) => {
           base()
-          e.classList.toggle(s.Panel, true)
+          b.native.classList.toggle(s.Panel, true)
         })
-        Toggle("C", (e, b, base) => {
+        Toggle("C", (b, base) => {
           base()
-          e.classList.toggle(s.Panel, true)
+          b.native.classList.toggle(s.Panel, true)
         })
-        Block("Fields", (e, b) => {
+        Block("Fields", b => {
           b.widthGrowth = 1
           b.alignContent = Align.Right
-          e.className = s.Panel
+          b.native.className = s.Panel
           Field("Dropdown1", {
-            initialize(e, b, base) {
+            initialize(b, base) {
               const loader = app.loader
               b.model = createFieldModel({
                 text: refs(loader).filter,

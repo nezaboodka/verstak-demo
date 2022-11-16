@@ -16,16 +16,18 @@ export interface FieldModel<T = string> extends FocusModel {
 export function Field(name: string, body?: BlockBody<HTMLElement, FieldModel>) {
   return (
     Block<FieldModel>(name ?? "", asComponent(body, {
-      initialize(e, b) {
+      initialize(b) {
         b.model ??= createFieldModel()
-        e.onscroll = () => b.model.position = e.scrollTop
         b.widthMin = "3em"
+        const e = b.native
+        e.onscroll = () => b.model.position = e.scrollTop
       },
-      render(e, b) {
-        FieldInput("Input", b.model)
-        if (b.model.isEditMode) {
+      render(b) {
+        const m = b.model
+        FieldInput("Input", m)
+        if (m.isEditMode) {
           lineFeed()
-          FieldOptions("Options", b.model)
+          FieldOptions("Options", m)
         }
       },
     }))
@@ -50,7 +52,8 @@ export function createFieldModel<T>(props?: Partial<ValuesOrRefs<FieldModel<T>>>
 function FieldInput(name: string, model: FieldModel) {
   return (
     PlainText(model.text, name, {
-      initialize(e) {
+      initialize(b) {
+        const e = b.native
         e.onkeydown = event => {
           const m = model
           if (isApplyKey(m, event))
@@ -72,7 +75,8 @@ function FieldInput(name: string, model: FieldModel) {
           Transaction.run(null, () => model.isEditMode = false)
         }
       },
-      render(e) {
+      render(b) {
+        const e = b.native
         e.tabIndex = 0
         e.contentEditable = "true"
         e.style.outline = model.isEditMode ? "2px solid rgba(255, 127, 127, 1)" : "1px solid rgba(127, 127, 127, 0.25)"
@@ -93,9 +97,10 @@ function FieldInput(name: string, model: FieldModel) {
 function FieldOptions(name: string, model: FieldModel) {
   return (
     Block(name, { // popup itself
-      initialize(e, b) {
+      initialize(b) {
         b.widthMin = "10em"
         b.dangling = true
+        const e = b.native
         e.onscroll = () => model.position = e.scrollTop
         const focused = document.activeElement
         if (focused) {
@@ -107,7 +112,8 @@ function FieldOptions(name: string, model: FieldModel) {
             e.style.bottom = `${document.body.offsetHeight - bounds.top - 1}px`
         }
       },
-      render(e, b) {
+      render(b) {
+        const e = b.native
         e.style.outline = "2px solid rgba(255, 127, 127, 1)"
         e.style.outlineOffset = "-1px"
         e.style.borderRadius = "0.2rem"

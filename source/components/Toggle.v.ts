@@ -14,21 +14,20 @@ export interface ToggleModel {
 export function Toggle(name: string, body?: BlockBody<HTMLElement, ToggleModel>) {
   return (
     Block<ToggleModel>(name ?? "", asComponent(body, {
-      initialize(e, b) {
+      initialize(b) {
         // Model is either taken from parameter or created internally
         b.model ??= observableModel({ label: name, checked: true, color: "green" })
+        const e = b.native
         e.onclick = () => Transaction.run(null, () => b.model.checked = !b.model.checked)
       },
-      render(e, b) {
+      render(b) {
         const m = b.model
-        // Style is not inside "initialize", because of theming
-        e.className = s.Clickable
+        const e = b.native
+        e.className = s.Clickable // style is not inside "initialize", because of theming
         // Render with subscribing to ToggleModel.checked
-        Icon(`fa-solid fa-toggle-${m.checked ? "on" : "off"}`, "Icon", {
-          render(e, b, base) {
-            base()
-            e.style.color = m.checked ? (m.color ?? "") : ""
-          }
+        Icon(`fa-solid fa-toggle-${m.checked ? "on" : "off"}`, "Icon", (b, base) => {
+          base()
+          b.native.style.color = m.checked ? (m.color ?? "") : ""
         })
         if (m.label)
           Label(m.label, "Label")
