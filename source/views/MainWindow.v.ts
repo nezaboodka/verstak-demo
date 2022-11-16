@@ -17,7 +17,8 @@ export function MainWindow(name: string) {
         b.heightGrowth = 1
         b.native.style.backgroundColor = "rgba(230, 230, 230)"
 
-        defineSubTreeContext(Theme, use(App).theme)
+        const app = use(App)
+        defineSubTreeContext(Theme, app.theme)
 
         // Tool bar row
         ToolBar("ToolBar", (b, base) => {
