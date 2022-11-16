@@ -3,7 +3,7 @@ import { css } from "@emotion/css"
 
 export function Label(text: string, name?: string) {
   return (
-    Block(name ?? "", {
+    Block(name || Label.name, {
       render(b) {
         b.native.className = LabelStyle
         PlainText(text, undefined, {

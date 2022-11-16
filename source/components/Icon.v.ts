@@ -2,7 +2,7 @@ import { Block, BlockBody, baseFor } from "verstak"
 
 export function Icon(className: string, name?: string, body?: BlockBody<HTMLElement, void, void>) {
   return (
-    Block(name ?? "",
+    Block(name || Icon.name,
       baseFor(body, {
         render(b) {
           b.minWidth = "auto"

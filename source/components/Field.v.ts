@@ -15,7 +15,7 @@ export interface FieldModel<T = string> extends FocusModel {
 
 export function Field(name: string, body?: BlockBody<HTMLElement, FieldModel>) {
   return (
-    Block<FieldModel>(name ?? "",
+    Block<FieldModel>(name || Field.name,
       baseFor(body, {
         initialize(b) {
           b.model ??= createFieldModel()
@@ -53,7 +53,7 @@ export function createFieldModel<T>(props?: Partial<ValuesOrRefs<FieldModel<T>>>
 
 function FieldInput(name: string, model: FieldModel) {
   return (
-    PlainText(model.text, name, {
+    PlainText(model.text, name || FieldInput.name, {
       initialize(b) {
         const e = b.native
         e.onkeydown = event => {
@@ -98,7 +98,7 @@ function FieldInput(name: string, model: FieldModel) {
 
 function FieldOptions(name: string, model: FieldModel) {
   return (
-    Block(name, { // popup itself
+    Block(name || FieldOptions.name, { // popup itself
       initialize(b) {
         b.minWidth = "10em"
         b.floating = true

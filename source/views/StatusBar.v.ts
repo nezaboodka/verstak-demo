@@ -6,6 +6,7 @@ import { createFieldModel, Field } from "components/Field.v"
 import { Theme } from "themes/Theme"
 import { App } from "models/App"
 import * as s from "themes/Common.s"
+import { Spinner } from "components/Spinner.v"
 
 export function StatusBar(name: string, body: BlockBody<HTMLElement, void, void>) {
   return (
@@ -64,6 +65,17 @@ export function StatusBar(name: string, body: BlockBody<HTMLElement, void, void>
               b.minWidth = "15em"
               base()
             },
+            render(b, base) {
+              base()
+              // Spinner("Spinner", {
+              //   initialize(b) {
+              //     b.model = observableModel({
+              //       active: refs(app.loader.monitor).isActive,
+              //       color: "red",
+              //     })
+              //   },
+              // })
+            }
           })
         })
       },

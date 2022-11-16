@@ -13,7 +13,7 @@ export interface ToggleModel {
 
 export function Toggle(name: string, body?: BlockBody<HTMLElement, ToggleModel>) {
   return (
-    Block<ToggleModel>(name ?? "",
+    Block<ToggleModel>(name || Toggle.name,
       baseFor(body, {
         initialize(b) {
           b.model ??= observableModel({ label: name, checked: true, color: "green" }) // model is either taken from parameter or created internally
