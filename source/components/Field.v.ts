@@ -1,4 +1,4 @@
-import { Block, BlockBody, asBaseFor, PlainText, FocusModel, lineFeed } from "verstak"
+import { Block, BlockBody, baseFor, PlainText, FocusModel, lineFeed } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
 import { Transaction } from "reactronic"
 
@@ -16,7 +16,7 @@ export interface FieldModel<T = string> extends FocusModel {
 export function Field(name: string, body?: BlockBody<HTMLElement, FieldModel>) {
   return (
     Block<FieldModel>(name ?? "",
-      asBaseFor(body, {
+      baseFor(body, {
         initialize(b) {
           b.model ??= createFieldModel()
           b.widthMin = "3em"

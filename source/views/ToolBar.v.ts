@@ -1,6 +1,6 @@
 import { cx } from "@emotion/css"
 import { refs, Transaction } from "reactronic"
-import { Block, BlockBody, PlainText, lineFeed, Align, Img, use, asBaseFor, HtmlText } from "verstak"
+import { Block, BlockBody, PlainText, lineFeed, Align, Img, use, baseFor, HtmlText } from "verstak"
 import { Icon } from "components/Icon.v"
 import { MarkdownCodeDarkTheme } from "themes/MarkdownCodeDarkTheme.s"
 import { App } from "models/App"
@@ -9,7 +9,7 @@ import { createFieldModel, Field } from "components/Field.v"
 
 export function ToolBar(name: string, body?: BlockBody<HTMLElement, void, void>) {
   return (
-    Block(name, asBaseFor(body, {
+    Block(name, baseFor(body, {
       render(b) {
         const app = use(App)
         Block("Logo", {

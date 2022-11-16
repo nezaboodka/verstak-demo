@@ -1,9 +1,9 @@
-import { Grid, BlockBody, Block, PlainText, HtmlText, lineFeed, Align, asBaseFor } from "verstak"
+import { Grid, BlockBody, Block, PlainText, HtmlText, lineFeed, Align, baseFor } from "verstak"
 import * as s from "themes/Common.s"
 
 export function WorkArea(name: string, body?: BlockBody<HTMLElement, void, void>) {
   return (
-    Grid(name, asBaseFor(body, {
+    Grid(name, baseFor(body, {
       render(b) {
         // Blocks can be layed out automatically
         // based on their order and line feeds.

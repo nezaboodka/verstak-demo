@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { Block, BlockBody, asBaseFor } from "verstak"
+import { Block, BlockBody, baseFor } from "verstak"
 import { observableModel } from "common/Utils"
 import { Icon } from "./Icon.v"
 import { Label } from "./Label.v"
@@ -14,7 +14,7 @@ export interface ToggleModel {
 export function Toggle(name: string, body?: BlockBody<HTMLElement, ToggleModel>) {
   return (
     Block<ToggleModel>(name ?? "",
-      asBaseFor(body, {
+      baseFor(body, {
         initialize(b) {
           b.model ??= observableModel({ label: name, checked: true, color: "green" }) // model is either taken from parameter or created internally
           b.native.onclick = () => Transaction.run(null, () => b.model.checked = !b.model.checked)
