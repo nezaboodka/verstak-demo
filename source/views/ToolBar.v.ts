@@ -1,15 +1,15 @@
 import { cx } from "@emotion/css"
 import { refs, Transaction } from "reactronic"
-import { Block, BlockVmt, PlainText, lineFeed, Align, Img, use, asComponent, HtmlText } from "verstak"
+import { Block, BlockBody, PlainText, lineFeed, Align, Img, use, asComponent, HtmlText } from "verstak"
 import { Icon } from "components/Icon.v"
 import { MarkdownCodeDarkTheme } from "themes/MarkdownCodeDarkTheme.s"
 import { App } from "models/App"
 import * as s from "themes/Common.s"
 import { createFieldModel, Field } from "components/Field.v"
 
-export function ToolBar(name: string, vmt?: BlockVmt<HTMLElement, void, void>) {
+export function ToolBar(name: string, body?: BlockBody<HTMLElement, void, void>) {
   return (
-    Block(name, asComponent(vmt, {
+    Block(name, asComponent(body, {
       render(e, b) {
         const app = use(App)
         Block("Logo", {
@@ -26,33 +26,28 @@ export function ToolBar(name: string, vmt?: BlockVmt<HTMLElement, void, void>) {
             })
           }
         })
-        Block(`Verstak ${app.version}`, {
-          render(e, b, base) {
-            base()
+        Block(`Verstak ${app.version}`, (e, b, base) => {
+          b.widthGrowth = 1
+          e.classList.toggle(s.Panel, true)
+          Block("Welcome", (e, b) => {
             b.widthGrowth = 1
-            e.classList.toggle(s.Panel, true)
-            Block("Welcome", {
-              render(e, b) {
-                b.widthGrowth = 1
-                HtmlText(`<b>Verstak</b> v${app.version}`)
-                lineFeed()
-                PlainText("Try to change window size")
-              },
-            })
-            Field("Dropdown1", {
-              initialize(e, b, base) {
-                const loader = app.loader
-                b.model = createFieldModel({
-                  text: refs(loader).filter,
-                  options: refs(loader).loaded,
-                  isHotText: true,
-                  isMultiLineText: false,
-                })
-                b.widthMin = "7em"
-                base()
-              },
-            })
-          }
+            HtmlText(`<b>Verstak</b> v${app.version}`)
+            lineFeed()
+            PlainText("Try to change window size")
+          })
+          Field("Dropdown1", {
+            initialize(e, b, base) {
+              const loader = app.loader
+              b.model = createFieldModel({
+                text: refs(loader).filter,
+                options: refs(loader).loaded,
+                isHotText: true,
+                isMultiLineText: false,
+              })
+              b.widthMin = "7em"
+              base()
+            },
+          })
         })
         Block("Account", {
           initialize(e, b) {

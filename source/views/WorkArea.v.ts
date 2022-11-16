@@ -1,10 +1,10 @@
-import { Grid, BlockVmt, Block, PlainText, HtmlText, lineFeed, Align, asComponent } from "verstak"
+import { Grid, BlockBody, Block, PlainText, HtmlText, lineFeed, Align, asComponent } from "verstak"
 import * as s from "themes/Common.s"
 
 export function WorkArea(name: string,
-  vmt?: BlockVmt<HTMLElement, void, void>) {
+  body?: BlockBody<HTMLElement, void, void>) {
   return (
-    Grid(name, asComponent(vmt, {
+    Grid(name, asComponent(body, {
       render(e, b) {
         // Blocks can be layed out automatically
         // based on their order and line feeds.
@@ -27,14 +27,12 @@ export function WorkArea(name: string,
 }
 
 function Ruler(title: string, alignFrame: Align, overlap?: boolean) {
-  Block(`#${title}`, {
-    render(e, b) {
-      b.alignFrame = alignFrame
-      b.cells = { horizontalOverlap: overlap }
-      e.style.zIndex = "1"
-      e.style.fontSize = "smaller"
-      HtmlText(`&nbsp;${title}`)
-    }
+  Block(`#${title}`, (e, b) => {
+    b.alignFrame = alignFrame
+    b.cells = { horizontalOverlap: overlap }
+    e.style.zIndex = "1"
+    e.style.fontSize = "smaller"
+    HtmlText(`&nbsp;${title}`)
   })
 }
 

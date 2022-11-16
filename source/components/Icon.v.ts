@@ -1,8 +1,8 @@
-import { Block, BlockVmt, asComponent } from "verstak"
+import { Block, BlockBody, asComponent } from "verstak"
 
-export function Icon(className: string, name?: string, vmt?: BlockVmt<HTMLElement, void, void>) {
+export function Icon(className: string, name?: string, body?: BlockBody<HTMLElement, void, void>) {
   return (
-    Block(name ?? "", asComponent(vmt, {
+    Block(name ?? "", asComponent(body, {
       render(e, b) {
         e.className = className
         b.widthMin = "auto"

@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { Block, BlockVmt, use, asComponent, Align } from "verstak"
+import { Block, BlockBody, use, asComponent, Align } from "verstak"
 import { observableModel } from "common/Utils"
 import { Toggle } from "components/Toggle.v"
 import { createFieldModel, Field } from "components/Field.v"
@@ -7,9 +7,9 @@ import { Theme } from "themes/Theme"
 import { App } from "models/App"
 import * as s from "themes/Common.s"
 
-export function StatusBar(name: string, vmt: BlockVmt<HTMLElement, void, void>) {
+export function StatusBar(name: string, body: BlockBody<HTMLElement, void, void>) {
   return (
-    Block(name, asComponent(vmt, {
+    Block(name, asComponent(body, {
       render(e, b) {
         // We get app and theme as a context variables
         // (instead of functional parameters) in order
@@ -36,45 +36,36 @@ export function StatusBar(name: string, vmt: BlockVmt<HTMLElement, void, void>) 
             e.classList.toggle(s.Panel, true)
           }
         })
-        Toggle("A", {
-          render(e, b, base) {
-            base()
-            e.classList.toggle(s.Panel, true)
-          }
+        Toggle("A", (e, b, base) => {
+          base()
+          e.classList.toggle(s.Panel, true)
         })
-        Toggle("B", {
-          render(e, b, base) {
-            base()
-            e.classList.toggle(s.Panel, true)
-          }
+        Toggle("B", (e, b, base) => {
+          base()
+          e.classList.toggle(s.Panel, true)
         })
-        Toggle("C", {
-          render(e, b, base) {
-            base()
-            e.classList.toggle(s.Panel, true)
-          }
+        Toggle("C", (e, b, base) => {
+          base()
+          e.classList.toggle(s.Panel, true)
         })
-        Block("Fields", {
-          render(e, b) {
-            b.widthGrowth = 1
-            b.alignContent = Align.Right
-            e.className = s.Panel
-            Field("Dropdown1", {
-              initialize(e, b, base) {
-                const loader = app.loader
-                b.model = createFieldModel({
-                  text: refs(loader).filter,
-                  options: refs(loader).loaded,
-                  isHotText: true,
-                  isMultiLineText: false,
-                })
-                b.widthMin = "15em"
-                base()
-              },
-            })
-          },
+        Block("Fields", (e, b) => {
+          b.widthGrowth = 1
+          b.alignContent = Align.Right
+          e.className = s.Panel
+          Field("Dropdown1", {
+            initialize(e, b, base) {
+              const loader = app.loader
+              b.model = createFieldModel({
+                text: refs(loader).filter,
+                options: refs(loader).loaded,
+                isHotText: true,
+                isMultiLineText: false,
+              })
+              b.widthMin = "15em"
+              base()
+            },
+          })
         })
-
       },
     }))
   )
