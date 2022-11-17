@@ -1,5 +1,5 @@
 import { cx } from "@emotion/css"
-import { Block, Align, PlainText, use, setContext, Line } from "verstak"
+import { Block, Align, PlainText, use, setContext, line } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { Theme } from "themes/Theme"
 import { App } from "models/App"
@@ -20,14 +20,14 @@ export function MainWindow() {
         const app = use(App)
         setContext(Theme, app.theme)
 
-        Line(l => {
+        line(l => {
           ToolBar((b, base) => {
             b.widthGrowth = 1
             base()
           })
         })
 
-        Line(l => { // main row
+        line(l => { // main line
           Block(b => {
             b.minWidth = "10rem"
             b.contentAlignment = Align.Top
@@ -55,7 +55,7 @@ export function MainWindow() {
           })
         })
 
-        Line(l => {
+        line(l => {
           StatusBar((b, base) => {
             b.widthGrowth = 1
             base()

@@ -10,7 +10,7 @@ v-block {
   min-width: 0;
 }
 
-v-block[wrapping] > v-row {
+v-block[wrapping] > v-line {
   flex-flow: wrap;
 }
 
@@ -22,7 +22,7 @@ v-grid {
   text-align: initial;
 }
 
-v-row {
+v-line {
   display: flex;
   flex-direction: row;
 }
@@ -47,7 +47,7 @@ v-group {
   display: contents;
 }
 
-v-grid > v-row {
+v-grid > v-line {
   display: none;
 }
 
@@ -55,7 +55,7 @@ v-grid > v-block {
   place-self: stretch;
 }
 
-v-row > *:not([floating]), v-row > *[floating="false"] {
+v-line > *:not([floating]), v-line > *[floating="false"] {
   align-self: center;
 }
 
