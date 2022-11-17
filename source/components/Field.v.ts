@@ -97,6 +97,7 @@ function FieldInput(model: FieldModel) {
 function FieldPopup(model: FieldModel) {
   return (
     Block({ // popup itself
+      // key: FieldPopup.name,
       initialize(b) {
         b.minWidth = "10em"
         b.floating = true
