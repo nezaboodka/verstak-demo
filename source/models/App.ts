@@ -1,20 +1,31 @@
-import { ObservableObject, raw, reactive } from "reactronic"
+import { ObservableObject, raw, reactive, transactional } from "reactronic"
 import { BaseHtmlDriver, HtmlSensors } from "verstak"
 import { Theme } from "themes/Theme"
 import { Loader } from "./Loader"
 
 export class App extends ObservableObject {
   version: string
-  theme: Theme
+  allThemes: Array<Theme>
+  activeThemeIndex: number
   blinkingEffect: boolean
   loader: Loader
 
-  constructor(version: string, theme: Theme) {
+  constructor(version: string, ...themes: Array<Theme>) {
     super()
     this.version = version
-    this.theme = theme
+    this.allThemes = themes
+    this.activeThemeIndex = 0
     this.blinkingEffect = false
     this.loader = new Loader()
+  }
+
+  get theme(): Theme {
+    return this.allThemes[this.activeThemeIndex]
+  }
+
+  @transactional
+  nextTheme(): void {
+    this.activeThemeIndex = (this.activeThemeIndex + 1) % this.allThemes.length
   }
 
   @reactive

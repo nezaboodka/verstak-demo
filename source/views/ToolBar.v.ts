@@ -64,7 +64,7 @@ export function ToolBar(body?: BlockBody<HTMLElement, void, void>) {
         })
         Block({ // Account
           initialize(b) {
-            b.native.onclick = () => Transaction.run(null, () => app.theme = new MarkdownCodeDarkTheme())
+            b.native.onclick = () => Transaction.run(null, () => app.nextTheme())
           },
           render(b) {
             b.native.className = cx(s.Panel, s.Hint, s.Clickable)

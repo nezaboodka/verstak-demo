@@ -16,6 +16,7 @@ export interface FieldModel<T = string> extends FocusModel {
 export function Field(body?: BlockBody<HTMLElement, FieldModel>) {
   return (
     Block<FieldModel>(asBaseFor(body, {
+      // reacting: true,
       initialize(b) {
         b.model ??= createFieldModel()
         b.minWidth = "3em"
