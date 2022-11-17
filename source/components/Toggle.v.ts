@@ -15,7 +15,10 @@ export function Toggle(body?: BlockBody<HTMLElement, ToggleModel>) {
   return (
     Block<ToggleModel>(asBaseFor(body, { key: Toggle.name,
       initialize(b) {
-        b.model ??= observableModel({ label: b.body.key, checked: true, color: "green" }) // model is either taken from parameter or created internally
+        b.model ??= observableModel({
+          label: b.body.key,
+          checked: true,
+          color: "green" }) // model is either taken from parameter or created internally
         b.native.onclick = () => Transaction.run(null, () => b.model.checked = !b.model.checked)
       },
       render(b) {
