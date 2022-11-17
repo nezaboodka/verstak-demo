@@ -3,7 +3,7 @@ import { css } from "@emotion/css"
 
 export function Label(text: string, body?: BlockBody<HTMLElement>) {
   return (
-    Block(asBaseFor(body, { key: Label.name,
+    Block(asBaseFor(body, {
       render(b) {
         b.native.className = LabelStyle
         PlainText(text, {

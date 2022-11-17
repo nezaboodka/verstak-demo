@@ -13,7 +13,7 @@ export interface ToggleModel {
 
 export function Toggle(body?: BlockBody<HTMLElement, ToggleModel>) {
   return (
-    Block<ToggleModel>(asBaseFor(body, { key: Toggle.name,
+    Block<ToggleModel>(asBaseFor(body, {
       initialize(b) {
         b.model ??= observableModel({
           label: b.body.key,

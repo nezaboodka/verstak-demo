@@ -8,7 +8,7 @@ export interface SpinnerModel {
 
 export function Spinner(body?: BlockBody<HTMLElement, SpinnerModel>) {
   return (
-    Block<SpinnerModel>(asBaseFor(body, { key: Spinner.name,
+    Block<SpinnerModel>(asBaseFor(body, {
       initialize(b) {
         b.model ??= createLocalModel()
       },
