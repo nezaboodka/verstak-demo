@@ -13,12 +13,12 @@ export function MainWindow() {
     Block({
       reacting: true, // re-rendering point
       render(b) {
+        const app = useContext(App)
+        nestedContext(Theme, app.theme)
+
         b.contentAlignment = Align.Top
         b.heightGrowth = 1
         b.native.style.backgroundColor = "rgba(230, 230, 230)"
-
-        const app = useContext(App)
-        nestedContext(Theme, app.theme)
 
         line(l => {
           ToolBar((b, base) => {
