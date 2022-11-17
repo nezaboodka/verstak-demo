@@ -36,19 +36,19 @@ export function StatusBar(body?: BlockBody<HTMLElement, void, void>) {
             b.native.classList.toggle(s.Panel, true)
           }
         })
-        Toggle({ key: "A",
+        Toggle({
           render(b, base) {
             base()
             b.native.classList.toggle(s.Panel, true)
           }
         })
-        Toggle({ key: "B",
+        Toggle({
           render(b, base) {
             base()
             b.native.classList.toggle(s.Panel, true)
           }
         })
-        Toggle({ key: "C",
+        Toggle({
           render(b, base) {
             base()
             b.native.classList.toggle(s.Panel, true)
