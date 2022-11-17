@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { Block, BlockBody, use, asBaseFor, Align } from "verstak"
+import { Block, BlockBody, useContext, asBaseFor, Align } from "verstak"
 import { observableModel } from "common/Utils"
 import { Toggle } from "components/Toggle.v"
 import { createFieldModel, Field } from "components/Field.v"
@@ -15,8 +15,8 @@ export function StatusBar(body?: BlockBody<HTMLElement, void, void>) {
         // (instead of functional parameters) in order
         // to avoid passing app/theme in each and every
         // node through rendering tree.
-        const app = use(App)
-        const theme = use(Theme)
+        const app = useContext(App)
+        const theme = useContext(Theme)
         b.contentWrapping = true
         Toggle({ key: "Blinking",
           initialize(b, base) {

@@ -1,6 +1,6 @@
 import { cx } from "@emotion/css"
 import { refs, Transaction } from "reactronic"
-import { Block, BlockBody, PlainText, lineFeed, Img, use, asBaseFor, HtmlText } from "verstak"
+import { Block, BlockBody, PlainText, lineFeed, Img, useContext, asBaseFor, HtmlText } from "verstak"
 import { Icon } from "components/Icon.v"
 import { createFieldModel, Field } from "components/Field.v"
 import { MarkdownCodeDarkTheme } from "themes/MarkdownCodeDarkTheme.s"
@@ -11,7 +11,7 @@ export function ToolBar(body?: BlockBody<HTMLElement, void, void>) {
   return (
     Block(asBaseFor(body, {
       render(b) {
-        const app = use(App)
+        const app = useContext(App)
         Block({ // Logo
           initialize(b) {
             b.native.className = cx(s.Panel, s.Clickable, s.Logo)

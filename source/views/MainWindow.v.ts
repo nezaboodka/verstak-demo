@@ -1,5 +1,5 @@
 import { cx } from "@emotion/css"
-import { Block, Align, PlainText, use, setContext, line } from "verstak"
+import { Block, Align, PlainText, useContext, nestedContext, line } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { Theme } from "themes/Theme"
 import { App } from "models/App"
@@ -17,8 +17,8 @@ export function MainWindow() {
         b.heightGrowth = 1
         b.native.style.backgroundColor = "rgba(230, 230, 230)"
 
-        const app = use(App)
-        setContext(Theme, app.theme)
+        const app = useContext(App)
+        nestedContext(Theme, app.theme)
 
         line(l => {
           ToolBar((b, base) => {
@@ -44,7 +44,7 @@ export function MainWindow() {
           Block({
             reacting: true,
             render(b) {
-              const theme = use(Theme)
+              const theme = useContext(Theme)
               b.minWidth = "16rem"
               b.widthGrowth = 2
               b.contentAlignment = Align.Left + Align.Top,
