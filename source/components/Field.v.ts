@@ -61,7 +61,6 @@ function FieldInput(model: FieldModel) {
         e.style.outlineOffset = "-1px"
         e.style.borderRadius = "0.2rem"
         e.style.padding = "0.25em"
-        e.style.minHeight = "1em"
         e.onkeydown = event => {
           const m = model
           if (isApplyKey(m, event))
