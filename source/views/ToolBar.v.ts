@@ -1,6 +1,6 @@
 import { cx } from "@emotion/css"
 import { refs, Transaction } from "reactronic"
-import { Block, BlockBody, PlainText, lineFeed, Img, useContext, asBaseFor, HtmlText, Align } from "verstak"
+import { Block, BlockBody, PlainText, lineFeed, Img, useContext, asBaseFor, HtmlText } from "verstak"
 import { Icon, Field, createFieldModel } from "gastronom"
 import { App } from "models/App"
 import * as s from "themes/Common.s"
