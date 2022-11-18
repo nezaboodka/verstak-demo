@@ -1,4 +1,4 @@
-import { Block, BlockBody, asBaseFor, PlainText, FocusModel, lineFeed, Align } from "verstak"
+import { Block, BlockBody, asBaseFor, PlainText, FocusModel, lineFeed } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
 import { Transaction } from "reactronic"
 
@@ -34,8 +34,9 @@ export function Field(body?: BlockBody<HTMLElement, FieldModel>) {
       // reacting: true,
       initialize(b) {
         b.model ??= createFieldModel()
-        b.native.onscroll = () =>
+        b.native.onscroll = () => {
           b.model.position = b.native.scrollTop
+        }
       },
       render(b) {
         const m = b.model
