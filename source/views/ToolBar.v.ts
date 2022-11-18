@@ -1,9 +1,7 @@
 import { cx } from "@emotion/css"
 import { refs, Transaction } from "reactronic"
 import { Block, BlockBody, PlainText, lineFeed, Img, useContext, asBaseFor, HtmlText, Align } from "verstak"
-import { Icon } from "components/Icon.v"
-import { createFieldModel, Field } from "components/Field.v"
-import { MarkdownCodeDarkTheme } from "themes/MarkdownCodeDarkTheme.s"
+import { Icon, Field, createFieldModel } from "gastronom"
 import { App } from "models/App"
 import * as s from "themes/Common.s"
 
