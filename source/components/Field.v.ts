@@ -1,4 +1,4 @@
-import { Block, BlockBody, asBaseFor, PlainText, FocusModel, lineFeed } from "verstak"
+import { Block, BlockBody, asBaseFor, PlainText, FocusModel, lineFeed, Align } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
 import { Transaction } from "reactronic"
 
@@ -11,28 +11,6 @@ export interface FieldModel<T = string> extends FocusModel {
   isMultiLineText: boolean
   isHotText: boolean
   inputStyle: string
-}
-
-export function Field(body?: BlockBody<HTMLElement, FieldModel>) {
-  return (
-    Block<FieldModel>(asBaseFor(body, {
-      // reacting: true,
-      initialize(b) {
-        b.model ??= createFieldModel()
-        b.minWidth = "3em"
-        b.native.onscroll = () =>
-          b.model.position = b.native.scrollTop
-      },
-      render(b) {
-        const m = b.model
-        FieldInput(m)
-        if (m.isEditMode) {
-          lineFeed()
-          FieldPopup(m)
-        }
-      },
-    }))
-  )
 }
 
 export function createFieldModel<T>(props?: Partial<ValuesOrRefs<FieldModel<T>>>): FieldModel<T>
@@ -50,11 +28,40 @@ export function createFieldModel<T>(props?: Partial<ValuesOrRefs<FieldModel<T>>>
   })
 }
 
+export function Field(body?: BlockBody<HTMLElement, FieldModel>) {
+  return (
+    Block<FieldModel>(asBaseFor(body, {
+      // reacting: true,
+      initialize(b) {
+        b.model ??= createFieldModel()
+        b.native.onscroll = () =>
+          b.model.position = b.native.scrollTop
+      },
+      render(b) {
+        const m = b.model
+        FieldInput(m)
+        if (m.isEditMode) {
+          lineFeed()
+          FieldPopup(m)
+        }
+      },
+    }))
+  )
+}
+
 function FieldInput(model: FieldModel) {
   return (
     PlainText(model.text, {
+      key: FieldInput.name,
       initialize(b) {
         const e = b.native
+        b.widthGrowth = 1
+        e.tabIndex = 0
+        e.contentEditable = "true"
+        e.style.outlineOffset = "-1px"
+        e.style.borderRadius = "0.2rem"
+        e.style.padding = "0.25em"
+        e.style.minHeight = "1em"
         e.onkeydown = event => {
           const m = model
           if (isApplyKey(m, event))
@@ -78,15 +85,7 @@ function FieldInput(model: FieldModel) {
       },
       render(b) {
         const e = b.native
-        e.tabIndex = 0
-        e.contentEditable = "true"
         e.style.outline = model.isEditMode ? "2px solid rgba(255, 127, 127, 1)" : "1px solid rgba(127, 127, 127, 0.25)"
-        e.style.outlineOffset = "-1px"
-        e.style.borderRadius = "0.2rem"
-        e.style.padding = "0.25em"
-        e.style.whiteSpace = "nowrap"
-        e.style.minWidth = "3em"
-        e.style.minHeight = "1em"
         if (!model.isEditMode)
           e.innerText = model.text
         // ReactingFocuser("Focuser", e, model)
@@ -98,11 +97,15 @@ function FieldInput(model: FieldModel) {
 function FieldPopup(model: FieldModel) {
   return (
     Block({ // popup itself
-      // key: FieldPopup.name,
+      key: FieldPopup.name,
       initialize(b) {
+        const e = b.native
         b.minWidth = "10em"
         b.floating = true
-        const e = b.native
+        e.style.outlineOffset = "-1px"
+        e.style.borderRadius = "0.2rem"
+        e.style.padding = "0.25em"
+        e.style.backgroundColor = "white"
         e.onscroll = () => model.position = e.scrollTop
         const focused = document.activeElement
         if (focused) {
@@ -117,10 +120,6 @@ function FieldPopup(model: FieldModel) {
       render(b) {
         const e = b.native
         e.style.outline = "2px solid rgba(255, 127, 127, 1)"
-        e.style.outlineOffset = "-1px"
-        e.style.borderRadius = "0.2rem"
-        e.style.padding = "0.25em"
-        e.style.backgroundColor = "white"
         const options = model.options
         if (options.length > 0) {
           for (const x of model.options) {
