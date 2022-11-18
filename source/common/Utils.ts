@@ -1,11 +1,12 @@
-import { ObservableObject, Ref } from "reactronic"
+import { ObservableObject, Ref, Transaction } from "reactronic"
 
 export type ValuesOrRefs<T> = {
   [K in keyof T]: T[K] | Ref<T[K]>
 }
 
 export function observableModel<T extends Object>(modelProps: ValuesOrRefs<T>): T {
-  return new ObservableComposition(modelProps) as unknown as T
+  return Transaction.run({ separation: true }, () =>
+    new ObservableComposition(modelProps) as unknown as T)
 }
 
 class ObservableComposition<T> extends ObservableObject {
