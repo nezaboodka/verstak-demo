@@ -8,6 +8,7 @@ export interface ImageModel {
 export function Image(body?: BlockBody<HTMLElement, ImageModel>) {
   return (
     Block<ImageModel>(asBaseFor(body, {
+      autonomous: true,
       initialize(b) {
         b.model ??= observableModel({ source: undefined })
       },

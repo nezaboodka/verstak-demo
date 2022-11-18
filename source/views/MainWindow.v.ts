@@ -11,7 +11,7 @@ import * as s from "themes/Common.s"
 export function MainWindow() {
   return (
     Block({
-      reacting: true, // re-rendering point
+      autonomous: true, // re-rendering point
       render(b) {
         const app = useContext(App)
         nestedContext(Theme, app.theme)
@@ -42,7 +42,7 @@ export function MainWindow() {
             base()
           })
           Block({
-            reacting: true,
+            autonomous: true,
             render(b) {
               const theme = useContext(Theme)
               b.minWidth = "16rem"

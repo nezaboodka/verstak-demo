@@ -14,6 +14,7 @@ export interface ToggleModel {
 export function Toggle(body?: BlockBody<HTMLElement, ToggleModel>) {
   return (
     Block<ToggleModel>(asBaseFor(body, {
+      autonomous: true,
       initialize(b) {
         b.model ??= observableModel({
           label: b.body.key,

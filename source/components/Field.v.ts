@@ -31,7 +31,7 @@ export function createFieldModel<T>(props?: Partial<ValuesOrRefs<FieldModel<T>>>
 export function Field(body?: BlockBody<HTMLElement, FieldModel>) {
   return (
     Block<FieldModel>(asBaseFor(body, {
-      // reacting: true,
+      autonomous: true,
       initialize(b) {
         b.model ??= createFieldModel()
         b.native.onscroll = () => {

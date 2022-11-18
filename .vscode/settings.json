@@ -26,9 +26,12 @@
     "yarn.lock",
   ],
   "cSpell.words": [
+    "argsx",
     "Boocel",
     "contenteditable",
+    "Mvcc",
     "Nezaboodka",
+    "nothrow",
     "prismjs",
     "reactronic",
     "verstak",

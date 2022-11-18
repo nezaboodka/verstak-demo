@@ -9,6 +9,7 @@ export interface SpinnerModel {
 export function Spinner(body?: BlockBody<HTMLElement, SpinnerModel>) {
   return (
     Block<SpinnerModel>(asBaseFor(body, {
+      autonomous: true,
       initialize(b) {
         b.model ??= createLocalModel()
       },
