@@ -13,21 +13,6 @@ export interface FieldModel<T = string> extends FocusModel {
   inputStyle: string
 }
 
-export function createFieldModel<T>(props?: Partial<ValuesOrRefs<FieldModel<T>>>): FieldModel<T>
-{
-  return observableModel({
-    text: props?.text ?? "",
-    options: props?.options ?? [],
-    selected: props?.selected,
-    multiSelected: props?.multiSelected ?? new Set<T>(),
-    position: 0,
-    isMultiLineText: props?.isMultiLineText ?? false,
-    isEditMode: props?.isEditMode ?? false,
-    isHotText: props?.isHotText ?? false,
-    inputStyle: props?.inputStyle ?? "",
-  })
-}
-
 export function Field(body?: BlockBody<HTMLElement, FieldModel>) {
   return (
     Block<FieldModel>(asBaseFor(body, {
@@ -48,6 +33,21 @@ export function Field(body?: BlockBody<HTMLElement, FieldModel>) {
       },
     }))
   )
+}
+
+export function createFieldModel<T>(props?: Partial<ValuesOrRefs<FieldModel<T>>>): FieldModel<T>
+{
+  return observableModel({
+    text: props?.text ?? "",
+    options: props?.options ?? [],
+    selected: props?.selected,
+    multiSelected: props?.multiSelected ?? new Set<T>(),
+    position: 0,
+    isMultiLineText: props?.isMultiLineText ?? false,
+    isEditMode: props?.isEditMode ?? false,
+    isHotText: props?.isHotText ?? false,
+    inputStyle: props?.inputStyle ?? "",
+  })
 }
 
 function FieldInput(model: FieldModel) {
