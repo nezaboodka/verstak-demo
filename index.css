@@ -22,7 +22,7 @@ p {
 pre {
   border-radius: 0.2em;
   padding: 0.25em 0.5em;
-  overflow: scroll;
+  overflow: auto;
 }
 
 code {
