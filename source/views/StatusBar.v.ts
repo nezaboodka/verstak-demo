@@ -2,6 +2,7 @@ import { refs } from "reactronic"
 import { Block, BlockBody, useContext, asBaseFor, Align } from "verstak"
 import { observableModel } from "common/Utils"
 import { Toggle } from "components/Toggle.v"
+import { Button } from "components/Button.v"
 import { createFieldModel, Field } from "components/Field.v"
 import { Theme } from "themes/Theme"
 import { App } from "models/App"
@@ -36,7 +37,15 @@ export function StatusBar(body?: BlockBody<HTMLElement, void, void>) {
             b.native.classList.toggle(s.Panel, true)
           }
         })
-        Toggle({
+        Button({ key: "Theme",
+          initialize(b, base) {
+            b.model = observableModel({
+              icon: "fa fa-solid fa-palette",
+              label: "Switch Theme",
+              action() { app.nextTheme() }
+            })
+            base()
+          },
           render(b, base) {
             base()
             b.native.classList.toggle(s.Panel, true)

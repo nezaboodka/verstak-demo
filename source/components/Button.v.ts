@@ -5,30 +5,28 @@ import { Icon } from "./Icon.v"
 import { Label } from "./Label.v"
 import * as s from "themes/Common.s"
 
-export interface ToggleModel {
+export interface ButtonModel {
+  icon?: string
   label?: string
-  checked?: boolean
-  color?: string
+  action?(): void
 }
 
-export function Toggle(body?: BlockBody<HTMLElement, ToggleModel>) {
+export function Button(body?: BlockBody<HTMLElement, ButtonModel>) {
   return (
-    Block<ToggleModel>(asBaseFor(body, {
+    Block<ButtonModel>(asBaseFor(body, {
       autonomous: true,
       initialize(b) {
         b.model ??= observableModel({
+          icon: "fa fa-solid square",
           label: b.body.key,
-          checked: true,
-          color: "green" }) // model is either taken from parameter or created internally
-        b.native.onclick = () => Transaction.run(null, () => b.model.checked = !b.model.checked)
+        })
+        b.native.onclick = () => Transaction.run(null, () => b.model.action?.())
       },
       render(b) {
         b.native.className = s.Clickable // style is not inside "initialize", because of theming
         const m = b.model
-        Icon(`fa-solid fa-toggle-${m.checked ? "on" : "off"}`, (b, base) => {
-          base()
-          b.native.style.color = m.checked ? (m.color ?? "") : "" // subscribe to ToggleModel.checked
-        })
+        if (m.icon)
+          Icon(m.icon)
         if (m.label)
           Label(m.label)
       },

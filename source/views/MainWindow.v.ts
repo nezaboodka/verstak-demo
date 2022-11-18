@@ -50,7 +50,7 @@ export function MainWindow() {
               b.contentAlignment = Align.Left + Align.Top,
               b.frameAlignment = Align.Stretch,
               b.native.className = cx(s.Panel, theme.markdown)
-              Markdown(CODE)
+              Markdown(EXAMPLE_CODE)
             }
           })
         })
@@ -66,7 +66,7 @@ export function MainWindow() {
   )
 }
 
-const CODE = `
+const EXAMPLE_CODE = `
 Block size is automatically adjusted to size of table
 cells, while cells are automatically adjusted to screen
 size of each user. System is suitable both to lay out

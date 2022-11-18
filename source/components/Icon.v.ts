@@ -1,6 +1,6 @@
 import { Block, BlockBody, asBaseFor } from "verstak"
 
-export function Icon(className: string, key?: string, body?: BlockBody<HTMLElement, void, void>) {
+export function Icon(className: string, body?: BlockBody<HTMLElement, void, void>) {
   return (
     Block(asBaseFor(body, {
       render(b) {
