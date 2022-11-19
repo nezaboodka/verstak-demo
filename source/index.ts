@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { VBlock, HtmlBody, nestedContext } from "verstak"
+import { VBlock, HtmlBody, nestedContext, lineFeed } from "verstak"
 import { configureDebugging } from "dbg"
 import { App } from "models/App"
 import { MainWindow } from "views/MainWindow.v"
@@ -25,6 +25,7 @@ const app = Transaction.run(null, () =>
 VBlock.root(() => {
   HtmlBody(b => {
     nestedContext(App, app)
+    lineFeed() // WORKAROUND
     MainWindow()
   })
 })

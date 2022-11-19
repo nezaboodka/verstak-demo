@@ -8,63 +8,59 @@ import { StatusBar } from "./StatusBar.v"
 import { WorkArea } from "./WorkArea.v"
 import * as s from "themes/Common.s"
 
-export function MainWindow() {
-  return (
-    Block({
-      autonomous: true, // re-rendering point
-      render(b) {
-        const app = useContext(App)
-        nestedContext(Theme, app.theme)
+export const MainWindow = () => (
+  Block({ autonomous: true,
+    render(b) {
+      const app = useContext(App)
+      nestedContext(Theme, app.theme)
 
-        b.contentAlignment = Align.Top
-        b.heightGrowth = 1
-        b.native.style.backgroundColor = "rgba(230, 230, 230)"
+      b.contentAlignment = Align.Top
+      b.heightGrowth = 1
+      b.native.style.backgroundColor = "rgba(230, 230, 230)"
 
-        line(l => {
-          ToolBar((b, base) => {
-            b.widthGrowth = 1
-            base()
-          })
+      line(l => {
+        ToolBar(b => {
+          b.widthGrowth = 1
         })
+      })
 
-        line(l => { // main line
-          Block(b => {
-            b.minWidth = "10rem"
-            b.contentAlignment = Align.Top
-            b.frameAlignment = Align.Stretch
-            b.native.className = s.Panel
-            PlainText("Navigation Bar")
-          })
-          WorkArea((b, base) => {
+      line(l => { // main line
+        Block(b => {
+          b.minWidth = "10rem"
+          b.contentAlignment = Align.Top
+          b.frameAlignment = Align.Stretch
+          b.native.className = s.Panel
+          PlainText("Navigation Bar")
+        })
+        WorkArea({
+          render(b) {
             b.widthGrowth = 3
             b.heightGrowth = 1
             b.native.className = cx(s.Panel, s.Important)
-            base()
-          })
-          Block({
-            autonomous: true,
-            render(b) {
-              const theme = useContext(Theme)
-              b.minWidth = "16rem"
-              b.widthGrowth = 2
-              b.contentAlignment = Align.Left + Align.Top,
-              b.frameAlignment = Align.Stretch,
-              b.native.className = cx(s.Panel, theme.markdown)
-              Markdown(EXAMPLE_CODE)
-            }
-          })
+          }
         })
+        Block({
+          autonomous: true,
+          render(b) {
+            const theme = useContext(Theme)
+            b.minWidth = "16rem"
+            b.widthGrowth = 2
+            b.contentAlignment = Align.Left + Align.Top,
+            b.frameAlignment = Align.Stretch,
+            b.native.className = cx(s.Panel, theme.markdown)
+            Markdown(EXAMPLE_CODE)
+          }
+        })
+      })
 
-        line(l => {
-          StatusBar((b, base) => {
-            b.widthGrowth = 1
-            base()
-          })
+      line(l => {
+        StatusBar(b => {
+          b.widthGrowth = 1
         })
-      },
-    })
-  )
-}
+      })
+    },
+  })
+)
 
 const EXAMPLE_CODE = `
 Block size is automatically adjusted to size of table

@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { Block, BlockBody, asBaseFor, PlainText, FocusModel, lineFeed } from "verstak"
+import { Block, BlockBody, PlainText, FocusModel, lineFeed, vmt } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
 import { Icon } from "./Icon.v"
 
@@ -15,32 +15,28 @@ export interface FieldModel<T = string> extends FocusModel {
   inputStyle: string
 }
 
-export function Field(body?: BlockBody<HTMLElement, FieldModel>) {
-  return (
-    Block<FieldModel>(asBaseFor(body, {
-      autonomous: true,
-      initialize(b) {
-        b.model ??= createFieldModel()
-        b.native.onscroll = () => {
-          b.model.position = b.native.scrollTop
-        }
-      },
-      render(b) {
-        const m = b.model
-        if (m.icon)
-          Icon(m.icon)
-        FieldInput(m)
-        if (m.isEditMode) {
-          lineFeed()
-          FieldPopup(m)
-        }
-      },
-    }))
-  )
-}
+export const Field = (body?: BlockBody<HTMLElement, FieldModel>) => (
+  Block<FieldModel>({ autonomous: true, ...vmt(body), base: {
+    initialize(b) {
+      b.model ??= createFieldModel()
+      b.native.onscroll = () => {
+        b.model.position = b.native.scrollTop
+      }
+    },
+    render(b) {
+      const m = b.model
+      if (m.icon)
+        Icon(m.icon)
+      FieldInput(m)
+      if (m.isEditMode) {
+        lineFeed()
+        FieldPopup(m)
+      }
+    },
+  }})
+)
 
-export function createFieldModel<T>(props?: Partial<ValuesOrRefs<FieldModel<T>>>): FieldModel<T>
-{
+export function createFieldModel<T>(props?: Partial<ValuesOrRefs<FieldModel<T>>>): FieldModel<T> {
   return observableModel({
     icon: props?.icon,
     text: props?.text ?? "",
@@ -88,7 +84,7 @@ function FieldInput(model: FieldModel) {
           Transaction.run(null, () => model.isEditMode = false)
         }
       },
-      render(b) {
+      redefinedRender(b) {
         const e = b.native
         e.style.outline = model.isEditMode ? "2px solid rgba(255, 127, 127, 1)" : "1px solid rgba(127, 127, 127, 0.25)"
         if (!model.isEditMode)
@@ -99,47 +95,45 @@ function FieldInput(model: FieldModel) {
   )
 }
 
-function FieldPopup(model: FieldModel) {
-  return (
-    Block({ // popup itself
-      key: FieldPopup.name,
-      initialize(b) {
-        const e = b.native
-        b.minWidth = "10em"
-        b.floating = true
-        e.style.outlineOffset = "-1px"
-        e.style.borderRadius = "0.2rem"
-        e.style.padding = "0.25em"
-        e.style.backgroundColor = "white"
-        e.onscroll = () => model.position = e.scrollTop
-        const focused = document.activeElement
-        if (focused) {
-          const bounds = focused.getBoundingClientRect()
-          const x = document.body.offsetWidth - bounds.left
-          if (x < document.body.offsetWidth / 2)
-            e.style.right = `${document.body.offsetWidth - bounds.right}px`
-          if (bounds.top > document.body.clientHeight / 2)
-            e.style.bottom = `${document.body.offsetHeight - bounds.top - 1}px`
+const FieldPopup = (model: FieldModel) => (
+  Block({ // popup itself
+    key: FieldPopup.name,
+    initialize(b) {
+      const e = b.native
+      b.minWidth = "10em"
+      b.floating = true
+      e.style.outlineOffset = "-1px"
+      e.style.borderRadius = "0.2rem"
+      e.style.padding = "0.25em"
+      e.style.backgroundColor = "white"
+      e.onscroll = () => model.position = e.scrollTop
+      const focused = document.activeElement
+      if (focused) {
+        const bounds = focused.getBoundingClientRect()
+        const x = document.body.offsetWidth - bounds.left
+        if (x < document.body.offsetWidth / 2)
+          e.style.right = `${document.body.offsetWidth - bounds.right}px`
+        if (bounds.top > document.body.clientHeight / 2)
+          e.style.bottom = `${document.body.offsetHeight - bounds.top - 1}px`
+      }
+    },
+    render(b) {
+      const e = b.native
+      e.style.outline = "2px solid rgba(255, 127, 127, 1)"
+      const options = model.options
+      if (options.length > 0) {
+        for (const x of model.options) {
+          lineFeed()
+          PlainText(x, {
+            key: x,
+          })
         }
-      },
-      render(b) {
-        const e = b.native
-        e.style.outline = "2px solid rgba(255, 127, 127, 1)"
-        const options = model.options
-        if (options.length > 0) {
-          for (const x of model.options) {
-            lineFeed()
-            PlainText(x, {
-              key: x,
-            })
-          }
-        }
-        else
-          PlainText("nothing found")
-      },
-    })
-  )
-}
+      }
+      else
+        PlainText("nothing found")
+    },
+  })
+)
 
 function isApplyKey(m: FieldModel, event: KeyboardEvent): boolean {
   return event.key === "Enter" && (
