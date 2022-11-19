@@ -1,6 +1,6 @@
 import { cx } from "@emotion/css"
 import { refs, Transaction } from "reactronic"
-import { Block, BlockBody, PlainText, lineFeed, Img, useContext, HtmlText, vmt, Align } from "verstak"
+import { Block, BlockBody, lineFeed, Img, useContext, vmt } from "verstak"
 import { Icon, Field, createFieldModel } from "gost-pi-22"
 import { App } from "models/App"
 import * as s from "themes/Common.s"
