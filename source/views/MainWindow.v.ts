@@ -18,7 +18,6 @@ export const MainWindow = () => (
 
       b.contentAlignment = Align.Top
       b.heightGrowth = 1
-      b.native.style.backgroundColor = "rgba(230, 230, 230)"
 
       line(l => {
         ToolBar(b => {

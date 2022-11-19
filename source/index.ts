@@ -24,6 +24,7 @@ const app = Transaction.run(null, () =>
 
 VBlock.root(() => {
   HtmlBody(b => {
+    b.native.style.backgroundColor = "rgba(230, 230, 230)"
     nestedContext(App, app)
     lineFeed() // WORKAROUND
     MainWindow()
