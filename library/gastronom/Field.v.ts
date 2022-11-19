@@ -18,21 +18,15 @@ export interface FieldModel<T = string> extends FocusModel {
 export const Field = (body?: BlockBody<HTMLElement, FieldModel>) => (
   Block<FieldModel>({ autonomous: true, ...vmt(body), base: {
     initialize(b) {
-      const css = b.native.style
       b.model ??= createFieldModel()
-      // css.outlineOffset = "-1px"
       b.native.onscroll = () => {
         b.model.position = b.native.scrollTop
       }
     },
     render(b) {
       const m = b.model
-      const e = b.native
-      // e.style.outline = m.isEditMode ? "2px solid rgba(255, 127, 127, 1)" : "1px solid rgba(127, 127, 127, 0.25)"
       if (m.icon)
-        Icon(m.icon, b => {
-          // b.native.style.color = m.isEditMode ? "rgba(255, 127, 127, 1)" : "rgba(127, 127, 127, 0.25)"
-        })
+        Icon(m.icon)
       FieldInput(m)
       if (m.isEditMode)
         FieldPopup(m)
@@ -101,7 +95,7 @@ const FieldPopup = (model: FieldModel) => (
     initialize(b) {
       const e = b.native
       b.minWidth = "10em"
-      b.overlay = true
+      b.overlayVisible = true
       e.style.outlineOffset = "-0.5px"
       e.style.backgroundColor = "white"
       e.onscroll = () => model.position = e.scrollTop
