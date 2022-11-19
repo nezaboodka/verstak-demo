@@ -20,9 +20,7 @@ export const Field = (body?: BlockBody<HTMLElement, FieldModel>) => (
     initialize(b) {
       const css = b.native.style
       b.model ??= createFieldModel()
-      css.outlineOffset = "-1px"
-      css.borderRadius = "0.2rem"
-      css.padding = "0.25em"
+      // css.outlineOffset = "-1px"
       b.native.onscroll = () => {
         b.model.position = b.native.scrollTop
       }
@@ -30,10 +28,10 @@ export const Field = (body?: BlockBody<HTMLElement, FieldModel>) => (
     render(b) {
       const m = b.model
       const e = b.native
-      e.style.outline = m.isEditMode ? "2px solid rgba(255, 127, 127, 1)" : "1px solid rgba(127, 127, 127, 0.25)"
+      // e.style.outline = m.isEditMode ? "2px solid rgba(255, 127, 127, 1)" : "1px solid rgba(127, 127, 127, 0.25)"
       if (m.icon)
         Icon(m.icon, b => {
-          b.native.style.color = m.isEditMode ? "rgba(255, 127, 127, 1)" : "rgba(127, 127, 127, 0.25)"
+          // b.native.style.color = m.isEditMode ? "rgba(255, 127, 127, 1)" : "rgba(127, 127, 127, 0.25)"
         })
       FieldInput(m)
       if (m.isEditMode)
@@ -104,9 +102,7 @@ const FieldPopup = (model: FieldModel, anchor: VBlock<HTMLElement>) => (
       const e = b.native
       b.minWidth = "10em"
       b.floating = true
-      e.style.outlineOffset = "-1px"
-      e.style.borderRadius = "0.2rem"
-      e.style.padding = "0.25em"
+      e.style.outlineOffset = "-0.5px"
       e.style.backgroundColor = "white"
       e.onscroll = () => model.position = e.scrollTop
       const focused = document.activeElement
@@ -118,14 +114,14 @@ const FieldPopup = (model: FieldModel, anchor: VBlock<HTMLElement>) => (
         else
           e.style.left = `${bounds.left}px`
         if (bounds.top > document.body.clientHeight / 2)
-          e.style.bottom = `${document.body.offsetHeight - bounds.top - 1}px`
+          e.style.bottom = `${document.body.offsetHeight - bounds.top + 1}px`
         else
-          e.style.top = `${bounds.bottom}px`
+          e.style.top = `${bounds.bottom + 1}px`
       }
     },
     render(b) {
       const e = b.native
-      e.style.outline = "2px solid rgba(255, 127, 127, 1)"
+      e.style.outline = "1px solid rgba(127, 127, 127, 1)"
       const options = model.options
       if (options.length > 0) {
         for (const x of model.options) {

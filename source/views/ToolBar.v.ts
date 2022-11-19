@@ -4,6 +4,7 @@ import { Block, BlockBody, PlainText, lineFeed, Img, useContext, HtmlText, vmt, 
 import { Icon, Field, createFieldModel } from "gastronom"
 import { App } from "models/App"
 import * as s from "themes/Common.s"
+import { Markdown } from "verstak-markdown"
 
 export const ToolBar = (body?: BlockBody<HTMLElement, void, void>) => (
   Block({ ...vmt(body), base: {
@@ -41,15 +42,18 @@ export const ToolBar = (body?: BlockBody<HTMLElement, void, void>) => (
         b.native.classList.toggle(s.Panel, true)
         Block(b => {
           b.widthGrowth = 1
-          HtmlText(`<b>Verstak</b> v${app.version}`)
+          Markdown(`**Verstak** v${app.version}`)
           lineFeed()
-          PlainText("Try to change window size")
+          Markdown("Try to *change* window size")
         })
         Field({
           initialize(b) {
             const loader = app.loader
+            b.native.style.outlineOffset = "-0.5px"
+            b.native.style.outline = "1px solid rgba(127, 127, 127, 1)"
             b.minWidth = "7em"
             b.model = createFieldModel({
+              icon: "fa fa-solid fa-search",
               text: refs(loader).filter,
               options: refs(loader).loaded,
               isHotText: true,

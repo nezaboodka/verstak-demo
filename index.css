@@ -15,7 +15,7 @@ body > v-group > v-block {
   flex-grow: 1;
 }
 
-p {
+p:not(:last-child) {
   margin-bottom: 1em;
 }
 
