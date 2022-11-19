@@ -124,9 +124,7 @@ const FieldPopup = (model: FieldModel) => (
       if (options.length > 0) {
         for (const x of model.options) {
           lineFeed()
-          PlainText(x, {
-            key: x,
-          })
+          PlainText(x)
         }
       }
       else
