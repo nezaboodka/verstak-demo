@@ -92,16 +92,15 @@ const FieldPopup = (model: FieldModel) => (
     key: FieldPopup.name,
     initialize(b) {
       const e = b.native
-      e.style.outlineOffset = "-0.5px"
       e.style.backgroundColor = "white"
+      e.style.outline = "1px solid rgba(127, 127, 127, 1)"
+      e.style.outlineOffset = "-0.5px"
       e.onscroll = () => model.position = e.scrollTop
     },
     render(b) {
-      const e = b.native
-      const options = model.options
-      e.style.outline = "1px solid rgba(127, 127, 127, 1)"
-      const visible = b.overlayVisible = model.isEditMode === true
+      const visible = b.overlayVisible = model.isEditMode
       if (visible) {
+        const options = model.options
         if (options.length > 0) {
           for (const x of model.options) {
             lineFeed()
@@ -109,7 +108,7 @@ const FieldPopup = (model: FieldModel) => (
           }
         }
         else
-          PlainText("nothing found")
+          PlainText("(nothing found)")
       }
     },
   })
