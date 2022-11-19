@@ -62,6 +62,10 @@ v-line > *:not([overlay]), v-line > *[overlay="false"] {
   position: absolute;
 }
 
+[stacking], [stacking="true"] {
+  position: relative;
+}
+
 /* Verstak Blinking Effect */
 
 .verstak-blinking-effect-0-0 {

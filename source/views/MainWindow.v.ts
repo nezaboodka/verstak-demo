@@ -1,6 +1,8 @@
-import { cx } from "@emotion/css"
-import { Block, Align, PlainText, useContext, nestedContext, line } from "verstak"
+import { refs } from "reactronic"
+import { Block, Align, PlainText, useContext, nestedContext, line, lineFeed } from "verstak"
 import { Markdown } from "verstak-markdown"
+import { createFieldModel, Field } from "gastronom"
+import { cx } from "@emotion/css"
 import { Theme } from "themes/Theme"
 import { App } from "models/App"
 import { ToolBar } from "./ToolBar.v"
@@ -31,6 +33,36 @@ export const MainWindow = () => (
           b.frameAlignment = Align.Stretch
           b.native.className = s.Panel
           PlainText("Navigation Bar")
+          lineFeed()
+          Field({
+            initialize(b) {
+              const loader = app.loader
+              b.minWidth = "10em"
+              b.model = createFieldModel({
+                icon: "fa fa-solid fa-search",
+                text: refs(loader).filter,
+                options: refs(loader).loaded,
+                isHotText: true,
+                isMultiLineText: false,
+              })
+            },
+          })
+          lineFeed()
+          Block(b => b.heightGrowth = 1)
+          lineFeed()
+          Field({
+            initialize(b) {
+              const loader = app.loader
+              b.minWidth = "10em"
+              b.model = createFieldModel({
+                icon: "fa fa-solid fa-search",
+                text: refs(loader).filter,
+                options: refs(loader).loaded,
+                isHotText: true,
+                isMultiLineText: false,
+              })
+            },
+          })
         })
         WorkArea({
           render(b) {
