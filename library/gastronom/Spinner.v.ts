@@ -1,4 +1,4 @@
-import { Block, BlockBody, PlainText, FocusModel, lineFeed, vmt } from "verstak"
+import { Block, BlockBody, PlainText, vmt } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
 
 export interface SpinnerModel {

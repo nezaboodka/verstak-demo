@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { Block, BlockBody, PlainText, FocusModel, lineFeed, vmt, VBlock } from "verstak"
+import { Block, BlockBody, PlainText, FocusModel, lineFeed, vmt } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
 import { Icon } from "./Icon.v"
 
