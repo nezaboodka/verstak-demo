@@ -105,19 +105,16 @@ const FieldPopup = (model: FieldModel, anchor: VBlock<HTMLElement>) => (
       e.style.outlineOffset = "-0.5px"
       e.style.backgroundColor = "white"
       e.onscroll = () => model.position = e.scrollTop
-      const focused = document.activeElement
-      if (focused) {
-        const bounds = anchor.native.getBoundingClientRect()
-        const x = document.body.offsetWidth - bounds.left
-        if (x < document.body.offsetWidth / 2)
-          e.style.right = `${document.body.offsetWidth - bounds.right}px`
-        else
-          e.style.left = `${bounds.left}px`
-        if (bounds.top > document.body.clientHeight / 2)
-          e.style.bottom = `${document.body.offsetHeight - bounds.top + 1}px`
-        else
-          e.style.top = `${bounds.bottom + 1}px`
-      }
+      const bounds = anchor.native.getBoundingClientRect()
+      const x = document.body.offsetWidth - bounds.left
+      if (x < document.body.offsetWidth / 2)
+        e.style.right = `${document.body.offsetWidth - bounds.right}px`
+      else
+        e.style.left = `${bounds.left}px`
+      if (bounds.top > document.body.clientHeight / 2)
+        e.style.bottom = `${document.body.offsetHeight - bounds.top + 1}px`
+      else
+        e.style.top = `${bounds.bottom + 1}px`
     },
     render(b) {
       const e = b.native
