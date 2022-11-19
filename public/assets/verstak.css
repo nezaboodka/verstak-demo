@@ -54,17 +54,14 @@ v-grid > v-block {
   place-self: stretch;
 }
 
-v-line > *:not([overlay]), v-line > *[overlay="false"] {
-  align-self: center;
-}
-
-[overlay], [overlay="true"] {
-  position: absolute;
-}
-
-[stacking], [stacking="true"] {
-  position: relative;
-}
+v-line > *:not([overlay]) { align-self: center; }
+[overlay] { position: absolute; }
+[overlay="hidden"] { display: none; }
+[overlay="rightward-downward"] { left: 0; top: 100%; }
+[overlay="rightward-upward"] { left: 0; bottom: 100%; }
+[overlay="leftward-downward"] { right: 0; top: 100%; }
+[overlay="leftward-upward"] { right: 0; bottom: 100%; }
+[stacking="true"] { position: relative; }
 
 /* Verstak Blinking Effect */
 

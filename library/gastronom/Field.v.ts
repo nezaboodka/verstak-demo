@@ -25,11 +25,9 @@ export const Field = (body?: BlockBody<HTMLElement, FieldModel>) => (
     },
     render(b) {
       const m = b.model
-      if (m.icon)
-        Icon(m.icon)
+      m.icon && Icon(m.icon)
       FieldInput(m)
-      if (m.isEditMode)
-        FieldPopup(m)
+      FieldPopup(m)
     },
   }})
 )
@@ -95,23 +93,25 @@ const FieldPopup = (model: FieldModel) => (
     initialize(b) {
       const e = b.native
       b.minWidth = "10em"
-      b.overlayVisible = true
       e.style.outlineOffset = "-0.5px"
       e.style.backgroundColor = "white"
       e.onscroll = () => model.position = e.scrollTop
     },
     render(b) {
       const e = b.native
-      e.style.outline = "1px solid rgba(127, 127, 127, 1)"
       const options = model.options
-      if (options.length > 0) {
-        for (const x of model.options) {
-          lineFeed()
-          PlainText(x)
+      e.style.outline = "1px solid rgba(127, 127, 127, 1)"
+      const visible = b.overlayVisible = model.isEditMode === true
+      if (visible) {
+        if (options.length > 0) {
+          for (const x of model.options) {
+            lineFeed()
+            PlainText(x)
+          }
         }
+        else
+          PlainText("nothing found")
       }
-      else
-        PlainText("nothing found")
     },
   })
 )
