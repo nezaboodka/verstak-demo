@@ -38,7 +38,7 @@ export const MainWindow = () => (
               const loader = app.loader
               b.minWidth = "10em"
               b.model = createFieldModel({
-                icon: "fa fa-solid fa-search",
+                icon: "fa-solid fa-fw fa-search",
                 text: refs(loader).filter,
                 options: refs(loader).loaded,
                 isHotText: true,
@@ -54,7 +54,7 @@ export const MainWindow = () => (
               const loader = app.loader
               b.minWidth = "10em"
               b.model = createFieldModel({
-                icon: "fa fa-solid fa-search",
+                icon: "fa-solid fa-fw fa-search",
                 text: refs(loader).filter,
                 options: refs(loader).loaded,
                 isHotText: true,

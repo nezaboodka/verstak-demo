@@ -4,7 +4,6 @@ import { css } from "@emotion/css"
 export const Label = (text: string, body?: BlockBody<HTMLElement>) => (
   Block({ autonomous: true, ...vmt(body), base: {
     render(b) {
-      b.native.className = LabelStyle
       PlainText(text, {
         initialize(b) {
           b.contentWrapping = false
@@ -13,7 +12,3 @@ export const Label = (text: string, body?: BlockBody<HTMLElement>) => (
     }
   }})
 )
-
-const LabelStyle = css`
-  padding-left: 0.5em;
-`

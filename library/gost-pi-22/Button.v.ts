@@ -15,7 +15,7 @@ export const Button = (body?: BlockBody<HTMLElement, ButtonModel>) => (
   Block<ButtonModel>({ autonomous: true, ...vmt(body), base: {
     initialize(b) {
       b.model ??= observableModel({
-        icon: "fa fa-solid square",
+        icon: "fa-solid fa-fw fa-square",
         label: b.body.key,
       })
       b.native.onclick = () => Transaction.run(null, () => b.model.action?.())
