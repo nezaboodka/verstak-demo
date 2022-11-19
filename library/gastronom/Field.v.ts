@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { Block, BlockBody, PlainText, FocusModel, lineFeed, vmt } from "verstak"
+import { Block, BlockBody, PlainText, FocusModel, lineFeed, vmt, VBlock } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
 import { Icon } from "./Icon.v"
 
@@ -18,20 +18,26 @@ export interface FieldModel<T = string> extends FocusModel {
 export const Field = (body?: BlockBody<HTMLElement, FieldModel>) => (
   Block<FieldModel>({ autonomous: true, ...vmt(body), base: {
     initialize(b) {
+      const css = b.native.style
       b.model ??= createFieldModel()
+      css.outlineOffset = "-1px"
+      css.borderRadius = "0.2rem"
+      css.padding = "0.25em"
       b.native.onscroll = () => {
         b.model.position = b.native.scrollTop
       }
     },
     render(b) {
       const m = b.model
+      const e = b.native
+      e.style.outline = m.isEditMode ? "2px solid rgba(255, 127, 127, 1)" : "1px solid rgba(127, 127, 127, 0.25)"
       if (m.icon)
-        Icon(m.icon)
+        Icon(m.icon, b => {
+          b.native.style.color = m.isEditMode ? "rgba(255, 127, 127, 1)" : "rgba(127, 127, 127, 0.25)"
+        })
       FieldInput(m)
-      if (m.isEditMode) {
-        lineFeed()
-        FieldPopup(m)
-      }
+      if (m.isEditMode)
+        FieldPopup(m, b)
     },
   }})
 )
@@ -60,9 +66,6 @@ function FieldInput(model: FieldModel) {
         b.widthGrowth = 1
         e.tabIndex = 0
         e.contentEditable = "true"
-        e.style.outlineOffset = "-1px"
-        e.style.borderRadius = "0.2rem"
-        e.style.padding = "0.25em"
         e.onkeydown = event => {
           const m = model
           if (isApplyKey(m, event))
@@ -86,7 +89,6 @@ function FieldInput(model: FieldModel) {
       },
       redefinedRender(b) {
         const e = b.native
-        e.style.outline = model.isEditMode ? "2px solid rgba(255, 127, 127, 1)" : "1px solid rgba(127, 127, 127, 0.25)"
         if (!model.isEditMode)
           e.innerText = model.text
         // ReactingFocuser("Focuser", e, model)
@@ -95,7 +97,7 @@ function FieldInput(model: FieldModel) {
   )
 }
 
-const FieldPopup = (model: FieldModel) => (
+const FieldPopup = (model: FieldModel, anchor: VBlock<HTMLElement>) => (
   Block({ // popup itself
     key: FieldPopup.name,
     initialize(b) {
@@ -109,12 +111,16 @@ const FieldPopup = (model: FieldModel) => (
       e.onscroll = () => model.position = e.scrollTop
       const focused = document.activeElement
       if (focused) {
-        const bounds = focused.getBoundingClientRect()
+        const bounds = anchor.native.getBoundingClientRect()
         const x = document.body.offsetWidth - bounds.left
         if (x < document.body.offsetWidth / 2)
           e.style.right = `${document.body.offsetWidth - bounds.right}px`
+        else
+          e.style.left = `${bounds.left}px`
         if (bounds.top > document.body.clientHeight / 2)
           e.style.bottom = `${document.body.offsetHeight - bounds.top - 1}px`
+        else
+          e.style.top = `${bounds.bottom}px`
       }
     },
     render(b) {
