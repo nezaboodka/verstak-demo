@@ -54,11 +54,11 @@ v-grid > v-block {
   place-self: stretch;
 }
 
-v-line > *:not([floating]), v-line > *[floating="false"] {
+v-line > *:not([overlay]), v-line > *[overlay="false"] {
   align-self: center;
 }
 
-[floating], [floating="true"] {
+[overlay], [overlay="true"] {
   position: absolute;
 }
 

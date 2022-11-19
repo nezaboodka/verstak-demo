@@ -101,7 +101,7 @@ const FieldPopup = (model: FieldModel, anchor: VBlock<HTMLElement>) => (
     initialize(b) {
       const e = b.native
       b.minWidth = "10em"
-      b.floating = true
+      b.overlay = true
       e.style.outlineOffset = "-0.5px"
       e.style.backgroundColor = "white"
       e.onscroll = () => model.position = e.scrollTop
