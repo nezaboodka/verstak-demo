@@ -108,7 +108,7 @@ const FieldPopup = (model: FieldModel) => (
           }
         }
         else
-          PlainText("(nothing found)")
+          PlainText("(nothing)")
       }
     },
   })
