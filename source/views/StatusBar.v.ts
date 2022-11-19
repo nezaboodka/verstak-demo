@@ -68,13 +68,14 @@ export function StatusBar(body?: BlockBody<HTMLElement, void, void>) {
           Field({
             initialize(b, base) {
               const loader = app.loader
+              b.minWidth = "15em"
               b.model = createFieldModel({
+                icon: "fa fa-solid fa-search",
                 text: refs(loader).filter,
                 options: refs(loader).loaded,
                 isHotText: true,
                 isMultiLineText: false,
               })
-              b.minWidth = "15em"
               base()
             },
             render(b, base) {

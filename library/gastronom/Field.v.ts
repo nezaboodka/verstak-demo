@@ -1,8 +1,10 @@
+import { Transaction } from "reactronic"
 import { Block, BlockBody, asBaseFor, PlainText, FocusModel, lineFeed } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
-import { Transaction } from "reactronic"
+import { Icon } from "./Icon.v"
 
 export interface FieldModel<T = string> extends FocusModel {
+  icon?: string
   text: string
   options: Array<T>
   selected: T | undefined
@@ -25,6 +27,8 @@ export function Field(body?: BlockBody<HTMLElement, FieldModel>) {
       },
       render(b) {
         const m = b.model
+        if (m.icon)
+          Icon(m.icon)
         FieldInput(m)
         if (m.isEditMode) {
           lineFeed()
@@ -38,6 +42,7 @@ export function Field(body?: BlockBody<HTMLElement, FieldModel>) {
 export function createFieldModel<T>(props?: Partial<ValuesOrRefs<FieldModel<T>>>): FieldModel<T>
 {
   return observableModel({
+    icon: props?.icon,
     text: props?.text ?? "",
     options: props?.options ?? [],
     selected: props?.selected,
