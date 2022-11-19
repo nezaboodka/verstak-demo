@@ -39,8 +39,8 @@
     "jsx": "react",
     "forceConsistentCasingInFileNames": true,
     "paths": {
-      "gvozdi": [
-        "../library/gvozdi/api.ts"
+      "gost-01-22": [
+        "../library/gost-01-22/api.ts"
       ],
       "reactronic": [
         "../library/reactronic/source/api.ts"
