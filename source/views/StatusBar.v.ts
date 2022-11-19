@@ -1,6 +1,6 @@
 import { refs } from "reactronic"
 import { Block, BlockBody, useContext, Align, vmt } from "verstak"
-import { Button, Toggle, Field, createFieldModel } from "gost-01-22"
+import { Button, Toggle, Field, createFieldModel } from "gost-pi-22"
 import { observableModel } from "common/Utils"
 import { Theme } from "themes/Theme"
 import { App } from "models/App"
