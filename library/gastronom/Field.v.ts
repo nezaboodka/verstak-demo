@@ -92,7 +92,6 @@ const FieldPopup = (model: FieldModel) => (
     key: FieldPopup.name,
     initialize(b) {
       const e = b.native
-      b.minWidth = "10em"
       e.style.outlineOffset = "-0.5px"
       e.style.backgroundColor = "white"
       e.onscroll = () => model.position = e.scrollTop
