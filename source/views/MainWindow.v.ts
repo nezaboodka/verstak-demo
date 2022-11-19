@@ -1,7 +1,7 @@
 import { refs } from "reactronic"
 import { Block, Align, PlainText, useContext, nestedContext, line, lineFeed } from "verstak"
 import { Markdown } from "verstak-markdown"
-import { createFieldModel, Field } from "gastronom"
+import { createFieldModel, Field } from "gvozdi"
 import { cx } from "@emotion/css"
 import { Theme } from "themes/Theme"
 import { App } from "models/App"

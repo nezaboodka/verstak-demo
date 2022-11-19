@@ -1,7 +1,7 @@
 import { cx } from "@emotion/css"
 import { refs, Transaction } from "reactronic"
 import { Block, BlockBody, PlainText, lineFeed, Img, useContext, HtmlText, vmt, Align } from "verstak"
-import { Icon, Field, createFieldModel } from "gastronom"
+import { Icon, Field, createFieldModel } from "gvozdi"
 import { App } from "models/App"
 import * as s from "themes/Common.s"
 import { Markdown } from "verstak-markdown"
