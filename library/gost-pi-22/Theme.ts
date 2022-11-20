@@ -22,23 +22,6 @@ export function nestedTheme(theme: Theme): void {
   nestedContext(GostTheme, theme)
 }
 
-// export abstract class GostTheme extends ObservableObject implements Theme, ThemeVariables {
-//   abstract fillColor: string
-//   abstract textColor: string
-//   abstract positiveColor: string
-//   abstract negativeColor: string
-//   abstract borderRadius: string
-//   abstract outlineWidth: string
-//   abstract outlineColor: string
-//   abstract outlinePadding: string
-//   abstract shadow: string
-
-//   abstract button: ButtonStyle
-//   abstract field: FieldStyle
-//   abstract icon: IconStyle
-//   abstract toggle: ToggleStyle
-// }
-
 export class GostTheme extends ObservableObject implements Theme, ThemeVariables {
   fillColor = "white"
   textColor = "black"
@@ -57,3 +40,20 @@ export class GostTheme extends ObservableObject implements Theme, ThemeVariables
 }
 
 let DefaultGhostTheme: GostTheme | undefined = undefined
+
+// export abstract class GostTheme extends ObservableObject implements Theme, ThemeVariables {
+//   abstract fillColor: string
+//   abstract textColor: string
+//   abstract positiveColor: string
+//   abstract negativeColor: string
+//   abstract borderRadius: string
+//   abstract outlineWidth: string
+//   abstract outlineColor: string
+//   abstract outlinePadding: string
+//   abstract shadow: string
+
+//   abstract button: ButtonStyle
+//   abstract field: FieldStyle
+//   abstract icon: IconStyle
+//   abstract toggle: ToggleStyle
+// }
