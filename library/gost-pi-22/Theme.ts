@@ -15,7 +15,6 @@ export interface Theme {
 
 export function useTheme(): Theme {
   return tryUseContext(GostTheme) ?? (DefaultGhostTheme ??= Transaction.run({ separation: true }, () => new GostTheme()))
-
 }
 
 export function nestedTheme(theme: Theme): void {
