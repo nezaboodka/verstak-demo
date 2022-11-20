@@ -9,7 +9,7 @@ export interface Styles {
   readonly fieldStyle: string
   readonly fieldIconStyle: string
   readonly fieldInputStyle: string
-  readonly fieldDropdownStyle: string
+  readonly fieldPopupStyle: string
   readonly iconStyle: string
   readonly toggleStyle: string
   readonly toggleIconStyle: string
@@ -59,7 +59,7 @@ export class GostStyles extends ObservableObject implements Styles {
     padding: ${this.outlinePadding};
   `}
 
-  @cached get fieldDropdownStyle(): string { return css`
+  @cached get fieldPopupStyle(): string { return css`
     border-radius: ${this.borderRadius};
     outline: ${this.outlineWidth} solid ${this.outlineColor};
     outline-offset: -${this.outlineWidth};

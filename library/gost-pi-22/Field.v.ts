@@ -31,7 +31,7 @@ export const Field = (body?: BlockBody<HTMLElement, FieldModel>) => (
       b.style(s.fieldStyle)
       m.icon && Icon(m.icon, b => b.style(s.fieldIconStyle))
       FieldInput(m, s)
-      FieldDropdown(m, s)
+      FieldPopup(m, s)
     },
   }})
 )
@@ -87,16 +87,16 @@ function FieldInput(model: FieldModel, s: Styles) {
   )
 }
 
-const FieldDropdown = (model: FieldModel, s: Styles) => (
+const FieldPopup = (model: FieldModel, s: Styles) => (
   Block({ // popup itself
-    key: FieldDropdown.name,
+    key: FieldPopup.name,
     initialize(b) {
       const e = b.native
-      b.style(s.fieldDropdownStyle)
+      b.style(s.fieldPopupStyle)
       e.onscroll = () => model.position = e.scrollTop
     },
     render(b) {
-      b.style(s.fieldDropdownStyle)
+      b.style(s.fieldPopupStyle)
       const visible = b.overlayVisible = model.isEditMode
       if (visible) {
         const options = model.options
