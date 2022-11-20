@@ -103,11 +103,11 @@ const FieldPopup = (model: FieldModel, s: Styles) => (
         if (options.length > 0) {
           for (const x of model.options) {
             lineFeed()
-            PlainText(x)
+            PlainText(x, { key: x })
           }
         }
         else
-          PlainText("(nothing)")
+          PlainText("(nothing)", { key: "(nothing)" })
       }
     },
   })
