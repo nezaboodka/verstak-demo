@@ -36,6 +36,7 @@ export class GostStyles extends ObservableObject implements Styles {
     border-radius: ${this.borderRadius};
     outline: ${this.outlineWidth} solid ${this.outlineColor};
     outline-offset: -${this.outlineWidth};
+    user-select: none;
   `}
 
   @cached get buttonIconStyle(): string { return css`
@@ -85,6 +86,7 @@ export class GostStyles extends ObservableObject implements Styles {
 
   @cached get toggleStyle(): string { return css`
     cursor: pointer;
+    user-select: none;
   `}
 
   @cached get toggleIconStyle(): string { return css`
