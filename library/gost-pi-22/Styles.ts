@@ -29,7 +29,7 @@ export class GostStyles extends ObservableObject implements Styles {
   outlineWidth = "1px"
   outlineColor = "rgba(127, 127, 127, 0.5)"
   outlinePadding = "0.25em"
-  shadow = "0.05rem 0.05rem 0.15rem 0 rgba(127, 127, 127, 0.5)"
+  shadow = "0.1rem 0.1rem 0.5rem 0 rgba(127, 127, 127, 0.5)"
 
   @cached get buttonStyle(): string { return css`
     cursor: pointer;
