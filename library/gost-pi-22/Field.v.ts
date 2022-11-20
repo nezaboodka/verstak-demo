@@ -1,7 +1,9 @@
-import { Transaction } from "reactronic"
-import { Block, BlockBody, PlainText, FocusModel, lineFeed, vmt, ReactingFocuser, FocusSensor } from "verstak"
+import { cached, Transaction } from "reactronic"
+import { Block, BlockBody, PlainText, FocusModel, lineFeed, vmt, ReactingFocuser } from "verstak"
+import { css } from "@emotion/css"
 import { observableModel, ValuesOrRefs } from "common/Utils"
-import { Styles, useStyles } from "./Styles"
+import { ComponentStyles } from "./ThemeVars"
+import { useTheme } from "./Theme"
 import { Icon } from "./Icon.v"
 
 export interface FieldModel<T = string> extends FocusModel {
@@ -16,6 +18,13 @@ export interface FieldModel<T = string> extends FocusModel {
   inputStyle: string
 }
 
+export interface FieldStyle {
+  main: string
+  icon: string
+  input: string
+  popup: string
+}
+
 export const Field = (body?: BlockBody<HTMLElement, FieldModel>) => (
   Block<FieldModel>({ autonomous: true, ...vmt(body), base: {
     initialize(b) {
@@ -27,9 +36,9 @@ export const Field = (body?: BlockBody<HTMLElement, FieldModel>) => (
     },
     render(b) {
       const m = b.model
-      const s = useStyles()
-      b.style(s.fieldStyle)
-      m.icon && Icon(m.icon, b => b.style(s.fieldIconStyle))
+      const s = useTheme().field
+      b.style(s.main)
+      m.icon && Icon(m.icon, b => b.style(s.icon))
       FieldInput(m, s)
       FieldPopup(m, s)
     },
@@ -51,13 +60,13 @@ export function createFieldModel<T>(props?: Partial<ValuesOrRefs<FieldModel<T>>>
   })
 }
 
-function FieldInput(model: FieldModel, s: Styles) {
+function FieldInput(model: FieldModel, s: FieldStyle) {
   return (
     PlainText(model.text, {
       key: FieldInput.name,
       initialize(b) {
         const e = b.native
-        b.style(s.fieldInputStyle)
+        b.style(s.input)
         b.widthGrowth = 1
         e.tabIndex = 0
         e.contentEditable = "true"
@@ -87,16 +96,15 @@ function FieldInput(model: FieldModel, s: Styles) {
   )
 }
 
-const FieldPopup = (model: FieldModel, s: Styles) => (
+const FieldPopup = (model: FieldModel, s: FieldStyle) => (
   Block({ // popup itself
     key: FieldPopup.name,
     initialize(b) {
       const e = b.native
-      b.style(s.fieldPopupStyle)
       e.onscroll = () => model.position = e.scrollTop
     },
     render(b) {
-      b.style(s.fieldPopupStyle)
+      b.style(s.popup)
       const visible = b.overlayVisible = model.isEditMode
       if (visible) {
         const options = model.options
@@ -125,4 +133,35 @@ function selectAllAndPreventDefault(event: KeyboardEvent, e: HTMLElement): void 
   sel?.removeAllRanges()
   sel?.addRange(range)
   event.preventDefault()
+}
+
+export class DefaultFieldStyle extends ComponentStyles implements FieldStyle {
+
+  @cached get main(): string { return css`
+    border-radius: ${this.$.borderRadius};
+    outline: ${this.$.outlineWidth} solid ${this.$.outlineColor};
+    outline-offset: -${this.$.outlineWidth};
+  `}
+
+  @cached get icon(): string { return css`
+    margin-left: ${this.$.outlinePadding};
+    min-width: 1.25em;
+    text-align: center;
+    color: ${this.$.outlineColor};
+  `}
+
+  @cached get input(): string { return css`
+    padding: ${this.$.outlinePadding};
+  `}
+
+  @cached get popup(): string { return css`
+    border-radius: ${this.$.borderRadius};
+    outline: ${this.$.outlineWidth} solid ${this.$.outlineColor};
+    outline-offset: -${this.$.outlineWidth};
+    padding: ${this.$.outlinePadding};
+    background-color: ${this.$.fillColor};
+    margin-top: -${this.$.outlineWidth};
+    margin-bottom: -${this.$.outlineWidth};
+    box-shadow: ${this.$.shadow};
+  `}
 }

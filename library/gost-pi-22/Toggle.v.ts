@@ -1,13 +1,21 @@
-import { Transaction } from "reactronic"
+import { cached, Transaction } from "reactronic"
 import { Block, BlockBody, PlainText, vmt } from "verstak"
+import { css } from "@emotion/css"
 import { observableModel } from "common/Utils"
+import { ComponentStyles } from "./ThemeVars"
+import { useTheme } from "./Theme"
 import { Icon } from "./Icon.v"
-import { useStyles } from "./Styles"
 
 export interface ToggleModel {
   label?: string
   checked?: boolean
   color?: string
+}
+
+export interface ToggleStyle {
+  main: string
+  icon: string
+  label: string
 }
 
 export const Toggle = (body?: BlockBody<HTMLElement, ToggleModel>) => (
@@ -21,14 +29,33 @@ export const Toggle = (body?: BlockBody<HTMLElement, ToggleModel>) => (
     },
     render(b) {
       const m = b.model
-      const s = useStyles()
-      b.style(s.toggleStyle)
+      const s = useTheme().toggle
+      b.style(s.main)
       Icon(`fa-solid fa-toggle-${m.checked ? "on" : "off"}`, b => {
-        b.style(s.toggleIconStyle)
+        b.style(s.icon)
         b.native.style.color = m.checked ? (m.color ?? "") : "" // subscribe to ToggleModel.checked
       })
       if (m.label)
-        PlainText(m.label, b => b.style(s.toggleLabelStyle))
+        PlainText(m.label, b => b.style(s.label))
     },
   }})
 )
+
+export class DefaultToggleStyle extends ComponentStyles implements ToggleStyle {
+
+  @cached get main(): string { return css`
+    cursor: pointer;
+    user-select: none;
+  `}
+
+  @cached get icon(): string { return css`
+    min-width: auto;
+    margin-left: ${this.$.outlinePadding};
+    margin-right: ${this.$.outlinePadding};
+  `}
+
+  @cached get label(): string { return css`
+    margin-left: ${this.$.outlinePadding};
+    margin-right: ${this.$.outlinePadding};
+  `}
+}
