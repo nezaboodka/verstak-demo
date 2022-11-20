@@ -27,7 +27,6 @@ const Ruler = (title: string, frameAlignment: Align, overlap?: boolean) => (
   Block(b => {
     b.frameAlignment = frameAlignment
     b.cells = { horizontalOverlap: overlap }
-    b.native.style.zIndex = "1"
     b.native.style.fontSize = "smaller"
     HtmlText(`&nbsp;${title}`)
   })
@@ -37,7 +36,7 @@ const ExampleData = (place: string) => (
   Block({
     initialize(b) {
       b.contentAlignment = Align.Center + Align.CenterV
-      b.native.className = s.Important
+      b.native.className = s.ImportantOutline
     },
     render(b) {
       b.cells = place

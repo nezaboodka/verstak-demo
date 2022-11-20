@@ -28,6 +28,10 @@ export const Important = css`
   border: 1px solid #D30505;
 `
 
+export const ImportantOutline = css`
+  border: 1px solid #D30505;
+`
+
 export const Hint = css`
   font-size: smaller;
   border: 1px solid silver;
