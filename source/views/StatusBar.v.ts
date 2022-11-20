@@ -51,9 +51,9 @@ export const StatusBar = (body?: BlockBody<HTMLElement, void, void>) => (
         b.native.classList.toggle(s.Panel, true)
       })
       Block(b => {
+        b.style(s.Panel)
         b.widthGrowth = 1
         b.contentAlignment = Align.Right
-        b.native.className = s.Panel
         Field({
           initialize(b) {
             const loader = app.loader

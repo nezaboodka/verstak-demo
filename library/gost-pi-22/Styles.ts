@@ -22,6 +22,9 @@ export function useStyles(): Styles {
 
 export class GostStyles extends ObservableObject implements Styles {
   fillColor = "white"
+  textColor = "black"
+  positiveColor = "green"
+  negativeColor = "red"
   borderRadius = "0.35rem"
   outlineWidth = "1px"
   outlineColor = "rgba(127, 127, 127, 0.5)"
@@ -36,12 +39,14 @@ export class GostStyles extends ObservableObject implements Styles {
   `}
 
   @cached get buttonIconStyle(): string { return css`
-    min-width: 1.25em;
-    & > :first-child { margin-right: ${this.outlinePadding}; }
-    & > :last-child { margin-left: ${this.outlinePadding}; }
+    min-width: auto;
+    margin-left: ${this.outlinePadding};
+    margin-right: ${this.outlinePadding};
   `}
 
   @cached get buttonLabelStyle(): string { return css`
+    margin-left: ${this.outlinePadding};
+    margin-right: ${this.outlinePadding};
   `}
 
   @cached get fieldStyle(): string { return css`
@@ -52,6 +57,8 @@ export class GostStyles extends ObservableObject implements Styles {
 
   @cached get fieldIconStyle(): string { return css`
     margin-left: ${this.outlinePadding};
+    min-width: 1.25em;
+    text-align: center;
     color: ${this.outlineColor};
   `}
 
@@ -72,15 +79,23 @@ export class GostStyles extends ObservableObject implements Styles {
 
   @cached get iconStyle(): string { return css`
     min-width: 1.25em;
+    min-height: auto;
+    text-align: center;
   `}
 
   @cached get toggleStyle(): string { return css`
+    cursor: pointer;
   `}
 
   @cached get toggleIconStyle(): string { return css`
+    min-width: auto;
+    margin-left: ${this.outlinePadding};
+    margin-right: ${this.outlinePadding};
   `}
 
   @cached get toggleLabelStyle(): string { return css`
+    margin-left: ${this.outlinePadding};
+    margin-right: ${this.outlinePadding};
   `}
 }
 

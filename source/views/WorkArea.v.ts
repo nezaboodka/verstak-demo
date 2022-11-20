@@ -35,8 +35,8 @@ const Ruler = (title: string, frameAlignment: Align, overlap?: boolean) => (
 const ExampleData = (place: string) => (
   Block({
     initialize(b) {
+      b.style(s.ImportantOutline)
       b.contentAlignment = Align.Center + Align.CenterV
-      b.native.className = s.ImportantOutline
     },
     render(b) {
       b.cells = place

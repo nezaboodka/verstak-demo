@@ -32,10 +32,10 @@ export const MainWindow = () => (
 
       line(l => { // main line
         Block(b => {
+          b.style(s.Panel)
           b.minWidth = "10rem"
           b.contentAlignment = Align.Top
           b.frameAlignment = Align.Stretch
-          b.native.className = s.Panel
           PlainText("Navigation Bar")
           lineFeed()
           Field({
@@ -69,20 +69,22 @@ export const MainWindow = () => (
         })
         WorkArea({
           render(b) {
+            b.style(s.Panel)
+            b.style(s.Important)
             b.widthGrowth = 3
             b.heightGrowth = 1
-            b.native.className = cx(s.Panel, s.Important)
           }
         })
         Block({
           autonomous: true,
           render(b) {
             const theme = useContext(Theme)
+            b.style(s.Panel)
+            b.style(theme.markdown)
             b.minWidth = "16rem"
             b.widthGrowth = 2
             b.contentAlignment = Align.Left + Align.Top,
             b.frameAlignment = Align.Stretch,
-            b.native.className = cx(s.Panel, theme.markdown)
             Markdown(EXAMPLE_CODE)
           }
         })

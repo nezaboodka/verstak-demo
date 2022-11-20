@@ -2,7 +2,7 @@ import { Transaction } from "reactronic"
 import { Block, BlockBody, PlainText, vmt } from "verstak"
 import { observableModel } from "common/Utils"
 import { Icon } from "./Icon.v"
-import * as s from "themes/Common.s"
+import { useStyles } from "./Styles"
 
 export interface ToggleModel {
   label?: string
@@ -20,13 +20,15 @@ export const Toggle = (body?: BlockBody<HTMLElement, ToggleModel>) => (
       b.native.onclick = () => Transaction.run(null, () => b.model.checked = !b.model.checked)
     },
     render(b) {
-      b.native.className = s.Clickable // style is not inside "initialize", because of theming
       const m = b.model
+      const s = useStyles()
+      b.style(s.toggleStyle)
       Icon(`fa-solid fa-toggle-${m.checked ? "on" : "off"}`, b => {
+        b.style(s.toggleIconStyle)
         b.native.style.color = m.checked ? (m.color ?? "") : "" // subscribe to ToggleModel.checked
       })
       if (m.label)
-        PlainText(m.label)
+        PlainText(m.label, b => b.style(s.toggleLabelStyle))
     },
   }})
 )

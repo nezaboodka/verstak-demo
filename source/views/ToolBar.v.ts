@@ -26,7 +26,9 @@ export const ToolBar = (body?: BlockBody<HTMLElement, void, void>) => (
       // })
       Block({ // Logo
         initialize(b) {
-          b.native.className = cx(s.Panel, s.Clickable, s.Logo)
+          b.style(s.Panel)
+          b.style(s.Clickable)
+          b.style(s.Logo)
           b.native.style.outlineOffset = "-1px"
           b.native.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
         },
@@ -65,7 +67,9 @@ export const ToolBar = (body?: BlockBody<HTMLElement, void, void>) => (
           b.native.onclick = () => Transaction.run(null, () => app.nextTheme())
         },
         render(b) {
-          b.native.className = cx(s.Panel, s.Hint, s.Clickable)
+          b.style(s.Panel)
+          b.style(s.Hint)
+          b.style(s.Clickable)
           Icon("fa-solid fa-bars")
         }
       })
