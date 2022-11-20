@@ -12,6 +12,10 @@ import * as s from "themes/Common.s"
 
 export const MainWindow = () => (
   Block({ autonomous: true,
+    initialize(b) {
+      const app = useContext(App)
+      app.sensors.listen(b.native)
+    },
     render(b) {
       const app = useContext(App)
       nestedContext(Theme, app.theme)

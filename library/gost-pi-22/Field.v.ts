@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { Block, BlockBody, PlainText, FocusModel, lineFeed, vmt } from "verstak"
+import { Block, BlockBody, PlainText, FocusModel, lineFeed, vmt, ReactingFocuser, FocusSensor } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
 import { Icon } from "./Icon.v"
 
@@ -19,6 +19,7 @@ export const Field = (body?: BlockBody<HTMLElement, FieldModel>) => (
   Block<FieldModel>({ autonomous: true, ...vmt(body), base: {
     initialize(b) {
       b.model ??= createFieldModel()
+      b.native.dataForSensor.focus = b.model
       b.native.onscroll = () => {
         b.model.position = b.native.scrollTop
       }
@@ -56,6 +57,7 @@ function FieldInput(model: FieldModel) {
         b.widthGrowth = 1
         e.tabIndex = 0
         e.contentEditable = "true"
+        e.dataForSensor.focus = model
         e.onkeydown = event => {
           const m = model
           if (isApplyKey(m, event))
@@ -70,18 +72,12 @@ function FieldInput(model: FieldModel) {
           else if (m.isHotText)
             Transaction.run(null, () => { m.text = e.innerText })
         }
-        e.onfocus = () => {
-          Transaction.run(null, () => model.isEditMode = true)
-        }
-        e.onblur = () => {
-          Transaction.run(null, () => model.isEditMode = false)
-        }
       },
       redefinedRender(b) {
         const e = b.native
         if (!model.isEditMode)
           e.innerText = model.text
-        // ReactingFocuser("Focuser", e, model)
+        ReactingFocuser(e, model)
       },
     })
   )

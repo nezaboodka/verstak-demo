@@ -5,6 +5,7 @@ import { Loader } from "./Loader"
 
 export class App extends ObservableObject {
   version: string
+  sensors: HtmlSensors
   allThemes: Array<Theme>
   activeThemeIndex: number
   blinkingEffect: boolean
@@ -13,6 +14,7 @@ export class App extends ObservableObject {
   constructor(version: string, ...themes: Array<Theme>) {
     super()
     this.version = version
+    this.sensors = new HtmlSensors()
     this.allThemes = themes
     this.activeThemeIndex = 0
     this.blinkingEffect = false
