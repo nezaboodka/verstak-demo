@@ -1,8 +1,7 @@
 import { Transaction } from "reactronic"
-import { Block, BlockBody, vmt } from "verstak"
+import { Block, BlockBody, PlainText, vmt } from "verstak"
 import { observableModel } from "common/Utils"
 import { Icon } from "./Icon.v"
-import { Label } from "./Label.v"
 import * as s from "themes/Common.s"
 
 export interface ButtonModel {
@@ -26,7 +25,7 @@ export const Button = (body?: BlockBody<HTMLElement, ButtonModel>) => (
       if (m.icon)
         Icon(m.icon)
       if (m.label)
-        Label(m.label)
+        PlainText(m.label)
     },
   }})
 )

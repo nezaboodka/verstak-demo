@@ -1,8 +1,7 @@
 import { Transaction } from "reactronic"
-import { Block, BlockBody, vmt } from "verstak"
+import { Block, BlockBody, PlainText, vmt } from "verstak"
 import { observableModel } from "common/Utils"
 import { Icon } from "./Icon.v"
-import { Label } from "./Label.v"
 import * as s from "themes/Common.s"
 
 export interface ToggleModel {
@@ -27,7 +26,7 @@ export const Toggle = (body?: BlockBody<HTMLElement, ToggleModel>) => (
         b.native.style.color = m.checked ? (m.color ?? "") : "" // subscribe to ToggleModel.checked
       })
       if (m.label)
-        Label(m.label)
+        PlainText(m.label)
     },
   }})
 )
