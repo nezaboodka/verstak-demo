@@ -51,7 +51,7 @@ export const ToolBar = (body?: BlockBody<HTMLElement, void, void>) => (
             const loader = app.loader
             b.minWidth = "7em"
             b.model = createFieldModel({
-              icon: "fa-solid fa-fw fa-search",
+              icon: "fa-solid fa-search",
               text: refs(loader).filter,
               options: refs(loader).loaded,
               isHotText: true,
@@ -66,7 +66,7 @@ export const ToolBar = (body?: BlockBody<HTMLElement, void, void>) => (
         },
         render(b) {
           b.native.className = cx(s.Panel, s.Hint, s.Clickable)
-          Icon("fa-solid fa-fw fa-bars")
+          Icon("fa-solid fa-bars")
         }
       })
     }},

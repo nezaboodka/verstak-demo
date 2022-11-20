@@ -35,7 +35,7 @@ export const StatusBar = (body?: BlockBody<HTMLElement, void, void>) => (
       Button({ key: "Theme",
         initialize(b) {
           b.model = observableModel({
-            icon: "fa-solid fa-fw fa-palette",
+            icon: "fa-solid fa-palette",
             label: "Switch Theme",
             action() { app.nextTheme() }
           })
@@ -59,7 +59,7 @@ export const StatusBar = (body?: BlockBody<HTMLElement, void, void>) => (
             const loader = app.loader
             b.minWidth = "10em"
             b.model = createFieldModel({
-              icon: "fa-solid fa-fw fa-search",
+              icon: "fa-solid fa-search",
               text: refs(loader).filter,
               options: refs(loader).loaded,
               isHotText: true,

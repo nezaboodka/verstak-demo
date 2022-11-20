@@ -22,7 +22,7 @@ export const Toggle = (body?: BlockBody<HTMLElement, ToggleModel>) => (
     render(b) {
       b.native.className = s.Clickable // style is not inside "initialize", because of theming
       const m = b.model
-      Icon(`fa-solid fa-fw fa-toggle-${m.checked ? "on" : "off"}`, b => {
+      Icon(`fa-solid fa-toggle-${m.checked ? "on" : "off"}`, b => {
         b.native.style.color = m.checked ? (m.color ?? "") : "" // subscribe to ToggleModel.checked
       })
       if (m.label)
