@@ -1,8 +1,8 @@
 import { Transaction } from "reactronic"
 import { Block, BlockBody, PlainText, vmt } from "verstak"
 import { observableModel } from "common/Utils"
+import { useStyles } from "./Styles"
 import { Icon } from "./Icon.v"
-import * as s from "themes/Common.s"
 
 export interface ButtonModel {
   icon?: string
@@ -20,12 +20,13 @@ export const Button = (body?: BlockBody<HTMLElement, ButtonModel>) => (
       b.native.onclick = () => Transaction.run(null, () => b.model.action?.())
     },
     render(b) {
-      b.native.className = s.Clickable // style is not inside "initialize", because of theming
       const m = b.model
+      const s = useStyles()
+      b.style(s.buttonStyle)
       if (m.icon)
-        Icon(m.icon)
+        Icon(m.icon, b => b.style(s.buttonIconStyle))
       if (m.label)
-        PlainText(m.label)
+        PlainText(m.label, b => b.style(s.buttonLabelStyle))
     },
   }})
 )

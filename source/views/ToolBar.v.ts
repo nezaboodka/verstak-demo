@@ -49,8 +49,6 @@ export const ToolBar = (body?: BlockBody<HTMLElement, void, void>) => (
         Field({
           initialize(b) {
             const loader = app.loader
-            b.native.style.outlineOffset = "-0.5px"
-            b.native.style.outline = "1px solid rgba(127, 127, 127, 1)"
             b.minWidth = "7em"
             b.model = createFieldModel({
               icon: "fa-solid fa-fw fa-search",

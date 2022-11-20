@@ -1,6 +1,7 @@
 import { Transaction } from "reactronic"
 import { Block, BlockBody, PlainText, FocusModel, lineFeed, vmt, ReactingFocuser, FocusSensor } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
+import { Styles, useStyles } from "./Styles"
 import { Icon } from "./Icon.v"
 
 export interface FieldModel<T = string> extends FocusModel {
@@ -26,9 +27,11 @@ export const Field = (body?: BlockBody<HTMLElement, FieldModel>) => (
     },
     render(b) {
       const m = b.model
-      m.icon && Icon(m.icon)
-      FieldInput(m)
-      FieldPopup(m)
+      const s = useStyles()
+      b.style(s.fieldStyle)
+      m.icon && Icon(m.icon, b => b.style(s.fieldIconStyle))
+      FieldInput(m, s)
+      FieldDropdown(m, s)
     },
   }})
 )
@@ -48,12 +51,13 @@ export function createFieldModel<T>(props?: Partial<ValuesOrRefs<FieldModel<T>>>
   })
 }
 
-function FieldInput(model: FieldModel) {
+function FieldInput(model: FieldModel, s: Styles) {
   return (
     PlainText(model.text, {
       key: FieldInput.name,
       initialize(b) {
         const e = b.native
+        b.style(s.fieldInputStyle)
         b.widthGrowth = 1
         e.tabIndex = 0
         e.contentEditable = "true"
@@ -83,17 +87,16 @@ function FieldInput(model: FieldModel) {
   )
 }
 
-const FieldPopup = (model: FieldModel) => (
+const FieldDropdown = (model: FieldModel, s: Styles) => (
   Block({ // popup itself
-    key: FieldPopup.name,
+    key: FieldDropdown.name,
     initialize(b) {
       const e = b.native
-      e.style.backgroundColor = "white"
-      e.style.outline = "1px solid rgba(127, 127, 127, 1)"
-      e.style.outlineOffset = "-0.5px"
+      b.style(s.fieldDropdownStyle)
       e.onscroll = () => model.position = e.scrollTop
     },
     render(b) {
+      b.style(s.fieldDropdownStyle)
       const visible = b.overlayVisible = model.isEditMode
       if (visible) {
         const options = model.options

@@ -15,6 +15,7 @@ export const MainWindow = () => (
     initialize(b) {
       const app = useContext(App)
       app.sensors.listen(b.native)
+
     },
     render(b) {
       const app = useContext(App)
