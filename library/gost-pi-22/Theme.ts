@@ -1,16 +1,16 @@
 import { ObservableObject, Transaction } from "reactronic"
 import { nestedContext, tryUseContext } from "verstak"
-import { ButtonStyle, DefaultButtonStyle } from "./Button.v"
-import { FieldStyle, DefaultFieldStyle  } from "./Field.v"
-import { IconStyle, DefaultIconStyle  } from "./Icon.v"
-import { ThemeVariables } from "./ThemeVars"
-import { ToggleStyle, DefaultToggleStyle } from "./Toggle.v"
+import { ThemeVars } from "./Styling"
+import { ButtonStyling, DefaultButtonStyling } from "./Button.v"
+import { FieldStyling, DefaultFieldStyling  } from "./Field.v"
+import { IconStyling, DefaultIconStyling  } from "./Icon.v"
+import { ToggleStyling, DefaultToggleStyling } from "./Toggle.v"
 
-export interface Theme {
-  readonly button: ButtonStyle
-  readonly field: FieldStyle
-  readonly icon: IconStyle
-  readonly toggle: ToggleStyle
+export interface Theme extends ThemeVars {
+  readonly button: ButtonStyling
+  readonly field: FieldStyling
+  readonly icon: IconStyling
+  readonly toggle: ToggleStyling
 }
 
 export function useTheme(): Theme {
@@ -21,7 +21,7 @@ export function nestedTheme(theme: Theme): void {
   nestedContext(GostTheme, theme)
 }
 
-export class GostTheme extends ObservableObject implements Theme, ThemeVariables {
+export class GostTheme extends ObservableObject implements Theme {
   fillColor = "white"
   textColor = "black"
   positiveColor = "green"
@@ -32,10 +32,10 @@ export class GostTheme extends ObservableObject implements Theme, ThemeVariables
   outlinePadding = "0.25em"
   shadow = "0.1rem 0.1rem 0.5rem 0 rgba(127, 127, 127, 0.5)"
 
-  button = new DefaultButtonStyle(this)
-  field = new DefaultFieldStyle(this)
-  icon = new DefaultIconStyle(this)
-  toggle = new DefaultToggleStyle(this)
+  button = new DefaultButtonStyling(this)
+  field = new DefaultFieldStyling(this)
+  icon = new DefaultIconStyling(this)
+  toggle = new DefaultToggleStyling(this)
 }
 
 let DefaultGhostTheme: GostTheme | undefined = undefined

@@ -2,7 +2,7 @@ import { cached, Transaction } from "reactronic"
 import { Block, BlockBody, PlainText, vmt } from "verstak"
 import { css } from "@emotion/css"
 import { observableModel } from "common/Utils"
-import { ComponentStyles } from "./ThemeVars"
+import { Styling } from "./Styling"
 import { useTheme } from "./Theme"
 import { Icon } from "./Icon.v"
 
@@ -12,7 +12,7 @@ export interface ButtonModel {
   action?(): void
 }
 
-export interface ButtonStyle {
+export interface ButtonStyling {
   main: string
   icon: string
   label: string
@@ -39,7 +39,7 @@ export const Button = (body?: BlockBody<HTMLElement, ButtonModel>) => (
   }})
 )
 
-export class DefaultButtonStyle extends ComponentStyles implements ButtonStyle {
+export class DefaultButtonStyling extends Styling implements ButtonStyling {
 
   @cached get main(): string { return css`
     cursor: pointer;

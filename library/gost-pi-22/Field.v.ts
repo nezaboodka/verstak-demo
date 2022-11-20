@@ -2,7 +2,7 @@ import { cached, Transaction } from "reactronic"
 import { Block, BlockBody, PlainText, FocusModel, lineFeed, vmt, ReactingFocuser } from "verstak"
 import { css } from "@emotion/css"
 import { observableModel, ValuesOrRefs } from "common/Utils"
-import { ComponentStyles } from "./ThemeVars"
+import { Styling } from "./Styling"
 import { useTheme } from "./Theme"
 import { Icon } from "./Icon.v"
 
@@ -18,7 +18,7 @@ export interface FieldModel<T = string> extends FocusModel {
   inputStyle: string
 }
 
-export interface FieldStyle {
+export interface FieldStyling {
   main: string
   icon: string
   input: string
@@ -60,7 +60,7 @@ export function createFieldModel<T>(props?: Partial<ValuesOrRefs<FieldModel<T>>>
   })
 }
 
-function FieldInput(model: FieldModel, s: FieldStyle) {
+function FieldInput(model: FieldModel, s: FieldStyling) {
   return (
     PlainText(model.text, {
       key: FieldInput.name,
@@ -96,7 +96,7 @@ function FieldInput(model: FieldModel, s: FieldStyle) {
   )
 }
 
-const FieldPopup = (model: FieldModel, s: FieldStyle) => (
+const FieldPopup = (model: FieldModel, s: FieldStyling) => (
   Block({ // popup itself
     key: FieldPopup.name,
     initialize(b) {
@@ -135,7 +135,7 @@ function selectAllAndPreventDefault(event: KeyboardEvent, e: HTMLElement): void 
   event.preventDefault()
 }
 
-export class DefaultFieldStyle extends ComponentStyles implements FieldStyle {
+export class DefaultFieldStyling extends Styling implements FieldStyling {
 
   @cached get main(): string { return css`
     border-radius: ${this.$.borderRadius};

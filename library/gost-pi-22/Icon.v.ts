@@ -1,10 +1,10 @@
 import { css } from "@emotion/css"
 import { cached } from "reactronic"
 import { Block, BlockBody, vmt } from "verstak"
-import { ComponentStyles } from "./ThemeVars"
+import { Styling } from "./Styling"
 import { useTheme } from "./Theme"
 
-export interface IconStyle {
+export interface IconStyling {
   main: string
 }
 
@@ -18,7 +18,7 @@ export const Icon = (name: string, body?: BlockBody<HTMLElement, void, void>) =>
   }})
 )
 
-export class DefaultIconStyle extends ComponentStyles implements IconStyle {
+export class DefaultIconStyling extends Styling implements IconStyling {
   @cached get main(): string { return css`
     min-width: 1.25em;
     min-height: auto;

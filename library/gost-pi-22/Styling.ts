@@ -1,6 +1,6 @@
 import { ObservableObject, raw } from "reactronic"
 
-export interface ThemeVariables {
+export interface ThemeVars {
   fillColor: string
   textColor: string
   positiveColor: string
@@ -12,10 +12,10 @@ export interface ThemeVariables {
   shadow: string
 }
 
-export class ComponentStyles extends ObservableObject {
-  @raw protected readonly $: ThemeVariables
+export class Styling extends ObservableObject {
+  @raw protected readonly $: ThemeVars
 
-  constructor(variables: ThemeVariables) {
+  constructor(variables: ThemeVars) {
     super()
     this.$ = variables
   }

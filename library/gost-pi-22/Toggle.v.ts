@@ -2,7 +2,7 @@ import { cached, Transaction } from "reactronic"
 import { Block, BlockBody, PlainText, vmt } from "verstak"
 import { css } from "@emotion/css"
 import { observableModel } from "common/Utils"
-import { ComponentStyles } from "./ThemeVars"
+import { Styling } from "./Styling"
 import { useTheme } from "./Theme"
 import { Icon } from "./Icon.v"
 
@@ -12,7 +12,7 @@ export interface ToggleModel {
   color?: string
 }
 
-export interface ToggleStyle {
+export interface ToggleStyling {
   main: string
   icon: string
   label: string
@@ -41,7 +41,7 @@ export const Toggle = (body?: BlockBody<HTMLElement, ToggleModel>) => (
   }})
 )
 
-export class DefaultToggleStyle extends ComponentStyles implements ToggleStyle {
+export class DefaultToggleStyling extends Styling implements ToggleStyling {
 
   @cached get main(): string { return css`
     cursor: pointer;
