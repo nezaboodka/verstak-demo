@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { nestedContext, tryUseContext } from "verstak"
+import { subContext, tryUseContext } from "verstak"
 import { StylingParams } from "./Styling"
 import { ButtonStyling, DefaultButtonStyling } from "./Button.v"
 import { FieldStyling, DefaultFieldStyling  } from "./Field.v"
@@ -17,8 +17,8 @@ export function useTheme(): Theme {
   return tryUseContext(GostTheme) ?? (DefaultGostTheme ??= Transaction.run({ separation: true }, () => new GostTheme()))
 }
 
-export function nestedTheme(theme: Theme): void {
-  nestedContext(GostTheme, theme)
+export function subTheme(theme: Theme): void {
+  subContext(GostTheme, theme)
 }
 
 export class GostTheme implements Theme {

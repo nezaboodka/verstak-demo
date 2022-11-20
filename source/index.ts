@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { VBlock, HtmlBody, nestedContext, lineFeed } from "verstak"
+import { VBlock, HtmlBody, subContext, lineFeed } from "verstak"
 import { configureDebugging } from "dbg"
 import { App } from "models/App"
 import { MainWindow } from "views/MainWindow.v"
@@ -25,7 +25,7 @@ const app = Transaction.run(null, () =>
 VBlock.root(() => {
   HtmlBody(b => {
     b.native.style.backgroundColor = "rgba(230, 230, 230)"
-    nestedContext(App, app)
+    subContext(App, app)
     lineFeed() // WORKAROUND
     MainWindow()
   })

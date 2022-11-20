@@ -1,8 +1,7 @@
 import { refs } from "reactronic"
-import { Block, Align, PlainText, useContext, nestedContext, line, lineFeed } from "verstak"
+import { Block, Align, PlainText, useContext, subContext, line, lineFeed } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { createFieldModel, Field } from "gost-pi-22"
-import { cx } from "@emotion/css"
 import { Theme } from "themes/Theme"
 import { App } from "models/App"
 import { ToolBar } from "./ToolBar.v"
@@ -15,11 +14,10 @@ export const MainWindow = () => (
     initialize(b) {
       const app = useContext(App)
       app.sensors.listen(b.native)
-
     },
     render(b) {
       const app = useContext(App)
-      nestedContext(Theme, app.theme)
+      subContext(Theme, app.theme)
 
       b.contentAlignment = Align.Top
       b.heightGrowth = 1
