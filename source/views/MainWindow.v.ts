@@ -1,13 +1,12 @@
 import { refs } from "reactronic"
 import { Block, Align, PlainText, useContext, subContext, line, lineFeed } from "verstak"
 import { Markdown } from "verstak-markdown"
-import { createFieldModel, Field } from "gost-pi-22"
-import { Theme } from "themes/Theme"
+import { createFieldModel, Field, GostTheme } from "gost-pi"
+import { AppTheme } from "themes/AppTheme"
 import { App } from "models/App"
 import { ToolBar } from "./ToolBar.v"
 import { StatusBar } from "./StatusBar.v"
 import { WorkArea } from "./WorkArea.v"
-import * as s from "themes/Common.s"
 
 export const MainWindow = () => (
   Block({ autonomous: true,
@@ -17,7 +16,8 @@ export const MainWindow = () => (
     },
     render(b) {
       const app = useContext(App)
-      subContext(Theme, app.theme)
+      const theme = app.theme
+      subContext(GostTheme, theme)
 
       b.contentAlignment = Align.Top
       b.heightGrowth = 1
@@ -30,7 +30,7 @@ export const MainWindow = () => (
 
       line(l => { // main line
         Block(b => {
-          b.style(s.Panel)
+          b.style(app.theme.panel)
           b.minWidth = "10rem"
           b.contentAlignment = Align.Top
           b.frameAlignment = Align.Stretch
@@ -67,17 +67,17 @@ export const MainWindow = () => (
         })
         WorkArea({
           render(b) {
-            b.style(s.Panel)
-            b.style(s.Important)
+            b.style(theme.panel)
+            b.style(theme.important)
             b.widthGrowth = 3
             b.heightGrowth = 1
           }
         })
         Block({
           autonomous: true,
+          triggers: { theme },
           render(b) {
-            const theme = useContext(Theme)
-            b.style(s.Panel)
+            b.style(theme.panel)
             b.style(theme.markdown)
             b.minWidth = "16rem"
             b.widthGrowth = 2

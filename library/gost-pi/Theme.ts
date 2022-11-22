@@ -22,19 +22,20 @@ export function subTheme(theme: Theme): void {
 }
 
 export class GostTheme implements Theme {
-  readonly fillColor = "white"
-  readonly textColor = "black"
-  readonly positiveColor = "green"
-  readonly negativeColor = "red"
-  readonly borderRadius = "0.35rem"
-  readonly outlineWidth = "1px"
-  readonly outlineColor = "rgba(127, 127, 127, 0.5)"
-  readonly outlinePadding = "0.25em"
-  readonly shadow = "0.1rem 0.1rem 0.5rem 0 rgba(127, 127, 127, 0.5)"
-  readonly button = new DefaultButtonStyling(this)
-  readonly field = new DefaultFieldStyling(this)
-  readonly icon = new DefaultIconStyling(this)
-  readonly toggle = new DefaultToggleStyling(this)
+  name = "Default Theme"
+  fillColor = "white"
+  textColor = "black"
+  positiveColor = "green"
+  negativeColor = "red"
+  borderRadius = "0.35rem"
+  outlineWidth = "1px"
+  outlineColor = "rgba(127, 127, 127, 0.5)"
+  outlinePadding = "0.25em"
+  shadow = "0.1rem 0.1rem 0.5rem 0 rgba(127, 127, 127, 0.5)"
+  button = new DefaultButtonStyling(this)
+  field = new DefaultFieldStyling(this)
+  icon = new DefaultIconStyling(this)
+  toggle = new DefaultToggleStyling(this)
 }
 
 let DefaultGostTheme: GostTheme | undefined = undefined

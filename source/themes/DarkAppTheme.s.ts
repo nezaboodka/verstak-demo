@@ -1,19 +1,25 @@
 import { css } from "@emotion/css"
-import { Theme } from "./Theme"
+import { AppTheme } from "./AppTheme"
 
-export class MarkdownCodeDarkTheme extends Theme {
-  name = "Dark"
-  toggleColor = "red"
+export class DarkAppTheme extends AppTheme {
+  name = "Dark Theme"
+  fillColor = "#15293e"
+  textColor = "white"
+  panelFillColor = "#14344F"
+  positiveColor = "rgb(160, 237, 49)"
+  negativeColor = "orangered"
+  shadow = "0.1rem 0.1rem 0.5rem 0 black"
+
   markdown = css`
     .toc-inner {
-      background-color: #15293e;
+      background-color: rgba(0, 0, 0, 0.2);
       border: 1px solid rgba(0, 0, 0, 0.15);
       /* box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset; */
     }
 
     pre {
       color: #f0f0f0;
-      background-color: #15293e;
+      background-color: rgba(0, 0, 0, 0.2);
       box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset;
     }
 

@@ -1,77 +1,66 @@
 import { css } from "@emotion/css"
-import { Theme } from "./Theme"
+import { cached } from "../../library/reactronic/source/Rx"
+import { AppTheme } from "./AppTheme"
 
-export class MarkdownCodePrintTheme extends Theme {
-  name = "Print"
-  toggleColor = "black"
+export class LightAppTheme extends AppTheme {
+  name = "Light Theme"
+  fillColor = "#F0F0F0"
+  textColor = "black"
+  panelFillColor = "white"
+
   markdown = css`
     .toc-inner {
       background-color: unset;
       border: 1px solid rgba(0, 0, 0, 0.25);
-      /* box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25) inset; */
+      /* box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05) inset; */
     }
-
     pre {
       color: #000000;
       background-color: inherit;
       box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25) inset;
     }
-
     .substitution {
-      color: #000000;
+      color: #202020;
     }
-
     .token.comment {
-      color: #808080;
+      color: #A0A0A0;
       font-style: italic;
     }
-
     .token.number,
     .token.string,
     .token.string-line {
-      color: #000000;
+      color: #027111;
     }
-
     .token.string .token.substitution > .token.brace-curly {
-      font-weight: bold;
+      color: #2222CC;
     }
-
     .token.type {
-      color: #5F5F5F;
+      color: #469FA9;
     }
-
     .token.operation,
     .token.function {
-      color: #000000;
-      text-decoration: underline;
-      text-decoration-thickness: from-font;
-      text-decoration-color: #707070;
+      color: #930505;
     }
-
     .token.keyword,
     .token.operator,
     .token.boolean,
+    .token.symbol,
     .token.brace-curly,
     .token.brace-square {
-      font-weight: bold;
+      color: #2222CC;
     }
-
     .token.kw {
-      font-weight: bold;
+      color: #2222CC;
     }
-
     .token.tag {
+      /* color: #027111; */
       /* font-size: 80%; */
-      font-weight: bold;
+      color: #2222CC;
       font-style: italic;
     }
-
-    .token.symbol {
-      color: #000000;
-    }
-
     .token.punctuation {
-      color: #808080;
+      color: #B0B0B0;
+      /* color: #abade9; */
     }
   `
 }

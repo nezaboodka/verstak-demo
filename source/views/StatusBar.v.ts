@@ -1,10 +1,9 @@
 import { refs } from "reactronic"
 import { Block, BlockBody, useContext, Align, vmt } from "verstak"
-import { Button, Toggle, Field, createFieldModel } from "gost-pi-22"
+import { Button, Toggle, Field, createFieldModel, GostTheme } from "gost-pi"
 import { observableModel } from "common/Utils"
-import { Theme } from "themes/Theme"
+import { AppTheme } from "themes/AppTheme"
 import { App } from "models/App"
-import * as s from "themes/Common.s"
 
 export const StatusBar = (body?: BlockBody<HTMLElement, void, void>) => (
   Block({ ...vmt(body), base: {
@@ -14,7 +13,7 @@ export const StatusBar = (body?: BlockBody<HTMLElement, void, void>) => (
       // to avoid passing app/theme in each and every
       // node through rendering tree.
       const app = useContext(App)
-      const theme = useContext(Theme)
+      const theme = useContext(GostTheme) as AppTheme
       b.contentWrapping = true
       Toggle({ key: "Blinking",
         initialize(b) {
@@ -24,12 +23,11 @@ export const StatusBar = (body?: BlockBody<HTMLElement, void, void>) => (
           b.model = observableModel({
             label: "Blinking Rendering",
             checked: refs(app).blinkingEffect,
-            color: refs(theme).toggleColor,
           })
         },
         render(b) {
           // Style is not inside "initialize", because of theming
-          b.native.classList.toggle(s.Panel, true)
+          b.native.classList.toggle(theme.panel, true)
         }
       })
       Button({ key: "Theme",
@@ -41,17 +39,17 @@ export const StatusBar = (body?: BlockBody<HTMLElement, void, void>) => (
           })
         },
         render(b) {
-          b.native.classList.toggle(s.Panel, true)
+          b.style(theme.panel)
         }
       })
       Toggle(b => {
-        b.native.classList.toggle(s.Panel, true)
+        b.native.classList.toggle(theme.panel, true)
       })
       Toggle(b =>{
-        b.native.classList.toggle(s.Panel, true)
+        b.native.classList.toggle(theme.panel, true)
       })
       Block(b => {
-        b.style(s.Panel)
+        b.style(theme.panel)
         b.widthGrowth = 1
         b.contentAlignment = Align.Right
         Field({

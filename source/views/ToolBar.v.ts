@@ -1,15 +1,15 @@
-import { cx } from "@emotion/css"
 import { refs, Transaction } from "reactronic"
 import { Block, BlockBody, lineFeed, Img, useContext, vmt } from "verstak"
-import { Icon, Field, createFieldModel } from "gost-pi-22"
-import { App } from "models/App"
-import * as s from "themes/Common.s"
 import { Markdown } from "verstak-markdown"
+import { Icon, Field, createFieldModel, GostTheme } from "gost-pi"
+import { App } from "models/App"
+import { AppTheme } from "themes/AppTheme"
 
 export const ToolBar = (body?: BlockBody<HTMLElement, void, void>) => (
   Block({ ...vmt(body), base: {
     render(b) {
       const app = useContext(App)
+      const theme = useContext(GostTheme) as AppTheme
       // Image({ // logo
       //   initialize(b, base) {
       //     base()
@@ -26,9 +26,9 @@ export const ToolBar = (body?: BlockBody<HTMLElement, void, void>) => (
       // })
       Block({ // Logo
         initialize(b) {
-          b.style(s.Panel)
-          b.style(s.Clickable)
-          b.style(s.Logo)
+          b.style(theme.panel)
+          // b.style(s.Clickable)
+          // b.style(s.Logo)
           b.native.style.outlineOffset = "-1px"
           b.native.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
         },
@@ -41,7 +41,7 @@ export const ToolBar = (body?: BlockBody<HTMLElement, void, void>) => (
       })
       Block(b => {
         b.widthGrowth = 1
-        b.native.classList.toggle(s.Panel, true)
+        b.style(theme.panel)
         Block(b => {
           b.widthGrowth = 1
           Markdown(`**Verstak** v${app.version}`)
@@ -67,9 +67,9 @@ export const ToolBar = (body?: BlockBody<HTMLElement, void, void>) => (
           b.native.onclick = () => Transaction.run(null, () => app.nextTheme())
         },
         render(b) {
-          b.style(s.Panel)
-          b.style(s.Hint)
-          b.style(s.Clickable)
+          b.style(theme.panel)
+          // b.style(s.Hint)
+          // b.style(s.Clickable)
           Icon("fa-solid fa-bars")
         }
       })

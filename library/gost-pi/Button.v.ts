@@ -44,8 +44,6 @@ export class DefaultButtonStyling extends Styling implements ButtonStyling {
   @cached get main(): string { return css`
     cursor: pointer;
     border-radius: ${this.$.borderRadius};
-    outline: ${this.$.outlineWidth} solid ${this.$.outlineColor};
-    outline-offset: -${this.$.outlineWidth};
     user-select: none;
   `}
 

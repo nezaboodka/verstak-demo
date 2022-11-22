@@ -39,8 +39,8 @@
     "jsx": "react",
     "forceConsistentCasingInFileNames": true,
     "paths": {
-      "gost-pi-22": [
-        "../library/gost-pi-22/api.ts"
+      "gost-pi": [
+        "../library/gost-pi/api.ts"
       ],
       "reactronic": [
         "../library/reactronic/source/api.ts"

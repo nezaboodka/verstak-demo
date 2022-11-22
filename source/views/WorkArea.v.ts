@@ -1,5 +1,6 @@
-import { Grid, BlockBody, Block, PlainText, HtmlText, lineFeed, Align, vmt } from "verstak"
-import * as s from "themes/Common.s"
+import { GostTheme } from "gost-pi"
+import { AppTheme } from "themes/AppTheme"
+import { Grid, BlockBody, Block, PlainText, HtmlText, lineFeed, Align, vmt, useContext } from "verstak"
 
 export const WorkArea = (body?: BlockBody<HTMLElement, void, void>) => (
   Grid({ ...vmt(body), base: {
@@ -35,11 +36,12 @@ const Ruler = (title: string, frameAlignment: Align, overlap?: boolean) => (
 const ExampleData = (place: string) => (
   Block({
     initialize(b) {
-      b.style(s.ImportantOutline)
       b.contentAlignment = Align.Center + Align.CenterV
     },
     render(b) {
+      const theme = useContext(GostTheme) as AppTheme
       b.cells = place
+      b.style(theme.important)
       PlainText(place)
     }
   })

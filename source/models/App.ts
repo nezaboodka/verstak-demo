@@ -1,17 +1,17 @@
 import { ObservableObject, raw, reactive, transactional } from "reactronic"
 import { BaseHtmlDriver, HtmlSensors } from "verstak"
-import { Theme } from "themes/Theme"
+import { AppTheme } from "themes/AppTheme"
 import { Loader } from "./Loader"
 
 export class App extends ObservableObject {
   version: string
   sensors: HtmlSensors
-  allThemes: Array<Theme>
+  allThemes: Array<AppTheme>
   activeThemeIndex: number
   blinkingEffect: boolean
   loader: Loader
 
-  constructor(version: string, ...themes: Array<Theme>) {
+  constructor(version: string, ...themes: Array<AppTheme>) {
     super()
     this.version = version
     this.sensors = new HtmlSensors()
@@ -21,7 +21,7 @@ export class App extends ObservableObject {
     this.loader = new Loader()
   }
 
-  get theme(): Theme {
+  get theme(): AppTheme {
     return this.allThemes[this.activeThemeIndex]
   }
 

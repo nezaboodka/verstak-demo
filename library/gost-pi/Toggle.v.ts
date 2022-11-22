@@ -29,11 +29,12 @@ export const Toggle = (body?: BlockBody<HTMLElement, ToggleModel>) => (
     },
     render(b) {
       const m = b.model
-      const s = useTheme().toggle
+      const t = useTheme()
+      const s = t.toggle
       b.style(s.main)
       Icon(`fa-solid fa-toggle-${m.checked ? "on" : "off"}`, b => {
         b.style(s.icon)
-        b.native.style.color = m.checked ? (m.color ?? "") : "" // subscribe to ToggleModel.checked
+        b.native.style.color = m.checked ? (t.positiveColor ?? "") : "" // subscribe to ToggleModel.checked
       })
       if (m.label)
         PlainText(m.label, b => b.style(s.label))
