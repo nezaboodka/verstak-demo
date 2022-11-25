@@ -30,7 +30,7 @@ VBlock.root(() => {
       const t = app.theme
       const css = b.native.style
       css.color = t.textColor
-      css.backgroundColor = t.fillColor
+      css.backgroundColor = t.spaceFillColor
       lineFeed() // WORKAROUND
       MainWindow()
     }

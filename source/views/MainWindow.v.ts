@@ -68,7 +68,7 @@ export const MainWindow = () => (
         WorkArea({
           render(b) {
             b.style(theme.panel)
-            b.style(theme.important)
+            b.style(theme.accent)
             b.widthGrowth = 3
             b.heightGrowth = 1
           }
