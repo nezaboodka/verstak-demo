@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { Block, Align, PlainText, useContext, subContext, line, lineFeed } from "verstak"
+import { Block, Align, PlainText, useContext, setContext, line, lineFeed } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { createFieldModel, Field, GostTheme } from "gost-pi"
 import { App } from "models/App"
@@ -16,7 +16,7 @@ export const MainWindow = () => (
     render(b) {
       const app = useContext(App)
       const theme = app.theme
-      subContext(GostTheme, theme)
+      setContext(GostTheme, theme)
 
       b.contentAlignment = Align.Top
       b.heightGrowth = 1
