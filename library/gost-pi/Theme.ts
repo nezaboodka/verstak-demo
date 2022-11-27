@@ -1,6 +1,6 @@
 import { Transaction } from "reactronic"
 import { Context } from "verstak"
-import { ThemeVars } from "./theme/Styling"
+import { AbstractTheme } from "./theme/Styling"
 import { ButtonStyling, DefaultButtonStyling } from "./theme/Button.s"
 import { FieldStyling, DefaultFieldStyling  } from "./theme/Field.s"
 import { IconStyling, DefaultIconStyling  } from "./theme/Icon.s"
@@ -11,7 +11,7 @@ export { type FieldStyling, type DefaultFieldStyling  } from "./theme/Field.s"
 export { type IconStyling, type DefaultIconStyling  } from "./theme/Icon.s"
 export { type ToggleStyling, type DefaultToggleStyling } from "./theme/Toggle.s"
 
-export interface Theme extends ThemeVars {
+export interface Theme extends AbstractTheme {
   readonly button: ButtonStyling
   readonly field: FieldStyling
   readonly icon: IconStyling

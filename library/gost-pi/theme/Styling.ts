@@ -1,6 +1,6 @@
 import { ObservableObject, raw } from "reactronic"
 
-export interface ThemeVars {
+export interface AbstractTheme {
   fillColor: string
   textColor: string
   positiveColor: string
@@ -13,9 +13,9 @@ export interface ThemeVars {
 }
 
 export class Styling extends ObservableObject {
-  @raw protected readonly $: ThemeVars
+  @raw protected readonly $: AbstractTheme
 
-  constructor($: ThemeVars) {
+  constructor($: AbstractTheme) {
     super()
     this.$ = $
   }
