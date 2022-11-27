@@ -1,6 +1,6 @@
 import { Transaction } from "reactronic"
 import { Context } from "verstak"
-import { ThemeVars } from "./theme/ThemeVars"
+import { ThemeVars } from "./theme/Styling"
 import { ButtonStyling, DefaultButtonStyling } from "./theme/Button.s"
 import { FieldStyling, DefaultFieldStyling  } from "./theme/Field.s"
 import { IconStyling, DefaultIconStyling  } from "./theme/Icon.s"

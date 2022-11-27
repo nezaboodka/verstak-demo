@@ -1,6 +1,6 @@
 import { cached } from "reactronic"
 import { css } from "@emotion/css"
-import { Styling } from "./ThemeVars"
+import { Styling } from "./Styling"
 
 export interface IconStyling {
   main: string
