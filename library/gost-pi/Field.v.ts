@@ -2,10 +2,10 @@ import { cached, Transaction } from "reactronic"
 import { Block, BlockBody, PlainText, FocusModel, lineFeed, vmt, ReactingFocuser } from "verstak"
 import { css } from "@emotion/css"
 import { observableModel, ValuesOrRefs } from "common/Utils"
-import { Styling } from "./ThemeVars"
+import { Styling } from "./theme/ThemeVars"
+import { FieldStyling } from "./theme/Field.s"
 import { ActualTheme } from "./Theme"
 import { Icon } from "./Icon.v"
-import { FieldStyling } from "./Field.s"
 
 export interface FieldModel<T = string> extends FocusModel {
   icon?: string
