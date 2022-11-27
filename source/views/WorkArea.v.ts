@@ -1,6 +1,6 @@
-import { GostTheme } from "gost-pi"
+import { ActualTheme, BasicGostTheme } from "gost-pi"
 import { AppTheme } from "themes/AppTheme"
-import { Grid, BlockBody, Block, PlainText, HtmlText, lineFeed, Align, vmt, useContext } from "verstak"
+import { Grid, BlockBody, Block, PlainText, HtmlText, lineFeed, Align, vmt } from "verstak"
 
 export const WorkArea = (body?: BlockBody<HTMLElement, void, void>) => (
   Grid({ ...vmt(body), base: {
@@ -39,7 +39,7 @@ const ExampleData = (place: string) => (
       b.contentAlignment = Align.Center + Align.CenterV
     },
     render(b) {
-      const theme = useContext(GostTheme) as AppTheme
+      const theme = ActualTheme.instance as AppTheme
       b.cells = place
       b.style(theme.accent)
       PlainText(place)

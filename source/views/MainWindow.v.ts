@@ -1,8 +1,8 @@
 import { refs } from "reactronic"
-import { Block, Align, PlainText, useContext, setContext, line, lineFeed } from "verstak"
+import { Block, Align, PlainText, line, lineFeed } from "verstak"
 import { Markdown } from "verstak-markdown"
-import { createFieldModel, Field, GostTheme } from "gost-pi"
-import { App } from "models/App"
+import { createFieldModel, Field, ActualTheme } from "gost-pi"
+import { ActualApp } from "models/App"
 import { ToolBar } from "./ToolBar.v"
 import { StatusBar } from "./StatusBar.v"
 import { WorkArea } from "./WorkArea.v"
@@ -10,13 +10,13 @@ import { WorkArea } from "./WorkArea.v"
 export const MainWindow = () => (
   Block({ autonomous: true,
     initialize(b) {
-      const app = useContext(App)
+      const app = ActualApp.instance
       app.sensors.listen(b.native)
     },
     render(b) {
-      const app = useContext(App)
+      const app = ActualApp.instance
       const theme = app.theme
-      setContext(GostTheme, theme)
+      ActualTheme.instance = theme
 
       b.contentAlignment = Align.Top
       b.heightGrowth = 1

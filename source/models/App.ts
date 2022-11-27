@@ -1,5 +1,5 @@
 import { ObservableObject, raw, reactive, transactional } from "reactronic"
-import { BaseHtmlDriver, HtmlSensors } from "verstak"
+import { BaseHtmlDriver, Context, HtmlSensors } from "verstak"
 import { AppTheme } from "themes/AppTheme"
 import { Loader } from "./Loader"
 
@@ -40,3 +40,5 @@ export class App extends ObservableObject {
     BaseHtmlDriver.blinkingEffect = this.blinkingEffect ? "verstak-blinking-effect" : undefined
   }
 }
+
+export const ActualApp = new Context<App>()

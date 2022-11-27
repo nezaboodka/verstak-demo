@@ -3,8 +3,9 @@ import { Block, BlockBody, PlainText, FocusModel, lineFeed, vmt, ReactingFocuser
 import { css } from "@emotion/css"
 import { observableModel, ValuesOrRefs } from "common/Utils"
 import { Styling } from "./Styling"
-import { useTheme } from "./Theme"
+import { ActualTheme } from "./Theme"
 import { Icon } from "./Icon.v"
+import { FieldStyling } from "./Field.s"
 
 export interface FieldModel<T = string> extends FocusModel {
   icon?: string
@@ -18,13 +19,6 @@ export interface FieldModel<T = string> extends FocusModel {
   inputStyle: string
 }
 
-export interface FieldStyling {
-  main: string
-  icon: string
-  input: string
-  popup: string
-}
-
 export const Field = (body?: BlockBody<HTMLElement, FieldModel>) => (
   Block<FieldModel>({ autonomous: true, ...vmt(body), base: {
     initialize(b) {
@@ -36,7 +30,7 @@ export const Field = (body?: BlockBody<HTMLElement, FieldModel>) => (
     },
     render(b) {
       const m = b.model
-      const s = useTheme().field
+      const s = ActualTheme.instance.field
       b.style(s.main)
       m.icon && Icon(m.icon, b => b.style(s.icon))
       FieldInput(m, s)

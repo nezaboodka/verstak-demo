@@ -1,10 +1,10 @@
 import { Transaction } from "reactronic"
-import { setContext, tryUseContext } from "verstak"
+import { Context } from "verstak"
 import { StylingParams } from "./Styling"
-import { ButtonStyling, DefaultButtonStyling } from "./Button.v"
-import { FieldStyling, DefaultFieldStyling  } from "./Field.v"
-import { IconStyling, DefaultIconStyling  } from "./Icon.v"
-import { ToggleStyling, DefaultToggleStyling } from "./Toggle.v"
+import { ButtonStyling, DefaultButtonStyling } from "./Button.s"
+import { FieldStyling, DefaultFieldStyling  } from "./Field.s"
+import { IconStyling, DefaultIconStyling  } from "./Icon.s"
+import { ToggleStyling, DefaultToggleStyling } from "./Toggle.s"
 
 export interface Theme extends StylingParams {
   readonly button: ButtonStyling
@@ -13,15 +13,7 @@ export interface Theme extends StylingParams {
   readonly toggle: ToggleStyling
 }
 
-export function useTheme(): Theme {
-  return tryUseContext(GostTheme) ?? (DefaultGostTheme ??= Transaction.run({ separation: true }, () => new GostTheme()))
-}
-
-export function setTheme(theme: Theme): void {
-  setContext(GostTheme, theme)
-}
-
-export class GostTheme implements Theme {
+export class BasicGostTheme implements Theme {
   name = "Default Theme"
   fillColor = "white"
   textColor = "black"
@@ -38,21 +30,5 @@ export class GostTheme implements Theme {
   toggle = new DefaultToggleStyling(this)
 }
 
-let DefaultGostTheme: GostTheme | undefined = undefined
-
-// export abstract class GostTheme extends ObservableObject implements Theme {
-//   abstract fillColor: string
-//   abstract textColor: string
-//   abstract positiveColor: string
-//   abstract negativeColor: string
-//   abstract borderRadius: string
-//   abstract outlineWidth: string
-//   abstract outlineColor: string
-//   abstract outlinePadding: string
-//   abstract shadow: string
-
-//   abstract button: ButtonStyle
-//   abstract field: FieldStyle
-//   abstract icon: IconStyle
-//   abstract toggle: ToggleStyle
-// }
+export const ActualTheme = new Context<Theme>(
+  Transaction.run({ separation: true }, () => new BasicGostTheme()))

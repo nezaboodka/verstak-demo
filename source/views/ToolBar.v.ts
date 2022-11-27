@@ -1,15 +1,15 @@
-import { refs, Transaction } from "reactronic"
-import { Block, BlockBody, lineFeed, Img, useContext, vmt } from "verstak"
+import { refs } from "reactronic"
+import { Block, BlockBody, lineFeed, Img, vmt } from "verstak"
 import { Markdown } from "verstak-markdown"
-import { Icon, Field, createFieldModel, GostTheme } from "gost-pi"
-import { App } from "models/App"
+import { Icon, Field, createFieldModel, ActualTheme } from "gost-pi"
+import { ActualApp } from "models/App"
 import { AppTheme } from "themes/AppTheme"
 
 export const ToolBar = (body?: BlockBody<HTMLElement, void, void>) => (
   Block({ ...vmt(body), base: {
     render(b) {
-      const app = useContext(App)
-      const theme = useContext(GostTheme) as AppTheme
+      const app = ActualApp.instance
+      const theme = ActualTheme.instance as AppTheme
       // Image({ // logo
       //   initialize(b, base) {
       //     base()

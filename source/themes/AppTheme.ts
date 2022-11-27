@@ -1,8 +1,8 @@
 import { cached } from "reactronic"
 import { css } from "@emotion/css"
-import { GostTheme } from "gost-pi"
+import { BasicGostTheme } from "gost-pi"
 
-export class AppTheme extends GostTheme {
+export class AppTheme extends BasicGostTheme {
   accentColor: string = ""
   spaceFillColor: string = ""
   markdown: string = ""
@@ -15,7 +15,6 @@ export class AppTheme extends GostTheme {
     border-radius: ${this.borderRadius};
     background-color: ${this.fillColor};
   `}
-
 
   @cached
   get accent(): string { return css`
