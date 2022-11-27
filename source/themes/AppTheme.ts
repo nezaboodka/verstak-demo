@@ -1,8 +1,8 @@
 import { cached } from "reactronic"
 import { css } from "@emotion/css"
-import { BasicGostTheme } from "gost-pi"
+import { DefaultGostTheme } from "gost-pi"
 
-export class AppTheme extends BasicGostTheme {
+export class AppTheme extends DefaultGostTheme {
   accentColor: string = ""
   spaceFillColor: string = ""
   markdown: string = ""

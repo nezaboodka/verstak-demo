@@ -2,8 +2,8 @@ import { refs } from "reactronic"
 import { Block, BlockBody, lineFeed, Img, vmt } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { Icon, Field, createFieldModel, ActualTheme } from "gost-pi"
-import { ActualApp } from "models/App"
 import { AppTheme } from "themes/AppTheme"
+import { ActualApp } from "models/App"
 
 export const ToolBar = (body?: BlockBody<HTMLElement, void, void>) => (
   Block({ ...vmt(body), base: {

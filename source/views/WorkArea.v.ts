@@ -1,6 +1,6 @@
-import { ActualTheme, BasicGostTheme } from "gost-pi"
-import { AppTheme } from "themes/AppTheme"
 import { Grid, BlockBody, Block, PlainText, HtmlText, lineFeed, Align, vmt } from "verstak"
+import { ActualTheme } from "gost-pi"
+import { AppTheme } from "themes/AppTheme"
 
 export const WorkArea = (body?: BlockBody<HTMLElement, void, void>) => (
   Grid({ ...vmt(body), base: {

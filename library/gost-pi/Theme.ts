@@ -18,8 +18,8 @@ export interface Theme extends AbstractTheme {
   readonly toggle: ToggleStyling
 }
 
-export class BasicGostTheme implements Theme {
-  name = "Default Theme"
+export class DefaultGostTheme implements Theme {
+  name = "Default Gost Theme"
   fillColor = "white"
   textColor = "black"
   positiveColor = "green"
@@ -36,4 +36,4 @@ export class BasicGostTheme implements Theme {
 }
 
 export const ActualTheme = new Context<Theme>(
-  Transaction.run({ separation: true }, () => new BasicGostTheme()))
+  Transaction.run({ separation: true }, () => new DefaultGostTheme()))

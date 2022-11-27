@@ -1,9 +1,9 @@
 import { refs } from "reactronic"
 import { Block, BlockBody, Align, vmt } from "verstak"
-import { Button, Toggle, Field, createFieldModel, BasicGostTheme, ActualTheme } from "gost-pi"
-import { observableModel } from "common/Utils"
+import { Button, Toggle, Field, createFieldModel, ActualTheme } from "gost-pi"
 import { AppTheme } from "themes/AppTheme"
-import { App, ActualApp } from "models/App"
+import { observableModel } from "common/Utils"
+import { ActualApp } from "models/App"
 
 export const StatusBar = (body?: BlockBody<HTMLElement, void, void>) => (
   Block({ ...vmt(body), base: {
