@@ -1,7 +1,7 @@
 import { Transaction } from "reactronic"
 import { Block, BlockBody, PlainText, vmt } from "verstak"
 import { observableModel } from "common/Utils"
-import { ActualTheme } from "./Theme"
+import { $Theme } from "./Theme"
 import { Icon } from "./Icon.v"
 
 export interface ButtonModel {
@@ -21,7 +21,7 @@ export const Button = (body?: BlockBody<HTMLElement, ButtonModel>) => (
     },
     render(b) {
       const m = b.model
-      const s = ActualTheme.instance.button
+      const s = $Theme.current.button
       b.style(s.main)
       if (m.icon)
         Icon(m.icon, b => b.style(s.icon))

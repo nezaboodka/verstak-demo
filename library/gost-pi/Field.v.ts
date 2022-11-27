@@ -1,7 +1,7 @@
 import { Transaction } from "reactronic"
 import { Block, BlockBody, PlainText, FocusModel, lineFeed, vmt, ReactingFocuser } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
-import { ActualTheme, FieldStyling } from "./Theme"
+import { $Theme, FieldStyling } from "./Theme"
 import { Icon } from "./Icon.v"
 
 export interface FieldModel<T = string> extends FocusModel {
@@ -27,7 +27,7 @@ export const Field = (body?: BlockBody<HTMLElement, FieldModel>) => (
     },
     render(b) {
       const m = b.model
-      const s = ActualTheme.instance.field
+      const s = $Theme.current.field
       b.style(s.main)
       if (m.icon)
         Icon(m.icon, b => b.style(s.icon))

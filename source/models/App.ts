@@ -41,4 +41,4 @@ export class App extends ObservableObject {
   }
 }
 
-export const ActualApp = new Context<App>()
+export const $App = new Context<App>()

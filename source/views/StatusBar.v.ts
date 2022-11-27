@@ -1,9 +1,9 @@
 import { refs } from "reactronic"
 import { Block, BlockBody, Align, vmt } from "verstak"
-import { Button, Toggle, Field, createFieldModel, ActualTheme } from "gost-pi"
+import { Button, Toggle, Field, createFieldModel, $Theme } from "gost-pi"
 import { AppTheme } from "themes/AppTheme"
 import { observableModel } from "common/Utils"
-import { ActualApp } from "models/App"
+import { $App } from "models/App"
 
 export const StatusBar = (body?: BlockBody<HTMLElement, void, void>) => (
   Block({ ...vmt(body), base: {
@@ -12,8 +12,8 @@ export const StatusBar = (body?: BlockBody<HTMLElement, void, void>) => (
       // (instead of functional parameters) in order
       // to avoid passing app/theme in each and every
       // node through rendering tree.
-      const app = ActualApp.instance
-      const theme = ActualTheme.instance as AppTheme
+      const app = $App.current
+      const theme = $Theme.current as AppTheme
       b.contentWrapping = true
       Toggle({ key: "Blinking",
         initialize(b) {
