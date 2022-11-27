@@ -29,7 +29,8 @@ export const Field = (body?: BlockBody<HTMLElement, FieldModel>) => (
       const m = b.model
       const s = ActualTheme.instance.field
       b.style(s.main)
-      m.icon && Icon(m.icon, b => b.style(s.icon))
+      if (m.icon)
+        Icon(m.icon, b => b.style(s.icon))
       FieldInput(m, s)
       FieldPopup(m, s)
     },
