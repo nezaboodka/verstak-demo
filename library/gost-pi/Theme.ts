@@ -6,6 +6,11 @@ import { FieldStyling, DefaultFieldStyling  } from "./theme/Field.s"
 import { IconStyling, DefaultIconStyling  } from "./theme/Icon.s"
 import { ToggleStyling, DefaultToggleStyling } from "./theme/Toggle.s"
 
+export { type ButtonStyling, type DefaultButtonStyling } from "./theme/Button.s"
+export { type FieldStyling, type DefaultFieldStyling  } from "./theme/Field.s"
+export { type IconStyling, type DefaultIconStyling  } from "./theme/Icon.s"
+export { type ToggleStyling, type DefaultToggleStyling } from "./theme/Toggle.s"
+
 export interface Theme extends ThemeVars {
   readonly button: ButtonStyling
   readonly field: FieldStyling
