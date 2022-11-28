@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { Context } from "verstak"
+import { ContextVariable } from "verstak"
 import { AbstractTheme } from "./theme/Styling"
 import { ButtonStyling, DefaultButtonStyling } from "./theme/Button.s"
 import { FieldStyling, DefaultFieldStyling  } from "./theme/Field.s"
@@ -35,5 +35,5 @@ export class DefaultGostTheme implements Theme {
   toggle = new DefaultToggleStyling(this)
 }
 
-export const $Theme = new Context<Theme>(
+export const $Theme = new ContextVariable<Theme>(
   Transaction.run({ separation: true }, () => new DefaultGostTheme()))

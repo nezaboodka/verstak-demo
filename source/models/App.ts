@@ -1,5 +1,5 @@
 import { ObservableObject, reactive, transactional } from "reactronic"
-import { BaseHtmlDriver, Context, HtmlSensors } from "verstak"
+import { BaseHtmlDriver, ContextVariable, HtmlSensors } from "verstak"
 import { AppTheme } from "themes/AppTheme"
 import { Loader } from "./Loader"
 
@@ -41,4 +41,4 @@ export class App extends ObservableObject {
   }
 }
 
-export const $App = new Context<App>()
+export const $App = new ContextVariable<App>()
