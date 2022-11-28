@@ -35,5 +35,5 @@ export class DefaultGostTheme implements Theme {
   toggle = new DefaultToggleStyling(this)
 }
 
-export const $Theme = new ContextVariable<Theme>(
+export const $theme = new ContextVariable<Theme>(
   Transaction.run({ separation: true }, () => new DefaultGostTheme()))
