@@ -11,13 +11,12 @@ export class LightAppTheme extends AppTheme {
   markdown = css`
     .toc-inner {
       background-color: unset;
-      border: 1px solid rgba(0, 0, 0, 0.25);
-      /* box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05) inset; */
+      border: ${this.outlineWidth} solid rgba(0, 0, 0, 0.25);
     }
     pre {
       color: #000000;
       background-color: inherit;
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25) inset;
+      box-shadow: 0 0 0 ${this.outlineWidth} rgba(0, 0, 0, 0.25) inset;
     }
     .substitution {
       color: #202020;

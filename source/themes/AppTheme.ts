@@ -18,6 +18,6 @@ export class AppTheme extends DefaultGostTheme {
 
   @cached
   get accent(): string { return css`
-    border: 1px solid ${this.accentColor};
+    border: ${this.outlineWidth} solid ${this.accentColor};
   `}
 }

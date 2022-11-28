@@ -14,14 +14,13 @@ export class DarkAppTheme extends AppTheme {
   markdown = css`
     .toc-inner {
       background-color: rgba(0, 0, 0, 0.2);
-      border: 1px solid rgba(0, 0, 0, 0.15);
-      /* box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset; */
+      border: ${this.outlineWidth} solid rgba(0, 0, 0, 0.15);
     }
 
     pre {
       color: #f0f0f0;
       background-color: rgba(0, 0, 0, 0.2);
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset;
+      box-shadow: 0 0 0 ${this.outlineWidth} rgba(0, 0, 0, 0.15) inset;
     }
 
     /* .token {
