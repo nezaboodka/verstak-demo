@@ -1,7 +1,7 @@
 import { Transaction } from "reactronic"
 import { Block, BlockBody, PlainText, vmt } from "verstak"
 import { observableModel } from "common/Utils"
-import { $Theme } from "./Theme"
+import { $theme } from "./Theme"
 import { Icon } from "./Icon.v"
 
 export interface ToggleModel {
@@ -21,7 +21,7 @@ export const Toggle = (body?: BlockBody<HTMLElement, ToggleModel>) => (
     },
     render(b) {
       const m = b.model
-      const t = $Theme.current
+      const t = $theme.value
       const s = t.toggle
       b.style(s.main)
       Icon(`fa-solid fa-toggle-${m.checked ? "on" : "off"}`, b => {

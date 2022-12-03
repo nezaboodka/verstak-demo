@@ -8,8 +8,8 @@ import { $app } from "models/App"
 export const ToolBar = (body?: BlockBody<HTMLElement, void, void>) => (
   Block({ ...vmt(body), base: {
     render(b) {
-      const app = $app.instance
-      const theme = $theme.instance as AppTheme
+      const app = $app.value
+      const theme = $theme.value as AppTheme
       // Image({ // logo
       //   initialize(b, base) {
       //     base()

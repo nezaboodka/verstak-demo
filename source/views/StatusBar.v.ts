@@ -12,8 +12,8 @@ export const StatusBar = (body?: BlockBody<HTMLElement, void, void>) => (
       // (instead of functional parameters) in order
       // to avoid passing app/theme in each and every
       // node through rendering tree.
-      const app = $app.instance
-      const theme = $theme.instance as AppTheme
+      const app = $app.value
+      const theme = $theme.value as AppTheme
       b.contentWrapping = true
       Toggle({ key: "Blinking",
         initialize(b) {

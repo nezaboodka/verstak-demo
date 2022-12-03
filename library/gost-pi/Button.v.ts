@@ -21,7 +21,7 @@ export const Button = (body?: BlockBody<HTMLElement, ButtonModel>) => (
     },
     render(b) {
       const m = b.model
-      const s = $theme.instance.button
+      const s = $theme.value.button
       b.style(s.main)
       if (m.icon)
         Icon(m.icon, b => b.style(s.icon))

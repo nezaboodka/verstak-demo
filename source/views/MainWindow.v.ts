@@ -10,12 +10,12 @@ import { WorkArea } from "./WorkArea.v"
 export const MainWindow = () => (
   Block({ autonomous: true,
     initialize(b) {
-      $app.instance.sensors.listen(b.native)
+      $app.value.sensors.listen(b.native)
     },
     render(b) {
-      const app = $app.instance
+      const app = $app.value
       const theme = app.theme
-      $theme.instance = theme
+      $theme.value = theme
 
       b.contentAlignment = Align.Top
       b.heightGrowth = 1

@@ -39,7 +39,7 @@ const ExampleData = (place: string) => (
       b.contentAlignment = Align.Center + Align.CenterV
     },
     render(b) {
-      const theme = $theme.instance as AppTheme
+      const theme = $theme.value as AppTheme
       b.cells = place
       b.style(theme.accent)
       PlainText(place)

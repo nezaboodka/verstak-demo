@@ -27,7 +27,7 @@ export const Field = (body?: BlockBody<HTMLElement, FieldModel>) => (
     },
     render(b) {
       const m = b.model
-      const s = $theme.instance.field
+      const s = $theme.value.field
       b.style(s.main)
       if (m.icon)
         Icon(m.icon, b => b.style(s.icon))

@@ -26,7 +26,7 @@ VBlock.root(() => {
   HtmlBody({
     autonomous: true,
     render(b) {
-      $app.instance = app
+      $app.value = app
       const t = app.theme
       const css = b.native.style
       css.color = t.textColor
