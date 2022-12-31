@@ -9,7 +9,8 @@ import { WorkArea } from "./WorkArea.v"
 
 export function MainWindow() {
   return (
-    Block({ reaction: true,
+    Block({
+      reaction: true,
       initialize(b) {
         $app.value.sensors.listen(b.native)
       },
