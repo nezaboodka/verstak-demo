@@ -7,93 +7,110 @@ import { ToolBar } from "./ToolBar.v"
 import { StatusBar } from "./StatusBar.v"
 import { WorkArea } from "./WorkArea.v"
 
-export const MainWindow = () => (
-  Block({ autonomous: true,
-    initialize(b) {
-      $app.value.sensors.listen(b.native)
-    },
-    render(b) {
-      const app = $app.value
-      const theme = app.theme
-      $theme.value = theme
+export function MainWindow() {
+  return (
+    Block({ reaction: true,
+      initialize(b) {
+        $app.value.sensors.listen(b.native)
+      },
+      render(b) {
+        const app = $app.value
+        const theme = app.theme
+        $theme.value = theme
 
-      b.contentAlignment = Align.Top
-      b.heightGrowth = 1
+        b.contentAlignment = Align.Top
+        b.heightGrowth = 1
 
-      line(l => {
-        ToolBar(b => {
-          b.widthGrowth = 1
-        })
-      })
-
-      line(l => { // main line
-        Block(b => {
-          b.style(app.theme.panel)
-          b.minWidth = "10rem"
-          b.contentAlignment = Align.Top
-          b.frameAlignment = Align.Stretch
-          PlainText("Navigation Bar")
-          lineFeed()
-          Field({
-            initialize(b) {
-              const loader = app.loader
-              b.minWidth = "10em"
-              b.model = createFieldModel({
-                icon: "fa-solid fa-search",
-                text: refs(loader).filter,
-                options: refs(loader).loaded,
-                isHotText: true,
-                isMultiLineText: false,
-              })
-            },
-          })
-          lineFeed()
-          Block(b => b.heightGrowth = 1)
-          lineFeed()
-          Field({
-            initialize(b) {
-              const loader = app.loader
-              b.minWidth = "10em"
-              b.model = createFieldModel({
-                text: refs(loader).filter,
-                options: refs(loader).loaded,
-                isHotText: true,
-                isMultiLineText: false,
-              })
-            },
+        line(l => {
+          ToolBar({
+            render(b, base) {
+              b.widthGrowth = 1
+              base()
+            }
           })
         })
-        WorkArea({
-          render(b) {
-            b.style(theme.panel)
-            b.style(theme.accent)
-            b.widthGrowth = 3
-            b.heightGrowth = 1
-          }
-        })
-        Block({
-          autonomous: true,
-          triggers: { theme },
-          render(b) {
-            b.style(theme.panel)
-            b.style(theme.markdown)
-            b.minWidth = "16rem"
-            b.widthGrowth = 2
-            b.contentAlignment = Align.Left + Align.Top,
-            b.frameAlignment = Align.Stretch,
-            Markdown(EXAMPLE_CODE)
-          }
-        })
-      })
 
-      line(l => {
-        StatusBar(b => {
-          b.widthGrowth = 1
+        line(l => { // main line
+          Block({
+            render(b) {
+              b.style(app.theme.panel)
+              b.minWidth = "10rem"
+              b.contentAlignment = Align.Top
+              b.frameAlignment = Align.Stretch
+              PlainText("Navigation Bar")
+              lineFeed()
+              Field({
+                initialize(b, base) {
+                  const loader = app.loader
+                  b.minWidth = "10em"
+                  b.model = createFieldModel({
+                    icon: "fa-solid fa-search",
+                    text: refs(loader).filter,
+                    options: refs(loader).loaded,
+                    isHotText: true,
+                    isMultiLineText: false,
+                  })
+                  base()
+                },
+              })
+              lineFeed()
+              Block({
+                render(b) {
+                  b.heightGrowth = 1
+                }
+              })
+              lineFeed()
+              Field({
+                initialize(b, base) {
+                  const loader = app.loader
+                  b.minWidth = "10em"
+                  b.model = createFieldModel({
+                    text: refs(loader).filter,
+                    options: refs(loader).loaded,
+                    isHotText: true,
+                    isMultiLineText: false,
+                  })
+                  base()
+                },
+              })
+            }
+          })
+          WorkArea({
+            render(b, base) {
+              base()
+              b.style(theme.panel)
+              b.style(theme.accent)
+              b.widthGrowth = 3
+              b.heightGrowth = 1
+            }
+          })
+          Block({
+            reaction: true,
+            triggers: { theme },
+            render(b) {
+              b.style(theme.panel)
+              b.style(theme.markdown)
+              b.minWidth = "16rem"
+              b.widthGrowth = 2
+              b.contentAlignment = Align.Left + Align.Top,
+              b.frameAlignment = Align.Stretch,
+              Markdown(EXAMPLE_CODE)
+            }
+          })
         })
-      })
-    },
-  })
-)
+
+        line(l => {
+          StatusBar({
+            render(b, base) {
+              base()
+              b.widthGrowth = 1
+            }
+          })
+        })
+      },
+    })
+  )
+}
 
 const EXAMPLE_CODE = `
 Block size is automatically adjusted to size of table
