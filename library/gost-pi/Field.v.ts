@@ -91,7 +91,7 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
         const e = b.native
         if (!model.isEditMode)
           e.innerText = model.text
-        ReactingFocuser(e, model)
+        ReactingFocuser("focuser", e, model)
       },
     })
   )
