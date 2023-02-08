@@ -31,7 +31,7 @@ function Ruler(title: string, frameAlignment: Align, overlap?: boolean) {
     Block({
       render(b) {
         b.frameAlignment = frameAlignment
-        b.cells = { horizontalOverlap: overlap }
+        b.bounds = { widthOverlap: overlap }
         b.native.style.fontSize = "smaller"
         HtmlText(`&nbsp;${title}`)
       }
@@ -47,7 +47,7 @@ function ExampleData(place: string) {
       },
       render(b) {
         const theme = $theme.value as AppTheme
-        b.cells = place
+        b.bounds = place
         b.style(theme.accent)
         PlainText(place)
       }
