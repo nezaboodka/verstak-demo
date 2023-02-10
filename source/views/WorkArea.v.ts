@@ -26,11 +26,11 @@ export function WorkArea(body?: BlockBody<HTMLElement, void, void>) {
   )
 }
 
-function Ruler(title: string, frameAlignment: Align, overlap?: boolean) {
+function Ruler(title: string, align: Align, overlap?: boolean) {
   return (
     Ribbon({
       render(b) {
-        b.frameAlignment = frameAlignment
+        b.blockAlignment = align
         b.bounds = { widthOverlap: overlap }
         b.native.style.fontSize = "smaller"
         HtmlNote(`&nbsp;${title}`)

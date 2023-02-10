@@ -37,7 +37,7 @@ export function MainWindow() {
               b.style(app.theme.panel)
               b.minWidth = "10rem"
               b.contentAlignment = Align.Top
-              b.frameAlignment = Align.Stretch
+              b.blockAlignment = Align.Stretch
               Note("Navigation Bar")
               lineFeed()
               Field({
@@ -94,7 +94,7 @@ export function MainWindow() {
               b.minWidth = "16rem"
               b.widthGrowth = 2
               b.contentAlignment = Align.Left + Align.Top,
-              b.frameAlignment = Align.Stretch,
+              b.blockAlignment = Align.Stretch,
               Markdown(EXAMPLE_CODE)
             }
           })

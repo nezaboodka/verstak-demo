@@ -15,7 +15,7 @@ export function ToolBar(body?: BlockBody<HTMLElement, void, void>) {
         //   initialize(b, base) {
         //     base()
         //     b.contentAlignment = Align.Stretch
-        //     b.frameAlignment = Align.Stretch
+        //     b.blockAlignment = Align.Stretch
         //     b.model.source = "https://nezaboodka.com/img/star-768x768-circle.png"
         //     b.native.className = cx(s.Panel, s.Clickable, s.Logo)
         //     b.native.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
