@@ -120,7 +120,7 @@ size of each user. System is suitable both to lay out
 application panels and to create reusable components.
 
 \`\`\` js
-Grid("Example", {
+Table("Example", {
   render(b) {
     // Blocks can be layed out automatically
     // based on their order and line feeds.

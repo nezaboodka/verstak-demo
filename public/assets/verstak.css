@@ -1,7 +1,7 @@
 
 /* Verstak Layout Presets */
 
-v-block {
+v-ribbon {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,11 +10,11 @@ v-block {
   min-width: 0;
 }
 
-v-block[wrapping] > v-line {
+v-ribbon[wrapping] > v-line {
   flex-flow: wrap;
 }
 
-v-grid {
+v-table {
   display: grid;
   flex-basis: 0;
   grid-auto-rows: minmax(min-content, 1fr);
@@ -27,18 +27,18 @@ v-line {
   flex-direction: row;
 }
 
-v-text {
+v-note {
   flex-shrink: 1;
 }
 
-v-text:not([wrapping]), v-text[wrapping="false"] {
+v-note:not([wrapping]), v-note[wrapping="false"] {
   display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-v-text[wrapping], v-text[wrapping="true"] {
+v-note[wrapping], v-note[wrapping="true"] {
   display: inline-grid;
 }
 
@@ -46,11 +46,11 @@ v-group {
   display: contents;
 }
 
-v-grid > v-line {
+v-table > v-line {
   display: none;
 }
 
-v-grid > v-block {
+v-table > v-ribbon {
   place-self: stretch;
 }
 
