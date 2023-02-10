@@ -1,9 +1,9 @@
-import { Ribbon, BlockBody } from "verstak"
+import { Chain, BlockBody } from "verstak"
 import { $theme } from "./Theme"
 
 export function Icon(name: string, body?: BlockBody<HTMLElement, void, void>) {
   return (
-    Ribbon(body, {
+    Chain(body, {
       reaction: true,
       render(b) {
         const s = $theme.value.icon

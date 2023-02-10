@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { Ribbon, BlockBody, Note } from "verstak"
+import { Chain, BlockBody, Note } from "verstak"
 import { observableModel } from "common/Utils"
 import { $theme } from "./Theme"
 import { Icon } from "./Icon.v"
@@ -12,7 +12,7 @@ export interface ButtonModel {
 
 export function Button(body?: BlockBody<HTMLElement, ButtonModel>) {
   return (
-    Ribbon<ButtonModel>(body, {
+    Chain<ButtonModel>(body, {
       reaction: true,
       initialize(b) {
         b.model ??= observableModel({

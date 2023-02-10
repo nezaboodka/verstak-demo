@@ -1,4 +1,4 @@
-import { Table, BlockBody, Ribbon, Note, HtmlNote, lineFeed, Align } from "verstak"
+import { Table, BlockBody, Chain, Note, HtmlNote, lineFeed, Align } from "verstak"
 import { $theme } from "gost-pi"
 import { AppTheme } from "themes/AppTheme"
 
@@ -28,7 +28,7 @@ export function WorkArea(body?: BlockBody<HTMLElement, void, void>) {
 
 function Ruler(title: string, align: Align, overlap?: boolean) {
   return (
-    Ribbon({
+    Chain({
       render(b) {
         b.blockAlignment = align
         b.bounds = { widthOverlap: overlap }
@@ -41,7 +41,7 @@ function Ruler(title: string, align: Align, overlap?: boolean) {
 
 function ExampleData(place: string) {
   return (
-    Ribbon({
+    Chain({
       initialize(b) {
         b.contentAlignment = Align.Center + Align.CenterV
       },

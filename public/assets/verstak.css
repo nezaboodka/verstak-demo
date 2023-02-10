@@ -1,7 +1,7 @@
 
 /* Verstak Layout Presets */
 
-v-ribbon {
+v-chain {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,7 +10,7 @@ v-ribbon {
   min-width: 0;
 }
 
-v-ribbon[wrapping] > v-line {
+v-chain[wrapping] > v-line {
   flex-flow: wrap;
 }
 
@@ -50,7 +50,7 @@ v-table > v-line {
   display: none;
 }
 
-v-table > v-ribbon {
+v-table > v-chain {
   place-self: stretch;
 }
 
