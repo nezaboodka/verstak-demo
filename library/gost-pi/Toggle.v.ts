@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { Block, BlockBody, PlainText } from "verstak"
+import { Ribbon, BlockBody, Note } from "verstak"
 import { observableModel } from "common/Utils"
 import { $theme } from "./Theme"
 import { Icon } from "./Icon.v"
@@ -12,7 +12,7 @@ export interface ToggleModel {
 
 export function Toggle(body?: BlockBody<HTMLElement, ToggleModel>) {
   return (
-    Block<ToggleModel>(body, {
+    Ribbon<ToggleModel>(body, {
       reaction: true,
       initialize(b) {
         b.model ??= observableModel({
@@ -34,7 +34,7 @@ export function Toggle(body?: BlockBody<HTMLElement, ToggleModel>) {
           }
         })
         if (m.label)
-          PlainText(m.label, {
+          Note(m.label, {
             render(b, base) {
               base()
               b.style(s.label)

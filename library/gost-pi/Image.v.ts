@@ -1,4 +1,4 @@
-import { Block, BlockBody } from "verstak"
+import { Ribbon, BlockBody } from "verstak"
 import { observableModel } from "common/Utils"
 
 export interface ImageModel {
@@ -7,7 +7,7 @@ export interface ImageModel {
 
 export function Image(body?: BlockBody<HTMLElement, ImageModel>) {
   return (
-    Block<ImageModel>(body, {
+    Ribbon<ImageModel>(body, {
       reaction: true,
       initialize(b) {
         b.model ??= observableModel({ source: undefined })

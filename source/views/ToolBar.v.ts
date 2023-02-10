@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { Block, BlockBody, lineFeed, Img } from "verstak"
+import { Ribbon, BlockBody, lineFeed, Img } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { Icon, Field, createFieldModel, $theme } from "gost-pi"
 import { AppTheme } from "themes/AppTheme"
@@ -7,7 +7,7 @@ import { $app } from "models/App"
 
 export function ToolBar(body?: BlockBody<HTMLElement, void, void>) {
   return (
-    Block(body, {
+    Ribbon(body, {
       render(b) {
         const app = $app.value
         const theme = $theme.value as AppTheme
@@ -25,7 +25,7 @@ export function ToolBar(body?: BlockBody<HTMLElement, void, void>) {
         //     b.native.style.backgroundColor = app.blinkingEffect ? "red" : ""
         //   }
         // })
-        Block({ // Logo
+        Ribbon({ // Logo
           initialize(b) {
             b.style(theme.panel)
             // b.style(s.Clickable)
@@ -43,11 +43,11 @@ export function ToolBar(body?: BlockBody<HTMLElement, void, void>) {
             })
           }
         })
-        Block({
+        Ribbon({
           render(b) {
             b.widthGrowth = 1
             b.style(theme.panel)
-            Block({
+            Ribbon({
               render(b) {
                 b.widthGrowth = 1
                 Markdown(`**Verstak** v${app.version}`)
@@ -71,7 +71,7 @@ export function ToolBar(body?: BlockBody<HTMLElement, void, void>) {
             })
           }
         })
-        Block({ // Account
+        Ribbon({ // Account
           initialize(b) {
             // b.native.onclick = () => Transaction.run(null, () => app.nextTheme())
           },

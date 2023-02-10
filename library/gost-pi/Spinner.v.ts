@@ -1,4 +1,4 @@
-import { Block, BlockBody, PlainText } from "verstak"
+import { Ribbon, BlockBody, Note } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
 
 export interface SpinnerModel {
@@ -8,14 +8,14 @@ export interface SpinnerModel {
 
 export function Spinner(body?: BlockBody<HTMLElement, SpinnerModel>) {
   return (
-    Block<SpinnerModel>(body, {
+    Ribbon<SpinnerModel>(body, {
       reaction: true,
       initialize(b) {
         b.model ??= createLocalModel()
       },
       render(b) {
         const m = b.model
-        m.active && PlainText("loading...")
+        m.active && Note("loading...")
       },
     })
   )

@@ -1,10 +1,10 @@
-import { Grid, BlockBody, Block, PlainText, HtmlText, lineFeed, Align } from "verstak"
+import { Table, BlockBody, Ribbon, Note, HtmlNote, lineFeed, Align } from "verstak"
 import { $theme } from "gost-pi"
 import { AppTheme } from "themes/AppTheme"
 
 export function WorkArea(body?: BlockBody<HTMLElement, void, void>) {
   return (
-    Grid(body, {
+    Table(body, {
       render(b) {
         // Blocks can be layed out automatically
         // based on their order and line feeds.
@@ -28,12 +28,12 @@ export function WorkArea(body?: BlockBody<HTMLElement, void, void>) {
 
 function Ruler(title: string, frameAlignment: Align, overlap?: boolean) {
   return (
-    Block({
+    Ribbon({
       render(b) {
         b.frameAlignment = frameAlignment
         b.bounds = { widthOverlap: overlap }
         b.native.style.fontSize = "smaller"
-        HtmlText(`&nbsp;${title}`)
+        HtmlNote(`&nbsp;${title}`)
       }
     })
   )
@@ -41,7 +41,7 @@ function Ruler(title: string, frameAlignment: Align, overlap?: boolean) {
 
 function ExampleData(place: string) {
   return (
-    Block({
+    Ribbon({
       initialize(b) {
         b.contentAlignment = Align.Center + Align.CenterV
       },
@@ -49,7 +49,7 @@ function ExampleData(place: string) {
         const theme = $theme.value as AppTheme
         b.bounds = place
         b.style(theme.accent)
-        PlainText(place)
+        Note(place)
       }
     })
   )

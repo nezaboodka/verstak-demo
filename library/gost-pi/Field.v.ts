@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { Block, BlockBody, PlainText, FocusModel, lineFeed, ReactingFocuser } from "verstak"
+import { Ribbon, BlockBody, Note, FocusModel, lineFeed, ReactingFocuser } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
 import { $theme, FieldStyling } from "./Theme"
 import { Icon } from "./Icon.v"
@@ -18,7 +18,7 @@ export interface FieldModel<T = string> extends FocusModel {
 
 export function Field(body?: BlockBody<HTMLElement, FieldModel>) {
   return (
-    Block<FieldModel>(body, {
+    Ribbon<FieldModel>(body, {
       reaction: true,
       initialize(b) {
         b.model ??= createFieldModel()
@@ -62,7 +62,7 @@ export function createFieldModel<T>(props?: Partial<ValuesOrRefs<FieldModel<T>>>
 
 function FieldInput(model: FieldModel, s: FieldStyling) {
   return (
-    PlainText(model.text, {
+    Note(model.text, {
       key: FieldInput.name,
       initialize(b, base) {
         const e = b.native
@@ -99,7 +99,7 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
 
 function FieldPopup(model: FieldModel, s: FieldStyling) {
   return (
-    Block({
+    Ribbon({
       key: FieldPopup.name,
       initialize(b) {
         const e = b.native
@@ -113,11 +113,11 @@ function FieldPopup(model: FieldModel, s: FieldStyling) {
           if (options.length > 0) {
             for (const x of model.options) {
               lineFeed()
-              PlainText(x, { key: x })
+              Note(x, { key: x })
             }
           }
           else
-            PlainText("(nothing)", { key: "(nothing)" })
+            Note("(nothing)", { key: "(nothing)" })
         }
       },
     })

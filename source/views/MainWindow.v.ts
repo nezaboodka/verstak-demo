@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { Block, Align, PlainText, line, lineFeed } from "verstak"
+import { Ribbon, Align, Note, line, lineFeed } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { createFieldModel, Field, $theme } from "gost-pi"
 import { $app } from "models/App"
@@ -9,7 +9,7 @@ import { WorkArea } from "./WorkArea.v"
 
 export function MainWindow() {
   return (
-    Block({
+    Ribbon({
       reaction: true,
       initialize(b) {
         $app.value.sensors.listen(b.native)
@@ -32,13 +32,13 @@ export function MainWindow() {
         })
 
         line(l => { // main line
-          Block({
+          Ribbon({
             render(b) {
               b.style(app.theme.panel)
               b.minWidth = "10rem"
               b.contentAlignment = Align.Top
               b.frameAlignment = Align.Stretch
-              PlainText("Navigation Bar")
+              Note("Navigation Bar")
               lineFeed()
               Field({
                 initialize(b, base) {
@@ -55,7 +55,7 @@ export function MainWindow() {
                 },
               })
               lineFeed()
-              Block({
+              Ribbon({
                 render(b) {
                   b.heightGrowth = 1
                 }
@@ -85,7 +85,7 @@ export function MainWindow() {
               b.heightGrowth = 1
             }
           })
-          Block({
+          Ribbon({
             reaction: true,
             triggers: { theme },
             render(b) {
