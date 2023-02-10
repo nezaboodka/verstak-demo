@@ -125,9 +125,10 @@ Table("Example", {
     // Blocks can be layed out automatically
     // based on their order and line feeds.
     Ruler("1", Align.Left, true)
-    Ruler("A", Align.Top + Align.Center)
-    Ruler("B", Align.Top + Align.Center)
-    Ruler("C", Align.Top + Align.Center); lineFeed()
+    Ruler("A", Align.Top + Align.CenterOfWidth)
+    Ruler("B", Align.Top + Align.CenterOfWidth)
+    Ruler("C", Align.Top + Align.CenterOfWidth);
+    lineFeed()
     Ruler("2", Align.Left); lineFeed()
     Ruler("3", Align.Left); lineFeed()
     // Blocks can also be layed out
