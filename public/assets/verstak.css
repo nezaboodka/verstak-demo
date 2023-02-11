@@ -71,7 +71,7 @@ v-block[layout="table"] > v-block[layout="chain"] {
 
 v-section > *:not([overlay]) { align-self: center; }
 [overlay] { position: absolute; min-width: 100%; box-sizing: border-box; }
-[overlay="hidden"] { display: none; }
+[overlay="hidden"] { display: none !important; }
 [overlay="rightward-downward"] { left: 0; top: 100%; }
 [overlay="rightward-upward"] { left: 0; bottom: 100%; }
 [overlay="leftward-downward"] { right: 0; top: 100%; }
