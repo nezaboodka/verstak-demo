@@ -9,9 +9,9 @@ export function WorkArea(body?: BlockBody<HTMLElement, void, void>) {
         // Blocks can be layed out automatically
         // based on their order and line feeds.
         Ruler("1", Align.Left, true)
-        Ruler("A", Align.Top + Align.CenterOfWidth)
-        Ruler("B", Align.Top + Align.CenterOfWidth)
-        Ruler("C", Align.Top + Align.CenterOfWidth); lineFeed()
+        Ruler("A", Align.Top + Align.CenterX)
+        Ruler("B", Align.Top + Align.CenterX)
+        Ruler("C", Align.Top + Align.CenterX); lineFeed()
         Ruler("2", Align.Left); lineFeed()
         Ruler("3", Align.Left); lineFeed()
         // Blocks can also be layed out
