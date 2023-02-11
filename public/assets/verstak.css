@@ -1,7 +1,7 @@
 
 /* Verstak Layout Presets */
 
-v-chain,
+/* v-chain, */
 v-block[layout="chain"] {
   display: flex;
   flex-direction: column;
@@ -11,14 +11,14 @@ v-block[layout="chain"] {
   min-width: 0;
 }
 
-v-chain[wrapping] > v-line,
-v-chain[wrapping="true"] > v-line,
-v-block[layout="chain"][wrapping] > v-block[layout="line"],
-v-block[layout="chain"][wrapping="true"] > v-block[layout="line"] {
+/* v-chain[wrapping] > v-section,
+v-chain[wrapping="true"] > v-section, */
+v-block[layout="chain"][wrapping] > v-section,
+v-block[layout="chain"][wrapping="true"] > v-section {
   flex-flow: wrap;
 }
 
-v-table,
+/* v-table, */
 v-block[layout="table"] {
   display: grid;
   flex-basis: 0;
@@ -27,18 +27,18 @@ v-block[layout="table"] {
   text-align: initial;
 }
 
-v-line {
+v-section {
   display: flex;
   flex-direction: row;
 }
 
-v-note,
+/* v-note, */
 v-block[layout="note"] {
   flex-shrink: 1;
 }
 
-v-note:not([wrapping]),
-v-note[wrapping="false"],
+/* v-note:not([wrapping]),
+v-note[wrapping="false"], */
 v-block[layout="note"]:not([wrapping]),
 v-block[layout="note"][wrapping="false"] {
   display: inline-block;
@@ -47,29 +47,29 @@ v-block[layout="note"][wrapping="false"] {
   white-space: nowrap;
 }
 
-v-note[wrapping],
-v-note[wrapping="true"],
+/* v-note[wrapping],
+v-note[wrapping="true"], */
 v-block[layout="note"][wrapping="true"],
 v-block[layout="note"][wrapping="true"] {
   display: inline-grid;
 }
 
-v-group,
+/* v-group, */
 v-block[layout="group"] {
   display: contents;
 }
 
-v-table > v-line,
-v-block[layout="table"] > v-block[layout="line"] {
+/* v-table > v-section, */
+v-block[layout="table"] > v-section {
   display: none;
 }
 
-v-table > v-chain,
+/* v-table > v-chain, */
 v-block[layout="table"] > v-block[layout="chain"] {
   place-self: stretch;
 }
 
-v-line > *:not([overlay]) { align-self: center; }
+v-section > *:not([overlay]) { align-self: center; }
 [overlay] { position: absolute; min-width: 100%; box-sizing: border-box; }
 [overlay="hidden"] { display: none; }
 [overlay="rightward-downward"] { left: 0; top: 100%; }
