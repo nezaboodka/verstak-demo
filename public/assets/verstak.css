@@ -1,7 +1,8 @@
 
 /* Verstak Layout Presets */
 
-v-chain {
+v-chain,
+v-block[layout="chain"] {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,11 +11,15 @@ v-chain {
   min-width: 0;
 }
 
-v-chain[wrapping] > v-line {
+v-chain[wrapping] > v-line,
+v-chain[wrapping="true"] > v-line,
+v-block[layout="chain"][wrapping] > v-block[layout="line"],
+v-block[layout="chain"][wrapping="true"] > v-block[layout="line"] {
   flex-flow: wrap;
 }
 
-v-table {
+v-table,
+v-block[layout="table"] {
   display: grid;
   flex-basis: 0;
   grid-auto-rows: minmax(min-content, 1fr);
@@ -27,30 +32,40 @@ v-line {
   flex-direction: row;
 }
 
-v-note {
+v-note,
+v-block[layout="note"] {
   flex-shrink: 1;
 }
 
-v-note:not([wrapping]), v-note[wrapping="false"] {
+v-note:not([wrapping]),
+v-note[wrapping="false"],
+v-block[layout="note"]:not([wrapping]),
+v-block[layout="note"][wrapping="false"] {
   display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-v-note[wrapping], v-note[wrapping="true"] {
+v-note[wrapping],
+v-note[wrapping="true"],
+v-block[layout="note"][wrapping="true"],
+v-block[layout="note"][wrapping="true"] {
   display: inline-grid;
 }
 
-v-group {
+v-group,
+v-block[layout="group"] {
   display: contents;
 }
 
-v-table > v-line {
+v-table > v-line,
+v-block[layout="table"] > v-block[layout="line"] {
   display: none;
 }
 
-v-table > v-chain {
+v-table > v-chain,
+v-block[layout="table"] > v-block[layout="chain"] {
   place-self: stretch;
 }
 
