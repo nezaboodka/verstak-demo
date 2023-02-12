@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { Chain, Align, Note, lane, newLane } from "verstak"
+import { Chain, Align, Note, fromNewLine, lineFeed } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { createFieldModel, Field, $theme } from "gost-pi"
 import { $app } from "models/App"
@@ -22,7 +22,7 @@ export function MainWindow() {
         b.contentAlignment = Align.Top
         b.heightGrowth = 1
 
-        lane(l => {
+        fromNewLine(l => {
           ToolBar({
             render(b, base) {
               b.widthGrowth = 1
@@ -31,7 +31,7 @@ export function MainWindow() {
           })
         })
 
-        lane(l => { // main line
+        fromNewLine(l => { // main line
           Chain({
             render(b) {
               b.style(app.theme.panel)
@@ -39,7 +39,7 @@ export function MainWindow() {
               b.contentAlignment = Align.Top
               b.blockAlignment = Align.Stretch
               Note("Navigation Bar")
-              newLane()
+              lineFeed()
               Field({
                 initialize(b, base) {
                   const loader = app.loader
@@ -54,13 +54,13 @@ export function MainWindow() {
                   base()
                 },
               })
-              newLane()
+              lineFeed()
               Chain({
                 render(b) {
                   b.heightGrowth = 1
                 }
               })
-              newLane()
+              lineFeed()
               Field({
                 initialize(b, base) {
                   const loader = app.loader
@@ -100,7 +100,7 @@ export function MainWindow() {
           })
         })
 
-        lane(l => {
+        fromNewLine(l => {
           StatusBar({
             render(b, base) {
               base()

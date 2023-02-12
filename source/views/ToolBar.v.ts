@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { Chain, BlockBody, newLane, Img } from "verstak"
+import { Chain, BlockBody, lineFeed, Img } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { Icon, Field, createFieldModel, $theme } from "gost-pi"
 import { AppTheme } from "themes/AppTheme"
@@ -51,7 +51,7 @@ export function ToolBar(body?: BlockBody<HTMLElement, void, void>) {
               render(b) {
                 b.widthGrowth = 1
                 Markdown(`**Verstak** v${app.version}`)
-                newLane()
+                lineFeed()
                 Markdown("Try to *change* window size")
               }
             })
