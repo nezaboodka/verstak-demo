@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { VBlock, HtmlBody, lineFeed } from "verstak"
+import { VBlock, HtmlBody, fromNewLine } from "verstak"
 import { configureDebugging } from "dbg"
 import { $app, App } from "models/App"
 import { MainWindow } from "views/MainWindow.v"
@@ -31,7 +31,7 @@ VBlock.root(() => {
       const css = b.native.style
       css.color = t.textColor
       css.backgroundColor = t.spaceFillColor
-      lineFeed() // WORKAROUND
+      fromNewLine() // WORKAROUND
       MainWindow()
     }
   })
