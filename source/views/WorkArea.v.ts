@@ -1,4 +1,4 @@
-import { Table, BlockBody, Chain, Note, HtmlNote, lineFeed, Align } from "verstak"
+import { Table, BlockBody, Chain, Note, HtmlNote, newLane, Align } from "verstak"
 import { $theme } from "gost-pi"
 import { AppTheme } from "themes/AppTheme"
 
@@ -11,9 +11,9 @@ export function WorkArea(body?: BlockBody<HTMLElement, void, void>) {
         Ruler("1", Align.Left, true)
         Ruler("A", Align.Top + Align.CenterX)
         Ruler("B", Align.Top + Align.CenterX)
-        Ruler("C", Align.Top + Align.CenterX); lineFeed()
-        Ruler("2", Align.Left); lineFeed()
-        Ruler("3", Align.Left); lineFeed()
+        Ruler("C", Align.Top + Align.CenterX); newLane()
+        Ruler("2", Align.Left); newLane()
+        Ruler("3", Align.Left); newLane()
         // Blocks can also be layed out
         // explicitly in exact cells.
         ExampleData("B2")

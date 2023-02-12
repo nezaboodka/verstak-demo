@@ -1,8 +1,9 @@
 
 /* Verstak Layout Presets */
 
-/* v-chain, */
-v-block[layout="chain"] {
+/* chain-x, */
+блок-х[тип="цепочка"],
+block-x[type="chain"] {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,15 +12,18 @@ v-block[layout="chain"] {
   min-width: 0;
 }
 
-/* v-chain[wrapping] > v-section,
-v-chain[wrapping="true"] > v-section, */
-v-block[layout="chain"][wrapping] > v-section,
-v-block[layout="chain"][wrapping="true"] > v-section {
+/* chain-x[wrapping] > lane-x,
+chain-x[wrapping="true"] > lane-x, */
+блок-х[тип="цепочка"][перенос] > полоса-х,
+блок-х[тип="цепочка"][перенос="да"] > полоса-х,
+block-x[type="chain"][wrapping] > lane-x,
+block-x[type="chain"][wrapping="true"] > lane-x {
   flex-flow: wrap;
 }
 
-/* v-table, */
-v-block[layout="table"] {
+/* table-x, */
+блок-х[тип="таблица"],
+block-x[type="table"] {
   display: grid;
   flex-basis: 0;
   grid-auto-rows: minmax(min-content, 1fr);
@@ -27,55 +31,72 @@ v-block[layout="table"] {
   text-align: initial;
 }
 
-v-section {
+полоса-х,
+lane-x {
   display: flex;
   flex-direction: row;
 }
 
-/* v-note, */
-v-block[layout="note"] {
+/* note-x, */
+блок-х[тип="заметка"],
+block-x[type="note"] {
   flex-shrink: 1;
 }
 
-/* v-note:not([wrapping]),
-v-note[wrapping="false"], */
-v-block[layout="note"]:not([wrapping]),
-v-block[layout="note"][wrapping="false"] {
+/* note-x:not([wrapping]),
+note-x[wrapping="false"], */
+блок-х[тип="заметка"]:not([перенос]),
+блок-х[тип="заметка"][перенос="нет"],
+block-x[type="note"]:not([wrapping]),
+block-x[type="note"][wrapping="false"] {
   display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-/* v-note[wrapping],
-v-note[wrapping="true"], */
-v-block[layout="note"][wrapping="true"],
-v-block[layout="note"][wrapping="true"] {
+/* note-x[wrapping],
+note-x[wrapping="true"], */
+блок-х[тип="заметка"][перенос="да"],
+block-x[type="note"][wrapping="true"] {
   display: inline-grid;
 }
 
-/* v-group, */
-v-block[layout="group"] {
+/* group-x, */
+блок-х[тип="группа"],
+block-x[type="group"] {
   display: contents;
 }
 
-/* v-table > v-section, */
-v-block[layout="table"] > v-section {
+/* table-x > lane-x, */
+блок-х[тип="таблица"] > полоса-х,
+block-x[type="table"] > lane-x {
   display: none;
 }
 
-/* v-table > v-chain, */
-v-block[layout="table"] > v-block[layout="chain"] {
+/* table-x > chain-x, */
+блок-х[тип="таблица"] > блок-х[тип="цепочка"],
+block-x[type="table"] > block-x[type="chain"] {
   place-self: stretch;
 }
 
-v-section > *:not([overlay]) { align-self: center; }
+полоса-х > *:not([наложение]) { align-self: center; }
+[наложение] { position: absolute; min-width: 100%; box-sizing: border-box; }
+[наложение="скрыто"] { display: none !important; }
+[наложение="направо-вниз"] { left: 0; top: 100%; }
+[наложение="направо-вверх"] { left: 0; bottom: 100%; }
+[наложение="налево-вниз"] { right: 0; top: 100%; }
+[наложение="налево-вверх"] { right: 0; bottom: 100%; }
+[штабель] { position: relative; }
+[штабель="да"] { position: relative; }
+lane-x > *:not([overlay]) { align-self: center; }
 [overlay] { position: absolute; min-width: 100%; box-sizing: border-box; }
 [overlay="hidden"] { display: none !important; }
 [overlay="rightward-downward"] { left: 0; top: 100%; }
 [overlay="rightward-upward"] { left: 0; bottom: 100%; }
 [overlay="leftward-downward"] { right: 0; top: 100%; }
 [overlay="leftward-upward"] { right: 0; bottom: 100%; }
+[stacking] { position: relative; }
 [stacking="true"] { position: relative; }
 
 /* Verstak Blinking Effect */

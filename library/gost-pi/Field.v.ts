@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { Chain, BlockBody, Note, FocusModel, lineFeed, ReactingFocuser } from "verstak"
+import { Chain, BlockBody, Note, FocusModel, newLane, ReactingFocuser } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
 import { $theme, FieldStyling } from "./Theme"
 import { Icon } from "./Icon.v"
@@ -112,7 +112,7 @@ function FieldPopup(model: FieldModel, s: FieldStyling) {
           const options = model.options
           if (options.length > 0) {
             for (const x of model.options) {
-              lineFeed()
+              newLane()
               Note(x, { key: x })
             }
           }
