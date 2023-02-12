@@ -2,8 +2,8 @@
 /* Verstak Layout Presets */
 
 /* chain-x, */
-блок-х[тип="цепочка"],
-block-x[type="chain"] {
+блок[тип="цепочка"],
+block[type="chain"] {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,16 +14,16 @@ block-x[type="chain"] {
 
 /* chain-x[wrapping] > from-new-line,
 chain-x[wrapping="true"] > from-new-line, */
-блок-х[тип="цепочка"][перенос] > с-новой-строки,
-блок-х[тип="цепочка"][перенос="да"] > с-новой-строки,
-block-x[type="chain"][wrapping] > from-new-line,
-block-x[type="chain"][wrapping="true"] > from-new-line {
+блок[тип="цепочка"][перенос] > с-новой-строки,
+блок[тип="цепочка"][перенос="да"] > с-новой-строки,
+block[type="chain"][wrapping] > from-new-line,
+block[type="chain"][wrapping="true"] > from-new-line {
   flex-flow: wrap;
 }
 
 /* table-x, */
-блок-х[тип="таблица"],
-block-x[type="table"] {
+блок[тип="таблица"],
+block[type="table"] {
   display: grid;
   flex-basis: 0;
   grid-auto-rows: minmax(min-content, 1fr);
@@ -38,17 +38,17 @@ from-new-line {
 }
 
 /* note-x, */
-блок-х[тип="заметка"],
-block-x[type="note"] {
+блок[тип="заметка"],
+block[type="note"] {
   flex-shrink: 1;
 }
 
 /* note-x:not([wrapping]),
 note-x[wrapping="false"], */
-блок-х[тип="заметка"]:not([перенос]),
-блок-х[тип="заметка"][перенос="нет"],
-block-x[type="note"]:not([wrapping]),
-block-x[type="note"][wrapping="false"] {
+блок[тип="заметка"]:not([перенос]),
+блок[тип="заметка"][перенос="нет"],
+block[type="note"]:not([wrapping]),
+block[type="note"][wrapping="false"] {
   display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -57,26 +57,26 @@ block-x[type="note"][wrapping="false"] {
 
 /* note-x[wrapping],
 note-x[wrapping="true"], */
-блок-х[тип="заметка"][перенос="да"],
-block-x[type="note"][wrapping="true"] {
+блок[тип="заметка"][перенос="да"],
+block[type="note"][wrapping="true"] {
   display: inline-grid;
 }
 
 /* group-x, */
-блок-х[тип="группа"],
-block-x[type="group"] {
+блок[тип="группа"],
+block[type="group"] {
   display: contents;
 }
 
 /* table-x > from-new-line, */
-блок-х[тип="таблица"] > с-новой-строки,
-block-x[type="table"] > from-new-line {
+блок[тип="таблица"] > с-новой-строки,
+block[type="table"] > from-new-line {
   display: none;
 }
 
 /* table-x > chain-x, */
-блок-х[тип="таблица"] > блок-х[тип="цепочка"],
-block-x[type="table"] > block-x[type="chain"] {
+блок[тип="таблица"] > блок[тип="цепочка"],
+block[type="table"] > block[type="chain"] {
   place-self: stretch;
 }
 
