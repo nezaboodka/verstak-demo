@@ -1,9 +1,9 @@
 
 /* Verstak Layout Presets */
 
-/* chain-x, */
-блок[тип="цепочка"],
-block[type="chain"] {
+/* band-x, */
+блок[тип="лента"],
+block[type="band"] {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,12 +12,12 @@ block[type="chain"] {
   min-width: 0;
 }
 
-/* chain-x[wrapping] > from-new-line,
-chain-x[wrapping="true"] > from-new-line, */
-блок[тип="цепочка"][перенос] > с-новой-строки,
-блок[тип="цепочка"][перенос="да"] > с-новой-строки,
-block[type="chain"][wrapping] > from-new-line,
-block[type="chain"][wrapping="true"] > from-new-line {
+/* band-x[wrapping] > from-new-line,
+band-x[wrapping="true"] > from-new-line, */
+блок[тип="лента"][перенос] > с-новой-строки,
+блок[тип="лента"][перенос="да"] > с-новой-строки,
+block[type="band"][wrapping] > from-new-line,
+block[type="band"][wrapping="true"] > from-new-line {
   flex-flow: wrap;
 }
 
@@ -74,9 +74,9 @@ block[type="table"] > from-new-line {
   display: none;
 }
 
-/* table-x > chain-x, */
-блок[тип="таблица"] > блок[тип="цепочка"],
-block[type="table"] > block[type="chain"] {
+/* table-x > band-x, */
+блок[тип="таблица"] > блок[тип="лента"],
+block[type="table"] > block[type="band"] {
   place-self: stretch;
 }
 

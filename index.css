@@ -10,8 +10,10 @@ body {
   font-size: min(5vw, 0.5cm);
 }
 
-body > v-chain,
-body > v-group > v-chain {
+body > блок[тип="лента"],
+body > block[type="band"],
+body > блок[тип="группа"] > блок[тип="лента"],
+body > block[type="group"] > block[type="band"] {
   flex-grow: 1;
 }
 
