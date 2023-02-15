@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { Band, BlockBody, Img, fromNewLine } from "verstak"
+import { Bar, BlockBody, Img, fromNewRow } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { Icon, Field, createFieldModel, $theme } from "gost-pi"
 import { AppTheme } from "themes/AppTheme"
@@ -7,7 +7,7 @@ import { $app } from "models/App"
 
 export function ToolBar(body?: BlockBody<HTMLElement, void, void>) {
   return (
-    Band(body, {
+    Bar(body, {
       render(b) {
         const app = $app.value
         const theme = $theme.value as AppTheme
@@ -25,7 +25,7 @@ export function ToolBar(body?: BlockBody<HTMLElement, void, void>) {
         //     b.native.style.backgroundColor = app.blinkingEffect ? "red" : ""
         //   }
         // })
-        Band({ // Logo
+        Bar({ // Logo
           initialize(b) {
             b.style(theme.panel)
             // b.style(s.Clickable)
@@ -43,15 +43,15 @@ export function ToolBar(body?: BlockBody<HTMLElement, void, void>) {
             })
           }
         })
-        Band({
+        Bar({
           render(b) {
             b.widthGrowth = 1
             b.style(theme.panel)
-            Band({
+            Bar({
               render(b) {
                 b.widthGrowth = 1
                 Markdown(`**Verstak** v${app.version}`)
-                fromNewLine()
+                fromNewRow()
                 Markdown("Try to *change* window size")
               }
             })
@@ -71,7 +71,7 @@ export function ToolBar(body?: BlockBody<HTMLElement, void, void>) {
             })
           }
         })
-        Band({ // Account
+        Bar({ // Account
           initialize(b) {
             // b.native.onclick = () => Transaction.run(null, () => app.nextTheme())
           },

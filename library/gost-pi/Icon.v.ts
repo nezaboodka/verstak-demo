@@ -1,9 +1,9 @@
-import { Band, BlockBody } from "verstak"
+import { Bar, BlockBody } from "verstak"
 import { $theme } from "./Theme"
 
 export function Icon(name: string, body?: BlockBody<HTMLElement, void, void>) {
   return (
-    Band(body, {
+    Bar(body, {
       reaction: true,
       render(b) {
         const s = $theme.value.icon

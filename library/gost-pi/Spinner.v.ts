@@ -1,4 +1,4 @@
-import { Band, BlockBody, Note } from "verstak"
+import { Bar, BlockBody, Note } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
 
 export interface SpinnerModel {
@@ -8,7 +8,7 @@ export interface SpinnerModel {
 
 export function Spinner(body?: BlockBody<HTMLElement, SpinnerModel>) {
   return (
-    Band<SpinnerModel>(body, {
+    Bar<SpinnerModel>(body, {
       reaction: true,
       initialize(b) {
         b.model ??= createLocalModel()

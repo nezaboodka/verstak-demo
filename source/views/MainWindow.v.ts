@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { Band, Align, Note, fromNewLine } from "verstak"
+import { Bar, Align, Note, row, fromNewRow } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { createFieldModel, Field, $theme } from "gost-pi"
 import { $app } from "models/App"
@@ -9,7 +9,7 @@ import { WorkArea } from "./WorkArea.v"
 
 export function MainWindow() {
   return (
-    Band({
+    Bar({
       reaction: true,
       initialize(b) {
         $app.value.sensors.listen(b.native)
@@ -22,7 +22,7 @@ export function MainWindow() {
         b.contentAlignment = Align.Top
         b.heightGrowth = 1
 
-        fromNewLine(l => {
+        row(l => {
           ToolBar({
             render(b, base) {
               b.widthGrowth = 1
@@ -31,15 +31,15 @@ export function MainWindow() {
           })
         })
 
-        fromNewLine(l => { // main line
-          Band({
+        row(l => { // main row
+          Bar({
             render(b) {
               b.style(app.theme.panel)
               b.minWidth = "10rem"
               b.contentAlignment = Align.Top
               b.blockAlignment = Align.Stretch
               Note("Navigation Bar")
-              fromNewLine()
+              fromNewRow()
               Field({
                 initialize(b, base) {
                   const loader = app.loader
@@ -54,13 +54,13 @@ export function MainWindow() {
                   base()
                 },
               })
-              fromNewLine()
-              Band({
+              fromNewRow()
+              Bar({
                 render(b) {
                   b.heightGrowth = 1
                 }
               })
-              fromNewLine()
+              fromNewRow()
               Field({
                 initialize(b, base) {
                   const loader = app.loader
@@ -85,7 +85,7 @@ export function MainWindow() {
               b.heightGrowth = 1
             }
           })
-          Band({
+          Bar({
             reaction: true,
             triggers: { theme },
             render(b) {
@@ -100,7 +100,7 @@ export function MainWindow() {
           })
         })
 
-        fromNewLine(l => {
+        row(l => {
           StatusBar({
             render(b, base) {
               base()
@@ -128,8 +128,8 @@ Table("Example", {
     Ruler("A", Align.Top + Align.CenterX)
     Ruler("B", Align.Top + Align.CenterX)
     Ruler("C", Align.Top + Align.CenterX);
-    fromNewLine(); Ruler("2", Align.Left)
-    fromNewLine(); Ruler("3", Align.Left)
+    fromNewRow(); Ruler("2", Align.Left)
+    fromNewRow(); Ruler("3", Align.Left)
     // Blocks can also be layed out
     // explicitly in exact cells.
     ExampleData("B2")

@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { Band, BlockBody, Note, FocusModel, ReactingFocuser, fromNewLine } from "verstak"
+import { Bar, BlockBody, Note, FocusModel, ReactingFocuser, fromNewRow } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
 import { $theme, FieldStyling } from "./Theme"
 import { Icon } from "./Icon.v"
@@ -18,7 +18,7 @@ export interface FieldModel<T = string> extends FocusModel {
 
 export function Field(body?: BlockBody<HTMLElement, FieldModel>) {
   return (
-    Band<FieldModel>(body, {
+    Bar<FieldModel>(body, {
       reaction: true,
       initialize(b) {
         b.model ??= createFieldModel()
@@ -99,7 +99,7 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
 
 function FieldPopup(model: FieldModel, s: FieldStyling) {
   return (
-    Band({
+    Bar({
       key: FieldPopup.name,
       initialize(b) {
         const e = b.native
@@ -112,7 +112,7 @@ function FieldPopup(model: FieldModel, s: FieldStyling) {
           const options = model.options
           if (options.length > 0) {
             for (const x of model.options) {
-              fromNewLine()
+              fromNewRow()
               Note(x, { key: x })
             }
           }

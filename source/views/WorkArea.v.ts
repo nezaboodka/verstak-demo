@@ -1,4 +1,4 @@
-import { Table, BlockBody, Band, Note, HtmlNote, fromNewLine, Align } from "verstak"
+import { Table, BlockBody, Bar, Note, HtmlNote, fromNewRow, Align } from "verstak"
 import { $theme } from "gost-pi"
 import { AppTheme } from "themes/AppTheme"
 
@@ -12,8 +12,8 @@ export function WorkArea(body?: BlockBody<HTMLElement, void, void>) {
         Ruler("A", Align.Top + Align.CenterX)
         Ruler("B", Align.Top + Align.CenterX)
         Ruler("C", Align.Top + Align.CenterX)
-        fromNewLine(); Ruler("2", Align.Left)
-        fromNewLine(); Ruler("3", Align.Left)
+        fromNewRow(); Ruler("2", Align.Left)
+        fromNewRow(); Ruler("3", Align.Left)
         // Blocks can also be layed out
         // explicitly in exact cells.
         ExampleData("B2")
@@ -28,7 +28,7 @@ export function WorkArea(body?: BlockBody<HTMLElement, void, void>) {
 
 function Ruler(title: string, align: Align, overlap?: boolean) {
   return (
-    Band({
+    Bar({
       render(b) {
         b.blockAlignment = align
         b.bounds = { widthOverlap: overlap }
@@ -41,7 +41,7 @@ function Ruler(title: string, align: Align, overlap?: boolean) {
 
 function ExampleData(place: string) {
   return (
-    Band({
+    Bar({
       initialize(b) {
         b.contentAlignment = Align.Center
       },

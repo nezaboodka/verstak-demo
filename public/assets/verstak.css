@@ -1,9 +1,9 @@
 
 /* Verstak Layout Presets */
 
-/* band-x, */
+/* bar-x, */
 блок[тип="лента"],
-block[type="band"] {
+block[type="bar"] {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,12 +12,12 @@ block[type="band"] {
   min-width: 0;
 }
 
-/* band-x[wrapping] > from-new-line,
-band-x[wrapping="true"] > from-new-line, */
-блок[тип="лента"][перенос] > с-новой-строки,
-блок[тип="лента"][перенос="да"] > с-новой-строки,
-block[type="band"][wrapping] > from-new-line,
-block[type="band"][wrapping="true"] > from-new-line {
+/* bar-x[wrapping] > row,
+bar-x[wrapping="true"] > row, */
+блок[тип="лента"][перенос] > строка,
+блок[тип="лента"][перенос="да"] > строка,
+block[type="bar"][wrapping] > row,
+block[type="bar"][wrapping="true"] > from-new-line {
   flex-flow: wrap;
 }
 
@@ -31,8 +31,8 @@ block[type="table"] {
   text-align: initial;
 }
 
-с-новой-строки,
-from-new-line {
+строка,
+row {
   display: flex;
   flex-direction: row;
 }
@@ -68,19 +68,19 @@ block[type="group"] {
   display: contents;
 }
 
-/* table-x > from-new-line, */
-блок[тип="таблица"] > с-новой-строки,
-block[type="table"] > from-new-line {
+/* table-x > row, */
+блок[тип="таблица"] > строка,
+block[type="table"] > row {
   display: none;
 }
 
-/* table-x > band-x, */
+/* table-x > bar-x, */
 блок[тип="таблица"] > блок[тип="лента"],
-block[type="table"] > block[type="band"] {
+block[type="table"] > block[type="bar"] {
   place-self: stretch;
 }
 
-с-новой-строки > *:not([наложение]) { align-self: center; }
+строка > *:not([наложение]) { align-self: center; }
 [наложение] { position: absolute; min-width: 100%; box-sizing: border-box; }
 [наложение="скрыто"] { display: none !important; }
 [наложение="направо-вниз"] { left: 0; top: 100%; }
@@ -89,7 +89,7 @@ block[type="table"] > block[type="band"] {
 [наложение="налево-вверх"] { right: 0; bottom: 100%; }
 [штабель] { position: relative; }
 [штабель="да"] { position: relative; }
-from-new-line > *:not([overlay]) { align-self: center; }
+row > *:not([overlay]) { align-self: center; }
 [overlay] { position: absolute; min-width: 100%; box-sizing: border-box; }
 [overlay="hidden"] { display: none !important; }
 [overlay="rightward-downward"] { left: 0; top: 100%; }

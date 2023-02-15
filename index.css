@@ -11,9 +11,9 @@ body {
 }
 
 body > блок[тип="лента"],
-body > block[type="band"],
+body > block[type="bar"],
 body > блок[тип="группа"] > блок[тип="лента"],
-body > block[type="group"] > block[type="band"] {
+body > block[type="group"] > block[type="bar"] {
   flex-grow: 1;
 }
 

@@ -1,4 +1,4 @@
-import { Band, BlockBody } from "verstak"
+import { Bar, BlockBody } from "verstak"
 import { observableModel } from "common/Utils"
 
 export interface ImageModel {
@@ -7,7 +7,7 @@ export interface ImageModel {
 
 export function Image(body?: BlockBody<HTMLElement, ImageModel>) {
   return (
-    Band<ImageModel>(body, {
+    Bar<ImageModel>(body, {
       reaction: true,
       initialize(b) {
         b.model ??= observableModel({ source: undefined })
