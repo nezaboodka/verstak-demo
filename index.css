@@ -10,10 +10,10 @@ body {
   font-size: min(5vw, 0.5cm);
 }
 
-body > блок[тип="лента"],
-body > block[type="bar"],
-body > блок[тип="группа"] > блок[тип="лента"],
-body > block[type="group"] > block[type="bar"] {
+body > блок[вид="лента"],
+body > block[kind="bar"],
+body > блок[вид="группа"] > блок[вид="лента"],
+body > block[kind="group"] > block[kind="bar"] {
   flex-grow: 1;
 }
 
