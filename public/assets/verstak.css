@@ -1,7 +1,6 @@
 
 /* Verstak Presets */
 
-/* chain-x, */
 блок[вид="цепочка"],
 block[kind="chain"] {
   display: flex;
@@ -12,8 +11,6 @@ block[kind="chain"] {
   min-width: 0;
 }
 
-/* chain-x[wrapping] > row,
-chain-x[wrapping="true"] > row, */
 блок[вид="цепочка"][перенос] > строка,
 блок[вид="цепочка"][перенос="да"] > строка,
 block[kind="chain"][wrapping] > row,
@@ -21,7 +18,6 @@ block[kind="chain"][wrapping="true"] > row {
   flex-flow: wrap;
 }
 
-/* table-x, */
 блок[вид="таблица"],
 block[kind="table"] {
   display: grid;
@@ -37,14 +33,11 @@ row {
   flex-direction: row;
 }
 
-/* note-x, */
 блок[вид="заметка"],
 block[kind="note"] {
   flex-shrink: 1;
 }
 
-/* note-x:not([wrapping]),
-note-x[wrapping="false"], */
 блок[вид="заметка"]:not([перенос]),
 блок[вид="заметка"][перенос="нет"],
 block[kind="note"]:not([wrapping]),
@@ -55,26 +48,21 @@ block[kind="note"][wrapping="false"] {
   white-space: nowrap;
 }
 
-/* note-x[wrapping],
-note-x[wrapping="true"], */
 блок[вид="заметка"][перенос="да"],
 block[kind="note"][wrapping="true"] {
   display: inline-grid;
 }
 
-/* group-x, */
 блок[вид="группа"],
 block[kind="group"] {
   display: contents;
 }
 
-/* table-x > row, */
 блок[вид="таблица"] > строка,
 block[kind="table"] > row {
   display: none;
 }
 
-/* table-x > chain-x, */
 блок[вид="таблица"] > блок[вид="цепочка"],
 block[kind="table"] > block[kind="chain"] {
   place-self: stretch;
