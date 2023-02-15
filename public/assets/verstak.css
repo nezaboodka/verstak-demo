@@ -1,6 +1,11 @@
 
 /* Verstak Presets */
 
+блок,
+block {
+  align-self: center;
+}
+
 блок[вид="цепочка"],
 block[kind="chain"] {
   display: flex;
@@ -68,8 +73,7 @@ block[kind="table"] > block[kind="chain"] {
   place-self: stretch;
 }
 
-строка > *:not([наложение]) { align-self: center; }
-[наложение] { position: absolute; min-width: 100%; box-sizing: border-box; }
+[наложение] { position: absolute; min-width: 100% !important; box-sizing: border-box; }
 [наложение="скрыто"] { display: none !important; }
 [наложение="направо-вниз"] { left: 0; top: 100%; }
 [наложение="направо-вверх"] { left: 0; bottom: 100%; }
@@ -77,8 +81,7 @@ block[kind="table"] > block[kind="chain"] {
 [наложение="налево-вверх"] { right: 0; bottom: 100%; }
 [штабель] { position: relative; }
 [штабель="да"] { position: relative; }
-row > *:not([overlay]) { align-self: center; }
-[overlay] { position: absolute; min-width: 100%; box-sizing: border-box; }
+[overlay] { position: absolute; min-width: 100% !important; box-sizing: border-box; }
 [overlay="hidden"] { display: none !important; }
 [overlay="rightward-downward"] { left: 0; top: 100%; }
 [overlay="rightward-upward"] { left: 0; bottom: 100%; }
