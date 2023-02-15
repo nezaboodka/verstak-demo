@@ -1,7 +1,7 @@
 
 /* Verstak Presets */
 
-/* bar-x, */
+/* chain-x, */
 блок[вид="цепочка"],
 block[kind="chain"] {
   display: flex;
@@ -12,8 +12,8 @@ block[kind="chain"] {
   min-width: 0;
 }
 
-/* bar-x[wrapping] > row,
-bar-x[wrapping="true"] > row, */
+/* chain-x[wrapping] > row,
+chain-x[wrapping="true"] > row, */
 блок[вид="цепочка"][перенос] > строка,
 блок[вид="цепочка"][перенос="да"] > строка,
 block[kind="chain"][wrapping] > row,
@@ -74,7 +74,7 @@ block[kind="table"] > row {
   display: none;
 }
 
-/* table-x > bar-x, */
+/* table-x > chain-x, */
 блок[вид="таблица"] > блок[вид="цепочка"],
 block[kind="table"] > block[kind="chain"] {
   place-self: stretch;
