@@ -2,8 +2,8 @@
 /* Verstak Presets */
 
 /* bar-x, */
-блок[вид="лента"],
-block[kind="bar"] {
+блок[вид="цепочка"],
+block[kind="chain"] {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,10 +14,10 @@ block[kind="bar"] {
 
 /* bar-x[wrapping] > row,
 bar-x[wrapping="true"] > row, */
-блок[вид="лента"][перенос] > строка,
-блок[вид="лента"][перенос="да"] > строка,
-block[kind="bar"][wrapping] > row,
-block[kind="bar"][wrapping="true"] > row {
+блок[вид="цепочка"][перенос] > строка,
+блок[вид="цепочка"][перенос="да"] > строка,
+block[kind="chain"][wrapping] > row,
+block[kind="chain"][wrapping="true"] > row {
   flex-flow: wrap;
 }
 
@@ -75,8 +75,8 @@ block[kind="table"] > row {
 }
 
 /* table-x > bar-x, */
-блок[вид="таблица"] > блок[вид="лента"],
-block[kind="table"] > block[kind="bar"] {
+блок[вид="таблица"] > блок[вид="цепочка"],
+block[kind="table"] > block[kind="chain"] {
   place-self: stretch;
 }
 
