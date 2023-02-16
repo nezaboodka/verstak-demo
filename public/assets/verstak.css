@@ -73,11 +73,6 @@ block[kind="table"] > block[kind="chain"] {
   place-self: stretch;
 }
 
-[штабель] { position: relative; }
-[штабель="да"] { position: relative; }
-[stacking] { position: relative; }
-[stacking="true"] { position: relative; }
-
 /* Verstak Blinking Effect */
 
 .verstak-blinking-effect-0-0 {
