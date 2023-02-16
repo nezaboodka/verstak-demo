@@ -16,13 +16,6 @@ block[kind="chain"] {
   min-width: 0;
 }
 
-блок[вид="цепочка"][перенос] > строка,
-блок[вид="цепочка"][перенос="да"] > строка,
-block[kind="chain"][wrapping] > row,
-block[kind="chain"][wrapping="true"] > row {
-  flex-flow: wrap;
-}
-
 блок[вид="таблица"],
 block[kind="table"] {
   display: grid;
@@ -30,6 +23,13 @@ block[kind="table"] {
   grid-auto-rows: minmax(min-content, 1fr);
   grid-auto-columns: minmax(min-content, 1fr);
   text-align: initial;
+}
+
+блок[вид="цепочка"][перенос] > строка,
+блок[вид="цепочка"][перенос="да"] > строка,
+block[kind="chain"][wrapping] > row,
+block[kind="chain"][wrapping="true"] > row {
+  flex-flow: wrap;
 }
 
 строка,
@@ -81,6 +81,7 @@ block[kind="table"] > block[kind="chain"] {
 [наложение="налево-вверх"] { right: 0; bottom: 100%; }
 [штабель] { position: relative; }
 [штабель="да"] { position: relative; }
+
 [overlay] { position: absolute; min-width: 100% !important; box-sizing: border-box; }
 [overlay="hidden"] { display: none !important; }
 [overlay="rightward-downward"] { left: 0; top: 100%; }
