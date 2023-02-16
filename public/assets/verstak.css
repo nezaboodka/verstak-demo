@@ -73,21 +73,8 @@ block[kind="table"] > block[kind="chain"] {
   place-self: stretch;
 }
 
-[наложение] { position: absolute; min-width: 100% !important; box-sizing: border-box; }
-[наложение="скрыто"] { display: none !important; }
-[наложение="направо-вниз"] { left: 0; top: 100%; }
-[наложение="направо-вверх"] { left: 0; bottom: 100%; }
-[наложение="налево-вниз"] { right: 0; top: 100%; }
-[наложение="налево-вверх"] { right: 0; bottom: 100%; }
 [штабель] { position: relative; }
 [штабель="да"] { position: relative; }
-
-[overlay] { position: absolute; min-width: 100% !important; box-sizing: border-box; }
-[overlay="hidden"] { display: none !important; }
-[overlay="rightward-downward"] { left: 0; top: 100%; }
-[overlay="rightward-upward"] { left: 0; bottom: 100%; }
-[overlay="leftward-downward"] { right: 0; top: 100%; }
-[overlay="leftward-upward"] { right: 0; bottom: 100%; }
 [stacking] { position: relative; }
 [stacking="true"] { position: relative; }
 
