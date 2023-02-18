@@ -1,12 +1,12 @@
 
 /* Verstak Presets */
 
-блок,
+/* блок,
 block {
   align-self: center;
-}
+} */
 
-блок[вид="цепочка"],
+/* блок[вид="цепочка"],
 block[kind="chain"] {
   display: flex;
   flex-direction: column;
@@ -14,36 +14,36 @@ block[kind="chain"] {
   text-align: initial;
   flex-shrink: 1;
   min-width: 0;
-}
+} */
 
-блок[вид="таблица"],
+/* блок[вид="таблица"],
 block[kind="table"] {
   display: grid;
   flex-basis: 0;
   grid-auto-rows: minmax(min-content, 1fr);
   grid-auto-columns: minmax(min-content, 1fr);
   text-align: initial;
-}
+} */
 
-блок[вид="цепочка"][перенос] > строка,
+/* блок[вид="цепочка"][перенос] > строка,
 блок[вид="цепочка"][перенос="да"] > строка,
 block[kind="chain"][wrapping] > row,
 block[kind="chain"][wrapping="true"] > row {
   flex-flow: wrap;
-}
+} */
 
-строка,
+/* строка,
 row {
   display: flex;
   flex-direction: row;
-}
+} */
 
-блок[вид="заметка"],
+/* блок[вид="заметка"],
 block[kind="note"] {
   flex-shrink: 1;
-}
+} */
 
-блок[вид="заметка"]:not([перенос]),
+/* блок[вид="заметка"]:not([перенос]),
 блок[вид="заметка"][перенос="нет"],
 block[kind="note"]:not([wrapping]),
 block[kind="note"][wrapping="false"] {
@@ -51,26 +51,26 @@ block[kind="note"][wrapping="false"] {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
+} */
 
-блок[вид="заметка"][перенос="да"],
+/* блок[вид="заметка"][перенос="да"],
 block[kind="note"][wrapping="true"] {
   display: inline-grid;
-}
+} */
 
-блок[вид="группа"],
+/* блок[вид="группа"],
 block[kind="group"] {
   display: contents;
-}
+} */
 
 блок[вид="таблица"] > строка,
 block[kind="table"] > row {
-  display: none;
+  display: none !important;
 }
 
 блок[вид="таблица"] > блок[вид="цепочка"],
 block[kind="table"] > block[kind="chain"] {
-  place-self: stretch;
+  place-self: stretch !important;
 }
 
 /* Verstak Blinking Effect */
