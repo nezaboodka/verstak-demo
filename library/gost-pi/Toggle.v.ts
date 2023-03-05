@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { Chain, BlockBody, Note } from "verstak"
+import { Chain, BlockBuilder, Note } from "verstak"
 import { observableModel } from "common/Utils"
 import { $theme } from "./Theme"
 import { Icon } from "./Icon.v"
@@ -10,13 +10,13 @@ export interface ToggleModel {
   color?: string
 }
 
-export function Toggle(body?: BlockBody<HTMLElement, ToggleModel>) {
+export function Toggle(builder?: BlockBuilder<HTMLElement, ToggleModel>) {
   return (
-    Chain<ToggleModel>(body, {
+    Chain<ToggleModel>(builder, {
       reaction: true,
       initialize(b) {
         b.model ??= observableModel({
-          label: b.body.key,
+          label: b.builder.key,
           checked: true,
           color: "green" }) // model is either taken from parameter or created internally
         b.native.onclick = () => Transaction.run(null, () => b.model.checked = !b.model.checked)

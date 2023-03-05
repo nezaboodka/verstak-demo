@@ -1,13 +1,13 @@
 import { refs } from "reactronic"
-import { Chain, BlockBody, Align } from "verstak"
+import { Chain, BlockBuilder, Align } from "verstak"
 import { Button, Toggle, Field, createFieldModel, $theme } from "gost-pi"
 import { AppTheme } from "themes/AppTheme"
 import { observableModel } from "common/Utils"
 import { $app } from "models/App"
 
-export function StatusBar(body?: BlockBody<HTMLElement, void, void>) {
+export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
   return (
-    Chain(body, {
+    Chain(builder, {
       render(b) {
         // We get app and theme as a context variables
         // (instead of functional parameters) in order

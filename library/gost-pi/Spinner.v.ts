@@ -1,4 +1,4 @@
-import { Chain, BlockBody, Note } from "verstak"
+import { Chain, BlockBuilder, Note } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
 
 export interface SpinnerModel {
@@ -6,9 +6,9 @@ export interface SpinnerModel {
   color: string
 }
 
-export function Spinner(body?: BlockBody<HTMLElement, SpinnerModel>) {
+export function Spinner(builder?: BlockBuilder<HTMLElement, SpinnerModel>) {
   return (
-    Chain<SpinnerModel>(body, {
+    Chain<SpinnerModel>(builder, {
       reaction: true,
       initialize(b) {
         b.model ??= createLocalModel()

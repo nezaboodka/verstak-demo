@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { Chain, BlockBody, Note } from "verstak"
+import { Chain, BlockBuilder, Note } from "verstak"
 import { observableModel } from "common/Utils"
 import { $theme } from "./Theme"
 import { Icon } from "./Icon.v"
@@ -10,14 +10,14 @@ export interface ButtonModel {
   action?(): void
 }
 
-export function Button(body?: BlockBody<HTMLElement, ButtonModel>) {
+export function Button(builder?: BlockBuilder<HTMLElement, ButtonModel>) {
   return (
-    Chain<ButtonModel>(body, {
+    Chain<ButtonModel>(builder, {
       reaction: true,
       initialize(b) {
         b.model ??= observableModel({
           icon: "fa-solid fa-square",
-          label: b.body.key,
+          label: b.builder.key,
         })
         b.native.onclick = () => Transaction.run(null, () => b.model.action?.())
       },

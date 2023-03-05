@@ -1,13 +1,13 @@
 import { refs } from "reactronic"
-import { Chain, BlockBody, Img, fromNewRow } from "verstak"
+import { Chain, BlockBuilder, Img, fromNewRow } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { Icon, Field, createFieldModel, $theme } from "gost-pi"
 import { AppTheme } from "themes/AppTheme"
 import { $app } from "models/App"
 
-export function ToolBar(body?: BlockBody<HTMLElement, void, void>) {
+export function ToolBar(builder?: BlockBuilder<HTMLElement, void, void>) {
   return (
-    Chain(body, {
+    Chain(builder, {
       render(b) {
         const app = $app.value
         const theme = $theme.value as AppTheme
