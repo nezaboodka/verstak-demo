@@ -39,6 +39,7 @@ export function MainWindow() {
               b.contentAlignment = Align.Top
               b.blockAlignment = Align.Stretch
               VNote("Navigation Bar")
+
               fromNewRow()
               Field({
                 initialize(b, base) {
@@ -54,12 +55,14 @@ export function MainWindow() {
                   base()
                 },
               })
+
               fromNewRow()
               VSection({
                 render(b) {
                   b.heightGrowth = 1
                 }
               })
+
               fromNewRow()
               Field({
                 initialize(b, base) {
