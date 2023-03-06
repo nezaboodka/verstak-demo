@@ -1,9 +1,9 @@
-import { Chain, BlockBuilder } from "verstak"
+import { VSection, BlockBuilder } from "verstak"
 import { $theme } from "./Theme"
 
 export function Icon(name: string, builder?: BlockBuilder<HTMLElement, void, void>) {
   return (
-    Chain(builder, {
+    VSection(builder, {
       reaction: true,
       render(b) {
         const s = $theme.value.icon

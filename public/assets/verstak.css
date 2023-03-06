@@ -6,8 +6,8 @@ block {
   align-self: center;
 } */
 
-/* блок[вид="цепочка"],
-block[kind="chain"] {
+/* блок[вид="секция"],
+block[kind="section"] {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,10 +25,10 @@ block[kind="table"] {
   text-align: initial;
 } */
 
-/* блок[вид="цепочка"][перенос] > строка,
-блок[вид="цепочка"][перенос="да"] > строка,
-block[kind="chain"][wrapping] > row,
-block[kind="chain"][wrapping="true"] > row {
+/* блок[вид="секция"][перенос] > строка,
+блок[вид="секция"][перенос="да"] > строка,
+block[kind="section"][wrapping] > row,
+block[kind="section"][wrapping="true"] > row {
   flex-flow: wrap;
 } */
 
@@ -68,8 +68,8 @@ block[kind="table"] > row {
   display: none !important;
 }
 
-блок[вид="таблица"] > блок[вид="цепочка"],
-block[kind="table"] > block[kind="chain"] {
+блок[вид="таблица"] > блок[вид="секция"],
+block[kind="table"] > block[kind="section"] {
   place-self: stretch !important;
 }
 

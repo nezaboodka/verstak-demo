@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { Chain, BlockBuilder, Note, FocusModel, ReactingFocuser, fromNewRow } from "verstak"
+import { VSection, BlockBuilder, VNote, FocusModel, ReactingFocuser, fromNewRow } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
 import { $theme, FieldStyling } from "./Theme"
 import { Icon } from "./Icon.v"
@@ -18,7 +18,7 @@ export interface FieldModel<T = string> extends FocusModel {
 
 export function Field(builder?: BlockBuilder<HTMLElement, FieldModel>) {
   return (
-    Chain<FieldModel>(builder, {
+    VSection<FieldModel>(builder, {
       reaction: true,
       initialize(b) {
         b.model ??= createFieldModel()
@@ -62,7 +62,7 @@ export function createFieldModel<T>(props?: Partial<ValuesOrRefs<FieldModel<T>>>
 
 function FieldInput(model: FieldModel, s: FieldStyling) {
   return (
-    Note(model.text, {
+    VNote(model.text, {
       key: FieldInput.name,
       initialize(b, base) {
         const e = b.native
@@ -99,7 +99,7 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
 
 function FieldPopup(model: FieldModel, s: FieldStyling) {
   return (
-    Chain({
+    VSection({
       key: FieldPopup.name,
       initialize(b) {
         const e = b.native
@@ -113,11 +113,11 @@ function FieldPopup(model: FieldModel, s: FieldStyling) {
           if (options.length > 0) {
             for (const x of model.options) {
               fromNewRow()
-              Note(x, { key: x })
+              VNote(x, { key: x })
             }
           }
           else
-            Note("(nothing)", { key: "(nothing)" })
+            VNote("(nothing)", { key: "(nothing)" })
         }
       },
     })

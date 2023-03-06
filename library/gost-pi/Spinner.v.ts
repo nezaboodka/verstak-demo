@@ -1,4 +1,4 @@
-import { Chain, BlockBuilder, Note } from "verstak"
+import { VSection, BlockBuilder, VNote } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
 
 export interface SpinnerModel {
@@ -8,14 +8,14 @@ export interface SpinnerModel {
 
 export function Spinner(builder?: BlockBuilder<HTMLElement, SpinnerModel>) {
   return (
-    Chain<SpinnerModel>(builder, {
+    VSection<SpinnerModel>(builder, {
       reaction: true,
       initialize(b) {
         b.model ??= createLocalModel()
       },
       render(b) {
         const m = b.model
-        m.active && Note("loading...")
+        m.active && VNote("loading...")
       },
     })
   )

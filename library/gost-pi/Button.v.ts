@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { Chain, BlockBuilder, Note } from "verstak"
+import { VSection, BlockBuilder, VNote } from "verstak"
 import { observableModel } from "common/Utils"
 import { $theme } from "./Theme"
 import { Icon } from "./Icon.v"
@@ -12,7 +12,7 @@ export interface ButtonModel {
 
 export function Button(builder?: BlockBuilder<HTMLElement, ButtonModel>) {
   return (
-    Chain<ButtonModel>(builder, {
+    VSection<ButtonModel>(builder, {
       reaction: true,
       initialize(b) {
         b.model ??= observableModel({
@@ -33,7 +33,7 @@ export function Button(builder?: BlockBuilder<HTMLElement, ButtonModel>) {
             }
           })
         if (m.label)
-          Note(m.label, {
+          VNote(m.label, {
             render(b, base) {
               base()
               b.style(s.label)

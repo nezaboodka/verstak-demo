@@ -1,10 +1,10 @@
-import { Table, BlockBuilder, Chain, Note, HtmlNote, fromNewRow, Align } from "verstak"
+import { VTable, BlockBuilder, VSection, VNote, VHtmlNote, fromNewRow, Align } from "verstak"
 import { $theme } from "gost-pi"
 import { AppTheme } from "themes/AppTheme"
 
 export function WorkArea(builder?: BlockBuilder<HTMLElement, void, void>) {
   return (
-    Table(builder, {
+    VTable(builder, {
       render(b) {
         // Blocks can be layed out automatically
         // based on their order and line feeds.
@@ -28,12 +28,12 @@ export function WorkArea(builder?: BlockBuilder<HTMLElement, void, void>) {
 
 function Ruler(title: string, align: Align, overlap?: boolean) {
   return (
-    Chain({
+    VSection({
       render(b) {
         b.blockAlignment = align
         b.placement = { widthOverlap: overlap }
         b.native.style.fontSize = "smaller"
-        HtmlNote(`&nbsp;${title}`)
+        VHtmlNote(`&nbsp;${title}`)
       }
     })
   )
@@ -41,7 +41,7 @@ function Ruler(title: string, align: Align, overlap?: boolean) {
 
 function ExampleData(place: string) {
   return (
-    Chain({
+    VSection({
       initialize(b) {
         b.contentAlignment = Align.Center
       },
@@ -49,7 +49,7 @@ function ExampleData(place: string) {
         const theme = $theme.value as AppTheme
         b.placement = place
         b.style(theme.accent)
-        Note(place)
+        VNote(place)
       }
     })
   )

@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { Chain, BlockBuilder, Align } from "verstak"
+import { VSection, BlockBuilder, Align } from "verstak"
 import { Button, Toggle, Field, createFieldModel, $theme } from "gost-pi"
 import { AppTheme } from "themes/AppTheme"
 import { observableModel } from "common/Utils"
@@ -7,7 +7,7 @@ import { $app } from "models/App"
 
 export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
   return (
-    Chain(builder, {
+    VSection(builder, {
       render(b) {
         // We get app and theme as a context variables
         // (instead of functional parameters) in order
@@ -59,7 +59,7 @@ export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
             b.native.classList.toggle(theme.panel, true)
           }
         })
-        Chain({
+        VSection({
           render(b) {
             b.style(theme.panel)
             b.widthGrowth = 1

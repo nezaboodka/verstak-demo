@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { Chain, BlockBuilder, Note } from "verstak"
+import { VSection, BlockBuilder, VNote } from "verstak"
 import { observableModel } from "common/Utils"
 import { $theme } from "./Theme"
 import { Icon } from "./Icon.v"
@@ -12,7 +12,7 @@ export interface ToggleModel {
 
 export function Toggle(builder?: BlockBuilder<HTMLElement, ToggleModel>) {
   return (
-    Chain<ToggleModel>(builder, {
+    VSection<ToggleModel>(builder, {
       reaction: true,
       initialize(b) {
         b.model ??= observableModel({
@@ -34,7 +34,7 @@ export function Toggle(builder?: BlockBuilder<HTMLElement, ToggleModel>) {
           }
         })
         if (m.label)
-          Note(m.label, {
+          VNote(m.label, {
             render(b, base) {
               base()
               b.style(s.label)

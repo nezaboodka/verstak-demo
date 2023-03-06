@@ -1,4 +1,4 @@
-import { Chain, BlockBuilder } from "verstak"
+import { VSection, BlockBuilder } from "verstak"
 import { observableModel } from "common/Utils"
 
 export interface ImageModel {
@@ -7,7 +7,7 @@ export interface ImageModel {
 
 export function Image(builder?: BlockBuilder<HTMLElement, ImageModel>) {
   return (
-    Chain<ImageModel>(builder, {
+    VSection<ImageModel>(builder, {
       reaction: true,
       initialize(b) {
         b.model ??= observableModel({ source: undefined })

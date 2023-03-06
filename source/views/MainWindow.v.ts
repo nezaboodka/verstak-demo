@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { Chain, Align, Note, row, fromNewRow } from "verstak"
+import { VSection, Align, VNote, row, fromNewRow } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { createFieldModel, Field, $theme } from "gost-pi"
 import { $app } from "models/App"
@@ -9,7 +9,7 @@ import { WorkArea } from "./WorkArea.v"
 
 export function MainWindow() {
   return (
-    Chain({
+    VSection({
       reaction: true,
       initialize(b) {
         $app.value.sensors.listen(b.native)
@@ -32,13 +32,13 @@ export function MainWindow() {
         })
 
         row(l => { // main row
-          Chain({
+          VSection({
             render(b) {
               b.style(app.theme.panel)
               b.minWidth = "10rem"
               b.contentAlignment = Align.Top
               b.blockAlignment = Align.Stretch
-              Note("Navigation Bar")
+              VNote("Navigation Bar")
               fromNewRow()
               Field({
                 initialize(b, base) {
@@ -55,7 +55,7 @@ export function MainWindow() {
                 },
               })
               fromNewRow()
-              Chain({
+              VSection({
                 render(b) {
                   b.heightGrowth = 1
                 }
@@ -85,7 +85,7 @@ export function MainWindow() {
               b.heightGrowth = 1
             }
           })
-          Chain({
+          VSection({
             reaction: true,
             triggers: { theme },
             render(b) {
