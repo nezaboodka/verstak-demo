@@ -12,6 +12,7 @@
       "webRoot": "${workspaceRoot}",
       "sourceMaps": true,
       "smartStep": true,
+      "pauseForSourceMap": false,
       "skipFiles": [
         "${workspaceFolder}/library/reactronic/**/*.ts",
         // "${workspaceFolder}/library/verstak/**/*.ts",
@@ -20,7 +21,7 @@
         "webpack:///./node_modules/**/*.js",
         "<node_internals>/**/*.js",
         "vendors.js"
-      ]
+      ],
     },
     {
       "type": "chrome",
