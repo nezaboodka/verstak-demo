@@ -2,7 +2,7 @@ import { refs } from "reactronic"
 import { VSection, Align, VNote, row, fromNewRow } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { createFieldModel, Field, $theme } from "gost-pi"
-import { $app } from "models/App"
+import { App, $app } from "models/App"
 import { ToolBar } from "./ToolBar.v"
 import { StatusBar } from "./StatusBar.v"
 import { WorkArea } from "./WorkArea.v"
@@ -19,6 +19,7 @@ export function MainWindow() {
         const theme = app.theme
         $theme.value = theme
 
+        b.style(App.blinkingEffectMarker, app.blinkingEffect)
         b.contentAlignment = Align.Top
         b.heightGrowth = 1
 

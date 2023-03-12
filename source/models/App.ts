@@ -4,6 +4,8 @@ import { AppTheme } from "themes/AppTheme"
 import { Loader } from "./Loader"
 
 export class App extends ObservableObject {
+  static readonly blinkingEffectMarker = "ё"
+
   version: string
   sensors: HtmlSensors
   allThemes: Array<AppTheme>
@@ -37,7 +39,7 @@ export class App extends ObservableObject {
 
   @reactive
   protected applyBlinkingEffect(): void {
-    BaseHtmlDriver.blinkingEffect = this.blinkingEffect ? "verstak-blinking-effect" : undefined
+    BaseHtmlDriver.blinkingEffectMarker = this.blinkingEffect ? App.blinkingEffectMarker : undefined
   }
 }
 

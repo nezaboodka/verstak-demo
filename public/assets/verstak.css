@@ -75,27 +75,27 @@ block[kind="table"] > block[kind="section"] {
 
 /* Verstak Blinking Effect */
 
-.verstak-blinking-effect-0-0 {
+.ё .ё00 {
   animation: verstak-blinking-animation-ex-0-1 1.5s ease-in 1 !important;
 }
 
-.verstak-blinking-effect-0-1 {
+.ё .ё01 {
   animation: verstak-blinking-animation-ex-0-2 1.5s ease-in 1 !important;
 }
 
-.verstak-blinking-effect-1-0 {
+.ё .ё10 {
   animation: verstak-blinking-animation-ex-1-1 1.5s ease-in 1 !important;
 }
 
-.verstak-blinking-effect-1-1 {
+.ё .ё11 {
   animation: verstak-blinking-animation-ex-1-2 1.5s ease-in 1 !important;
 }
 
-.verstak-blinking-effect-2-0 {
+.ё .ё20 {
   animation: verstak-blinking-animation-ex-2-1 1.5s ease-in 1 !important;
 }
 
-.verstak-blinking-effect-2-1 {
+.ё .ё21 {
   animation: verstak-blinking-animation-ex-2-2 1.5s ease-in 1 !important;
 }
 
