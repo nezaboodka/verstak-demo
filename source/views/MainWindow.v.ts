@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { VSection, Align, VNote, row, fromNewRow } from "verstak"
+import { VSection, Align, VNote, row, fromNewRow, Mode } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { createFieldModel, Field, $theme } from "gost-pi"
 import { App, $app } from "models/App"
@@ -10,7 +10,7 @@ import { WorkArea } from "./WorkArea.v"
 export function MainWindow() {
   return (
     VSection({
-      reaction: true,
+      modes: Mode.SelfReactive,
       initialize(b) {
         $app.value.sensors.listen(b.native)
       },
@@ -90,7 +90,7 @@ export function MainWindow() {
             }
           })
           VSection({
-            reaction: true,
+            modes: Mode.SelfReactive,
             triggers: { theme },
             render(b) {
               b.style(theme.panel)

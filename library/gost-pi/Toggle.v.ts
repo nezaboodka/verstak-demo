@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { VSection, BlockBuilder, VNote } from "verstak"
+import { VSection, BlockBuilder, VNote, Mode } from "verstak"
 import { observableModel } from "common/Utils"
 import { $theme } from "./Theme"
 import { Icon } from "./Icon.v"
@@ -13,7 +13,7 @@ export interface ToggleModel {
 export function Toggle(builder?: BlockBuilder<HTMLElement, ToggleModel>) {
   return (
     VSection<ToggleModel>(builder, {
-      reaction: true,
+      modes: Mode.SelfReactive,
       initialize(b) {
         b.model ??= observableModel({
           label: b.builder.key,
