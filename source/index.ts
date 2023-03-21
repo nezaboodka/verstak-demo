@@ -22,17 +22,15 @@ const app = Transaction.run(null, () =>
     new DarkAppTheme(),
     new PrintAppTheme()))
 
-VBlock.root(() => {
-  HtmlBody({
-    modes: Mode.SeparateReaction,
-    render(b) {
-      $app.value = app
-      const t = app.theme
-      const css = b.native.style
-      css.color = t.textColor
-      css.backgroundColor = t.spaceFillColor
-      fromNewRow() // WORKAROUND
-      MainWindow()
-    }
-  })
+HtmlBody({
+  modes: Mode.SeparateReaction,
+  render(b) {
+    $app.value = app
+    const t = app.theme
+    const css = b.native.style
+    css.color = t.textColor
+    css.backgroundColor = t.spaceFillColor
+    fromNewRow() // WORKAROUND
+    MainWindow()
+  }
 })
