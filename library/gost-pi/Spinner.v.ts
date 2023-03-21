@@ -9,7 +9,7 @@ export interface SpinnerModel {
 export function Spinner(builder?: BlockBuilder<HTMLElement, SpinnerModel>) {
   return (
     VSection<SpinnerModel>(builder, {
-      modes: Mode.SelfReactive,
+      modes: Mode.SeparateReaction,
       initialize(b) {
         b.model ??= createLocalModel()
       },

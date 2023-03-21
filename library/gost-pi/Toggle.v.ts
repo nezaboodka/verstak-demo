@@ -13,7 +13,7 @@ export interface ToggleModel {
 export function Toggle(builder?: BlockBuilder<HTMLElement, ToggleModel>) {
   return (
     VSection<ToggleModel>(builder, {
-      modes: Mode.SelfReactive,
+      modes: Mode.SeparateReaction,
       initialize(b) {
         b.model ??= observableModel({
           label: b.builder.key,

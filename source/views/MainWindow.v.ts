@@ -10,7 +10,7 @@ import { WorkArea } from "./WorkArea.v"
 export function MainWindow() {
   return (
     VSection({
-      modes: Mode.SelfReactive,
+      modes: Mode.SeparateReaction,
       initialize(b) {
         $app.value.sensors.listen(b.native)
       },
@@ -90,7 +90,7 @@ export function MainWindow() {
             }
           })
           VSection({
-            modes: Mode.SelfReactive,
+            modes: Mode.SeparateReaction,
             triggers: { theme },
             render(b) {
               b.style(theme.panel)

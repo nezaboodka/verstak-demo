@@ -8,7 +8,7 @@ export interface ImageModel {
 export function Image(builder?: BlockBuilder<HTMLElement, ImageModel>) {
   return (
     VSection<ImageModel>(builder, {
-      modes: Mode.SelfReactive,
+      modes: Mode.SeparateReaction,
       initialize(b) {
         b.model ??= observableModel({ source: undefined })
       },

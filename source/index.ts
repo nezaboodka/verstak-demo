@@ -24,7 +24,7 @@ const app = Transaction.run(null, () =>
 
 VBlock.root(() => {
   HtmlBody({
-    modes: Mode.SelfReactive,
+    modes: Mode.SeparateReaction,
     render(b) {
       $app.value = app
       const t = app.theme

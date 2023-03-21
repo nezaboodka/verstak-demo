@@ -19,7 +19,7 @@ export interface FieldModel<T = string> extends FocusModel {
 export function Field(builder?: BlockBuilder<HTMLElement, FieldModel>) {
   return (
     VSection<FieldModel>(builder, {
-      modes: Mode.SelfReactive,
+      modes: Mode.SeparateReaction,
       initialize(b) {
         b.model ??= createFieldModel()
         b.native.dataForSensor.focus = b.model

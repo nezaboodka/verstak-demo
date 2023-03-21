@@ -13,7 +13,7 @@ export interface ButtonModel {
 export function Button(builder?: BlockBuilder<HTMLElement, ButtonModel>) {
   return (
     VSection<ButtonModel>(builder, {
-      modes: Mode.SelfReactive,
+      modes: Mode.SeparateReaction,
       initialize(b) {
         b.model ??= observableModel({
           icon: "fa-solid fa-square",
