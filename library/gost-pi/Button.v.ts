@@ -17,7 +17,7 @@ export function Button(builder?: BlockBuilder<HTMLElement, ButtonModel>) {
       initialize(b) {
         b.model ??= observableModel({
           icon: "fa-solid fa-square",
-          label: b.builder.key,
+          label: b.descriptor.builder.key,
         })
         b.native.onclick = () => Transaction.run(null, () => b.model.action?.())
       },
