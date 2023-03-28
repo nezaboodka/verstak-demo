@@ -63,15 +63,20 @@ block[kind="group"] {
   display: contents;
 } */
 
-блок[вид="таблица"] > строка,
+/* блок[вид="таблица"] > строка,
 block[kind="table"] > row {
   display: none !important;
+} */
+
+/* блок[вид="секция"] > блок,
+block[kind="section"] > block {
+  place-self: start center;
 }
 
 блок[вид="таблица"] > блок[вид="секция"],
 block[kind="table"] > block[kind="section"] {
-  place-self: stretch !important;
-}
+  place-self: stretch;
+} */
 
 /* Verstak Blinking Effect */
 
