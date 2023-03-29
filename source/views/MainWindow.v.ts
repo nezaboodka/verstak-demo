@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { VSection, Align, VNote, row, fromNewRow, Mode } from "verstak"
+import { VBand, Align, VNote, row, fromNewRow, Mode } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { createFieldModel, Field, $theme } from "gost-pi"
 import { App, $app } from "models/App"
@@ -9,7 +9,7 @@ import { WorkArea } from "./WorkArea.v"
 
 export function MainWindow() {
   return (
-    VSection({
+    VBand({
       modes: Mode.SeparateReaction,
       initialize(b) {
         $app.value.sensors.listen(b.native)
@@ -33,7 +33,7 @@ export function MainWindow() {
         })
 
         row(l => { // main row
-          VSection({
+          VBand({
             render(b) {
               b.style(app.theme.panel)
               b.minWidth = "10rem"
@@ -58,7 +58,7 @@ export function MainWindow() {
               })
 
               fromNewRow()
-              VSection({
+              VBand({
                 render(b) {
                   b.heightGrowth = 1
                 }
@@ -89,7 +89,7 @@ export function MainWindow() {
               b.heightGrowth = 1
             }
           })
-          VSection({
+          VBand({
             modes: Mode.SeparateReaction,
             triggers: { theme },
             render(b) {

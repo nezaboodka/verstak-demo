@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { VSection, BlockBuilder, VNote, Mode } from "verstak"
+import { VBand, BlockBuilder, VNote, Mode } from "verstak"
 import { observableModel } from "common/Utils"
 import { $theme } from "./Theme"
 import { Icon } from "./Icon.v"
@@ -12,7 +12,7 @@ export interface ButtonModel {
 
 export function Button(builder?: BlockBuilder<HTMLElement, ButtonModel>) {
   return (
-    VSection<ButtonModel>(builder, {
+    VBand<ButtonModel>(builder, {
       modes: Mode.SeparateReaction,
       initialize(b) {
         b.model ??= observableModel({

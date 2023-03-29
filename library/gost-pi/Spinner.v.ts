@@ -1,4 +1,4 @@
-import { VSection, BlockBuilder, VNote, Mode } from "verstak"
+import { VBand, BlockBuilder, VNote, Mode } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
 
 export interface SpinnerModel {
@@ -8,7 +8,7 @@ export interface SpinnerModel {
 
 export function Spinner(builder?: BlockBuilder<HTMLElement, SpinnerModel>) {
   return (
-    VSection<SpinnerModel>(builder, {
+    VBand<SpinnerModel>(builder, {
       modes: Mode.SeparateReaction,
       initialize(b) {
         b.model ??= createLocalModel()

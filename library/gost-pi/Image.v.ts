@@ -1,4 +1,4 @@
-import { VSection, BlockBuilder, Mode } from "verstak"
+import { VBand, BlockBuilder, Mode } from "verstak"
 import { observableModel } from "common/Utils"
 
 export interface ImageModel {
@@ -7,7 +7,7 @@ export interface ImageModel {
 
 export function Image(builder?: BlockBuilder<HTMLElement, ImageModel>) {
   return (
-    VSection<ImageModel>(builder, {
+    VBand<ImageModel>(builder, {
       modes: Mode.SeparateReaction,
       initialize(b) {
         b.model ??= observableModel({ source: undefined })

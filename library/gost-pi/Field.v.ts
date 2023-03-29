@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { VSection, BlockBuilder, VNote, FocusModel, FocuserReaction, fromNewRow, Mode } from "verstak"
+import { VBand, BlockBuilder, VNote, FocusModel, FocuserReaction, fromNewRow, Mode } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
 import { $theme, FieldStyling } from "./Theme"
 import { Icon } from "./Icon.v"
@@ -18,7 +18,7 @@ export interface FieldModel<T = string> extends FocusModel {
 
 export function Field(builder?: BlockBuilder<HTMLElement, FieldModel>) {
   return (
-    VSection<FieldModel>(builder, {
+    VBand<FieldModel>(builder, {
       modes: Mode.SeparateReaction,
       initialize(b) {
         b.model ??= createFieldModel()
@@ -99,7 +99,7 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
 
 function FieldPopup(model: FieldModel, s: FieldStyling) {
   return (
-    VSection({
+    VBand({
       key: FieldPopup.name,
       initialize(b) {
         const e = b.native

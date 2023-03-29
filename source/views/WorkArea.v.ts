@@ -1,4 +1,4 @@
-import { VTable, BlockBuilder, VSection, VNote, VHtmlNote, fromNewRow, Align } from "verstak"
+import { VTable, BlockBuilder, VBand, VNote, VHtmlNote, fromNewRow, Align } from "verstak"
 import { $theme } from "gost-pi"
 import { AppTheme } from "themes/AppTheme"
 
@@ -28,7 +28,7 @@ export function WorkArea(builder?: BlockBuilder<HTMLElement, void, void>) {
 
 function Ruler(title: string, align: Align, overlap?: boolean) {
   return (
-    VSection({
+    VBand({
       render(b) {
         b.blockAlignment = align
         b.placement = { widthOverlap: overlap }
@@ -41,7 +41,7 @@ function Ruler(title: string, align: Align, overlap?: boolean) {
 
 function ExampleData(place: string) {
   return (
-    VSection({
+    VBand({
       initialize(b) {
         b.contentAlignment = Align.Center
       },
