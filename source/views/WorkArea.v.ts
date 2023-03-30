@@ -8,7 +8,7 @@ export function WorkArea(builder?: BlockBuilder<HTMLElement, void, void>) {
       render(b) {
         // Blocks can be layed out automatically
         // based on their order and line feeds.
-        Ruler("1", Align.Left + Align.CenterY, true)
+        Ruler("1", Align.Left + Align.CenterY, 0)
         Ruler("A", Align.CenterX + Align.Top)
         Ruler("B", Align.CenterX + Align.Top)
         Ruler("C", Align.CenterX + Align.Top)
@@ -26,12 +26,12 @@ export function WorkArea(builder?: BlockBuilder<HTMLElement, void, void>) {
   )
 }
 
-function Ruler(title: string, align: Align, overlap?: boolean) {
+function Ruler(title: string, align: Align, cursorWidth?: number, cursorHeight?: number) {
   return (
     VBand({
       render(b) {
         b.blockAlignment = align
-        b.placement = { widthOverlap: overlap }
+        b.placement = { cursorWidth, cursorHeight }
         b.native.style.fontSize = "smaller"
         VHtmlNote(`&nbsp;${title}`)
       }
