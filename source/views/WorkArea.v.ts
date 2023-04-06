@@ -1,4 +1,4 @@
-import { VTable, BlockBuilder, VBand, VNote, VHtmlNote, fromNewRow, Align } from "verstak"
+import { VTable, BlockBuilder, VBand, VNote, VHtmlNote, fromNewRow, Align, cursor } from "verstak"
 import { $theme } from "gost-pi"
 import { AppTheme } from "themes/AppTheme"
 
@@ -8,7 +8,8 @@ export function WorkArea(builder?: BlockBuilder<HTMLElement, void, void>) {
       render(b) {
         // Blocks can be layed out automatically
         // based on their order and line feeds.
-        Ruler("1", Align.Left + Align.CenterY, 0)
+        Ruler("1", Align.Left + Align.CenterY)
+        cursor({ cellsOverWidth: -1, cellsOverHeight: 0 })
         Ruler("A", Align.CenterX + Align.Top)
         Ruler("B", Align.CenterX + Align.Top)
         Ruler("C", Align.CenterX + Align.Top)
@@ -26,12 +27,11 @@ export function WorkArea(builder?: BlockBuilder<HTMLElement, void, void>) {
   )
 }
 
-function Ruler(title: string, align: Align, cursorWidth?: number, cursorHeight?: number) {
+function Ruler(title: string, align: Align) {
   return (
     VBand({
       render(b) {
         b.blockAlignment = align
-        b.placement = { cursorWidth, cursorHeight }
         b.native.style.fontSize = "smaller"
         VHtmlNote(`&nbsp;${title}`)
       }
@@ -39,7 +39,7 @@ function Ruler(title: string, align: Align, cursorWidth?: number, cursorHeight?:
   )
 }
 
-function ExampleData(place: string) {
+function ExampleData(area: string) {
   return (
     VBand({
       initialize(b) {
@@ -47,9 +47,9 @@ function ExampleData(place: string) {
       },
       render(b) {
         const theme = $theme.value as AppTheme
-        b.placement = place
+        b.area = area
         b.style(theme.accent)
-        VNote(place)
+        VNote(area)
       }
     })
   )

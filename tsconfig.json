@@ -32,7 +32,6 @@
     "noImplicitThis": true,
     "noImplicitReturns": true,
     "noUnusedLocals": false,
-    "suppressImplicitAnyIndexErrors": true, // this allows access to any property on objects via bracket notation
     // Other
     "emitDecoratorMetadata": false,
     "experimentalDecorators": true,
