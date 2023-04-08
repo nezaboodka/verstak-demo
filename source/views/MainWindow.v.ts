@@ -25,9 +25,9 @@ export function MainWindow() {
 
         row(l => {
           ToolBar({
-            render(b, base) {
+            render(b, original) {
               b.widthGrowth = 1
-              base()
+              original()
             }
           })
         })
@@ -43,7 +43,7 @@ export function MainWindow() {
 
               fromNewRow()
               Field({
-                initialize(b, base) {
+                initialize(b, original) {
                   const loader = app.loader
                   b.minWidth = "10em"
                   b.model = createFieldModel({
@@ -53,7 +53,7 @@ export function MainWindow() {
                     isHotText: true,
                     isMultiLineText: false,
                   })
-                  base()
+                  original()
                 },
               })
 
@@ -66,7 +66,7 @@ export function MainWindow() {
 
               fromNewRow()
               Field({
-                initialize(b, base) {
+                initialize(b, original) {
                   const loader = app.loader
                   b.minWidth = "10em"
                   b.model = createFieldModel({
@@ -75,14 +75,14 @@ export function MainWindow() {
                     isHotText: true,
                     isMultiLineText: false,
                   })
-                  base()
+                  original()
                 },
               })
             }
           })
           WorkArea({
-            render(b, base) {
-              base()
+            render(b, original) {
+              original()
               b.style(theme.panel)
               b.style(theme.accent)
               b.widthGrowth = 3
@@ -106,8 +106,8 @@ export function MainWindow() {
 
         row(l => {
           StatusBar({
-            render(b, base) {
-              base()
+            render(b, original) {
+              original()
               b.widthGrowth = 1
             }
           })

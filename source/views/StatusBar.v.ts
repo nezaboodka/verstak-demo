@@ -17,7 +17,7 @@ export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
         const theme = $theme.value as AppTheme
         b.contentWrapping = true
         Toggle({ key: "Blinking",
-          initialize(b, base) {
+          initialize(b, original) {
             // We compose model from different pieces,
             // such as app and theme. Without the need
             // to implement interface in form of class.
@@ -25,37 +25,37 @@ export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
               label: "Blinking Rendering",
               checked: refs(app).blinkingEffect,
             })
-            base()
+            original()
           },
-          render(b, base) {
-            base()
+          render(b, original) {
+            original()
             // Style is not inside "initialize", because of theming
             b.native.classList.toggle(theme.panel, true)
           }
         })
         Button({ key: "Theme",
-          initialize(b, base) {
+          initialize(b, original) {
             b.model = observableModel({
               icon: "fa-solid fa-palette",
               label: "Switch Theme",
               action() { app.nextTheme() }
             })
-            base()
+            original()
           },
-          render(b,  base) {
-            base()
+          render(b,  original) {
+            original()
             b.style(theme.panel)
           }
         })
         Toggle({
-          render(b, base) {
-            base()
+          render(b, original) {
+            original()
             b.native.classList.toggle(theme.panel, true)
           }
         })
         Toggle({
-          render(b, base) {
-            base()
+          render(b, original) {
+            original()
             b.native.classList.toggle(theme.panel, true)
           }
         })
@@ -65,7 +65,7 @@ export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
             b.widthGrowth = 1
             b.contentAlignment = Align.Right
             Field({
-              initialize(b, base) {
+              initialize(b, original) {
                 const loader = app.loader
                 b.minWidth = "10em"
                 b.model = createFieldModel({
@@ -75,10 +75,10 @@ export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
                   isHotText: true,
                   isMultiLineText: false,
                 })
-                base()
+                original()
               },
-              render(b, base) {
-                base()
+              render(b, original) {
+                original()
                 // Spinner("Spinner", {
                 //   initialize(b) {
                 //     b.model = observableModel({

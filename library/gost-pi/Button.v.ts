@@ -27,15 +27,15 @@ export function Button(builder?: BlockBuilder<HTMLElement, ButtonModel>) {
         b.style(s.main)
         if (m.icon)
           Icon(m.icon, {
-            render(b, base) {
-              base()
+            render(b, original) {
+              original()
               b.style(s.icon)
             }
           })
         if (m.label)
           VNote(m.label, {
-            render(b, base) {
-              base()
+            render(b, original) {
+              original()
               b.style(s.label)
             }
           })

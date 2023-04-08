@@ -33,8 +33,8 @@ export function Field(builder?: BlockBuilder<HTMLElement, FieldModel>) {
         b.style(s.main)
         if (m.icon)
           Icon(m.icon, {
-            render(b, base) {
-              base()
+            render(b, original) {
+              original()
               b.style(s.icon)
             }
           })
@@ -64,7 +64,7 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
   return (
     VNote(model.text, {
       key: FieldInput.name,
-      initialize(b, base) {
+      initialize(b, original) {
         const e = b.native
         b.style(s.input)
         b.widthGrowth = 1
@@ -85,7 +85,7 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
           else if (m.isHotText)
             Transaction.run(null, () => { m.text = e.innerText })
         }
-        base()
+        original()
       },
       render(b) {
         const e = b.native
