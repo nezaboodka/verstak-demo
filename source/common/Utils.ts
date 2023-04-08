@@ -27,7 +27,9 @@ function convertValuesToFieldsAndRefsToGetSet<T>(target: Object, composition: Va
         // configurable: false,
       })
     }
-    else
-      target[key as any] = x
+    else {
+      const t = target as any
+      t[key] = x
+    }
   }
 }
