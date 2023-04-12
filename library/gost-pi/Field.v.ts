@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { VBand, BlockBuilder, VNote, FocusModel, FocuserReaction, fromNewRow, Mode } from "verstak"
+import { Band, BlockBuilder, Note, FocusModel, FocuserReaction, fromNewRow, Mode } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
 import { $theme, FieldStyling } from "./Theme"
 import { Icon } from "./Icon.v"
@@ -18,7 +18,7 @@ export interface FieldModel<T = string> extends FocusModel {
 
 export function Field(builder?: BlockBuilder<HTMLElement, FieldModel>) {
   return (
-    VBand<FieldModel>(builder, {
+    Band<FieldModel>(builder, {
       modes: Mode.SeparateReaction,
       initialize(b) {
         b.model ??= createFieldModel()
@@ -62,7 +62,7 @@ export function createFieldModel<T>(props?: Partial<ValuesOrRefs<FieldModel<T>>>
 
 function FieldInput(model: FieldModel, s: FieldStyling) {
   return (
-    VNote(model.text, {
+    Note(model.text, {
       key: FieldInput.name,
       initialize(b, original) {
         const e = b.native
@@ -99,7 +99,7 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
 
 function FieldPopup(model: FieldModel, s: FieldStyling) {
   return (
-    VBand({
+    Band({
       key: FieldPopup.name,
       initialize(b) {
         const e = b.native
@@ -113,11 +113,11 @@ function FieldPopup(model: FieldModel, s: FieldStyling) {
           if (options.length > 0) {
             for (const x of model.options) {
               fromNewRow()
-              VNote(x, { key: x })
+              Note(x, { key: x })
             }
           }
           else
-            VNote("(nothing)", { key: "(nothing)" })
+            Note("(nothing)", { key: "(nothing)" })
         }
       },
     })

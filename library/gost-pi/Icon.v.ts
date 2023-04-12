@@ -1,9 +1,9 @@
-import { VBand, BlockBuilder, Mode } from "verstak"
+import { Band, BlockBuilder, Mode } from "verstak"
 import { $theme } from "./Theme"
 
 export function Icon(name: string, builder?: BlockBuilder<HTMLElement, void, void>) {
   return (
-    VBand(builder, {
+    Band(builder, {
       modes: Mode.SeparateReaction,
       render(b) {
         const s = $theme.value.icon

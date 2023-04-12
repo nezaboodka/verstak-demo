@@ -1,10 +1,10 @@
-import { VTable, BlockBuilder, VBand, VNote, VHtmlNote, fromNewRow, Align, cursor } from "verstak"
+import { Table, BlockBuilder, Band, Note, HtmlNote, fromNewRow, Align, cursor } from "verstak"
 import { $theme } from "gost-pi"
 import { AppTheme } from "themes/AppTheme"
 
 export function WorkArea(builder?: BlockBuilder<HTMLElement, void, void>) {
   return (
-    VTable(builder, {
+    Table(builder, {
       render(b) {
         // Blocks can be layed out automatically
         // based on their order and line feeds.
@@ -29,11 +29,11 @@ export function WorkArea(builder?: BlockBuilder<HTMLElement, void, void>) {
 
 function Ruler(title: string, align: Align) {
   return (
-    VBand({
+    Band({
       render(b) {
         b.blockAlignment = align
         b.native.style.fontSize = "smaller"
-        VHtmlNote(`&nbsp;${title}`)
+        HtmlNote(`&nbsp;${title}`)
       }
     })
   )
@@ -41,7 +41,7 @@ function Ruler(title: string, align: Align) {
 
 function ExampleData(area: string) {
   return (
-    VBand({
+    Band({
       initialize(b) {
         b.contentAlignment = Align.Center
       },
@@ -49,7 +49,7 @@ function ExampleData(area: string) {
         const theme = $theme.value as AppTheme
         b.area = area
         b.style(theme.accent)
-        VNote(area)
+        Note(area)
       }
     })
   )
