@@ -39,7 +39,7 @@ function Ruler(title: string, align: Align) {
   )
 }
 
-function ExampleData(area: string) {
+function ExampleData(areaParams: string) {
   return (
     VBand({
       initialize(b) {
@@ -47,9 +47,9 @@ function ExampleData(area: string) {
       },
       render(b) {
         const theme = $theme.value as AppTheme
-        b.area = area
+        b.areaParams = areaParams
         b.style(theme.accent)
-        VNote(area)
+        VNote(areaParams)
       }
     })
   )
