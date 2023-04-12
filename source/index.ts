@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { VBlock, HtmlBody, fromNewRow, Mode } from "verstak"
+import { HtmlBody, fromNewRow, Mode } from "verstak"
 import { configureDebugging } from "dbg"
 import { $app, App } from "models/App"
 import { MainWindow } from "views/MainWindow.v"
