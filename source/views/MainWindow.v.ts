@@ -128,12 +128,13 @@ Table("Example", {
   render(b) {
     // Blocks can be layed out automatically
     // based on their order and line feeds.
-    Ruler("1", Align.Left, true)
-    Ruler("A", Align.Top + Align.CenterX)
-    Ruler("B", Align.Top + Align.CenterX)
-    Ruler("C", Align.Top + Align.CenterX);
-    fromNewRow(); Ruler("2", Align.Left)
-    fromNewRow(); Ruler("3", Align.Left)
+    Ruler("1", Align.Left + Align.CenterY)
+    cursor({ cellsOverWidth: -1, cellsOverHeight: 0 })
+    Ruler("A", Align.CenterX + Align.Top)
+    Ruler("B", Align.CenterX + Align.Top)
+    Ruler("C", Align.CenterX + Align.Top)
+    fromNewRow(); Ruler("2", Align.Left + Align.CenterY)
+    fromNewRow(); Ruler("3", Align.Left + Align.CenterY)
     // Blocks can also be layed out
     // explicitly in exact cells.
     ExampleData("B2")
