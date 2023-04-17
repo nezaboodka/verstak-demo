@@ -1,6 +1,7 @@
 import { Table, BlockBuilder, Band, Note, HtmlNote, fromNewRow, Align, cursor } from "verstak"
 import { $theme } from "gost-pi"
 import { AppTheme } from "themes/AppTheme"
+import { Clock } from "./Clock"
 
 export function WorkArea(builder?: BlockBuilder<HTMLElement, void, void>) {
   return (
@@ -17,7 +18,7 @@ export function WorkArea(builder?: BlockBuilder<HTMLElement, void, void>) {
         fromNewRow(); Ruler("3", Align.Left + Align.CenterY)
         // Blocks can also be layed out
         // explicitly in exact cells.
-        ExampleData("B2")
+        Clock("B2")
         ExampleData("A1:B1")
         ExampleData("C1:C2")
         ExampleData("B3:C3")

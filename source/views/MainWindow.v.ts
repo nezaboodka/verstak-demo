@@ -120,8 +120,7 @@ export function MainWindow() {
 const EXAMPLE_CODE = `
 Block size is automatically adjusted to size of table
 cells, while cells are automatically adjusted to screen
-size of each user. System is suitable both to lay out
-application panels and to create reusable components.
+size of each user.
 
 \`\`\` js
 Table("Example", {
