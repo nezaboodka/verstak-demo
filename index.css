@@ -1,3 +1,7 @@
+@font-face {
+  font-family: "Tektur";
+  src: url("/assets/fonts/tektur/ttf/TekturNarrow-Regular.ttf");
+}
 
 body {
   display: flex;
