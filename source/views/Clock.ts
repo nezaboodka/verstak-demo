@@ -69,6 +69,17 @@ export function Clock(area: string) {
             HourLabel(730, 765, "21", 120, svg)
             Arrow(30, 0.4, 5, 75, svg)
             Arrow(10, 0.65, 5, 20, svg)
+            Circle({
+              render(b) {
+                const e = b.native
+                e.cx.baseVal.value = 500
+                e.cy.baseVal.value = 500
+                e.r.baseVal.value = 15
+                e.style.stroke = "black"
+                e.style.fill = "black"
+                e.style.strokeWidth = "10px"
+              },
+            })
 
             // Bezel (secondary time zone)
             G({
