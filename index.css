@@ -48,6 +48,11 @@ img {
   object-fit: contain;
 }
 
+@keyframes transform-rotate {
+  from { transform: rotate(0deg) }
+  to { transform: rotate(360deg) }
+}
+
 @media only screen and (max-width: 760px) {
   div, section { /* part */
     flex-direction: column;

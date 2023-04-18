@@ -59,7 +59,7 @@ export function Clock(area: string): Block<HTMLElement> {
 
             dots(svg, 250)
             HourLabel(500, 200, "☼", 100, svg)
-            HourLabel(510, 865, "☾", 100, svg)
+            HourLabel(500, 865, "•", 100, svg)
             // HourLabel(550, 850, "*", 75, svg)
             HourLabel(345, 815, "02", 100, svg)
             HourLabel(220, 700, "04", 100, svg)
@@ -71,8 +71,8 @@ export function Clock(area: string): Block<HTMLElement> {
             HourLabel(825, 535, "18", 100, svg)
             HourLabel(780, 700, "20", 100, svg)
             HourLabel(655, 815, "22", 100, svg)
-            Arrow(30, 0.4, 5, 75, svg)
-            Arrow(10, 0.65, 5, 20, svg)
+            Arrow(30, 0.4, 5, 75, 600, svg)
+            Arrow(10, 0.65, 5, 20, 20, svg)
             Circle({
               render(b) {
                 const e = b.native
@@ -101,21 +101,10 @@ export function Clock(area: string): Block<HTMLElement> {
                     e.style.strokeWidth = "1px"
                   },
                 })
-                Circle({
-                  render(b) {
-                    const e = b.native
-                    e.cx.baseVal.value = 500
-                    e.cy.baseVal.value = 946
-                    e.r.baseVal.value = 40
-                    e.style.stroke = "#111111"
-                    e.style.fill = "#555555"
-                    e.style.strokeWidth = "1px"
-                  },
-                })
                 Text({
                   render(b) {
                     const e = b.native
-                    b.native.textContent = "0"
+                    b.native.textContent = "•"
                     const x = svg.createSVGLength()
                     x.value = 500
                     const y = svg.createSVGLength()
@@ -123,10 +112,10 @@ export function Clock(area: string): Block<HTMLElement> {
                     e.x.baseVal.appendItem(x)
                     e.y.baseVal.appendItem(y)
                     e.style.fontSize = "60px"
-                    e.style.fontWeight = "bold"
+                    //e.style.fontWeight = "bold"
                     e.style.textAnchor = "middle"
                     // e.style.stroke = "#CCCCCC"
-                    e.style.fill = "#CCCCCC"
+                    // e.style.fill = "#CCCCCC"
                   }
                 })
                 Text({
@@ -140,7 +129,7 @@ export function Clock(area: string): Block<HTMLElement> {
                     e.x.baseVal.appendItem(x)
                     e.y.baseVal.appendItem(y)
                     e.style.fontSize = "60px"
-                    e.style.fontWeight = "bold"
+                    //e.style.fontWeight = "bold"
                     e.style.textAnchor = "middle"
                   }
                 })
@@ -157,9 +146,11 @@ export function Clock(area: string): Block<HTMLElement> {
 }
 
 function rotate(e: SVGGraphicsElement, degrees: number, root: SVGSVGElement): void {
-  const t = root.createSVGTransform()
-  t.setRotate(degrees, 500, 500)
-  e.transform.baseVal.appendItem(t)
+  // const t = root.createSVGTransform()
+  // t.setRotate(degrees, 500, 500)
+  // e.transform.baseVal.appendItem(t)
+  e.style.transformOrigin = "500px 500px"
+  e.style.transform = `rotate(${degrees}deg)`
 }
 
 function dots(root: SVGSVGElement, base: number): void {
@@ -183,7 +174,7 @@ function dots(root: SVGSVGElement, base: number): void {
 }
 
 function Arrow(width: number, length: number, rounding: number,
-  degrees: number, root: SVGSVGElement): Block<SVGRectElement> {
+  degrees: number, duration: number, root: SVGSVGElement): Block<SVGRectElement> {
   return (
     Rect({
       render(b) {
@@ -198,7 +189,9 @@ function Arrow(width: number, length: number, rounding: number,
         e.style.stroke = "white"
         e.style.fill = "black"
         e.style.strokeWidth = "2px"
-        rotate(e, degrees, root)
+        // rotate(e, degrees, root)
+        e.style.transformOrigin = "500px 500px"
+        e.style.animation = `transform-rotate ${duration}s linear infinite`
       },
     })
   )
