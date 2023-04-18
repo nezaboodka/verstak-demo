@@ -1,8 +1,8 @@
-import { Band, Align, Svg, Circle, Rect, Text, TextPath, G } from "verstak"
+import { Band, Align, Svg, Circle, Rect, Text, TextPath, G, Block } from "verstak"
 import { $theme } from "gost-pi"
 import { AppTheme } from "themes/AppTheme"
 
-export function Clock(area: string) {
+export function Clock(area: string): Block<HTMLElement> {
   return (
     Band({
       initialize(b) {
@@ -58,15 +58,19 @@ export function Clock(area: string) {
             })
 
             dots(svg, 250)
-            HourLabel(500, 200, "Д", 120, svg)
-            HourLabel(500, 885, "Н", 120, svg)
-            HourLabel(550, 850, "*", 75, svg)
-            HourLabel(265, 765, "03", 120, svg)
-            HourLabel(175, 542, "06", 120, svg)
-            HourLabel(265, 320, "09", 120, svg)
-            HourLabel(730, 315, "15", 120, svg)
-            HourLabel(825, 542, "18", 120, svg)
-            HourLabel(730, 765, "21", 120, svg)
+            HourLabel(500, 210, "🌞", 100, svg)
+            HourLabel(500, 865, "🌘", 100, svg)
+            // HourLabel(550, 850, "*", 75, svg)
+            HourLabel(340, 815, "02", 100, svg)
+            HourLabel(220, 700, "04", 100, svg)
+            HourLabel(175, 535, "06", 100, svg)
+            HourLabel(220, 375, "08", 100, svg)
+            HourLabel(340, 255, "10", 100, svg)
+            HourLabel(660, 250, "14", 100, svg)
+            HourLabel(785, 380, "16", 100, svg)
+            HourLabel(825, 535, "18", 100, svg)
+            HourLabel(780, 700, "20", 100, svg)
+            HourLabel(660, 820, "22", 100, svg)
             Arrow(30, 0.4, 5, 75, svg)
             Arrow(10, 0.65, 5, 20, svg)
             Circle({
@@ -85,39 +89,64 @@ export function Clock(area: string) {
             G({
               render(b) {
                 rotate(b.native, 105, svg)
-                dots(svg, -90)
+                dots(svg, -98)
+                Circle({
+                  render(b) {
+                    const e = b.native
+                    e.cx.baseVal.value = 500
+                    e.cy.baseVal.value = 54
+                    e.r.baseVal.value = 40
+                    e.style.stroke = "#111111"
+                    e.style.fill = "#DDDDDD"
+                    e.style.strokeWidth = "1px"
+                  },
+                })
+                Circle({
+                  render(b) {
+                    const e = b.native
+                    e.cx.baseVal.value = 500
+                    e.cy.baseVal.value = 946
+                    e.r.baseVal.value = 40
+                    e.style.stroke = "#111111"
+                    e.style.fill = "#555555"
+                    e.style.strokeWidth = "1px"
+                  },
+                })
                 Text({
                   render(b) {
                     const e = b.native
-                    b.native.textContent = "Н"
+                    b.native.textContent = "0"
                     const x = svg.createSVGLength()
                     x.value = 500
                     const y = svg.createSVGLength()
-                    y.value = 980
+                    y.value = 970
                     e.x.baseVal.appendItem(x)
                     e.y.baseVal.appendItem(y)
-                    e.style.fontSize = "70px"
+                    e.style.fontSize = "60px"
                     e.style.fontWeight = "bold"
                     e.style.textAnchor = "middle"
+                    // e.style.stroke = "#CCCCCC"
+                    e.style.fill = "#CCCCCC"
                   }
                 })
                 Text({
                   render(b) {
                     const e = b.native
-                    b.native.textContent = "Д"
+                    b.native.textContent = "12"
                     const x = svg.createSVGLength()
                     x.value = 500
                     const y = svg.createSVGLength()
                     y.value = 70
                     e.x.baseVal.appendItem(x)
                     e.y.baseVal.appendItem(y)
-                    e.style.fontSize = "70px"
+                    e.style.fontSize = "60px"
                     e.style.fontWeight = "bold"
                     e.style.textAnchor = "middle"
                   }
                 })
-                BezelLabels([3, 6, 9, 15, 18, 21], 70, "bold", svg)
-                BezelLabels([1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19, 20, 22, 23], 50, "normal", svg)
+                // BezelLabels([3, 6, 9, 15, 18, 21], 70, "bold", svg)
+                // BezelLabels([1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19, 20, 22, 23], 50, "normal", svg)
+                BezelLabels([2, 4, 6, 8, 10, 14, 16, 18, 20, 22], 60, "normal", svg)
               },
             })
           },
@@ -137,8 +166,8 @@ function dots(root: SVGSVGElement, base: number): void {
   for (let deg = 0; deg < 360; deg += 15) {
     Rect({
       render(b) {
-        const w = deg % 45 === 0 ? 10 : 5
-        const h = deg % 45 === 0 && base < 0 ? w : w * 5
+        const w = deg % 30 === 0 ? 10 : 5
+        const h = deg % 30 === 0 && base < 0 ? w * 2 : w * 3
         const e = b.native
         e.x.baseVal.value = 500 - w / 2
         e.y.baseVal.value = base >= 0 ? base : Math.abs(base) - h
@@ -154,7 +183,7 @@ function dots(root: SVGSVGElement, base: number): void {
 }
 
 function Arrow(width: number, length: number, rounding: number,
-  degrees: number, root: SVGSVGElement) {
+  degrees: number, root: SVGSVGElement): Block<SVGRectElement> {
   return (
     Rect({
       render(b) {
@@ -175,7 +204,8 @@ function Arrow(width: number, length: number, rounding: number,
   )
 }
 
-function HourLabel(x: number, y: number, content: string, size: number, root: SVGSVGElement) {
+function HourLabel(x: number, y: number, content: string, size: number,
+  root: SVGSVGElement): Block<SVGTextElement> {
   return (
     Text({
       render(b) {
@@ -204,7 +234,7 @@ function BezelLabels(hours: Array<number>, size: number, weight: string, root: S
         const x = root.createSVGLength()
         x.value = 500
         const y = root.createSVGLength()
-        y.value = size + 4
+        y.value = size + 10
         e.x.baseVal.appendItem(x)
         e.y.baseVal.appendItem(y)
         e.style.fontSize = `${size}px`
