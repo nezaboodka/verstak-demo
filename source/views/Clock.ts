@@ -58,10 +58,10 @@ export function Clock(area: string): Block<HTMLElement> {
             })
 
             dots(svg, 250)
-            HourLabel(500, 210, "🌞", 100, svg)
-            HourLabel(500, 865, "🌘", 100, svg)
+            HourLabel(500, 200, "☼", 100, svg)
+            HourLabel(510, 865, "☾", 100, svg)
             // HourLabel(550, 850, "*", 75, svg)
-            HourLabel(340, 815, "02", 100, svg)
+            HourLabel(345, 815, "02", 100, svg)
             HourLabel(220, 700, "04", 100, svg)
             HourLabel(175, 535, "06", 100, svg)
             HourLabel(220, 375, "08", 100, svg)
@@ -70,7 +70,7 @@ export function Clock(area: string): Block<HTMLElement> {
             HourLabel(785, 380, "16", 100, svg)
             HourLabel(825, 535, "18", 100, svg)
             HourLabel(780, 700, "20", 100, svg)
-            HourLabel(660, 820, "22", 100, svg)
+            HourLabel(655, 815, "22", 100, svg)
             Arrow(30, 0.4, 5, 75, svg)
             Arrow(10, 0.65, 5, 20, svg)
             Circle({
@@ -218,7 +218,7 @@ function HourLabel(x: number, y: number, content: string, size: number,
         e.x.baseVal.appendItem(xx)
         e.y.baseVal.appendItem(yy)
         e.style.fontSize = `${size}px`
-        e.style.fontWeight = "bold"
+        // e.style.fontWeight = "bold"
         e.style.textAnchor = "middle"
       }
     })
