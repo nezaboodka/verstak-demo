@@ -58,17 +58,17 @@ export function Clock(area: string): Block<HTMLElement> {
                 e.style.strokeWidth = "10px"
               },
             })
-            Circle({
-              render(b) {
-                const e = b.native
-                e.cx.baseVal.value = 500
-                e.cy.baseVal.value = 500
-                e.r.baseVal.value = 150
-                e.style.stroke = "#707070"
-                e.style.fill = "#E0E0E0"
-                e.style.strokeWidth = "2px"
-              },
-            })
+            // Circle({
+            //   render(b) {
+            //     const e = b.native
+            //     e.cx.baseVal.value = 500
+            //     e.cy.baseVal.value = 500
+            //     e.r.baseVal.value = 150
+            //     e.style.stroke = "#707070"
+            //     e.style.fill = "#E0E0E0"
+            //     e.style.strokeWidth = "2px"
+            //   },
+            // })
 
             dots(svg, 250)
             // Hours
@@ -87,17 +87,23 @@ export function Clock(area: string): Block<HTMLElement> {
             DialLabel(655, 815, "22", 100, "black", svg)
 
             // Minutes
-            DialLabel(500, 395, "00", 50, "red", svg)
-            DialLabel(600, 455, "10", 50, "red", svg)
-            DialLabel(600, 580, "20", 50, "red", svg)
-            DialLabel(500, 640, "30", 50, "red", svg)
-            DialLabel(400, 580, "40", 50, "red", svg)
-            DialLabel(400, 455, "50", 50, "red", svg)
+            DialLabel(500, 335, "00", 50, "red", svg)
+            DialLabel(590, 365, "05", 50, "red", svg)
+            DialLabel(655, 430, "10", 50, "red", svg)
+            DialLabel(685, 518, "15", 50, "red", svg)
+            DialLabel(655, 610, "20", 50, "red", svg)
+            DialLabel(590, 677, "25", 50, "red", svg)
+            DialLabel(500, 705, "30", 50, "red", svg)
+            DialLabel(412, 677, "35", 50, "red", svg)
+            DialLabel(345, 612, "40", 50, "red", svg)
+            DialLabel(320, 518, "45", 50, "red", svg)
+            DialLabel(350, 430, "50", 50, "red", svg)
+            DialLabel(412, 362, "55", 50, "red", svg)
 
             // Arrows
             Arrow(30, 0.4, 5, 15, 60 * 60 * 24, "black")
             Arrow(10, 0.475, 5, 15, 60 * 60, "red")
-            Arrow(5, 0.75, 0, 0, 60, "black")
+            Arrow(5, 0.3, 0, 0, 60, "red")
             Circle({
               render(b) {
                 const e = b.native
