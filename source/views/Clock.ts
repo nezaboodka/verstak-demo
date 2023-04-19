@@ -1,6 +1,7 @@
 import { Band, Align, Svg, Circle, Rect, Text, TextPath, G, Block } from "verstak"
 import { $theme } from "gost-pi"
 import { AppTheme } from "themes/AppTheme"
+import { $app } from "models/App"
 
 export function Clock(area: string): Block<HTMLElement> {
   return (
@@ -8,6 +9,7 @@ export function Clock(area: string): Block<HTMLElement> {
       initialize(b) {
         b.contentAlignment = Align.Center
         b.native.style.fontFamily = "tektur"
+        b.native.style.cursor = "default"
       },
       render(b) {
         const theme = $theme.value as AppTheme
@@ -56,23 +58,46 @@ export function Clock(area: string): Block<HTMLElement> {
                 e.style.strokeWidth = "10px"
               },
             })
+            Circle({
+              render(b) {
+                const e = b.native
+                e.cx.baseVal.value = 500
+                e.cy.baseVal.value = 500
+                e.r.baseVal.value = 150
+                e.style.stroke = "#707070"
+                e.style.fill = "#E0E0E0"
+                e.style.strokeWidth = "2px"
+              },
+            })
 
             dots(svg, 250)
-            HourLabel(500, 200, "☼", 100, svg)
-            HourLabel(500, 865, "•", 100, svg)
-            // HourLabel(550, 850, "*", 75, svg)
-            HourLabel(345, 815, "02", 100, svg)
-            HourLabel(220, 700, "04", 100, svg)
-            HourLabel(175, 535, "06", 100, svg)
-            HourLabel(220, 375, "08", 100, svg)
-            HourLabel(340, 255, "10", 100, svg)
-            HourLabel(660, 250, "14", 100, svg)
-            HourLabel(785, 380, "16", 100, svg)
-            HourLabel(825, 535, "18", 100, svg)
-            HourLabel(780, 700, "20", 100, svg)
-            HourLabel(655, 815, "22", 100, svg)
-            Arrow(30, 0.4, 5, 75, 600, svg)
-            Arrow(10, 0.65, 5, 20, 20, svg)
+            // Hours
+            DialLabel(500, 170, "☼", 100, "black", svg)
+            DialLabel(500, 230, "12", 50, "black", svg)
+            DialLabel(500, 865, "•", 100, "black", svg)
+            DialLabel(345, 815, "02", 100, "black", svg)
+            DialLabel(220, 700, "04", 100, "black", svg)
+            DialLabel(175, 535, "06", 100, "black", svg)
+            DialLabel(220, 375, "08", 100, "black", svg)
+            DialLabel(340, 255, "10", 100, "black", svg)
+            DialLabel(660, 250, "14", 100, "black", svg)
+            DialLabel(785, 380, "16", 100, "black", svg)
+            DialLabel(825, 535, "18", 100, "black", svg)
+            DialLabel(780, 700, "20", 100, "black", svg)
+            DialLabel(655, 815, "22", 100, "black", svg)
+
+            // Minutes
+            DialLabel(500, 395, "00", 50, "red", svg)
+            DialLabel(600, 455, "10", 50, "red", svg)
+            DialLabel(600, 580, "20", 50, "red", svg)
+            DialLabel(500, 640, "30", 50, "red", svg)
+            DialLabel(400, 580, "40", 50, "red", svg)
+            DialLabel(400, 455, "50", 50, "red", svg)
+
+            // Arrows
+            Arrow(30, 0.4, 5, 15, 60 * 60 * 24, "black")
+            Arrow(10, 0.475, 5, 15, 60 * 60, "red")
+            Arrow(5, 0.75, 0, 0, 60, "black")
             Circle({
               render(b) {
                 const e = b.native
@@ -87,15 +112,26 @@ export function Clock(area: string): Block<HTMLElement> {
 
             // Bezel (secondary time zone)
             G({
+              initialize(b) {
+                b.native.style.transition = "transform 1s ease"
+                b.native.onclick = () => {
+                  b.native.style.transform = b.native.style.transform === "rotate(105deg)" ? "rotate(0deg)" : "rotate(105deg)"
+                }
+              },
               render(b) {
-                rotate(b.native, 105, svg)
-                dots(svg, -98)
+                b.native.style.transform = b.native.style.transform === "rotate(105deg)" ? "rotate(0deg)" : "rotate(105deg)"
+                const app = $app.value
+                if (app.secondaryTimeZone)
+                  rotate(b.native, 105)
+                else
+                  rotate(b.native, 0)
+                // dots(svg, -98)
                 Circle({
                   render(b) {
                     const e = b.native
                     e.cx.baseVal.value = 500
-                    e.cy.baseVal.value = 54
-                    e.r.baseVal.value = 40
+                    e.cy.baseVal.value = 50
+                    e.r.baseVal.value = 36
                     e.style.stroke = "#111111"
                     e.style.fill = "#DDDDDD"
                     e.style.strokeWidth = "1px"
@@ -104,13 +140,13 @@ export function Clock(area: string): Block<HTMLElement> {
                 Text({
                   render(b) {
                     const e = b.native
-                    b.native.textContent = "•"
+                    e.textContent = "Пояс Б"
                     const x = svg.createSVGLength()
                     x.value = 500
                     const y = svg.createSVGLength()
                     y.value = 970
-                    e.x.baseVal.appendItem(x)
-                    e.y.baseVal.appendItem(y)
+                    e.x.baseVal.initialize(x)
+                    e.y.baseVal.initialize(y)
                     e.style.fontSize = "60px"
                     //e.style.fontWeight = "bold"
                     e.style.textAnchor = "middle"
@@ -126,8 +162,8 @@ export function Clock(area: string): Block<HTMLElement> {
                     x.value = 500
                     const y = svg.createSVGLength()
                     y.value = 70
-                    e.x.baseVal.appendItem(x)
-                    e.y.baseVal.appendItem(y)
+                    e.x.baseVal.initialize(x)
+                    e.y.baseVal.initialize(y)
                     e.style.fontSize = "60px"
                     //e.style.fontWeight = "bold"
                     e.style.textAnchor = "middle"
@@ -145,10 +181,7 @@ export function Clock(area: string): Block<HTMLElement> {
   )
 }
 
-function rotate(e: SVGGraphicsElement, degrees: number, root: SVGSVGElement): void {
-  // const t = root.createSVGTransform()
-  // t.setRotate(degrees, 500, 500)
-  // e.transform.baseVal.appendItem(t)
+function rotate(e: SVGGraphicsElement, degrees: number): void {
   e.style.transformOrigin = "500px 500px"
   e.style.transform = `rotate(${degrees}deg)`
 }
@@ -167,14 +200,14 @@ function dots(root: SVGSVGElement, base: number): void {
         e.style.stroke = "black"
         e.style.fill = "black"
         e.style.strokeWidth = "0"
-        rotate(e, deg, root)
+        rotate(e, deg)
       },
     })
   }
 }
 
 function Arrow(width: number, length: number, rounding: number,
-  degrees: number, duration: number, root: SVGSVGElement): Block<SVGRectElement> {
+  degrees: number, duration: number, color: string): Block<SVGRectElement> {
   return (
     Rect({
       render(b) {
@@ -187,18 +220,18 @@ function Arrow(width: number, length: number, rounding: number,
         e.rx.baseVal.value = rounding
         e.ry.baseVal.value = rounding
         e.style.stroke = "white"
-        e.style.fill = "black"
+        e.style.fill = color
         e.style.strokeWidth = "2px"
-        // rotate(e, degrees, root)
         e.style.transformOrigin = "500px 500px"
+        e.style.transform = `rotate(${degrees}deg)`
         e.style.animation = `transform-rotate ${duration}s linear infinite`
       },
     })
   )
 }
 
-function HourLabel(x: number, y: number, content: string, size: number,
-  root: SVGSVGElement): Block<SVGTextElement> {
+function DialLabel(x: number, y: number, content: string, size: number,
+  color: string, root: SVGSVGElement): Block<SVGTextElement> {
   return (
     Text({
       render(b) {
@@ -208,8 +241,9 @@ function HourLabel(x: number, y: number, content: string, size: number,
         xx.value = x
         const yy = root.createSVGLength()
         yy.value = y
-        e.x.baseVal.appendItem(xx)
-        e.y.baseVal.appendItem(yy)
+        e.x.baseVal.initialize(xx)
+        e.y.baseVal.initialize(yy)
+        e.style.fill = color
         e.style.fontSize = `${size}px`
         // e.style.fontWeight = "bold"
         e.style.textAnchor = "middle"
@@ -227,14 +261,14 @@ function BezelLabels(hours: Array<number>, size: number, weight: string, root: S
         const x = root.createSVGLength()
         x.value = 500
         const y = root.createSVGLength()
-        y.value = size + 10
-        e.x.baseVal.appendItem(x)
-        e.y.baseVal.appendItem(y)
+        y.value = size + 14
+        e.x.baseVal.initialize(x)
+        e.y.baseVal.initialize(y)
         e.style.fontSize = `${size}px`
         e.style.fontWeight = weight
         e.style.lineHeight = "1"
         e.style.textAnchor = "middle"
-        rotate(e, h * 15 + 180, root)
+        rotate(e, h * 15 + 180)
       },
     })
   }

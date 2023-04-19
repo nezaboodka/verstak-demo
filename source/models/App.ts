@@ -11,6 +11,7 @@ export class App extends ObservableObject {
   allThemes: Array<AppTheme>
   activeThemeIndex: number
   blinkingEffect: boolean
+  secondaryTimeZone: boolean
   loader: Loader
 
   constructor(version: string, ...themes: Array<AppTheme>) {
@@ -20,6 +21,7 @@ export class App extends ObservableObject {
     this.allThemes = themes
     this.activeThemeIndex = 0
     this.blinkingEffect = false
+    this.secondaryTimeZone = true
     this.loader = new Loader()
   }
 

@@ -47,7 +47,14 @@ export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
             b.style(theme.panel)
           }
         })
-        Toggle({
+        Toggle({ key: "SecondaryTimeZone",
+          initialize(b, original) {
+            b.model = observableModel({
+              label: "New York (GMT-7)",
+              checked: refs(app).secondaryTimeZone,
+            })
+            original()
+          },
           render(b, original) {
             original()
             b.native.classList.toggle(theme.panel, true)
