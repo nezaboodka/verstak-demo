@@ -102,8 +102,8 @@ export function Clock(area: string): Block<HTMLElement> {
 
             // Arrows
             Arrow(30, 0.4, 5, 15, 60 * 60 * 24, "black")
-            Arrow(10, 0.3, 5, 15, 60 * 60, "red")
-            Arrow(5, 0.3, 0, 0, 60, "red")
+            Arrow(10, 0.475, 5, 15, 60 * 60, "red")
+            Arrow(5, 0.6, 0, 0, 60, "black")
             Circle({
               render(b) {
                 const e = b.native
