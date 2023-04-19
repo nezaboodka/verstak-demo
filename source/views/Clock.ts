@@ -146,7 +146,7 @@ export function Clock(area: string): Block<HTMLElement> {
                 Text({
                   render(b) {
                     const e = b.native
-                    e.textContent = "Пояс Б"
+                    e.textContent = "Мир"
                     const x = svg.createSVGLength()
                     x.value = 500
                     const y = svg.createSVGLength()
