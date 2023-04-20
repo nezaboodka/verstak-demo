@@ -3,6 +3,8 @@ import { $theme } from "gost-pi"
 import { AppTheme } from "themes/AppTheme"
 import { $app } from "models/App"
 
+const AccentColor = "#93CAEC" // "#93CAEC" // "#87F7A5" // "#FFFFB7"
+
 export function Clock(area: string): Block<HTMLElement> {
   return (
     Band({
@@ -87,22 +89,22 @@ export function Clock(area: string): Block<HTMLElement> {
             // })
 
             radialDots("#AAAAAA", 15, 0, 270)
-            radialDots("#AAAAAA", 6, 30, 105)
+            radialDots(AccentColor, 6, 30, 105)
             radialDots("white", 45, 45, 270)
             //dots("magenta", 15, 30, 0)
 
             // Hours & Minutes
-            radialLabels(svg, 300, 100, "bold", "white", false,
+            radialLabels(svg, 300, 100, true, "white", false,
               [0, 3, 6, 9, 12, 15, 18, 21], 15, 180)
-            radialLabels(svg, 255, 40, "normal", "#CCCCCC", false,
-              [1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19, 20, 22, 23], 15, 180)
-            radialLabels(svg, 365, 40, "normal", "#CCCCCC", true,
-              [0, 10, 20, 30, 40, 50], 6, 0)
+            radialLabels(svg, 258, 40, false, "#CCCCCC", false,
+              [0, 1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19, 20, 22, 23], 15, 180)
+            radialLabels(svg, 340, 40, false, AccentColor, true,
+              [10, 20, 30, 40, 50], 6, 0)
 
             // Arrows
             Arrow(30, 0.425, 5, 60, 60 * 60 * 24, "white", "black")
-            Arrow(10, 0.7, 5, 45, 60 * 60, "white", "black")
-            Arrow(8, 0.75, 0, 0, 60, "black", "white")
+            Arrow(15, 0.7, 5, 45, 60 * 60, AccentColor, "black")
+            Arrow(7, 0.75, 0, 0, 60, "black", "white")
             Circle({
               render(b) {
                 const e = b.native
@@ -131,13 +133,13 @@ export function Clock(area: string): Block<HTMLElement> {
                   rotate(b.native, 105)
                 else
                   rotate(b.native, 0)
-                radialDots("#555555", 15, 90, 87)
+                radialDots("#555555", 15, 0, 87)
                 // dots(svg, -98)
-                radialLabels(svg, 445, 70, "bold", "#111111", true,
+                radialLabels(svg, 445, 70, false, "#111111", true,
                   [0, 12], 15, 180)
-                radialLabels(svg, 445, 70, "normal", "#111111", true,
+                radialLabels(svg, 445, 70, false, "#111111", true,
                   [3, 6, 9, 15, 18, 21], 15, 180)
-                radialLabels(svg, 435, 40, "normal", "#111111", true,
+                radialLabels(svg, 435, 40, false, "#111111", true,
                   [1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19, 20, 22, 23], 15, 180)
                 // Circle({
                 //   render(b) {
@@ -170,12 +172,12 @@ function radialDots(color: string, step: number, major: number, indent: number):
       Rect({
         render(b) {
           const w = major !== 0 && deg % major === 0 ? 15 : 5
-          const h = major !== 0 && deg % major === 0 ? w : w * (indent === 0 ? 100 : 3)
+          const h = major !== 0 && deg % major === 0 ? w * 2 : w * (indent === 0 ? 100 : 3)
           const e = b.native
           e.x.baseVal.value = 500 - w / 2
           e.y.baseVal.value = indent >= 0 ? indent : Math.abs(indent) - h
-          e.rx.baseVal.value = w === h ? w : 0
-          e.ry.baseVal.value = h === w ? h : 0
+          // e.rx.baseVal.value = w === h ? w : 0
+          // e.ry.baseVal.value = h === w ? h : 0
           e.width.baseVal.value = w
           e.height.baseVal.value = h
           e.style.stroke = color
@@ -246,7 +248,6 @@ function RadialLabel(degree: number, content: string, color: string,
         e.style.fill = color
         e.style.fontSize = `${size}px`
         e.style.fontWeight = weight
-        e.style.lineHeight = "0.8"
         e.style.textAnchor = "middle"
         e.style.alignmentBaseline = "central"
         e.textContent = content
@@ -275,25 +276,26 @@ function RadialLabel(degree: number, content: string, color: string,
 }
 
 function radialLabels(root: SVGSVGElement,
-  radius: number, size: number, weight: string, color: string,
+  radius: number, size: number, bold: boolean, color: string,
   bezel: boolean, numbers: Array<number>, step: number, basis: number): void {
   for (const n of numbers) {
     let content: string
     if (basis === 180 && n === 0) {
-      content = "⍿"
+      content = "•" // "⏀" // "◦" // "·" // "⍿"
     }
-    else if (basis === 180 && n === 12) {
-      content = "☀"
-    }
+    // else if (basis === 180 && n === 12 && !bezel) {
+    //   content = "•" // "☀"
+    // }
     else {
       content = n.toString().padStart(2, "0")
-      if (basis === 0)
-        content = content[0] + " " + content[1]
+      // if (basis === 0)
+      //   content = content[0] + " " + content[1]
     }
+    // content = n.toString().padStart(2, "0")
     RadialLabel(n * step + basis, content,
       color, // content !== "☀" ? color : "#FFFFB7",
       radius, size,
-      weight, // !bezel && n % 12 !== 0 ? weight : "normal",
+      bold ? "bold" : "normal", // !bezel && n % 12 !== 0 ? weight : "normal",
       bezel, root)
   }
 }
