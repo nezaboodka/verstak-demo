@@ -8,7 +8,7 @@ export function Clock(area: string): Block<HTMLElement> {
     Band({
       initialize(b) {
         b.contentAlignment = Align.Center
-        b.native.style.fontFamily = "tektur"
+        b.native.style.fontFamily = "arial"
         b.native.style.cursor = "default"
       },
       render(b) {
@@ -22,6 +22,7 @@ export function Clock(area: string): Block<HTMLElement> {
             svg.style.height = "47mm"
             svg.viewBox.baseVal.width = 1000
             svg.viewBox.baseVal.height = 1000
+
             Rect({
               render(b) {
                 const e = b.native
@@ -32,7 +33,7 @@ export function Clock(area: string): Block<HTMLElement> {
                 e.rx.baseVal.value = 5
                 e.ry.baseVal.value = 5
                 e.style.stroke = "black"
-                e.style.fill = "gray"
+                e.style.fill = "silver"
                 e.style.strokeWidth = "4px"
               },
             })
@@ -43,7 +44,7 @@ export function Clock(area: string): Block<HTMLElement> {
                 e.cy.baseVal.value = 500
                 e.r.baseVal.value = 490
                 e.style.stroke = "black"
-                e.style.fill = "gray"
+                e.style.fill = "silver"
                 e.style.strokeWidth = "3px"
               },
             })
@@ -54,56 +55,38 @@ export function Clock(area: string): Block<HTMLElement> {
                 e.cy.baseVal.value = 500
                 e.r.baseVal.value = 400
                 e.style.stroke = "silver"
-                e.style.fill = "white"
+                e.style.fill = "#1a3043"
                 e.style.strokeWidth = "10px"
               },
             })
-            // Circle({
-            //   render(b) {
-            //     const e = b.native
-            //     e.cx.baseVal.value = 500
-            //     e.cy.baseVal.value = 500
-            //     e.r.baseVal.value = 150
-            //     e.style.stroke = "#707070"
-            //     e.style.fill = "#E0E0E0"
-            //     e.style.strokeWidth = "2px"
-            //   },
-            // })
+            Circle({
+              render(b) {
+                const e = b.native
+                e.cx.baseVal.value = 501
+                e.cy.baseVal.value = 205
+                e.r.baseVal.value = 50
+                e.style.stroke = "#FFFFB7"
+                e.style.fill = "#93CAEC"
+                e.style.strokeWidth = "2px"
+              },
+            })
 
-            dots(svg, 250)
-            // Hours
-            DialLabel(500, 170, "☼", 100, "black", svg)
-            DialLabel(500, 230, "12", 50, "black", svg)
-            DialLabel(500, 865, "•", 100, "black", svg)
-            DialLabel(345, 815, "02", 100, "black", svg)
-            DialLabel(220, 700, "04", 100, "black", svg)
-            DialLabel(175, 535, "06", 100, "black", svg)
-            DialLabel(220, 375, "08", 100, "black", svg)
-            DialLabel(340, 255, "10", 100, "black", svg)
-            DialLabel(660, 250, "14", 100, "black", svg)
-            DialLabel(785, 380, "16", 100, "black", svg)
-            DialLabel(825, 535, "18", 100, "black", svg)
-            DialLabel(780, 700, "20", 100, "black", svg)
-            DialLabel(655, 815, "22", 100, "black", svg)
+            radialDots("white", 15, 30, 270)
+            radialDots("#EEEEEE", 6, 0, 105)
+            //dots("magenta", 15, 30, 0)
 
-            // Minutes
-            DialLabel(500, 335, "00", 50, "red", svg)
-            DialLabel(590, 365, "05", 50, "red", svg)
-            DialLabel(655, 430, "10", 50, "red", svg)
-            DialLabel(685, 518, "15", 50, "red", svg)
-            DialLabel(655, 610, "20", 50, "red", svg)
-            DialLabel(590, 677, "25", 50, "red", svg)
-            DialLabel(500, 705, "30", 50, "red", svg)
-            DialLabel(412, 677, "35", 50, "red", svg)
-            DialLabel(345, 612, "40", 50, "red", svg)
-            DialLabel(320, 518, "45", 50, "red", svg)
-            DialLabel(350, 430, "50", 50, "red", svg)
-            DialLabel(412, 362, "55", 50, "red", svg)
+            // Hours & Minutes
+            radialLabels(svg, 290, 100, "bold", "white", false,
+              [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22], 15, 180)
+            // generateRadialLabels(svg, 275, 50, "normal", "black", false,
+            //   [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23], 15, 180)
+            radialLabels(svg, 370, 40, "normal", "white", true,
+              [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55], 6, 0)
 
             // Arrows
-            Arrow(30, 0.4, 5, 15, 60 * 60 * 24, "black")
-            Arrow(10, 0.475, 5, 15, 60 * 60, "red")
-            Arrow(5, 0.6, 0, 0, 60, "black")
+            Arrow(30, 0.425, 5, 60, 60 * 60 * 24, "white")
+            Arrow(10, 0.7, 5, 45, 60 * 60, "white")
+            Arrow(8, 0.75, 0, 0, 60, "white")
             Circle({
               render(b) {
                 const e = b.native
@@ -111,10 +94,11 @@ export function Clock(area: string): Block<HTMLElement> {
                 e.cy.baseVal.value = 500
                 e.r.baseVal.value = 15
                 e.style.stroke = "black"
-                e.style.fill = "black"
-                e.style.strokeWidth = "10px"
+                e.style.fill = "white"
+                e.style.strokeWidth = "2px"
               },
             })
+            // CircleLabels([2, 4, 6, 8, 10, 14, 16, 18, 20, 22], 60, "normal", "black", svg)
 
             // Bezel (secondary time zone)
             G({
@@ -131,53 +115,21 @@ export function Clock(area: string): Block<HTMLElement> {
                   rotate(b.native, 105)
                 else
                   rotate(b.native, 0)
+                radialDots("#555555", 15, 90, 10)
                 // dots(svg, -98)
                 Circle({
                   render(b) {
                     const e = b.native
                     e.cx.baseVal.value = 500
-                    e.cy.baseVal.value = 50
+                    e.cy.baseVal.value = 57
                     e.r.baseVal.value = 36
-                    e.style.stroke = "#111111"
-                    e.style.fill = "#DDDDDD"
+                    e.style.stroke = "#FFFFB7"
+                    e.style.fill = "#93CAEC"
                     e.style.strokeWidth = "1px"
                   },
                 })
-                Text({
-                  render(b) {
-                    const e = b.native
-                    e.textContent = "Мир"
-                    const x = svg.createSVGLength()
-                    x.value = 500
-                    const y = svg.createSVGLength()
-                    y.value = 970
-                    e.x.baseVal.initialize(x)
-                    e.y.baseVal.initialize(y)
-                    e.style.fontSize = "60px"
-                    //e.style.fontWeight = "bold"
-                    e.style.textAnchor = "middle"
-                    // e.style.stroke = "#CCCCCC"
-                    // e.style.fill = "#CCCCCC"
-                  }
-                })
-                Text({
-                  render(b) {
-                    const e = b.native
-                    b.native.textContent = "12"
-                    const x = svg.createSVGLength()
-                    x.value = 500
-                    const y = svg.createSVGLength()
-                    y.value = 70
-                    e.x.baseVal.initialize(x)
-                    e.y.baseVal.initialize(y)
-                    e.style.fontSize = "60px"
-                    //e.style.fontWeight = "bold"
-                    e.style.textAnchor = "middle"
-                  }
-                })
-                // BezelLabels([3, 6, 9, 15, 18, 21], 70, "bold", svg)
-                // BezelLabels([1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19, 20, 22, 23], 50, "normal", svg)
-                BezelLabels([2, 4, 6, 8, 10, 14, 16, 18, 20, 22], 60, "normal", svg)
+                radialLabels(svg, 440, 50, "normal", "#111111", true,
+                  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], 15, 180)
               },
             })
           },
@@ -192,23 +144,27 @@ function rotate(e: SVGGraphicsElement, degrees: number): void {
   e.style.transform = `rotate(${degrees}deg)`
 }
 
-function dots(root: SVGSVGElement, base: number): void {
-  for (let deg = 0; deg < 360; deg += 15) {
-    Rect({
-      render(b) {
-        const w = deg % 30 === 0 ? 10 : 5
-        const h = deg % 30 === 0 && base < 0 ? w * 2 : w * 3
-        const e = b.native
-        e.x.baseVal.value = 500 - w / 2
-        e.y.baseVal.value = base >= 0 ? base : Math.abs(base) - h
-        e.width.baseVal.value = w
-        e.height.baseVal.value = h
-        e.style.stroke = "black"
-        e.style.fill = "black"
-        e.style.strokeWidth = "0"
-        rotate(e, deg)
-      },
-    })
+function radialDots(color: string, step: number, major: number, indent: number): void {
+  for (let deg = 0; deg < 360; deg += step) {
+    // if (major === 0 || (deg !== 0 && deg !== 180)) {
+      Rect({
+        render(b) {
+          const w = major !== 0 && deg % major === 0 ? 15 : 5
+          const h = major !== 0 && deg % major === 0 ? w : w * (indent === 0 ? 100 : 3)
+          const e = b.native
+          e.x.baseVal.value = 500 - w / 2
+          e.y.baseVal.value = indent >= 0 ? indent : Math.abs(indent) - h
+          e.rx.baseVal.value = w === h ? w : 0
+          e.ry.baseVal.value = h === w ? h : 0
+          e.width.baseVal.value = w
+          e.height.baseVal.value = h
+          e.style.stroke = color
+          e.style.fill = color
+          e.style.strokeWidth = "0"
+          rotate(e, indent === 0 ? deg + 15 : deg)
+        },
+      })
+    // }
   }
 }
 
@@ -225,7 +181,7 @@ function Arrow(width: number, length: number, rounding: number,
         e.height.baseVal.value = l
         e.rx.baseVal.value = rounding
         e.ry.baseVal.value = rounding
-        e.style.stroke = "white"
+        e.style.stroke = "black"
         e.style.fill = color
         e.style.strokeWidth = "2px"
         e.style.transformOrigin = "500px 500px"
@@ -237,7 +193,7 @@ function Arrow(width: number, length: number, rounding: number,
 }
 
 function DialLabel(x: number, y: number, content: string, size: number,
-  color: string, root: SVGSVGElement): Block<SVGTextElement> {
+  color: string, degrees: number, root: SVGSVGElement): Block<SVGTextElement> {
   return (
     Text({
       render(b) {
@@ -251,31 +207,69 @@ function DialLabel(x: number, y: number, content: string, size: number,
         e.y.baseVal.initialize(yy)
         e.style.fill = color
         e.style.fontSize = `${size}px`
-        // e.style.fontWeight = "bold"
         e.style.textAnchor = "middle"
+        e.style.alignmentBaseline = "central"
+        e.style.transformOrigin = `${x}px ${y}px`
+        e.style.transform = `rotate(${degrees}deg)`
       }
     })
   )
 }
 
-function BezelLabels(hours: Array<number>, size: number, weight: string, root: SVGSVGElement): void {
-  for (const h of hours) {
+function RadialLabel(degree: number, content: string, color: string,
+  radius: number, size: number, weight: string, bezel: boolean,
+  root: SVGSVGElement): Block<SVGTextElement> {
+  return (
     Text({
       render(b) {
         const e = b.native
-        b.native.textContent = h.toString()
-        const x = root.createSVGLength()
-        x.value = 500
-        const y = root.createSVGLength()
-        y.value = size + 14
-        e.x.baseVal.initialize(x)
-        e.y.baseVal.initialize(y)
+        e.style.fill = color
         e.style.fontSize = `${size}px`
         e.style.fontWeight = weight
-        e.style.lineHeight = "1"
+        e.style.lineHeight = "0.8"
         e.style.textAnchor = "middle"
-        rotate(e, h * 15 + 180)
+        e.style.alignmentBaseline = "central"
+        e.textContent = content
+        if (bezel) {
+          const xx = root.createSVGLength()
+          xx.value = 500
+          const yy = root.createSVGLength()
+          yy.value = 500 - radius
+          e.x.baseVal.initialize(xx)
+          e.y.baseVal.initialize(yy)
+          rotate(e, degree)
+        }
+        else {
+          const x = 500 + radius * Math.cos((degree - 90) * Math.PI / 180)
+          const y = 500 + radius * Math.sin((degree - 90) * Math.PI / 180)
+          const xx = root.createSVGLength()
+          xx.value = x
+          const yy = root.createSVGLength()
+          yy.value = y
+          e.x.baseVal.initialize(xx)
+          e.y.baseVal.initialize(yy)
+        }
       },
     })
+  )
+}
+
+function radialLabels(root: SVGSVGElement,
+  radius: number, size: number, weight: string, color: string,
+  bezel: boolean, numbers: Array<number>, step: number, basis: number): void {
+  for (const n of numbers) {
+    let content: string
+    if (basis === 180 && n === 0) {
+      content = "⍿"
+    }
+    else if (basis === 180 && n === 12) {
+      content = "☀"
+    }
+    else {
+      content = n.toString().padStart(2, "0")
+      if (basis === 0)
+        content = content[0] + " " + content[1]
+    }
+    RadialLabel(n * step + basis, content, content !== "☀" ? color : "#FFFFB7", radius, size, weight, bezel, root)
   }
 }
