@@ -62,31 +62,31 @@ export function Clock(area: string): Block<HTMLElement> {
             Circle({
               render(b) {
                 const e = b.native
-                e.cx.baseVal.value = 501
-                e.cy.baseVal.value = 205
-                e.r.baseVal.value = 50
-                e.style.stroke = "#FFFFB7"
+                e.cx.baseVal.value = 500
+                e.cy.baseVal.value = 207
+                e.r.baseVal.value = 45
+                e.style.stroke = "rgba(0, 0, 0, 0.25)"
                 e.style.fill = "#93CAEC"
                 e.style.strokeWidth = "2px"
               },
             })
 
-            radialDots("white", 15, 30, 270)
-            radialDots("#EEEEEE", 6, 0, 105)
+            radialDots("#AAAAAA", 15, 30, 270)
+            radialDots("#AAAAAA", 6, 0, 105)
             //dots("magenta", 15, 30, 0)
 
             // Hours & Minutes
             radialLabels(svg, 290, 100, "bold", "white", false,
               [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22], 15, 180)
-            // generateRadialLabels(svg, 275, 50, "normal", "black", false,
+            // radialLabels(svg, 250, 35, "normal", "#CCCCCC", false,
             //   [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23], 15, 180)
-            radialLabels(svg, 370, 40, "normal", "white", true,
+            radialLabels(svg, 370, 40, "normal", "#CCCCCC", true,
               [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55], 6, 0)
 
             // Arrows
-            Arrow(30, 0.425, 5, 60, 60 * 60 * 24, "white")
-            Arrow(10, 0.7, 5, 45, 60 * 60, "white")
-            Arrow(8, 0.75, 0, 0, 60, "white")
+            Arrow(30, 0.425, 5, 60, 60 * 60 * 24, "white", "black")
+            Arrow(10, 0.7, 5, 45, 60 * 60, "white", "black")
+            Arrow(8, 0.75, 0, 0, 60, "black", "white")
             Circle({
               render(b) {
                 const e = b.native
@@ -115,21 +115,21 @@ export function Clock(area: string): Block<HTMLElement> {
                   rotate(b.native, 105)
                 else
                   rotate(b.native, 0)
-                radialDots("#555555", 15, 90, 10)
+                radialDots("#555555", 15, 90, 87)
                 // dots(svg, -98)
+                radialLabels(svg, 445, 50, "normal", "#111111", true,
+                  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], 15, 180)
                 Circle({
                   render(b) {
                     const e = b.native
                     e.cx.baseVal.value = 500
-                    e.cy.baseVal.value = 57
-                    e.r.baseVal.value = 36
+                    e.cy.baseVal.value = 55
+                    e.r.baseVal.value = 30
                     e.style.stroke = "#FFFFB7"
                     e.style.fill = "#93CAEC"
                     e.style.strokeWidth = "1px"
                   },
                 })
-                radialLabels(svg, 440, 50, "normal", "#111111", true,
-                  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], 15, 180)
               },
             })
           },
@@ -169,7 +169,7 @@ function radialDots(color: string, step: number, major: number, indent: number):
 }
 
 function Arrow(width: number, length: number, rounding: number,
-  degrees: number, duration: number, color: string): Block<SVGRectElement> {
+  degrees: number, duration: number, color: string, stroke: string): Block<SVGRectElement> {
   return (
     Rect({
       render(b) {
@@ -181,9 +181,9 @@ function Arrow(width: number, length: number, rounding: number,
         e.height.baseVal.value = l
         e.rx.baseVal.value = rounding
         e.ry.baseVal.value = rounding
-        e.style.stroke = "black"
+        e.style.stroke = stroke
         e.style.fill = color
-        e.style.strokeWidth = "2px"
+        e.style.strokeWidth = "4px"
         e.style.transformOrigin = "500px 500px"
         e.style.transform = `rotate(${degrees}deg)`
         e.style.animation = `transform-rotate ${duration}s linear infinite`
@@ -270,6 +270,9 @@ function radialLabels(root: SVGSVGElement,
       if (basis === 0)
         content = content[0] + " " + content[1]
     }
-    RadialLabel(n * step + basis, content, content !== "☀" ? color : "#FFFFB7", radius, size, weight, bezel, root)
+    RadialLabel(n * step + basis, content,
+      content !== "☀" ? color : "#FFFFB7",
+      radius, size,
+      n % 12 !== 0 ? weight : "normal", bezel, root)
   }
 }
