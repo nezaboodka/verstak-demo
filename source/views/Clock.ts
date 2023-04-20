@@ -88,18 +88,18 @@ export function Clock(area: string): Block<HTMLElement> {
             //   },
             // })
 
-            radialDots("#AAAAAA", 15, 0, 270)
-            radialDots(AccentColor, 6, 30, 105)
-            radialDots("white", 45, 45, 270)
+            radialDashes("#AAAAAA", 15, 0, 280)
+            radialDots(AccentColor, 6, 30, 115)
+            radialDashes("white", 45, 45, 270)
             //dots("magenta", 15, 30, 0)
 
             // Hours & Minutes
-            radialLabels(svg, 300, 100, true, "white", false,
+            radialLabels(svg, 295, 100, true, "white", false,
               [0, 3, 6, 9, 12, 15, 18, 21], 15, 180)
-            radialLabels(svg, 258, 40, false, "#CCCCCC", false,
-              [0, 1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19, 20, 22, 23], 15, 180)
-            radialLabels(svg, 340, 40, false, AccentColor, true,
-              [10, 20, 30, 40, 50], 6, 0)
+            radialLabels(svg, 245, 40, false, "#CCCCCC", false,
+              [1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19, 20, 22, 23], 15, 180)
+            radialLabels(svg, 355, 40, false, AccentColor, true,
+              [0, 10, 20, 30, 40, 50], 6, 0)
 
             // Arrows
             Arrow(30, 0.425, 5, 60, 60 * 60 * 24, "white", "black")
@@ -133,7 +133,7 @@ export function Clock(area: string): Block<HTMLElement> {
                   rotate(b.native, 105)
                 else
                   rotate(b.native, 0)
-                radialDots("#555555", 15, 0, 87)
+                radialDashes("#555555", 15, 0, 87)
                 // dots(svg, -98)
                 radialLabels(svg, 445, 70, false, "#111111", true,
                   [0, 12], 15, 180)
@@ -166,7 +166,7 @@ function rotate(e: SVGGraphicsElement, degrees: number): void {
   e.style.transform = `rotate(${degrees}deg)`
 }
 
-function radialDots(color: string, step: number, major: number, indent: number): void {
+function radialDashes(color: string, step: number, major: number, indent: number): void {
   for (let deg = 0; deg < 360; deg += step) {
     // if (major === 0 || (deg !== 0 && deg !== 180)) {
       Rect({
@@ -176,10 +176,28 @@ function radialDots(color: string, step: number, major: number, indent: number):
           const e = b.native
           e.x.baseVal.value = 500 - w / 2
           e.y.baseVal.value = indent >= 0 ? indent : Math.abs(indent) - h
-          // e.rx.baseVal.value = w === h ? w : 0
-          // e.ry.baseVal.value = h === w ? h : 0
           e.width.baseVal.value = w
           e.height.baseVal.value = h
+          e.style.stroke = color
+          e.style.fill = color
+          e.style.strokeWidth = "0"
+          rotate(e, indent === 0 ? deg + 15 : deg)
+        },
+      })
+    // }
+  }
+}
+
+function radialDots(color: string, step: number, major: number, indent: number): void {
+  for (let deg = 0; deg < 360; deg += step) {
+    // if (major === 0 || (deg !== 0 && deg !== 180)) {
+      Circle({
+        render(b) {
+          const r = major !== 0 && deg % major === 0 ? 10 : 4
+          const e = b.native
+          e.cx.baseVal.value = 500
+          e.cy.baseVal.value = indent
+          e.r.baseVal.value = r
           e.style.stroke = color
           e.style.fill = color
           e.style.strokeWidth = "0"
@@ -281,7 +299,7 @@ function radialLabels(root: SVGSVGElement,
   for (const n of numbers) {
     let content: string
     if (basis === 180 && n === 0) {
-      content = "•" // "⏀" // "◦" // "·" // "⍿"
+      content = "︲" // "•" // "⏀" // "◦" // "·" // "⍿"
     }
     // else if (basis === 180 && n === 12 && !bezel) {
     //   content = "•" // "☀"
@@ -295,7 +313,7 @@ function radialLabels(root: SVGSVGElement,
     RadialLabel(n * step + basis, content,
       color, // content !== "☀" ? color : "#FFFFB7",
       radius, size,
-      bold ? "bold" : "normal", // !bezel && n % 12 !== 0 ? weight : "normal",
+      bold || (bezel && n % 12 === 0) ? "bold" : "normal", // !bezel && n % 12 !== 0 ? weight : "normal",
       bezel, root)
   }
 }
