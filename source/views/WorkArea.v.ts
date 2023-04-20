@@ -1,7 +1,10 @@
 import { Table, BlockBuilder, Band, Note, HtmlNote, fromNewRow, Align, cursor } from "verstak"
-import { $theme } from "gost-pi"
+import { $theme, Toggle } from "gost-pi"
 import { AppTheme } from "themes/AppTheme"
 import { Clock } from "./Clock"
+import { observableModel } from "common/Utils"
+import { refs } from "reactronic"
+import { $app } from "models/App"
 
 export function WorkArea(builder?: BlockBuilder<HTMLElement, void, void>) {
   return (
@@ -23,6 +26,23 @@ export function WorkArea(builder?: BlockBuilder<HTMLElement, void, void>) {
         ExampleData("C1:C2")
         ExampleData("B3:C3")
         ExampleData("A2:A3")
+        Toggle({ key: "SecondaryTimeZone",
+          initialize(b, original) {
+            const app = $app.value
+            b.model = observableModel({
+              label: "Bezel",
+              checked: refs(app).secondaryTimeZone,
+            })
+            original()
+          },
+          render(b, original) {
+            original()
+            const theme = $theme.value as AppTheme
+            b.native.classList.toggle(theme.panel, true)
+            b.area = "B1"
+            b.blockAlignment = Align.Right + Align.Bottom
+          }
+        })
       }},
     )
   )
