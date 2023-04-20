@@ -51,6 +51,7 @@ export function Clock(area: string): Block<HTMLElement> {
                 e.style.stroke = "gray"
                 e.style.fill = "silver"
                 e.style.strokeWidth = "4px"
+                e.style.filter = "drop-shadow(3px 3px 10px rgba(0, 0, 0, 0.4))"
                 rotate(e, 32)
               },
             })
@@ -63,6 +64,7 @@ export function Clock(area: string): Block<HTMLElement> {
                 e.style.stroke = "gray"
                 e.style.fill = "silver"
                 e.style.strokeWidth = "3px"
+                e.style.filter = "drop-shadow(3px 3px 10px rgba(0, 0, 0, 0.4))"
               },
             })
             Circle({
@@ -122,11 +124,11 @@ export function Clock(area: string): Block<HTMLElement> {
                 else
                   rotate(b.native, 0)
                 radialDashes("#555555", 15, 0, 87)
-                radialLabels(svg, 445, 70, false, "#111111", true,
+                radialLabels(svg, 445, 70, false, "#222222", true,
                   [0, 12], 15, 180)
-                radialLabels(svg, 445, 70, false, "#111111", true,
+                radialLabels(svg, 445, 70, false, "#222222", true,
                   [3, 6, 9, 15, 18, 21], 15, 180)
-                radialLabels(svg, 435, 40, false, "#111111", true,
+                radialLabels(svg, 435, 40, false, "#222222", true,
                   [1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19, 20, 22, 23], 15, 180)
               },
             })
@@ -196,6 +198,7 @@ function Arrow(width: number, length: number, rounding: number,
         e.style.stroke = stroke
         e.style.fill = color
         e.style.strokeWidth = "4px"
+        e.style.filter = "drop-shadow(3px 3px 4px rgba(0, 0, 0, 0.6))"
         e.style.transformOrigin = "500px 500px"
         e.style.transform = `rotate(${degrees}deg)`
         e.style.animation = `transform-rotate ${duration}s linear infinite`
@@ -216,6 +219,7 @@ function RadialLabel(degree: number, content: string, color: string,
         e.style.fontWeight = weight
         e.style.textAnchor = "middle"
         e.style.alignmentBaseline = "central"
+        e.style.filter = "drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.4))"
         e.textContent = content
         if (bezel) {
           const xx = root.createSVGLength()
