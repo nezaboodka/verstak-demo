@@ -37,6 +37,21 @@ export function Clock(area: string): Block<HTMLElement> {
                 e.style.strokeWidth = "4px"
               },
             })
+            Rect({
+              render(b) {
+                const e = b.native
+                e.x.baseVal.value = 980
+                e.y.baseVal.value = 440
+                e.width.baseVal.value = 70
+                e.height.baseVal.value = 120
+                e.rx.baseVal.value = 20
+                e.ry.baseVal.value = 20
+                e.style.stroke = "black"
+                e.style.fill = "silver"
+                e.style.strokeWidth = "4px"
+                rotate(e, 32)
+              },
+            })
             Circle({
               render(b) {
                 const e = b.native
