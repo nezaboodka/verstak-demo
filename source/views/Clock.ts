@@ -140,9 +140,9 @@ export function Clock(area: string): Block<HTMLElement> {
                     e.cx.baseVal.value = 500
                     e.cy.baseVal.value = 55
                     e.r.baseVal.value = 30
-                    e.style.stroke = "#FFFFB7"
+                    e.style.stroke = "black"
                     e.style.fill = "#93CAEC"
-                    e.style.strokeWidth = "1px"
+                    e.style.strokeWidth = "2px"
                   },
                 })
               },
