@@ -76,17 +76,6 @@ export function Clock(area: string): Block<HTMLElement> {
                 e.style.strokeWidth = "3px"
               },
             })
-            // Circle({
-            //   render(b) {
-            //     const e = b.native
-            //     e.cx.baseVal.value = 500
-            //     e.cy.baseVal.value = 196
-            //     e.r.baseVal.value = 45
-            //     e.style.stroke = "rgba(0, 0, 0, 0.25)"
-            //     e.style.fill = "#93CAEC"
-            //     e.style.strokeWidth = "2px"
-            //   },
-            // })
 
             radialDashes("#AAAAAA", 15, 0, 280)
             radialDots(AccentColor, 6, 30, 115)
@@ -116,7 +105,6 @@ export function Clock(area: string): Block<HTMLElement> {
                 e.style.strokeWidth = "2px"
               },
             })
-            // CircleLabels([2, 4, 6, 8, 10, 14, 16, 18, 20, 22], 60, "normal", "black", svg)
 
             // Bezel (secondary time zone)
             G({
@@ -134,24 +122,12 @@ export function Clock(area: string): Block<HTMLElement> {
                 else
                   rotate(b.native, 0)
                 radialDashes("#555555", 15, 0, 87)
-                // dots(svg, -98)
                 radialLabels(svg, 445, 70, false, "#111111", true,
                   [0, 12], 15, 180)
                 radialLabels(svg, 445, 70, false, "#111111", true,
                   [3, 6, 9, 15, 18, 21], 15, 180)
                 radialLabels(svg, 435, 40, false, "#111111", true,
                   [1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19, 20, 22, 23], 15, 180)
-                // Circle({
-                //   render(b) {
-                //     const e = b.native
-                //     e.cx.baseVal.value = 500
-                //     e.cy.baseVal.value = 55
-                //     e.r.baseVal.value = 30
-                //     e.style.stroke = "black"
-                //     e.style.fill = "#93CAEC"
-                //     e.style.strokeWidth = "2px"
-                //   },
-                // })
               },
             })
           },
@@ -168,43 +144,39 @@ function rotate(e: SVGGraphicsElement, degrees: number): void {
 
 function radialDashes(color: string, step: number, major: number, indent: number): void {
   for (let deg = 0; deg < 360; deg += step) {
-    // if (major === 0 || (deg !== 0 && deg !== 180)) {
-      Rect({
-        render(b) {
-          const w = major !== 0 && deg % major === 0 ? 15 : 5
-          const h = major !== 0 && deg % major === 0 ? w * 2 : w * (indent === 0 ? 100 : 3)
-          const e = b.native
-          e.x.baseVal.value = 500 - w / 2
-          e.y.baseVal.value = indent >= 0 ? indent : Math.abs(indent) - h
-          e.width.baseVal.value = w
-          e.height.baseVal.value = h
-          e.style.stroke = color
-          e.style.fill = color
-          e.style.strokeWidth = "0"
-          rotate(e, indent === 0 ? deg + 15 : deg)
-        },
-      })
-    // }
+    Rect({
+      render(b) {
+        const w = major !== 0 && deg % major === 0 ? 15 : 5
+        const h = major !== 0 && deg % major === 0 ? w * 2 : w * (indent === 0 ? 100 : 3)
+        const e = b.native
+        e.x.baseVal.value = 500 - w / 2
+        e.y.baseVal.value = indent >= 0 ? indent : Math.abs(indent) - h
+        e.width.baseVal.value = w
+        e.height.baseVal.value = h
+        e.style.stroke = color
+        e.style.fill = color
+        e.style.strokeWidth = "0"
+        rotate(e, indent === 0 ? deg + 15 : deg)
+      },
+    })
   }
 }
 
 function radialDots(color: string, step: number, major: number, indent: number): void {
   for (let deg = 0; deg < 360; deg += step) {
-    // if (major === 0 || (deg !== 0 && deg !== 180)) {
-      Circle({
-        render(b) {
-          const r = major !== 0 && deg % major === 0 ? 10 : 4
-          const e = b.native
-          e.cx.baseVal.value = 500
-          e.cy.baseVal.value = indent
-          e.r.baseVal.value = r
-          e.style.stroke = color
-          e.style.fill = color
-          e.style.strokeWidth = "0"
-          rotate(e, indent === 0 ? deg + 15 : deg)
-        },
-      })
-    // }
+    Circle({
+      render(b) {
+        const r = major !== 0 && deg % major === 0 ? 10 : 4
+        const e = b.native
+        e.cx.baseVal.value = 500
+        e.cy.baseVal.value = indent
+        e.r.baseVal.value = r
+        e.style.stroke = color
+        e.style.fill = color
+        e.style.strokeWidth = "0"
+        rotate(e, indent === 0 ? deg + 15 : deg)
+      },
+    })
   }
 }
 
@@ -228,30 +200,6 @@ function Arrow(width: number, length: number, rounding: number,
         e.style.transform = `rotate(${degrees}deg)`
         e.style.animation = `transform-rotate ${duration}s linear infinite`
       },
-    })
-  )
-}
-
-function DialLabel(x: number, y: number, content: string, size: number,
-  color: string, degrees: number, root: SVGSVGElement): Block<SVGTextElement> {
-  return (
-    Text({
-      render(b) {
-        const e = b.native
-        b.native.textContent = content
-        const xx = root.createSVGLength()
-        xx.value = x
-        const yy = root.createSVGLength()
-        yy.value = y
-        e.x.baseVal.initialize(xx)
-        e.y.baseVal.initialize(yy)
-        e.style.fill = color
-        e.style.fontSize = `${size}px`
-        e.style.textAnchor = "middle"
-        e.style.alignmentBaseline = "central"
-        e.style.transformOrigin = `${x}px ${y}px`
-        e.style.transform = `rotate(${degrees}deg)`
-      }
     })
   )
 }
@@ -309,11 +257,10 @@ function radialLabels(root: SVGSVGElement,
       // if (basis === 0)
       //   content = content[0] + " " + content[1]
     }
-    // content = n.toString().padStart(2, "0")
     RadialLabel(n * step + basis, content,
       color, // content !== "☀" ? color : "#FFFFB7",
       radius, size,
-      bold || (bezel && n % 12 === 0) ? "bold" : "normal", // !bezel && n % 12 !== 0 ? weight : "normal",
+      bold || (bezel && basis === 180 && n % 12 === 0) ? "bold" : "normal", // !bezel && n % 12 !== 0 ? weight : "normal",
       bezel, root)
   }
 }

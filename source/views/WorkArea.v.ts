@@ -30,7 +30,7 @@ export function WorkArea(builder?: BlockBuilder<HTMLElement, void, void>) {
           initialize(b, original) {
             const app = $app.value
             b.model = observableModel({
-              label: "Bezel",
+              label: "Watch Bezel",
               checked: refs(app).secondaryTimeZone,
             })
             original()
