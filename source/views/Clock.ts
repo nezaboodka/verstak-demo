@@ -78,24 +78,64 @@ export function Clock(area: string): Block<HTMLElement> {
                 e.style.strokeWidth = "3px"
               },
             })
+            Circle({
+              render(b) {
+                const e = b.native
+                e.cx.baseVal.value = 500
+                e.cy.baseVal.value = 500
+                e.r.baseVal.value = 360
+                e.style.stroke = AccentColor
+                e.style.fill = "transparent"
+                e.style.strokeWidth = "3px"
+              },
+            })
+            Circle({
+              render(b) {
+                const e = b.native
+                e.cx.baseVal.value = 500
+                e.cy.baseVal.value = 500
+                e.r.baseVal.value = 230
+                e.style.stroke = "white"
+                e.style.fill = "transparent"
+                e.style.strokeWidth = "3px"
+              },
+            })
+            Circle({
+              render(b) {
+                const e = b.native
+                e.cx.baseVal.value = 500
+                e.cy.baseVal.value = 500
+                e.r.baseVal.value = 200
+                e.style.stroke = "white"
+                e.style.fill = "transparent"
+                e.style.strokeWidth = "3px"
+              },
+            })
 
             radialDashes("#AAAAAA", 15, 0, 280)
-            radialDots(AccentColor, 6, 30, 115)
+            //radialDots(AccentColor, 30, 30, 130)
+            radialDots(AccentColor, 6, 30, 120)
+            radialDots("black", 60, 60, 120)
+            // radialDots(AccentColor, 360, 180, 115)
             radialDashes("white", 45, 45, 270)
             //dots("magenta", 15, 30, 0)
 
             // Hours & Minutes
             radialLabels(svg, 295, 100, true, "white", false,
-              [0, 3, 6, 9, 12, 15, 18, 21], 15, 180)
-            radialLabels(svg, 245, 40, false, "#CCCCCC", false,
+              [0, 6, 12, 18], 15, 180)
+            radialLabels(svg, 295, 100, true, "white", false,
+              [3, 9, 15, 21], 15, 180)
+            radialLabels(svg, 265, 40, false, "#CCCCCC", false,
               [1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19, 20, 22, 23], 15, 180)
-            radialLabels(svg, 355, 40, false, AccentColor, true,
+            radialLabels(svg, 378, 40, false, AccentColor, true,
               [0, 10, 20, 30, 40, 50], 6, 0)
 
             // Arrows
-            Arrow(30, 0.425, 5, 60, 60 * 60 * 24, "white", "black")
-            Arrow(15, 0.7, 5, 45, 60 * 60, AccentColor, "black")
-            Arrow(7, 0.75, 0, 0, 60, "black", "white")
+            Arrow(15, 0.420, 5, 60, 60 * 60 * 24, "white", "black")
+            Arrow(30, 0.300, 5, 60, 60 * 60 * 24, "white", "white")
+            Arrow(10, 0.755, 5, 47.5, 60 * 60, AccentColor, "black")
+            Arrow(15, 0.380, 5, 47.5, 60 * 60, AccentColor, AccentColor)
+            Arrow(7, 0.75, 0, 0, 60, "black", AccentColor)
             Circle({
               render(b) {
                 const e = b.native
@@ -251,13 +291,13 @@ function radialLabels(root: SVGSVGElement,
   for (const n of numbers) {
     let content: string
     if (basis === 180 && n === 0) {
-      content = "︲" // "•" // "⏀" // "◦" // "·" // "⍿"
+      content = "⏀" // "︲" // "•" // "⏀" // "◦" // "·" // "⍿"
     }
     // else if (basis === 180 && n === 12 && !bezel) {
     //   content = "•" // "☀"
     // }
     else {
-      content = n.toString().padStart(2, "0")
+      content = n.toString() // .padStart(2, "0")
       // if (basis === 0)
       //   content = content[0] + " " + content[1]
     }
