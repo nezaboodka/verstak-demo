@@ -11,7 +11,7 @@ const ArrowColor = "white" // "#87F7A5" // "#93CAEC" // "#93CAEC" // "#87F7A5" /
 // const LabelColor = "#555555"
 // const AccentColor = "white" // "#87F7A5" // "#93CAEC" // "#93CAEC" // "#87F7A5" // "#FFFFB7"
 
-export function Clock(area: string): Block<HTMLElement> {
+export function Watch(area: string): Block<HTMLElement> {
   return (
     Band({
       initialize(b) {
