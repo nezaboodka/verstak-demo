@@ -4,8 +4,8 @@ import { AppTheme } from "themes/AppTheme"
 import { $app } from "models/App"
 
 const BackColor = "#1a3043" // "white" // "#1a3043"
-const LabelColor = "#CCCCCC" // "#87F7A5"
-const AccentColor = "white" // "#87F7A5" // "#93CAEC" // "#93CAEC" // "#87F7A5" // "#FFFFB7"
+const LabelColor = "#BBBBBB" // "#87F7A5"
+const ArrowColor = "white" // "#87F7A5" // "#93CAEC" // "#93CAEC" // "#87F7A5" // "#FFFFB7"
 
 // const BackColor = "white"
 // const LabelColor = "#555555"
@@ -90,66 +90,66 @@ export function Clock(area: string): Block<HTMLElement> {
                 e.cx.baseVal.value = 500
                 e.cy.baseVal.value = 500
                 e.r.baseVal.value = 360
-                e.style.stroke = AccentColor
-                e.style.fill = "transparent"
-                e.style.strokeWidth = "3px"
-              },
-            })
-            Circle({
-              render(b) {
-                const e = b.native
-                e.cx.baseVal.value = 500
-                e.cy.baseVal.value = 500
-                e.r.baseVal.value = 230
                 e.style.stroke = LabelColor
                 e.style.fill = "transparent"
                 e.style.strokeWidth = "3px"
               },
             })
-            Circle({
-              render(b) {
-                const e = b.native
-                e.cx.baseVal.value = 500
-                e.cy.baseVal.value = 500
-                e.r.baseVal.value = 200
-                e.style.stroke = LabelColor
-                e.style.fill = "transparent"
-                e.style.strokeWidth = "3px"
-              },
-            })
+            // Circle({
+            //   render(b) {
+            //     const e = b.native
+            //     e.cx.baseVal.value = 500
+            //     e.cy.baseVal.value = 500
+            //     e.r.baseVal.value = 230
+            //     e.style.stroke = LabelColor
+            //     e.style.fill = "transparent"
+            //     e.style.strokeWidth = "3px"
+            //   },
+            // })
+            // Circle({
+            //   render(b) {
+            //     const e = b.native
+            //     e.cx.baseVal.value = 500
+            //     e.cy.baseVal.value = 500
+            //     e.r.baseVal.value = 200
+            //     e.style.stroke = LabelColor
+            //     e.style.fill = "transparent"
+            //     e.style.strokeWidth = "3px"
+            //   },
+            // })
 
-            radialDashes(LabelColor, 15, 0, 280)
+            radialDashes(LabelColor, 15, 0, 260)
             //radialDots(AccentColor, 30, 30, 130)
             radialDots(LabelColor, 6, 30, 120)
-            radialDots(BackColor, 60, 60, 120)
+            radialDots(BackColor, 180, 180, 120)
             // radialDots(AccentColor, 360, 180, 115)
-            radialDashes(LabelColor, 45, 45, 270)
+            // radialDashes(LabelColor, 45, 45, 250)
             //dots("magenta", 15, 30, 0)
 
             // Hours & Minutes
-            radialLabels(svg, 295, 100, true, LabelColor, false,
+            radialLabels(svg, 305, 100, true, LabelColor, false,
               [0, 6, 12, 18], 15, 180)
-            radialLabels(svg, 295, 100, true, LabelColor, false,
+            radialLabels(svg, 305, 100, true, LabelColor, false,
               [3, 9, 15, 21], 15, 180)
-            radialLabels(svg, 265, 40, false, LabelColor, false,
+            radialLabels(svg, 280, 40, false, LabelColor, false,
               [1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19, 20, 22, 23], 15, 180)
-            radialLabels(svg, 378, 40, false, LabelColor, true,
-              [0, 10, 20, 30, 40, 50], 6, 0)
+            radialLabels(svg, 378, 40, false, LabelColor, false,
+              [0, 30], 6, 0)
 
             // Arrows
-            Arrow(7, 0, 0.75, false, 0, 60, AccentColor, AccentColor, svg)
-            Arrow(15, 0, 0.745, false, 47.5, 60 * 60, AccentColor, "black", svg)
-            Arrow(75, 0.6, 0.150, true, 47.5, 60 * 60, AccentColor, "black", svg)
-            Arrow(20, 0, 0.400, false, 60, 60 * 60 * 24, AccentColor, "black", svg)
-            Arrow(90, 0.225, 0.200, true, 60, 60 * 60 * 24, AccentColor, "black", svg)
+            Arrow(3, 0, 0.75, false, 0, 60, ArrowColor, ArrowColor, svg)
+            Arrow(30, 0, 0.445, false, 47.5, 60 * 60, ArrowColor, "black", svg)
+            Arrow(20, 0.445, 0.250, true, 47.5, 60 * 60, ArrowColor, "black", svg)
+            Arrow(50, 0, 0.285, false, 78, 60 * 60 * 24, ArrowColor, "rgba(0, 0, 0, 0.5)", svg)
+            Arrow(70, 0.285, 0.150, true, 78, 60 * 60 * 24, ArrowColor, "rgba(0, 0, 0, 0.5)", svg)
             Circle({
               render(b) {
                 const e = b.native
                 e.cx.baseVal.value = 500
                 e.cy.baseVal.value = 500
-                e.r.baseVal.value = 15
+                e.r.baseVal.value = 30
                 e.style.stroke = "black"
-                e.style.fill = LabelColor
+                e.style.fill = ArrowColor
                 e.style.strokeWidth = "2px"
               },
             })
@@ -243,10 +243,10 @@ function Arrow(width: number, margin: number, length: number, triangle: boolean,
         p2.x = 500 + width / 2
         p2.y = 500 - m
         const p3 = svg.createSVGPoint()
-        p3.x = triangle ? 500 : 500 + width / 2
+        p3.x = triangle ? 500 + 3 : 500 + width / 2
         p3.y = 500 - m - l
         const p4 = svg.createSVGPoint()
-        p4.x = triangle ? 500 : 500 - width / 2
+        p4.x = triangle ? 500 - 3 : 500 - width / 2
         p4.y = 500 - m - l
         e.points.initialize(p1)
         e.points.appendItem(p2)
@@ -254,7 +254,7 @@ function Arrow(width: number, margin: number, length: number, triangle: boolean,
         e.points.appendItem(p4)
         e.style.stroke = stroke
         e.style.fill = color
-        e.style.strokeWidth = triangle ? "8px" : "4px"
+        e.style.strokeWidth = triangle ? "4px" : "4px"
         e.style.filter = "drop-shadow(3px 3px 4px rgba(0, 0, 0, 0.6))"
         e.style.transformOrigin = "500px 500px"
         e.style.transform = `rotate(${degrees}deg)`
@@ -291,7 +291,7 @@ function ArrowEx(segments: Array<number | string>, degrees: number,
 }
 
 function RadialLabel(degree: number, content: string, color: string,
-  radius: number, size: number, weight: string, bezel: boolean,
+  radius: number, size: number, weight: string, bezel: boolean | undefined,
   root: SVGSVGElement): Block<SVGTextElement> {
   return (
     Text({
@@ -305,14 +305,14 @@ function RadialLabel(degree: number, content: string, color: string,
         e.style.filter = "drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.4))"
         e.textContent = content
         e.style.whiteSpace = "pre"
-        if (bezel) {
+        if (bezel !== undefined) {
           const xx = root.createSVGLength()
           xx.value = 500
           const yy = root.createSVGLength()
-          yy.value = 500 - radius
+          yy.value = 500 + (bezel === false && (degree > 90 && degree < 270 || degree > 450) ? +radius : -radius)
           e.x.baseVal.initialize(xx)
           e.y.baseVal.initialize(yy)
-          rotate(e, degree)
+          rotate(e, degree + (bezel === false && (degree > 90 && degree < 270 || degree > 450) ? -180 : 0))
         }
         else {
           const x = 500 + radius * Math.cos((degree - 90) * Math.PI / 180)
@@ -331,7 +331,7 @@ function RadialLabel(degree: number, content: string, color: string,
 
 function radialLabels(root: SVGSVGElement,
   radius: number, size: number, bold: boolean, color: string,
-  bezel: boolean, numbers: Array<number>, step: number, basis: number): void {
+  bezel: boolean | undefined, numbers: Array<number>, step: number, basis: number): void {
   for (const n of numbers) {
     let content: string
     if (basis === 180 && n === 0) {
@@ -342,6 +342,8 @@ function radialLabels(root: SVGSVGElement,
     // }
     else {
       content = n.toString() // .padStart(2, " ")
+      if (basis === 0 && n === 0)
+        content = "00"
       // if (basis === 0)
       //   content = content[0] + " " + content[1]
     }
