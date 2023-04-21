@@ -10,7 +10,7 @@ export class AppTheme extends DefaultGostTheme {
   @cached
   get panel(): string { return css`
     margin: 0.5rem;
-    padding: 1rem;
+    padding: 0.75rem;
     box-shadow: ${this.shadow};
     border-radius: ${this.borderRadius};
     background-color: ${this.fillColor};

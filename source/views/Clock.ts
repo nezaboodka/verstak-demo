@@ -1,4 +1,4 @@
-import { Band, Align, Svg, Circle, Rect, Text, TextPath, G, Block } from "verstak"
+import { Band, Align, Svg, Circle, Rect, Text, TextPath, G, Block, Polygon } from "verstak"
 import { $theme } from "gost-pi"
 import { AppTheme } from "themes/AppTheme"
 import { $app } from "models/App"
@@ -247,6 +247,32 @@ function Arrow(width: number, length: number, rounding: number,
   )
 }
 
+function ArrowEx(segments: Array<number | string>, degrees: number,
+  duration: number, color: string, stroke: string): Block<SVGPolygonElement> {
+  return (
+    Polygon({
+      render(b) {
+        const e = b.native
+        const l = Math.floor(500 * length)
+        e.points.initialize(new DOMPoint(500, 500))
+        // e.x.baseVal.value = 500 - width / 2
+        // e.y.baseVal.value = 500 - l
+        // e.width.baseVal.value = width
+        // e.height.baseVal.value = l
+        // e.rx.baseVal.value = rounding
+        // e.ry.baseVal.value = rounding
+        // e.style.stroke = stroke
+        // e.style.fill = color
+        // e.style.strokeWidth = "4px"
+        // e.style.filter = "drop-shadow(3px 3px 4px rgba(0, 0, 0, 0.6))"
+        // e.style.transformOrigin = "500px 500px"
+        // e.style.transform = `rotate(${degrees}deg)`
+        // e.style.animation = `transform-rotate ${duration}s linear infinite`
+      },
+    })
+  )
+}
+
 function RadialLabel(degree: number, content: string, color: string,
   radius: number, size: number, weight: string, bezel: boolean,
   root: SVGSVGElement): Block<SVGTextElement> {
@@ -261,6 +287,7 @@ function RadialLabel(degree: number, content: string, color: string,
         e.style.alignmentBaseline = "central"
         e.style.filter = "drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.4))"
         e.textContent = content
+        e.style.whiteSpace = "pre"
         if (bezel) {
           const xx = root.createSVGLength()
           xx.value = 500
@@ -291,13 +318,13 @@ function radialLabels(root: SVGSVGElement,
   for (const n of numbers) {
     let content: string
     if (basis === 180 && n === 0) {
-      content = "⏀" // "︲" // "•" // "⏀" // "◦" // "·" // "⍿"
+      content = "⍿" // "⏀" // "︲" // "•" // "⏀" // "◦" // "·" // "⍿"
     }
     // else if (basis === 180 && n === 12 && !bezel) {
     //   content = "•" // "☀"
     // }
     else {
-      content = n.toString() // .padStart(2, "0")
+      content = n.toString() // .padStart(2, " ")
       // if (basis === 0)
       //   content = content[0] + " " + content[1]
     }
