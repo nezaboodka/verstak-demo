@@ -10,7 +10,7 @@ export function Clock(area: string): Block<HTMLElement> {
     Band({
       initialize(b) {
         b.contentAlignment = Align.Center
-        b.native.style.fontFamily = "arial"
+        b.native.style.fontFamily = "tektur"
         b.native.style.cursor = "default"
       },
       render(b) {
