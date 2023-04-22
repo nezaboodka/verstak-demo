@@ -127,7 +127,7 @@ export function Watch(area: string): Block<HTMLElement> {
             //dots("magenta", 15, 30, 0)
 
             // Hours & Minutes
-            radialLabels(svg, 305, 100, true, LabelColor, false,
+            radialLabels(svg, 305, 100, true, LabelColor, undefined,
               [0, 6, 12, 18], 15, 180)
             radialLabels(svg, 305, 100, true, LabelColor, false,
               [3, 9, 15, 21], 15, 180)
