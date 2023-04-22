@@ -135,14 +135,14 @@ export function Watch(area: string): Block<HTMLElement> {
               [1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19, 20, 22, 23], 15, 180)
             radialLabels(svg, 378, 40, false, LabelColor, false,
               [0, 30], 6, 0)
-            RadialLabel(0, "Ракета", LabelColor, 125, 60, "normal", undefined, svg)
-            RadialLabel(270, "Н", LabelColor, 330, 45, "normal", true, svg)
-            RadialLabel(275, "А", LabelColor, 330, 45, "normal", true, svg)
-            RadialLabel(283, "С", LabelColor, 330, 45, "normal", true, svg)
-            RadialLabel(288, "Т", LabelColor, 330, 45, "normal", true, svg)
-            RadialLabel(293, "А", LabelColor, 330, 45, "normal", true, svg)
-            RadialLabel(298, "Р", LabelColor, 330, 45, "normal", true, svg)
-            RadialLabel(303, "Т", LabelColor, 330, 45, "normal", true, svg)
+            RadialLabel(0, "Ракета", LabelColor, 125, 50, "normal", undefined, svg)
+            RadialLabel(271, "Н", ArrowColor, 330, 35, "bold", true, svg)
+            RadialLabel(275, "А", ArrowColor, 330, 35, "bold", true, svg)
+            RadialLabel(282, "С", ArrowColor, 330, 35, "bold", true, svg)
+            RadialLabel(286, "Т", ArrowColor, 330, 35, "bold", true, svg)
+            RadialLabel(290, "А", ArrowColor, 330, 35, "bold", true, svg)
+            RadialLabel(294, "Р", ArrowColor, 330, 35, "bold", true, svg)
+            RadialLabel(298, "Т", ArrowColor, 330, 35, "bold", true, svg)
             // RadialLabel(308, "!", LabelColor, 330, 45, "normal", true, svg)
             // Arrows
             Arrow(3, 0, 0.75, false, 0, 60, ArrowColor, ArrowColor, svg)
@@ -184,6 +184,13 @@ export function Watch(area: string): Block<HTMLElement> {
                   [3, 6, 9, 15, 18, 21], 15, 180)
                 radialLabels(svg, 435, 40, false, "#222222", true,
                   [1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19, 20, 22, 23], 15, 180)
+                RadialLabel(275, "Н", "black", 470, 35, "bold", true, svg)
+                RadialLabel(278, "А", "black", 470, 35, "bold", true, svg)
+                RadialLabel(283, "С", "black", 470, 35, "bold", true, svg)
+                RadialLabel(286, "Т", "black", 470, 35, "bold", true, svg)
+                RadialLabel(289, "А", "black", 470, 35, "bold", true, svg)
+                RadialLabel(292, "Р", "black", 470, 35, "bold", true, svg)
+                RadialLabel(295, "Т", "black", 470, 35, "bold", true, svg)
               },
             })
           },
