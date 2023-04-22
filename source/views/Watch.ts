@@ -142,12 +142,12 @@ export function Watch(area: string): Block<HTMLElement> {
             radialLabels(svg, 125, 40, false, LabelColor, undefined,
               [0, 10, 20, 30, 40, 50], 6, 0)
             // RadialLabel(180, "Ракета", LabelColor, 310, 50, "normal", undefined, svg)
-            RadialLabel(193, "Р", LabelColor, 320, 40, "normal", false, svg)
-            RadialLabel(188, "А", LabelColor, 320, 40, "normal", false, svg)
-            RadialLabel(183, "К", LabelColor, 320, 40, "normal", false, svg)
-            RadialLabel(177, "Е", LabelColor, 320, 40, "normal", false, svg)
-            RadialLabel(172, "Т", LabelColor, 320, 40, "normal", false, svg)
-            RadialLabel(167, "А", LabelColor, 320, 40, "normal", false, svg)
+            // RadialLabel(193, "Р", LabelColor, 340, 40, "normal", false, svg)
+            // RadialLabel(188, "А", LabelColor, 340, 40, "normal", false, svg)
+            // RadialLabel(183, "К", LabelColor, 340, 40, "normal", false, svg)
+            // RadialLabel(177, "Е", LabelColor, 340, 40, "normal", false, svg)
+            // RadialLabel(172, "Т", LabelColor, 340, 40, "normal", false, svg)
+            // RadialLabel(167, "А", LabelColor, 340, 40, "normal", false, svg)
             // RadialLabel(0, "Дважды 24", LabelColor, 80, 40, "normal", undefined, svg)
             RadialLabel(324, "О", ArrowColor, 340, 35, "bold", false, svg)
             RadialLabel(328, "С", ArrowColor, 340, 35, "bold", false, svg)
@@ -388,7 +388,7 @@ function radialLabels(root: SVGSVGElement,
   for (const n of numbers) {
     let content: string
     if (basis === 180 && n === 0) {
-      content = "︲" // "⏀" // "︲" // "•" // "⏀" // "◦" // "·" // "⍿"
+      content = "⏀" // "⏀" // "︲" // "•" // "⏀" // "◦" // "·" // "⍿"
     }
     // else if (basis === 180 && n === 6 && !bezel) {
     //   content = `${n} ` // "☀"
