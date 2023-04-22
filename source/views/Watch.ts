@@ -397,7 +397,7 @@ function radialLabels(root: SVGSVGElement,
     //   content = `${n} ` // "☀"
     // }
     // else {
-      content = n.toString() // .padStart(2, " ")
+      content = n.toString().padStart(2, "0") // " ")
       if (basis === 0 && n === 0)
         content = "00"
       // if (basis === 0)
