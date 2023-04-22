@@ -133,9 +133,9 @@ export function Watch(area: string): Block<HTMLElement> {
             // radialDots("magenta", 15, 30, 0)
 
             // Hours & Minutes
-            radialLabels(svg, 270, 100, true, ArrowColor, undefined,
+            radialLabels(svg, 270, 100, false, ArrowColor, undefined,
               [0, 6, 12, 18], 15, 180)
-            radialLabels(svg, 270, 100, true, ArrowColor, undefined,
+            radialLabels(svg, 270, 100, false, ArrowColor, undefined,
               [3, 9, 15, 21], 15, 180)
             // radialLabels(svg, 285, 40, false, LabelColor, undefined,
             //   [1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19, 20, 22, 23], 15, 180)
@@ -406,7 +406,7 @@ function radialLabels(root: SVGSVGElement,
     RadialLabel(n * step + basis, content,
       color, // content !== "☀" ? color : "#FFFFB7",
       radius, size,
-      bold || bezel == true ? "bold" : "normal", // !bezel && n % 12 !== 0 ? weight : "normal",
+      bold ? "bold" : "normal", // !bezel && n % 12 !== 0 ? weight : "normal",
       bezel, root)
   }
 }
