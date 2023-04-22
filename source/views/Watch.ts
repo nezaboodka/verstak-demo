@@ -135,19 +135,20 @@ export function Watch(area: string): Block<HTMLElement> {
               [1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19, 20, 22, 23], 15, 180)
             radialLabels(svg, 378, 40, false, LabelColor, false,
               [0, 30], 6, 0)
+            RadialLabel(270, "24 / 24", LabelColor, 330, 35, "normal", true, svg)
 
             // Arrows
             Arrow(3, 0, 0.75, false, 0, 60, ArrowColor, ArrowColor, svg)
-            Arrow(30, 0, 0.445, false, 47.5, 60 * 60, ArrowColor, "black", svg)
-            Arrow(20, 0.445, 0.250, true, 47.5, 60 * 60, ArrowColor, "black", svg)
-            Arrow(50, 0, 0.285, false, 78, 60 * 60 * 24, ArrowColor, "rgba(0, 0, 0, 0.5)", svg)
-            Arrow(70, 0.285, 0.150, true, 78, 60 * 60 * 24, ArrowColor, "rgba(0, 0, 0, 0.5)", svg)
+            Arrow(35, -0.1, 0.840, true, 47.5, 60 * 60, ArrowColor, "black", svg)
+            // Arrow(20, 0.445, 0.250, true, 47.5, 60 * 60, ArrowColor, "black", svg)
+            Arrow(50, -0.05, 0.485, true, 78, 60 * 60 * 24, ArrowColor, "rgba(0, 0, 0, 0.5)", svg)
+            //Arrow(70, 0.285, 0.150, true, 78, 60 * 60 * 24, ArrowColor, "rgba(0, 0, 0, 0.5)", svg)
             Circle({
               render(b) {
                 const e = b.native
                 e.cx.baseVal.value = 500
                 e.cy.baseVal.value = 500
-                e.r.baseVal.value = 30
+                e.r.baseVal.value = 10
                 e.style.stroke = "black"
                 e.style.fill = ArrowColor
                 e.style.strokeWidth = "2px"
@@ -243,10 +244,10 @@ function Arrow(width: number, margin: number, length: number, triangle: boolean,
         p2.x = 500 + width / 2
         p2.y = 500 - m
         const p3 = svg.createSVGPoint()
-        p3.x = triangle ? 500 + 3 : 500 + width / 2
+        p3.x = triangle ? 500 + 5 : 500 + width / 2
         p3.y = 500 - m - l
         const p4 = svg.createSVGPoint()
-        p4.x = triangle ? 500 - 3 : 500 - width / 2
+        p4.x = triangle ? 500 - 5 : 500 - width / 2
         p4.y = 500 - m - l
         e.points.initialize(p1)
         e.points.appendItem(p2)
@@ -337,9 +338,9 @@ function radialLabels(root: SVGSVGElement,
     if (basis === 180 && n === 0) {
       content = "⍿" // "⏀" // "︲" // "•" // "⏀" // "◦" // "·" // "⍿"
     }
-    // else if (basis === 180 && n === 12 && !bezel) {
-    //   content = "•" // "☀"
-    // }
+    else if (basis === 180 && n === 6) {
+      content = " 6" // "☀"
+    }
     else {
       content = n.toString() // .padStart(2, " ")
       if (basis === 0 && n === 0)
