@@ -9,7 +9,7 @@ const ArrowColor = "white" // "#87F7A5" // "#93CAEC" // "#93CAEC" // "#87F7A5" /
 
 // const BackColor = "white"
 // const LabelColor = "#555555"
-// const AccentColor = "white" // "#87F7A5" // "#93CAEC" // "#93CAEC" // "#87F7A5" // "#FFFFB7"
+// const ArrowColor = "#333333" // "#87F7A5" // "#93CAEC" // "#93CAEC" // "#87F7A5" // "#FFFFB7"
 
 export function Watch(area: string): Block<HTMLElement> {
   return (
@@ -129,13 +129,28 @@ export function Watch(area: string): Block<HTMLElement> {
             // Hours & Minutes
             radialLabels(svg, 305, 100, true, LabelColor, undefined,
               [0, 6, 12, 18], 15, 180)
-            radialLabels(svg, 305, 100, true, LabelColor, false,
+            radialLabels(svg, 297, 100, true, LabelColor, undefined,
               [3, 9, 15, 21], 15, 180)
-            radialLabels(svg, 280, 40, false, LabelColor, false,
+            radialLabels(svg, 270, 40, false, LabelColor, undefined,
               [1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19, 20, 22, 23], 15, 180)
             radialLabels(svg, 378, 40, false, LabelColor, false,
               [0, 30], 6, 0)
-            RadialLabel(270, "24 / 24", LabelColor, 330, 35, "normal", true, svg)
+            RadialLabel(0, "Ракета", LabelColor, 125, 60, "normal", undefined, svg)
+            RadialLabel(270, "ЗАПУСК", LabelColor, 325, 35, "normal", true, svg)
+            // RadialLabel(270, "24 ⇌ 24", LabelColor, 325, 35, "normal", true, svg)
+            // RadialLabel(305, "Р", LabelColor, 325, 35, "normal", undefined, svg)
+            // RadialLabel(298, "А", LabelColor, 325, 35, "normal", undefined, svg)
+            // RadialLabel(291, "К", LabelColor, 325, 35, "normal", undefined, svg)
+            // RadialLabel(284, "Е", LabelColor, 325, 35, "normal", undefined, svg)
+            // RadialLabel(277, "Т", LabelColor, 325, 35, "normal", undefined, svg)
+            // RadialLabel(270, "А", LabelColor, 325, 35, "normal", undefined, svg)
+            // RadialLabel(305, "—", LabelColor, 325, 35, "normal", true, svg)
+            // RadialLabel(298, "—", LabelColor, 325, 35, "normal", true, svg)
+            // RadialLabel(291, "—", LabelColor, 325, 35, "normal", true, svg)
+            // RadialLabel(284, "—", LabelColor, 325, 35, "normal", true, svg)
+            // RadialLabel(277, "—", LabelColor, 325, 35, "normal", true, svg)
+            // RadialLabel(270, "—", LabelColor, 325, 35, "normal", true, svg)
+            // RadialLabel(270, "☻", LabelColor, 330, 70, "bold", undefined, svg)
 
             // Arrows
             Arrow(3, 0, 0.75, false, 0, 60, ArrowColor, ArrowColor, svg)
@@ -338,7 +353,7 @@ function radialLabels(root: SVGSVGElement,
     if (basis === 180 && n === 0) {
       content = "⍿" // "⏀" // "︲" // "•" // "⏀" // "◦" // "·" // "⍿"
     }
-    else if (basis === 180 && n === 6) {
+    else if (basis === 180 && n === 6 && !bezel) {
       content = " 6" // "☀"
     }
     else {
