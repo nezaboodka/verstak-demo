@@ -387,22 +387,22 @@ function radialLabels(root: SVGSVGElement,
   bezel: boolean | undefined, numbers: Array<number>, step: number, basis: number): void {
   for (const n of numbers) {
     let content: string
-    if (basis === 180 && n === 0) {
-      content = "⏀" // "⏀" // "︲" // "•" // "⏀" // "◦" // "·" // "⍿"
-    }
+    // if (basis === 180 && n === 0) {
+    //   content = "⏀" // "⏀" // "︲" // "•" // "⏀" // "◦" // "·" // "⍿"
+    // }
     // else if (basis === 180 && n === 6 && !bezel) {
     //   content = `${n} ` // "☀"
     // }
     // else if (basis === 180 && (n === 3 || n === 9) && !bezel) {
     //   content = `${n} ` // "☀"
     // }
-    else {
+    // else {
       content = n.toString() // .padStart(2, " ")
       if (basis === 0 && n === 0)
         content = "00"
       // if (basis === 0)
       //   content = content[0] + " " + content[1]
-    }
+    // }
     RadialLabel(n * step + basis, content,
       color, // content !== "☀" ? color : "#FFFFB7",
       radius, size,
