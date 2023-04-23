@@ -161,7 +161,7 @@ export function Watch(area: string): Block<HTMLElement> {
             //   [3, 9, 15, 21], 15, 180)
             // radialLabels(svg, 285, 40, false, LabelColor, undefined,
             //   [1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19, 20, 22, 23], 15, 180)
-            radialLabels(svg, 380, 40, true, SecondaryLabelColor, false,
+            radialLabels(svg, 392, 40, true, SecondaryLabelColor, false,
               [0, 30], 6, 0)
             RadialLabel(180, "Ракета", LabelColor, 130, 50, "normal", false, svg)
             // RadialLabel(193, "Р", LabelColor, 340, 40, "normal", false, svg)
@@ -382,16 +382,16 @@ function RadialLabel(degree: number, content: string, color: string,
         e.style.fontWeight = weight
         e.style.textAnchor = "middle"
         degree = degree % 360
-        if (degree === 0 || degree === 180)
+        if (degree === 0 || degree === 180 || bezel === true)
           e.style.textAnchor = "middle"
         else if (degree > 0 && degree < 180)
           e.style.textAnchor = "end"
         else
           e.style.textAnchor = "start"
-        if (degree < 90 || degree > 270)
-          e.style.alignmentBaseline = "hanging"
-        else if (degree === 90 || degree === 270)
+        if (degree === 90 || degree === 270 || bezel === true)
           e.style.alignmentBaseline = "central"
+        else if (degree < 90 || degree > 270)
+          e.style.alignmentBaseline = "hanging"
         else
           e.style.alignmentBaseline = "baseline"
         // e.style.filter = bezel === true ? "drop-shadow(2px 2px 1px rgba(255, 255, 255, 0.4))" : "drop-shadow(0 0 4px rgba(0, 0, 0, 1))"
