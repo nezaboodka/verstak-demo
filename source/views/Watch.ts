@@ -1,11 +1,12 @@
-import { Band, Align, Svg, Circle, Rect, Text, TextPath, G, Block, Polygon } from "verstak"
+import { Band, Align, Svg, Circle, Rect, Text, TextPath, G, Block, Polygon, Label } from "verstak"
 import { $theme } from "gost-pi"
 import { AppTheme } from "themes/AppTheme"
 import { $app } from "models/App"
 
-const BackColor = "#1a3043" // "white" // "#1a3043"
-const LabelColor = "#BBBBBB" // "#87F7A5"
-const ArrowColor = "white" // "#87F7A5" // "#93CAEC" // "#93CAEC" // "#87F7A5" // "#FFFFB7"
+const BackColor = "white" // "white" // "#1a3043"
+const LabelColor = "black" // "#87F7A5"
+const SecondaryLabelColor = "darkred" // "#87F7A5"
+const ArrowColor = "black" // "#87F7A5" // "#93CAEC" // "#93CAEC" // "#87F7A5" // "#FFFFB7"
 
 // const BackColor = "white"
 // const LabelColor = "#555555"
@@ -118,10 +119,14 @@ export function Watch(area: string): Block<HTMLElement> {
             //   },
             // })
 
-            radialDashes(LabelColor, 2, 10, 15, 105)
-            radialDashes(LabelColor, 4, 40, 45, 105)
-            radialDashes(LabelColor, 2, 20, 6, 650)
-            radialDashes(LabelColor, 8, 20, 30, 650)
+            radialDashes(LabelColor, 12, 48, 15, 105)
+            radialDashes(BackColor, 24, 48, 45, 105)
+            radialDashes(LabelColor, 12, 16, 45, 105)
+            // radialDots(LabelColor, 15, 15, 120)
+            // radialDots(BackColor, 45, 45, 160)
+            radialDashes(SecondaryLabelColor, 2, 24, 6, 280)
+            radialDashes(SecondaryLabelColor, 12, 24, 30, 280)
+            // radialDashes(BackColor, 8, 20, 60, 280)
             // radialDashes(BackColor, 8, 20, 60, 640)
             // radialDashes(LabelColor, 4, 4, 15, 180)
             // radialDots(LabelColor, 15, 45, 185)
@@ -133,15 +138,15 @@ export function Watch(area: string): Block<HTMLElement> {
             // radialDots("magenta", 15, 30, 0)
 
             // Hours & Minutes
-            radialLabels(svg, 270, 100, false, ArrowColor, undefined,
+            radialLabels(svg, 300, 140, true, LabelColor, undefined,
               [0, 6, 12, 18], 15, 180)
-            radialLabels(svg, 270, 100, false, ArrowColor, undefined,
+            radialLabels(svg, 320, 75, true, LabelColor, undefined,
               [3, 9, 15, 21], 15, 180)
             // radialLabels(svg, 285, 40, false, LabelColor, undefined,
             //   [1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19, 20, 22, 23], 15, 180)
-            radialLabels(svg, 125, 40, false, LabelColor, undefined,
-              [0, 10, 20, 30, 40, 50], 6, 0)
-            // RadialLabel(180, "Ракета", LabelColor, 310, 50, "normal", undefined, svg)
+            radialLabels(svg, 260, 50, false, SecondaryLabelColor, undefined,
+              [10, 20, 40, 50], 6, 0)
+            RadialLabel(0, "Ракета", SecondaryLabelColor, 100, 50, "normal", false, svg)
             // RadialLabel(193, "Р", LabelColor, 340, 40, "normal", false, svg)
             // RadialLabel(188, "А", LabelColor, 340, 40, "normal", false, svg)
             // RadialLabel(183, "К", LabelColor, 340, 40, "normal", false, svg)
@@ -149,14 +154,14 @@ export function Watch(area: string): Block<HTMLElement> {
             // RadialLabel(172, "Т", LabelColor, 340, 40, "normal", false, svg)
             // RadialLabel(167, "А", LabelColor, 340, 40, "normal", false, svg)
             // RadialLabel(0, "Дважды 24", LabelColor, 80, 40, "normal", undefined, svg)
-            RadialLabel(324, "О", ArrowColor, 340, 35, "bold", false, svg)
-            RadialLabel(328, "С", ArrowColor, 340, 35, "bold", false, svg)
-            RadialLabel(332, "Н", ArrowColor, 340, 35, "bold", false, svg)
-            RadialLabel(335, ".", ArrowColor, 340, 35, "bold", false, svg)
-            RadialLabel(339, "П", ArrowColor, 340, 35, "bold", false, svg)
-            RadialLabel(343, "О", ArrowColor, 340, 35, "bold", false, svg)
-            RadialLabel(347, "Я", ArrowColor, 340, 35, "bold", false, svg)
-            RadialLabel(351, "С", ArrowColor, 340, 35, "bold", false, svg)
+            // RadialLabel(324, "О", ArrowColor, 340, 35, "bold", false, svg)
+            // RadialLabel(328, "С", ArrowColor, 340, 35, "bold", false, svg)
+            // RadialLabel(332, "Н", ArrowColor, 340, 35, "bold", false, svg)
+            // RadialLabel(335, ".", ArrowColor, 340, 35, "bold", false, svg)
+            // RadialLabel(339, "П", ArrowColor, 340, 35, "bold", false, svg)
+            // RadialLabel(343, "О", ArrowColor, 340, 35, "bold", false, svg)
+            // RadialLabel(347, "Я", ArrowColor, 340, 35, "bold", false, svg)
+            // RadialLabel(351, "С", ArrowColor, 340, 35, "bold", false, svg)
             // RadialLabel(262, "Н", LabelColor, 315, 35, "bold", true, svg)
             // RadialLabel(266, "А", LabelColor, 315, 35, "bold", true, svg)
             // RadialLabel(273, "С", LabelColor, 315, 35, "bold", true, svg)
@@ -172,23 +177,25 @@ export function Watch(area: string): Block<HTMLElement> {
             // RadialLabel(251, "О", LabelColor, 315, 35, "bold", true, svg)
             // RadialLabel(255, "Д", LabelColor, 315, 35, "bold", true, svg)
             // Arrows
+            // Arrow(1, 1, -0.05, 0.700, 277, 60 * 60 * 24, BackColor, BackColor, true, svg)
+            // RadialLabel(277, "☀", "black", 280, 200, "normal", false, svg)
+            // RadialLabel(277, "•", "yellow", 300, 250, "normal", false, svg)
+            // Arrow(8, 8, 0.5, 0.2, 277, 60 * 60 * 24, "yellow", "yellow", true, svg)
             // RadialLabel(312, "☀", "#FFFFB7", 330, 150, "normal", true, svg)
-            // RadialLabel(312, "☀", "#FFFFB7", 330, 150, "normal", true, svg)
-            Arrow(5, 5, -0.05, 0.820, 277, 60 * 60 * 24, ArrowColor, BackColor, true, svg)
-            Arrow(50, 2, 0.6775, 0.1, 277, 60 * 60 * 24, LabelColor, LabelColor, true, svg)
-            Arrow(2, 50, 0.57, 0.1, 277, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
+            // Arrow(50, 2, 0.6775, 0.1, 277, 60 * 60 * 24, LabelColor, LabelColor, true, svg)
             //Arrow(70, 0.285, 0.150, true, 78, 60 * 60 * 24, ArrowColor, "rgba(0, 0, 0, 0.5)", svg)
-            Arrow(10, 10, -0.075, 0.4, 0, 60, ArrowColor, "black", true, svg)
-            Arrow(30, 8, -0.05, 0.340, 185, 60 * 60, ArrowColor, "black", true, svg)
+            Arrow(48, 24, -0.075, 0.425, 277, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
+            Arrow(24, 8, -0.075, 0.45, 185, 60 * 60, SecondaryLabelColor, SecondaryLabelColor, true, svg)
+            Arrow(10, 4, -0.1, 0.65, 0, 60, SecondaryLabelColor, SecondaryLabelColor, true, svg)
             // Arrow(20, 0.445, 0.250, true, 47.5, 60 * 60, ArrowColor, "black", svg)
             Circle({
               render(b) {
                 const e = b.native
                 e.cx.baseVal.value = 500
                 e.cy.baseVal.value = 500
-                e.r.baseVal.value = 10
+                e.r.baseVal.value = 16
                 e.style.stroke = "black"
-                e.style.fill = ArrowColor
+                e.style.fill = BackColor
                 e.style.strokeWidth = "2px"
               },
             })
@@ -208,12 +215,12 @@ export function Watch(area: string): Block<HTMLElement> {
                   rotate(b.native, 105)
                 else
                   rotate(b.native, 0)
-                radialDashes("#555555", 4, 10, 15, 87)
-                radialLabels(svg, 445, 70, false, BackColor, true,
+                // radialDashes("#555555", 4, 10, 15, 87)
+                radialLabels(svg, 445, 70, false, LabelColor, true,
                   [0, 12], 15, 180)
-                radialLabels(svg, 445, 70, false, BackColor, true,
+                radialLabels(svg, 445, 70, false, LabelColor, true,
                   [3, 6, 9, 15, 18, 21], 15, 180)
-                radialLabels(svg, 435, 40, false, BackColor, true,
+                radialLabels(svg, 435, 40, false, LabelColor, true,
                   [1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19, 20, 22, 23], 15, 180)
                 // RadialLabel(260, "Н", "black", 467, 35, "bold", true, svg)
                 // RadialLabel(264, "А", "black", 467, 35, "bold", true, svg)
@@ -222,14 +229,14 @@ export function Watch(area: string): Block<HTMLElement> {
                 // RadialLabel(283, "А", "black", 467, 35, "bold", true, svg)
                 // RadialLabel(287, "Р", "black", 467, 35, "bold", true, svg)
                 // RadialLabel(291, "Т", "black", 467, 35, "bold", true, svg)
-                RadialLabel(324, "Д", BackColor, 470, 35, "bold", true, svg)
-                RadialLabel(328, "О", BackColor, 470, 35, "bold", true, svg)
-                RadialLabel(332, "П", BackColor, 470, 35, "bold", true, svg)
-                RadialLabel(335, ".", BackColor, 470, 35, "bold", true, svg)
-                RadialLabel(339, "П", BackColor, 470, 35, "bold", true, svg)
-                RadialLabel(343, "О", BackColor, 470, 35, "bold", true, svg)
-                RadialLabel(347, "Я", BackColor, 470, 35, "bold", true, svg)
-                RadialLabel(351, "С", BackColor, 470, 35, "bold", true, svg)
+                // RadialLabel(324, "Д", BackColor, 470, 35, "bold", true, svg)
+                // RadialLabel(328, "О", BackColor, 470, 35, "bold", true, svg)
+                // RadialLabel(332, "П", BackColor, 470, 35, "bold", true, svg)
+                // RadialLabel(335, ".", BackColor, 470, 35, "bold", true, svg)
+                // RadialLabel(339, "П", BackColor, 470, 35, "bold", true, svg)
+                // RadialLabel(343, "О", BackColor, 470, 35, "bold", true, svg)
+                // RadialLabel(347, "Я", BackColor, 470, 35, "bold", true, svg)
+                // RadialLabel(351, "С", BackColor, 470, 35, "bold", true, svg)
               },
             })
           },
@@ -266,7 +273,7 @@ function radialDots(color: string, step: number, major: number, indent: number):
   for (let deg = 0; deg < 360; deg += step) {
     Circle({
       render(b) {
-        const r = major !== 0 && deg % major === 0 ? 10 : 4
+        const r = major !== 0 && deg % major === 0 ? 14 : 6
         const e = b.native
         e.cx.baseVal.value = 500
         e.cy.baseVal.value = indent
@@ -307,7 +314,7 @@ function Arrow(widthA: number, widthB: number, margin: number, length: number,
         e.points.appendItem(p4)
         e.style.stroke = stroke
         e.style.fill = color
-        e.style.strokeWidth = "4px"
+        e.style.strokeWidth = "2px"
         e.style.filter = shadow ? "drop-shadow(3px 3px 4px rgba(0, 0, 0, 0.6))" : ""
         e.style.transformOrigin = "500px 500px"
         e.style.transform = `rotate(${degrees}deg)`
@@ -355,7 +362,8 @@ function RadialLabel(degree: number, content: string, color: string,
         e.style.fontWeight = weight
         e.style.textAnchor = "middle"
         e.style.alignmentBaseline = "central"
-        e.style.filter = bezel === true ? "drop-shadow(2px 2px 1px rgba(255, 255, 255, 0.4))" : "drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.6))"
+        // e.style.filter = bezel === true ? "drop-shadow(2px 2px 1px rgba(255, 255, 255, 0.4))" : "drop-shadow(0 0 4px rgba(0, 0, 0, 1))"
+        // e.style.textShadow = "0 0 1px black"
         e.textContent = content
         e.style.whiteSpace = "pre"
         if (bezel !== undefined) {
@@ -388,8 +396,11 @@ function radialLabels(root: SVGSVGElement,
   for (const n of numbers) {
     let content: string
     if (basis === 180 && n === 0) {
-      content = "0" // "⏀" // "︲" // "•" // "⏀" // "◦" // "·" // "⍿"
+      content = "0" // " ☾" // "⍿" // "⏀" // "︲" // "•" // "⏀" // "◦" // "·" // "⍿"
     }
+    // else if (basis === 180 && n === 12) {
+    //   content = "☀" // "⏀" // "︲" // "•" // "⏀" // "◦" // "·" // "⍿"
+    // }
     // else if (basis === 180 && n === 6 && !bezel) {
     //   content = `${n} ` // "☀"
     // }
