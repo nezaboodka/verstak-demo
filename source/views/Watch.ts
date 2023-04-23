@@ -149,10 +149,12 @@ export function Watch(area: string): Block<HTMLElement> {
               [9, 18], 15, 180)
             radialLabels(svg, 240, 135, true, LabelColor, undefined,
               [0], 15, 180)
+
             // radialLabels(svg, 245, 75, false, LabelColor, undefined,
             //   [0, 6, 12, 18], 15, 180)
             // radialLabels(svg, 240, 125, true, LabelColor, undefined,
             //   [3, 9, 15, 21], 15, 180)
+
             // radialLabels(svg, 320, 75, true, LabelColor, undefined,
             //   [0, 6, 12, 18], 15, 180)
             // radialLabels(svg, 300, 125, true, LabelColor, undefined,
