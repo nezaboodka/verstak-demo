@@ -1,7 +1,7 @@
 import { refs } from "reactronic"
 import { Band, BlockBuilder, Img, fromNewRow } from "verstak"
 import { Markdown } from "verstak-markdown"
-import { Icon, Field, createFieldModel, $theme } from "gost-pi"
+import { Icon, Field, createFieldModel, $theme } from "snasti"
 import { AppTheme } from "themes/AppTheme"
 import { $app } from "models/App"
 

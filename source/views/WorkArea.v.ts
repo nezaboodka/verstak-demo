@@ -1,5 +1,5 @@
 import { Table, BlockBuilder, Band, Note, HtmlNote, fromNewRow, Align, cursor } from "verstak"
-import { $theme, Toggle } from "gost-pi"
+import { $theme, Toggle } from "snasti"
 import { AppTheme } from "themes/AppTheme"
 import { Watch } from "./Watch"
 import { observableModel } from "common/Utils"

@@ -1,5 +1,5 @@
 import { Band, Align, Svg, Circle, Rect, Text, TextPath, G, Block, Polygon, Label } from "verstak"
-import { $theme } from "gost-pi"
+import { $theme } from "snasti"
 import { AppTheme } from "themes/AppTheme"
 import { $app } from "models/App"
 
