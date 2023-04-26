@@ -91,66 +91,12 @@ export function Watch(area: string): Block<HTMLElement> {
                 e.style.strokeWidth = "3px"
               },
             })
-            // Circle({
-            //   render(b) {
-            //     const e = b.native
-            //     e.cx.baseVal.value = 500
-            //     e.cy.baseVal.value = 500
-            //     e.r.baseVal.value = 360
-            //     e.style.stroke = BezelBackColor
-            //     e.style.fill = "transparent"
-            //     e.style.strokeWidth = "3px"
-            //   },
-            // })
-            // Circle({
-            //   render(b) {
-            //     const e = b.native
-            //     e.cx.baseVal.value = 500
-            //     e.cy.baseVal.value = 500
-            //     e.r.baseVal.value = 230
-            //     e.style.stroke = LabelColor
-            //     e.style.fill = "transparent"
-            //     e.style.strokeWidth = "3px"
-            //   },
-            // })
-            // Circle({
-            //   render(b) {
-            //     const e = b.native
-            //     e.cx.baseVal.value = 500
-            //     e.cy.baseVal.value = 500
-            //     e.r.baseVal.value = 200
-            //     e.style.stroke = LabelColor
-            //     e.style.fill = "transparent"
-            //     e.style.strokeWidth = "3px"
-            //   },
-            // })
 
             radialDashes(SecondaryLabelColor, 12, 48, 15, 130)
             radialDashes(BackColor, 16, 56, 45, 130)
-            // radialDashes(LabelColor, 16, 16, 45, 275)
-            //radialDashes(BackColor, 24, 24, 45, 130)
-            // radialDashes(BackColor, 16, 40, 45, 103)
-            // radialDots(LabelColor, 15, 15, 120)
-            // radialDots(BackColor, 180, 180, 160)
             radialDashes(SecondaryLabelColor, 4, 12, 6, 110)
             radialDashes(SecondaryLabelColor, 12, 12, 30, 110)
             radialDashes(BackColor, 14, 14, 90, 110)
-            // radialDots(SecondaryLabelColor, 6, 30, 115)
-            // radialDots(BackColor, 90, 90, 115)
-            // radialDots(SecondaryLabelColor, 16, 16, 30, 110)
-            // radialDashes(BackColor, 20, 20, 180, 110)
-            //radialDashes(SecondaryLabelColor, 2, 4, 60, 300)
-            // radialDashes(SecondaryLabelColor, 12, 24, 30, 280)
-            // radialDashes(BackColor, 8, 20, 60, 280)
-            // radialDashes(BackColor, 8, 20, 60, 640)
-            // radialDashes(LabelColor, 4, 4, 15, 180)
-            // radialDots(LabelColor, 15, 45, 185)
-            //radialDots(AccentColor, 30, 30, 130)
-            // radialDots(LabelColor, 6, 30, 320)
-            // radialDots(BackColor, 60, 60, 120)
-            // radialDots(AccentColor, 360, 180, 115)
-            // radialDashes(LabelColor, 45, 45, 250)
-            // radialDots("magenta", 15, 30, 0)
 
             // Hours & Minutes
             radialLabels(svg, 290, 130, true, LabelColor, undefined,
@@ -160,58 +106,10 @@ export function Watch(area: string): Block<HTMLElement> {
             radialLabels(svg, 255, 130, true, LabelColor, undefined,
               [0], 15, 180)
   
-            // radialLabels(svg, 245, 75, false, LabelColor, undefined,
-            //   [0, 6, 12, 18], 15, 180)
-            // radialLabels(svg, 240, 125, true, LabelColor, undefined,
-            //   [3, 9, 15, 21], 15, 180)
-
-            // radialLabels(svg, 320, 75, true, LabelColor, undefined,
-            //   [0, 6, 12, 18], 15, 180)
-            // radialLabels(svg, 300, 125, true, LabelColor, undefined,
-            //   [3, 9, 15, 21], 15, 180)
-            // radialLabels(svg, 285, 40, false, LabelColor, undefined,
-            //   [1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19, 20, 22, 23], 15, 180)
             radialLabels(svg, 395, 40, true, SecondaryLabelColor, undefined,
               [0, 15, 30, 45], 6, 0)
             RadialLabel(180, "Ракета", SecondaryLabelColor, 300, 50, "normal", false, svg)
-            RadialLabel(180, "Тандем", SecondaryLabelColor, 340, 40, "normal", false, svg)
-            // RadialLabel(193, "Р", LabelColor, 340, 40, "normal", false, svg)
-            // RadialLabel(188, "А", LabelColor, 340, 40, "normal", false, svg)
-            // RadialLabel(183, "К", LabelColor, 340, 40, "normal", false, svg)
-            // RadialLabel(177, "Е", LabelColor, 340, 40, "normal", false, svg)
-            // RadialLabel(172, "Т", LabelColor, 340, 40, "normal", false, svg)
-            // RadialLabel(167, "А", LabelColor, 340, 40, "normal", false, svg)
-            // RadialLabel(0, "Дважды 24", LabelColor, 80, 40, "normal", undefined, svg)
-            // RadialLabel(324, "О", ArrowColor, 340, 35, "bold", false, svg)
-            // RadialLabel(328, "С", ArrowColor, 340, 35, "bold", false, svg)
-            // RadialLabel(332, "Н", ArrowColor, 340, 35, "bold", false, svg)
-            // RadialLabel(335, ".", ArrowColor, 340, 35, "bold", false, svg)
-            // RadialLabel(339, "П", ArrowColor, 340, 35, "bold", false, svg)
-            // RadialLabel(343, "О", ArrowColor, 340, 35, "bold", false, svg)
-            // RadialLabel(347, "Я", ArrowColor, 340, 35, "bold", false, svg)
-            // RadialLabel(351, "С", ArrowColor, 340, 35, "bold", false, svg)
-            // RadialLabel(262, "Н", LabelColor, 315, 35, "bold", true, svg)
-            // RadialLabel(266, "А", LabelColor, 315, 35, "bold", true, svg)
-            // RadialLabel(273, "С", LabelColor, 315, 35, "bold", true, svg)
-            // RadialLabel(277, "Т", LabelColor, 315, 35, "bold", true, svg)
-            // RadialLabel(281, "А", LabelColor, 315, 35, "bold", true, svg)
-            // RadialLabel(285, "Р", LabelColor, 315, 35, "bold", true, svg)
-            // RadialLabel(289, "Т", LabelColor, 315, 35, "bold", true, svg)
-            // RadialLabel(308, "!", LabelColor, 330, 45, "normal", true, svg)
-            // RadialLabel(235, "В", LabelColor, 315, 35, "bold", true, svg)
-            // RadialLabel(239, "О", LabelColor, 315, 35, "bold", true, svg)
-            // RadialLabel(243, "С", LabelColor, 315, 35, "bold", true, svg)
-            // RadialLabel(247, "Х", LabelColor, 315, 35, "bold", true, svg)
-            // RadialLabel(251, "О", LabelColor, 315, 35, "bold", true, svg)
-            // RadialLabel(255, "Д", LabelColor, 315, 35, "bold", true, svg)
-            // Arrows
-            // Arrow(1, 1, -0.05, 0.700, 277, 60 * 60 * 24, BackColor, BackColor, true, svg)
-            // RadialLabel(277, "☀", "black", 280, 200, "normal", false, svg)
-            // RadialLabel(277, "•", "yellow", 300, 250, "normal", false, svg)
-            // Arrow(8, 8, 0.5, 0.2, 277, 60 * 60 * 24, "yellow", "yellow", true, svg)
-            // RadialLabel(312, "☀", "#FFFFB7", 330, 150, "normal", true, svg)
-            // Arrow(50, 2, 0.6775, 0.1, 277, 60 * 60 * 24, LabelColor, LabelColor, true, svg)
-            //Arrow(70, 0.285, 0.150, true, 78, 60 * 60 * 24, ArrowColor, "rgba(0, 0, 0, 0.5)", svg)
+
             Arrow(4, 4, 0, 0.55, 71, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
             Arrow(45, 4, 0.455, 0.025, 71, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
             Arrow(48, 48, 0.1, 0.35, 71, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
@@ -261,26 +159,6 @@ export function Watch(area: string): Block<HTMLElement> {
                   [0, 6, 12, 18], 15, 180)
                 radialLabels(svg, 443, 50, false, BezelLabelColor, true,
                   [3, 9, 15, 21], 15, 180)
-                // RadialLabel(260, "Н", "black", 467, 35, "bold", true, svg)
-                // RadialLabel(264, "А", "black", 467, 35, "bold", true, svg)
-                // RadialLabel(275, "С", "black", 467, 35, "bold", true, svg)
-                // RadialLabel(279, "Т", "black", 467, 35, "bold", true, svg)
-                // RadialLabel(283, "А", "black", 467, 35, "bold", true, svg)
-                // RadialLabel(287, "Р", "black", 467, 35, "bold", true, svg)
-                // RadialLabel(291, "Т", "black", 467, 35, "bold", true, svg)
-                // RadialLabel(330, "М", BezelLabelColor, 445, 35, "normal", true, svg)
-                // RadialLabel(334, "А", BezelLabelColor, 445, 35, "normal", true, svg)
-                // RadialLabel(338, "Ш", BezelLabelColor, 445, 35, "normal", true, svg)
-                // RadialLabel(342, "И", BezelLabelColor, 445, 35, "normal", true, svg)
-                // RadialLabel(346, "Н", BezelLabelColor, 445, 35, "normal", true, svg)
-                // RadialLabel(350, "А", BezelLabelColor, 445, 35, "normal", true, svg)
-                // RadialLabel(370, "В", BezelLabelColor, 445, 35, "normal", true, svg)
-                // RadialLabel(374, "Р", BezelLabelColor, 445, 35, "normal", true, svg)
-                // RadialLabel(378, "Е", BezelLabelColor, 445, 35, "normal", true, svg)
-                // RadialLabel(382, "М", BezelLabelColor, 445, 35, "normal", true, svg)
-                // RadialLabel(386, "Е", BezelLabelColor, 445, 35, "normal", true, svg)
-                // RadialLabel(390, "Н", BezelLabelColor, 445, 35, "normal", true, svg)
-                // RadialLabel(394, "И", BezelLabelColor, 445, 35, "normal", true, svg)
               },
             })
           },
