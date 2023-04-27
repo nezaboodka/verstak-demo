@@ -1,7 +1,9 @@
-import { Band, Align, Svg, Circle, Rect, Text, TextPath, G, Block, Polygon, Label } from "verstak"
+import { LoggingLevel, Rx, Transaction } from "reactronic"
+import { Band, Align, Svg, Circle, Rect, Text, TextPath, G, Block, Polygon, Label, Mode } from "verstak"
 import { $theme } from "snasti"
 import { AppTheme } from "themes/AppTheme"
 import { $app } from "models/App"
+import { Clock } from "snasti"
 
 const BackColor = "white" // "white" // "#1a3043"
 const LabelColor = "black" // "#87F7A5"
@@ -11,21 +13,24 @@ const AccentColor = "darkred" // "#87F7A5" // "#93CAEC" // "#93CAEC" // "#87F7A5
 const BezelBackColor = "silver"
 const BezelLabelColor = "black"
 
-export function Watch(area: string): Block<HTMLElement> {
+export function Watch(area: string): Block<HTMLElement, Clock> {
   return (
     Band({
+      modes: Mode.SeparateReaction,
       initialize(b) {
-        const css = b.native.style
         b.contentAlignment = Align.Center
+        b.model = Transaction.run(null, () => new Clock())
+        const css = b.native.style
         css.lineHeight = "0.8"
         css.fontFamily = "Arial"
         // css.letterSpacing = "-0.5ch"
         css.cursor = "default"
+        // Rx.configureCurrentOperation({ logging: LoggingLevel.Debug })
       },
-      render(b) {
+      render(watch) {
         const theme = $theme.value as AppTheme
-        b.area = area
-        b.style(theme.accent)
+        watch.area = area
+        watch.style(theme.accent)
         Svg({
           render(b) {
             const svg = b.native
@@ -106,19 +111,22 @@ export function Watch(area: string): Block<HTMLElement> {
               [0, 15, 30, 45], 6, 0)
             RadialLabel(180, "Ракета", AccentColor, 350, 45, "normal", false, svg)
 
-            Arrow(4, 4, 0, 0.55, 71, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
-            Arrow(45, 4, 0.455, 0.025, 71, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
-            Arrow(48, 48, 0.1, 0.35, 71, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
-            Arrow(32, 32, 0.115, 0.326, 71, 60 * 60 * 24, "#D7D7D7", "#D7D7D7", false, svg)
-            Arrow(28, 4, 0.4435, 0.018, 71, 60 * 60 * 24, "#D7D7D7", "#D7D7D7", false, svg)
+            const hourDeg = Math.floor(180 + 360 / 24 * watch.model.hour) % 360
+            Arrow(4, 4, 0, 0.55, hourDeg, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
+            Arrow(45, 4, 0.455, 0.025, hourDeg, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
+            Arrow(48, 48, 0.1, 0.35, hourDeg, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
+            Arrow(32, 32, 0.115, 0.326, hourDeg, 60 * 60 * 24, "#D7D7D7", "#D7D7D7", false, svg)
+            Arrow(28, 4, 0.4435, 0.018, hourDeg, 60 * 60 * 24, "#D7D7D7", "#D7D7D7", false, svg)
 
-            Arrow(4, 4, 0, 0.728, 295, 60 * 60, AccentColor, AccentColor, true, svg)
-            Arrow(28, 4, 0.679, 0.015, 295, 60 * 60, AccentColor, AccentColor, true, svg)
-            Arrow(32, 32, 0.075, 0.6, 295, 60 * 60, AccentColor, AccentColor, true, svg)
-            Arrow(14, 4, 0.668, 0.009, 295, 60 * 60, "#D7D7D7", "#D7D7D7", false, svg)
-            Arrow(16, 16, 0.09, 0.576, 295, 60 * 60, "#D7D7D7", "#D7D7D7", false, svg)
+            const minuteDeg = Math.floor(360 / 60 * watch.model.minute) % 360
+            Arrow(4, 4, 0, 0.728, minuteDeg, 60 * 60, AccentColor, AccentColor, true, svg)
+            Arrow(28, 4, 0.679, 0.015, minuteDeg, 60 * 60, AccentColor, AccentColor, true, svg)
+            Arrow(32, 32, 0.075, 0.6, minuteDeg, 60 * 60, AccentColor, AccentColor, true, svg)
+            Arrow(14, 4, 0.668, 0.009, minuteDeg, 60 * 60, "#D7D7D7", "#D7D7D7", false, svg)
+            Arrow(16, 16, 0.09, 0.576, minuteDeg, 60 * 60, "#D7D7D7", "#D7D7D7", false, svg)
 
-            Arrow(10, 2, -0.05, 0.835, 0, 60, AccentColor, AccentColor, true, svg)
+            const secondDeg = Math.floor(360 / 60 * watch.model.second) % 360
+            Arrow(10, 2, -0.05, 0.835, secondDeg, 60, AccentColor, AccentColor, true, svg)
             Circle({
               render(b) {
                 const e = b.native
@@ -232,7 +240,7 @@ function Arrow(widthA: number, widthB: number, margin: number, length: number,
         e.style.filter = shadow ? "drop-shadow(3px 3px 4px rgba(0, 0, 0, 0.6))" : ""
         e.style.transformOrigin = "500px 500px"
         e.style.transform = `rotate(${degrees}deg)`
-        e.style.animation = `transform-rotate ${duration}s linear infinite`
+        // e.style.animation = `transform-rotate ${duration}s linear infinite`
       },
     })
   )

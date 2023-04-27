@@ -1,4 +1,4 @@
-import { ObservableObject, raw, transactional } from "reactronic"
+import { LoggingLevel, ObservableObject, options, raw, transactional } from "reactronic"
 
 export class Clock extends ObservableObject {
   @raw interval: number
@@ -16,28 +16,29 @@ export class Clock extends ObservableObject {
     const now = new Date()
     this.interval = interval
     this.fractional = fractional
-    this.year = now.getUTCFullYear()
-    this.month = now.getUTCMonth()
-    this.day = now.getUTCDate()
-    this.hour = now.getUTCHours()
-    this.minute = now.getUTCMinutes()
-    this.second = now.getUTCSeconds()
-    this.ms = now.getUTCMilliseconds()
+    this.year = now.getFullYear()
+    this.month = now.getMonth()
+    this.day = now.getDate()
+    this.hour = now.getHours()
+    this.minute = now.getMinutes()
+    this.second = now.getSeconds()
+    this.ms = now.getMilliseconds()
     setTimeout(this.tick, this.interval)
   }
 
   @transactional
+  @options({ logging: LoggingLevel.Debug })
   private tick(): void {
     let inaccuracy = 0
     try {
       const now = new Date()
-      this.ms = now.getUTCMilliseconds()
-      this.second = now.getUTCSeconds()
-      this.minute = now.getUTCMinutes()
-      this.hour = now.getUTCHours()
-      this.day = now.getUTCDate()
-      this.month = now.getUTCMonth()
-      this.year = now.getUTCFullYear()
+      this.ms = now.getMilliseconds()
+      this.second = now.getSeconds()
+      this.minute = now.getMinutes()
+      this.hour = now.getHours()
+      this.day = now.getDate()
+      this.month = now.getMonth()
+      this.year = now.getFullYear()
       inaccuracy = now.getTime() % this.interval
     }
     finally {
