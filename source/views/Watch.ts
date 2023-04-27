@@ -11,7 +11,7 @@ const SecondaryLabelColor = "#909090"
 const ArrowColor = "#909090" // "#1a3043" // "#93CAEC" // "#93CAEC" // "#87F7A5" // "#FFFFB7"
 const AccentColor = "silver" // "#87F7A5" // "#93CAEC" // "#93CAEC" // "#87F7A5" // "#FFFFB7"
 const BezelBackColor = "silver"
-const BezelLabelColor = "black"
+const BezelLabelColor = "#444444"
 
 export function Watch(area: string): Block<HTMLElement, Clock> {
   return (
@@ -92,23 +92,24 @@ export function Watch(area: string): Block<HTMLElement, Clock> {
               },
             })
 
-            radialDashes(SecondaryLabelColor, 16, 48, 15, 130)
-            radialDashes(BackColor, 18, 56, 45, 150)
-            radialDashes(AccentColor, 4, 12, 6, 110)
-            radialDashes("#87F7A5", 20, 12, 30, 110)
-            radialDashes(BackColor, 22, 14, 180, 110)
+            // radialDots(SecondaryLabelColor, 15, 15, 145)
+            radialDashes(SecondaryLabelColor, 24, 24, 15, 135)
+            // radialDashes(BackColor, 18, 18, 45, 150)
+            radialDashes(AccentColor, 4, 12, 6, 108)
+            radialDashes("#87F7A5", 12, 20, 30, 108)
+            radialDashes(BackColor, 14, 22, 180, 108)
 
             // Hours & Minutes
-            radialLabels(svg, 270, 130, true, LabelColor, undefined,
+            radialLabels(svg, 265, 130, true, LabelColor, undefined,
               [3, 9, 15, 21], 15, 180)
-            radialLabels(svg, 340, 130, true, LabelColor, undefined,
+            radialLabels(svg, 335, 130, true, LabelColor, undefined,
               [6, 12, 18], 15, 180)
-            radialLabels(svg, 255, 130, true, LabelColor, undefined,
+            radialLabels(svg, 235, 130, true, LabelColor, undefined,
               [0], 15, 180)
 
-            radialLabels(svg, 395, 30, true, "#87F7A5", undefined,
+            radialLabels(svg, 395, 40, true, "#87F7A5", undefined,
               [0, 30], 6, 0)
-            RadialLabel(180, "Ракета", AccentColor, 340, 45, "normal", false, svg)
+            RadialLabel(0, "Ракета", AccentColor, 125, 45, "normal", false, svg)
 
             const t = watch.model
             const hourDeg = 180 + 360 / 24 * (t.hour + (1 / 60 * t.minute))
@@ -154,10 +155,11 @@ export function Watch(area: string): Block<HTMLElement, Clock> {
                   rotate(b.native, 105)
                 else
                   rotate(b.native, 0)
-                radialDashes(SecondaryLabelColor, 12, 16, 15, 85)
-                radialLabels(svg, 441, 80, true, BezelLabelColor, true,
+                radialDashes(SecondaryLabelColor, 24, 24, 15, 45)
+                radialDashes(BezelBackColor, 26, 26, 45, 45)
+                radialLabels(svg, 441, 80, false, BezelLabelColor, true,
                   [0, 6, 12, 18], 15, 180)
-                radialLabels(svg, 443, 50, false, BezelLabelColor, true,
+                radialLabels(svg, 441, 80, false, BezelLabelColor, true,
                   [3, 9, 15, 21], 15, 180)
               },
             })
@@ -195,7 +197,7 @@ function radialDots(color: string, step: number, major: number, indent: number):
   for (let deg = 0; deg < 360; deg += step) {
     Circle({
       render(b) {
-        const r = major !== 0 && deg % major === 0 ? 8 : 3
+        const r = major !== 0 && deg % major === 0 ? 12 : 6
         const e = b.native
         e.cx.baseVal.value = 500
         e.cy.baseVal.value = indent
@@ -237,7 +239,7 @@ function Arrow(widthA: number, widthB: number, margin: number, length: number,
         e.style.stroke = stroke
         e.style.fill = color
         e.style.strokeWidth = "2px"
-        e.style.filter = shadow ? "drop-shadow(3px 3px 4px rgba(0, 0, 0, 0.6))" : ""
+        e.style.filter = shadow ? "drop-shadow(3px 3px 8px rgba(0, 0, 0, 1))" : ""
         e.style.transformOrigin = "500px 500px"
         e.style.transform = `rotate(${degrees}deg)`
         // e.style.animation = `transform-rotate ${duration}s linear infinite`
