@@ -92,11 +92,11 @@ export function Watch(area: string): Block<HTMLElement, Clock> {
               },
             })
 
-            radialDashes(SecondaryLabelColor, 12, 48, 15, 130)
-            radialDashes(BackColor, 16, 56, 45, 150)
+            radialDashes(SecondaryLabelColor, 16, 48, 15, 130)
+            radialDashes(BackColor, 18, 56, 45, 150)
             radialDashes(AccentColor, 4, 12, 6, 110)
-            radialDashes(LabelColor, 12, 12, 30, 110)
-            radialDashes(BackColor, 14, 14, 90, 110)
+            radialDashes("#87F7A5", 20, 12, 30, 110)
+            radialDashes(BackColor, 22, 14, 180, 110)
 
             // Hours & Minutes
             radialLabels(svg, 270, 130, true, LabelColor, undefined,
@@ -106,8 +106,8 @@ export function Watch(area: string): Block<HTMLElement, Clock> {
             radialLabels(svg, 255, 130, true, LabelColor, undefined,
               [0], 15, 180)
 
-            // radialLabels(svg, 395, 40, true, AccentColor, undefined,
-            //   [0, 15, 30, 45], 6, 0)
+            radialLabels(svg, 395, 30, true, "#87F7A5", undefined,
+              [0, 30], 6, 0)
             RadialLabel(180, "Ракета", AccentColor, 340, 45, "normal", false, svg)
 
             const t = watch.model
@@ -119,11 +119,11 @@ export function Watch(area: string): Block<HTMLElement, Clock> {
             Arrow(32, 1, 0.45, 0.035, hourDeg, 60 * 60 * 24, LabelColor, LabelColor, false, svg)
 
             const minuteDeg = 360 / 60 * (t.minute + (1 / 60 * t.second))
-            Arrow(32, 2, 0.624, 0.1, minuteDeg, 60 * 60, ArrowColor, ArrowColor, true, svg)
+            Arrow(32, 2, 0.584, 0.1, minuteDeg, 60 * 60, ArrowColor, ArrowColor, true, svg)
             //Arrow(28, 4, 0.629, 0.015, minuteDeg, 60 * 60, ArrowColor, ArrowColor, true, svg)
-            Arrow(32, 32, 0.07, 0.55, minuteDeg, 60 * 60, ArrowColor, ArrowColor, true, svg)
-            Arrow(18, 1, 0.625, 0.025, minuteDeg, 60 * 60, LabelColor, LabelColor, false, svg)
-            Arrow(20, 20, 0.083, 0.538, minuteDeg, 60 * 60, LabelColor, LabelColor, false, svg)
+            Arrow(32, 32, 0.07, 0.51, minuteDeg, 60 * 60, ArrowColor, ArrowColor, true, svg)
+            Arrow(18, 1, 0.585, 0.025, minuteDeg, 60 * 60, LabelColor, LabelColor, false, svg)
+            Arrow(20, 20, 0.083, 0.498, minuteDeg, 60 * 60, LabelColor, LabelColor, false, svg)
 
             const secondDeg = 360 / 60 * (t.second + (1 / 1000 * t.ms))
             Arrow(10, 2, -0.05, 0.835, secondDeg, 60, LabelColor, LabelColor, true, svg)
