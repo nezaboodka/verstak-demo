@@ -21,8 +21,8 @@ export function Watch(area: string): Block<HTMLElement, Clock> {
         b.contentAlignment = Align.Center
         b.model = new Clock(200)
         const css = b.native.style
-        css.lineHeight = "0.8"
-        css.fontFamily = "Arial"
+        // css.lineHeight = "0.8"
+        // css.fontFamily = "Arial"
         // css.letterSpacing = "-0.5ch"
         css.cursor = "default"
         // Rx.configureCurrentOperation({ logging: LoggingLevel.Debug })
