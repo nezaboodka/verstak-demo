@@ -7,6 +7,7 @@ const BackColor = "white" // "white" // "#1a3043"
 const LabelColor = "black" // "#87F7A5"
 const SecondaryLabelColor = "#909090"
 const ArrowColor = "black" // "#87F7A5" // "#93CAEC" // "#93CAEC" // "#87F7A5" // "#FFFFB7"
+const AccentColor = "darkred" // "#87F7A5" // "#93CAEC" // "#93CAEC" // "#87F7A5" // "#FFFFB7"
 const BezelBackColor = "silver"
 const BezelLabelColor = "black"
 
@@ -89,8 +90,8 @@ export function Watch(area: string): Block<HTMLElement> {
 
             radialDashes(SecondaryLabelColor, 12, 48, 15, 130)
             radialDashes(BackColor, 16, 56, 45, 130)
-            radialDashes(SecondaryLabelColor, 4, 12, 6, 110)
-            radialDashes(SecondaryLabelColor, 12, 12, 30, 110)
+            radialDashes(AccentColor, 4, 12, 6, 110)
+            radialDashes(AccentColor, 12, 12, 30, 110)
             radialDashes(BackColor, 14, 14, 90, 110)
 
             // Hours & Minutes
@@ -101,9 +102,9 @@ export function Watch(area: string): Block<HTMLElement> {
             radialLabels(svg, 255, 130, true, LabelColor, undefined,
               [0], 15, 180)
   
-            radialLabels(svg, 395, 40, true, SecondaryLabelColor, undefined,
+            radialLabels(svg, 395, 40, true, AccentColor, undefined,
               [0, 15, 30, 45], 6, 0)
-            RadialLabel(180, "Ракета", SecondaryLabelColor, 350, 45, "normal", false, svg)
+            RadialLabel(180, "Ракета", AccentColor, 350, 45, "normal", false, svg)
 
             Arrow(4, 4, 0, 0.55, 71, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
             Arrow(45, 4, 0.455, 0.025, 71, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
@@ -111,13 +112,13 @@ export function Watch(area: string): Block<HTMLElement> {
             Arrow(32, 32, 0.115, 0.326, 71, 60 * 60 * 24, "#D7D7D7", "#D7D7D7", false, svg)
             Arrow(28, 4, 0.4435, 0.018, 71, 60 * 60 * 24, "#D7D7D7", "#D7D7D7", false, svg)
 
-            Arrow(4, 4, 0, 0.728, 295, 60 * 60, ArrowColor, ArrowColor, true, svg)
-            Arrow(28, 4, 0.679, 0.015, 295, 60 * 60, ArrowColor, ArrowColor, true, svg)
-            Arrow(32, 32, 0.075, 0.6, 295, 60 * 60, ArrowColor, ArrowColor, true, svg)
+            Arrow(4, 4, 0, 0.728, 295, 60 * 60, AccentColor, AccentColor, true, svg)
+            Arrow(28, 4, 0.679, 0.015, 295, 60 * 60, AccentColor, AccentColor, true, svg)
+            Arrow(32, 32, 0.075, 0.6, 295, 60 * 60, AccentColor, AccentColor, true, svg)
             Arrow(14, 4, 0.668, 0.009, 295, 60 * 60, "#D7D7D7", "#D7D7D7", false, svg)
             Arrow(16, 16, 0.09, 0.576, 295, 60 * 60, "#D7D7D7", "#D7D7D7", false, svg)
 
-            Arrow(10, 2, -0.05, 0.835, 0, 60, ArrowColor, ArrowColor, true, svg)
+            Arrow(10, 2, -0.05, 0.835, 0, 60, AccentColor, AccentColor, true, svg)
             Circle({
               render(b) {
                 const e = b.native
