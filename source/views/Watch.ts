@@ -19,7 +19,7 @@ export function Watch(area: string): Block<HTMLElement, Clock> {
       modes: Mode.SeparateReaction,
       initialize(b) {
         b.contentAlignment = Align.Center
-        b.model = Transaction.run(null, () => new Clock())
+        b.model = new Clock(200)
         const css = b.native.style
         css.lineHeight = "0.8"
         css.fontFamily = "Arial"
@@ -111,21 +111,22 @@ export function Watch(area: string): Block<HTMLElement, Clock> {
               [0, 15, 30, 45], 6, 0)
             RadialLabel(180, "Ракета", AccentColor, 350, 45, "normal", false, svg)
 
-            const hourDeg = Math.floor(180 + 360 / 24 * watch.model.hour) % 360
+            const t = watch.model
+            const hourDeg = 180 + 360 / 24 * (t.hour + (1 / 60 * t.minute))
             Arrow(4, 4, 0, 0.55, hourDeg, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
             Arrow(45, 4, 0.455, 0.025, hourDeg, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
             Arrow(48, 48, 0.1, 0.35, hourDeg, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
             Arrow(32, 32, 0.115, 0.326, hourDeg, 60 * 60 * 24, "#D7D7D7", "#D7D7D7", false, svg)
             Arrow(28, 4, 0.4435, 0.018, hourDeg, 60 * 60 * 24, "#D7D7D7", "#D7D7D7", false, svg)
 
-            const minuteDeg = Math.floor(360 / 60 * watch.model.minute) % 360
+            const minuteDeg = 360 / 60 * (t.minute + (1 / 60 * t.second))
             Arrow(4, 4, 0, 0.728, minuteDeg, 60 * 60, AccentColor, AccentColor, true, svg)
             Arrow(28, 4, 0.679, 0.015, minuteDeg, 60 * 60, AccentColor, AccentColor, true, svg)
             Arrow(32, 32, 0.075, 0.6, minuteDeg, 60 * 60, AccentColor, AccentColor, true, svg)
             Arrow(14, 4, 0.668, 0.009, minuteDeg, 60 * 60, "#D7D7D7", "#D7D7D7", false, svg)
             Arrow(16, 16, 0.09, 0.576, minuteDeg, 60 * 60, "#D7D7D7", "#D7D7D7", false, svg)
 
-            const secondDeg = Math.floor(360 / 60 * watch.model.second) % 360
+            const secondDeg = 360 / 60 * (t.second + (1 / 1000 * t.ms))
             Arrow(10, 2, -0.05, 0.835, secondDeg, 60, AccentColor, AccentColor, true, svg)
             Circle({
               render(b) {
