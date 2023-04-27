@@ -5,11 +5,11 @@ import { AppTheme } from "themes/AppTheme"
 import { $app } from "models/App"
 import { Clock } from "snasti"
 
-const BackColor = "white" // "white" // "#1a3043"
-const LabelColor = "black" // "#87F7A5"
+const BackColor = "#1a3043" // "white" // "#1a3043"
+const LabelColor = "#F0F0F0" // "#87F7A5"
 const SecondaryLabelColor = "#909090"
-const ArrowColor = "black" // "#87F7A5" // "#93CAEC" // "#93CAEC" // "#87F7A5" // "#FFFFB7"
-const AccentColor = "darkred" // "#87F7A5" // "#93CAEC" // "#93CAEC" // "#87F7A5" // "#FFFFB7"
+const ArrowColor = "red" // "#87F7A5" // "#93CAEC" // "#93CAEC" // "#87F7A5" // "#FFFFB7"
+const AccentColor = "silver" // "#87F7A5" // "#93CAEC" // "#93CAEC" // "#87F7A5" // "#FFFFB7"
 const BezelBackColor = "silver"
 const BezelLabelColor = "black"
 
@@ -94,40 +94,40 @@ export function Watch(area: string): Block<HTMLElement, Clock> {
             })
 
             radialDashes(SecondaryLabelColor, 12, 48, 15, 130)
-            radialDashes(BackColor, 16, 56, 45, 130)
+            radialDashes(BackColor, 16, 56, 45, 150)
             radialDashes(AccentColor, 4, 12, 6, 110)
-            radialDashes(AccentColor, 12, 12, 30, 110)
+            radialDashes(LabelColor, 12, 12, 30, 110)
             radialDashes(BackColor, 14, 14, 90, 110)
 
             // Hours & Minutes
-            radialLabels(svg, 290, 130, true, LabelColor, undefined,
+            radialLabels(svg, 270, 130, true, LabelColor, undefined,
               [3, 9, 15, 21], 15, 180)
-            radialLabels(svg, 350, 130, true, LabelColor, undefined,
+            radialLabels(svg, 340, 130, true, LabelColor, undefined,
               [6, 12, 18], 15, 180)
             radialLabels(svg, 255, 130, true, LabelColor, undefined,
               [0], 15, 180)
-  
-            radialLabels(svg, 395, 40, true, AccentColor, undefined,
-              [0, 15, 30, 45], 6, 0)
+
+            // radialLabels(svg, 395, 40, true, AccentColor, undefined,
+            //   [0, 15, 30, 45], 6, 0)
             RadialLabel(180, "Ракета", AccentColor, 350, 45, "normal", false, svg)
 
             const t = watch.model
             const hourDeg = 180 + 360 / 24 * (t.hour + (1 / 60 * t.minute))
-            Arrow(4, 4, 0, 0.55, hourDeg, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
+            Arrow(8, 8, 0, 0.575, hourDeg, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
             Arrow(45, 4, 0.455, 0.025, hourDeg, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
             Arrow(48, 48, 0.1, 0.35, hourDeg, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
-            Arrow(32, 32, 0.115, 0.326, hourDeg, 60 * 60 * 24, "#D7D7D7", "#D7D7D7", false, svg)
-            Arrow(28, 4, 0.4435, 0.018, hourDeg, 60 * 60 * 24, "#D7D7D7", "#D7D7D7", false, svg)
+            Arrow(32, 32, 0.115, 0.326, hourDeg, 60 * 60 * 24, LabelColor, LabelColor, false, svg)
+            Arrow(28, 4, 0.4435, 0.018, hourDeg, 60 * 60 * 24, LabelColor, LabelColor, false, svg)
 
             const minuteDeg = 360 / 60 * (t.minute + (1 / 60 * t.second))
-            Arrow(4, 4, 0, 0.728, minuteDeg, 60 * 60, AccentColor, AccentColor, true, svg)
-            Arrow(28, 4, 0.679, 0.015, minuteDeg, 60 * 60, AccentColor, AccentColor, true, svg)
-            Arrow(32, 32, 0.075, 0.6, minuteDeg, 60 * 60, AccentColor, AccentColor, true, svg)
-            Arrow(14, 4, 0.668, 0.009, minuteDeg, 60 * 60, "#D7D7D7", "#D7D7D7", false, svg)
-            Arrow(16, 16, 0.09, 0.576, minuteDeg, 60 * 60, "#D7D7D7", "#D7D7D7", false, svg)
+            Arrow(8, 8, 0, 0.728, minuteDeg, 60 * 60, ArrowColor, ArrowColor, true, svg)
+            Arrow(28, 4, 0.679, 0.015, minuteDeg, 60 * 60, ArrowColor, ArrowColor, true, svg)
+            Arrow(32, 32, 0.075, 0.6, minuteDeg, 60 * 60, ArrowColor, ArrowColor, true, svg)
+            Arrow(14, 4, 0.668, 0.009, minuteDeg, 60 * 60, LabelColor, LabelColor, false, svg)
+            Arrow(16, 16, 0.09, 0.576, minuteDeg, 60 * 60, LabelColor, LabelColor, false, svg)
 
             const secondDeg = 360 / 60 * (t.second + (1 / 1000 * t.ms))
-            Arrow(10, 2, -0.05, 0.835, secondDeg, 60, AccentColor, AccentColor, true, svg)
+            Arrow(10, 2, -0.05, 0.835, secondDeg, 60, LabelColor, LabelColor, true, svg)
             Circle({
               render(b) {
                 const e = b.native
@@ -155,7 +155,7 @@ export function Watch(area: string): Block<HTMLElement, Clock> {
                   rotate(b.native, 105)
                 else
                   rotate(b.native, 0)
-                radialDashes(SecondaryLabelColor, 12, 16, 15, 85)
+                radialDashes(BezelLabelColor, 12, 16, 15, 85)
                 radialLabels(svg, 441, 80, true, BezelLabelColor, true,
                   [0, 6, 12, 18], 15, 180)
                 radialLabels(svg, 443, 50, false, BezelLabelColor, true,
