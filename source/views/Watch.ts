@@ -8,7 +8,7 @@ import { Clock } from "snasti"
 const BackColor = "#1a3043" // "white" // "#1a3043"
 const LabelColor = "#F0F0F0" // "#87F7A5"
 const SecondaryLabelColor = "#909090"
-const ArrowColor = "red" // "#87F7A5" // "#93CAEC" // "#93CAEC" // "#87F7A5" // "#FFFFB7"
+const ArrowColor = "#909090" // "#1a3043" // "#93CAEC" // "#93CAEC" // "#87F7A5" // "#FFFFB7"
 const AccentColor = "silver" // "#87F7A5" // "#93CAEC" // "#93CAEC" // "#87F7A5" // "#FFFFB7"
 const BezelBackColor = "silver"
 const BezelLabelColor = "black"
@@ -25,7 +25,6 @@ export function Watch(area: string): Block<HTMLElement, Clock> {
         // css.fontFamily = "Arial"
         // css.letterSpacing = "-0.5ch"
         css.cursor = "default"
-        // Rx.configureCurrentOperation({ logging: LoggingLevel.Debug })
       },
       render(watch) {
         const theme = $theme.value as AppTheme
@@ -109,22 +108,22 @@ export function Watch(area: string): Block<HTMLElement, Clock> {
 
             // radialLabels(svg, 395, 40, true, AccentColor, undefined,
             //   [0, 15, 30, 45], 6, 0)
-            RadialLabel(180, "Ракета", AccentColor, 350, 45, "normal", false, svg)
+            RadialLabel(180, "Ракета", AccentColor, 340, 45, "normal", false, svg)
 
             const t = watch.model
             const hourDeg = 180 + 360 / 24 * (t.hour + (1 / 60 * t.minute))
-            Arrow(8, 8, 0, 0.575, hourDeg, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
-            Arrow(45, 4, 0.455, 0.025, hourDeg, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
-            Arrow(48, 48, 0.1, 0.35, hourDeg, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
-            Arrow(32, 32, 0.115, 0.326, hourDeg, 60 * 60 * 24, LabelColor, LabelColor, false, svg)
-            Arrow(28, 4, 0.4435, 0.018, hourDeg, 60 * 60 * 24, LabelColor, LabelColor, false, svg)
+            Arrow(48, 2, 0.445, 0.12, hourDeg, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
+            //Arrow(45, 4, 0.455, 0.025, hourDeg, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
+            Arrow(48, 48, 0.095, 0.35, hourDeg, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
+            Arrow(36, 36, 0.108, 0.338, hourDeg, 60 * 60 * 24, LabelColor, LabelColor, false, svg)
+            Arrow(32, 1, 0.45, 0.035, hourDeg, 60 * 60 * 24, LabelColor, LabelColor, false, svg)
 
             const minuteDeg = 360 / 60 * (t.minute + (1 / 60 * t.second))
-            Arrow(8, 8, 0, 0.728, minuteDeg, 60 * 60, ArrowColor, ArrowColor, true, svg)
-            Arrow(28, 4, 0.679, 0.015, minuteDeg, 60 * 60, ArrowColor, ArrowColor, true, svg)
-            Arrow(32, 32, 0.075, 0.6, minuteDeg, 60 * 60, ArrowColor, ArrowColor, true, svg)
-            Arrow(14, 4, 0.668, 0.009, minuteDeg, 60 * 60, LabelColor, LabelColor, false, svg)
-            Arrow(16, 16, 0.09, 0.576, minuteDeg, 60 * 60, LabelColor, LabelColor, false, svg)
+            Arrow(32, 2, 0.624, 0.1, minuteDeg, 60 * 60, ArrowColor, ArrowColor, true, svg)
+            //Arrow(28, 4, 0.629, 0.015, minuteDeg, 60 * 60, ArrowColor, ArrowColor, true, svg)
+            Arrow(32, 32, 0.07, 0.55, minuteDeg, 60 * 60, ArrowColor, ArrowColor, true, svg)
+            Arrow(18, 1, 0.625, 0.025, minuteDeg, 60 * 60, LabelColor, LabelColor, false, svg)
+            Arrow(20, 20, 0.083, 0.538, minuteDeg, 60 * 60, LabelColor, LabelColor, false, svg)
 
             const secondDeg = 360 / 60 * (t.second + (1 / 1000 * t.ms))
             Arrow(10, 2, -0.05, 0.835, secondDeg, 60, LabelColor, LabelColor, true, svg)
@@ -155,7 +154,7 @@ export function Watch(area: string): Block<HTMLElement, Clock> {
                   rotate(b.native, 105)
                 else
                   rotate(b.native, 0)
-                radialDashes(BezelLabelColor, 12, 16, 15, 85)
+                radialDashes(SecondaryLabelColor, 12, 16, 15, 85)
                 radialLabels(svg, 441, 80, true, BezelLabelColor, true,
                   [0, 6, 12, 18], 15, 180)
                 radialLabels(svg, 443, 50, false, BezelLabelColor, true,

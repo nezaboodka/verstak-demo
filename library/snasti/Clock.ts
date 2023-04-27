@@ -27,7 +27,6 @@ export class Clock extends ObservableObject {
   }
 
   @transactional
-  @options({ logging: LoggingLevel.Debug })
   private tick(): void {
     let inaccuracy = 0
     try {
