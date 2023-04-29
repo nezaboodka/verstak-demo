@@ -104,7 +104,7 @@ export function Watch(area: string): Block<HTMLElement, Clock> {
               [3, 9, 15, 21], 15, 180)
             radialLabels(svg, 320, 130, true, LabelColor, undefined,
               [6, 12, 18], 15, 180)
-            radialLabels(svg, 220, 130, true, LabelColor, undefined,
+            radialLabels(svg, 225, 130, true, LabelColor, undefined,
               [0], 15, 180)
 
             radialLabels(svg, 380, 40, true, SecondaryLabelColor, false,
