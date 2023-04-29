@@ -1,6 +1,6 @@
 import { cached } from "reactronic"
 import { css } from "@emotion/css"
-import { DefaultGostTheme } from "snasti"
+import { DefaultGostTheme } from "verstak-mastak"
 
 export class AppTheme extends DefaultGostTheme {
   accentColor: string = ""

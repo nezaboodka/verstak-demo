@@ -1,7 +1,7 @@
 import { refs } from "reactronic"
 import { Band, Align, Note, row, fromNewRow, Mode } from "verstak"
 import { Markdown } from "verstak-markdown"
-import { createFieldModel, Field, $theme } from "snasti"
+import { createFieldModel, Field, $theme } from "verstak-mastak"
 import { App, $app } from "models/App"
 import { ToolBar } from "./ToolBar.v"
 import { StatusBar } from "./StatusBar.v"

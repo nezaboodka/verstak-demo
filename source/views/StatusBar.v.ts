@@ -1,6 +1,6 @@
 import { refs } from "reactronic"
 import { Band, BlockBuilder, Align } from "verstak"
-import { Button, Toggle, Field, createFieldModel, $theme } from "snasti"
+import { Button, Toggle, Field, createFieldModel, $theme } from "verstak-mastak"
 import { AppTheme } from "themes/AppTheme"
 import { observableModel } from "common/Utils"
 import { $app } from "models/App"

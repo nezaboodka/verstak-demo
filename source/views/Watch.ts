@@ -1,9 +1,9 @@
 import { LoggingLevel, Rx, Transaction } from "reactronic"
 import { Band, Align, Svg, Circle, Rect, Text, TextPath, G, Block, Polygon, Label, Mode } from "verstak"
-import { $theme } from "snasti"
+import { $theme } from "verstak-mastak"
 import { AppTheme } from "themes/AppTheme"
 import { $app } from "models/App"
-import { Clock } from "snasti"
+import { Clock } from "verstak-mastak"
 
 const BackColor = "#1a3043" // "white" // "#1a3043"
 const LabelColor = "#F0F0F0" // "#87F7A5"

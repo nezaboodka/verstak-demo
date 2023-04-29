@@ -38,14 +38,14 @@
     "jsx": "react",
     "forceConsistentCasingInFileNames": true,
     "paths": {
-      "snasti": [
-        "../library/snasti/api.ts"
-      ],
       "reactronic": [
         "../library/reactronic/source/api.ts"
       ],
       "verstak": [
         "../library/verstak/source/api.ts"
+      ],
+      "verstak-mastak": [
+        "../library/verstak-mastak/api.ts"
       ],
       "verstak-markdown": [
         "../library/verstak-markdown/source/api.ts"
