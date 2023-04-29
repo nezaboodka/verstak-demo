@@ -93,23 +93,23 @@ export function Watch(area: string): Block<HTMLElement, Clock> {
             })
 
             // radialDots(SecondaryLabelColor, 15, 15, 145)
-            radialDashes(SecondaryLabelColor, 24, 24, 15, 135)
+            radialDashes(SecondaryLabelColor, 24, 24, 15, 145)
             // radialDashes(BackColor, 18, 18, 45, 150)
             radialDashes(AccentColor, 4, 12, 6, 108)
-            radialDashes("#87F7A5", 12, 20, 30, 108)
-            radialDashes(BackColor, 14, 22, 180, 108)
+            // radialDashes("#87F7A5", 12, 20, 30, 108)
+            radialDashes(BackColor, 14, 22, 30, 108)
 
             // Hours & Minutes
-            radialLabels(svg, 265, 130, true, LabelColor, undefined,
+            radialLabels(svg, 250, 130, true, LabelColor, undefined,
               [3, 9, 15, 21], 15, 180)
-            radialLabels(svg, 335, 130, true, LabelColor, undefined,
+            radialLabels(svg, 320, 130, true, LabelColor, undefined,
               [6, 12, 18], 15, 180)
-            radialLabels(svg, 235, 130, true, LabelColor, undefined,
+            radialLabels(svg, 220, 130, true, LabelColor, undefined,
               [0], 15, 180)
 
-            radialLabels(svg, 395, 40, true, "#87F7A5", undefined,
-              [0, 30], 6, 0)
-            RadialLabel(0, "Ракета", AccentColor, 125, 45, "normal", false, svg)
+            radialLabels(svg, 380, 40, true, SecondaryLabelColor, false,
+              [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55], 6, 0)
+            RadialLabel(180, "Ракета", AccentColor, 275, 45, "normal", false, svg)
 
             const t = watch.model
             const hourDeg = 180 + 360 / 24 * (t.hour + (1 / 60 * t.minute))
@@ -286,15 +286,15 @@ function RadialLabel(degree: number, content: string, color: string,
         e.style.fontWeight = weight
         e.style.textAnchor = "middle"
         degree = degree % 360
-        if (degree === 90 && bezel !== true)
+        if (degree === 90 && bezel === undefined)
           e.style.textAnchor = "end"
-        else if (degree === 270 && bezel !== true)
+        else if (degree === 270 && bezel === undefined)
           e.style.textAnchor = "start"
         else
           e.style.textAnchor = "middle"
-        if (degree === 0 && bezel !== true)
+        if (degree === 0 && bezel === undefined)
           e.style.alignmentBaseline = "hanging"
-        else if (degree === 180 && bezel !== true)
+        else if (degree === 180 && bezel === undefined)
           e.style.alignmentBaseline = "baseline"
         else
           e.style.alignmentBaseline = "central"
