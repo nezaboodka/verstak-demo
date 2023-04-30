@@ -21,9 +21,9 @@ export function Watch(area: string): Block<HTMLElement, Clock> {
         b.contentAlignment = Align.Center
         b.model = new Clock(200)
         const s = b.native.style
-        // css.lineHeight = "0.8"
-        // css.fontFamily = "Arial"
-        // css.letterSpacing = "-0.5ch"
+        // s.lineHeight = "0.8"
+        // s.fontFamily = "Arial"
+        // s.letterSpacing = "-0.5ch"
         s.cursor = "default"
       },
       render(watch) {
