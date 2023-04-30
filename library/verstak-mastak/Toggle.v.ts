@@ -25,11 +25,11 @@ export function Toggle(builder?: BlockBuilder<HTMLElement, ToggleModel>) {
         const m = b.model
         const t = $theme.value
         const s = t.toggle
-        b.style(s.main)
+        b.useStyle(s.main)
         Icon(`fa-solid fa-toggle-${m.checked ? "on" : "off"}`, {
           render(b, original) {
             original()
-            b.style(s.icon)
+            b.useStyle(s.icon)
             b.native.style.color = m.checked ? (t.positiveColor ?? "") : "" // subscribe to ToggleModel.checked
           }
         })
@@ -37,7 +37,7 @@ export function Toggle(builder?: BlockBuilder<HTMLElement, ToggleModel>) {
           Note(m.label, {
             render(b, original) {
               original()
-              b.style(s.label)
+              b.useStyle(s.label)
             }
           })
       },

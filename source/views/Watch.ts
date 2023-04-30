@@ -29,7 +29,7 @@ export function Watch(area: string): Block<HTMLElement, Clock> {
       render(watch) {
         const theme = $theme.value as AppTheme
         watch.area = area
-        watch.style(theme.accent)
+        watch.useStyle(theme.accent)
         Svg({
           render(b) {
             const svg = b.native

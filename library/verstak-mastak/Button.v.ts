@@ -24,19 +24,19 @@ export function Button(builder?: BlockBuilder<HTMLElement, ButtonModel>) {
       render(b) {
         const m = b.model
         const s = $theme.value.button
-        b.style(s.main)
+        b.useStyle(s.main)
         if (m.icon)
           Icon(m.icon, {
             render(b, original) {
               original()
-              b.style(s.icon)
+              b.useStyle(s.icon)
             }
           })
         if (m.label)
           Note(m.label, {
             render(b, original) {
               original()
-              b.style(s.label)
+              b.useStyle(s.label)
             }
           })
       },

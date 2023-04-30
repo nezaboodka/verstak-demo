@@ -27,9 +27,9 @@ export function ToolBar(builder?: BlockBuilder<HTMLElement, void, void>) {
         // })
         Band({ // Logo
           initialize(b) {
-            b.style(theme.panel)
-            // b.style(s.Clickable)
-            // b.style(s.Logo)
+            b.useStyle(theme.panel)
+            // b.useStyle(s.Clickable)
+            // b.useStyle(s.Logo)
             b.native.style.outlineOffset = "-1px"
             // b.native.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
           },
@@ -46,7 +46,7 @@ export function ToolBar(builder?: BlockBuilder<HTMLElement, void, void>) {
         Band({
           render(b) {
             b.widthGrowth = 1
-            b.style(theme.panel)
+            b.useStyle(theme.panel)
             Band({
               render(b) {
                 b.widthGrowth = 1
@@ -76,9 +76,9 @@ export function ToolBar(builder?: BlockBuilder<HTMLElement, void, void>) {
             // b.native.onclick = () => Transaction.run(null, () => app.nextTheme())
           },
           render(b) {
-            b.style(theme.panel)
-            // b.style(s.Hint)
-            // b.style(s.Clickable)
+            b.useStyle(theme.panel)
+            // b.useStyle(s.Hint)
+            // b.useStyle(s.Clickable)
             Icon("fa-solid fa-bars")
           }
         })

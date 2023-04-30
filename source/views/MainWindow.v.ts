@@ -19,7 +19,7 @@ export function MainWindow() {
         const theme = app.theme
         $theme.value = theme
 
-        b.style(App.blinkingEffectMarker, app.blinkingEffect)
+        b.useStyle(App.blinkingEffectMarker, app.blinkingEffect)
         b.contentAlignment = Align.Top
         b.heightGrowth = 1
 
@@ -35,7 +35,7 @@ export function MainWindow() {
         row(l => { // main row
           Band({
             render(b) {
-              b.style(app.theme.panel)
+              b.useStyle(app.theme.panel)
               b.minWidth = "10rem"
               b.contentAlignment = Align.Top
               b.blockAlignment = Align.Stretch
@@ -83,8 +83,8 @@ export function MainWindow() {
           WorkArea({
             render(b, original) {
               original()
-              b.style(theme.panel)
-              b.style(theme.accent)
+              b.useStyle(theme.panel)
+              b.useStyle(theme.accent)
               b.widthGrowth = 3
               b.heightGrowth = 1
             }
@@ -93,8 +93,8 @@ export function MainWindow() {
             modes: Mode.PinpointRefresh,
             triggers: { theme },
             render(b) {
-              b.style(theme.panel)
-              b.style(theme.markdown)
+              b.useStyle(theme.panel)
+              b.useStyle(theme.markdown)
               b.minWidth = "16rem"
               b.widthGrowth = 2
               b.contentAlignment = Align.Left + Align.Top,

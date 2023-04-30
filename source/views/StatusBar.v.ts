@@ -44,7 +44,7 @@ export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
           },
           render(b,  original) {
             original()
-            b.style(theme.panel)
+            b.useStyle(theme.panel)
           }
         })
         Toggle({ key: "SecondaryTimeZone",
@@ -68,7 +68,7 @@ export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
         })
         Band({
           render(b) {
-            b.style(theme.panel)
+            b.useStyle(theme.panel)
             b.widthGrowth = 1
             b.contentAlignment = Align.Right
             Field({

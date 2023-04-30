@@ -7,8 +7,8 @@ export function Icon(name: string, builder?: BlockBuilder<HTMLElement, void, voi
       modes: Mode.PinpointRefresh,
       render(b) {
         const s = $theme.value.icon
-        b.style(name)
-        b.style(s.main)
+        b.useStyle(name)
+        b.useStyle(s.main)
       },
     })
   )

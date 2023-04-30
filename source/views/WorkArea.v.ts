@@ -69,7 +69,7 @@ function ExampleData(area: string) {
       render(b) {
         const theme = $theme.value as AppTheme
         b.area = area
-        b.style(theme.accent)
+        b.useStyle(theme.accent)
         Note(area)
       }
     })

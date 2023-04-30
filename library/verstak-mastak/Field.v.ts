@@ -30,12 +30,12 @@ export function Field(builder?: BlockBuilder<HTMLElement, FieldModel>) {
       render(b) {
         const m = b.model
         const s = $theme.value.field
-        b.style(s.main)
+        b.useStyle(s.main)
         if (m.icon)
           Icon(m.icon, {
             render(b, original) {
               original()
-              b.style(s.icon)
+              b.useStyle(s.icon)
             }
           })
         FieldInput(m, s)
@@ -66,7 +66,7 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
       key: FieldInput.name,
       initialize(b, original) {
         const e = b.native
-        b.style(s.input)
+        b.useStyle(s.input)
         b.widthGrowth = 1
         e.tabIndex = 0
         e.contentEditable = "true"
@@ -106,7 +106,7 @@ function FieldPopup(model: FieldModel, s: FieldStyling) {
         e.onscroll = () => model.position = e.scrollTop
       },
       render(b) {
-        b.style(s.popup)
+        b.useStyle(s.popup)
         const visible = b.overlayVisible = model.isEditMode
         if (visible) {
           const options = model.options
