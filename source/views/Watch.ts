@@ -41,54 +41,58 @@ export function Watch(area: string): Block<HTMLElement, Clock> {
             Rect({
               render(b) {
                 const e = b.native
+                const s = e.style
                 e.x.baseVal.value = 250
                 e.y.baseVal.value = 0
                 e.width.baseVal.value = 500
                 e.height.baseVal.value = 1000
                 e.rx.baseVal.value = 5
                 e.ry.baseVal.value = 5
-                e.style.stroke = "gray"
-                e.style.fill = BezelBackColor
-                e.style.strokeWidth = "4px"
+                s.stroke = "gray"
+                s.fill = BezelBackColor
+                s.strokeWidth = "4px"
               },
             })
             Rect({
               render(b) {
                 const e = b.native
+                const s = e.style
                 e.x.baseVal.value = 980
                 e.y.baseVal.value = 440
                 e.width.baseVal.value = 70
                 e.height.baseVal.value = 120
                 e.rx.baseVal.value = 20
                 e.ry.baseVal.value = 20
-                e.style.stroke = "gray"
-                e.style.fill = BezelBackColor
-                e.style.strokeWidth = "4px"
-                e.style.filter = "drop-shadow(3px 3px 10px rgba(0, 0, 0, 0.4))"
+                s.stroke = "gray"
+                s.fill = BezelBackColor
+                s.strokeWidth = "4px"
+                s.filter = "drop-shadow(3px 3px 10px rgba(0, 0, 0, 0.4))"
                 rotate(e, -37.5)
               },
             })
             Circle({
               render(b) {
                 const e = b.native
+                const s = e.style
                 e.cx.baseVal.value = 500
                 e.cy.baseVal.value = 500
                 e.r.baseVal.value = 490
-                e.style.stroke = "gray"
-                e.style.fill = BezelBackColor
-                e.style.strokeWidth = "3px"
-                e.style.filter = "drop-shadow(3px 3px 10px rgba(0, 0, 0, 0.4))"
+                s.stroke = "gray"
+                s.fill = BezelBackColor
+                s.strokeWidth = "3px"
+                s.filter = "drop-shadow(3px 3px 10px rgba(0, 0, 0, 0.4))"
               },
             })
             Circle({
               render(b) {
                 const e = b.native
+                const s = e.style
                 e.cx.baseVal.value = 500
                 e.cy.baseVal.value = 500
                 e.r.baseVal.value = 400
-                e.style.stroke = "gray"
-                e.style.fill = BackColor
-                e.style.strokeWidth = "3px"
+                s.stroke = "gray"
+                s.fill = BackColor
+                s.strokeWidth = "3px"
               },
             })
 
@@ -131,12 +135,13 @@ export function Watch(area: string): Block<HTMLElement, Clock> {
             Circle({
               render(b) {
                 const e = b.native
+                const s = e.style
                 e.cx.baseVal.value = 500
                 e.cy.baseVal.value = 500
                 e.r.baseVal.value = 16
-                e.style.stroke = ArrowColor
-                e.style.fill = BackColor
-                e.style.strokeWidth = "4px"
+                s.stroke = ArrowColor
+                s.fill = BackColor
+                s.strokeWidth = "4px"
               },
             })
 
@@ -180,13 +185,14 @@ function radialDashes(color: string, width: number, height: number, step: number
     Rect({
       render(b) {
         const e = b.native
+        const s = e.style
         e.x.baseVal.value = 500 - width / 2
         e.y.baseVal.value = indent >= 0 ? indent : Math.abs(indent) - height
         e.width.baseVal.value = width
         e.height.baseVal.value = height
-        e.style.stroke = color
-        e.style.fill = color
-        e.style.strokeWidth = "0"
+        s.stroke = color
+        s.fill = color
+        s.strokeWidth = "0"
         rotate(e, indent === 0 ? deg + 15 : deg)
       },
     })
@@ -199,12 +205,13 @@ function radialDots(color: string, step: number, major: number, indent: number):
       render(b) {
         const r = major !== 0 && deg % major === 0 ? 12 : 6
         const e = b.native
+        const s = e.style
         e.cx.baseVal.value = 500
         e.cy.baseVal.value = indent
         e.r.baseVal.value = r
-        e.style.stroke = color
-        e.style.fill = color
-        e.style.strokeWidth = "0"
+        s.stroke = color
+        s.fill = color
+        s.strokeWidth = "0"
         rotate(e, indent === 0 ? deg + 15 : deg)
       },
     })
@@ -218,6 +225,7 @@ function Arrow(widthA: number, widthB: number, margin: number, length: number,
     Polygon({
       render(b) {
         const e = b.native
+        const s = e.style
         const m = Math.floor(500 * margin)
         const l = Math.floor(500 * length)
         const p1 = svg.createSVGPoint()
@@ -236,13 +244,13 @@ function Arrow(widthA: number, widthB: number, margin: number, length: number,
         e.points.appendItem(p2)
         e.points.appendItem(p3)
         e.points.appendItem(p4)
-        e.style.stroke = stroke
-        e.style.fill = color
-        e.style.strokeWidth = "2px"
-        e.style.filter = shadow ? "drop-shadow(3px 3px 8px rgba(0, 0, 0, 1))" : ""
-        e.style.transformOrigin = "500px 500px"
-        e.style.transform = `rotate(${degrees}deg)`
-        // e.style.animation = `transform-rotate ${duration}s linear infinite`
+        s.stroke = stroke
+        s.fill = color
+        s.strokeWidth = "2px"
+        s.filter = shadow ? "drop-shadow(3px 3px 8px rgba(0, 0, 0, 1))" : ""
+        s.transformOrigin = "500px 500px"
+        s.transform = `rotate(${degrees}deg)`
+        // s.animation = `transform-rotate ${duration}s linear infinite`
       },
     })
   )
@@ -254,7 +262,8 @@ function ArrowEx(segments: Array<number | string>, degrees: number,
     Polygon({
       render(b) {
         const e = b.native
-        const l = Math.floor(500 * length)
+        // const s = e.style
+        // const l = Math.floor(500 * length)
         e.points.initialize(new DOMPoint(500, 500))
         // e.x.baseVal.value = 500 - width / 2
         // e.y.baseVal.value = 500 - l
@@ -262,13 +271,13 @@ function ArrowEx(segments: Array<number | string>, degrees: number,
         // e.height.baseVal.value = l
         // e.rx.baseVal.value = rounding
         // e.ry.baseVal.value = rounding
-        // e.style.stroke = stroke
-        // e.style.fill = color
-        // e.style.strokeWidth = "4px"
-        // e.style.filter = "drop-shadow(3px 3px 4px rgba(0, 0, 0, 0.6))"
-        // e.style.transformOrigin = "500px 500px"
-        // e.style.transform = `rotate(${degrees}deg)`
-        // e.style.animation = `transform-rotate ${duration}s linear infinite`
+        // s.stroke = stroke
+        // s.fill = color
+        // s.strokeWidth = "4px"
+        // s.filter = "drop-shadow(3px 3px 4px rgba(0, 0, 0, 0.6))"
+        // s.transformOrigin = "500px 500px"
+        // s.transform = `rotate(${degrees}deg)`
+        // s.animation = `transform-rotate ${duration}s linear infinite`
       },
     })
   )
@@ -281,27 +290,28 @@ function RadialLabel(degree: number, content: string, color: string,
     Text({
       render(b) {
         const e = b.native
-        e.style.fill = color
-        e.style.fontSize = `${size}px`
-        e.style.fontWeight = weight
-        e.style.textAnchor = "middle"
+        const s = e.style
+        s.fill = color
+        s.fontSize = `${size}px`
+        s.fontWeight = weight
+        s.textAnchor = "middle"
         degree = degree % 360
         if (degree === 90 && bezel === undefined)
-          e.style.textAnchor = "end"
+          s.textAnchor = "end"
         else if (degree === 270 && bezel === undefined)
-          e.style.textAnchor = "start"
+          s.textAnchor = "start"
         else
-          e.style.textAnchor = "middle"
+          s.textAnchor = "middle"
         if (degree === 0 && bezel === undefined)
-          e.style.alignmentBaseline = "hanging"
+          s.alignmentBaseline = "hanging"
         else if (degree === 180 && bezel === undefined)
-          e.style.alignmentBaseline = "baseline"
+          s.alignmentBaseline = "baseline"
         else
-          e.style.alignmentBaseline = "central"
-        // e.style.filter = bezel === true ? "drop-shadow(2px 2px 1px rgba(255, 255, 255, 0.4))" : "drop-shadow(0 0 4px rgba(0, 0, 0, 1))"
-        // e.style.textShadow = "0 0 0.5px black"
+          s.alignmentBaseline = "central"
+        // s.filter = bezel === true ? "drop-shadow(2px 2px 1px rgba(255, 255, 255, 0.4))" : "drop-shadow(0 0 4px rgba(0, 0, 0, 1))"
+        // s.textShadow = "0 0 0.5px black"
         e.textContent = content
-        e.style.whiteSpace = "pre"
+        s.whiteSpace = "pre"
         if (bezel !== undefined) {
           const xx = root.createSVGLength()
           xx.value = 500
