@@ -27,9 +27,9 @@ HtmlBody({
   render(b) {
     $app.value = app
     const t = app.theme
-    const css = b.native.style
-    css.color = t.textColor
-    css.backgroundColor = t.spaceFillColor
+    const s = b.native.style
+    s.color = t.textColor
+    s.backgroundColor = t.spaceFillColor
     fromNewRow() // WORKAROUND
     MainWindow()
   }

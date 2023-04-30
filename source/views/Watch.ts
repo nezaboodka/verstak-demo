@@ -20,11 +20,11 @@ export function Watch(area: string): Block<HTMLElement, Clock> {
       initialize(b) {
         b.contentAlignment = Align.Center
         b.model = new Clock(200)
-        const css = b.native.style
+        const s = b.native.style
         // css.lineHeight = "0.8"
         // css.fontFamily = "Arial"
         // css.letterSpacing = "-0.5ch"
-        css.cursor = "default"
+        s.cursor = "default"
       },
       render(watch) {
         const theme = $theme.value as AppTheme
