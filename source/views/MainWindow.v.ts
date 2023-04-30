@@ -10,7 +10,7 @@ import { WorkArea } from "./WorkArea.v"
 export function MainWindow() {
   return (
     Band({
-      modes: Mode.IndependentRerendering,
+      modes: Mode.PinpointRefresh,
       initialize(b) {
         $app.value.sensors.listen(b.native)
       },
@@ -90,7 +90,7 @@ export function MainWindow() {
             }
           })
           Band({
-            modes: Mode.IndependentRerendering,
+            modes: Mode.PinpointRefresh,
             triggers: { theme },
             render(b) {
               b.style(theme.panel)

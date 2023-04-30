@@ -13,7 +13,7 @@ export interface ButtonModel {
 export function Button(builder?: BlockBuilder<HTMLElement, ButtonModel>) {
   return (
     Band<ButtonModel>(builder, {
-      modes: Mode.IndependentRerendering,
+      modes: Mode.PinpointRefresh,
       initialize(b) {
         b.model ??= observableModel({
           icon: "fa-solid fa-square",

@@ -13,7 +13,7 @@ export interface ToggleModel {
 export function Toggle(builder?: BlockBuilder<HTMLElement, ToggleModel>) {
   return (
     Band<ToggleModel>(builder, {
-      modes: Mode.IndependentRerendering,
+      modes: Mode.PinpointRefresh,
       initialize(b) {
         b.model ??= observableModel({
           label: b.descriptor.builder.key,

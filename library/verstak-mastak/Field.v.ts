@@ -19,7 +19,7 @@ export interface FieldModel<T = string> extends FocusModel {
 export function Field(builder?: BlockBuilder<HTMLElement, FieldModel>) {
   return (
     Band<FieldModel>(builder, {
-      modes: Mode.IndependentRerendering,
+      modes: Mode.PinpointRefresh,
       initialize(b) {
         b.model ??= createFieldModel()
         b.native.dataForSensor.focus = b.model

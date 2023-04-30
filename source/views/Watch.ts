@@ -16,7 +16,7 @@ const BezelLabelColor = "#444444"
 export function Watch(area: string): Block<HTMLElement, Clock> {
   return (
     Band({
-      modes: Mode.IndependentRerendering,
+      modes: Mode.PinpointRefresh,
       initialize(b) {
         b.contentAlignment = Align.Center
         b.model = new Clock(200)
