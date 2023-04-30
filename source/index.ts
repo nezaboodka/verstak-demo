@@ -23,7 +23,7 @@ const app = Transaction.run(null, () =>
     new PrintAppTheme()))
 
 HtmlBody({
-  modes: Mode.SeparateReaction,
+  modes: Mode.IndependentRerendering,
   render(b) {
     $app.value = app
     const t = app.theme

@@ -10,7 +10,7 @@ import { WorkArea } from "./WorkArea.v"
 export function MainWindow() {
   return (
     Band({
-      modes: Mode.SeparateReaction,
+      modes: Mode.IndependentRerendering,
       initialize(b) {
         $app.value.sensors.listen(b.native)
       },
@@ -90,7 +90,7 @@ export function MainWindow() {
             }
           })
           Band({
-            modes: Mode.SeparateReaction,
+            modes: Mode.IndependentRerendering,
             triggers: { theme },
             render(b) {
               b.style(theme.panel)

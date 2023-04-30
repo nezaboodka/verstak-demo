@@ -9,7 +9,7 @@ export interface SpinnerModel {
 export function Spinner(builder?: BlockBuilder<HTMLElement, SpinnerModel>) {
   return (
     Band<SpinnerModel>(builder, {
-      modes: Mode.SeparateReaction,
+      modes: Mode.IndependentRerendering,
       initialize(b) {
         b.model ??= createLocalModel()
       },

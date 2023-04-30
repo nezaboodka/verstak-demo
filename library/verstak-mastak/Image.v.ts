@@ -8,7 +8,7 @@ export interface ImageModel {
 export function Image(builder?: BlockBuilder<HTMLElement, ImageModel>) {
   return (
     Band<ImageModel>(builder, {
-      modes: Mode.SeparateReaction,
+      modes: Mode.IndependentRerendering,
       initialize(b) {
         b.model ??= observableModel({ source: undefined })
       },
