@@ -27,16 +27,16 @@ export function Toggle(builder?: BlockBuilder<HTMLElement, ToggleModel>) {
         const s = t.toggle
         b.useStyle(s.main)
         Icon(`fa-solid fa-toggle-${m.checked ? "on" : "off"}`, {
-          render(b, original) {
-            original()
+          render(b, base) {
+            base()
             b.useStyle(s.icon)
             b.native.style.color = m.checked ? (t.positiveColor ?? "") : "" // subscribe to ToggleModel.checked
           }
         })
         if (m.label)
           Note(m.label, {
-            render(b, original) {
-              original()
+            render(b, base) {
+              base()
               b.useStyle(s.label)
             }
           })

@@ -12,16 +12,16 @@ export function ToolBar(builder?: BlockBuilder<HTMLElement, void, void>) {
         const app = $app.value
         const theme = $theme.value as AppTheme
         // Image({ // logo
-        //   initialize(b, original) {
-        //     original()
+        //   initialize(b, base) {
+        //     base()
         //     b.contentAlignment = Align.Stretch
         //     b.blockAlignment = Align.Stretch
         //     b.model.source = "https://nezaboodka.com/img/star-768x768-circle.png"
         //     b.native.className = cx(s.Panel, s.Clickable, s.Logo)
         //     b.native.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
         //   },
-        //   render(b, original) {
-        //     original()
+        //   render(b, base) {
+        //     base()
         //     b.native.style.backgroundColor = app.blinkingEffect ? "red" : ""
         //   }
         // })
@@ -36,8 +36,8 @@ export function ToolBar(builder?: BlockBuilder<HTMLElement, void, void>) {
           render(b) {
             b.native.style.boxShadow = app.blinkingEffect ? "0.025rem 0.025rem 0.35rem 0 red" : ""
             Img({
-              render(b, original) {
-                original()
+              render(b, base) {
+                base()
                 b.native.src = "https://nezaboodka.com/img/star-768x768-circle.png"
               }
             })
@@ -56,7 +56,7 @@ export function ToolBar(builder?: BlockBuilder<HTMLElement, void, void>) {
               }
             })
             Field({
-              initialize(b, original) {
+              initialize(b, base) {
                 const loader = app.loader
                 b.minWidth = "7em"
                 b.model = createFieldModel({
@@ -66,7 +66,7 @@ export function ToolBar(builder?: BlockBuilder<HTMLElement, void, void>) {
                   isHotText: true,
                   isMultiLineText: false,
                 })
-                original()
+                base()
               },
             })
           }

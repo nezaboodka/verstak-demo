@@ -27,16 +27,16 @@ export function WorkArea(builder?: BlockBuilder<HTMLElement, void, void>) {
         ExampleData("B3:C3")
         ExampleData("A2:A3")
         Toggle({ key: "SecondaryTimeZone",
-          initialize(b, original) {
+          initialize(b, base) {
             const app = $app.value
             b.model = observableModel({
               label: "Watch Bezel",
               checked: refs(app).secondaryTimeZone,
             })
-            original()
+            base()
           },
-          render(b, original) {
-            original()
+          render(b, base) {
+            base()
             const theme = $theme.value as AppTheme
             b.native.classList.toggle(theme.panel, true)
             b.area = "B1"

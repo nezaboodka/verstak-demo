@@ -33,8 +33,8 @@ export function Field(builder?: BlockBuilder<HTMLElement, FieldModel>) {
         b.useStyle(s.main)
         if (m.icon)
           Icon(m.icon, {
-            render(b, original) {
-              original()
+            render(b, base) {
+              base()
               b.useStyle(s.icon)
             }
           })
@@ -64,7 +64,7 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
   return (
     Note(model.text, {
       key: FieldInput.name,
-      initialize(b, original) {
+      initialize(b, base) {
         const e = b.native
         b.useStyle(s.input)
         b.widthGrowth = 1
@@ -85,7 +85,7 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
           else if (m.isHotText)
             Transaction.run(null, () => { m.text = e.innerText })
         }
-        original()
+        base()
       },
       render(b) {
         const e = b.native

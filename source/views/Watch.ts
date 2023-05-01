@@ -13,23 +13,22 @@ const AccentColor = "silver" // "#87F7A5" // "#93CAEC" // "#93CAEC" // "#87F7A5"
 const BezelBackColor = "silver"
 const BezelLabelColor = "#444444"
 
-export function Watch(area: string): Block<HTMLElement, Clock> {
+const clock = Transaction.run(null, () => new Clock(200))
+
+export function Watch(area: string): Block<HTMLElement> {
   return (
     Band({
       mode: Mode.PinpointRefresh,
       initialize(b) {
-        b.contentAlignment = Align.Center
-        b.model = new Clock(200)
         const s = b.native.style
-        // s.lineHeight = "0.8"
+        b.contentAlignment = Align.Center
         // s.fontFamily = "Arial"
-        // s.letterSpacing = "-0.5ch"
         s.cursor = "default"
       },
-      render(watch) {
+      render(b) {
         const theme = $theme.value as AppTheme
-        watch.area = area
-        watch.useStyle(theme.accent)
+        b.area = area
+        b.useStyle(theme.accent)
         Svg({
           render(b) {
             const svg = b.native
@@ -115,22 +114,21 @@ export function Watch(area: string): Block<HTMLElement, Clock> {
               [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55], 6, 0)
             RadialLabel(180, "Ракета", AccentColor, 275, 45, "normal", false, svg)
 
-            const t = watch.model
-            const hourDeg = 180 + 360 / 24 * (t.hour + (1 / 60 * t.minute))
+            const hourDeg = 180 + 360 / 24 * (clock.hour + (1 / 60 * clock.minute))
             Arrow(48, 2, 0.445, 0.12, hourDeg, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
             //Arrow(45, 4, 0.455, 0.025, hourDeg, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
             Arrow(48, 48, 0.095, 0.35, hourDeg, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
             Arrow(36, 36, 0.108, 0.338, hourDeg, 60 * 60 * 24, LabelColor, LabelColor, false, svg)
             Arrow(32, 1, 0.45, 0.035, hourDeg, 60 * 60 * 24, LabelColor, LabelColor, false, svg)
 
-            const minuteDeg = 360 / 60 * (t.minute + (1 / 60 * t.second))
+            const minuteDeg = 360 / 60 * (clock.minute + (1 / 60 * clock.second))
             Arrow(32, 2, 0.584, 0.1, minuteDeg, 60 * 60, ArrowColor, ArrowColor, true, svg)
             //Arrow(28, 4, 0.629, 0.015, minuteDeg, 60 * 60, ArrowColor, ArrowColor, true, svg)
             Arrow(32, 32, 0.07, 0.51, minuteDeg, 60 * 60, ArrowColor, ArrowColor, true, svg)
             Arrow(18, 1, 0.585, 0.025, minuteDeg, 60 * 60, LabelColor, LabelColor, false, svg)
             Arrow(20, 20, 0.083, 0.498, minuteDeg, 60 * 60, LabelColor, LabelColor, false, svg)
 
-            const secondDeg = 360 / 60 * (t.second + (1 / 1000 * t.ms))
+            const secondDeg = 360 / 60 * (clock.second + (1 / 1000 * clock.ms))
             Arrow(10, 2, -0.05, 0.835, secondDeg, 60, LabelColor, LabelColor, true, svg)
             Circle({
               render(b) {

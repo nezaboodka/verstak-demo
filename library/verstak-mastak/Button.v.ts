@@ -27,15 +27,15 @@ export function Button(builder?: BlockBuilder<HTMLElement, ButtonModel>) {
         b.useStyle(s.main)
         if (m.icon)
           Icon(m.icon, {
-            render(b, original) {
-              original()
+            render(b, base) {
+              base()
               b.useStyle(s.icon)
             }
           })
         if (m.label)
           Note(m.label, {
-            render(b, original) {
-              original()
+            render(b, base) {
+              base()
               b.useStyle(s.label)
             }
           })
