@@ -31,7 +31,7 @@ export class Clock extends ObservableObject {
       calibration = now.getTime() % this.interval
     }
     finally {
-      setTimeout(() => this.tick, this.interval - calibration)
+      setTimeout(() => this.tick(), this.interval - calibration)
     }
   }
 }
