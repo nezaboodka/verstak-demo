@@ -9,7 +9,7 @@ export interface SpinnerModel {
 export function Spinner(builder?: BlockBuilder<HTMLElement, SpinnerModel>) {
   return (
     Band<SpinnerModel>(builder, {
-      modes: Mode.PinpointRefresh,
+      mode: Mode.PinpointRefresh,
       initialize(b) {
         b.model ??= createLocalModel()
       },

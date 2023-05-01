@@ -4,7 +4,7 @@ import { $theme } from "./Theme"
 export function Icon(name: string, builder?: BlockBuilder<HTMLElement, void, void>) {
   return (
     Band(builder, {
-      modes: Mode.PinpointRefresh,
+      mode: Mode.PinpointRefresh,
       render(b) {
         const s = $theme.value.icon
         b.useStyle(name)
