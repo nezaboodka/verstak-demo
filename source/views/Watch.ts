@@ -154,7 +154,7 @@ export function Watch(area: string): Block<HTMLElement> {
               render(b) {
                 b.native.style.transform = b.native.style.transform === "rotate(105deg)" ? "rotate(0deg)" : "rotate(105deg)"
                 const app = $app.value
-                if (app.secondaryTimeZone)
+                if (app.isSecondaryTimeZoneOn)
                   rotate(b.native, 105)
                 else
                   rotate(b.native, 0)

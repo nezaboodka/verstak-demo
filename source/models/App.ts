@@ -10,8 +10,8 @@ export class App extends ObservableObject {
   sensors: HtmlSensors
   allThemes: Array<AppTheme>
   activeThemeIndex: number
-  blinkingEffect: boolean
-  secondaryTimeZone: boolean
+  isBlinkingEffectOn: boolean
+  isSecondaryTimeZoneOn: boolean
   loader: Loader
 
   constructor(version: string, ...themes: Array<AppTheme>) {
@@ -20,8 +20,8 @@ export class App extends ObservableObject {
     this.sensors = new HtmlSensors()
     this.allThemes = themes
     this.activeThemeIndex = 0
-    this.blinkingEffect = false
-    this.secondaryTimeZone = true
+    this.isBlinkingEffectOn = false
+    this.isSecondaryTimeZoneOn = true
     this.loader = new Loader()
   }
 
@@ -41,7 +41,7 @@ export class App extends ObservableObject {
 
   @reactive
   protected applyBlinkingEffect(): void {
-    BaseHtmlDriver.blinkingEffectMarker = this.blinkingEffect ? App.blinkingEffectMarker : undefined
+    BaseHtmlDriver.blinkingEffectMarker = this.isBlinkingEffectOn ? App.blinkingEffectMarker : undefined
   }
 }
 

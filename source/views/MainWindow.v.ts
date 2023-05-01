@@ -19,7 +19,7 @@ export function MainWindow() {
         const theme = app.theme
         $theme.value = theme
 
-        b.useStyle(App.blinkingEffectMarker, app.blinkingEffect)
+        b.useStyle(App.blinkingEffectMarker, app.isBlinkingEffectOn)
         b.contentAlignment = Align.Top
         b.heightGrowth = 1
 

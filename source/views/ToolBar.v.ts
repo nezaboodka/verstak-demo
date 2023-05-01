@@ -34,7 +34,7 @@ export function ToolBar(builder?: BlockBuilder<HTMLElement, void, void>) {
             // b.native.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
           },
           render(b) {
-            b.native.style.boxShadow = app.blinkingEffect ? "0.025rem 0.025rem 0.35rem 0 red" : ""
+            b.native.style.boxShadow = app.isBlinkingEffectOn ? "0.025rem 0.025rem 0.35rem 0 red" : ""
             Img({
               render(b, base) {
                 base()

@@ -23,7 +23,7 @@ export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
             // to implement interface in form of class.
             b.model = observableModel({
               label: "Blinking Rendering",
-              checked: refs(app).blinkingEffect,
+              checked: refs(app).isBlinkingEffectOn,
             })
             base()
           },
@@ -51,7 +51,7 @@ export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
           initialize(b, base) {
             b.model = observableModel({
               label: "New York (GMT-7)",
-              checked: refs(app).secondaryTimeZone,
+              checked: refs(app).isSecondaryTimeZoneOn,
             })
             base()
           },
