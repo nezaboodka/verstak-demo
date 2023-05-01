@@ -24,10 +24,10 @@ export class Clock extends ObservableObject {
     let calibration = 0
     try {
       const now = new Date()
-      this.ms = now.getMilliseconds()
-      this.second = now.getSeconds()
-      this.minute = now.getMinutes()
       this.hour = now.getHours()
+      this.minute = now.getMinutes()
+      this.second = now.getSeconds()
+      this.ms = now.getMilliseconds()
       calibration = now.getTime() % this.interval
     }
     finally {
