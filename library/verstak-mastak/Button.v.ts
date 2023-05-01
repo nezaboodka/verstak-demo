@@ -25,20 +25,22 @@ export function Button(builder?: BlockBuilder<HTMLElement, ButtonModel>) {
         const m = b.model
         const s = $theme.value.button
         b.useStyle(s.main)
-        if (m.icon)
+        if (m.icon) {
           Icon(m.icon, {
             render(b, base) {
               base()
               b.useStyle(s.icon)
             }
           })
-        if (m.label)
+        }
+        if (m.label) {
           Note(m.label, {
             render(b, base) {
               base()
               b.useStyle(s.label)
             }
           })
+        }
       },
     })
   )

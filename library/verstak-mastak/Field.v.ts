@@ -113,7 +113,12 @@ function FieldPopup(model: FieldModel, s: FieldStyling) {
           if (options.length > 0) {
             for (const x of model.options) {
               fromNewRow()
-              Note(x, { key: x })
+              Note(x, {
+                key: x,
+                initialize(b) {
+                  b.contentWrapping = false
+                },
+              })
             }
           }
           else
