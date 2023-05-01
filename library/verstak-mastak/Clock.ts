@@ -1,47 +1,37 @@
-import { ObservableObject, raw, transactional } from "reactronic"
+import { ObservableObject, transactional } from "reactronic"
 
 export class Clock extends ObservableObject {
-  @raw interval: number
-  @raw fractional: number
-  ms: number
-  second: number
-  minute: number
-  hour: number
-  day: number
-  month: number
-  year: number
+  hour: number = 0
+  minute: number = 0
+  second: number = 0
+  ms: number = 0
+  interval: number = 0
+  paused: boolean = false
 
-  constructor(interval: number = 1000, fractional: number = 0) {
+  constructor(interval: number = 1000) {
     super()
-    const now = new Date()
     this.interval = interval
-    this.fractional = fractional
-    this.year = now.getFullYear()
-    this.month = now.getMonth()
-    this.day = now.getDate()
-    this.hour = now.getHours()
-    this.minute = now.getMinutes()
-    this.second = now.getSeconds()
-    this.ms = now.getMilliseconds()
-    setTimeout(this.tick, this.interval)
+    this.tick()
+  }
+
+  @transactional
+  pause(value: boolean = true): void {
+    this.paused = value
   }
 
   @transactional
   private tick(): void {
-    let inaccuracy = 0
+    let calibration = 0
     try {
       const now = new Date()
       this.ms = now.getMilliseconds()
       this.second = now.getSeconds()
       this.minute = now.getMinutes()
       this.hour = now.getHours()
-      this.day = now.getDate()
-      this.month = now.getMonth()
-      this.year = now.getFullYear()
-      inaccuracy = now.getTime() % this.interval
+      calibration = now.getTime() % this.interval
     }
     finally {
-      setTimeout(this.tick, this.interval - inaccuracy)
+      setTimeout(() => this.tick, this.interval - calibration)
     }
   }
 }
