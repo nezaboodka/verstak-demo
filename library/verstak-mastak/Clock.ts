@@ -1,4 +1,4 @@
-import { LoggingLevel, ObservableObject, options, raw, transactional } from "reactronic"
+import { ObservableObject, raw, transactional } from "reactronic"
 
 export class Clock extends ObservableObject {
   @raw interval: number
