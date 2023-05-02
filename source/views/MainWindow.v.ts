@@ -20,7 +20,7 @@ export function MainWindow() {
         $theme.value = theme
 
         b.useStyle(App.blinkingEffectMarker, app.isBlinkingEffectOn)
-        b.contentAlignment = Align.Top
+        // b.contentAlignment = Align.Center
         b.widthGrowth = 1
         b.heightGrowth = 1
 
