@@ -21,96 +21,93 @@ export function MainWindow() {
 
         b.useStyle(App.blinkingEffectMarker, app.isBlinkingEffectOn)
         b.contentAlignment = Align.Top
+        b.widthGrowth = 1
         b.heightGrowth = 1
 
-        row(l => {
-          ToolBar({
-            render(b, base) {
-              b.widthGrowth = 1
-              base()
-            }
-          })
+        ToolBar({
+          render(b, base) {
+            b.widthGrowth = 1
+            base()
+          }
         })
 
-        row(l => { // main row
-          Band({
-            render(b) {
-              b.useStyle(app.theme.panel)
-              b.minWidth = "10rem"
-              b.contentAlignment = Align.Top
-              b.blockAlignment = Align.Stretch
-              Note("Navigation Bar")
+        fromNewRow()
+        Band({
+          render(b) {
+            b.useStyle(app.theme.panel)
+            b.minWidth = "10rem"
+            b.contentAlignment = Align.Top
+            b.blockAlignment = Align.Stretch
+            Note("Navigation Bar")
 
-              fromNewRow()
-              Field({
-                initialize(b, base) {
-                  const loader = app.loader
-                  b.minWidth = "10em"
-                  b.model = createFieldModel({
-                    icon: "fa-solid fa-search",
-                    text: refs(loader).filter,
-                    options: refs(loader).loaded,
-                    isHotText: true,
-                    isMultiLineText: false,
-                  })
-                  base()
-                },
-              })
+            fromNewRow()
+            Field({
+              initialize(b, base) {
+                const loader = app.loader
+                b.minWidth = "10em"
+                b.model = createFieldModel({
+                  icon: "fa-solid fa-search",
+                  text: refs(loader).filter,
+                  options: refs(loader).loaded,
+                  isHotText: true,
+                  isMultiLineText: false,
+                })
+                base()
+              },
+            })
 
-              fromNewRow()
-              Band({
-                render(b) {
-                  b.heightGrowth = 1
-                }
-              })
+            fromNewRow()
+            Band({
+              render(b) {
+                b.heightGrowth = 1
+              }
+            })
 
-              fromNewRow()
-              Field({
-                initialize(b, base) {
-                  const loader = app.loader
-                  b.minWidth = "10em"
-                  b.model = createFieldModel({
-                    text: refs(loader).filter,
-                    options: refs(loader).loaded,
-                    isHotText: true,
-                    isMultiLineText: false,
-                  })
-                  base()
-                },
-              })
-            }
-          })
-          WorkArea({
-            render(b, base) {
-              base()
-              b.useStyle(theme.panel)
-              b.useStyle(theme.accent)
-              b.widthGrowth = 3
-              b.heightGrowth = 1
-            }
-          })
-          Band({
-            mode: Mode.PinpointRefresh,
-            triggers: { theme },
-            render(b) {
-              b.useStyle(theme.panel)
-              b.useStyle(theme.markdown)
-              b.minWidth = "16rem"
-              b.widthGrowth = 2
-              b.contentAlignment = Align.Left + Align.Top,
-              b.blockAlignment = Align.Stretch,
-              Markdown(EXAMPLE_CODE)
-            }
-          })
+            fromNewRow()
+            Field({
+              initialize(b, base) {
+                const loader = app.loader
+                b.minWidth = "10em"
+                b.model = createFieldModel({
+                  text: refs(loader).filter,
+                  options: refs(loader).loaded,
+                  isHotText: true,
+                  isMultiLineText: false,
+                })
+                base()
+              },
+            })
+          }
+        })
+        WorkArea({
+          render(b, base) {
+            base()
+            b.useStyle(theme.panel)
+            b.useStyle(theme.accent)
+            b.widthGrowth = 3
+            b.heightGrowth = 1
+          }
+        })
+        Band({
+          mode: Mode.PinpointRefresh,
+          triggers: { theme },
+          render(b) {
+            b.useStyle(theme.panel)
+            b.useStyle(theme.markdown)
+            b.minWidth = "16rem"
+            b.widthGrowth = 2
+            b.contentAlignment = Align.Left + Align.Top,
+            b.blockAlignment = Align.Stretch,
+            Markdown(EXAMPLE_CODE)
+          }
         })
 
-        row(l => {
-          StatusBar({
-            render(b, base) {
-              base()
-              b.widthGrowth = 1
-            }
-          })
+        fromNewRow()
+        StatusBar({
+          render(b, base) {
+            base()
+            b.widthGrowth = 1
+          }
         })
       },
     })
