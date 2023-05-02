@@ -1,6 +1,6 @@
 import { refs } from "reactronic"
 import { Band, BlockBuilder, Align } from "verstak"
-import { Button, Toggle, Field, createFieldModel, $theme } from "verstak-mastak"
+import { Button, Toggle, Field, composeFieldModel, $theme } from "verstak-mastak"
 import { AppTheme } from "themes/AppTheme"
 import { observableModel } from "common/Utils"
 import { $app } from "models/App"
@@ -75,7 +75,7 @@ export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
               initialize(b, base) {
                 const loader = app.loader
                 b.minWidth = "10em"
-                b.model = createFieldModel({
+                b.model = composeFieldModel({
                   icon: "fa-solid fa-search",
                   text: refs(loader).filter,
                   options: refs(loader).loaded,

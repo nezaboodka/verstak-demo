@@ -21,7 +21,7 @@ export function Field(builder?: BlockBuilder<HTMLElement, FieldModel>) {
     Band<FieldModel>(builder, {
       mode: Mode.PinpointRefresh,
       initialize(b) {
-        b.model ??= createFieldModel()
+        b.model ??= composeFieldModel()
         b.native.dataForSensor.focus = b.model
         b.native.onscroll = () => {
           b.model.position = b.native.scrollTop
@@ -45,7 +45,7 @@ export function Field(builder?: BlockBuilder<HTMLElement, FieldModel>) {
   )
 }
 
-export function createFieldModel<T>(props?: Partial<ValuesOrRefs<FieldModel<T>>>): FieldModel<T> {
+export function composeFieldModel<T>(props?: Partial<ValuesOrRefs<FieldModel<T>>>): FieldModel<T> {
   return observableModel({
     icon: props?.icon,
     text: props?.text ?? "",

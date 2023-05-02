@@ -11,7 +11,7 @@ export function Spinner(builder?: BlockBuilder<HTMLElement, SpinnerModel>) {
     Band<SpinnerModel>(builder, {
       mode: Mode.PinpointRefresh,
       initialize(b) {
-        b.model ??= createLocalModel()
+        b.model ??= composeSpinnerModel()
       },
       render(b) {
         const m = b.model
@@ -21,7 +21,7 @@ export function Spinner(builder?: BlockBuilder<HTMLElement, SpinnerModel>) {
   )
 }
 
-export function createLocalModel<T>(props?: Partial<ValuesOrRefs<SpinnerModel>>): SpinnerModel
+export function composeSpinnerModel<T>(props?: Partial<ValuesOrRefs<SpinnerModel>>): SpinnerModel
 {
   return observableModel({
     active: props?.active ?? false,

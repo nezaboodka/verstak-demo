@@ -1,7 +1,7 @@
 import { refs } from "reactronic"
 import { Band, Align, Note, row, fromNewRow, Mode } from "verstak"
 import { Markdown } from "verstak-markdown"
-import { createFieldModel, Field, $theme } from "verstak-mastak"
+import { composeFieldModel, Field, $theme } from "verstak-mastak"
 import { App, $app } from "models/App"
 import { ToolBar } from "./ToolBar.v"
 import { StatusBar } from "./StatusBar.v"
@@ -45,7 +45,7 @@ export function MainWindow() {
               initialize(b, base) {
                 const loader = app.loader
                 b.minWidth = "10em"
-                b.model = createFieldModel({
+                b.model = composeFieldModel({
                   icon: "fa-solid fa-search",
                   text: refs(loader).filter,
                   options: refs(loader).loaded,
@@ -68,7 +68,7 @@ export function MainWindow() {
               initialize(b, base) {
                 const loader = app.loader
                 b.minWidth = "10em"
-                b.model = createFieldModel({
+                b.model = composeFieldModel({
                   text: refs(loader).filter,
                   options: refs(loader).loaded,
                   isHotText: true,

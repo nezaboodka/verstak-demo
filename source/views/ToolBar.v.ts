@@ -1,7 +1,7 @@
 import { refs } from "reactronic"
 import { Band, BlockBuilder, Img, fromNewRow } from "verstak"
 import { Markdown } from "verstak-markdown"
-import { Icon, Field, createFieldModel, $theme } from "verstak-mastak"
+import { Icon, Field, composeFieldModel, $theme } from "verstak-mastak"
 import { AppTheme } from "themes/AppTheme"
 import { $app } from "models/App"
 
@@ -59,7 +59,7 @@ export function ToolBar(builder?: BlockBuilder<HTMLElement, void, void>) {
               initialize(b, base) {
                 const loader = app.loader
                 b.minWidth = "7em"
-                b.model = createFieldModel({
+                b.model = composeFieldModel({
                   icon: "fa-solid fa-search",
                   text: refs(loader).filter,
                   options: refs(loader).loaded,
