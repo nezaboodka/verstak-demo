@@ -1,5 +1,5 @@
-import { LoggingLevel, Rx, Transaction } from "reactronic"
-import { Band, Align, Svg, Circle, Rect, Text, TextPath, G, Block, Polygon, Label, Mode } from "verstak"
+import { Transaction } from "reactronic"
+import { Band, Align, Svg, Circle, Rect, Text, G, Block, Polygon, Mode } from "verstak"
 import { $theme } from "verstak-mastak"
 import { AppTheme } from "themes/AppTheme"
 import { $app } from "models/App"

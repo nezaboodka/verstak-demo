@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { Band, Align, Note, row, fromNewRow, Mode } from "verstak"
+import { Band, Align, Note, fromNewRow, Mode } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { composeFieldModel, Field, $theme } from "verstak-mastak"
 import { App, $app } from "models/App"
