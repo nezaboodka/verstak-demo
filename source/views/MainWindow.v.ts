@@ -1,7 +1,7 @@
 import { refs } from "reactronic"
 import { Band, Align, Note, fromNewRow, Mode } from "verstak"
 import { Markdown } from "verstak-markdown"
-import { composeFieldModel, Field, MastakTheme } from "verstak-mastak"
+import { composeFieldModel, Field, Theme } from "verstak-mastak"
 import { App } from "models/App"
 import { ToolBar } from "./ToolBar.v"
 import { StatusBar } from "./StatusBar.v"
@@ -12,12 +12,12 @@ export function MainWindow() {
     Band({
       mode: Mode.PinpointRefresh,
       initialize(b) {
-        App.current.sensors.listen(b.native)
+        App.actual.sensors.listen(b.native)
       },
       render(b) {
-        const app = App.current
+        const app = App.actual
         const theme = app.theme
-        MastakTheme.current = theme
+        Theme.actual = theme
 
         b.useStyle(App.blinkingEffectMarker, app.isBlinkingEffectOn)
         // b.contentAlignment = Align.Center

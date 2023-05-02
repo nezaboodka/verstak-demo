@@ -1,7 +1,7 @@
 import { Transaction } from "reactronic"
 import { Band, BlockBuilder, Note, Mode } from "verstak"
 import { observableModel } from "common/Utils"
-import { MastakTheme } from "./Theme"
+import { Theme } from "./Theme"
 import { Icon } from "./Icon.v"
 
 export interface ToggleModel {
@@ -23,7 +23,7 @@ export function Toggle(builder?: BlockBuilder<HTMLElement, ToggleModel>) {
       },
       render(b) {
         const m = b.model
-        const t = MastakTheme.current
+        const t = Theme.actual
         const s = t.toggle
         b.useStyle(s.main)
         Icon(`fa-solid fa-toggle-${m.checked ? "on" : "off"}`, {

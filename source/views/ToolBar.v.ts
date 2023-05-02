@@ -1,7 +1,7 @@
 import { refs } from "reactronic"
 import { Band, BlockBuilder, Img, fromNewRow } from "verstak"
 import { Markdown } from "verstak-markdown"
-import { Icon, Field, composeFieldModel, MastakTheme } from "verstak-mastak"
+import { Icon, Field, composeFieldModel, Theme } from "verstak-mastak"
 import { AppTheme } from "themes/AppTheme"
 import { App } from "models/App"
 
@@ -9,8 +9,8 @@ export function ToolBar(builder?: BlockBuilder<HTMLElement, void, void>) {
   return (
     Band(builder, {
       render(b) {
-        const app = App.current
-        const theme = MastakTheme.current as AppTheme
+        const app = App.actual
+        const theme = Theme.actual as AppTheme
         // Image({ // logo
         //   initialize(b, base) {
         //     base()

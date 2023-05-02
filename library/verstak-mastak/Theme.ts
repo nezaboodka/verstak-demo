@@ -11,22 +11,22 @@ export { type FieldStyling, type DefaultFieldStyling  } from "./theme/Field.s"
 export { type IconStyling, type DefaultIconStyling  } from "./theme/Icon.s"
 export { type ToggleStyling, type DefaultToggleStyling } from "./theme/Toggle.s"
 
-export interface Theme extends AbstractTheme {
+export interface MastakTheme extends AbstractTheme {
   readonly button: ButtonStyling
   readonly field: FieldStyling
   readonly icon: IconStyling
   readonly toggle: ToggleStyling
 }
 
-export class MastakTheme implements Theme {
-  private static readonly gCurrent = new ContextVariable<Theme>(
-    Transaction.run({ separation: true }, () => new MastakTheme()))
+export class Theme implements MastakTheme {
+  private static readonly gCurrent = new ContextVariable<MastakTheme>(
+    Transaction.run({ separation: true }, () => new Theme()))
 
-  static get current(): Theme {
-    return MastakTheme.gCurrent.value
+  static get actual(): MastakTheme {
+    return Theme.gCurrent.value
   }
-  static set current(value: Theme) {
-    MastakTheme.gCurrent.value = value
+  static set actual(value: MastakTheme) {
+    Theme.gCurrent.value = value
   }
 
   name = "Default Gost Theme"

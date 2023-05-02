@@ -25,7 +25,7 @@ const app = Transaction.run(null, () =>
 HtmlBody({
   mode: Mode.PinpointRefresh,
   render(b) {
-    App.current = app
+    App.actual = app
     const t = app.theme
     const s = b.native.style
     s.color = t.textColor

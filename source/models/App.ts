@@ -26,10 +26,10 @@ export class App extends ObservableObject {
     this.loader = new Loader()
   }
 
-  static get current(): App {
+  static get actual(): App {
     return App.gCurrent.value
   }
-  static set current(value: App) {
+  static set actual(value: App) {
     App.gCurrent.value = value
   }
 

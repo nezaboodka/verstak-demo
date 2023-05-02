@@ -1,8 +1,8 @@
 import { cached } from "reactronic"
 import { css } from "@emotion/css"
-import { MastakTheme } from "verstak-mastak"
+import { Theme } from "verstak-mastak"
 
-export class AppTheme extends MastakTheme {
+export class AppTheme extends Theme {
   accentColor: string = ""
   spaceFillColor: string = ""
   markdown: string = ""
