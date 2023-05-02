@@ -16,7 +16,7 @@ export function Toggle(builder?: BlockBuilder<HTMLElement, ToggleModel>) {
       mode: Mode.PinpointRefresh,
       initialize(b) {
         b.model ??= observableModel({
-          label: b.descriptor.builder.key,
+          label: b.node.builder.key,
           checked: true,
           color: "green" }) // model is either taken from parameter or created internally
         b.native.onclick = () => Transaction.run(null, () => b.model.checked = !b.model.checked)
