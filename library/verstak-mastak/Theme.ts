@@ -18,7 +18,17 @@ export interface Theme extends AbstractTheme {
   readonly toggle: ToggleStyling
 }
 
-export class DefaultGostTheme implements Theme {
+export class MastakTheme implements Theme {
+  private static readonly gCurrent = new ContextVariable<Theme>(
+    Transaction.run({ separation: true }, () => new MastakTheme()))
+
+  static get current(): Theme {
+    return MastakTheme.gCurrent.value
+  }
+  static set current(value: Theme) {
+    MastakTheme.gCurrent.value = value
+  }
+
   name = "Default Gost Theme"
   fillColor = "white"
   textColor = "black"
@@ -34,6 +44,3 @@ export class DefaultGostTheme implements Theme {
   icon = new DefaultIconStyling(this)
   toggle = new DefaultToggleStyling(this)
 }
-
-export const $theme = new ContextVariable<Theme>(
-  Transaction.run({ separation: true }, () => new DefaultGostTheme()))

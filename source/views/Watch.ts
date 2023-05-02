@@ -1,8 +1,8 @@
 import { Transaction } from "reactronic"
 import { Band, Align, Svg, Circle, Rect, Text, G, Block, Polygon, Mode } from "verstak"
-import { $theme } from "verstak-mastak"
+import { MastakTheme } from "verstak-mastak"
 import { AppTheme } from "themes/AppTheme"
-import { $app } from "models/App"
+import { App } from "models/App"
 import { Clock } from "verstak-mastak"
 
 const BackColor = "#1a3043" // "white" // "#1a3043"
@@ -26,7 +26,7 @@ export function Watch(area: string): Block<HTMLElement> {
         s.cursor = "default"
       },
       render(b) {
-        const theme = $theme.value as AppTheme
+        const theme = MastakTheme.current as AppTheme
         b.area = area
         b.useStyle(theme.accent)
         Svg({
@@ -153,7 +153,7 @@ export function Watch(area: string): Block<HTMLElement> {
               },
               render(b) {
                 b.native.style.transform = b.native.style.transform === "rotate(105deg)" ? "rotate(0deg)" : "rotate(105deg)"
-                const app = $app.value
+                const app = App.current
                 if (app.isSecondaryTimeZoneOn)
                   rotate(b.native, 105)
                 else

@@ -1,7 +1,7 @@
 import { Transaction } from "reactronic"
 import { Band, BlockBuilder, Note, Mode } from "verstak"
 import { observableModel } from "common/Utils"
-import { $theme } from "./Theme"
+import { MastakTheme } from "./Theme"
 import { Icon } from "./Icon.v"
 
 export interface ButtonModel {
@@ -23,7 +23,7 @@ export function Button(builder?: BlockBuilder<HTMLElement, ButtonModel>) {
       },
       render(b) {
         const m = b.model
-        const s = $theme.value.button
+        const s = MastakTheme.current.button
         b.useStyle(s.main)
         if (m.icon) {
           Icon(m.icon, {

@@ -5,6 +5,7 @@ import { Loader } from "./Loader"
 
 export class App extends ObservableObject {
   static readonly blinkingEffectMarker = "ё"
+  private static readonly gCurrent = new ContextVariable<App>()
 
   version: string
   sensors: HtmlSensors
@@ -23,6 +24,13 @@ export class App extends ObservableObject {
     this.isBlinkingEffectOn = false
     this.isSecondaryTimeZoneOn = true
     this.loader = new Loader()
+  }
+
+  static get current(): App {
+    return App.gCurrent.value
+  }
+  static set current(value: App) {
+    App.gCurrent.value = value
   }
 
   get theme(): AppTheme {
@@ -44,5 +52,3 @@ export class App extends ObservableObject {
     BaseHtmlDriver.blinkingEffectMarker = this.isBlinkingEffectOn ? App.blinkingEffectMarker : undefined
   }
 }
-
-export const $app = new ContextVariable<App>()

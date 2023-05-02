@@ -1,10 +1,10 @@
+import { refs } from "reactronic"
 import { Table, BlockBuilder, Band, Note, HtmlNote, fromNewRow, Align, cursor } from "verstak"
-import { $theme, Toggle } from "verstak-mastak"
+import { MastakTheme, Toggle } from "verstak-mastak"
 import { AppTheme } from "themes/AppTheme"
+import { App } from "models/App"
 import { Watch } from "./Watch"
 import { observableModel } from "common/Utils"
-import { refs } from "reactronic"
-import { $app } from "models/App"
 
 export function WorkArea(builder?: BlockBuilder<HTMLElement, void, void>) {
   return (
@@ -28,7 +28,7 @@ export function WorkArea(builder?: BlockBuilder<HTMLElement, void, void>) {
         ExampleData("A2:A3")
         Toggle({ key: "SecondaryTimeZone",
           initialize(b, base) {
-            const app = $app.value
+            const app = App.current
             b.model = observableModel({
               label: "Watch Bezel",
               checked: refs(app).isSecondaryTimeZoneOn,
@@ -37,7 +37,7 @@ export function WorkArea(builder?: BlockBuilder<HTMLElement, void, void>) {
           },
           render(b, base) {
             base()
-            const theme = $theme.value as AppTheme
+            const theme = MastakTheme.current as AppTheme
             b.native.classList.toggle(theme.panel, true)
             b.area = "B1"
             b.blockAlignment = Align.Right + Align.Bottom
@@ -67,7 +67,7 @@ function ExampleData(area: string) {
         b.contentAlignment = Align.Center
       },
       render(b) {
-        const theme = $theme.value as AppTheme
+        const theme = MastakTheme.current as AppTheme
         b.area = area
         b.useStyle(theme.accent)
         Note(area)

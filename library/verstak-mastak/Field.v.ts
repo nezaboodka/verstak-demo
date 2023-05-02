@@ -1,7 +1,7 @@
 import { Transaction } from "reactronic"
 import { Band, BlockBuilder, Note, FocusModel, FocuserReaction, fromNewRow, Mode } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
-import { $theme, FieldStyling } from "./Theme"
+import { MastakTheme, FieldStyling } from "./Theme"
 import { Icon } from "./Icon.v"
 
 export interface FieldModel<T = string> extends FocusModel {
@@ -29,7 +29,7 @@ export function Field(builder?: BlockBuilder<HTMLElement, FieldModel>) {
       },
       render(b) {
         const m = b.model
-        const s = $theme.value.field
+        const s = MastakTheme.current.field
         b.useStyle(s.main)
         if (m.icon)
           Icon(m.icon, {

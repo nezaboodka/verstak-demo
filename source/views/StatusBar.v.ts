@@ -1,9 +1,9 @@
 import { refs } from "reactronic"
 import { Band, BlockBuilder, Align } from "verstak"
-import { Button, Toggle, Field, composeFieldModel, $theme } from "verstak-mastak"
+import { Button, Toggle, Field, composeFieldModel, MastakTheme } from "verstak-mastak"
 import { AppTheme } from "themes/AppTheme"
 import { observableModel } from "common/Utils"
-import { $app } from "models/App"
+import { App } from "models/App"
 
 export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
   return (
@@ -13,8 +13,8 @@ export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
         // (instead of functional parameters) in order
         // to avoid passing app/theme in each and every
         // node through rendering tree.
-        const app = $app.value
-        const theme = $theme.value as AppTheme
+        const app = App.current
+        const theme = MastakTheme.current as AppTheme
         b.contentWrapping = true
         Toggle({ key: "Blinking",
           initialize(b, base) {

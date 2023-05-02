@@ -1,7 +1,7 @@
 import { Transaction } from "reactronic"
 import { HtmlBody, fromNewRow, Mode } from "verstak"
 import { configureDebugging } from "dbg"
-import { $app, App } from "models/App"
+import { App } from "models/App"
 import { MainWindow } from "views/MainWindow.v"
 import { LightAppTheme } from "themes/LightAppTheme.s"
 import { DarkAppTheme } from "themes/DarkAppTheme.s"
@@ -25,7 +25,7 @@ const app = Transaction.run(null, () =>
 HtmlBody({
   mode: Mode.PinpointRefresh,
   render(b) {
-    $app.value = app
+    App.current = app
     const t = app.theme
     const s = b.native.style
     s.color = t.textColor
