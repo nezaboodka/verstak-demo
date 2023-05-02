@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { ContextVariable } from "verstak"
+import { SubTreeVariable } from "verstak"
 import { AbstractTheme } from "./theme/Styling"
 import { ButtonStyling, DefaultButtonStyling } from "./theme/Button.s"
 import { FieldStyling, DefaultFieldStyling  } from "./theme/Field.s"
@@ -19,7 +19,7 @@ export interface MastakTheme extends AbstractTheme {
 }
 
 export class Theme implements MastakTheme {
-  private static readonly gCurrent = new ContextVariable<MastakTheme>(
+  private static readonly gCurrent = new SubTreeVariable<MastakTheme>(
     Transaction.run({ separation: true }, () => new Theme()))
 
   static get actual(): MastakTheme {

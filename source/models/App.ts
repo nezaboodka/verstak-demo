@@ -1,11 +1,11 @@
 import { ObservableObject, reactive, transactional } from "reactronic"
-import { BaseHtmlDriver, ContextVariable, HtmlSensors } from "verstak"
+import { BaseHtmlDriver, SubTreeVariable, HtmlSensors } from "verstak"
 import { AppTheme } from "themes/AppTheme"
 import { Loader } from "./Loader"
 
 export class App extends ObservableObject {
   static readonly blinkingEffectMarker = "ё"
-  private static readonly gCurrent = new ContextVariable<App>()
+  private static readonly gCurrent = new SubTreeVariable<App>()
 
   version: string
   sensors: HtmlSensors
