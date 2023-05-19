@@ -1,9 +1,9 @@
-import { Band, BlockBuilder, Mode } from "verstak"
+import { Section, BlockBuilder, Mode } from "verstak"
 import { Theme } from "./Theme"
 
 export function Icon(name: string, builder?: BlockBuilder<HTMLElement, void, void>) {
   return (
-    Band(builder, {
+    Section(builder, {
       mode: Mode.PinpointRefresh,
       render(b) {
         const s = Theme.actual.icon

@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { Band, Align, Note, fromNewRow, Mode } from "verstak"
+import { Section, Align, Note, fromNewRow, Mode } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { composeFieldModel, Field, Theme } from "verstak-mastak"
 import { App } from "models/App"
@@ -9,7 +9,7 @@ import { WorkArea } from "./WorkArea.v"
 
 export function MainWindow() {
   return (
-    Band({
+    Section({
       mode: Mode.PinpointRefresh,
       initialize(b) {
         App.actual.sensors.listen(b.native)
@@ -32,7 +32,7 @@ export function MainWindow() {
         })
 
         fromNewRow()
-        Band({
+        Section({
           render(b) {
             b.useStyle(app.theme.panel)
             b.minWidth = "10rem"
@@ -57,7 +57,7 @@ export function MainWindow() {
             })
 
             fromNewRow()
-            Band({
+            Section({
               render(b) {
                 b.heightGrowth = 1
               }
@@ -88,7 +88,7 @@ export function MainWindow() {
             b.heightGrowth = 1
           }
         })
-        Band({
+        Section({
           mode: Mode.PinpointRefresh,
           triggers: { theme },
           render(b) {

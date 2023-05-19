@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { Band, BlockBuilder, Img, fromNewRow } from "verstak"
+import { Section, BlockBuilder, Img, fromNewRow } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { Icon, Field, composeFieldModel, Theme } from "verstak-mastak"
 import { AppTheme } from "themes/AppTheme"
@@ -7,7 +7,7 @@ import { App } from "models/App"
 
 export function ToolBar(builder?: BlockBuilder<HTMLElement, void, void>) {
   return (
-    Band(builder, {
+    Section(builder, {
       render(b) {
         const app = App.actual
         const theme = Theme.actual as AppTheme
@@ -25,7 +25,7 @@ export function ToolBar(builder?: BlockBuilder<HTMLElement, void, void>) {
         //     b.native.style.backgroundColor = app.blinkingEffect ? "red" : ""
         //   }
         // })
-        Band({ // Logo
+        Section({ // Logo
           initialize(b) {
             b.useStyle(theme.panel)
             // b.useStyle(s.Clickable)
@@ -43,11 +43,11 @@ export function ToolBar(builder?: BlockBuilder<HTMLElement, void, void>) {
             })
           }
         })
-        Band({
+        Section({
           render(b) {
             b.widthGrowth = 1
             b.useStyle(theme.panel)
-            Band({
+            Section({
               render(b) {
                 b.widthGrowth = 1
                 Markdown(`**Verstak** v${app.version}`)
@@ -71,7 +71,7 @@ export function ToolBar(builder?: BlockBuilder<HTMLElement, void, void>) {
             })
           }
         })
-        Band({ // Account
+        Section({ // Account
           initialize(b) {
             // b.native.onclick = () => Transaction.run(null, () => app.nextTheme())
           },

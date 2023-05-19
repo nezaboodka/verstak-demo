@@ -1,4 +1,4 @@
-import { Band, BlockBuilder, Mode } from "verstak"
+import { Section, BlockBuilder, Mode } from "verstak"
 import { observableModel } from "common/Utils"
 
 export interface ImageModel {
@@ -7,7 +7,7 @@ export interface ImageModel {
 
 export function Image(builder?: BlockBuilder<HTMLElement, ImageModel>) {
   return (
-    Band<ImageModel>(builder, {
+    Section<ImageModel>(builder, {
       mode: Mode.PinpointRefresh,
       initialize(b) {
         b.model ??= observableModel({ source: undefined })

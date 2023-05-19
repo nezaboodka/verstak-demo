@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { Band, BlockBuilder, Note, Mode } from "verstak"
+import { Section, BlockBuilder, Note, Mode } from "verstak"
 import { observableModel } from "common/Utils"
 import { Theme } from "./Theme"
 import { Icon } from "./Icon.v"
@@ -12,7 +12,7 @@ export interface ToggleModel {
 
 export function Toggle(builder?: BlockBuilder<HTMLElement, ToggleModel>) {
   return (
-    Band<ToggleModel>(builder, {
+    Section<ToggleModel>(builder, {
       mode: Mode.PinpointRefresh,
       initialize(b) {
         b.model ??= observableModel({

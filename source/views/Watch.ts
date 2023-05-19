@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { Band, Align, Svg, Circle, Rect, Text, G, Block, Polygon, Mode } from "verstak"
+import { Section, Align, Svg, Circle, Rect, Text, G, Block, Polygon, Mode } from "verstak"
 import { Theme } from "verstak-mastak"
 import { AppTheme } from "themes/AppTheme"
 import { App } from "models/App"
@@ -17,7 +17,7 @@ const clock = Transaction.run(null, () => new Clock(200))
 
 export function Watch(area: string): Block<HTMLElement> {
   return (
-    Band({
+    Section({
       mode: Mode.PinpointRefresh,
       initialize(b) {
         const s = b.native.style

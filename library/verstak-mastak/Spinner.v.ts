@@ -1,4 +1,4 @@
-import { Band, BlockBuilder, Note, Mode } from "verstak"
+import { Section, BlockBuilder, Note, Mode } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
 
 export interface SpinnerModel {
@@ -8,7 +8,7 @@ export interface SpinnerModel {
 
 export function Spinner(builder?: BlockBuilder<HTMLElement, SpinnerModel>) {
   return (
-    Band<SpinnerModel>(builder, {
+    Section<SpinnerModel>(builder, {
       mode: Mode.PinpointRefresh,
       initialize(b) {
         b.model ??= composeSpinnerModel()

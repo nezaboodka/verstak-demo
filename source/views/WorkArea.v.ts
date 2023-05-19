@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { Table, BlockBuilder, Band, Note, HtmlNote, fromNewRow, Align, cursor } from "verstak"
+import { Table, BlockBuilder, Section, Note, HtmlNote, fromNewRow, Align, cursor } from "verstak"
 import { Theme, Toggle } from "verstak-mastak"
 import { AppTheme } from "themes/AppTheme"
 import { App } from "models/App"
@@ -50,7 +50,7 @@ export function WorkArea(builder?: BlockBuilder<HTMLElement, void, void>) {
 
 function Ruler(title: string, align: Align) {
   return (
-    Band({
+    Section({
       render(b) {
         b.blockAlignment = align
         b.native.style.fontSize = "smaller"
@@ -62,7 +62,7 @@ function Ruler(title: string, align: Align) {
 
 function ExampleData(area: string) {
   return (
-    Band({
+    Section({
       initialize(b) {
         b.contentAlignment = Align.Center
       },

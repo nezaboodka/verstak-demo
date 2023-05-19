@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { Band, BlockBuilder, Note, Mode } from "verstak"
+import { Section, BlockBuilder, Note, Mode } from "verstak"
 import { observableModel } from "common/Utils"
 import { Theme } from "./Theme"
 import { Icon } from "./Icon.v"
@@ -12,7 +12,7 @@ export interface ButtonModel {
 
 export function Button(builder?: BlockBuilder<HTMLElement, ButtonModel>) {
   return (
-    Band<ButtonModel>(builder, {
+    Section<ButtonModel>(builder, {
       mode: Mode.PinpointRefresh,
       initialize(b) {
         b.model ??= observableModel({

@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { Band, BlockBuilder, Align } from "verstak"
+import { Section, BlockBuilder, Align } from "verstak"
 import { Button, Toggle, Field, composeFieldModel, Theme } from "verstak-mastak"
 import { AppTheme } from "themes/AppTheme"
 import { observableModel } from "common/Utils"
@@ -7,7 +7,7 @@ import { App } from "models/App"
 
 export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
   return (
-    Band(builder, {
+    Section(builder, {
       render(b) {
         // We get app and theme as a context variables
         // (instead of functional parameters) in order
@@ -66,7 +66,7 @@ export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
             b.native.classList.toggle(theme.panel, true)
           }
         })
-        Band({
+        Section({
           render(b) {
             b.useStyle(theme.panel)
             b.widthGrowth = 1
