@@ -10,11 +10,11 @@ import { WorkArea } from "./WorkArea.v"
 export function MainWindow() {
   return (
     Section({
-      mode: Mode.PinpointRefresh,
+      mode: Mode.PinpointUpdate,
       initialize(b) {
         App.actual.sensors.listen(b.native)
       },
-      render(b) {
+      update(b) {
         const app = App.actual
         const theme = app.theme
         Theme.actual = theme
@@ -25,7 +25,7 @@ export function MainWindow() {
         b.heightGrowth = 1
 
         ToolBar({
-          render(b, base) {
+          update(b, base) {
             b.widthGrowth = 1
             base()
           }
@@ -33,7 +33,7 @@ export function MainWindow() {
 
         fromNewRow()
         Section({
-          render(b) {
+          update(b) {
             b.useStyle(app.theme.panel)
             b.minWidth = "10rem"
             b.contentAlignment = Align.Top
@@ -58,7 +58,7 @@ export function MainWindow() {
 
             fromNewRow()
             Section({
-              render(b) {
+              update(b) {
                 b.heightGrowth = 1
               }
             })
@@ -80,7 +80,7 @@ export function MainWindow() {
           }
         })
         WorkArea({
-          render(b, base) {
+          update(b, base) {
             base()
             b.useStyle(theme.panel)
             b.useStyle(theme.accent)
@@ -89,9 +89,9 @@ export function MainWindow() {
           }
         })
         Section({
-          mode: Mode.PinpointRefresh,
+          mode: Mode.PinpointUpdate,
           triggers: { theme },
-          render(b) {
+          update(b) {
             b.useStyle(theme.panel)
             b.useStyle(theme.markdown)
             b.minWidth = "16rem"
@@ -104,7 +104,7 @@ export function MainWindow() {
 
         fromNewRow()
         StatusBar({
-          render(b, base) {
+          update(b, base) {
             base()
             b.widthGrowth = 1
           }
@@ -121,7 +121,7 @@ size of each user.
 
 \`\`\` js
 Table("Example", {
-  render(b) {
+  update(b) {
     // Blocks can be layed out automatically
     // based on their order and line feeds.
     Ruler("1", Align.Left + Align.CenterY)

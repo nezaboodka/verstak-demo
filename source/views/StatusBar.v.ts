@@ -8,11 +8,11 @@ import { App } from "models/App"
 export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
   return (
     Section(builder, {
-      render(b) {
+      update(b) {
         // We get app and theme as a context variables
         // (instead of functional parameters) in order
         // to avoid passing app/theme in each and every
-        // node through rendering tree.
+        // node through update of a tree.
         const app = App.actual
         const theme = Theme.actual as AppTheme
         b.contentWrapping = true
@@ -27,7 +27,7 @@ export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
             })
             base()
           },
-          render(b, base) {
+          update(b, base) {
             base()
             // Style is not inside "initialize", because of theming
             b.native.classList.toggle(theme.panel, true)
@@ -42,7 +42,7 @@ export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
             })
             base()
           },
-          render(b,  base) {
+          update(b,  base) {
             base()
             b.useStyle(theme.panel)
           }
@@ -55,19 +55,19 @@ export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
             })
             base()
           },
-          render(b, base) {
+          update(b, base) {
             base()
             b.native.classList.toggle(theme.panel, true)
           }
         })
         Toggle({
-          render(b, base) {
+          update(b, base) {
             base()
             b.native.classList.toggle(theme.panel, true)
           }
         })
         Section({
-          render(b) {
+          update(b) {
             b.useStyle(theme.panel)
             b.widthGrowth = 1
             b.contentAlignment = Align.Right
@@ -84,7 +84,7 @@ export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
                 })
                 base()
               },
-              render(b, base) {
+              update(b, base) {
                 base()
                 // Spinner("Spinner", {
                 //   initialize(b) {

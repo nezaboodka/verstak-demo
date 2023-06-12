@@ -8,7 +8,7 @@ import { App } from "models/App"
 export function ToolBar(builder?: BlockBuilder<HTMLElement, void, void>) {
   return (
     Section(builder, {
-      render(b) {
+      update(b) {
         const app = App.actual
         const theme = Theme.actual as AppTheme
         // Image({ // logo
@@ -20,7 +20,7 @@ export function ToolBar(builder?: BlockBuilder<HTMLElement, void, void>) {
         //     b.native.className = cx(s.Panel, s.Clickable, s.Logo)
         //     b.native.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
         //   },
-        //   render(b, base) {
+        //   update(b, base) {
         //     base()
         //     b.native.style.backgroundColor = app.blinkingEffect ? "red" : ""
         //   }
@@ -33,10 +33,10 @@ export function ToolBar(builder?: BlockBuilder<HTMLElement, void, void>) {
             b.native.style.outlineOffset = "-1px"
             // b.native.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
           },
-          render(b) {
+          update(b) {
             b.native.style.boxShadow = app.isBlinkingEffectOn ? "0.025rem 0.025rem 0.35rem 0 red" : ""
             Img({
-              render(b, base) {
+              update(b, base) {
                 base()
                 b.native.src = "https://nezaboodka.com/img/star-768x768-circle.png"
               }
@@ -44,11 +44,11 @@ export function ToolBar(builder?: BlockBuilder<HTMLElement, void, void>) {
           }
         })
         Section({
-          render(b) {
+          update(b) {
             b.widthGrowth = 1
             b.useStyle(theme.panel)
             Section({
-              render(b) {
+              update(b) {
                 b.widthGrowth = 1
                 Markdown(`**Verstak** v${app.version}`)
                 fromNewRow()
@@ -75,7 +75,7 @@ export function ToolBar(builder?: BlockBuilder<HTMLElement, void, void>) {
           initialize(b) {
             // b.native.onclick = () => Transaction.run(null, () => app.nextTheme())
           },
-          render(b) {
+          update(b) {
             b.useStyle(theme.panel)
             // b.useStyle(s.Hint)
             // b.useStyle(s.Clickable)

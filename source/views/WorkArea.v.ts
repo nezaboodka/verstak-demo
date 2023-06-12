@@ -9,7 +9,7 @@ import { observableModel } from "common/Utils"
 export function WorkArea(builder?: BlockBuilder<HTMLElement, void, void>) {
   return (
     Table(builder, {
-      render(b) {
+      update(b) {
         // Blocks can be layed out automatically
         // based on their order and line feeds.
         Ruler("1", Align.Left + Align.CenterY)
@@ -35,7 +35,7 @@ export function WorkArea(builder?: BlockBuilder<HTMLElement, void, void>) {
             })
             base()
           },
-          render(b, base) {
+          update(b, base) {
             base()
             const theme = Theme.actual as AppTheme
             b.native.classList.toggle(theme.panel, true)
@@ -51,7 +51,7 @@ export function WorkArea(builder?: BlockBuilder<HTMLElement, void, void>) {
 function Ruler(title: string, align: Align) {
   return (
     Section({
-      render(b) {
+      update(b) {
         b.blockAlignment = align
         b.native.style.fontSize = "smaller"
         HtmlNote(`&nbsp;${title}`)
@@ -66,7 +66,7 @@ function ExampleData(area: string) {
       initialize(b) {
         b.contentAlignment = Align.Center
       },
-      render(b) {
+      update(b) {
         const theme = Theme.actual as AppTheme
         b.area = area
         b.useStyle(theme.accent)

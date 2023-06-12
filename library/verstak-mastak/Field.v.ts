@@ -19,7 +19,7 @@ export interface FieldModel<T = string> extends FocusModel {
 export function Field(builder?: BlockBuilder<HTMLElement, FieldModel>) {
   return (
     Section<FieldModel>(builder, {
-      mode: Mode.PinpointRefresh,
+      mode: Mode.PinpointUpdate,
       initialize(b) {
         b.model ??= composeFieldModel()
         b.native.dataForSensor.focus = b.model
@@ -27,13 +27,13 @@ export function Field(builder?: BlockBuilder<HTMLElement, FieldModel>) {
           b.model.position = b.native.scrollTop
         }
       },
-      render(b) {
+      update(b) {
         const m = b.model
         const s = Theme.actual.field
         b.useStyle(s.main)
         if (m.icon)
           Icon(m.icon, {
-            render(b, base) {
+            update(b, base) {
               base()
               b.useStyle(s.icon)
             }
@@ -87,7 +87,7 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
         }
         base()
       },
-      render(b) {
+      update(b) {
         const e = b.native
         if (!model.isEditMode)
           e.innerText = model.text
@@ -105,7 +105,7 @@ function FieldPopup(model: FieldModel, s: FieldStyling) {
         const e = b.native
         e.onscroll = () => model.position = e.scrollTop
       },
-      render(b) {
+      update(b) {
         b.useStyle(s.popup)
         const visible = b.overlayVisible = model.isEditMode
         if (visible) {

@@ -13,7 +13,7 @@ export interface ButtonModel {
 export function Button(builder?: BlockBuilder<HTMLElement, ButtonModel>) {
   return (
     Section<ButtonModel>(builder, {
-      mode: Mode.PinpointRefresh,
+      mode: Mode.PinpointUpdate,
       initialize(b) {
         b.model ??= observableModel({
           icon: "fa-solid fa-square",
@@ -21,13 +21,13 @@ export function Button(builder?: BlockBuilder<HTMLElement, ButtonModel>) {
         })
         b.native.onclick = () => Transaction.run(null, () => b.model.action?.())
       },
-      render(b) {
+      update(b) {
         const m = b.model
         const s = Theme.actual.button
         b.useStyle(s.main)
         if (m.icon) {
           Icon(m.icon, {
-            render(b, base) {
+            update(b, base) {
               base()
               b.useStyle(s.icon)
             }
@@ -35,7 +35,7 @@ export function Button(builder?: BlockBuilder<HTMLElement, ButtonModel>) {
         }
         if (m.label) {
           Note(m.label, {
-            render(b, base) {
+            update(b, base) {
               base()
               b.useStyle(s.label)
             }
