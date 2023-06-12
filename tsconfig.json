@@ -3,7 +3,6 @@
     "composite": true,
     // General
     "pretty": true,
-    "watch": false,
     "listFiles": false,
     "inlineSources": false,
     "removeComments": false, // keep comments to make tests coverage working
