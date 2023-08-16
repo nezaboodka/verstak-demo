@@ -10,11 +10,11 @@ import { WorkArea } from "./WorkArea.v"
 export function MainWindow() {
   return (
     Section({
-      mode: Mode.PinpointUpdate,
+      mode: Mode.PinpointRebuild,
       initialize(b) {
         App.actual.sensors.listen(b.native)
       },
-      update(b) {
+      rebuild(b) {
         const app = App.actual
         const theme = app.theme
         Theme.actual = theme
@@ -25,7 +25,7 @@ export function MainWindow() {
         b.heightGrowth = 1
 
         ToolBar({
-          update(b, base) {
+          rebuild(b, base) {
             b.widthGrowth = 1
             base()
           }
@@ -33,7 +33,7 @@ export function MainWindow() {
 
         fromNewRow()
         Section({
-          update(b) {
+          rebuild(b) {
             b.useStyle(app.theme.panel)
             b.minWidth = "10rem"
             b.contentAlignment = Align.Top
@@ -58,7 +58,7 @@ export function MainWindow() {
 
             fromNewRow()
             Section({
-              update(b) {
+              rebuild(b) {
                 b.heightGrowth = 1
               }
             })
@@ -80,7 +80,7 @@ export function MainWindow() {
           }
         })
         WorkArea({
-          update(b, base) {
+          rebuild(b, base) {
             base()
             b.useStyle(theme.panel)
             b.useStyle(theme.accent)
@@ -89,9 +89,9 @@ export function MainWindow() {
           }
         })
         Section({
-          mode: Mode.PinpointUpdate,
+          mode: Mode.PinpointRebuild,
           triggers: { theme },
-          update(b) {
+          rebuild(b) {
             b.useStyle(theme.panel)
             b.useStyle(theme.markdown)
             b.minWidth = "16rem"
@@ -104,7 +104,7 @@ export function MainWindow() {
 
         fromNewRow()
         StatusBar({
-          update(b, base) {
+          rebuild(b, base) {
             base()
             b.widthGrowth = 1
           }

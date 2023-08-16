@@ -8,7 +8,7 @@ import { App } from "models/App"
 export function ToolBar(builder?: BlockBuilder<HTMLElement, void, void>) {
   return (
     Section(builder, {
-      update(b) {
+      rebuild(b) {
         const app = App.actual
         const theme = Theme.actual as AppTheme
         // Image({ // logo
@@ -33,10 +33,10 @@ export function ToolBar(builder?: BlockBuilder<HTMLElement, void, void>) {
             b.native.style.outlineOffset = "-1px"
             // b.native.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
           },
-          update(b) {
+          rebuild(b) {
             b.native.style.boxShadow = app.isBlinkingEffectOn ? "0.025rem 0.025rem 0.35rem 0 red" : ""
             Img({
-              update(b, base) {
+              rebuild(b, base) {
                 base()
                 b.native.src = "https://nezaboodka.com/img/star-768x768-circle.png"
               }
@@ -44,11 +44,11 @@ export function ToolBar(builder?: BlockBuilder<HTMLElement, void, void>) {
           }
         })
         Section({
-          update(b) {
+          rebuild(b) {
             b.widthGrowth = 1
             b.useStyle(theme.panel)
             Section({
-              update(b) {
+              rebuild(b) {
                 b.widthGrowth = 1
                 Markdown(`**Verstak** v${app.version}`)
                 fromNewRow()
@@ -75,7 +75,7 @@ export function ToolBar(builder?: BlockBuilder<HTMLElement, void, void>) {
           initialize(b) {
             // b.native.onclick = () => Transaction.run(null, () => app.nextTheme())
           },
-          update(b) {
+          rebuild(b) {
             b.useStyle(theme.panel)
             // b.useStyle(s.Hint)
             // b.useStyle(s.Clickable)

@@ -13,7 +13,7 @@ export interface ToggleModel {
 export function Toggle(builder?: BlockBuilder<HTMLElement, ToggleModel>) {
   return (
     Section<ToggleModel>(builder, {
-      mode: Mode.PinpointUpdate,
+      mode: Mode.PinpointRebuild,
       initialize(b) {
         b.model ??= observableModel({
           label: b.node.builder.key,
@@ -21,13 +21,13 @@ export function Toggle(builder?: BlockBuilder<HTMLElement, ToggleModel>) {
           color: "green" }) // model is either taken from parameter or created internally
         b.native.onclick = () => Transaction.run(null, () => b.model.checked = !b.model.checked)
       },
-      update(b) {
+      rebuild(b) {
         const m = b.model
         const t = Theme.actual
         const s = t.toggle
         b.useStyle(s.main)
         Icon(`fa-solid fa-toggle-${m.checked ? "on" : "off"}`, {
-          update(b, base) {
+          rebuild(b, base) {
             base()
             b.useStyle(s.icon)
             b.native.style.color = m.checked ? (t.positiveColor ?? "") : "" // subscribe to ToggleModel.checked
@@ -35,7 +35,7 @@ export function Toggle(builder?: BlockBuilder<HTMLElement, ToggleModel>) {
         })
         if (m.label)
           Note(m.label, {
-            update(b, base) {
+            rebuild(b, base) {
               base()
               b.useStyle(s.label)
             }

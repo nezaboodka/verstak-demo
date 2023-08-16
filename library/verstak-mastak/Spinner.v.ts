@@ -9,11 +9,11 @@ export interface SpinnerModel {
 export function Spinner(builder?: BlockBuilder<HTMLElement, SpinnerModel>) {
   return (
     Section<SpinnerModel>(builder, {
-      mode: Mode.PinpointUpdate,
+      mode: Mode.PinpointRebuild,
       initialize(b) {
         b.model ??= composeSpinnerModel()
       },
-      update(b) {
+      rebuild(b) {
         const m = b.model
         m.active && Note("loading...")
       },

@@ -8,11 +8,11 @@ export interface ImageModel {
 export function Image(builder?: BlockBuilder<HTMLElement, ImageModel>) {
   return (
     Section<ImageModel>(builder, {
-      mode: Mode.PinpointUpdate,
+      mode: Mode.PinpointRebuild,
       initialize(b) {
         b.model ??= observableModel({ source: undefined })
       },
-      update(b) {
+      rebuild(b) {
         const m = b.model
         b.native.style.backgroundImage = `url(${m.source})`
         b.native.style.backgroundSize = "contain"

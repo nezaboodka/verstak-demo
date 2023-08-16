@@ -8,7 +8,7 @@ import { App } from "models/App"
 export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
   return (
     Section(builder, {
-      update(b) {
+      rebuild(b) {
         // We get app and theme as a context variables
         // (instead of functional parameters) in order
         // to avoid passing app/theme in each and every
@@ -27,7 +27,7 @@ export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
             })
             base()
           },
-          update(b, base) {
+          rebuild(b, base) {
             base()
             // Style is not inside "initialize", because of theming
             b.native.classList.toggle(theme.panel, true)
@@ -42,7 +42,7 @@ export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
             })
             base()
           },
-          update(b,  base) {
+          rebuild(b,  base) {
             base()
             b.useStyle(theme.panel)
           }
@@ -55,19 +55,19 @@ export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
             })
             base()
           },
-          update(b, base) {
+          rebuild(b, base) {
             base()
             b.native.classList.toggle(theme.panel, true)
           }
         })
         Toggle({
-          update(b, base) {
+          rebuild(b, base) {
             base()
             b.native.classList.toggle(theme.panel, true)
           }
         })
         Section({
-          update(b) {
+          rebuild(b) {
             b.useStyle(theme.panel)
             b.widthGrowth = 1
             b.contentAlignment = Align.Right
@@ -84,7 +84,7 @@ export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
                 })
                 base()
               },
-              update(b, base) {
+              rebuild(b, base) {
                 base()
                 // Spinner("Spinner", {
                 //   initialize(b) {
