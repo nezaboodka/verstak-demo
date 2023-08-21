@@ -112,7 +112,7 @@ export function Watch(area: string): Block<HTMLElement> {
 
             radialLabels(svg, 380, 40, true, SecondaryLabelColor, false,
               [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55], 6, 0)
-            RadialLabel(180, "Джетлаг", AccentColor, 275, 45, "normal", false, svg)
+            RadialLabel(180, "Ракета", AccentColor, 275, 45, "normal", false, svg)
 
             const hourDeg = 180 + 360 / 24 * (clock.hour + (1 / 60 * clock.minute))
             Arrow(48, 2, 0.445, 0.12, hourDeg, 60 * 60 * 24, ArrowColor, ArrowColor, true, svg)
@@ -164,6 +164,8 @@ export function Watch(area: string): Block<HTMLElement> {
                   [0, 6, 12, 18], 15, 180)
                 radialLabels(svg, 441, 80, false, BezelLabelColor, true,
                   [3, 9, 15, 21], 15, 180)
+                RadialLabel(174, "Jet", BezelLabelColor, 445, 40, "normal", true, svg)
+                RadialLabel(186.5, "Lag", BezelLabelColor, 445, 40, "normal", true, svg)
               },
             })
           },
