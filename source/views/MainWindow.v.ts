@@ -121,7 +121,7 @@ size of each user.
 
 \`\`\` js
 Table("Example", {
-  update(b) {
+  rebuild(b) {
     // Blocks can be layed out automatically
     // based on their order and line feeds.
     Ruler("1", Align.Left + Align.CenterY)

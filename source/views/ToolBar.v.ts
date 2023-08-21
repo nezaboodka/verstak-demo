@@ -20,7 +20,7 @@ export function ToolBar(builder?: BlockBuilder<HTMLElement, void, void>) {
         //     b.native.className = cx(s.Panel, s.Clickable, s.Logo)
         //     b.native.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
         //   },
-        //   update(b, base) {
+        //   rebuild(b, base) {
         //     base()
         //     b.native.style.backgroundColor = app.blinkingEffect ? "red" : ""
         //   }

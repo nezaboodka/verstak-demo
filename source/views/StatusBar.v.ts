@@ -12,7 +12,7 @@ export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
         // We get app and theme as a context variables
         // (instead of functional parameters) in order
         // to avoid passing app/theme in each and every
-        // node through update of a tree.
+        // node through rebuild of a tree.
         const app = App.actual
         const theme = Theme.actual as AppTheme
         b.contentWrapping = true
