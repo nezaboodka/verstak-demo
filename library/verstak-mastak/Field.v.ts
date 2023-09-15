@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { Section, BlockBuilder, Note, FocusModel, FocuserReaction, fromNewRow, Mode } from "verstak"
+import { Section, BlockBuilder, Note, FocusModel, FocuserReaction, startNewRow, Mode } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils"
 import { Theme, FieldStyling } from "./Theme"
 import { Icon } from "./Icon.v"
@@ -112,7 +112,7 @@ function FieldPopup(model: FieldModel, s: FieldStyling) {
           const options = model.options
           if (options.length > 0) {
             for (const x of model.options) {
-              fromNewRow()
+              startNewRow()
               Note(x, {
                 key: x,
                 initialize(b) {

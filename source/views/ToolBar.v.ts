@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { Section, BlockBuilder, Img, fromNewRow } from "verstak"
+import { Section, BlockBuilder, Img, startNewRow } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { Icon, Field, composeFieldModel, Theme } from "verstak-mastak"
 import { AppTheme } from "themes/AppTheme"
@@ -51,7 +51,7 @@ export function ToolBar(builder?: BlockBuilder<HTMLElement, void, void>) {
               rebuild(b) {
                 b.widthGrowth = 1
                 Markdown(`**Verstak** v${app.version}`)
-                fromNewRow()
+                startNewRow()
                 Markdown("Try to *change* window size")
               }
             })

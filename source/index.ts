@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { HtmlBody, fromNewRow, Mode } from "verstak"
+import { HtmlBody, startNewRow, Mode } from "verstak"
 import { configureDebugging } from "dbg"
 import { App } from "models/App"
 import { MainWindow } from "views/MainWindow.v"
@@ -30,7 +30,7 @@ HtmlBody({
     const s = b.native.style
     s.color = t.textColor
     s.backgroundColor = t.spaceFillColor
-    fromNewRow() // WORKAROUND
+    startNewRow() // WORKAROUND
     MainWindow()
   }
 })

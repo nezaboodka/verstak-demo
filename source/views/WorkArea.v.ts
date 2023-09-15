@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { Table, BlockBuilder, Section, Note, HtmlNote, fromNewRow, Align, cursor } from "verstak"
+import { Table, BlockBuilder, Section, Note, HtmlNote, startNewRow, Align, cursor } from "verstak"
 import { Theme, Toggle } from "verstak-mastak"
 import { AppTheme } from "themes/AppTheme"
 import { App } from "models/App"
@@ -17,8 +17,8 @@ export function WorkArea(builder?: BlockBuilder<HTMLElement, void, void>) {
         Ruler("A", Align.CenterX + Align.Top)
         Ruler("B", Align.CenterX + Align.Top)
         Ruler("C", Align.CenterX + Align.Top)
-        fromNewRow(); Ruler("2", Align.Left + Align.CenterY)
-        fromNewRow(); Ruler("3", Align.Left + Align.CenterY)
+        startNewRow(); Ruler("2", Align.Left + Align.CenterY)
+        startNewRow(); Ruler("3", Align.Left + Align.CenterY)
         // Blocks can also be layed out
         // explicitly in exact cells.
         Watch("B2")

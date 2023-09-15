@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { Section, Align, Note, fromNewRow, Mode } from "verstak"
+import { Section, Align, Note, startNewRow, Mode } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { composeFieldModel, Field, Theme } from "verstak-mastak"
 import { App } from "models/App"
@@ -31,7 +31,7 @@ export function MainWindow() {
           }
         })
 
-        fromNewRow()
+        startNewRow()
         Section({
           rebuild(b) {
             b.useStyle(app.theme.panel)
@@ -40,7 +40,7 @@ export function MainWindow() {
             b.blockAlignment = Align.Stretch
             Note("Navigation Bar")
 
-            fromNewRow()
+            startNewRow()
             Field({
               initialize(b, base) {
                 const loader = app.loader
@@ -56,14 +56,14 @@ export function MainWindow() {
               },
             })
 
-            fromNewRow()
+            startNewRow()
             Section({
               rebuild(b) {
                 b.heightGrowth = 1
               }
             })
 
-            fromNewRow()
+            startNewRow()
             Field({
               initialize(b, base) {
                 const loader = app.loader
@@ -102,7 +102,7 @@ export function MainWindow() {
           }
         })
 
-        fromNewRow()
+        startNewRow()
         StatusBar({
           rebuild(b, base) {
             base()
@@ -129,8 +129,8 @@ Table("Example", {
     Ruler("A", Align.CenterX + Align.Top)
     Ruler("B", Align.CenterX + Align.Top)
     Ruler("C", Align.CenterX + Align.Top)
-    fromNewRow(); Ruler("2", Align.Left + Align.CenterY)
-    fromNewRow(); Ruler("3", Align.Left + Align.CenterY)
+    startNewRow(); Ruler("2", Align.Left + Align.CenterY)
+    startNewRow(); Ruler("3", Align.Left + Align.CenterY)
     // Blocks can also be layed out
     // explicitly in exact cells.
     ExampleData("B2")
