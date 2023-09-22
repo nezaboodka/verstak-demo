@@ -2,8 +2,8 @@ import { refs } from "reactronic"
 import { Section, BlockBuilder, Img, startNewRow } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { Icon, Field, composeFieldModel, Theme } from "verstak-mastak"
-import { AppTheme } from "themes/AppTheme"
-import { App } from "models/App"
+import { AppTheme } from "themes/AppTheme.js"
+import { App } from "models/App.js"
 
 export function ToolBar(builder?: BlockBuilder<HTMLElement, void, void>) {
   return (

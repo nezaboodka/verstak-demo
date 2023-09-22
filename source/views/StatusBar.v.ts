@@ -1,9 +1,9 @@
 import { refs } from "reactronic"
 import { Section, BlockBuilder, Align } from "verstak"
 import { Button, Toggle, Field, composeFieldModel, Theme } from "verstak-mastak"
-import { AppTheme } from "themes/AppTheme"
-import { observableModel } from "common/Utils"
-import { App } from "models/App"
+import { AppTheme } from "themes/AppTheme.js"
+import { observableModel } from "common/Utils.js"
+import { App } from "models/App.js"
 
 export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
   return (

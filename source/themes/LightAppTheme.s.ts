@@ -1,5 +1,5 @@
 import { css } from "@emotion/css"
-import { AppTheme } from "./AppTheme"
+import { AppTheme } from "./AppTheme.js"
 
 export class LightAppTheme extends AppTheme {
   name = "Light Theme"

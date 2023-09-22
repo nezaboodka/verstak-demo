@@ -1,8 +1,8 @@
 import { Transaction } from "reactronic"
 import { Section, Align, Svg, Circle, Rect, Text, G, Block, Polygon, Mode } from "verstak"
 import { Theme } from "verstak-mastak"
-import { AppTheme } from "themes/AppTheme"
-import { App } from "models/App"
+import { AppTheme } from "themes/AppTheme.js"
+import { App } from "models/App.js"
 import { Clock } from "verstak-mastak"
 
 const BackColor = "#1a3043" // "white" // "#1a3043"

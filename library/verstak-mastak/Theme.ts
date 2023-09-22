@@ -1,15 +1,15 @@
 import { Transaction } from "reactronic"
 import { SubTreeVariable } from "verstak"
-import { AbstractTheme } from "./theme/Styling"
-import { ButtonStyling, DefaultButtonStyling } from "./theme/Button.s"
-import { FieldStyling, DefaultFieldStyling  } from "./theme/Field.s"
-import { IconStyling, DefaultIconStyling  } from "./theme/Icon.s"
-import { ToggleStyling, DefaultToggleStyling } from "./theme/Toggle.s"
+import { AbstractTheme } from "./theme/Styling.js"
+import { ButtonStyling, DefaultButtonStyling } from "./theme/Button.s.js"
+import { FieldStyling, DefaultFieldStyling  } from "./theme/Field.s.js"
+import { IconStyling, DefaultIconStyling  } from "./theme/Icon.s.js"
+import { ToggleStyling, DefaultToggleStyling } from "./theme/Toggle.s.js"
 
-export { type ButtonStyling, type DefaultButtonStyling } from "./theme/Button.s"
-export { type FieldStyling, type DefaultFieldStyling  } from "./theme/Field.s"
-export { type IconStyling, type DefaultIconStyling  } from "./theme/Icon.s"
-export { type ToggleStyling, type DefaultToggleStyling } from "./theme/Toggle.s"
+export { type ButtonStyling, type DefaultButtonStyling } from "./theme/Button.s.js"
+export { type FieldStyling, type DefaultFieldStyling  } from "./theme/Field.s.js"
+export { type IconStyling, type DefaultIconStyling  } from "./theme/Icon.s.js"
+export { type ToggleStyling, type DefaultToggleStyling } from "./theme/Toggle.s.js"
 
 export interface MastakTheme extends AbstractTheme {
   readonly button: ButtonStyling

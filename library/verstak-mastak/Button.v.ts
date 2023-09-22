@@ -1,8 +1,8 @@
 import { Transaction } from "reactronic"
 import { Section, BlockBuilder, Note, Mode } from "verstak"
-import { observableModel } from "common/Utils"
-import { Theme } from "./Theme"
-import { Icon } from "./Icon.v"
+import { observableModel } from "common/Utils.js"
+import { Theme } from "./Theme.js"
+import { Icon } from "./Icon.v.js"
 
 export interface ButtonModel {
   icon?: string

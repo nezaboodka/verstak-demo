@@ -1,5 +1,5 @@
 import { Section, BlockBuilder, Note, Mode } from "verstak"
-import { observableModel, ValuesOrRefs } from "common/Utils"
+import { observableModel, ValuesOrRefs } from "common/Utils.js"
 
 export interface SpinnerModel {
   active: boolean

@@ -1,10 +1,10 @@
 import { refs } from "reactronic"
 import { Table, BlockBuilder, Section, Note, HtmlNote, startNewRow, Align, cursor } from "verstak"
 import { Theme, Toggle } from "verstak-mastak"
-import { AppTheme } from "themes/AppTheme"
-import { App } from "models/App"
-import { Watch } from "./Watch"
-import { observableModel } from "common/Utils"
+import { AppTheme } from "themes/AppTheme.js"
+import { App } from "models/App.js"
+import { Watch } from "./Watch.js"
+import { observableModel } from "common/Utils.js"
 
 export function WorkArea(builder?: BlockBuilder<HTMLElement, void, void>) {
   return (

@@ -1,6 +1,6 @@
 import { cached } from "reactronic"
 import { css } from "@emotion/css"
-import { Styling } from "./Styling"
+import { Styling } from "./Styling.js"
 
 export interface ButtonStyling {
   main: string

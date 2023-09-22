@@ -1,8 +1,8 @@
 import { Transaction } from "reactronic"
 import { Section, BlockBuilder, Note, FocusModel, FocuserReaction, startNewRow, Mode } from "verstak"
-import { observableModel, ValuesOrRefs } from "common/Utils"
-import { Theme, FieldStyling } from "./Theme"
-import { Icon } from "./Icon.v"
+import { observableModel, ValuesOrRefs } from "common/Utils.js"
+import { Theme, FieldStyling } from "./Theme.js"
+import { Icon } from "./Icon.v.js"
 
 export interface FieldModel<T = string> extends FocusModel {
   icon?: string

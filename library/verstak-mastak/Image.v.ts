@@ -1,5 +1,5 @@
 import { Section, BlockBuilder, Mode } from "verstak"
-import { observableModel } from "common/Utils"
+import { observableModel } from "common/Utils.js"
 
 export interface ImageModel {
   source?: string

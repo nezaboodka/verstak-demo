@@ -2,10 +2,10 @@ import { refs } from "reactronic"
 import { Section, Align, Note, startNewRow, Mode } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { composeFieldModel, Field, Theme } from "verstak-mastak"
-import { App } from "models/App"
-import { ToolBar } from "./ToolBar.v"
-import { StatusBar } from "./StatusBar.v"
-import { WorkArea } from "./WorkArea.v"
+import { App } from "models/App.js"
+import { ToolBar } from "./ToolBar.v.js"
+import { StatusBar } from "./StatusBar.v.js"
+import { WorkArea } from "./WorkArea.v.js"
 
 export function MainWindow() {
   return (

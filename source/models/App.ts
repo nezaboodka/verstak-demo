@@ -1,7 +1,7 @@
 import { ObservableObject, reactive, transactional } from "reactronic"
 import { BaseHtmlDriver, SubTreeVariable, HtmlSensors } from "verstak"
-import { AppTheme } from "themes/AppTheme"
-import { Loader } from "./Loader"
+import { AppTheme } from "themes/AppTheme.js"
+import { Loader } from "./Loader.js"
 
 export class App extends ObservableObject {
   static readonly blinkingEffectMarker = "ё"
