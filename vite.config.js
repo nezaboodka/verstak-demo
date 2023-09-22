@@ -35,5 +35,7 @@ export default defineConfig({
   esbuild: {
     target: 'es2016',
   },
-  plugins: [tsconfigPaths()]
+  plugins: [tsconfigPaths({
+    projects: ['.'],
+  })]
 })
