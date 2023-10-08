@@ -36,8 +36,8 @@ export function MainWindow() {
           rebuild(b) {
             b.useStyle(app.theme.panel)
             b.minWidth = "10rem"
-            b.contentAlignment = Align.Top
-            b.blockAlignment = Align.Stretch
+            b.contentAlignment = Align.ToTop
+            b.blockAlignment = Align.ToBounds
             Note("Navigation Bar")
 
             startNewRow()
@@ -96,8 +96,8 @@ export function MainWindow() {
             b.useStyle(theme.markdown)
             b.minWidth = "16rem"
             b.widthGrowth = 2
-            b.contentAlignment = Align.Left + Align.Top,
-            b.blockAlignment = Align.Stretch,
+            b.contentAlignment = Align.ToLeft + Align.ToTop,
+            b.blockAlignment = Align.ToBounds,
             Markdown(EXAMPLE_CODE)
           }
         })

@@ -20,7 +20,7 @@ export function Watch(area: string): Block<HTMLElement> {
       mode: Mode.PinpointRebuild,
       initialize(b) {
         const s = b.native.style
-        b.contentAlignment = Align.Center
+        b.contentAlignment = Align.ToCenter
         // s.fontFamily = "Arial"
         s.cursor = "default"
       },

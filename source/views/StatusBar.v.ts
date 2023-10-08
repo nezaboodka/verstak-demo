@@ -70,7 +70,7 @@ export function StatusBar(builder?: BlockBuilder<HTMLElement, void, void>) {
           rebuild(b) {
             b.useStyle(theme.panel)
             b.widthGrowth = 1
-            b.contentAlignment = Align.Right
+            b.contentAlignment = Align.ToRight
             Field({
               initialize(b, base) {
                 const loader = app.loader

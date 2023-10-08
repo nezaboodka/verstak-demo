@@ -12,13 +12,13 @@ export function WorkArea(builder?: BlockBuilder<HTMLElement, void, void>) {
       rebuild(b) {
         // Blocks can be layed out automatically
         // based on their order and line feeds.
-        Ruler("1", Align.Left + Align.CenterY)
+        Ruler("1", Align.ToLeft + Align.ToCenterY)
         cursor({ cellsOverWidth: -1, cellsOverHeight: 0 })
-        Ruler("A", Align.CenterX + Align.Top)
-        Ruler("B", Align.CenterX + Align.Top)
-        Ruler("C", Align.CenterX + Align.Top)
-        startNewRow(); Ruler("2", Align.Left + Align.CenterY)
-        startNewRow(); Ruler("3", Align.Left + Align.CenterY)
+        Ruler("A", Align.ToCenterX + Align.ToTop)
+        Ruler("B", Align.ToCenterX + Align.ToTop)
+        Ruler("C", Align.ToCenterX + Align.ToTop)
+        startNewRow(); Ruler("2", Align.ToLeft + Align.ToCenterY)
+        startNewRow(); Ruler("3", Align.ToLeft + Align.ToCenterY)
         // Blocks can also be layed out
         // explicitly in exact cells.
         Watch("B2")
@@ -40,7 +40,7 @@ export function WorkArea(builder?: BlockBuilder<HTMLElement, void, void>) {
             const theme = Theme.actual as AppTheme
             b.native.classList.toggle(theme.panel, true)
             b.area = "B1"
-            b.blockAlignment = Align.Right + Align.Bottom
+            b.blockAlignment = Align.ToRight + Align.ToBottom
           }
         })
       }},
@@ -64,7 +64,7 @@ function ExampleData(area: string) {
   return (
     Section({
       initialize(b) {
-        b.contentAlignment = Align.Center
+        b.contentAlignment = Align.ToCenter
       },
       rebuild(b) {
         const theme = Theme.actual as AppTheme
