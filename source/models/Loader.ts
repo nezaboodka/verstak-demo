@@ -10,7 +10,7 @@ export class Loader extends ObservableObject {
     this.filter = ""
     this.loaded = []
     this.monitor = Monitor.create("Loader.monitor", -1, -1, 1)
-    Rx.getController(this.load).configure({ monitor: this.monitor })
+    Rx.getReaction(this.load).configure({ monitor: this.monitor })
   }
 
   @reactive
