@@ -43,8 +43,8 @@
       "verstak": [
         "../library/verstak/source/api.ts"
       ],
-      "verstak-mastak": [
-        "../library/verstak-mastak/api.ts"
+      "verstak-express": [
+        "../library/verstak-express/api.ts"
       ],
       "verstak-markdown": [
         "../library/verstak-markdown/source/api.ts"

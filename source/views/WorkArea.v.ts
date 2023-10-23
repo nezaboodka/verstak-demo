@@ -1,6 +1,6 @@
 import { refs } from "reactronic"
 import { Table, BlockBuilder, Section, Note, HtmlNote, startNewRow, Align, cursor } from "verstak"
-import { Theme, Toggle } from "verstak-mastak"
+import { Theme, Toggle } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { App } from "models/App.js"
 import { Watch } from "./Watch.js"

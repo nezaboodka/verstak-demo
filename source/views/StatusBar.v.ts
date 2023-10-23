@@ -1,6 +1,6 @@
 import { refs } from "reactronic"
 import { Section, BlockBuilder, Align } from "verstak"
-import { Button, Toggle, Field, composeFieldModel, Theme } from "verstak-mastak"
+import { Button, Toggle, Field, composeFieldModel, Theme } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { observableModel } from "common/Utils.js"
 import { App } from "models/App.js"

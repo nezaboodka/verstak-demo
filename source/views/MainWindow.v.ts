@@ -1,7 +1,7 @@
 import { refs } from "reactronic"
 import { Section, Align, Note, startNewRow, Mode } from "verstak"
 import { Markdown } from "verstak-markdown"
-import { composeFieldModel, Field, Theme } from "verstak-mastak"
+import { composeFieldModel, Field, Theme } from "verstak-express"
 import { App } from "models/App.js"
 import { ToolBar } from "./ToolBar.v.js"
 import { StatusBar } from "./StatusBar.v.js"

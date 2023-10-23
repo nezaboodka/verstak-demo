@@ -1,7 +1,7 @@
 import { refs } from "reactronic"
 import { Section, BlockBuilder, Img, startNewRow } from "verstak"
 import { Markdown } from "verstak-markdown"
-import { Icon, Field, composeFieldModel, Theme } from "verstak-mastak"
+import { Icon, Field, composeFieldModel, Theme } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { App } from "models/App.js"
 
