@@ -10,11 +10,11 @@ import { WorkArea } from "./WorkArea.v.js"
 export function MainWindow() {
   return (
     Section({
-      mode: Mode.PinpointRebuild,
+      mode: Mode.PinpointUpdate,
       initialize(b) {
         App.actual.sensors.listen(b.native)
       },
-      rebuild(b) {
+      update(b) {
         const app = App.actual
         const theme = app.theme
         Theme.actual = theme
@@ -25,7 +25,7 @@ export function MainWindow() {
         b.heightGrowth = 1
 
         ToolBar({
-          rebuild(b, base) {
+          update(b, base) {
             b.widthGrowth = 1
             base()
           }
@@ -33,7 +33,7 @@ export function MainWindow() {
 
         startNewRow()
         Section({
-          rebuild(b) {
+          update(b) {
             b.useStyle(app.theme.panel)
             b.minWidth = "10rem"
             b.contentAlignment = Align.ToTop
@@ -58,7 +58,7 @@ export function MainWindow() {
 
             startNewRow()
             Section({
-              rebuild(b) {
+              update(b) {
                 b.heightGrowth = 1
               }
             })
@@ -80,7 +80,7 @@ export function MainWindow() {
           }
         })
         WorkArea({
-          rebuild(b, base) {
+          update(b, base) {
             base()
             b.useStyle(theme.panel)
             b.useStyle(theme.accent)
@@ -89,9 +89,9 @@ export function MainWindow() {
           }
         })
         Section({
-          mode: Mode.PinpointRebuild,
+          mode: Mode.PinpointUpdate,
           triggers: { theme },
-          rebuild(b) {
+          update(b) {
             b.useStyle(theme.panel)
             b.useStyle(theme.markdown)
             b.minWidth = "16rem"
@@ -104,7 +104,7 @@ export function MainWindow() {
 
         startNewRow()
         StatusBar({
-          rebuild(b, base) {
+          update(b, base) {
             base()
             b.widthGrowth = 1
           }
@@ -121,7 +121,7 @@ size of each user.
 
 \`\`\` js
 Table("Example", {
-  rebuild(b) {
+  update(b) {
     // Blocks can be layed out automatically
     // based on their order and line feeds.
     Ruler("1", Align.Left + Align.CenterY)
