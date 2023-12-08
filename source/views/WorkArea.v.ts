@@ -1,16 +1,16 @@
 import { refs } from "reactronic"
-import { Table, BlockBuilder, Section, Note, HtmlNote, startNewRow, Align, cursor } from "verstak"
+import { Table, ElBuilder, Section, Note, HtmlNote, startNewRow, Align, cursor } from "verstak"
 import { Theme, Toggle } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { App } from "models/App.js"
 import { Watch } from "./Watch.js"
 import { observableModel } from "common/Utils.js"
 
-export function WorkArea(builder?: BlockBuilder<HTMLElement, void, void>) {
+export function WorkArea(builder?: ElBuilder<HTMLElement, void, void>) {
   return (
     Table(builder, {
       update(b) {
-        // Blocks can be layed out automatically
+        // Elements can be layed out automatically
         // based on their order and line feeds.
         Ruler("1", Align.ToLeft + Align.ToCenterY)
         cursor({ cellsOverWidth: -1, cellsOverHeight: 0 })
@@ -19,7 +19,7 @@ export function WorkArea(builder?: BlockBuilder<HTMLElement, void, void>) {
         Ruler("C", Align.ToCenterX + Align.ToTop)
         startNewRow(); Ruler("2", Align.ToLeft + Align.ToCenterY)
         startNewRow(); Ruler("3", Align.ToLeft + Align.ToCenterY)
-        // Blocks can also be layed out
+        // Elements can also be layed out
         // explicitly in exact cells.
         Watch("B2")
         ExampleData("A1:B1")
@@ -40,7 +40,7 @@ export function WorkArea(builder?: BlockBuilder<HTMLElement, void, void>) {
             const theme = Theme.actual as AppTheme
             b.native.classList.toggle(theme.panel, true)
             b.area = "B1"
-            b.blockAlignment = Align.ToRight + Align.ToBottom
+            b.elementAlignment = Align.ToRight + Align.ToBottom
           }
         })
       }},
@@ -52,7 +52,7 @@ function Ruler(title: string, align: Align) {
   return (
     Section({
       update(b) {
-        b.blockAlignment = align
+        b.elementAlignment = align
         b.native.style.fontSize = "smaller"
         HtmlNote(`&nbsp;${title}`)
       }

@@ -1,7 +1,7 @@
-import { Section, BlockBuilder, Mode } from "verstak"
+import { Section, ElBuilder, Mode } from "verstak"
 import { Theme } from "./Theme.js"
 
-export function Icon(name: string, builder?: BlockBuilder<HTMLElement, void, void>) {
+export function Icon(name: string, builder?: ElBuilder<HTMLElement, void, void>) {
   return (
     Section(builder, {
       mode: Mode.PinpointUpdate,

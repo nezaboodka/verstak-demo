@@ -1,5 +1,5 @@
 import { Transaction, Clock } from "reactronic"
-import { Section, Align, Svg, Circle, Rect, Text, G, Block, Polygon, Mode } from "verstak"
+import { Section, Align, Svg, Circle, Rect, Text, G, El, Polygon, Mode } from "verstak"
 import { Theme } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { App } from "models/App.js"
@@ -14,7 +14,7 @@ const BezelLabelColor = "#444444"
 
 const clock = Transaction.run(null, () => new Clock(200))
 
-export function Watch(area: string): Block<HTMLElement> {
+export function Watch(area: string): El<HTMLElement> {
   return (
     Section({
       mode: Mode.PinpointUpdate,
@@ -219,7 +219,7 @@ function radialDots(color: string, step: number, major: number, indent: number):
 
 function Arrow(widthA: number, widthB: number, margin: number, length: number,
   degrees: number, duration: number, color: string, stroke: string,
-  shadow: boolean, svg: SVGSVGElement): Block<SVGPolygonElement> {
+  shadow: boolean, svg: SVGSVGElement): El<SVGPolygonElement> {
   return (
     Polygon({
       update(b) {
@@ -256,7 +256,7 @@ function Arrow(widthA: number, widthB: number, margin: number, length: number,
 }
 
 function ArrowEx(segments: Array<number | string>, degrees: number,
-  duration: number, color: string, stroke: string): Block<SVGPolygonElement> {
+  duration: number, color: string, stroke: string): El<SVGPolygonElement> {
   return (
     Polygon({
       update(b) {
@@ -284,7 +284,7 @@ function ArrowEx(segments: Array<number | string>, degrees: number,
 
 function RadialLabel(degree: number, content: string, color: string,
   radius: number, size: number, weight: string, bezel: boolean | undefined,
-  root: SVGSVGElement): Block<SVGTextElement> {
+  root: SVGSVGElement): El<SVGTextElement> {
   return (
     Text({
       update(b) {

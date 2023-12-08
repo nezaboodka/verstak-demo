@@ -1,11 +1,11 @@
 import { refs } from "reactronic"
-import { Section, BlockBuilder, Img, startNewRow } from "verstak"
+import { Section, ElBuilder, Img, startNewRow } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { Icon, Field, composeFieldModel, Theme } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { App } from "models/App.js"
 
-export function ToolBar(builder?: BlockBuilder<HTMLElement, void, void>) {
+export function ToolBar(builder?: ElBuilder<HTMLElement, void, void>) {
   return (
     Section(builder, {
       update(b) {
@@ -15,7 +15,7 @@ export function ToolBar(builder?: BlockBuilder<HTMLElement, void, void>) {
         //   initialize(b, base) {
         //     base()
         //     b.contentAlignment = Align.Stretch
-        //     b.blockAlignment = Align.Stretch
+        //     b.elementAlignment = Align.Stretch
         //     b.model.source = "https://nezaboodka.com/img/star-768x768-circle.png"
         //     b.native.className = cx(s.Panel, s.Clickable, s.Logo)
         //     b.native.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)

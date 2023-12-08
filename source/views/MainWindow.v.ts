@@ -37,7 +37,7 @@ export function MainWindow() {
             b.useStyle(app.theme.panel)
             b.minWidth = "10rem"
             b.contentAlignment = Align.ToTop
-            b.blockAlignment = Align.ToBounds
+            b.elementAlignment = Align.ToBounds
             Note("Navigation Bar")
 
             startNewRow()
@@ -97,7 +97,7 @@ export function MainWindow() {
             b.minWidth = "16rem"
             b.widthGrowth = 2
             b.contentAlignment = Align.ToLeft + Align.ToTop,
-            b.blockAlignment = Align.ToBounds,
+            b.elementAlignment = Align.ToBounds,
             Markdown(EXAMPLE_CODE)
           }
         })
@@ -115,14 +115,14 @@ export function MainWindow() {
 }
 
 const EXAMPLE_CODE = `
-Block size is automatically adjusted to size of table
+Element size is automatically adjusted to size of table
 cells, while cells are automatically adjusted to screen
 size of each user.
 
 \`\`\` js
 Table("Example", {
   update(b) {
-    // Blocks can be layed out automatically
+    // Elements can be layed out automatically
     // based on their order and line feeds.
     Ruler("1", Align.Left + Align.CenterY)
     cursor({ cellsOverWidth: -1, cellsOverHeight: 0 })
@@ -131,7 +131,7 @@ Table("Example", {
     Ruler("C", Align.CenterX + Align.Top)
     startNewRow(); Ruler("2", Align.Left + Align.CenterY)
     startNewRow(); Ruler("3", Align.Left + Align.CenterY)
-    // Blocks can also be layed out
+    // Elements can also be layed out
     // explicitly in exact cells.
     ExampleData("B2")
     ExampleData("A1:B1")

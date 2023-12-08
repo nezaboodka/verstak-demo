@@ -1,13 +1,13 @@
 
 /* Verstak Presets */
 
-/* блок,
-block {
+/* эль,
+el {
   align-self: center;
 } */
 
-/* блок[вид="секция"],
-block[kind="section"] {
+/* эль[вид="секция"],
+el[kind="section"] {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,8 +16,8 @@ block[kind="section"] {
   min-width: 0;
 } */
 
-/* блок[вид="таблица"],
-block[kind="table"] {
+/* эль[вид="таблица"],
+el[kind="table"] {
   display: grid;
   flex-basis: 0;
   grid-auto-rows: minmax(min-content, 1fr);
@@ -25,10 +25,10 @@ block[kind="table"] {
   text-align: initial;
 } */
 
-/* блок[вид="секция"][перенос] > строка,
-блок[вид="секция"][перенос="да"] > строка,
-block[kind="section"][wrapping] > row,
-block[kind="section"][wrapping="true"] > row {
+/* эль[вид="секция"][перенос] > строка,
+эль[вид="секция"][перенос="да"] > строка,
+el[kind="section"][wrapping] > row,
+el[kind="section"][wrapping="true"] > row {
   flex-flow: wrap;
 } */
 
@@ -38,43 +38,43 @@ row {
   flex-direction: row;
 } */
 
-/* блок[вид="заметка"],
-block[kind="note"] {
+/* эль[вид="заметка"],
+el[kind="note"] {
   flex-shrink: 1;
 } */
 
-/* блок[вид="заметка"]:not([перенос]),
-блок[вид="заметка"][перенос="нет"],
-block[kind="note"]:not([wrapping]),
-block[kind="note"][wrapping="false"] {
+/* эль[вид="заметка"]:not([перенос]),
+эль[вид="заметка"][перенос="нет"],
+el[kind="note"]:not([wrapping]),
+el[kind="note"][wrapping="false"] {
   display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 } */
 
-/* блок[вид="заметка"][перенос="да"],
-block[kind="note"][wrapping="true"] {
+/* эль[вид="заметка"][перенос="да"],
+el[kind="note"][wrapping="true"] {
   display: inline-grid;
 } */
 
-/* блок[вид="группа"],
-block[kind="group"] {
+/* эль[вид="группа"],
+el[kind="group"] {
   display: contents;
 } */
 
-/* блок[вид="таблица"] > строка,
-block[kind="table"] > row {
+/* эль[вид="таблица"] > строка,
+el[kind="table"] > row {
   display: none !important;
 } */
 
-/* блок[вид="секция"] > блок,
-block[kind="section"] > block {
+/* эль[вид="секция"] > эль,
+el[kind="section"] > el {
   place-self: start center;
 }
 
-блок[вид="таблица"] > блок[вид="секция"],
-block[kind="table"] > block[kind="section"] {
+эль[вид="таблица"] > эль[вид="секция"],
+el[kind="table"] > el[kind="section"] {
   place-self: stretch;
 } */
 

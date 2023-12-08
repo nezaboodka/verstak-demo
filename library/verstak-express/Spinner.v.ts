@@ -1,4 +1,4 @@
-import { Section, BlockBuilder, Note, Mode } from "verstak"
+import { Section, ElBuilder, Note, Mode } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils.js"
 
 export interface SpinnerModel {
@@ -6,7 +6,7 @@ export interface SpinnerModel {
   color: string
 }
 
-export function Spinner(builder?: BlockBuilder<HTMLElement, SpinnerModel>) {
+export function Spinner(builder?: ElBuilder<HTMLElement, SpinnerModel>) {
   return (
     Section<SpinnerModel>(builder, {
       mode: Mode.PinpointUpdate,

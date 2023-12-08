@@ -14,10 +14,10 @@ body {
   font-size: min(5vw, 0.4cm);
 }
 
-body > блок[вид="секция"],
-body > block[kind="section"],
-body > блок[вид="группа"] > блок[вид="секция"],
-body > block[kind="group"] > block[kind="section"] {
+body > эль[вид="секция"],
+body > el[kind="section"],
+body > эль[вид="группа"] > эль[вид="секция"],
+body > el[kind="group"] > el[kind="section"] {
   flex-grow: 1;
 }
 

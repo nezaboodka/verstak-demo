@@ -1,11 +1,11 @@
-import { Section, BlockBuilder, Mode } from "verstak"
+import { Section, ElBuilder, Mode } from "verstak"
 import { observableModel } from "common/Utils.js"
 
 export interface ImageModel {
   source?: string
 }
 
-export function Image(builder?: BlockBuilder<HTMLElement, ImageModel>) {
+export function Image(builder?: ElBuilder<HTMLElement, ImageModel>) {
   return (
     Section<ImageModel>(builder, {
       mode: Mode.PinpointUpdate,
