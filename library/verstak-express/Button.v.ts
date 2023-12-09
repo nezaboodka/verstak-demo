@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { Section, RxNodeDecl, Note, Mode, El } from "verstak"
+import { Section, RxNodeSpec, Note, Mode, El } from "verstak"
 import { observableModel } from "common/Utils.js"
 import { Theme } from "./Theme.js"
 import { Icon } from "./Icon.v.js"
@@ -10,14 +10,14 @@ export interface ButtonModel {
   action?(): void
 }
 
-export function Button(builder?: RxNodeDecl<El<HTMLElement, ButtonModel>>) {
+export function Button(spec?: RxNodeSpec<El<HTMLElement, ButtonModel>>) {
   return (
-    Section<ButtonModel>(builder, {
+    Section<ButtonModel>(spec, {
       mode: Mode.PinpointUpdate,
       initialize(b) {
         b.model ??= observableModel({
           icon: "fa-solid fa-square",
-          label: b.node.builder.key,
+          label: b.node.spec.key,
         })
         b.native.onclick = () => Transaction.run(null, () => b.model.action?.())
       },

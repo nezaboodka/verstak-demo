@@ -1,9 +1,9 @@
-import { Section, RxNodeDecl, Mode, El } from "verstak"
+import { Section, RxNodeSpec, Mode, El } from "verstak"
 import { Theme } from "./Theme.js"
 
-export function Icon(name: string, builder?: RxNodeDecl<El<HTMLElement, void, void>>) {
+export function Icon(name: string, spec?: RxNodeSpec<El<HTMLElement, void, void>>) {
   return (
-    Section(builder, {
+    Section(spec, {
       mode: Mode.PinpointUpdate,
       update(b) {
         const s = Theme.actual.icon

@@ -1,13 +1,13 @@
 import { refs } from "reactronic"
-import { Section, RxNodeDecl, Img, startNewRow, El } from "verstak"
+import { Section, RxNodeSpec, Img, startNewRow, El } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { Icon, Field, composeFieldModel, Theme } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { App } from "models/App.js"
 
-export function ToolBar(builder?: RxNodeDecl<El<HTMLElement, void, void>>) {
+export function ToolBar(spec?: RxNodeSpec<El<HTMLElement, void, void>>) {
   return (
-    Section(builder, {
+    Section(spec, {
       update(b) {
         const app = App.actual
         const theme = Theme.actual as AppTheme

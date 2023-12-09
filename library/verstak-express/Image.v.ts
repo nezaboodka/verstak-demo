@@ -1,13 +1,13 @@
-import { Section, RxNodeDecl, Mode, El } from "verstak"
+import { Section, RxNodeSpec, Mode, El } from "verstak"
 import { observableModel } from "common/Utils.js"
 
 export interface ImageModel {
   source?: string
 }
 
-export function Image(builder?: RxNodeDecl<El<HTMLElement, ImageModel>>) {
+export function Image(spec?: RxNodeSpec<El<HTMLElement, ImageModel>>) {
   return (
-    Section<ImageModel>(builder, {
+    Section<ImageModel>(spec, {
       mode: Mode.PinpointUpdate,
       initialize(b) {
         b.model ??= observableModel({ source: undefined })

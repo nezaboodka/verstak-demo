@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { Section, RxNodeDecl, Note, FocusModel, FocuserReaction, startNewRow, Mode, El } from "verstak"
+import { Section, RxNodeSpec, Note, FocusModel, FocuserReaction, startNewRow, Mode, El } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils.js"
 import { Theme, FieldStyling } from "./Theme.js"
 import { Icon } from "./Icon.v.js"
@@ -16,9 +16,9 @@ export interface FieldModel<T = string> extends FocusModel {
   inputStyle: string
 }
 
-export function Field(builder?: RxNodeDecl<El<HTMLElement, FieldModel>>) {
+export function Field(spec?: RxNodeSpec<El<HTMLElement, FieldModel>>) {
   return (
-    Section<FieldModel>(builder, {
+    Section<FieldModel>(spec, {
       mode: Mode.PinpointUpdate,
       initialize(b) {
         b.model ??= composeFieldModel()
