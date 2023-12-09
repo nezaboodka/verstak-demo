@@ -1,12 +1,12 @@
 import { refs } from "reactronic"
-import { Table, ElBuilder, Section, Note, HtmlNote, startNewRow, Align, cursor } from "verstak"
+import { Table, RxNodeDecl, Section, Note, HtmlNote, startNewRow, Align, cursor } from "verstak"
 import { Theme, Toggle } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { App } from "models/App.js"
 import { Watch } from "./Watch.js"
 import { observableModel } from "common/Utils.js"
 
-export function WorkArea(builder?: ElBuilder<HTMLElement, void, void>) {
+export function WorkArea(builder?: RxNodeDecl<HTMLElement, void, void>) {
   return (
     Table(builder, {
       update(b) {

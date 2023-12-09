@@ -1,11 +1,11 @@
 import { refs } from "reactronic"
-import { Section, ElBuilder, Align } from "verstak"
+import { Section, RxNodeDecl, Align } from "verstak"
 import { Button, Toggle, Field, composeFieldModel, Theme } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { observableModel } from "common/Utils.js"
 import { App } from "models/App.js"
 
-export function StatusBar(builder?: ElBuilder<HTMLElement, void, void>) {
+export function StatusBar(builder?: RxNodeDecl<HTMLElement, void, void>) {
   return (
     Section(builder, {
       update(b) {

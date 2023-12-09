@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { Section, ElBuilder, Note, Mode } from "verstak"
+import { Section, RxNodeDecl, Note, Mode } from "verstak"
 import { observableModel } from "common/Utils.js"
 import { Theme } from "./Theme.js"
 import { Icon } from "./Icon.v.js"
@@ -10,7 +10,7 @@ export interface ToggleModel {
   color?: string
 }
 
-export function Toggle(builder?: ElBuilder<HTMLElement, ToggleModel>) {
+export function Toggle(builder?: RxNodeDecl<HTMLElement, ToggleModel>) {
   return (
     Section<ToggleModel>(builder, {
       mode: Mode.PinpointUpdate,
