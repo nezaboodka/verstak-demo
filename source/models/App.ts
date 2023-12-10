@@ -1,5 +1,5 @@
 import { ObservableObject, reactive, transactional } from "reactronic"
-import { WebDriver, SubTreeVariable, HtmlSensors } from "verstak"
+import { VerstakDriver, SubTreeVariable, HtmlSensors } from "verstak"
 import { AppTheme } from "themes/AppTheme.js"
 import { Loader } from "./Loader.js"
 
@@ -49,6 +49,6 @@ export class App extends ObservableObject {
 
   @reactive
   protected applyBlinkingEffect(): void {
-    WebDriver.blinkingEffectMarker = this.isBlinkingEffectOn ? App.blinkingEffectMarker : undefined
+    VerstakDriver.blinkingEffectMarker = this.isBlinkingEffectOn ? App.blinkingEffectMarker : undefined
   }
 }
