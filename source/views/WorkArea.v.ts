@@ -1,14 +1,14 @@
 import { refs } from "reactronic"
-import { Table, RxNodeSpec, Section, Note, HtmlNote, startNewRow, Align, cursor, El } from "verstak"
+import { Table, RxNodeDecl, Section, Note, HtmlNote, startNewRow, Align, cursor, El } from "verstak"
 import { Theme, Toggle } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { App } from "models/App.js"
 import { Watch } from "./Watch.js"
 import { observableModel } from "common/Utils.js"
 
-export function WorkArea(spec?: RxNodeSpec<El<HTMLElement, void, void>>) {
+export function WorkArea(decl?: RxNodeDecl<El<HTMLElement, void, void>>) {
   return (
-    Table(spec, {
+    Table(decl, {
       update(b) {
         // Elements can be layed out automatically
         // based on their order and line feeds.

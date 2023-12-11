@@ -1,13 +1,13 @@
 import { refs } from "reactronic"
-import { Section, RxNodeSpec, Align, El } from "verstak"
+import { Section, RxNodeDecl, Align, El } from "verstak"
 import { Button, Toggle, Field, composeFieldModel, Theme } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { observableModel } from "common/Utils.js"
 import { App } from "models/App.js"
 
-export function StatusBar(spec?: RxNodeSpec<El<HTMLElement, void, void>>) {
+export function StatusBar(decl?: RxNodeDecl<El<HTMLElement, void, void>>) {
   return (
-    Section(spec, {
+    Section(decl, {
       update(b) {
         // We get app and theme as a context variables
         // (instead of functional parameters) in order

@@ -1,5 +1,5 @@
 import { Transaction } from "reactronic"
-import { Section, RxNodeSpec, Note, Mode, El } from "verstak"
+import { Section, RxNodeDecl, Note, Mode, El } from "verstak"
 import { observableModel } from "common/Utils.js"
 import { Theme } from "./Theme.js"
 import { Icon } from "./Icon.v.js"
@@ -10,13 +10,13 @@ export interface ToggleModel {
   color?: string
 }
 
-export function Toggle(spec?: RxNodeSpec<El<HTMLElement, ToggleModel>>) {
+export function Toggle(decl?: RxNodeDecl<El<HTMLElement, ToggleModel>>) {
   return (
-    Section<ToggleModel>(spec, {
+    Section<ToggleModel>(decl, {
       mode: Mode.PinpointUpdate,
       initialize(b) {
         b.model ??= observableModel({
-          label: b.node.spec.key,
+          label: b.node.decl.key,
           checked: true,
           color: "green" }) // model is either taken from parameter or created internally
         b.native.onclick = () => Transaction.run(null, () => b.model.checked = !b.model.checked)

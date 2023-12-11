@@ -1,4 +1,4 @@
-import { Section, RxNodeSpec, Note, Mode, El } from "verstak"
+import { Section, RxNodeDecl, Note, Mode, El } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils.js"
 
 export interface SpinnerModel {
@@ -6,9 +6,9 @@ export interface SpinnerModel {
   color: string
 }
 
-export function Spinner(spec?: RxNodeSpec<El<HTMLElement, SpinnerModel>>) {
+export function Spinner(decl?: RxNodeDecl<El<HTMLElement, SpinnerModel>>) {
   return (
-    Section<SpinnerModel>(spec, {
+    Section<SpinnerModel>(decl, {
       mode: Mode.PinpointUpdate,
       initialize(b) {
         b.model ??= composeSpinnerModel()
