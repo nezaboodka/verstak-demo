@@ -25,15 +25,15 @@ el[kind="table"] {
   text-align: initial;
 } */
 
-/* эль[вид="секция"][перенос] > строка,
-эль[вид="секция"][перенос="да"] > строка,
-el[kind="section"][wrapping] > row,
-el[kind="section"][wrapping="true"] > row {
+/* эль[вид="секция"][перенос] > раздел,
+эль[вид="секция"][перенос="да"] > раздел,
+el[kind="section"][wrapping] > part,
+el[kind="section"][wrapping="true"] > part {
   flex-flow: wrap;
 } */
 
-/* строка,
-row {
+/* раздел,
+part {
   display: flex;
   flex-direction: row;
 } */
@@ -63,8 +63,8 @@ el[kind="group"] {
   display: contents;
 } */
 
-/* эль[вид="таблица"] > строка,
-el[kind="table"] > row {
+/* эль[вид="таблица"] > раздел,
+el[kind="table"] > part {
   display: none !important;
 } */
 
