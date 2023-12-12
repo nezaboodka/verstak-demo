@@ -1,13 +1,13 @@
 
 /* Verstak Presets */
 
-/* эль,
-el {
+/* элемент,
+element {
   align-self: center;
 } */
 
-/* эль[вид="секция"],
-el[kind="section"] {
+/* элемент[вид="секция"],
+element[kind="section"] {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,8 +16,8 @@ el[kind="section"] {
   min-width: 0;
 } */
 
-/* эль[вид="таблица"],
-el[kind="table"] {
+/* элемент[вид="таблица"],
+element[kind="table"] {
   display: grid;
   flex-basis: 0;
   grid-auto-rows: minmax(min-content, 1fr);
@@ -25,56 +25,56 @@ el[kind="table"] {
   text-align: initial;
 } */
 
-/* эль[вид="секция"][перенос] > раздел,
-эль[вид="секция"][перенос="да"] > раздел,
-el[kind="section"][wrapping] > part,
-el[kind="section"][wrapping="true"] > part {
+/* элемент[вид="секция"][перенос] > раздел,
+элемент[вид="секция"][перенос="да"] > раздел,
+element[kind="section"][wrapping] > partition,
+element[kind="section"][wrapping="true"] > partition {
   flex-flow: wrap;
 } */
 
 /* раздел,
-part {
+partition {
   display: flex;
   flex-direction: row;
 } */
 
-/* эль[вид="заметка"],
-el[kind="note"] {
+/* элемент[вид="заметка"],
+element[kind="note"] {
   flex-shrink: 1;
 } */
 
-/* эль[вид="заметка"]:not([перенос]),
-эль[вид="заметка"][перенос="нет"],
-el[kind="note"]:not([wrapping]),
-el[kind="note"][wrapping="false"] {
+/* элемент[вид="заметка"]:not([перенос]),
+элемент[вид="заметка"][перенос="нет"],
+element[kind="note"]:not([wrapping]),
+element[kind="note"][wrapping="false"] {
   display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 } */
 
-/* эль[вид="заметка"][перенос="да"],
-el[kind="note"][wrapping="true"] {
+/* элемент[вид="заметка"][перенос="да"],
+element[kind="note"][wrapping="true"] {
   display: inline-grid;
 } */
 
-/* эль[вид="группа"],
-el[kind="group"] {
+/* элемент[вид="группа"],
+element[kind="group"] {
   display: contents;
 } */
 
-/* эль[вид="таблица"] > раздел,
-el[kind="table"] > part {
+/* элемент[вид="таблица"] > раздел,
+element[kind="table"] > partition {
   display: none !important;
 } */
 
-/* эль[вид="секция"] > эль,
-el[kind="section"] > el {
+/* элемент[вид="секция"] > элемент,
+element[kind="section"] > element {
   place-self: start center;
 }
 
-эль[вид="таблица"] > эль[вид="секция"],
-el[kind="table"] > el[kind="section"] {
+элемент[вид="таблица"] > элемент[вид="секция"],
+element[kind="table"] > element[kind="section"] {
   place-self: stretch;
 } */
 
