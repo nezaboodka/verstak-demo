@@ -1,4 +1,4 @@
-import { ObservableObject, pause, reactive, Monitor, Rx } from "reactronic"
+import { ObservableObject, pause, reactive, Monitor, RxSystem } from "reactronic"
 
 export class Loader extends ObservableObject {
   filter: string
@@ -10,7 +10,7 @@ export class Loader extends ObservableObject {
     this.filter = ""
     this.loaded = []
     this.monitor = Monitor.create("Loader.monitor", -1, -1, 1)
-    Rx.getReaction(this.load).configure({ monitor: this.monitor })
+    RxSystem.getReaction(this.load).configure({ monitor: this.monitor })
   }
 
   @reactive
