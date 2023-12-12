@@ -12,13 +12,17 @@ export function WorkArea(decl?: RxNodeDecl<El<HTMLElement, void, void>>) {
       update(b) {
         // Elements can be layed out automatically
         // based on their order and line feeds.
+        startNewRow()
         Ruler("1", Align.ToLeft + Align.ToCenterY)
         cursor({ cellsOverWidth: -1, cellsOverHeight: 0 })
         Ruler("A", Align.ToCenterX + Align.ToTop)
         Ruler("B", Align.ToCenterX + Align.ToTop)
         Ruler("C", Align.ToCenterX + Align.ToTop)
-        startNewRow(); Ruler("2", Align.ToLeft + Align.ToCenterY)
-        startNewRow(); Ruler("3", Align.ToLeft + Align.ToCenterY)
+        startNewRow()
+        Ruler("2", Align.ToLeft + Align.ToCenterY)
+        startNewRow()
+        Ruler("3", Align.ToLeft + Align.ToCenterY)
+
         // Elements can also be layed out
         // explicitly in exact cells.
         Watch("B2")
