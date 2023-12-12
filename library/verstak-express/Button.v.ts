@@ -10,14 +10,14 @@ export interface ButtonModel {
   action?(): void
 }
 
-export function Button(decl?: RxNodeDecl<El<HTMLElement, ButtonModel>>) {
+export function Button(declaration?: RxNodeDecl<El<HTMLElement, ButtonModel>>) {
   return (
-    Section<ButtonModel>(decl, {
+    Section<ButtonModel>(declaration, {
       mode: Mode.PinpointUpdate,
       initialize(b) {
         b.model ??= observableModel({
           icon: "fa-solid fa-square",
-          label: b.node.decl.key,
+          label: b.node.declaration.key,
         })
         b.native.onclick = () => Transaction.run(null, () => b.model.action?.())
       },

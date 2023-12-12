@@ -6,9 +6,9 @@ import { App } from "models/App.js"
 import { Watch } from "./Watch.js"
 import { observableModel } from "common/Utils.js"
 
-export function WorkArea(decl?: RxNodeDecl<El<HTMLElement, void, void>>) {
+export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void, void>>) {
   return (
-    Table(decl, {
+    Table(declaration, {
       update(b) {
         // Elements can be layed out automatically
         // based on their order and line feeds.

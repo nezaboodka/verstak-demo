@@ -5,9 +5,9 @@ export interface ImageModel {
   source?: string
 }
 
-export function Image(decl?: RxNodeDecl<El<HTMLElement, ImageModel>>) {
+export function Image(declaration?: RxNodeDecl<El<HTMLElement, ImageModel>>) {
   return (
-    Section<ImageModel>(decl, {
+    Section<ImageModel>(declaration, {
       mode: Mode.PinpointUpdate,
       initialize(b) {
         b.model ??= observableModel({ source: undefined })

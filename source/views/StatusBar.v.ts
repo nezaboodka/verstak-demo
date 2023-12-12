@@ -5,9 +5,9 @@ import { AppTheme } from "themes/AppTheme.js"
 import { observableModel } from "common/Utils.js"
 import { App } from "models/App.js"
 
-export function StatusBar(decl?: RxNodeDecl<El<HTMLElement, void, void>>) {
+export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void, void>>) {
   return (
-    Section(decl, {
+    Section(declaration, {
       update(b) {
         // We get app and theme as a context variables
         // (instead of functional parameters) in order

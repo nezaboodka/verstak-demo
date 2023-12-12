@@ -16,9 +16,9 @@ export interface FieldModel<T = string> extends FocusModel {
   inputStyle: string
 }
 
-export function Field(decl?: RxNodeDecl<El<HTMLElement, FieldModel>>) {
+export function Field(declaration?: RxNodeDecl<El<HTMLElement, FieldModel>>) {
   return (
-    Section<FieldModel>(decl, {
+    Section<FieldModel>(declaration, {
       mode: Mode.PinpointUpdate,
       initialize(b) {
         b.model ??= composeFieldModel()

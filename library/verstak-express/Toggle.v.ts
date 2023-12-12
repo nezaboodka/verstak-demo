@@ -10,13 +10,13 @@ export interface ToggleModel {
   color?: string
 }
 
-export function Toggle(decl?: RxNodeDecl<El<HTMLElement, ToggleModel>>) {
+export function Toggle(declaration?: RxNodeDecl<El<HTMLElement, ToggleModel>>) {
   return (
-    Section<ToggleModel>(decl, {
+    Section<ToggleModel>(declaration, {
       mode: Mode.PinpointUpdate,
       initialize(b) {
         b.model ??= observableModel({
-          label: b.node.decl.key,
+          label: b.node.declaration.key,
           checked: true,
           color: "green" }) // model is either taken from parameter or created internally
         b.native.onclick = () => Transaction.run(null, () => b.model.checked = !b.model.checked)

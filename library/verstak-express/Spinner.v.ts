@@ -6,9 +6,9 @@ export interface SpinnerModel {
   color: string
 }
 
-export function Spinner(decl?: RxNodeDecl<El<HTMLElement, SpinnerModel>>) {
+export function Spinner(declaration?: RxNodeDecl<El<HTMLElement, SpinnerModel>>) {
   return (
-    Section<SpinnerModel>(decl, {
+    Section<SpinnerModel>(declaration, {
       mode: Mode.PinpointUpdate,
       initialize(b) {
         b.model ??= composeSpinnerModel()
