@@ -1,11 +1,11 @@
 import { ObservableObject, reactive, transactional } from "reactronic"
-import { VerstakDriver, SubTreeVariable, HtmlSensors } from "verstak"
+import { VerstakDriver, RxNodeVariable, HtmlSensors } from "verstak"
 import { AppTheme } from "themes/AppTheme.js"
 import { Loader } from "./Loader.js"
 
 export class App extends ObservableObject {
   static readonly blinkingEffectMarker = "ё"
-  private static readonly gCurrent = new SubTreeVariable<App>()
+  private static readonly gCurrent = new RxNodeVariable<App>()
 
   version: string
   sensors: HtmlSensors
