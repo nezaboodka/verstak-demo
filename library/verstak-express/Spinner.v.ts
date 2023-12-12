@@ -1,4 +1,5 @@
-import { Section, RxNodeDecl, Note, Mode, El } from "verstak"
+import { RxNodeDecl, Mode } from "reactronic"
+import { Section, Note, El } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils.js"
 
 export interface SpinnerModel {

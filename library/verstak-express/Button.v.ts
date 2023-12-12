@@ -1,5 +1,5 @@
-import { Transaction } from "reactronic"
-import { Section, RxNodeDecl, Note, Mode, El } from "verstak"
+import { Transaction, RxNodeDecl, Mode } from "reactronic"
+import { Section, Note, El } from "verstak"
 import { observableModel } from "common/Utils.js"
 import { Theme } from "./Theme.js"
 import { Icon } from "./Icon.v.js"

@@ -1,4 +1,5 @@
-import { Section, RxNodeDecl, Mode, El } from "verstak"
+import { RxNodeDecl, Mode } from "reactronic"
+import { Section, El } from "verstak"
 import { Theme } from "./Theme.js"
 
 export function Icon(name: string,

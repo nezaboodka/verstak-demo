@@ -1,5 +1,5 @@
-import { Transaction } from "reactronic"
-import { HtmlBody, startNewRow, Mode } from "verstak"
+import { Transaction, Mode } from "reactronic"
+import { HtmlBody, startNewRow } from "verstak"
 import { configureDebugging } from "dbg.js"
 import { App } from "models/App.js"
 import { MainWindow } from "views/MainWindow.v.js"

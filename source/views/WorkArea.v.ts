@@ -1,5 +1,5 @@
-import { refs } from "reactronic"
-import { Table, RxNodeDecl, Section, Note, HtmlNote, startNewRow, Align, cursor, El } from "verstak"
+import { refs, RxNodeDecl } from "reactronic"
+import { Table, Section, Note, HtmlNote, startNewRow, Align, cursor, El } from "verstak"
 import { Theme, Toggle } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { App } from "models/App.js"

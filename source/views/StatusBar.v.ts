@@ -1,5 +1,5 @@
-import { refs } from "reactronic"
-import { Section, RxNodeDecl, Align, El } from "verstak"
+import { refs, RxNodeDecl } from "reactronic"
+import { Section, Align, El } from "verstak"
 import { Button, Toggle, Field, composeFieldModel, Theme } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { observableModel } from "common/Utils.js"

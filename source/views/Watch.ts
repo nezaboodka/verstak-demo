@@ -1,5 +1,5 @@
-import { Transaction, Clock } from "reactronic"
-import { Section, Align, Svg, Circle, Rect, Text, G, El, Polygon, Mode } from "verstak"
+import { Transaction, Clock, Mode } from "reactronic"
+import { Section, Align, Svg, Circle, Rect, Text, G, El, Polygon } from "verstak"
 import { Theme } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { App } from "models/App.js"

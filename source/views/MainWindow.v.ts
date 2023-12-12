@@ -1,5 +1,5 @@
-import { refs } from "reactronic"
-import { Section, Align, Note, startNewRow, Mode } from "verstak"
+import { refs, Mode } from "reactronic"
+import { Section, Align, Note, startNewRow } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { composeFieldModel, Field, Theme } from "verstak-express"
 import { App } from "models/App.js"
