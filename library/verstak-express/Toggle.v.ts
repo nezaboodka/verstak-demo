@@ -13,7 +13,7 @@ export interface ToggleModel {
 export function Toggle(declaration?: RxNodeDecl<El<HTMLElement, ToggleModel>>) {
   return (
     Section<ToggleModel>(declaration, {
-      mode: Mode.PinpointUpdate,
+      mode: Mode.IndependentUpdate,
       initialize(b) {
         b.model ??= observableModel({
           label: b.node.declaration.key,

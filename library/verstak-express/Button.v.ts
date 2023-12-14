@@ -13,7 +13,7 @@ export interface ButtonModel {
 export function Button(declaration?: RxNodeDecl<El<HTMLElement, ButtonModel>>) {
   return (
     Section<ButtonModel>(declaration, {
-      mode: Mode.PinpointUpdate,
+      mode: Mode.IndependentUpdate,
       initialize(b) {
         b.model ??= observableModel({
           icon: "fa-solid fa-square",

@@ -23,7 +23,7 @@ const app = Transaction.run(null, () =>
     new PrintAppTheme()))
 
 HtmlBody({
-  mode: Mode.PinpointUpdate,
+  mode: Mode.IndependentUpdate,
   update(b) {
     App.actual = app
     const t = app.theme

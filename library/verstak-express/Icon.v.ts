@@ -6,7 +6,7 @@ export function Icon(name: string,
   declaration?: RxNodeDecl<El<HTMLElement, void, void>>) {
   return (
     Section(declaration, {
-      mode: Mode.PinpointUpdate,
+      mode: Mode.IndependentUpdate,
       update(b) {
         const s = Theme.actual.icon
         b.useStyle(name)

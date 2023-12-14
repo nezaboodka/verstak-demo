@@ -10,7 +10,7 @@ export interface SpinnerModel {
 export function Spinner(declaration?: RxNodeDecl<El<HTMLElement, SpinnerModel>>) {
   return (
     Section<SpinnerModel>(declaration, {
-      mode: Mode.PinpointUpdate,
+      mode: Mode.IndependentUpdate,
       initialize(b) {
         b.model ??= composeSpinnerModel()
       },

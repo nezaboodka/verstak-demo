@@ -17,7 +17,7 @@ const clock = Transaction.run(null, () => new Clock(200))
 export function Watch(area: string): El<HTMLElement> {
   return (
     Section({
-      mode: Mode.PinpointUpdate,
+      mode: Mode.IndependentUpdate,
       initialize(b) {
         const s = b.native.style
         b.contentAlignment = Align.ToCenter

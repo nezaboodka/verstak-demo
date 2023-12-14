@@ -19,7 +19,7 @@ export interface FieldModel<T = string> extends FocusModel {
 export function Field(declaration?: RxNodeDecl<El<HTMLElement, FieldModel>>) {
   return (
     Section<FieldModel>(declaration, {
-      mode: Mode.PinpointUpdate,
+      mode: Mode.IndependentUpdate,
       initialize(b) {
         b.model ??= composeFieldModel()
         b.native.dataForSensor.focus = b.model

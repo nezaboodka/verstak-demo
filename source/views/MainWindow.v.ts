@@ -10,7 +10,7 @@ import { WorkArea } from "./WorkArea.v.js"
 export function MainWindow() {
   return (
     Section({
-      mode: Mode.PinpointUpdate,
+      mode: Mode.IndependentUpdate,
       initialize(b) {
         App.actual.sensors.listen(b.native)
       },
@@ -89,7 +89,7 @@ export function MainWindow() {
           }
         })
         Section({
-          mode: Mode.PinpointUpdate,
+          mode: Mode.IndependentUpdate,
           triggers: { theme },
           update(b) {
             b.useStyle(theme.panel)
