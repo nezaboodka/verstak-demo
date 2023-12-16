@@ -5,7 +5,7 @@ import { AppTheme } from "themes/AppTheme.js"
 import { observableModel } from "common/Utils.js"
 import { App } from "models/App.js"
 
-export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void, void>>) {
+export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
   return (
     Section(declaration, {
       update(b) {

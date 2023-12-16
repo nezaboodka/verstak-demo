@@ -3,7 +3,7 @@ import { Section, El } from "verstak"
 import { Theme } from "./Theme.js"
 
 export function Icon(name: string,
-  declaration?: RxNodeDecl<El<HTMLElement, void, void>>) {
+  declaration?: RxNodeDecl<El<HTMLElement, void>>) {
   return (
     Section(declaration, {
       mode: Mode.IndependentUpdate,

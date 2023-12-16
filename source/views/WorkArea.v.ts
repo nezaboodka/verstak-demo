@@ -6,7 +6,7 @@ import { App } from "models/App.js"
 import { Watch } from "./Watch.js"
 import { observableModel } from "common/Utils.js"
 
-export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void, void>>) {
+export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
   return (
     Table(declaration, {
       update(b) {

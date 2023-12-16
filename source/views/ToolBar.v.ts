@@ -5,7 +5,7 @@ import { Icon, Field, composeFieldModel, Theme } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { App } from "models/App.js"
 
-export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void, void>>) {
+export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
   return (
     Section(declaration, {
       update(b) {
