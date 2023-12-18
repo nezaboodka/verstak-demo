@@ -10,10 +10,10 @@
     "url": "https://github.com/nezaboodka/verstak-demo.git"
   },
   "scripts": {
-    "lint:fix": "eslint --fix \"source/**/*.ts\" \"library/**/*.ts\"",
+    "lint:fix": "eslint --fix source/**.ts library/**/*.ts",
     "start": "vite",
     "start:prod": "npm run pack && vite preview",
-    "build": "tsc && eslint \"source/**/*.ts\" \"library/**/*.ts\"",
+    "build": "tsc && eslint source/**.ts library/**/*.ts",
     "pack": "vite build",
     "install-all": "npm i && npm i --prefix library/reactronic && npm i --prefix library/verstak && npm i --prefix library/verstak-markdown"
   },
