@@ -1,4 +1,4 @@
-import { Transaction, RxNodeDecl, Mode } from "reactronic"
+import { Transaction, RxNodeDecl, Mode, RxNode } from "reactronic"
 import { Section, Note, El } from "verstak"
 import { observableModel } from "common/Utils.js"
 import { Theme } from "./Theme.js"
@@ -16,7 +16,7 @@ export function Toggle(declaration?: RxNodeDecl<El<HTMLElement, ToggleModel>>) {
       mode: Mode.IndependentUpdate,
       initialize(b) {
         b.model ??= observableModel({
-          label: b.node.declaration.key,
+          label: RxNode.key,
           checked: true,
           color: "green" }) // model is either taken from parameter or created internally
         b.native.onclick = () => Transaction.run(null, () => b.model.checked = !b.model.checked)

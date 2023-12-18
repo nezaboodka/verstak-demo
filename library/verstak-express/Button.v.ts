@@ -1,4 +1,4 @@
-import { Transaction, RxNodeDecl, Mode } from "reactronic"
+import { Transaction, RxNodeDecl, Mode, RxNode } from "reactronic"
 import { Section, Note, El } from "verstak"
 import { observableModel } from "common/Utils.js"
 import { Theme } from "./Theme.js"
@@ -17,7 +17,7 @@ export function Button(declaration?: RxNodeDecl<El<HTMLElement, ButtonModel>>) {
       initialize(b) {
         b.model ??= observableModel({
           icon: "fa-solid fa-square",
-          label: b.node.declaration.key,
+          label: RxNode.key,
         })
         b.native.onclick = () => Transaction.run(null, () => b.model.action?.())
       },
