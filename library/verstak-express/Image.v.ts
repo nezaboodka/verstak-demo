@@ -2,7 +2,7 @@ import { RxNodeDecl, Mode } from "reactronic"
 import { Section, El } from "verstak"
 import { observableModel } from "common/Utils.js"
 
-export interface ImageModel {
+export type ImageModel = {
   source?: string
 }
 

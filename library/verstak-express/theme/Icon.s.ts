@@ -2,7 +2,7 @@ import { cached } from "reactronic"
 import { css } from "@emotion/css"
 import { Styling } from "./Styling.js"
 
-export interface IconStyling {
+export type IconStyling = {
   main: string
 }
 

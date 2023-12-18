@@ -1,6 +1,6 @@
 import { ObservableObject, raw } from "reactronic"
 
-export interface AbstractTheme {
+export type AbstractTheme = {
   fillColor: string
   textColor: string
   positiveColor: string

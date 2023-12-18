@@ -10,7 +10,7 @@ export { type FieldStyling, type DefaultFieldStyling  } from "./theme/Field.s.js
 export { type IconStyling, type DefaultIconStyling  } from "./theme/Icon.s.js"
 export { type ToggleStyling, type DefaultToggleStyling } from "./theme/Toggle.s.js"
 
-export interface MastakTheme extends AbstractTheme {
+export type MastakTheme = AbstractTheme & {
   readonly button: ButtonStyling
   readonly field: FieldStyling
   readonly icon: IconStyling

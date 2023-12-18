@@ -4,7 +4,7 @@ import { observableModel } from "common/Utils.js"
 import { Theme } from "./Theme.js"
 import { Icon } from "./Icon.v.js"
 
-export interface ToggleModel {
+export type ToggleModel = {
   label?: string
   checked?: boolean
   color?: string

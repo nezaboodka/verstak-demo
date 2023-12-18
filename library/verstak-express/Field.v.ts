@@ -4,7 +4,7 @@ import { observableModel, ValuesOrRefs } from "common/Utils.js"
 import { Theme, FieldStyling } from "./Theme.js"
 import { Icon } from "./Icon.v.js"
 
-export interface FieldModel<T = string> extends FocusModel {
+export type FieldModel<T = string> = FocusModel & {
   icon?: string
   text: string
   options: Array<T>

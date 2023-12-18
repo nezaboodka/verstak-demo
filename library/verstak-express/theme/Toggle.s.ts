@@ -2,7 +2,7 @@ import { cached } from "reactronic"
 import { css } from "@emotion/css"
 import { Styling } from "./Styling.js"
 
-export interface ToggleStyling {
+export type ToggleStyling = {
   main: string
   icon: string
   label: string
