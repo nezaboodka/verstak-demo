@@ -1,5 +1,5 @@
-import { Transaction, RxNodeDecl, Mode } from "reactronic"
-import { Section, Note, FocusModel, FocuserReaction, startNewRow, El } from "verstak"
+import { RxNodeDecl, Mode } from "reactronic"
+import { Section, Note, FocusModel, FocuserReaction, startNewRow, El, PseudoElement, KeyboardSensor, KeyboardModifiers } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils.js"
 import { Theme, FieldStyling } from "./Theme.js"
 import { Icon } from "./Icon.v.js"
@@ -71,26 +71,45 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
         e.tabIndex = 0
         e.contentEditable = "true"
         e.dataForSensor.focus = model
-        e.onkeydown = event => {
-          const m = model
-          if (isApplyKey(m, event))
-            selectAllAndPreventDefault(event, e)
-        }
-        e.onkeyup = event => {
-          const m = model
-          if (isApplyKey(m, event)) {
-            selectAllAndPreventDefault(event, e)
-            Transaction.run(null, () => m.text = e.innerText)
-          }
-          else if (m.isHotText)
-            Transaction.run(null, () => { m.text = e.innerText })
-        }
         base()
       },
       update(b) {
         const e = b.native
+        // const keyboard = e.sensors.keyboard
         if (!model.isEditMode)
           e.innerText = model.text
+        // Fragment(() => {
+        //   if (isApplyKey(model, keyboard))
+        //     selectAllAndPreventDefault(e, keyboard)
+        // })
+        // Fragment(() => {
+        //   if (isApplyKey(model, keyboard)) {
+        //     selectAllAndPreventDefault(e, keyboard)
+        //     model.text = e.innerText
+        //   }
+        //   else if (model.isHotText)
+        //     model.text = e.innerText
+        // })
+        PseudoElement({
+          mode: Mode.IndependentUpdate,
+          update() {
+            const keyboard = e.sensors.keyboard
+            if (isApplyKey(model, keyboard))
+              selectAllAndPreventDefault(e, keyboard)
+          }
+        })
+        PseudoElement({
+          mode: Mode.IndependentUpdate,
+          update() {
+            const keyboard = e.sensors.keyboard
+            if (isApplyKey(model, keyboard)) {
+              selectAllAndPreventDefault(e, keyboard)
+              model.text = e.innerText
+            }
+            else if (model.isHotText)
+              model.text = e.innerText
+          }
+        })
         FocuserReaction("focuser", e, model)
       },
     })
@@ -129,16 +148,17 @@ function FieldPopup(model: FieldModel, s: FieldStyling) {
   )
 }
 
-function isApplyKey(m: FieldModel, event: KeyboardEvent): boolean {
-  return event.key === "Enter" && (
-    !m.isMultiLineText || event.shiftKey || event.ctrlKey || event.metaKey)
+function isApplyKey(m: FieldModel, keyboard: KeyboardSensor): boolean {
+  const modifiers = keyboard.modifiers
+  return keyboard.down === "Enter" && (
+    !m.isMultiLineText || (modifiers & KeyboardModifiers.CtrlShiftMeta) > 0)
 }
 
-function selectAllAndPreventDefault(event: KeyboardEvent, e: HTMLElement): void {
+function selectAllAndPreventDefault(e: HTMLElement, keyboard: KeyboardSensor): void {
   const range = document.createRange()
   range.selectNodeContents(e)
   const sel = window.getSelection()
   sel?.removeAllRanges()
   sel?.addRange(range)
-  event.preventDefault()
+  keyboard.preventDefault = true
 }

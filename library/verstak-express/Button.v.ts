@@ -19,7 +19,7 @@ export function Button(declaration?: RxNodeDecl<El<HTMLElement, ButtonModel>>) {
           icon: "fa-solid fa-square",
           label: RxNode.key,
         })
-        b.native.onclick = () => Transaction.run(null, () => b.model.action?.())
+        b.native.sensors.click = () => Transaction.run(null, () => b.model.action?.())
       },
       update(b) {
         const m = b.model
