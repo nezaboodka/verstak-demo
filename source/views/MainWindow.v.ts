@@ -12,7 +12,7 @@ export function MainWindow() {
     Section({
       mode: Mode.IndependentUpdate,
       initialize(b) {
-        App.actual.sensors.listen(b.native)
+        b.native.sensors.focus // enable focus global manager
       },
       update(b) {
         const app = App.actual

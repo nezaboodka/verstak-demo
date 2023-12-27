@@ -1,5 +1,5 @@
 import { ObservableObject, reactive, transactional, RxNodeVariable } from "reactronic"
-import { WebDriver, HtmlSensors } from "verstak"
+import { WebDriver } from "verstak"
 import { AppTheme } from "themes/AppTheme.js"
 import { Loader } from "./Loader.js"
 
@@ -8,7 +8,6 @@ export class App extends ObservableObject {
   private static readonly gCurrent = new RxNodeVariable<App>()
 
   version: string
-  sensors: HtmlSensors
   allThemes: Array<AppTheme>
   activeThemeIndex: number
   isBlinkingEffectOn: boolean
@@ -18,7 +17,6 @@ export class App extends ObservableObject {
   constructor(version: string, ...themes: Array<AppTheme>) {
     super()
     this.version = version
-    this.sensors = new HtmlSensors()
     this.allThemes = themes
     this.activeThemeIndex = 0
     this.isBlinkingEffectOn = false
