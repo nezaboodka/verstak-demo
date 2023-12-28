@@ -83,7 +83,7 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
             if (isApplyKey(model, keyboard))
               selectAllAndPreventDefault(e, keyboard)
           }
-          else if (keyboard.up) {
+          if (keyboard.up) {
             if (isApplyKey(model, keyboard)) {
               selectAllAndPreventDefault(e, keyboard)
               model.text = e.innerText
