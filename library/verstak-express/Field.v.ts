@@ -23,9 +23,6 @@ export function Field(declaration?: RxNodeDecl<El<HTMLElement, FieldModel>>) {
       initialize(b) {
         b.model ??= composeFieldModel()
         b.native.dataForSensor.focus = b.model
-        b.native.onscroll = () => {
-          b.model.position = b.native.scrollTop
-        }
       },
       update(b) {
         const m = b.model
@@ -52,7 +49,7 @@ export function composeFieldModel<T>(props?: Partial<ValuesOrRefs<FieldModel<T>>
     options: props?.options ?? [],
     selected: props?.selected,
     multiSelected: props?.multiSelected ?? new Set<T>(),
-    position: 0,
+    position: props?.position ?? 0,
     isMultiLineText: props?.isMultiLineText ?? false,
     isEditMode: props?.isEditMode ?? false,
     isHotText: props?.isHotText ?? false,
@@ -102,12 +99,9 @@ function FieldPopup(model: FieldModel, s: FieldStyling) {
   return (
     Section({
       key: FieldPopup.name,
-      initialize(b) {
-        const e = b.native
-        e.onscroll = () => model.position = e.scrollTop
-      },
       update(b) {
         b.useStyle(s.popup)
+        Handler(() => model.position = b.native.sensors.scroll.y)
         const visible = b.overlayVisible = model.isEditMode
         if (visible) {
           const options = model.options

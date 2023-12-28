@@ -37,5 +37,7 @@ export class DefaultFieldStyling extends Styling implements FieldStyling {
     margin-top: -${this.$.outlineWidth};
     margin-bottom: -${this.$.outlineWidth};
     box-shadow: ${this.$.shadow};
+    overflow: scroll;
+    height: 4rem;
   `}
 }

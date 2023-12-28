@@ -1,4 +1,4 @@
-import { refs, RxNodeDecl } from "reactronic"
+import { Mode, refs, RxNodeDecl } from "reactronic"
 import { Section, Img, startNewRow, El } from "verstak"
 import { Markdown } from "verstak-markdown"
 import { Icon, Field, composeFieldModel, Theme } from "verstak-express"
@@ -48,9 +48,14 @@ export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
             b.widthGrowth = 1
             b.useStyle(theme.panel)
             Section({
+              mode: Mode.IndependentUpdate,
               update(b) {
                 b.widthGrowth = 1
-                Markdown(`**Verstak** v${app.version}`)
+                const position = app.position
+                if (!Number.isFinite(position))
+                  Markdown(`**Verstak** v${app.version}`)
+                else
+                  Markdown(`**Verstak** v${app.version} (${position})`)
                 startNewRow()
                 Markdown("Try to *change* window size")
               }
@@ -63,6 +68,7 @@ export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
                   icon: "fa-solid fa-search",
                   text: refs(loader).filter,
                   options: refs(loader).loaded,
+                  position: refs(app).position,
                   isHotText: true,
                   isMultiLineText: false,
                 })
