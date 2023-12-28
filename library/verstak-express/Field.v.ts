@@ -1,5 +1,5 @@
 import { RxNodeDecl, Mode } from "reactronic"
-import { Section, Note, FocusModel, FocuserReaction, startNewRow, El, PseudoElement, KeyboardSensor, KeyboardModifiers } from "verstak"
+import { Section, Note, FocusModel, FocusSyncFragment, startNewRow, El, Fragment, KeyboardSensor, KeyboardModifiers } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils.js"
 import { Theme, FieldStyling } from "./Theme.js"
 import { Icon } from "./Icon.v.js"
@@ -90,27 +90,21 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
         //   else if (model.isHotText)
         //     model.text = e.innerText
         // })
-        PseudoElement({
-          mode: Mode.IndependentUpdate,
-          update() {
-            const keyboard = e.sensors.keyboard
-            if (isApplyKey(model, keyboard))
-              selectAllAndPreventDefault(e, keyboard)
-          }
+        Fragment(() => {
+          const keyboard = e.sensors.keyboard
+          if (isApplyKey(model, keyboard))
+            selectAllAndPreventDefault(e, keyboard)
         })
-        PseudoElement({
-          mode: Mode.IndependentUpdate,
-          update() {
-            const keyboard = e.sensors.keyboard
-            if (isApplyKey(model, keyboard)) {
-              selectAllAndPreventDefault(e, keyboard)
-              model.text = e.innerText
-            }
-            else if (model.isHotText)
-              model.text = e.innerText
+        Fragment(() => {
+          const keyboard = e.sensors.keyboard
+          if (isApplyKey(model, keyboard)) {
+            selectAllAndPreventDefault(e, keyboard)
+            model.text = e.innerText
           }
+          else if (model.isHotText)
+            model.text = e.innerText
         })
-        FocuserReaction("focuser", e, model)
+        FocusSyncFragment("focuser", e, model)
       },
     })
   )
