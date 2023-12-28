@@ -79,17 +79,18 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
           e.innerText = model.text
         Fragment(() => {
           const keyboard = e.sensors.keyboard
-          if (isApplyKey(model, keyboard))
-            selectAllAndPreventDefault(e, keyboard)
-        })
-        Fragment(() => {
-          const keyboard = e.sensors.keyboard
-          if (isApplyKey(model, keyboard)) {
-            selectAllAndPreventDefault(e, keyboard)
-            model.text = e.innerText
+          if (keyboard.down) {
+            if (isApplyKey(model, keyboard))
+              selectAllAndPreventDefault(e, keyboard)
           }
-          else if (model.isHotText)
-            model.text = e.innerText
+          else if (keyboard.up) {
+            if (isApplyKey(model, keyboard)) {
+              selectAllAndPreventDefault(e, keyboard)
+              model.text = e.innerText
+            }
+            else if (model.isHotText)
+              model.text = e.innerText
+          }
         })
         FocusSyncFragment("focuser", e, model)
       },
