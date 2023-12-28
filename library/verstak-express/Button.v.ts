@@ -1,5 +1,5 @@
 import { RxNodeDecl, Mode, RxNode } from "reactronic"
-import { Section, Note, El, ClickFragment } from "verstak"
+import { Section, Note, El, OnClick } from "verstak"
 import { observableModel } from "common/Utils.js"
 import { Theme } from "./Theme.js"
 import { Icon } from "./Icon.v.js"
@@ -40,7 +40,7 @@ export function Button(declaration?: RxNodeDecl<El<HTMLElement, ButtonModel>>) {
             }
           })
         }
-        ClickFragment(b.native, m.action)
+        OnClick(b.native, m.action)
       },
     })
   )

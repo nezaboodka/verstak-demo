@@ -1,5 +1,5 @@
 import { RxNodeDecl, Mode } from "reactronic"
-import { Section, Note, FocusModel, FocusSyncFragment, startNewRow, El, Fragment, KeyboardSensor, KeyboardModifiers } from "verstak"
+import { Section, Note, FocusModel, FocusHandler, startNewRow, El, Handler, KeyboardSensor, KeyboardModifiers } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils.js"
 import { Theme, FieldStyling } from "./Theme.js"
 import { Icon } from "./Icon.v.js"
@@ -77,7 +77,7 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
         const e = b.native
         if (!model.isEditMode)
           e.innerText = model.text
-        Fragment(() => {
+        Handler(() => {
           const keyboard = e.sensors.keyboard
           if (keyboard.down) {
             if (isApplyKey(model, keyboard))
@@ -92,7 +92,7 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
               model.text = e.innerText
           }
         })
-        FocusSyncFragment("focuser", e, model)
+        FocusHandler("focuser", e, model)
       },
     })
   )
