@@ -1,5 +1,5 @@
-import { Transaction, RxNodeDecl, Mode, RxNode } from "reactronic"
-import { Section, Note, El } from "verstak"
+import { RxNodeDecl, Mode, RxNode } from "reactronic"
+import { Section, Note, El, ClickFragment } from "verstak"
 import { observableModel } from "common/Utils.js"
 import { Theme } from "./Theme.js"
 import { Icon } from "./Icon.v.js"
@@ -19,7 +19,6 @@ export function Button(declaration?: RxNodeDecl<El<HTMLElement, ButtonModel>>) {
           icon: "fa-solid fa-square",
           label: RxNode.key,
         })
-        b.native.sensors.click = () => Transaction.run(null, () => b.model.action?.())
       },
       update(b) {
         const m = b.model
@@ -41,6 +40,7 @@ export function Button(declaration?: RxNodeDecl<El<HTMLElement, ButtonModel>>) {
             }
           })
         }
+        ClickFragment(b.native, m.action)
       },
     })
   )
