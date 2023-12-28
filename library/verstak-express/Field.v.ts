@@ -75,21 +75,8 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
       },
       update(b) {
         const e = b.native
-        // const keyboard = e.sensors.keyboard
         if (!model.isEditMode)
           e.innerText = model.text
-        // Fragment(() => {
-        //   if (isApplyKey(model, keyboard))
-        //     selectAllAndPreventDefault(e, keyboard)
-        // })
-        // Fragment(() => {
-        //   if (isApplyKey(model, keyboard)) {
-        //     selectAllAndPreventDefault(e, keyboard)
-        //     model.text = e.innerText
-        //   }
-        //   else if (model.isHotText)
-        //     model.text = e.innerText
-        // })
         Fragment(() => {
           const keyboard = e.sensors.keyboard
           if (isApplyKey(model, keyboard))
