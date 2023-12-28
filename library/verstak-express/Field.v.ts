@@ -1,5 +1,5 @@
 import { RxNodeDecl, Mode } from "reactronic"
-import { Section, Note, FocusModel, FocusHandler, startNewRow, El, Handler, KeyboardSensor, KeyboardModifiers } from "verstak"
+import { Section, Note, FocusModel, TwoWayFocusHandler, startNewRow, El, Handler, KeyboardSensor, KeyboardModifiers } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils.js"
 import { Theme, FieldStyling } from "./Theme.js"
 import { Icon } from "./Icon.v.js"
@@ -92,7 +92,7 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
               model.text = e.innerText
           }
         })
-        FocusHandler("focuser", e, model)
+        TwoWayFocusHandler("focuser", e, model)
       },
     })
   )
