@@ -27,7 +27,7 @@ export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
         // })
         Section({ // Logo
           initialize(b) {
-            b.useStyle(theme.panel)
+            b.useStylingPreset(theme.panel)
             // b.useStyle(s.Clickable)
             // b.useStyle(s.Logo)
             b.native.style.outlineOffset = "-1px"
@@ -46,9 +46,9 @@ export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
         Section({
           update(b) {
             b.widthGrowth = 1
-            b.useStyle(theme.panel)
+            b.useStylingPreset(theme.panel)
             Section({
-              mode: Mode.IndependentUpdate,
+              mode: Mode.independentUpdate,
               update(b) {
                 b.widthGrowth = 1
                 const position = app.position
@@ -82,7 +82,7 @@ export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
             // b.native.onclick = () => Transaction.run(null, () => app.nextTheme())
           },
           update(b) {
-            b.useStyle(theme.panel)
+            b.useStylingPreset(theme.panel)
             // b.useStyle(s.Hint)
             // b.useStyle(s.Clickable)
             Icon("fa-solid fa-bars")

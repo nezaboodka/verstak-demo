@@ -6,11 +6,11 @@ export function Icon(name: string,
   declaration?: RxNodeDecl<El<HTMLElement, void>>) {
   return (
     Section(declaration, {
-      mode: Mode.IndependentUpdate,
+      mode: Mode.independentUpdate,
       update(b) {
         const s = Theme.actual.icon
-        b.useStyle(name)
-        b.useStyle(s.main)
+        b.useStylingPreset(name)
+        b.useStylingPreset(s.main)
       },
     })
   )

@@ -44,7 +44,7 @@ export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
           },
           update(b,  base) {
             base()
-            b.useStyle(theme.panel)
+            b.useStylingPreset(theme.panel)
           }
         })
         Toggle({ key: "SecondaryTimeZone",
@@ -68,9 +68,9 @@ export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
         })
         Section({
           update(b) {
-            b.useStyle(theme.panel)
+            b.useStylingPreset(theme.panel)
             b.widthGrowth = 1
-            b.contentAlignment = Align.ToRight
+            b.contentAlignment = Align.toRight
             Field({
               initialize(b, base) {
                 const loader = app.loader

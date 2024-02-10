@@ -10,7 +10,7 @@ import { WorkArea } from "./WorkArea.v.js"
 export function MainWindow() {
   return (
     Section({
-      mode: Mode.IndependentUpdate,
+      mode: Mode.independentUpdate,
       initialize(b) {
         b.native.sensors.focus // enable focus global manager
       },
@@ -19,7 +19,7 @@ export function MainWindow() {
         const theme = app.theme
         Theme.actual = theme
 
-        b.useStyle(App.blinkingEffectMarker, app.isBlinkingEffectOn)
+        b.useStylingPreset(App.blinkingEffectMarker, app.isBlinkingEffectOn)
         // b.contentAlignment = Align.Center
         b.widthGrowth = 1
         b.heightGrowth = 1
@@ -34,10 +34,10 @@ export function MainWindow() {
         startNewRow()
         Section({
           update(b) {
-            b.useStyle(app.theme.panel)
+            b.useStylingPreset(app.theme.panel)
             b.minWidth = "10rem"
-            b.contentAlignment = Align.ToTop
-            b.elementAlignment = Align.ToBounds
+            b.contentAlignment = Align.toTop
+            b.elementAlignment = Align.toBounds
             Note("Navigation Bar")
 
             startNewRow()
@@ -82,22 +82,22 @@ export function MainWindow() {
         WorkArea({
           update(b, base) {
             base()
-            b.useStyle(theme.panel)
-            b.useStyle(theme.accent)
+            b.useStylingPreset(theme.panel)
+            b.useStylingPreset(theme.accent)
             b.widthGrowth = 3
             b.heightGrowth = 1
           }
         })
         Section({
-          mode: Mode.IndependentUpdate,
+          mode: Mode.independentUpdate,
           triggers: { theme },
           update(b) {
-            b.useStyle(theme.panel)
-            b.useStyle(theme.markdown)
+            b.useStylingPreset(theme.panel)
+            b.useStylingPreset(theme.markdown)
             b.minWidth = "16rem"
             b.widthGrowth = 2
-            b.contentAlignment = Align.ToLeft + Align.ToTop,
-            b.elementAlignment = Align.ToBounds,
+            b.contentAlignment = Align.toLeft + Align.toTop,
+            b.elementAlignment = Align.toBounds,
             Markdown(EXAMPLE_CODE)
           }
         })
@@ -124,13 +124,13 @@ Table("Example", {
   update(b) {
     // Elements can be layed out automatically
     // based on their order and line feeds.
-    Ruler("1", Align.Left + Align.CenterY)
+    Ruler("1", Align.toLeft + Align.toCenterY)
     cursor({ cellsOverWidth: -1, cellsOverHeight: 0 })
-    Ruler("A", Align.CenterX + Align.Top)
-    Ruler("B", Align.CenterX + Align.Top)
-    Ruler("C", Align.CenterX + Align.Top)
-    startNewRow(); Ruler("2", Align.Left + Align.CenterY)
-    startNewRow(); Ruler("3", Align.Left + Align.CenterY)
+    Ruler("A", Align.toCenterX + Align.toTop)
+    Ruler("B", Align.toCenterX + Align.toTop)
+    Ruler("C", Align.toCenterX + Align.toTop)
+    startNewRow(); Ruler("2", Align.toLeft + Align.toCenterY)
+    startNewRow(); Ruler("3", Align.toLeft + Align.toCenterY)
     // Elements can also be layed out
     // explicitly in exact cells.
     ExampleData("B2")

@@ -13,7 +13,7 @@ export type ToggleModel = {
 export function Toggle(declaration?: RxNodeDecl<El<HTMLElement, ToggleModel>>) {
   return (
     Section<ToggleModel>(declaration, {
-      mode: Mode.IndependentUpdate,
+      mode: Mode.independentUpdate,
       initialize(b) {
         b.model ??= observableModel({
           label: RxNode.key,
@@ -25,11 +25,11 @@ export function Toggle(declaration?: RxNodeDecl<El<HTMLElement, ToggleModel>>) {
         const m = b.model
         const t = Theme.actual
         const s = t.toggle
-        b.useStyle(s.main)
+        b.useStylingPreset(s.main)
         Icon(`fa-solid fa-toggle-${m.checked ? "on" : "off"}`, {
           update(b, base) {
             base()
-            b.useStyle(s.icon)
+            b.useStylingPreset(s.icon)
             b.native.style.color = m.checked ? (t.positiveColor ?? "") : "" // subscribe to ToggleModel.checked
           }
         })
@@ -37,7 +37,7 @@ export function Toggle(declaration?: RxNodeDecl<El<HTMLElement, ToggleModel>>) {
           Note(m.label, {
             update(b, base) {
               base()
-              b.useStyle(s.label)
+              b.useStylingPreset(s.label)
             }
           })
       },

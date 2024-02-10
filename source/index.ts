@@ -1,5 +1,5 @@
 import { Transaction, Mode } from "reactronic"
-import { HtmlBody, startNewRow } from "verstak"
+import { Page, startNewRow } from "verstak"
 import { configureDebugging } from "dbg.js"
 import { App } from "models/App.js"
 import { MainWindow } from "views/MainWindow.v.js"
@@ -22,8 +22,8 @@ const app = Transaction.run(null, () =>
     new DarkAppTheme(),
     new PrintAppTheme()))
 
-HtmlBody({
-  mode: Mode.IndependentUpdate,
+Page({
+  mode: Mode.independentUpdate,
   update(b) {
     App.actual = app
     const t = app.theme

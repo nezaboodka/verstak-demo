@@ -13,7 +13,7 @@ export type ButtonModel = {
 export function Button(declaration?: RxNodeDecl<El<HTMLElement, ButtonModel>>) {
   return (
     Section<ButtonModel>(declaration, {
-      mode: Mode.IndependentUpdate,
+      mode: Mode.independentUpdate,
       initialize(b) {
         b.model ??= observableModel({
           icon: "fa-solid fa-square",
@@ -23,12 +23,12 @@ export function Button(declaration?: RxNodeDecl<El<HTMLElement, ButtonModel>>) {
       update(b) {
         const m = b.model
         const s = Theme.actual.button
-        b.useStyle(s.main)
+        b.useStylingPreset(s.main)
         if (m.icon) {
           Icon(m.icon, {
             update(b, base) {
               base()
-              b.useStyle(s.icon)
+              b.useStylingPreset(s.icon)
             }
           })
         }
@@ -36,7 +36,7 @@ export function Button(declaration?: RxNodeDecl<El<HTMLElement, ButtonModel>>) {
           Note(m.label, {
             update(b, base) {
               base()
-              b.useStyle(s.label)
+              b.useStylingPreset(s.label)
             }
           })
         }

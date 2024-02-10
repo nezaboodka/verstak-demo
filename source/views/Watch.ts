@@ -17,17 +17,17 @@ const clock = Transaction.run(null, () => new Clock(200))
 export function Watch(area: string): RxNode<El<HTMLElement>> {
   return (
     Section({
-      mode: Mode.IndependentUpdate,
+      mode: Mode.independentUpdate,
       initialize(b) {
         const s = b.native.style
-        b.contentAlignment = Align.ToCenter
+        b.contentAlignment = Align.toCenter
         // s.fontFamily = "Arial"
         s.cursor = "default"
       },
       update(b) {
         const theme = Theme.actual as AppTheme
         b.area = area
-        b.useStyle(theme.accent)
+        b.useStylingPreset(theme.accent)
         Svg({
           update(b) {
             const svg = b.native

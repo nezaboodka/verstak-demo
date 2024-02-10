@@ -10,7 +10,7 @@ export type SpinnerModel = {
 export function Spinner(declaration?: RxNodeDecl<El<HTMLElement, SpinnerModel>>) {
   return (
     Section<SpinnerModel>(declaration, {
-      mode: Mode.IndependentUpdate,
+      mode: Mode.independentUpdate,
       initialize(b) {
         b.model ??= composeSpinnerModel()
       },

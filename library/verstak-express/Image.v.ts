@@ -9,7 +9,7 @@ export type ImageModel = {
 export function Image(declaration?: RxNodeDecl<El<HTMLElement, ImageModel>>) {
   return (
     Section<ImageModel>(declaration, {
-      mode: Mode.IndependentUpdate,
+      mode: Mode.independentUpdate,
       initialize(b) {
         b.model ??= observableModel({ source: undefined })
       },

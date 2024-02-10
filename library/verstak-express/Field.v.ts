@@ -19,7 +19,7 @@ export type FieldModel<T = string> = FocusModel & {
 export function Field(declaration?: RxNodeDecl<El<HTMLElement, FieldModel>>) {
   return (
     Section<FieldModel>(declaration, {
-      mode: Mode.IndependentUpdate,
+      mode: Mode.independentUpdate,
       initialize(b) {
         b.model ??= composeFieldModel()
         b.native.dataForSensor.focus = b.model
@@ -27,12 +27,12 @@ export function Field(declaration?: RxNodeDecl<El<HTMLElement, FieldModel>>) {
       update(b) {
         const m = b.model
         const s = Theme.actual.field
-        b.useStyle(s.main)
+        b.useStylingPreset(s.main)
         if (m.icon)
           Icon(m.icon, {
             update(b, base) {
               base()
-              b.useStyle(s.icon)
+              b.useStylingPreset(s.icon)
             }
           })
         FieldInput(m, s)
@@ -63,7 +63,7 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
       key: FieldInput.name,
       initialize(b, base) {
         const e = b.native
-        b.useStyle(s.input)
+        b.useStylingPreset(s.input)
         b.widthGrowth = 1
         e.tabIndex = 0
         e.contentEditable = "true"
@@ -100,7 +100,7 @@ function FieldPopup(model: FieldModel, s: FieldStyling) {
     Section({
       key: FieldPopup.name,
       update(b) {
-        b.useStyle(s.popup)
+        b.useStylingPreset(s.popup)
         Handler(() => model.position = b.native.sensors.scroll.y)
         const visible = b.overlayVisible = model.isEditMode
         if (visible) {
@@ -127,7 +127,7 @@ function FieldPopup(model: FieldModel, s: FieldStyling) {
 function isApplyKey(m: FieldModel, keyboard: KeyboardSensor): boolean {
   const modifiers = keyboard.modifiers
   return keyboard.down === "Enter" && (
-    !m.isMultiLineText || (modifiers & KeyboardModifiers.CtrlShiftMeta) > 0)
+    !m.isMultiLineText || (modifiers & KeyboardModifiers.ctrlShiftMeta) > 0)
 }
 
 function selectAllAndPreventDefault(e: HTMLElement, keyboard: KeyboardSensor): void {
