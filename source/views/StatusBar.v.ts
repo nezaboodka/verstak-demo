@@ -70,7 +70,7 @@ export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
           update(b) {
             b.useStylingPreset(theme.panel)
             b.widthGrowth = 1
-            b.contentAlignment = Align.toRight
+            b.contentAlignment = Align.right
             Field({
               initialize(b, base) {
                 const loader = app.loader

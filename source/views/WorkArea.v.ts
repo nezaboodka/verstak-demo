@@ -13,15 +13,15 @@ export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
         // Elements can be layed out automatically
         // based on their order and line feeds.
         startNewRow()
-        Ruler("1", Align.toLeft + Align.toCenterY)
+        Ruler("1", Align.left + Align.centerY)
         cursor({ cellsOverWidth: -1, cellsOverHeight: 0 })
-        Ruler("A", Align.toCenterX + Align.toTop)
-        Ruler("B", Align.toCenterX + Align.toTop)
-        Ruler("C", Align.toCenterX + Align.toTop)
+        Ruler("A", Align.centerX + Align.top)
+        Ruler("B", Align.centerX + Align.top)
+        Ruler("C", Align.centerX + Align.top)
         startNewRow()
-        Ruler("2", Align.toLeft + Align.toCenterY)
+        Ruler("2", Align.left + Align.centerY)
         startNewRow()
-        Ruler("3", Align.toLeft + Align.toCenterY)
+        Ruler("3", Align.left + Align.centerY)
 
         // Elements can also be layed out
         // explicitly in exact cells.
@@ -44,7 +44,7 @@ export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
             const theme = Theme.actual as AppTheme
             b.native.classList.toggle(theme.panel, true)
             b.area = "B1"
-            b.elementAlignment = Align.toRight + Align.toBottom
+            b.elementAlignment = Align.right + Align.bottom
           }
         })
       }},
@@ -68,7 +68,7 @@ function ExampleData(area: string) {
   return (
     Section({
       initialize(b) {
-        b.contentAlignment = Align.toCenter
+        b.contentAlignment = Align.center
       },
       update(b) {
         const theme = Theme.actual as AppTheme

@@ -36,8 +36,8 @@ export function MainWindow() {
           update(b) {
             b.useStylingPreset(app.theme.panel)
             b.minWidth = "10rem"
-            b.contentAlignment = Align.toTop
-            b.elementAlignment = Align.toBounds
+            b.contentAlignment = Align.top
+            b.elementAlignment = Align.fit
             Note("Navigation Bar")
 
             startNewRow()
@@ -96,8 +96,8 @@ export function MainWindow() {
             b.useStylingPreset(theme.markdown)
             b.minWidth = "16rem"
             b.widthGrowth = 2
-            b.contentAlignment = Align.toLeft + Align.toTop,
-            b.elementAlignment = Align.toBounds,
+            b.contentAlignment = Align.left + Align.top,
+            b.elementAlignment = Align.fit,
             Markdown(EXAMPLE_CODE)
           }
         })
@@ -124,13 +124,13 @@ Table("Example", {
   update(b) {
     // Elements can be layed out automatically
     // based on their order and line feeds.
-    Ruler("1", Align.toLeft + Align.toCenterY)
+    Ruler("1", Align.left + Align.centerY)
     cursor({ cellsOverWidth: -1, cellsOverHeight: 0 })
-    Ruler("A", Align.toCenterX + Align.toTop)
-    Ruler("B", Align.toCenterX + Align.toTop)
-    Ruler("C", Align.toCenterX + Align.toTop)
-    startNewRow(); Ruler("2", Align.toLeft + Align.toCenterY)
-    startNewRow(); Ruler("3", Align.toLeft + Align.toCenterY)
+    Ruler("A", Align.centerX + Align.top)
+    Ruler("B", Align.centerX + Align.top)
+    Ruler("C", Align.centerX + Align.top)
+    startNewRow(); Ruler("2", Align.left + Align.centerY)
+    startNewRow(); Ruler("3", Align.left + Align.centerY)
     // Elements can also be layed out
     // explicitly in exact cells.
     ExampleData("B2")
