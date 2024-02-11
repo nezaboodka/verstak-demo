@@ -31,13 +31,13 @@ export function Field(declaration?: RxNodeDecl<El<HTMLElement, FieldModel>>) {
         b.model ??= composeFieldModel()
         b.native.dataForSensor.focus = b.model
       },
-      content(b) {
+      formula(b) {
         const m = b.model
         const s = Theme.actual.field
         b.useStylingPreset(s.main)
         if (m.icon)
           Icon(m.icon, {
-            content(b, base) {
+            formula(b, base) {
               base()
               b.useStylingPreset(s.icon)
             },
@@ -77,7 +77,7 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
         e.dataForSensor.focus = model
         base()
       },
-      content(b) {
+      formula(b) {
         const e = b.native
         if (!model.isEditMode)
           e.innerText = model.text
@@ -106,7 +106,7 @@ function FieldPopup(model: FieldModel, s: FieldStyling) {
   return (
     Section({
       key: FieldPopup.name,
-      content(b) {
+      formula(b) {
         b.useStylingPreset(s.popup)
         Handling(() => model.position = b.native.sensors.scroll.y)
         const visible = b.overlayVisible = model.isEditMode

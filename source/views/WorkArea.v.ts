@@ -8,7 +8,7 @@ import { Watch } from "./Watch.js"
 export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
   return (
     Table(declaration, {
-      content(b) {
+      formula(b) {
         // Elements can be layed out automatically
         // based on their order and line feeds.
         startNewRow()
@@ -38,7 +38,7 @@ export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
             })
             base()
           },
-          content(b, base) {
+          formula(b, base) {
             base()
             const theme = Theme.actual as AppTheme
             b.native.classList.toggle(theme.panel, true)
@@ -54,7 +54,7 @@ export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
 function Ruler(title: string, align: Align) {
   return (
     Section({
-      content(b) {
+      formula(b) {
         b.boundsAlignment = align
         b.native.style.fontSize = "smaller"
         HtmlNote(`&nbsp;${title}`)
@@ -69,7 +69,7 @@ function ExampleData(area: string) {
       activation(b) {
         b.contentAlignment = Align.center
       },
-      content(b) {
+      formula(b) {
         const theme = Theme.actual as AppTheme
         b.area = area
         b.useStylingPreset(theme.accent)

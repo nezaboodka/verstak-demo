@@ -27,13 +27,13 @@ export function Button(declaration?: RxNodeDecl<El<HTMLElement, ButtonModel>>) {
           label: RxNode.key,
         })
       },
-      content(b) {
+      formula(b) {
         const m = b.model
         const s = Theme.actual.button
         b.useStylingPreset(s.main)
         if (m.icon) {
           Icon(m.icon, {
-            content(b, base) {
+            formula(b, base) {
               base()
               b.useStylingPreset(s.icon)
             },
@@ -41,7 +41,7 @@ export function Button(declaration?: RxNodeDecl<El<HTMLElement, ButtonModel>>) {
         }
         if (m.label) {
           Note(m.label, {
-            content(b, base) {
+            formula(b, base) {
               base()
               b.useStylingPreset(s.label)
             },

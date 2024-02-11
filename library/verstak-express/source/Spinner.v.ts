@@ -21,7 +21,7 @@ export function Spinner(declaration?: RxNodeDecl<El<HTMLElement, SpinnerModel>>)
       activation(b) {
         b.model ??= composeSpinnerModel()
       },
-      content(b) {
+      formula(b) {
         const m = b.model
         m.active && Note("loading...")
       },

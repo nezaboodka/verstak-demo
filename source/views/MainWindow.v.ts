@@ -13,7 +13,7 @@ export function MainWindow() {
       activation(b) {
         b.native.sensors.focus // enable focus global manager
       },
-      content(b) {
+      formula(b) {
         const app = App.actual
         const theme = app.theme
         Theme.actual = theme
@@ -24,7 +24,7 @@ export function MainWindow() {
         b.heightMerelyGrowth = 1
 
         ToolBar({
-          content(b, base) {
+          formula(b, base) {
             b.widthMerelyGrowth = 1
             base()
           }
@@ -32,7 +32,7 @@ export function MainWindow() {
 
         startNewRow()
         Section({
-          content(b) {
+          formula(b) {
             b.useStylingPreset(app.theme.panel)
             b.widthMerelyMin = "10rem"
             b.contentAlignment = Align.top
@@ -57,7 +57,7 @@ export function MainWindow() {
 
             startNewRow()
             Section({
-              content(b) {
+              formula(b) {
                 b.heightMerelyGrowth = 1
               }
             })
@@ -79,7 +79,7 @@ export function MainWindow() {
           }
         })
         WorkArea({
-          content(b, base) {
+          formula(b, base) {
             base()
             b.useStylingPreset(theme.panel)
             b.useStylingPreset(theme.accent)
@@ -90,7 +90,7 @@ export function MainWindow() {
         Section({
           mode: Mode.independentUpdate,
           triggers: { theme },
-          content(b) {
+          formula(b) {
             b.useStylingPreset(theme.panel)
             b.useStylingPreset(theme.markdown)
             b.width = { min: "16rem", growth: 2 }
@@ -102,7 +102,7 @@ export function MainWindow() {
 
         startNewRow()
         StatusBar({
-          content(b, base) {
+          formula(b, base) {
             base()
             b.widthMerelyGrowth = 1
           }
