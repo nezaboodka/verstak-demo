@@ -44,7 +44,7 @@ export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
             const theme = Theme.actual as AppTheme
             b.native.classList.toggle(theme.panel, true)
             b.area = "B1"
-            b.elementAlignment = Align.right + Align.bottom
+            b.boundsAlignment = Align.right + Align.bottom
           }
         })
       }},
@@ -56,7 +56,7 @@ function Ruler(title: string, align: Align) {
   return (
     Section({
       update(b) {
-        b.elementAlignment = align
+        b.boundsAlignment = align
         b.native.style.fontSize = "smaller"
         HtmlNote(`&nbsp;${title}`)
       }

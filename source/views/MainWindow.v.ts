@@ -37,7 +37,7 @@ export function MainWindow() {
             b.useStylingPreset(app.theme.panel)
             b.widthMerelyMin = "10rem"
             b.contentAlignment = Align.top
-            b.elementAlignment = Align.fit
+            b.boundsAlignment = Align.stretch
             Note("Navigation Bar")
 
             startNewRow()
@@ -96,7 +96,7 @@ export function MainWindow() {
             b.useStylingPreset(theme.markdown)
             b.width = { min: "16rem", growth: 2 }
             b.contentAlignment = Align.left + Align.top,
-            b.elementAlignment = Align.fit,
+            b.boundsAlignment = Align.stretch,
             Markdown(EXAMPLE_CODE)
           }
         })

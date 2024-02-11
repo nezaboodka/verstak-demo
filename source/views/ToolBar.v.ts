@@ -14,8 +14,8 @@ export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
         // Image({ // logo
         //   initialize(b, base) {
         //     base()
-        //     b.contentAlignment = Align.Stretch
-        //     b.elementAlignment = Align.Stretch
+        //     b.contentAlignment = Align.stretch
+        //     b.boundsAlignment = Align.stretch
         //     b.model.source = "https://nezaboodka.com/img/star-768x768-circle.png"
         //     b.native.className = cx(s.Panel, s.Clickable, s.Logo)
         //     b.native.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
