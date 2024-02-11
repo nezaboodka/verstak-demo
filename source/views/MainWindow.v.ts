@@ -21,12 +21,12 @@ export function MainWindow() {
 
         b.useStylingPreset(App.blinkingEffectMarker, app.isBlinkingEffectOn)
         // b.contentAlignment = Align.Center
-        b.widthRange = { growth: 1 }
-        b.heightRange = { growth: 1 }
+        b.width = { growth: 1 }
+        b.height = { growth: 1 }
 
         ToolBar({
           update(b, base) {
-            b.widthRange = { growth: 1 }
+            b.width = { growth: 1 }
             base()
           }
         })
@@ -35,7 +35,7 @@ export function MainWindow() {
         Section({
           update(b) {
             b.useStylingPreset(app.theme.panel)
-            b.width = "10rem"
+            b.widthFixed = "10rem"
             b.contentAlignment = Align.top
             b.elementAlignment = Align.fit
             Note("Navigation Bar")
@@ -44,7 +44,7 @@ export function MainWindow() {
             Field({
               initialize(b, base) {
                 const loader = app.loader
-                b.width = "10em"
+                b.widthFixed = "10em"
                 b.model = composeFieldModel({
                   icon: "fa-solid fa-search",
                   text: refs(loader).filter,
@@ -59,7 +59,7 @@ export function MainWindow() {
             startNewRow()
             Section({
               update(b) {
-                b.heightRange = { growth: 1 }
+                b.height = { growth: 1 }
               }
             })
 
@@ -67,7 +67,7 @@ export function MainWindow() {
             Field({
               initialize(b, base) {
                 const loader = app.loader
-                b.width = "10em"
+                b.widthFixed = "10em"
                 b.model = composeFieldModel({
                   text: refs(loader).filter,
                   options: refs(loader).loaded,
@@ -84,8 +84,8 @@ export function MainWindow() {
             base()
             b.useStylingPreset(theme.panel)
             b.useStylingPreset(theme.accent)
-            b.widthRange = { growth: 3 }
-            b.heightRange = { growth: 1 }
+            b.width = { growth: 3 }
+            b.height = { growth: 1 }
           }
         })
         Section({
@@ -94,7 +94,7 @@ export function MainWindow() {
           update(b) {
             b.useStylingPreset(theme.panel)
             b.useStylingPreset(theme.markdown)
-            b.widthRange = { min: "16rem", growth: 2 }
+            b.width = { min: "16rem", growth: 2 }
             b.contentAlignment = Align.left + Align.top,
             b.elementAlignment = Align.fit,
             Markdown(EXAMPLE_CODE)
@@ -105,7 +105,7 @@ export function MainWindow() {
         StatusBar({
           update(b, base) {
             base()
-            b.widthRange = { growth: 1 }
+            b.width = { growth: 1 }
           }
         })
       },
