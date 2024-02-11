@@ -1,15 +1,14 @@
 import { refs, RxNodeDecl } from "reactronic"
 import { Table, Section, Note, HtmlNote, startNewRow, Align, cursor, El } from "verstak"
-import { Theme, Toggle } from "verstak-express"
+import { Theme, Toggle, observableModel } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { App } from "models/App.js"
 import { Watch } from "./Watch.js"
-import { observableModel } from "common/Utils.js"
 
 export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
   return (
     Table(declaration, {
-      update(b) {
+      content(b) {
         // Elements can be layed out automatically
         // based on their order and line feeds.
         startNewRow()
@@ -31,7 +30,7 @@ export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
         ExampleData("B3:C3")
         ExampleData("A2:A3")
         Toggle({ key: "SecondaryTimeZone",
-          initialize(b, base) {
+          activation(b, base) {
             const app = App.actual
             b.model = observableModel({
               label: "Watch Bezel",
@@ -39,7 +38,7 @@ export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
             })
             base()
           },
-          update(b, base) {
+          content(b, base) {
             base()
             const theme = Theme.actual as AppTheme
             b.native.classList.toggle(theme.panel, true)
@@ -55,7 +54,7 @@ export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
 function Ruler(title: string, align: Align) {
   return (
     Section({
-      update(b) {
+      content(b) {
         b.boundsAlignment = align
         b.native.style.fontSize = "smaller"
         HtmlNote(`&nbsp;${title}`)
@@ -67,10 +66,10 @@ function Ruler(title: string, align: Align) {
 function ExampleData(area: string) {
   return (
     Section({
-      initialize(b) {
+      activation(b) {
         b.contentAlignment = Align.center
       },
-      update(b) {
+      content(b) {
         const theme = Theme.actual as AppTheme
         b.area = area
         b.useStylingPreset(theme.accent)

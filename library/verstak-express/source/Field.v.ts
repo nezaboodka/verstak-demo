@@ -1,6 +1,6 @@
 import { RxNodeDecl, Mode } from "reactronic"
 import { Section, Note, FocusModel, OnFocus, startNewRow, El, Handling, KeyboardSensor, KeyboardModifiers } from "verstak"
-import { observableModel, ValuesOrRefs } from "common/Utils.js"
+import { observableModel, ValuesOrRefs } from "./common/Utils.js"
 import { Theme, FieldStyling } from "./Theme.js"
 import { Icon } from "./Icon.v.js"
 
@@ -20,20 +20,20 @@ export function Field(declaration?: RxNodeDecl<El<HTMLElement, FieldModel>>) {
   return (
     Section<FieldModel>(declaration, {
       mode: Mode.independentUpdate,
-      initialize(b) {
+      activation(b) {
         b.model ??= composeFieldModel()
         b.native.dataForSensor.focus = b.model
       },
-      update(b) {
+      content(b) {
         const m = b.model
         const s = Theme.actual.field
         b.useStylingPreset(s.main)
         if (m.icon)
           Icon(m.icon, {
-            update(b, base) {
+            content(b, base) {
               base()
               b.useStylingPreset(s.icon)
-            }
+            },
           })
         FieldInput(m, s)
         FieldPopup(m, s)
@@ -61,7 +61,7 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
   return (
     Note(model.text, {
       key: FieldInput.name,
-      initialize(b, base) {
+      activation(b, base) {
         const e = b.native
         b.useStylingPreset(s.input)
         b.widthMerelyGrowth = 1
@@ -70,7 +70,7 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
         e.dataForSensor.focus = model
         base()
       },
-      update(b) {
+      content(b) {
         const e = b.native
         if (!model.isEditMode)
           e.innerText = model.text
@@ -99,7 +99,7 @@ function FieldPopup(model: FieldModel, s: FieldStyling) {
   return (
     Section({
       key: FieldPopup.name,
-      update(b) {
+      content(b) {
         b.useStylingPreset(s.popup)
         Handling(() => model.position = b.native.sensors.scroll.y)
         const visible = b.overlayVisible = model.isEditMode
@@ -110,7 +110,7 @@ function FieldPopup(model: FieldModel, s: FieldStyling) {
               startNewRow()
               Note(x, {
                 key: x,
-                initialize(b) {
+                activation(b) {
                   b.contentWrapping = false
                 },
               })

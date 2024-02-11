@@ -18,18 +18,18 @@ export function Watch(area: string): RxNode<El<HTMLElement>> {
   return (
     Section({
       mode: Mode.independentUpdate,
-      initialize(b) {
+      activation(b) {
         const s = b.native.style
         b.contentAlignment = Align.center
         // s.fontFamily = "Arial"
         s.cursor = "default"
       },
-      update(b) {
+      content(b) {
         const theme = Theme.actual as AppTheme
         b.area = area
         b.useStylingPreset(theme.accent)
         Svg({
-          update(b) {
+          content(b) {
             const svg = b.native
             svg.style.width = "48mm"
             svg.style.height = "48mm"
@@ -37,7 +37,7 @@ export function Watch(area: string): RxNode<El<HTMLElement>> {
             svg.viewBox.baseVal.height = 1000
 
             Rect({
-              update(b) {
+              content(b) {
                 const e = b.native
                 const s = e.style
                 e.x.baseVal.value = 250
@@ -52,7 +52,7 @@ export function Watch(area: string): RxNode<El<HTMLElement>> {
               },
             })
             Rect({
-              update(b) {
+              content(b) {
                 const e = b.native
                 const s = e.style
                 e.x.baseVal.value = 980
@@ -69,7 +69,7 @@ export function Watch(area: string): RxNode<El<HTMLElement>> {
               },
             })
             Circle({
-              update(b) {
+              content(b) {
                 const e = b.native
                 const s = e.style
                 e.cx.baseVal.value = 500
@@ -82,7 +82,7 @@ export function Watch(area: string): RxNode<El<HTMLElement>> {
               },
             })
             Circle({
-              update(b) {
+              content(b) {
                 const e = b.native
                 const s = e.style
                 e.cx.baseVal.value = 500
@@ -130,7 +130,7 @@ export function Watch(area: string): RxNode<El<HTMLElement>> {
             const secondDeg = 360 / 60 * (clock.second + (1 / 1000 * clock.ms))
             Arrow(10, 2, -0.05, 0.835, secondDeg, 60, LabelColor, LabelColor, true, svg)
             Circle({
-              update(b) {
+              content(b) {
                 const e = b.native
                 const s = e.style
                 e.cx.baseVal.value = 500
@@ -144,13 +144,13 @@ export function Watch(area: string): RxNode<El<HTMLElement>> {
 
             // Bezel (secondary time zone)
             G({
-              initialize(b) {
+              activation(b) {
                 b.native.style.transition = "transform 1s ease"
                 b.native.onclick = () => {
                   b.native.style.transform = b.native.style.transform === "rotate(105deg)" ? "rotate(0deg)" : "rotate(105deg)"
                 }
               },
-              update(b) {
+              content(b) {
                 b.native.style.transform = b.native.style.transform === "rotate(105deg)" ? "rotate(0deg)" : "rotate(105deg)"
                 const app = App.actual
                 if (app.isSecondaryTimeZoneOn)
@@ -182,7 +182,7 @@ function rotate(e: SVGGraphicsElement, degrees: number): void {
 function radialDashes(color: string, width: number, height: number, step: number, indent: number): void {
   for (let deg = 0; deg < 360; deg += step) {
     Rect({
-      update(b) {
+      content(b) {
         const e = b.native
         const s = e.style
         e.x.baseVal.value = 500 - width / 2
@@ -201,7 +201,7 @@ function radialDashes(color: string, width: number, height: number, step: number
 function radialDots(color: string, step: number, major: number, indent: number): void {
   for (let deg = 0; deg < 360; deg += step) {
     Circle({
-      update(b) {
+      content(b) {
         const r = major !== 0 && deg % major === 0 ? 12 : 6
         const e = b.native
         const s = e.style
@@ -222,7 +222,7 @@ function Arrow(widthA: number, widthB: number, margin: number, length: number,
   shadow: boolean, svg: SVGSVGElement): RxNode<El<SVGPolygonElement>> {
   return (
     Polygon({
-      update(b) {
+      content(b) {
         const e = b.native
         const s = e.style
         const m = Math.floor(500 * margin)
@@ -259,7 +259,7 @@ function ArrowEx(segments: Array<number | string>, degrees: number,
   duration: number, color: string, stroke: string): RxNode<El<SVGPolygonElement>> {
   return (
     Polygon({
-      update(b) {
+      content(b) {
         const e = b.native
         // const s = e.style
         // const l = Math.floor(500 * length)
@@ -287,7 +287,7 @@ function RadialLabel(degree: number, content: string, color: string,
   root: SVGSVGElement): RxNode<El<SVGTextElement>> {
   return (
     Text({
-      update(b) {
+      content(b) {
         const e = b.native
         const s = e.style
         s.fill = color

@@ -1,6 +1,6 @@
 import { RxNodeDecl, Mode, RxNode } from "reactronic"
 import { Section, Note, El, OnClick } from "verstak"
-import { observableModel } from "common/Utils.js"
+import { observableModel } from "./common/Utils.js"
 import { Theme } from "./Theme.js"
 import { Icon } from "./Icon.v.js"
 
@@ -14,30 +14,30 @@ export function Button(declaration?: RxNodeDecl<El<HTMLElement, ButtonModel>>) {
   return (
     Section<ButtonModel>(declaration, {
       mode: Mode.independentUpdate,
-      initialize(b) {
+      activation(b) {
         b.model ??= observableModel({
           icon: "fa-solid fa-square",
           label: RxNode.key,
         })
       },
-      update(b) {
+      content(b) {
         const m = b.model
         const s = Theme.actual.button
         b.useStylingPreset(s.main)
         if (m.icon) {
           Icon(m.icon, {
-            update(b, base) {
+            content(b, base) {
               base()
               b.useStylingPreset(s.icon)
-            }
+            },
           })
         }
         if (m.label) {
           Note(m.label, {
-            update(b, base) {
+            content(b, base) {
               base()
               b.useStylingPreset(s.label)
-            }
+            },
           })
         }
         OnClick(b.native, m.action)

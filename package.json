@@ -15,11 +15,14 @@
     "start:prod": "npm run pack && vite preview",
     "build": "tsc && eslint source/**.ts library/**/*.ts",
     "pack": "vite build",
-    "install-all": "npm i && npm i --prefix library/reactronic && npm i --prefix library/verstak && npm i --prefix library/verstak-markdown"
+    "install-all": "npm i && npm i --prefix library/reactronic && npm i --prefix library/verstak && npm i --prefix library/verstak-express"
   },
   "dependencies": {
+    "markdown-it": "^13.0.1",
+    "markdown-it-prism": "^2.3.0",
+    "prismjs": "^1.29.0",
     "medium-editor": "5.23.3",
-    "monaco-editor": "0.45.0",
+    "monaco-editor": "0.46.0",
     "normalize-url": "8.0.0"
   },
   "devDependencies": {

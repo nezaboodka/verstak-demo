@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
-    "composite": true,
     // General
     "pretty": true,
-    "listFiles": false,
+    "listFiles": true,
     "inlineSources": false,
     "removeComments": false, // keep comments to make tests coverage working
     // Targets & outputs
@@ -14,12 +13,12 @@
     "noEmit": false,
     "noLib": false,
     "baseUrl": "source",
-    // "rootDir": "source",
-    "outDir": "build/output",
-    "declarationDir": "build/output",
-    "declaration": true,
     "isolatedModules": true,
     "esModuleInterop": true,
+    // "rootDir": "source",
+    "outDir": "build/dist",
+    "declarationDir": "build/dist",
+    "declaration": true,
     // Debugging
     "sourceMap": true,
     "inlineSourceMap": false,
@@ -30,41 +29,24 @@
     "noImplicitAny": true,
     "noImplicitThis": true,
     "noImplicitReturns": true,
-    "noUnusedLocals": false,
+    "noUnusedLocals": true,
     // Other
-    "emitDecoratorMetadata": false,
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "jsx": "react",
     "forceConsistentCasingInFileNames": true,
     "paths": {
-      "reactronic": [
-        "../library/reactronic/source/api.ts"
-      ],
       "verstak": [
-        "../library/verstak/source/api.ts"
-      ],
-      "verstak-express": [
-        "../library/verstak-express/source/api.ts"
+        "library/verstak/source/api.ts"
       ],
     },
-    "plugins": [
-      {
-        "name": "typescript-styled-plugin",
-        "lint": {
-          "validProperties": [
-            "label"
-          ]
-        }
-      }
-    ]
   },
   "include": [
-    "source/**/*.boo",
     "source/**/*.ts",
-    "library/**/*.ts",
+    "test/**/*.ts",
   ],
   "exclude": [
     "node_modules",
-    "source/assets/sheets/**/*.ts",
+    "build"
   ]
 }

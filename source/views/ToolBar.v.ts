@@ -1,14 +1,13 @@
 import { Mode, refs, RxNodeDecl } from "reactronic"
 import { Section, Img, startNewRow, El } from "verstak"
-import { Markdown } from "verstak-markdown"
-import { Icon, Field, composeFieldModel, Theme } from "verstak-express"
+import { Icon, Field, Theme, Markdown, composeFieldModel } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { App } from "models/App.js"
 
 export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
   return (
     Section(declaration, {
-      update(b) {
+      content(b) {
         const app = App.actual
         const theme = Theme.actual as AppTheme
         // Image({ // logo
@@ -26,17 +25,17 @@ export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
         //   }
         // })
         Section({ // Logo
-          initialize(b) {
+          activation(b) {
             b.useStylingPreset(theme.panel)
             // b.useStyle(s.Clickable)
             // b.useStyle(s.Logo)
             b.native.style.outlineOffset = "-1px"
             // b.native.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
           },
-          update(b) {
+          content(b) {
             b.native.style.boxShadow = app.isBlinkingEffectOn ? "0.025rem 0.025rem 0.35rem 0 red" : ""
             Img({
-              update(b, base) {
+              content(b, base) {
                 base()
                 b.native.src = "https://nezaboodka.com/img/star-768x768-circle.png"
               }
@@ -44,12 +43,12 @@ export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
           }
         })
         Section({
-          update(b) {
+          content(b) {
             b.widthMerelyGrowth = 1
             b.useStylingPreset(theme.panel)
             Section({
               mode: Mode.independentUpdate,
-              update(b) {
+              content(b) {
                 b.widthMerelyGrowth = 1
                 const position = app.position
                 if (!Number.isFinite(position))
@@ -61,7 +60,7 @@ export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
               }
             })
             Field({
-              initialize(b, base) {
+              activation(b, base) {
                 const loader = app.loader
                 b.widthMerelyMin = "7em"
                 b.model = composeFieldModel({
@@ -78,10 +77,10 @@ export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
           }
         })
         Section({ // Account
-          initialize(b) {
+          activation(b) {
             // b.native.onclick = () => Transaction.run(null, () => app.nextTheme())
           },
-          update(b) {
+          content(b) {
             b.useStylingPreset(theme.panel)
             // b.useStyle(s.Hint)
             // b.useStyle(s.Clickable)

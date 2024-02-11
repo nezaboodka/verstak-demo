@@ -1,0 +1,60 @@
+{
+  "name": "verstak-express",
+  "version": "0.24.200",
+  "description": "Verstak Express: Library of Visual Components",
+  "publisher": "Nezaboodka Software",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "build/dist/source/api.js",
+  "types": "build/dist/source/api.d.ts",
+  "files": [
+    "build/dist/source/**/*.*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nezaboodka/verstak-markdown.git"
+  },
+  "keywords": [
+    "nezaboodka",
+    "reactronic",
+    "state management",
+    "rendering",
+    "consistent",
+    "reactive",
+    "reactivity",
+    "transactional",
+    "asynchronous",
+    "ui"
+  ],
+  "bugs": {
+    "url": "https://github.com/nezaboodka/verstak-markdown/issues"
+  },
+  "homepage": "https://github.com/nezaboodka/verstak-markdown/blob/master/README.md#readme",
+  "dependencies": {
+    "markdown-it": "^13.0.1",
+    "markdown-it-prism": "^2.3.0",
+    "prismjs": "^1.29.0",
+    "reactronic": "^0.24.200",
+    "verstak": "^0.24.200"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "13.0.1",
+    "@types/node": "20.6.3",
+    "@types/prismjs": "1.26.0",
+    "@typescript-eslint/eslint-plugin": "6.7.2",
+    "@typescript-eslint/parser": "6.7.2",
+    "ava": "5.3.1",
+    "c8": "8.0.1",
+    "eslint": "8.49.0",
+    "ts-node": "10.9.1",
+    "tsconfig-paths": "4.2.0",
+    "typescript": "5.2.2"
+  },
+  "scripts": {
+    "build": "eslint source/**.ts test/**.ts && tsc",
+    "fix": "eslint --fix source/**.ts test/**.ts",
+    "pack": "eslint source/**.ts test/**.ts && tsc --sourceMap false --removeComments true",
+    "test": "ava",
+    "cover": "c8 ava && open build/coverage/index.html"
+  }
+}

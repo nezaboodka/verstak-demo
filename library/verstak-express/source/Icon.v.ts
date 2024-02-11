@@ -7,7 +7,7 @@ export function Icon(name: string,
   return (
     Section(declaration, {
       mode: Mode.independentUpdate,
-      update(b) {
+      content(b) {
         const s = Theme.actual.icon
         b.useStylingPreset(name)
         b.useStylingPreset(s.main)

@@ -1,14 +1,13 @@
 import { refs, RxNodeDecl } from "reactronic"
 import { Section, Align, El } from "verstak"
-import { Button, Toggle, Field, composeFieldModel, Theme } from "verstak-express"
+import { Button, Toggle, Field, composeFieldModel, Theme, observableModel } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
-import { observableModel } from "common/Utils.js"
 import { App } from "models/App.js"
 
 export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
   return (
     Section(declaration, {
-      update(b) {
+      content(b) {
         // We get app and theme as a context variables
         // (instead of functional parameters) in order
         // to avoid passing app/theme in each and every
@@ -17,7 +16,7 @@ export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
         const theme = Theme.actual as AppTheme
         b.contentWrapping = true
         Toggle({ key: "Blinking",
-          initialize(b, base) {
+          activation(b, base) {
             // We compose model from different pieces,
             // such as app and theme. Without the need
             // to implement interface in form of class.
@@ -27,14 +26,14 @@ export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
             })
             base()
           },
-          update(b, base) {
+          content(b, base) {
             base()
             // Style is not inside "initialize", because of theming
             b.native.classList.toggle(theme.panel, true)
           }
         })
         Button({ key: "Theme",
-          initialize(b, base) {
+          activation(b, base) {
             b.model = observableModel({
               icon: "fa-solid fa-palette",
               label: "Switch Theme",
@@ -42,37 +41,37 @@ export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
             })
             base()
           },
-          update(b,  base) {
+          content(b,  base) {
             base()
             b.useStylingPreset(theme.panel)
           }
         })
         Toggle({ key: "SecondaryTimeZone",
-          initialize(b, base) {
+          activation(b, base) {
             b.model = observableModel({
               label: "New York (GMT-7)",
               checked: refs(app).isSecondaryTimeZoneOn,
             })
             base()
           },
-          update(b, base) {
+          content(b, base) {
             base()
             b.native.classList.toggle(theme.panel, true)
           }
         })
         Toggle({
-          update(b, base) {
+          content(b, base) {
             base()
             b.native.classList.toggle(theme.panel, true)
           }
         })
         Section({
-          update(b) {
+          content(b) {
             b.useStylingPreset(theme.panel)
             b.widthMerelyGrowth = 1
             b.contentAlignment = Align.right
             Field({
-              initialize(b, base) {
+              activation(b, base) {
                 const loader = app.loader
                 b.widthMerelyMin = "10em"
                 b.model = composeFieldModel({
@@ -84,7 +83,7 @@ export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
                 })
                 base()
               },
-              update(b, base) {
+              content(b, base) {
                 base()
                 // Spinner("Spinner", {
                 //   initialize(b) {

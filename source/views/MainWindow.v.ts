@@ -1,7 +1,6 @@
 import { refs, Mode } from "reactronic"
 import { Section, Align, Note, startNewRow } from "verstak"
-import { Markdown } from "verstak-markdown"
-import { composeFieldModel, Field, Theme } from "verstak-express"
+import { Markdown, Field, Theme, composeFieldModel } from "verstak-express"
 import { App } from "models/App.js"
 import { ToolBar } from "./ToolBar.v.js"
 import { StatusBar } from "./StatusBar.v.js"
@@ -11,10 +10,10 @@ export function MainWindow() {
   return (
     Section({
       mode: Mode.independentUpdate,
-      initialize(b) {
+      activation(b) {
         b.native.sensors.focus // enable focus global manager
       },
-      update(b) {
+      content(b) {
         const app = App.actual
         const theme = app.theme
         Theme.actual = theme
@@ -25,7 +24,7 @@ export function MainWindow() {
         b.heightMerelyGrowth = 1
 
         ToolBar({
-          update(b, base) {
+          content(b, base) {
             b.widthMerelyGrowth = 1
             base()
           }
@@ -33,7 +32,7 @@ export function MainWindow() {
 
         startNewRow()
         Section({
-          update(b) {
+          content(b) {
             b.useStylingPreset(app.theme.panel)
             b.widthMerelyMin = "10rem"
             b.contentAlignment = Align.top
@@ -42,7 +41,7 @@ export function MainWindow() {
 
             startNewRow()
             Field({
-              initialize(b, base) {
+              activation(b, base) {
                 const loader = app.loader
                 b.widthMerelyMin = "10em"
                 b.model = composeFieldModel({
@@ -58,14 +57,14 @@ export function MainWindow() {
 
             startNewRow()
             Section({
-              update(b) {
+              content(b) {
                 b.heightMerelyGrowth = 1
               }
             })
 
             startNewRow()
             Field({
-              initialize(b, base) {
+              activation(b, base) {
                 const loader = app.loader
                 b.widthMerelyMin = "10em"
                 b.model = composeFieldModel({
@@ -80,7 +79,7 @@ export function MainWindow() {
           }
         })
         WorkArea({
-          update(b, base) {
+          content(b, base) {
             base()
             b.useStylingPreset(theme.panel)
             b.useStylingPreset(theme.accent)
@@ -91,7 +90,7 @@ export function MainWindow() {
         Section({
           mode: Mode.independentUpdate,
           triggers: { theme },
-          update(b) {
+          content(b) {
             b.useStylingPreset(theme.panel)
             b.useStylingPreset(theme.markdown)
             b.width = { min: "16rem", growth: 2 }
@@ -103,7 +102,7 @@ export function MainWindow() {
 
         startNewRow()
         StatusBar({
-          update(b, base) {
+          content(b, base) {
             base()
             b.widthMerelyGrowth = 1
           }

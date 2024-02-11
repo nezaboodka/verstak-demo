@@ -1,6 +1,6 @@
 import { RxNodeDecl, Mode } from "reactronic"
 import { Section, Note, El } from "verstak"
-import { observableModel, ValuesOrRefs } from "common/Utils.js"
+import { observableModel, ValuesOrRefs } from "./common/Utils.js"
 
 export type SpinnerModel = {
   active: boolean
@@ -11,10 +11,10 @@ export function Spinner(declaration?: RxNodeDecl<El<HTMLElement, SpinnerModel>>)
   return (
     Section<SpinnerModel>(declaration, {
       mode: Mode.independentUpdate,
-      initialize(b) {
+      activation(b) {
         b.model ??= composeSpinnerModel()
       },
-      update(b) {
+      content(b) {
         const m = b.model
         m.active && Note("loading...")
       },

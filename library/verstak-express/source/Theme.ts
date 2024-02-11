@@ -10,21 +10,21 @@ export { type FieldStyling, type DefaultFieldStyling  } from "./theme/Field.s.js
 export { type IconStyling, type DefaultIconStyling  } from "./theme/Icon.s.js"
 export { type ToggleStyling, type DefaultToggleStyling } from "./theme/Toggle.s.js"
 
-export type MastakTheme = AbstractTheme & {
+export type VerstakExpressTheme = AbstractTheme & {
   readonly button: ButtonStyling
   readonly field: FieldStyling
   readonly icon: IconStyling
   readonly toggle: ToggleStyling
 }
 
-export class Theme implements MastakTheme {
-  private static readonly gCurrent = new RxNodeVariable<MastakTheme>(
+export class Theme implements VerstakExpressTheme {
+  private static readonly gCurrent = new RxNodeVariable<VerstakExpressTheme>(
     Transaction.run({ separation: true }, () => new Theme()))
 
-  static get actual(): MastakTheme {
+  static get actual(): VerstakExpressTheme {
     return Theme.gCurrent.value
   }
-  static set actual(value: MastakTheme) {
+  static set actual(value: VerstakExpressTheme) {
     Theme.gCurrent.value = value
   }
 
