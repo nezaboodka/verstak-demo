@@ -1,5 +1,5 @@
 import { RxNodeDecl, Mode } from "reactronic"
-import { Section, Note, FocusModel, OnFocus, startNewRow, El, Handler, KeyboardSensor, KeyboardModifiers } from "verstak"
+import { Section, Note, FocusModel, OnFocus, startNewRow, El, Handling, KeyboardSensor, KeyboardModifiers } from "verstak"
 import { observableModel, ValuesOrRefs } from "common/Utils.js"
 import { Theme, FieldStyling } from "./Theme.js"
 import { Icon } from "./Icon.v.js"
@@ -74,7 +74,7 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
         const e = b.native
         if (!model.isEditMode)
           e.innerText = model.text
-        Handler(() => {
+        Handling(() => {
           const keyboard = e.sensors.keyboard
           if (keyboard.down) {
             if (isApplyKey(model, keyboard))
@@ -101,7 +101,7 @@ function FieldPopup(model: FieldModel, s: FieldStyling) {
       key: FieldPopup.name,
       update(b) {
         b.useStylingPreset(s.popup)
-        Handler(() => model.position = b.native.sensors.scroll.y)
+        Handling(() => model.position = b.native.sensors.scroll.y)
         const visible = b.overlayVisible = model.isEditMode
         if (visible) {
           const options = model.options
