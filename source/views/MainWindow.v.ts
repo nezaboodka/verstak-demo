@@ -21,12 +21,12 @@ export function MainWindow() {
 
         b.useStylingPreset(App.blinkingEffectMarker, app.isBlinkingEffectOn)
         // b.contentAlignment = Align.Center
-        b.widthOnlyGrowth = 1
-        b.heightOnlyGrowth = 1
+        b.widthMerelyGrowth = 1
+        b.heightMerelyGrowth = 1
 
         ToolBar({
           update(b, base) {
-            b.widthOnlyGrowth = 1
+            b.widthMerelyGrowth = 1
             base()
           }
         })
@@ -35,7 +35,7 @@ export function MainWindow() {
         Section({
           update(b) {
             b.useStylingPreset(app.theme.panel)
-            b.widthOnlyMin = "10rem"
+            b.widthMerelyMin = "10rem"
             b.contentAlignment = Align.top
             b.elementAlignment = Align.fit
             Note("Navigation Bar")
@@ -44,7 +44,7 @@ export function MainWindow() {
             Field({
               initialize(b, base) {
                 const loader = app.loader
-                b.widthOnlyMin = "10em"
+                b.widthMerelyMin = "10em"
                 b.model = composeFieldModel({
                   icon: "fa-solid fa-search",
                   text: refs(loader).filter,
@@ -59,7 +59,7 @@ export function MainWindow() {
             startNewRow()
             Section({
               update(b) {
-                b.heightOnlyGrowth = 1
+                b.heightMerelyGrowth = 1
               }
             })
 
@@ -67,7 +67,7 @@ export function MainWindow() {
             Field({
               initialize(b, base) {
                 const loader = app.loader
-                b.widthOnlyMin = "10em"
+                b.widthMerelyMin = "10em"
                 b.model = composeFieldModel({
                   text: refs(loader).filter,
                   options: refs(loader).loaded,
@@ -84,8 +84,8 @@ export function MainWindow() {
             base()
             b.useStylingPreset(theme.panel)
             b.useStylingPreset(theme.accent)
-            b.widthOnlyGrowth = 3
-            b.heightOnlyGrowth = 1
+            b.widthMerelyGrowth = 3
+            b.heightMerelyGrowth = 1
           }
         })
         Section({
@@ -105,7 +105,7 @@ export function MainWindow() {
         StatusBar({
           update(b, base) {
             base()
-            b.widthOnlyGrowth = 1
+            b.widthMerelyGrowth = 1
           }
         })
       },
