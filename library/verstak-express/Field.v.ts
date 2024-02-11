@@ -64,7 +64,7 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
       initialize(b, base) {
         const e = b.native
         b.useStylingPreset(s.input)
-        b.widthGrowth = 1
+        b.widthRange = { growth: 1 }
         e.tabIndex = 0
         e.contentEditable = "true"
         e.dataForSensor.focus = model
