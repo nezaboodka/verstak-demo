@@ -20,12 +20,12 @@ export function MainWindow() {
 
         el.useStylingPreset(App.blinkingEffectMarker, app.isBlinkingEffectOn)
         // b.contentAlignment = Align.Center
-        el.widthMerelyGrowth = 1
-        el.heightMerelyGrowth = 1
+        el.widthJustGrowth = 1
+        el.heightJustGrowth = 1
 
         ToolBar({
           formula: (el, base) => {
-            el.widthMerelyGrowth = 1
+            el.widthJustGrowth = 1
             base()
           }
         })
@@ -34,7 +34,7 @@ export function MainWindow() {
         Section({
           formula: el => {
             el.useStylingPreset(app.theme.panel)
-            el.widthMerelyMin = "10rem"
+            el.widthJustMin = "10rem"
             el.contentAlignment = Align.top
             el.boundsAlignment = Align.stretch
             Note("Navigation Bar")
@@ -43,7 +43,7 @@ export function MainWindow() {
             Field({
               activation: (el, base) => {
                 const loader = app.loader
-                el.widthMerelyMin = "10em"
+                el.widthJustMin = "10em"
                 el.model = composeFieldModel({
                   icon: "fa-solid fa-search",
                   text: refs(loader).filter,
@@ -58,7 +58,7 @@ export function MainWindow() {
             startNewRow()
             Section({
               formula: el => {
-                el.heightMerelyGrowth = 1
+                el.heightJustGrowth = 1
               }
             })
 
@@ -66,7 +66,7 @@ export function MainWindow() {
             Field({
               activation: (el, base) => {
                 const loader = app.loader
-                el.widthMerelyMin = "10em"
+                el.widthJustMin = "10em"
                 el.model = composeFieldModel({
                   text: refs(loader).filter,
                   options: refs(loader).loaded,
@@ -83,8 +83,8 @@ export function MainWindow() {
             base()
             el.useStylingPreset(theme.panel)
             el.useStylingPreset(theme.accent)
-            el.widthMerelyGrowth = 3
-            el.heightMerelyGrowth = 1
+            el.widthJustGrowth = 3
+            el.heightJustGrowth = 1
           }
         })
         Section({
@@ -104,7 +104,7 @@ export function MainWindow() {
         StatusBar({
           formula: (el, base) => {
             base()
-            el.widthMerelyGrowth = 1
+            el.widthJustGrowth = 1
           }
         })
       },

@@ -44,12 +44,12 @@ export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
         })
         Section({
           formula: el => {
-            el.widthMerelyGrowth = 1
+            el.widthJustGrowth = 1
             el.useStylingPreset(theme.panel)
             Section({
               mode: Mode.independentUpdate,
               formula: el => {
-                el.widthMerelyGrowth = 1
+                el.widthJustGrowth = 1
                 const position = app.position
                 if (!Number.isFinite(position))
                   Markdown(`**Verstak** v${app.version}`)
@@ -62,7 +62,7 @@ export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
             Field({
               activation: (el, base) => {
                 const loader = app.loader
-                el.widthMerelyMin = "7em"
+                el.widthJustMin = "7em"
                 el.model = composeFieldModel({
                   icon: "fa-solid fa-search",
                   text: refs(loader).filter,

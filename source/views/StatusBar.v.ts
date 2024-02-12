@@ -68,12 +68,12 @@ export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
         Section({
           formula: el => {
             el.useStylingPreset(theme.panel)
-            el.widthMerelyGrowth = 1
+            el.widthJustGrowth = 1
             el.contentAlignment = Align.right
             Field({
               activation: (el, base) => {
                 const loader = app.loader
-                el.widthMerelyMin = "10em"
+                el.widthJustMin = "10em"
                 el.model = composeFieldModel({
                   icon: "fa-solid fa-search",
                   text: refs(loader).filter,
