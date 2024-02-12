@@ -1,5 +1,5 @@
 import { refs, RxNodeDecl } from "reactronic"
-import { Table, Section, Note, HtmlNote, startNewRow, Align, cursor, El } from "verstak"
+import { Table, Section, Note, startNewRow, Align, cursor, El } from "verstak"
 import { Theme, Toggle, observableModel } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { App } from "models/App.js"
@@ -57,7 +57,7 @@ function Ruler(title: string, align: Align) {
       formula: b => {
         b.boundsAlignment = align
         b.native.style.fontSize = "smaller"
-        HtmlNote(`&nbsp;${title}`)
+        Note(`&nbsp;${title}`, true)
       }
     })
   )

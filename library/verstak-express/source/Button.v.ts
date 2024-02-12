@@ -40,7 +40,7 @@ export function Button(declaration?: RxNodeDecl<El<HTMLElement, ButtonModel>>) {
           })
         }
         if (m.label) {
-          Note(m.label, {
+          Note(m.label, false, {
             formula: (b, base) => {
               base()
               b.useStylingPreset(s.label)

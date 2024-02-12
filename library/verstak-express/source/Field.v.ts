@@ -66,7 +66,7 @@ export function composeFieldModel<T>(props?: Partial<ValuesOrRefs<FieldModel<T>>
 
 function FieldInput(model: FieldModel, s: FieldStyling) {
   return (
-    Note(model.text, {
+    Note(model.text, false, {
       key: FieldInput.name,
       activation: (b, base) => {
         const e = b.native
@@ -115,7 +115,7 @@ function FieldPopup(model: FieldModel, s: FieldStyling) {
           if (options.length > 0) {
             for (const x of model.options) {
               startNewRow()
-              Note(x, {
+              Note(x, false, {
                 key: x,
                 activation(b) {
                   b.contentWrapping = false
@@ -124,7 +124,7 @@ function FieldPopup(model: FieldModel, s: FieldStyling) {
             }
           }
           else
-            Note("(nothing)", { key: "(nothing)" })
+            Note("(nothing)", false, { key: "(nothing)" })
         }
       },
     })

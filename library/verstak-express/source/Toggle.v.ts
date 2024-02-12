@@ -41,7 +41,7 @@ export function Toggle(declaration?: RxNodeDecl<El<HTMLElement, ToggleModel>>) {
           },
         })
         if (m.label)
-          Note(m.label, {
+          Note(m.label, false, {
             formula: (b, base) => {
               base()
               b.useStylingPreset(s.label)
