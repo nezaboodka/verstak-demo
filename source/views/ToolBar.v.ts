@@ -7,7 +7,7 @@ import { App } from "models/App.js"
 export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
   return (
     Section(declaration, {
-      formula(b) {
+      formula: b => {
         const app = App.actual
         const theme = Theme.actual as AppTheme
         // Image({ // logo
@@ -32,10 +32,10 @@ export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
             b.native.style.outlineOffset = "-1px"
             // b.native.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
           },
-          formula(b) {
+          formula: b => {
             b.native.style.boxShadow = app.isBlinkingEffectOn ? "0.025rem 0.025rem 0.35rem 0 red" : ""
             Img({
-              formula(b, base) {
+              formula: (b, base) => {
                 base()
                 b.native.src = "https://nezaboodka.com/img/star-768x768-circle.png"
               }
@@ -43,12 +43,12 @@ export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
           }
         })
         Section({
-          formula(b) {
+          formula: b => {
             b.widthMerelyGrowth = 1
             b.useStylingPreset(theme.panel)
             Section({
               mode: Mode.independentUpdate,
-              formula(b) {
+              formula: b => {
                 b.widthMerelyGrowth = 1
                 const position = app.position
                 if (!Number.isFinite(position))
@@ -80,7 +80,7 @@ export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
           activation(b) {
             // b.native.onclick = () => Transaction.run(null, () => app.nextTheme())
           },
-          formula(b) {
+          formula: b => {
             b.useStylingPreset(theme.panel)
             // b.useStyle(s.Hint)
             // b.useStyle(s.Clickable)

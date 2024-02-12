@@ -7,7 +7,7 @@ import { App } from "models/App.js"
 export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
   return (
     Section(declaration, {
-      formula(b) {
+      formula: b => {
         // We get app and theme as a context variables
         // (instead of functional parameters) in order
         // to avoid passing app/theme in each and every
@@ -26,7 +26,7 @@ export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
             })
             base()
           },
-          formula(b, base) {
+          formula: (b, base) => {
             base()
             // Style is not inside "initialize", because of theming
             b.native.classList.toggle(theme.panel, true)
@@ -41,7 +41,7 @@ export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
             })
             base()
           },
-          formula(b,  base) {
+          formula: (b,  base) => {
             base()
             b.useStylingPreset(theme.panel)
           }
@@ -54,19 +54,19 @@ export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
             })
             base()
           },
-          formula(b, base) {
+          formula: (b, base) => {
             base()
             b.native.classList.toggle(theme.panel, true)
           }
         })
         Toggle({
-          formula(b, base) {
+          formula: (b, base) => {
             base()
             b.native.classList.toggle(theme.panel, true)
           }
         })
         Section({
-          formula(b) {
+          formula: b => {
             b.useStylingPreset(theme.panel)
             b.widthMerelyGrowth = 1
             b.contentAlignment = Align.right
@@ -83,7 +83,7 @@ export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
                 })
                 base()
               },
-              formula(b, base) {
+              formula: (b, base) => {
                 base()
                 // Spinner("Spinner", {
                 //   initialize(b) {

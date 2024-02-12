@@ -12,7 +12,7 @@ import * as prism from "prismjs"
 export function Markdown(content: string) {
   return (
     HtmlNote(md.render(content), {
-      activation(b, base) {
+      activation: (b, base) => {
         b.contentWrapping = true
         // b.native.setAttribute("markdown", "true")
         base()
