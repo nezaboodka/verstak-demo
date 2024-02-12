@@ -20,7 +20,7 @@ export function Image(declaration?: RxNodeDecl<El<HTMLElement, ImageModel>>) {
       activation: el => {
         el.model ??= observableModel({ source: undefined })
       },
-      formula: el => {
+      autorun: el => {
         const m = el.model
         el.native.style.backgroundImage = `url(${m.source})`
         el.native.style.backgroundSize = "contain"

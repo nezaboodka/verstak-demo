@@ -13,7 +13,7 @@ export function MainWindow() {
       activation: el => {
         el.native.sensors.focus // enable focus global manager
       },
-      formula: el => {
+      autorun: el => {
         const app = App.current
         const theme = app.theme
         Theme.current = theme
@@ -24,7 +24,7 @@ export function MainWindow() {
         el.heightJustGrowth = 1
 
         ToolBar({
-          formula: (el, base) => {
+          autorun: (el, base) => {
             el.widthJustGrowth = 1
             base()
           }
@@ -32,7 +32,7 @@ export function MainWindow() {
 
         startNewRow()
         Section({
-          formula: el => {
+          autorun: el => {
             el.useStylingPreset(app.theme.panel)
             el.widthJustMin = "10rem"
             el.contentAlignment = Align.top
@@ -57,7 +57,7 @@ export function MainWindow() {
 
             startNewRow()
             Section({
-              formula: el => {
+              autorun: el => {
                 el.heightJustGrowth = 1
               }
             })
@@ -79,7 +79,7 @@ export function MainWindow() {
           }
         })
         WorkArea({
-          formula: (el, base) => {
+          autorun: (el, base) => {
             base()
             el.useStylingPreset(theme.panel)
             el.useStylingPreset(theme.accent)
@@ -90,7 +90,7 @@ export function MainWindow() {
         Section({
           mode: Mode.independentUpdate,
           triggers: { theme },
-          formula: el => {
+          autorun: el => {
             el.useStylingPreset(theme.panel)
             el.useStylingPreset(theme.markdown)
             el.width = { min: "16rem", growth: 2 }
@@ -102,7 +102,7 @@ export function MainWindow() {
 
         startNewRow()
         StatusBar({
-          formula: (el, base) => {
+          autorun: (el, base) => {
             base()
             el.widthJustGrowth = 1
           }

@@ -7,7 +7,7 @@ import { App } from "models/App.js"
 export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
   return (
     Section(declaration, {
-      formula: el => {
+      autorun: el => {
         const app = App.current
         const theme = Theme.current as AppTheme
         // Image({ // logo
@@ -19,7 +19,7 @@ export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
         //     el.native.className = cx(s.Panel, s.Clickable, s.Logo)
         //     el.native.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
         //   },
-        //   formula: (el, base) => {
+        //   autorun: (el, base) => {
         //     base()
         //     el.native.style.backgroundColor = app.blinkingEffect ? "red" : ""
         //   }
@@ -32,10 +32,10 @@ export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
             el.native.style.outlineOffset = "-1px"
             // b.native.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
           },
-          formula: el => {
+          autorun: el => {
             el.native.style.boxShadow = app.isBlinkingEffectOn ? "0.025rem 0.025rem 0.35rem 0 red" : ""
             Img({
-              formula: (el, base) => {
+              autorun: (el, base) => {
                 base()
                 el.native.src = "https://nezaboodka.com/img/star-768x768-circle.png"
               }
@@ -43,12 +43,12 @@ export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
           }
         })
         Section({
-          formula: el => {
+          autorun: el => {
             el.widthJustGrowth = 1
             el.useStylingPreset(theme.panel)
             Section({
               mode: Mode.independentUpdate,
-              formula: el => {
+              autorun: el => {
                 el.widthJustGrowth = 1
                 const position = app.position
                 if (!Number.isFinite(position))
@@ -80,7 +80,7 @@ export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
           activation: el => {
             // el.native.onclick = () => Transaction.run(null, () => app.nextTheme())
           },
-          formula: el => {
+          autorun: el => {
             el.useStylingPreset(theme.panel)
             // b.useStyle(s.Hint)
             // b.useStyle(s.Clickable)

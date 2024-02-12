@@ -7,7 +7,7 @@ import { App } from "models/App.js"
 export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
   return (
     Section(declaration, {
-      formula: el => {
+      autorun: el => {
         // We get app and theme as a context variables
         // (instead of functional parameters) in order
         // to avoid passing app/theme in each and every
@@ -26,7 +26,7 @@ export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
             })
             base()
           },
-          formula: (el, base) => {
+          autorun: (el, base) => {
             base()
             // Style is not inside "initialize", because of theming
             el.native.classList.toggle(theme.panel, true)
@@ -41,7 +41,7 @@ export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
             })
             base()
           },
-          formula: (el,  base) => {
+          autorun: (el,  base) => {
             base()
             el.useStylingPreset(theme.panel)
           }
@@ -54,19 +54,19 @@ export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
             })
             base()
           },
-          formula: (el, base) => {
+          autorun: (el, base) => {
             base()
             el.native.classList.toggle(theme.panel, true)
           }
         })
         Toggle({
-          formula: (el, base) => {
+          autorun: (el, base) => {
             base()
             el.native.classList.toggle(theme.panel, true)
           }
         })
         Section({
-          formula: el => {
+          autorun: el => {
             el.useStylingPreset(theme.panel)
             el.widthJustGrowth = 1
             el.contentAlignment = Align.right
@@ -83,7 +83,7 @@ export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
                 })
                 base()
               },
-              formula: (el, base) => {
+              autorun: (el, base) => {
                 base()
                 // Spinner("Spinner", {
                 //   activation: el => {

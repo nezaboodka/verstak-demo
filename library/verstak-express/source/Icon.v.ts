@@ -14,7 +14,7 @@ export function Icon(name: string,
   return (
     Section(declaration, {
       mode: Mode.independentUpdate,
-      formula: el => {
+      autorun: el => {
         const theme = Theme.current.icon
         el.useStylingPreset(name)
         el.useStylingPreset(theme.main)
