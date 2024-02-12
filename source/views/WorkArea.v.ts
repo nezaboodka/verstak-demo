@@ -8,7 +8,7 @@ import { Watch } from "./Watch.js"
 export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
   return (
     Table(declaration, {
-      formula: b => {
+      formula: el => {
         // Elements can be layed out automatically
         // based on their order and line feeds.
         startNewRow()
@@ -30,20 +30,20 @@ export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
         ExampleData("B3:C3")
         ExampleData("A2:A3")
         Toggle({ key: "SecondaryTimeZone",
-          activation(b, base) {
-            const app = App.actual
-            b.model = observableModel({
+          activation: (el, base) => {
+            const app = App.current
+            el.model = observableModel({
               label: "Watch Bezel",
               checked: refs(app).isSecondaryTimeZoneOn,
             })
             base()
           },
-          formula: (b, base) => {
+          formula: (el, base) => {
             base()
-            const theme = Theme.actual as AppTheme
-            b.native.classList.toggle(theme.panel, true)
-            b.area = "B1"
-            b.boundsAlignment = Align.right + Align.bottom
+            const theme = Theme.current as AppTheme
+            el.native.classList.toggle(theme.panel, true)
+            el.area = "B1"
+            el.boundsAlignment = Align.right + Align.bottom
           }
         })
       }},
@@ -54,9 +54,9 @@ export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
 function Ruler(title: string, align: Align) {
   return (
     Section({
-      formula: b => {
-        b.boundsAlignment = align
-        b.native.style.fontSize = "smaller"
+      formula: el => {
+        el.boundsAlignment = align
+        el.native.style.fontSize = "smaller"
         Note(`&nbsp;${title}`, true)
       }
     })
@@ -66,13 +66,13 @@ function Ruler(title: string, align: Align) {
 function ExampleData(area: string) {
   return (
     Section({
-      activation(b) {
-        b.contentAlignment = Align.center
+      activation: el => {
+        el.contentAlignment = Align.center
       },
-      formula: b => {
-        const theme = Theme.actual as AppTheme
-        b.area = area
-        b.useStylingPreset(theme.accent)
+      formula: el => {
+        const theme = Theme.current as AppTheme
+        el.area = area
+        el.useStylingPreset(theme.accent)
         Note(area)
       }
     })

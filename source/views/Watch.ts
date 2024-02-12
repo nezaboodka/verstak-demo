@@ -18,27 +18,27 @@ export function Watch(area: string): RxNode<El<HTMLElement>> {
   return (
     Section({
       mode: Mode.independentUpdate,
-      activation(b) {
-        const s = b.native.style
-        b.contentAlignment = Align.center
+      activation: el => {
+        const s = el.native.style
+        el.contentAlignment = Align.center
         // s.fontFamily = "Arial"
         s.cursor = "default"
       },
-      formula: b => {
-        const theme = Theme.actual as AppTheme
-        b.area = area
-        b.useStylingPreset(theme.accent)
+      formula: el => {
+        const theme = Theme.current as AppTheme
+        el.area = area
+        el.useStylingPreset(theme.accent)
         Svg({
-          formula: b => {
-            const svg = b.native
+          formula: el => {
+            const svg = el.native
             svg.style.width = "48mm"
             svg.style.height = "48mm"
             svg.viewBox.baseVal.width = 1000
             svg.viewBox.baseVal.height = 1000
 
             Rect({
-              formula: b => {
-                const e = b.native
+              formula: el => {
+                const e = el.native
                 const s = e.style
                 e.x.baseVal.value = 250
                 e.y.baseVal.value = 0
@@ -52,8 +52,8 @@ export function Watch(area: string): RxNode<El<HTMLElement>> {
               },
             })
             Rect({
-              formula: b => {
-                const e = b.native
+              formula: el => {
+                const e = el.native
                 const s = e.style
                 e.x.baseVal.value = 980
                 e.y.baseVal.value = 440
@@ -69,8 +69,8 @@ export function Watch(area: string): RxNode<El<HTMLElement>> {
               },
             })
             Circle({
-              formula: b => {
-                const e = b.native
+              formula: el => {
+                const e = el.native
                 const s = e.style
                 e.cx.baseVal.value = 500
                 e.cy.baseVal.value = 500
@@ -82,8 +82,8 @@ export function Watch(area: string): RxNode<El<HTMLElement>> {
               },
             })
             Circle({
-              formula: b => {
-                const e = b.native
+              formula: el => {
+                const e = el.native
                 const s = e.style
                 e.cx.baseVal.value = 500
                 e.cy.baseVal.value = 500
@@ -130,8 +130,8 @@ export function Watch(area: string): RxNode<El<HTMLElement>> {
             const secondDeg = 360 / 60 * (clock.second + (1 / 1000 * clock.ms))
             Arrow(10, 2, -0.05, 0.835, secondDeg, 60, LabelColor, LabelColor, true, svg)
             Circle({
-              formula: b => {
-                const e = b.native
+              formula: el => {
+                const e = el.native
                 const s = e.style
                 e.cx.baseVal.value = 500
                 e.cy.baseVal.value = 500
@@ -144,19 +144,19 @@ export function Watch(area: string): RxNode<El<HTMLElement>> {
 
             // Bezel (secondary time zone)
             G({
-              activation(b) {
-                b.native.style.transition = "transform 1s ease"
-                b.native.onclick = () => {
-                  b.native.style.transform = b.native.style.transform === "rotate(105deg)" ? "rotate(0deg)" : "rotate(105deg)"
+              activation: el => {
+                el.native.style.transition = "transform 1s ease"
+                el.native.onclick = () => {
+                  el.native.style.transform = el.native.style.transform === "rotate(105deg)" ? "rotate(0deg)" : "rotate(105deg)"
                 }
               },
-              formula: b => {
-                b.native.style.transform = b.native.style.transform === "rotate(105deg)" ? "rotate(0deg)" : "rotate(105deg)"
-                const app = App.actual
+              formula: el => {
+                el.native.style.transform = el.native.style.transform === "rotate(105deg)" ? "rotate(0deg)" : "rotate(105deg)"
+                const app = App.current
                 if (app.isSecondaryTimeZoneOn)
-                  rotate(b.native, 105)
+                  rotate(el.native, 105)
                 else
-                  rotate(b.native, 0)
+                  rotate(el.native, 0)
                 radialDashes(SecondaryLabelColor, 24, 24, 15, 45)
                 radialDashes(BezelBackColor, 26, 26, 45, 45)
                 radialLabels(svg, 441, 80, false, BezelLabelColor, true,
@@ -182,8 +182,8 @@ function rotate(e: SVGGraphicsElement, degrees: number): void {
 function radialDashes(color: string, width: number, height: number, step: number, indent: number): void {
   for (let deg = 0; deg < 360; deg += step) {
     Rect({
-      formula: b => {
-        const e = b.native
+      formula: el => {
+        const e = el.native
         const s = e.style
         e.x.baseVal.value = 500 - width / 2
         e.y.baseVal.value = indent >= 0 ? indent : Math.abs(indent) - height
@@ -201,9 +201,9 @@ function radialDashes(color: string, width: number, height: number, step: number
 function radialDots(color: string, step: number, major: number, indent: number): void {
   for (let deg = 0; deg < 360; deg += step) {
     Circle({
-      formula: b => {
+      formula: el => {
         const r = major !== 0 && deg % major === 0 ? 12 : 6
-        const e = b.native
+        const e = el.native
         const s = e.style
         e.cx.baseVal.value = 500
         e.cy.baseVal.value = indent
@@ -222,8 +222,8 @@ function Arrow(widthA: number, widthB: number, margin: number, length: number,
   shadow: boolean, svg: SVGSVGElement): RxNode<El<SVGPolygonElement>> {
   return (
     Polygon({
-      formula: b => {
-        const e = b.native
+      formula: el => {
+        const e = el.native
         const s = e.style
         const m = Math.floor(500 * margin)
         const l = Math.floor(500 * length)
@@ -259,8 +259,8 @@ function ArrowEx(segments: Array<number | string>, degrees: number,
   duration: number, color: string, stroke: string): RxNode<El<SVGPolygonElement>> {
   return (
     Polygon({
-      formula: b => {
-        const e = b.native
+      formula: el => {
+        const e = el.native
         // const s = e.style
         // const l = Math.floor(500 * length)
         e.points.initialize(new DOMPoint(500, 500))
@@ -287,8 +287,8 @@ function RadialLabel(degree: number, content: string, color: string,
   root: SVGSVGElement): RxNode<El<SVGTextElement>> {
   return (
     Text({
-      formula: b => {
-        const e = b.native
+      formula: el => {
+        const e = el.native
         const s = e.style
         s.fill = color
         s.fontSize = `${size}px`

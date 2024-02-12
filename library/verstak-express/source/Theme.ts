@@ -28,10 +28,10 @@ export class Theme implements VerstakExpressTheme {
   private static readonly gCurrent = new RxNodeVariable<VerstakExpressTheme>(
     Transaction.run({ separation: true }, () => new Theme()))
 
-  static get actual(): VerstakExpressTheme {
+  static get current(): VerstakExpressTheme {
     return Theme.gCurrent.value
   }
-  static set actual(value: VerstakExpressTheme) {
+  static set current(value: VerstakExpressTheme) {
     Theme.gCurrent.value = value
   }
 

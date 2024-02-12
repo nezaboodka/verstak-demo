@@ -27,19 +27,19 @@ export function Field(declaration?: RxNodeDecl<El<HTMLElement, FieldModel>>) {
   return (
     Section<FieldModel>(declaration, {
       mode: Mode.independentUpdate,
-      activation: b => {
-        b.model ??= composeFieldModel()
-        b.native.dataForSensor.focus = b.model
+      activation: el => {
+        el.model ??= composeFieldModel()
+        el.native.dataForSensor.focus = el.model
       },
-      formula: b => {
-        const m = b.model
-        const s = Theme.actual.field
-        b.useStylingPreset(s.main)
+      formula: el => {
+        const m = el.model
+        const s = Theme.current.field
+        el.useStylingPreset(s.main)
         if (m.icon)
           Icon(m.icon, {
-            formula: (b, base) => {
+            formula: (el, base) => {
               base()
-              b.useStylingPreset(s.icon)
+              el.useStylingPreset(s.icon)
             },
           })
         FieldInput(m, s)
@@ -68,17 +68,17 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
   return (
     Note(model.text, false, {
       key: FieldInput.name,
-      activation: (b, base) => {
-        const e = b.native
-        b.useStylingPreset(s.input)
-        b.widthMerelyGrowth = 1
+      activation: (el, base) => {
+        const e = el.native
+        el.useStylingPreset(s.input)
+        el.widthMerelyGrowth = 1
         e.tabIndex = 0
         e.contentEditable = "true"
         e.dataForSensor.focus = model
         base()
       },
-      formula: b => {
-        const e = b.native
+      formula: el => {
+        const e = el.native
         if (!model.isEditMode)
           e.innerText = model.text
         Handling(() => {
@@ -106,10 +106,10 @@ function FieldPopup(model: FieldModel, s: FieldStyling) {
   return (
     Section({
       key: FieldPopup.name,
-      formula: b => {
-        b.useStylingPreset(s.popup)
-        Handling(() => model.position = b.native.sensors.scroll.y)
-        const visible = b.overlayVisible = model.isEditMode
+      formula: el => {
+        el.useStylingPreset(s.popup)
+        Handling(() => model.position = el.native.sensors.scroll.y)
+        const visible = el.overlayVisible = model.isEditMode
         if (visible) {
           const options = model.options
           if (options.length > 0) {
@@ -117,8 +117,8 @@ function FieldPopup(model: FieldModel, s: FieldStyling) {
               startNewRow()
               Note(x, false, {
                 key: x,
-                activation(b) {
-                  b.contentWrapping = false
+                activation: el => {
+                  el.contentWrapping = false
                 },
               })
             }

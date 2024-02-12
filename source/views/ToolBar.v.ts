@@ -7,49 +7,49 @@ import { App } from "models/App.js"
 export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
   return (
     Section(declaration, {
-      formula: b => {
-        const app = App.actual
-        const theme = Theme.actual as AppTheme
+      formula: el => {
+        const app = App.current
+        const theme = Theme.current as AppTheme
         // Image({ // logo
-        //   initialize(b, base) {
+        //   activation: (el, base) => {
         //     base()
-        //     b.contentAlignment = Align.stretch
-        //     b.boundsAlignment = Align.stretch
-        //     b.model.source = "https://nezaboodka.com/img/star-768x768-circle.png"
-        //     b.native.className = cx(s.Panel, s.Clickable, s.Logo)
-        //     b.native.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
+        //     el.contentAlignment = Align.stretch
+        //     el.boundsAlignment = Align.stretch
+        //     el.model.source = "https://nezaboodka.com/img/star-768x768-circle.png"
+        //     el.native.className = cx(s.Panel, s.Clickable, s.Logo)
+        //     el.native.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
         //   },
-        //   update(b, base) {
+        //   formula: (el, base) => {
         //     base()
-        //     b.native.style.backgroundColor = app.blinkingEffect ? "red" : ""
+        //     el.native.style.backgroundColor = app.blinkingEffect ? "red" : ""
         //   }
         // })
         Section({ // Logo
-          activation(b) {
-            b.useStylingPreset(theme.panel)
+          activation: el => {
+            el.useStylingPreset(theme.panel)
             // b.useStyle(s.Clickable)
             // b.useStyle(s.Logo)
-            b.native.style.outlineOffset = "-1px"
+            el.native.style.outlineOffset = "-1px"
             // b.native.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
           },
-          formula: b => {
-            b.native.style.boxShadow = app.isBlinkingEffectOn ? "0.025rem 0.025rem 0.35rem 0 red" : ""
+          formula: el => {
+            el.native.style.boxShadow = app.isBlinkingEffectOn ? "0.025rem 0.025rem 0.35rem 0 red" : ""
             Img({
-              formula: (b, base) => {
+              formula: (el, base) => {
                 base()
-                b.native.src = "https://nezaboodka.com/img/star-768x768-circle.png"
+                el.native.src = "https://nezaboodka.com/img/star-768x768-circle.png"
               }
             })
           }
         })
         Section({
-          formula: b => {
-            b.widthMerelyGrowth = 1
-            b.useStylingPreset(theme.panel)
+          formula: el => {
+            el.widthMerelyGrowth = 1
+            el.useStylingPreset(theme.panel)
             Section({
               mode: Mode.independentUpdate,
-              formula: b => {
-                b.widthMerelyGrowth = 1
+              formula: el => {
+                el.widthMerelyGrowth = 1
                 const position = app.position
                 if (!Number.isFinite(position))
                   Markdown(`**Verstak** v${app.version}`)
@@ -60,10 +60,10 @@ export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
               }
             })
             Field({
-              activation(b, base) {
+              activation: (el, base) => {
                 const loader = app.loader
-                b.widthMerelyMin = "7em"
-                b.model = composeFieldModel({
+                el.widthMerelyMin = "7em"
+                el.model = composeFieldModel({
                   icon: "fa-solid fa-search",
                   text: refs(loader).filter,
                   options: refs(loader).loaded,
@@ -77,11 +77,11 @@ export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
           }
         })
         Section({ // Account
-          activation(b) {
-            // b.native.onclick = () => Transaction.run(null, () => app.nextTheme())
+          activation: el => {
+            // el.native.onclick = () => Transaction.run(null, () => app.nextTheme())
           },
-          formula: b => {
-            b.useStylingPreset(theme.panel)
+          formula: el => {
+            el.useStylingPreset(theme.panel)
             // b.useStyle(s.Hint)
             // b.useStyle(s.Clickable)
             Icon("fa-solid fa-bars")

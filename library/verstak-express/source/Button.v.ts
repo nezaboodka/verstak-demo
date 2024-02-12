@@ -21,33 +21,33 @@ export function Button(declaration?: RxNodeDecl<El<HTMLElement, ButtonModel>>) {
   return (
     Section<ButtonModel>(declaration, {
       mode: Mode.independentUpdate,
-      activation: b => {
-        b.model ??= observableModel({
+      activation: el => {
+        el.model ??= observableModel({
           icon: "fa-solid fa-square",
           label: RxNode.key,
         })
       },
-      formula: b => {
-        const m = b.model
-        const s = Theme.actual.button
-        b.useStylingPreset(s.main)
+      formula: el => {
+        const m = el.model
+        const s = Theme.current.button
+        el.useStylingPreset(s.main)
         if (m.icon) {
           Icon(m.icon, {
-            formula: (b, base) => {
+            formula: (el, base) => {
               base()
-              b.useStylingPreset(s.icon)
+              el.useStylingPreset(s.icon)
             },
           })
         }
         if (m.label) {
           Note(m.label, false, {
-            formula: (b, base) => {
+            formula: (el, base) => {
               base()
-              b.useStylingPreset(s.label)
+              el.useStylingPreset(s.label)
             },
           })
         }
-        OnClick(b.native, m.action)
+        OnClick(el.native, m.action)
       },
     })
   )

@@ -24,10 +24,10 @@ const app = Transaction.run(null, () =>
 
 Page({
   mode: Mode.independentUpdate,
-  formula: b => {
-    App.actual = app
+  formula: el => {
+    App.current = app
     const t = app.theme
-    const s = b.native.style
+    const s = el.native.style
     s.color = t.textColor
     s.backgroundColor = t.spaceFillColor
     startNewRow() // WORKAROUND

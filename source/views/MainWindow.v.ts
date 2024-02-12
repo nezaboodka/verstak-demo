@@ -10,41 +10,41 @@ export function MainWindow() {
   return (
     Section({
       mode: Mode.independentUpdate,
-      activation(b) {
-        b.native.sensors.focus // enable focus global manager
+      activation: el => {
+        el.native.sensors.focus // enable focus global manager
       },
-      formula: b => {
-        const app = App.actual
+      formula: el => {
+        const app = App.current
         const theme = app.theme
-        Theme.actual = theme
+        Theme.current = theme
 
-        b.useStylingPreset(App.blinkingEffectMarker, app.isBlinkingEffectOn)
+        el.useStylingPreset(App.blinkingEffectMarker, app.isBlinkingEffectOn)
         // b.contentAlignment = Align.Center
-        b.widthMerelyGrowth = 1
-        b.heightMerelyGrowth = 1
+        el.widthMerelyGrowth = 1
+        el.heightMerelyGrowth = 1
 
         ToolBar({
-          formula: (b, base) => {
-            b.widthMerelyGrowth = 1
+          formula: (el, base) => {
+            el.widthMerelyGrowth = 1
             base()
           }
         })
 
         startNewRow()
         Section({
-          formula: b => {
-            b.useStylingPreset(app.theme.panel)
-            b.widthMerelyMin = "10rem"
-            b.contentAlignment = Align.top
-            b.boundsAlignment = Align.stretch
+          formula: el => {
+            el.useStylingPreset(app.theme.panel)
+            el.widthMerelyMin = "10rem"
+            el.contentAlignment = Align.top
+            el.boundsAlignment = Align.stretch
             Note("Navigation Bar")
 
             startNewRow()
             Field({
-              activation(b, base) {
+              activation: (el, base) => {
                 const loader = app.loader
-                b.widthMerelyMin = "10em"
-                b.model = composeFieldModel({
+                el.widthMerelyMin = "10em"
+                el.model = composeFieldModel({
                   icon: "fa-solid fa-search",
                   text: refs(loader).filter,
                   options: refs(loader).loaded,
@@ -57,17 +57,17 @@ export function MainWindow() {
 
             startNewRow()
             Section({
-              formula: b => {
-                b.heightMerelyGrowth = 1
+              formula: el => {
+                el.heightMerelyGrowth = 1
               }
             })
 
             startNewRow()
             Field({
-              activation(b, base) {
+              activation: (el, base) => {
                 const loader = app.loader
-                b.widthMerelyMin = "10em"
-                b.model = composeFieldModel({
+                el.widthMerelyMin = "10em"
+                el.model = composeFieldModel({
                   text: refs(loader).filter,
                   options: refs(loader).loaded,
                   isHotText: true,
@@ -79,32 +79,32 @@ export function MainWindow() {
           }
         })
         WorkArea({
-          formula: (b, base) => {
+          formula: (el, base) => {
             base()
-            b.useStylingPreset(theme.panel)
-            b.useStylingPreset(theme.accent)
-            b.widthMerelyGrowth = 3
-            b.heightMerelyGrowth = 1
+            el.useStylingPreset(theme.panel)
+            el.useStylingPreset(theme.accent)
+            el.widthMerelyGrowth = 3
+            el.heightMerelyGrowth = 1
           }
         })
         Section({
           mode: Mode.independentUpdate,
           triggers: { theme },
-          formula: b => {
-            b.useStylingPreset(theme.panel)
-            b.useStylingPreset(theme.markdown)
-            b.width = { min: "16rem", growth: 2 }
-            b.contentAlignment = Align.left + Align.top,
-            b.boundsAlignment = Align.stretch,
+          formula: el => {
+            el.useStylingPreset(theme.panel)
+            el.useStylingPreset(theme.markdown)
+            el.width = { min: "16rem", growth: 2 }
+            el.contentAlignment = Align.left + Align.top,
+            el.boundsAlignment = Align.stretch,
             Markdown(EXAMPLE_CODE)
           }
         })
 
         startNewRow()
         StatusBar({
-          formula: (b, base) => {
+          formula: (el, base) => {
             base()
-            b.widthMerelyGrowth = 1
+            el.widthMerelyGrowth = 1
           }
         })
       },

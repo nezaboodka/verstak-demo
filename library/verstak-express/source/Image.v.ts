@@ -17,14 +17,14 @@ export function Image(declaration?: RxNodeDecl<El<HTMLElement, ImageModel>>) {
   return (
     Section<ImageModel>(declaration, {
       mode: Mode.independentUpdate,
-      activation: b => {
-        b.model ??= observableModel({ source: undefined })
+      activation: el => {
+        el.model ??= observableModel({ source: undefined })
       },
-      formula: b => {
-        const m = b.model
-        b.native.style.backgroundImage = `url(${m.source})`
-        b.native.style.backgroundSize = "contain"
-        b.native.style.backgroundRepeat = "no-repeat"
+      formula: el => {
+        const m = el.model
+        el.native.style.backgroundImage = `url(${m.source})`
+        el.native.style.backgroundSize = "contain"
+        el.native.style.backgroundRepeat = "no-repeat"
       },
     })
   )
