@@ -10,10 +10,10 @@ export function MainWindow() {
   return (
     Section({
       mode: Mode.independentUpdate,
-      activation: el => {
+      onCreate: el => {
         el.native.sensors.focus // enable focus global manager
       },
-      autorun: el => {
+      onChange: el => {
         const app = App.current
         const theme = app.theme
         Theme.current = theme
@@ -24,7 +24,7 @@ export function MainWindow() {
         el.heightJustGrowth = 1
 
         ToolBar({
-          autorun: (el, base) => {
+          onChange: (el, base) => {
             el.widthJustGrowth = 1
             base()
           }
@@ -32,7 +32,7 @@ export function MainWindow() {
 
         startNewRow()
         Section({
-          autorun: el => {
+          onChange: el => {
             el.useStylingPreset(app.theme.panel)
             el.widthJustMin = "10rem"
             el.contentAlignment = Align.top
@@ -41,7 +41,7 @@ export function MainWindow() {
 
             startNewRow()
             Field({
-              activation: (el, base) => {
+              onCreate: (el, base) => {
                 const loader = app.loader
                 el.widthJustMin = "10em"
                 el.model = composeFieldModel({
@@ -57,14 +57,14 @@ export function MainWindow() {
 
             startNewRow()
             Section({
-              autorun: el => {
+              onChange: el => {
                 el.heightJustGrowth = 1
               }
             })
 
             startNewRow()
             Field({
-              activation: (el, base) => {
+              onCreate: (el, base) => {
                 const loader = app.loader
                 el.widthJustMin = "10em"
                 el.model = composeFieldModel({
@@ -79,7 +79,7 @@ export function MainWindow() {
           }
         })
         WorkArea({
-          autorun: (el, base) => {
+          onChange: (el, base) => {
             base()
             el.useStylingPreset(theme.panel)
             el.useStylingPreset(theme.accent)
@@ -90,7 +90,7 @@ export function MainWindow() {
         Section({
           mode: Mode.independentUpdate,
           triggers: { theme },
-          autorun: el => {
+          onChange: el => {
             el.useStylingPreset(theme.panel)
             el.useStylingPreset(theme.markdown)
             el.width = { min: "16rem", growth: 2 }
@@ -102,7 +102,7 @@ export function MainWindow() {
 
         startNewRow()
         StatusBar({
-          autorun: (el, base) => {
+          onChange: (el, base) => {
             base()
             el.widthJustGrowth = 1
           }

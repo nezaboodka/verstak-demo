@@ -7,11 +7,11 @@ import { App } from "models/App.js"
 export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
   return (
     Section(declaration, {
-      autorun: el => {
+      onChange: el => {
         const app = App.current
         const theme = Theme.current as AppTheme
         // Image({ // logo
-        //   activation: (el, base) => {
+        //   onCreate: (el, base) => {
         //     base()
         //     el.contentAlignment = Align.stretch
         //     el.boundsAlignment = Align.stretch
@@ -19,23 +19,23 @@ export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
         //     el.native.className = cx(s.Panel, s.Clickable, s.Logo)
         //     el.native.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
         //   },
-        //   autorun: (el, base) => {
+        //   onChange: (el, base) => {
         //     base()
         //     el.native.style.backgroundColor = app.blinkingEffect ? "red" : ""
         //   }
         // })
         Section({ // Logo
-          activation: el => {
+          onCreate: el => {
             el.useStylingPreset(theme.panel)
             // b.useStyle(s.Clickable)
             // b.useStyle(s.Logo)
             el.native.style.outlineOffset = "-1px"
             // b.native.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
           },
-          autorun: el => {
+          onChange: el => {
             el.native.style.boxShadow = app.isBlinkingEffectOn ? "0.025rem 0.025rem 0.35rem 0 red" : ""
             Img({
-              autorun: (el, base) => {
+              onChange: (el, base) => {
                 base()
                 el.native.src = "https://nezaboodka.com/img/star-768x768-circle.png"
               }
@@ -43,12 +43,12 @@ export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
           }
         })
         Section({
-          autorun: el => {
+          onChange: el => {
             el.widthJustGrowth = 1
             el.useStylingPreset(theme.panel)
             Section({
               mode: Mode.independentUpdate,
-              autorun: el => {
+              onChange: el => {
                 el.widthJustGrowth = 1
                 const position = app.position
                 if (!Number.isFinite(position))
@@ -60,7 +60,7 @@ export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
               }
             })
             Field({
-              activation: (el, base) => {
+              onCreate: (el, base) => {
                 const loader = app.loader
                 el.widthJustMin = "7em"
                 el.model = composeFieldModel({
@@ -77,10 +77,10 @@ export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
           }
         })
         Section({ // Account
-          activation: el => {
+          onCreate: el => {
             // el.native.onclick = () => Transaction.run(null, () => app.nextTheme())
           },
-          autorun: el => {
+          onChange: el => {
             el.useStylingPreset(theme.panel)
             // b.useStyle(s.Hint)
             // b.useStyle(s.Clickable)

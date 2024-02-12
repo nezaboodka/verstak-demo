@@ -21,20 +21,20 @@ export function Toggle(declaration?: RxNodeDecl<El<HTMLElement, ToggleModel>>) {
   return (
     Section<ToggleModel>(declaration, {
       mode: Mode.independentUpdate,
-      activation: el => {
+      onCreate: el => {
         el.model ??= observableModel({
           label: RxNode.key,
           checked: true,
           color: "green" }) // model is either taken from parameter or created internally
         el.native.onclick = () => Transaction.run(null, () => el.model.checked = !el.model.checked)
       },
-      autorun: el => {
+      onChange: el => {
         const m = el.model
         const theme = Theme.current
         const toggleTheme = theme.toggle
         el.useStylingPreset(toggleTheme.main)
         Icon(`fa-solid fa-toggle-${m.checked ? "on" : "off"}`, {
-          autorun: (el, base) => {
+          onChange: (el, base) => {
             base()
             el.useStylingPreset(toggleTheme.icon)
             el.native.style.color = m.checked ? (theme.positiveColor ?? "") : "" // subscribe to ToggleModel.checked
@@ -42,7 +42,7 @@ export function Toggle(declaration?: RxNodeDecl<El<HTMLElement, ToggleModel>>) {
         })
         if (m.label)
           Note(m.label, false, {
-            autorun: (el, base) => {
+            onChange: (el, base) => {
               base()
               el.useStylingPreset(toggleTheme.label)
             },

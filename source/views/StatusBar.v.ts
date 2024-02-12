@@ -7,7 +7,7 @@ import { App } from "models/App.js"
 export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
   return (
     Section(declaration, {
-      autorun: el => {
+      onChange: el => {
         // We get app and theme as a context variables
         // (instead of functional parameters) in order
         // to avoid passing app/theme in each and every
@@ -16,7 +16,7 @@ export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
         const theme = Theme.current as AppTheme
         el.contentWrapping = true
         Toggle({ key: "Blinking",
-          activation: (el, base) => {
+          onCreate: (el, base) => {
             // We compose model from different pieces,
             // such as app and theme. Without the need
             // to implement interface in form of class.
@@ -26,14 +26,14 @@ export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
             })
             base()
           },
-          autorun: (el, base) => {
+          onChange: (el, base) => {
             base()
             // Style is not inside "initialize", because of theming
             el.native.classList.toggle(theme.panel, true)
           }
         })
         Button({ key: "Theme",
-          activation: (el, base) => {
+          onCreate: (el, base) => {
             el.model = observableModel({
               icon: "fa-solid fa-palette",
               label: "Switch Theme",
@@ -41,37 +41,37 @@ export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
             })
             base()
           },
-          autorun: (el,  base) => {
+          onChange: (el,  base) => {
             base()
             el.useStylingPreset(theme.panel)
           }
         })
         Toggle({ key: "SecondaryTimeZone",
-          activation: (el, base) => {
+          onCreate: (el, base) => {
             el.model = observableModel({
               label: "New York (GMT-7)",
               checked: refs(app).isSecondaryTimeZoneOn,
             })
             base()
           },
-          autorun: (el, base) => {
+          onChange: (el, base) => {
             base()
             el.native.classList.toggle(theme.panel, true)
           }
         })
         Toggle({
-          autorun: (el, base) => {
+          onChange: (el, base) => {
             base()
             el.native.classList.toggle(theme.panel, true)
           }
         })
         Section({
-          autorun: el => {
+          onChange: el => {
             el.useStylingPreset(theme.panel)
             el.widthJustGrowth = 1
             el.contentAlignment = Align.right
             Field({
-              activation: (el, base) => {
+              onCreate: (el, base) => {
                 const loader = app.loader
                 el.widthJustMin = "10em"
                 el.model = composeFieldModel({
@@ -83,10 +83,10 @@ export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
                 })
                 base()
               },
-              autorun: (el, base) => {
+              onChange: (el, base) => {
                 base()
                 // Spinner("Spinner", {
-                //   activation: el => {
+                //   onCreate: el => {
                 //     el.model = observableModel({
                 //       active: refs(app.loader.monitor).isActive,
                 //       color: "red",

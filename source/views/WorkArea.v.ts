@@ -8,7 +8,7 @@ import { Watch } from "./Watch.js"
 export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
   return (
     Table(declaration, {
-      autorun: el => {
+      onChange: el => {
         // Elements can be layed out automatically
         // based on their order and line feeds.
         startNewRow()
@@ -30,7 +30,7 @@ export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
         ExampleData("B3:C3")
         ExampleData("A2:A3")
         Toggle({ key: "SecondaryTimeZone",
-          activation: (el, base) => {
+          onCreate: (el, base) => {
             const app = App.current
             el.model = observableModel({
               label: "Watch Bezel",
@@ -38,7 +38,7 @@ export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
             })
             base()
           },
-          autorun: (el, base) => {
+          onChange: (el, base) => {
             base()
             const theme = Theme.current as AppTheme
             el.native.classList.toggle(theme.panel, true)
@@ -54,7 +54,7 @@ export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
 function Ruler(title: string, align: Align) {
   return (
     Section({
-      autorun: el => {
+      onChange: el => {
         el.boundsAlignment = align
         el.native.style.fontSize = "smaller"
         Note(`&nbsp;${title}`, true)
@@ -66,10 +66,10 @@ function Ruler(title: string, align: Align) {
 function ExampleData(area: string) {
   return (
     Section({
-      activation: el => {
+      onCreate: el => {
         el.contentAlignment = Align.center
       },
-      autorun: el => {
+      onChange: el => {
         const theme = Theme.current as AppTheme
         el.area = area
         el.useStylingPreset(theme.accent)
