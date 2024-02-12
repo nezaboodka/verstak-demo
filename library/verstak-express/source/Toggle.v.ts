@@ -30,21 +30,21 @@ export function Toggle(declaration?: RxNodeDecl<El<HTMLElement, ToggleModel>>) {
       },
       formula: el => {
         const m = el.model
-        const t = Theme.current
-        const s = t.toggle
-        el.useStylingPreset(s.main)
+        const theme = Theme.current
+        const toggleTheme = theme.toggle
+        el.useStylingPreset(toggleTheme.main)
         Icon(`fa-solid fa-toggle-${m.checked ? "on" : "off"}`, {
           formula: (el, base) => {
             base()
-            el.useStylingPreset(s.icon)
-            el.native.style.color = m.checked ? (t.positiveColor ?? "") : "" // subscribe to ToggleModel.checked
+            el.useStylingPreset(toggleTheme.icon)
+            el.native.style.color = m.checked ? (theme.positiveColor ?? "") : "" // subscribe to ToggleModel.checked
           },
         })
         if (m.label)
           Note(m.label, false, {
             formula: (el, base) => {
               base()
-              el.useStylingPreset(s.label)
+              el.useStylingPreset(toggleTheme.label)
             },
           })
       },

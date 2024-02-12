@@ -33,17 +33,17 @@ export function Field(declaration?: RxNodeDecl<El<HTMLElement, FieldModel>>) {
       },
       formula: el => {
         const m = el.model
-        const s = Theme.current.field
-        el.useStylingPreset(s.main)
+        const theme = Theme.current.field
+        el.useStylingPreset(theme.main)
         if (m.icon)
           Icon(m.icon, {
             formula: (el, base) => {
               base()
-              el.useStylingPreset(s.icon)
+              el.useStylingPreset(theme.icon)
             },
           })
-        FieldInput(m, s)
-        FieldPopup(m, s)
+        FieldInput(m, theme)
+        FieldPopup(m, theme)
       },
     })
   )

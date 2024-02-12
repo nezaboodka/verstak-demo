@@ -15,9 +15,9 @@ export function Icon(name: string,
     Section(declaration, {
       mode: Mode.independentUpdate,
       formula: el => {
-        const s = Theme.current.icon
+        const theme = Theme.current.icon
         el.useStylingPreset(name)
-        el.useStylingPreset(s.main)
+        el.useStylingPreset(theme.main)
       },
     })
   )
