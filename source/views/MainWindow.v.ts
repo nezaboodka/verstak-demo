@@ -34,11 +34,11 @@ export function MainWindow() {
         startNewRow()
         Section({
           onCreate: el => {
-            el.splitView = SplitView.horizontal
             el.widthJustGrowth = 1
             el.heightJustGrowth = 1
           },
           onChange: el => {
+            el.splitView = app.isSplitViewOn ? SplitView.horizontal : undefined
             Section({
               onChange: el => {
                 el.useStylingPreset(app.theme.panel)

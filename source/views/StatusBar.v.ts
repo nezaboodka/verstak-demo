@@ -60,6 +60,13 @@ export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
           }
         })
         Toggle({
+          onCreate: (el, base) => {
+            el.model = observableModel({
+              label: "Split View",
+              checked: refs(app).isSplitViewOn,
+            })
+            base()
+          },
           onChange: (el, base) => {
             base()
             el.native.classList.toggle(theme.panel, true)
