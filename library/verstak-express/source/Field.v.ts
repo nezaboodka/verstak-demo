@@ -6,7 +6,7 @@
 // automatically licensed under the license referred above.
 
 import { RxNodeDecl, Mode } from "reactronic"
-import { Section, Note, FocusModel, OnFocus, startNewRow, El, Handling, KeyboardSensor, KeyboardModifiers } from "verstak"
+import { Section, Note, FocusModel, OnFocus, rowBreak, El, Handling, KeyboardSensor, KeyboardModifiers } from "verstak"
 import { observableModel, ValuesOrRefs } from "./common/Utils.js"
 import { Theme, FieldStyling } from "./Theme.js"
 import { Icon } from "./Icon.v.js"
@@ -114,7 +114,7 @@ function FieldPopup(model: FieldModel, s: FieldStyling) {
           const options = model.options
           if (options.length > 0) {
             for (const x of model.options) {
-              startNewRow()
+              rowBreak()
               Note(x, false, {
                 key: x,
                 onCreate: el => {

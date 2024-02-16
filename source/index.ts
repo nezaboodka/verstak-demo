@@ -1,5 +1,5 @@
 import { Transaction, Mode } from "reactronic"
-import { Page, startNewRow } from "verstak"
+import { Page, rowBreak } from "verstak"
 import { configureDebugging } from "dbg.js"
 import { App } from "models/App.js"
 import { MainWindow } from "views/MainWindow.v.js"
@@ -30,7 +30,7 @@ Page({
     const s = el.native.style
     s.color = t.textColor
     s.backgroundColor = t.spaceFillColor
-    startNewRow() // WORKAROUND
+    rowBreak() // WORKAROUND
     MainWindow()
   }
 })

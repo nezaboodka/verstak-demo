@@ -1,5 +1,5 @@
 import { refs, RxNodeDecl } from "reactronic"
-import { Table, Section, Note, startNewRow, Align, cursor, El } from "verstak"
+import { Table, Section, Note, rowBreak, Align, cursor, El } from "verstak"
 import { Theme, Toggle, observableModel } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { App } from "models/App.js"
@@ -11,15 +11,15 @@ export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
       onChange: el => {
         // Elements can be layed out automatically
         // based on their order and line feeds.
-        startNewRow()
+        rowBreak()
         Ruler("1", Align.left + Align.centerY)
         cursor({ cellsOverWidth: -1, cellsOverHeight: 0 })
         Ruler("A", Align.centerX + Align.top)
         Ruler("B", Align.centerX + Align.top)
         Ruler("C", Align.centerX + Align.top)
-        startNewRow()
+        rowBreak()
         Ruler("2", Align.left + Align.centerY)
-        startNewRow()
+        rowBreak()
         Ruler("3", Align.left + Align.centerY)
 
         // Elements can also be layed out

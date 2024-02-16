@@ -1,5 +1,5 @@
 import { refs, Mode } from "reactronic"
-import { Section, Align, Note, startNewRow } from "verstak"
+import { Section, Align, Note, rowBreak } from "verstak"
 import { Markdown, Field, Theme, composeFieldModel } from "verstak-express"
 import { App } from "models/App.js"
 import { ToolBar } from "./ToolBar.v.js"
@@ -30,7 +30,7 @@ export function MainWindow() {
           }
         })
 
-        startNewRow()
+        rowBreak()
         Section({
           onChange: el => {
             el.useStylingPreset(app.theme.panel)
@@ -39,7 +39,7 @@ export function MainWindow() {
             el.boundsAlignment = Align.stretch
             Note("Navigation Bar")
 
-            startNewRow()
+            rowBreak()
             Field({
               onCreate: (el, base) => {
                 const loader = app.loader
@@ -55,14 +55,14 @@ export function MainWindow() {
               },
             })
 
-            startNewRow()
+            rowBreak()
             Section({
               onChange: el => {
                 el.heightGrowth = 1
               }
             })
 
-            startNewRow()
+            rowBreak()
             Field({
               onCreate: (el, base) => {
                 const loader = app.loader
@@ -101,7 +101,7 @@ export function MainWindow() {
           }
         })
 
-        startNewRow()
+        rowBreak()
         StatusBar({
           onChange: (el, base) => {
             base()

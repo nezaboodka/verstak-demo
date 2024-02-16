@@ -1,5 +1,5 @@
 import { Mode, refs, RxNodeDecl } from "reactronic"
-import { Section, Img, startNewRow, El } from "verstak"
+import { Section, Img, rowBreak, El } from "verstak"
 import { Icon, Field, Theme, Markdown, composeFieldModel } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { App } from "models/App.js"
@@ -55,7 +55,7 @@ export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
                   Markdown(`**Verstak** v${app.version}`)
                 else
                   Markdown(`**Verstak** v${app.version} (${position})`)
-                startNewRow()
+                rowBreak()
                 Markdown("Try to *change* window size")
               }
             })
