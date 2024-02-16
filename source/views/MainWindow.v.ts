@@ -39,91 +39,76 @@ export function MainWindow() {
             el.heightJustGrowth = 1
           },
           onChange: el => {
-            Section({ // partition (nav-bar)
-              onChange: el => {
-                el.widthJustMin = "150px"
-                el.heightJustGrowth = 1
-                Section({
-                  onChange: el => {
-                    el.useStylingPreset(app.theme.panel)
-                    el.heightJustGrowth = 1
-                    el.contentAlignment = Align.top
-                    el.boundsAlignment = Align.stretch
-                    Note("Navigation Bar")
-
-                    startNewRow()
-                    Field({
-                      onCreate: (el, base) => {
-                        const loader = app.loader
-                        el.widthJustMin = "10em"
-                        el.model = composeFieldModel({
-                          icon: "fa-solid fa-search",
-                          text: refs(loader).filter,
-                          options: refs(loader).loaded,
-                          isHotText: true,
-                          isMultiLineText: false,
-                        })
-                        base()
-                      },
-                    })
-
-                    startNewRow()
-                    Section({
-                      onChange: el => {
-                        el.heightJustGrowth = 1
-                      }
-                    })
-
-                    startNewRow()
-                    Field({
-                      onCreate: (el, base) => {
-                        const loader = app.loader
-                        el.widthJustMin = "10em"
-                        el.model = composeFieldModel({
-                          text: refs(loader).filter,
-                          options: refs(loader).loaded,
-                          isHotText: true,
-                          isMultiLineText: false,
-                        })
-                        base()
-                      },
-                    })
-                  }
-                })
-              },
-            })
             Section({
               onChange: el => {
-                el.width = { min: "300", max: "400", growth: 3 } // 250px
+                el.useStylingPreset(app.theme.panel)
+                el.widthJustMin = "200px"
                 el.heightJustGrowth = 1
-                el.contentAlignment = Align.stretch // has no effect
-                WorkArea({
-                  onChange: (el, base) => {
+                el.contentAlignment = Align.top
+                el.boundsAlignment = Align.stretch
+
+                Note("Navigation Bar")
+
+                startNewRow()
+                Field({
+                  onCreate: (el, base) => {
+                    const loader = app.loader
+                    el.widthJustMin = "10em"
+                    el.model = composeFieldModel({
+                      icon: "fa-solid fa-search",
+                      text: refs(loader).filter,
+                      options: refs(loader).loaded,
+                      isHotText: true,
+                      isMultiLineText: false,
+                    })
                     base()
-                    el.useStylingPreset(theme.panel)
-                    el.useStylingPreset(theme.accent)
-                    el.widthJustGrowth = 3
+                  },
+                })
+
+                startNewRow()
+                Section({
+                  onChange: el => {
                     el.heightJustGrowth = 1
                   }
                 })
-              },
+
+                startNewRow()
+                Field({
+                  onCreate: (el, base) => {
+                    const loader = app.loader
+                    el.widthJustMin = "10em"
+                    el.model = composeFieldModel({
+                      text: refs(loader).filter,
+                      options: refs(loader).loaded,
+                      isHotText: true,
+                      isMultiLineText: false,
+                    })
+                    base()
+                  },
+                })
+              }
+            })
+            WorkArea({
+              onChange: (el, base) => {
+                base()
+                el.useStylingPreset(theme.panel)
+                el.useStylingPreset(theme.accent)
+                el.width = { min: "300", max: "400", growth: 3 }
+                // el.widthJustGrowth = 3
+                el.heightJustGrowth = 1
+              }
             })
             Section({
+              mode: Mode.independentUpdate,
+              triggers: { theme },
               onChange: el => {
-                el.width = { min: "250", growth: 1 } // 250px
-                el.heightJustGrowth = 1
-                Section({
-                  mode: Mode.independentUpdate,
-                  triggers: { theme },
-                  onChange: el => {
-                    el.useStylingPreset(theme.panel)
-                    el.useStylingPreset(theme.markdown)
-                    el.contentAlignment = Align.left + Align.top
-                    el.boundsAlignment = Align.stretch
-                    Markdown(EXAMPLE_CODE)
-                  }
-                })
-              },
+                el.useStylingPreset(theme.panel)
+                el.useStylingPreset(theme.markdown)
+                el.width = { min: "250", growth: 1 }
+                el.contentAlignment = Align.left + Align.top
+                el.boundsAlignment = Align.stretch
+                Markdown(EXAMPLE_CODE)
+              }
             })
           },
         })
