@@ -20,12 +20,12 @@ export function MainWindow() {
 
         el.useStylingPreset(App.blinkingEffectMarker, app.isBlinkingEffectOn)
         // b.contentAlignment = Align.Center
-        el.widthJustGrowth = 1
-        el.heightJustGrowth = 1
+        el.widthGrowth = 1
+        el.heightGrowth = 1
 
         ToolBar({
           onChange: (el, base) => {
-            el.widthJustGrowth = 1
+            el.widthGrowth = 1
             base()
           }
         })
@@ -58,7 +58,7 @@ export function MainWindow() {
             startNewRow()
             Section({
               onChange: el => {
-                el.heightJustGrowth = 1
+                el.heightGrowth = 1
               }
             })
 
@@ -83,8 +83,8 @@ export function MainWindow() {
             base()
             el.useStylingPreset(theme.panel)
             el.useStylingPreset(theme.accent)
-            el.widthJustGrowth = 3
-            el.heightJustGrowth = 1
+            el.widthGrowth = 3
+            el.heightGrowth = 1
           }
         })
         Section({
@@ -93,7 +93,8 @@ export function MainWindow() {
           onChange: el => {
             el.useStylingPreset(theme.panel)
             el.useStylingPreset(theme.markdown)
-            el.width = { min: "16rem", growth: 2 }
+            el.widthJustMin = "16rem"
+            el.widthGrowth = 2
             el.contentAlignment = Align.left + Align.top,
             el.boundsAlignment = Align.stretch,
             Markdown(EXAMPLE_CODE)
@@ -104,7 +105,7 @@ export function MainWindow() {
         StatusBar({
           onChange: (el, base) => {
             base()
-            el.widthJustGrowth = 1
+            el.widthGrowth = 1
           }
         })
       },

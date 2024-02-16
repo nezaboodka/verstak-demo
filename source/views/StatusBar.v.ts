@@ -68,7 +68,7 @@ export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
         Section({
           onChange: el => {
             el.useStylingPreset(theme.panel)
-            el.widthJustGrowth = 1
+            el.widthGrowth = 1
             el.contentAlignment = Align.right
             Field({
               onCreate: (el, base) => {
