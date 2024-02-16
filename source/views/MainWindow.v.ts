@@ -43,7 +43,6 @@ export function MainWindow() {
               onChange: el => {
                 el.useStylingPreset(app.theme.panel)
                 el.widthJustMin = "200px"
-                el.heightJustGrowth = 1
                 el.contentAlignment = Align.top
                 el.boundsAlignment = Align.stretch
 
@@ -93,9 +92,9 @@ export function MainWindow() {
                 base()
                 el.useStylingPreset(theme.panel)
                 el.useStylingPreset(theme.accent)
-                el.width = { min: "300", max: "400", growth: 3 }
-                // el.widthJustGrowth = 3
+                el.width = { min: "300", growth: 3 }
                 el.heightJustGrowth = 1
+                el.boundsAlignment = Align.stretch
               }
             })
             Section({
@@ -104,7 +103,7 @@ export function MainWindow() {
               onChange: el => {
                 el.useStylingPreset(theme.panel)
                 el.useStylingPreset(theme.markdown)
-                el.width = { min: "250", growth: 1 }
+                el.width = { min: "350", max: "500", growth: 1 }
                 el.contentAlignment = Align.left + Align.top
                 el.boundsAlignment = Align.stretch
                 Markdown(EXAMPLE_CODE)
