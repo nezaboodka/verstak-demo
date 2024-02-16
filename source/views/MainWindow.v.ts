@@ -1,5 +1,5 @@
 import { refs, Mode } from "reactronic"
-import { Section, Align, Note, startNewRow } from "verstak"
+import { Section, Align, Note, startNewRow, SplitView } from "verstak"
 import { Markdown, Field, Theme, composeFieldModel } from "verstak-express"
 import { App } from "models/App.js"
 import { ToolBar } from "./ToolBar.v.js"
@@ -12,6 +12,7 @@ export function MainWindow() {
       mode: Mode.independentUpdate,
       onCreate: el => {
         el.native.sensors.focus // enable focus global manager
+        el.native.style.overflow = "hidden"
       },
       onChange: el => {
         const app = App.current
@@ -32,74 +33,100 @@ export function MainWindow() {
 
         startNewRow()
         Section({
+          onCreate: el => {
+            el.splitView = SplitView.horizontal
+            el.widthJustGrowth = 1
+            el.heightJustGrowth = 1
+          },
           onChange: el => {
-            el.useStylingPreset(app.theme.panel)
-            el.widthJustMin = "10rem"
-            el.contentAlignment = Align.top
-            el.boundsAlignment = Align.stretch
-            Note("Navigation Bar")
+            Section({ // partition (nav-bar)
+              onChange: el => {
+                el.widthJustMin = "150px"
+                el.heightJustGrowth = 1
+                Section({
+                  onChange: el => {
+                    el.useStylingPreset(app.theme.panel)
+                    el.heightJustGrowth = 1
+                    el.contentAlignment = Align.top
+                    el.boundsAlignment = Align.stretch
+                    Note("Navigation Bar")
 
-            startNewRow()
-            Field({
-              onCreate: (el, base) => {
-                const loader = app.loader
-                el.widthJustMin = "10em"
-                el.model = composeFieldModel({
-                  icon: "fa-solid fa-search",
-                  text: refs(loader).filter,
-                  options: refs(loader).loaded,
-                  isHotText: true,
-                  isMultiLineText: false,
+                    startNewRow()
+                    Field({
+                      onCreate: (el, base) => {
+                        const loader = app.loader
+                        el.widthJustMin = "10em"
+                        el.model = composeFieldModel({
+                          icon: "fa-solid fa-search",
+                          text: refs(loader).filter,
+                          options: refs(loader).loaded,
+                          isHotText: true,
+                          isMultiLineText: false,
+                        })
+                        base()
+                      },
+                    })
+
+                    startNewRow()
+                    Section({
+                      onChange: el => {
+                        el.heightJustGrowth = 1
+                      }
+                    })
+
+                    startNewRow()
+                    Field({
+                      onCreate: (el, base) => {
+                        const loader = app.loader
+                        el.widthJustMin = "10em"
+                        el.model = composeFieldModel({
+                          text: refs(loader).filter,
+                          options: refs(loader).loaded,
+                          isHotText: true,
+                          isMultiLineText: false,
+                        })
+                        base()
+                      },
+                    })
+                  }
                 })
-                base()
               },
             })
-
-            startNewRow()
             Section({
               onChange: el => {
+                el.width = { min: "300", max: "400", growth: 3 } // 250px
                 el.heightJustGrowth = 1
-              }
-            })
-
-            startNewRow()
-            Field({
-              onCreate: (el, base) => {
-                const loader = app.loader
-                el.widthJustMin = "10em"
-                el.model = composeFieldModel({
-                  text: refs(loader).filter,
-                  options: refs(loader).loaded,
-                  isHotText: true,
-                  isMultiLineText: false,
+                el.contentAlignment = Align.stretch // has no effect
+                WorkArea({
+                  onChange: (el, base) => {
+                    base()
+                    el.useStylingPreset(theme.panel)
+                    el.useStylingPreset(theme.accent)
+                    el.widthJustGrowth = 3
+                    el.heightJustGrowth = 1
+                  }
                 })
-                base()
               },
             })
-          }
+            Section({
+              onChange: el => {
+                el.width = { min: "250", growth: 1 } // 250px
+                el.heightJustGrowth = 1
+                Section({
+                  mode: Mode.independentUpdate,
+                  triggers: { theme },
+                  onChange: el => {
+                    el.useStylingPreset(theme.panel)
+                    el.useStylingPreset(theme.markdown)
+                    el.contentAlignment = Align.left + Align.top
+                    el.boundsAlignment = Align.stretch
+                    Markdown(EXAMPLE_CODE)
+                  }
+                })
+              },
+            })
+          },
         })
-        WorkArea({
-          onChange: (el, base) => {
-            base()
-            el.useStylingPreset(theme.panel)
-            el.useStylingPreset(theme.accent)
-            el.widthJustGrowth = 3
-            el.heightJustGrowth = 1
-          }
-        })
-        Section({
-          mode: Mode.independentUpdate,
-          triggers: { theme },
-          onChange: el => {
-            el.useStylingPreset(theme.panel)
-            el.useStylingPreset(theme.markdown)
-            el.width = { min: "16rem", growth: 2 }
-            el.contentAlignment = Align.left + Align.top,
-            el.boundsAlignment = Align.stretch,
-            Markdown(EXAMPLE_CODE)
-          }
-        })
-
         startNewRow()
         StatusBar({
           onChange: (el, base) => {
