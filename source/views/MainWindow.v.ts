@@ -19,11 +19,11 @@ export function MainWindow() {
         Theme.current = theme
 
         el.useStylingPreset(App.blinkingEffectMarker, app.isBlinkingEffectOn)
-        el.alignment = Align.stretchXY
+        el.alignment = Align.stretch
 
         ToolBar({
           onChange: (el, base) => {
-            el.alignment = Align.stretchX
+            el.alignment = Align.stretchWidth
             base()
           }
         })
@@ -33,7 +33,7 @@ export function MainWindow() {
           onChange: el => {
             el.useStylingPreset(app.theme.panel)
             el.width = { min: "10rem" }
-            el.alignment = Align.stretchY
+            el.alignment = Align.stretchHeight
             Note("Navigation Bar")
 
             rowBreak()
@@ -55,7 +55,7 @@ export function MainWindow() {
             rowBreak()
             Section({
               onChange: el => {
-                el.alignment = Align.stretchY
+                el.alignment = Align.stretchHeight
               }
             })
 
@@ -80,7 +80,7 @@ export function MainWindow() {
             base()
             el.useStylingPreset(theme.panel)
             el.useStylingPreset(theme.accent)
-            el.alignment = Align.stretchXY
+            el.alignment = Align.stretch
             el.stretchingStrengthX = 3
           }
         })
@@ -91,7 +91,7 @@ export function MainWindow() {
             el.useStylingPreset(theme.panel)
             el.useStylingPreset(theme.markdown)
             el.width = { min: "16rem" }
-            el.alignment = Align.stretchXY,
+            el.alignment = Align.stretch,
             el.stretchingStrengthX = 2
             el.extraAlignment = Align.left | Align.top,
             Markdown(EXAMPLE_CODE)
@@ -102,7 +102,7 @@ export function MainWindow() {
         StatusBar({
           onChange: (el, base) => {
             base()
-            el.alignment = Align.stretchX
+            el.alignment = Align.stretchWidth
           }
         })
       },
