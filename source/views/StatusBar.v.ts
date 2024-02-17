@@ -68,7 +68,7 @@ export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
         Section({
           onChange: el => {
             el.useStylingPreset(theme.panel)
-            el.stretchFactorX = 1
+            el.stretchingStrengthX = 1
             el.extraAlignment = Align.right
             Field({
               onCreate: (el, base) => {
