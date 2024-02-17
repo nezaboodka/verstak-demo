@@ -19,13 +19,11 @@ export function MainWindow() {
         Theme.current = theme
 
         el.useStylingPreset(App.blinkingEffectMarker, app.isBlinkingEffectOn)
-        // b.innerAlignment = Align.Center
-        el.stretchingStrengthX = 1
-        el.stretchingStrengthY = 1
+        el.alignment = Align.stretch
 
         ToolBar({
           onChange: (el, base) => {
-            el.stretchingStrengthX = 1
+            el.alignment = Align.stretchX
             base()
           }
         })
@@ -35,8 +33,8 @@ export function MainWindow() {
           onChange: el => {
             el.useStylingPreset(app.theme.panel)
             el.width = { min: "10rem" }
-            el.extraAlignment = Align.top
-            el.alignment = Align.stretch
+            el.alignment = Align.stretchY
+            //el.extraAlignment = Align.top
             Note("Navigation Bar")
 
             rowBreak()
@@ -58,7 +56,7 @@ export function MainWindow() {
             rowBreak()
             Section({
               onChange: el => {
-                el.stretchingStrengthY = 1
+                el.alignment = Align.stretchY
               }
             })
 
@@ -83,8 +81,8 @@ export function MainWindow() {
             base()
             el.useStylingPreset(theme.panel)
             el.useStylingPreset(theme.accent)
+            el.alignment = Align.stretch
             el.stretchingStrengthX = 3
-            el.stretchingStrengthY = 1
           }
         })
         Section({
@@ -94,9 +92,9 @@ export function MainWindow() {
             el.useStylingPreset(theme.panel)
             el.useStylingPreset(theme.markdown)
             el.width = { min: "16rem" }
+            el.alignment = Align.stretch,
             el.stretchingStrengthX = 2
             el.extraAlignment = Align.left | Align.top,
-            el.alignment = Align.stretch,
             Markdown(EXAMPLE_CODE)
           }
         })
@@ -105,7 +103,7 @@ export function MainWindow() {
         StatusBar({
           onChange: (el, base) => {
             base()
-            el.stretchingStrengthX = 1
+            el.alignment = Align.stretchX
           }
         })
       },
