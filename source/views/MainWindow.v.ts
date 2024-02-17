@@ -19,7 +19,7 @@ export function MainWindow() {
         Theme.current = theme
 
         el.useStylingPreset(App.blinkingEffectMarker, app.isBlinkingEffectOn)
-        el.alignment = Align.stretch
+        el.alignment = Align.stretchXY
 
         ToolBar({
           onChange: (el, base) => {
@@ -34,7 +34,6 @@ export function MainWindow() {
             el.useStylingPreset(app.theme.panel)
             el.width = { min: "10rem" }
             el.alignment = Align.stretchY
-            //el.extraAlignment = Align.top
             Note("Navigation Bar")
 
             rowBreak()
@@ -81,7 +80,7 @@ export function MainWindow() {
             base()
             el.useStylingPreset(theme.panel)
             el.useStylingPreset(theme.accent)
-            el.alignment = Align.stretch
+            el.alignment = Align.stretchXY
             el.stretchingStrengthX = 3
           }
         })
@@ -92,7 +91,7 @@ export function MainWindow() {
             el.useStylingPreset(theme.panel)
             el.useStylingPreset(theme.markdown)
             el.width = { min: "16rem" }
-            el.alignment = Align.stretch,
+            el.alignment = Align.stretchXY,
             el.stretchingStrengthX = 2
             el.extraAlignment = Align.left | Align.top,
             Markdown(EXAMPLE_CODE)
