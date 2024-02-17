@@ -20,7 +20,7 @@ export function MainWindow() {
 
         el.useStylingPreset(App.blinkingEffectMarker, app.isBlinkingEffectOn)
         el.alignment = Align.stretch
-        el.style.padding = "0.5em"
+        el.style.padding = "1em"
         el.style.gap = "1em"
 
         toolBar()
