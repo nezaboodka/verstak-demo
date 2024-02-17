@@ -34,7 +34,7 @@ export function MainWindow() {
         Section({
           onChange: el => {
             el.useStylingPreset(app.theme.panel)
-            el.widthJustMin = "10rem"
+            el.width = { min: "10rem" }
             el.extraAlignment = Align.top
             el.alignment = Align.stretch
             Note("Navigation Bar")
@@ -43,7 +43,7 @@ export function MainWindow() {
             Field({
               onCreate: (el, base) => {
                 const loader = app.loader
-                el.widthJustMin = "10em"
+                el.width = { min: "10em" }
                 el.model = composeFieldModel({
                   icon: "fa-solid fa-search",
                   text: refs(loader).filter,
@@ -66,7 +66,7 @@ export function MainWindow() {
             Field({
               onCreate: (el, base) => {
                 const loader = app.loader
-                el.widthJustMin = "10em"
+                el.width = { min: "10em" }
                 el.model = composeFieldModel({
                   text: refs(loader).filter,
                   options: refs(loader).loaded,
@@ -93,7 +93,7 @@ export function MainWindow() {
           onChange: el => {
             el.useStylingPreset(theme.panel)
             el.useStylingPreset(theme.markdown)
-            el.widthJustMin = "16rem"
+            el.width = { min: "16rem" }
             el.stretchFactorX = 2
             el.extraAlignment = Align.left | Align.top,
             el.alignment = Align.stretch,

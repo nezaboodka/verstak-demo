@@ -73,7 +73,7 @@ export function StatusBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
             Field({
               onCreate: (el, base) => {
                 const loader = app.loader
-                el.widthJustMin = "10em"
+                el.width = { min: "10em" }
                 el.model = composeFieldModel({
                   icon: "fa-solid fa-search",
                   text: refs(loader).filter,

@@ -62,7 +62,7 @@ export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
             Field({
               onCreate: (el, base) => {
                 const loader = app.loader
-                el.widthJustMin = "7em"
+                el.width = { min: "7em" }
                 el.model = composeFieldModel({
                   icon: "fa-solid fa-search",
                   text: refs(loader).filter,
