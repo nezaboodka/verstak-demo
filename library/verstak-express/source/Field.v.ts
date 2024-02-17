@@ -6,7 +6,7 @@
 // automatically licensed under the license referred above.
 
 import { RxNodeDecl, Mode } from "reactronic"
-import { Section, Note, FocusModel, OnFocus, rowBreak, El, Handling, KeyboardSensor, KeyboardModifiers } from "verstak"
+import { Section, Note, FocusModel, OnFocus, rowBreak, El, Handling, KeyboardSensor, KeyboardModifiers, Align } from "verstak"
 import { observableModel, ValuesOrRefs } from "./common/Utils.js"
 import { Theme, FieldStyling } from "./Theme.js"
 import { Icon } from "./Icon.v.js"
@@ -71,7 +71,7 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
       onCreate: (el, base) => {
         const e = el.native
         el.useStylingPreset(s.input)
-        el.stretchingStrengthX = 1
+        el.alignment = Align.stretchX
         e.tabIndex = 0
         e.contentEditable = "true"
         e.dataForSensor.focus = model
