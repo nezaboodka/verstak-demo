@@ -2,8 +2,8 @@ import { refs, Mode } from "reactronic"
 import { Section, Align, Note, rowBreak } from "verstak"
 import { Markdown, Field, Theme, composeFieldModel } from "verstak-express"
 import { App } from "models/App.js"
-import { ToolBar } from "./ToolBar.v.js"
-import { StatusBar } from "./StatusBar.v.js"
+import { toolBar } from "./ToolBar.v.js"
+import { statusBar } from "./StatusBar.v.js"
 import { WorkArea } from "./WorkArea.v.js"
 
 export function MainWindow() {
@@ -20,15 +20,13 @@ export function MainWindow() {
 
         el.useStylingPreset(App.blinkingEffectMarker, app.isBlinkingEffectOn)
         el.alignment = Align.stretch
+        el.style.padding = "0.5em"
+        el.style.gap = "1em"
 
-        ToolBar({
-          onChange: (el, base) => {
-            el.alignment = Align.stretchWidth
-            base()
-          }
-        })
+        toolBar()
 
         rowBreak()
+
         Section({
           onChange: el => {
             el.useStylingPreset(app.theme.panel)
@@ -75,6 +73,7 @@ export function MainWindow() {
             })
           }
         })
+
         WorkArea({
           onChange: (el, base) => {
             base()
@@ -84,6 +83,7 @@ export function MainWindow() {
             el.stretchingStrengthX = 3
           }
         })
+
         Section({
           mode: Mode.independentUpdate,
           triggers: { theme },
@@ -91,20 +91,16 @@ export function MainWindow() {
             el.useStylingPreset(theme.panel)
             el.useStylingPreset(theme.markdown)
             el.width = { min: "16rem" }
-            el.alignment = Align.stretch,
+            // el.alignment = Align.stretchHeight,
             el.stretchingStrengthX = 2
-            el.extraAlignment = Align.left | Align.top,
+            // el.extraAlignment = Align.left | Align.top,
             Markdown(EXAMPLE_CODE)
           }
         })
 
         rowBreak()
-        StatusBar({
-          onChange: (el, base) => {
-            base()
-            el.alignment = Align.stretchWidth
-          }
-        })
+
+        statusBar()
       },
     })
   )

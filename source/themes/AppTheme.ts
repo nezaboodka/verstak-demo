@@ -9,7 +9,6 @@ export class AppTheme extends Theme {
 
   @cached
   get panel(): string { return css`
-    margin: 0.5rem;
     padding: 0.75rem;
     box-shadow: ${this.shadow};
     border-radius: ${this.borderRadius};
