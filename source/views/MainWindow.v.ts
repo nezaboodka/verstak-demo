@@ -19,13 +19,13 @@ export function MainWindow() {
         Theme.current = theme
 
         el.useStylingPreset(App.blinkingEffectMarker, app.isBlinkingEffectOn)
-        // b.contentAlignment = Align.Center
-        el.widthGrowth = 1
-        el.heightGrowth = 1
+        // b.innerAlignment = Align.Center
+        el.stretchFactorX = 1
+        el.stretchFactorY = 1
 
         ToolBar({
           onChange: (el, base) => {
-            el.widthGrowth = 1
+            el.stretchFactorX = 1
             base()
           }
         })
@@ -35,8 +35,8 @@ export function MainWindow() {
           onChange: el => {
             el.useStylingPreset(app.theme.panel)
             el.widthJustMin = "10rem"
-            el.contentAlignment = Align.top
-            el.boundsAlignment = Align.stretch
+            el.extraAlignment = Align.top
+            el.alignment = Align.stretch
             Note("Navigation Bar")
 
             rowBreak()
@@ -58,7 +58,7 @@ export function MainWindow() {
             rowBreak()
             Section({
               onChange: el => {
-                el.heightGrowth = 1
+                el.stretchFactorY = 1
               }
             })
 
@@ -83,8 +83,8 @@ export function MainWindow() {
             base()
             el.useStylingPreset(theme.panel)
             el.useStylingPreset(theme.accent)
-            el.widthGrowth = 3
-            el.heightGrowth = 1
+            el.stretchFactorX = 3
+            el.stretchFactorY = 1
           }
         })
         Section({
@@ -94,9 +94,9 @@ export function MainWindow() {
             el.useStylingPreset(theme.panel)
             el.useStylingPreset(theme.markdown)
             el.widthJustMin = "16rem"
-            el.widthGrowth = 2
-            el.contentAlignment = Align.left + Align.top,
-            el.boundsAlignment = Align.stretch,
+            el.stretchFactorX = 2
+            el.extraAlignment = Align.left | Align.top,
+            el.alignment = Align.stretch,
             Markdown(EXAMPLE_CODE)
           }
         })
@@ -105,7 +105,7 @@ export function MainWindow() {
         StatusBar({
           onChange: (el, base) => {
             base()
-            el.widthGrowth = 1
+            el.stretchFactorX = 1
           }
         })
       },
@@ -123,13 +123,13 @@ Table("Example", {
   update(b) {
     // Elements can be layed out automatically
     // based on their order and line feeds.
-    Ruler("1", Align.left + Align.centerY)
+    Ruler("1", Align.left | Align.centerY)
     cursor({ cellsOverWidth: -1, cellsOverHeight: 0 })
-    Ruler("A", Align.centerX + Align.top)
-    Ruler("B", Align.centerX + Align.top)
-    Ruler("C", Align.centerX + Align.top)
-    startNewRow(); Ruler("2", Align.left + Align.centerY)
-    startNewRow(); Ruler("3", Align.left + Align.centerY)
+    Ruler("A", Align.centerX | Align.top)
+    Ruler("B", Align.centerX | Align.top)
+    Ruler("C", Align.centerX | Align.top)
+    startNewRow(); Ruler("2", Align.left | Align.centerY)
+    startNewRow(); Ruler("3", Align.left | Align.centerY)
     // Elements can also be layed out
     // explicitly in exact cells.
     ExampleData("B2")

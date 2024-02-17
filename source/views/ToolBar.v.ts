@@ -44,12 +44,12 @@ export function ToolBar(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
         })
         Section({
           onChange: el => {
-            el.widthGrowth = 1
+            el.stretchFactorX = 1
             el.useStylingPreset(theme.panel)
             Section({
               mode: Mode.independentUpdate,
               onChange: el => {
-                el.widthGrowth = 1
+                el.stretchFactorX = 1
                 const position = app.position
                 if (!Number.isFinite(position))
                   Markdown(`**Verstak** v${app.version}`)

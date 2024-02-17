@@ -71,7 +71,7 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
       onCreate: (el, base) => {
         const e = el.native
         el.useStylingPreset(s.input)
-        el.widthGrowth = 1
+        el.stretchFactorX = 1
         e.tabIndex = 0
         e.contentEditable = "true"
         e.dataForSensor.focus = model

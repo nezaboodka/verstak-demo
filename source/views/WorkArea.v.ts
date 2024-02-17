@@ -12,15 +12,15 @@ export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
         // Elements can be layed out automatically
         // based on their order and line feeds.
         rowBreak()
-        Ruler("1", Align.left + Align.centerY)
+        Ruler("1", Align.left | Align.centerY)
         cursor({ cellsOverWidth: -1, cellsOverHeight: 0 })
-        Ruler("A", Align.centerX + Align.top)
-        Ruler("B", Align.centerX + Align.top)
-        Ruler("C", Align.centerX + Align.top)
+        Ruler("A", Align.centerX | Align.top)
+        Ruler("B", Align.centerX | Align.top)
+        Ruler("C", Align.centerX | Align.top)
         rowBreak()
-        Ruler("2", Align.left + Align.centerY)
+        Ruler("2", Align.left | Align.centerY)
         rowBreak()
-        Ruler("3", Align.left + Align.centerY)
+        Ruler("3", Align.left | Align.centerY)
 
         // Elements can also be layed out
         // explicitly in exact cells.
@@ -43,7 +43,7 @@ export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
             const theme = Theme.current as AppTheme
             el.native.classList.toggle(theme.panel, true)
             el.area = "B1"
-            el.boundsAlignment = Align.right + Align.bottom
+            el.alignment = Align.right | Align.bottom
           }
         })
       }},
@@ -55,7 +55,7 @@ function Ruler(title: string, align: Align) {
   return (
     Section({
       onChange: el => {
-        el.boundsAlignment = align
+        el.alignment = align
         el.native.style.fontSize = "smaller"
         Note(`&nbsp;${title}`, true)
       }
@@ -67,7 +67,7 @@ function ExampleData(area: string) {
   return (
     Section({
       onCreate: el => {
-        el.contentAlignment = Align.center
+        el.extraAlignment = Align.center
       },
       onChange: el => {
         const theme = Theme.current as AppTheme
