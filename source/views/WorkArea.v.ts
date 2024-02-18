@@ -67,8 +67,8 @@ function ExampleData(area: string) {
   return (
     Section({
       onCreate: el => {
-        el.alignment = Align.stretch
-        el.extraAlignment = Align.center
+        el.alignment = Align.stretchBoth
+        el.extraAlignment = Align.centerBoth
       },
       onChange: el => {
         const theme = Theme.current as AppTheme

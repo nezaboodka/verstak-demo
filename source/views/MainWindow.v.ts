@@ -19,7 +19,7 @@ export function MainWindow() {
         Theme.current = theme
 
         el.useStylingPreset(App.blinkingEffectMarker, app.isBlinkingEffectOn)
-        el.alignment = Align.stretch
+        el.alignment = Align.stretchBoth
         el.style.padding = "1em"
         el.style.gap = "1em"
 
@@ -79,7 +79,7 @@ export function MainWindow() {
             base()
             el.useStylingPreset(theme.panel)
             el.useStylingPreset(theme.accent)
-            el.alignment = Align.stretch
+            el.alignment = Align.stretchBoth
             el.stretchingStrengthX = 3
           }
         })
@@ -90,8 +90,8 @@ export function MainWindow() {
           onChange: el => {
             el.useStylingPreset(theme.panel)
             el.useStylingPreset(theme.markdown)
-            el.width = { min: "16rem" }
-            // el.alignment = Align.stretchHeight,
+            el.width = { min: "16rem", max: "30em" }
+            //el.alignment = Align.right | Align.bottom,
             el.stretchingStrengthX = 2
             // el.extraAlignment = Align.left | Align.top,
             Markdown(EXAMPLE_CODE)
