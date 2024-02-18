@@ -1,5 +1,5 @@
 import { refs, Mode } from "reactronic"
-import { Section, Align, Note, rowBreak } from "verstak"
+import { Section, Align, Note, rowBreak, SplitView } from "verstak"
 import { Markdown, Field, Theme, composeFieldModel } from "verstak-express"
 import { App } from "models/App.js"
 import { toolBar } from "./ToolBar.v.js"
@@ -12,6 +12,7 @@ export function MainWindow() {
       mode: Mode.independentUpdate,
       onCreate: el => {
         el.native.sensors.focus // enable focus global manager
+        el.native.style.overflow = "hidden"
       },
       onChange: el => {
         const app = App.current
@@ -28,74 +29,83 @@ export function MainWindow() {
         rowBreak()
 
         Section({
+          onCreate: el => {
+            el.alignment = Align.stretchXY
+            //el.style.gap = "1em"
+          },
           onChange: el => {
-            el.useStylingPreset(app.theme.panel)
-            el.width = { min: "10rem" }
-            el.alignment = Align.stretchY
-            Note("Navigation Bar")
-
-            rowBreak()
-            Field({
-              onCreate: (el, base) => {
-                const loader = app.loader
-                el.width = { min: "10em" }
-                el.model = composeFieldModel({
-                  icon: "fa-solid fa-search",
-                  text: refs(loader).filter,
-                  options: refs(loader).loaded,
-                  isHotText: true,
-                  isMultiLineText: false,
-                })
-                base()
-              },
-            })
-
-            rowBreak()
+            el.splitView = app.isSplitViewOn ? SplitView.horizontal : undefined
             Section({
               onChange: el => {
+                el.useStylingPreset(app.theme.panel)
+                el.width = { min: "200px" }
                 el.alignment = Align.stretchY
+                el.extraAlignment = Align.top
+
+                Note("Navigation Bar")
+
+                rowBreak()
+                Field({
+                  onCreate: (el, base) => {
+                    const loader = app.loader
+                    el.width = { min: "10em" }
+                    el.model = composeFieldModel({
+                      icon: "fa-solid fa-search",
+                      text: refs(loader).filter,
+                      options: refs(loader).loaded,
+                      isHotText: true,
+                      isMultiLineText: false,
+                    })
+                    base()
+                  },
+                })
+
+                rowBreak()
+                Section({
+                  onChange: el => {
+                    el.alignment = Align.stretchY
+                  }
+                })
+
+                rowBreak()
+                Field({
+                  onCreate: (el, base) => {
+                    const loader = app.loader
+                    el.width = { min: "10em" }
+                    el.model = composeFieldModel({
+                      text: refs(loader).filter,
+                      options: refs(loader).loaded,
+                      isHotText: true,
+                      isMultiLineText: false,
+                    })
+                    base()
+                  },
+                })
               }
             })
-
-            rowBreak()
-            Field({
-              onCreate: (el, base) => {
-                const loader = app.loader
-                el.width = { min: "10em" }
-                el.model = composeFieldModel({
-                  text: refs(loader).filter,
-                  options: refs(loader).loaded,
-                  isHotText: true,
-                  isMultiLineText: false,
-                })
+            WorkArea({
+              onChange: (el, base) => {
                 base()
-              },
+                el.useStylingPreset(theme.panel)
+                el.useStylingPreset(theme.accent)
+                el.width = { min: "300" }
+                el.alignment = Align.stretchXY
+                el.stretchingStrengthX = 3
+              }
             })
-          }
-        })
-
-        WorkArea({
-          onChange: (el, base) => {
-            base()
-            el.useStylingPreset(theme.panel)
-            el.useStylingPreset(theme.accent)
-            el.alignment = Align.stretchXY
-            el.stretchingStrengthX = 3
-          }
-        })
-
-        Section({
-          mode: Mode.independentUpdate,
-          triggers: { theme },
-          onChange: el => {
-            el.useStylingPreset(theme.panel)
-            el.useStylingPreset(theme.markdown)
-            el.width = { min: "16rem", max: "30em" }
-            //el.alignment = Align.right | Align.bottom,
-            el.stretchingStrengthX = 2
-            // el.extraAlignment = Align.left | Align.top,
-            Markdown(EXAMPLE_CODE)
-          }
+            Section({
+              mode: Mode.independentUpdate,
+              triggers: { theme },
+              onChange: el => {
+                el.useStylingPreset(theme.panel)
+                el.useStylingPreset(theme.markdown)
+                el.width = { min: "350", max: "500" }
+                el.alignment = Align.stretchY
+                el.extraAlignment = Align.left + Align.top
+                Markdown(EXAMPLE_CODE)
+              }
+            })
+          },
         })
 
         rowBreak()
@@ -121,8 +131,8 @@ Table("Example", {
     Ruler("A", Align.centerX | Align.top)
     Ruler("B", Align.centerX | Align.top)
     Ruler("C", Align.centerX | Align.top)
-    startNewRow(); Ruler("2", Align.left | Align.centerY)
-    startNewRow(); Ruler("3", Align.left | Align.centerY)
+    rowBreak(); Ruler("2", Align.left | Align.centerY)
+    rowBreak(); Ruler("3", Align.left | Align.centerY)
     // Elements can also be layed out
     // explicitly in exact cells.
     ExampleData("B2")

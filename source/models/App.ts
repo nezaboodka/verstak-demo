@@ -12,6 +12,7 @@ export class App extends ObservableObject {
   activeThemeIndex: number
   isBlinkingEffectOn: boolean
   isSecondaryTimeZoneOn: boolean
+  isSplitViewOn: boolean
   position: number
   loader: Loader
 
@@ -22,6 +23,7 @@ export class App extends ObservableObject {
     this.activeThemeIndex = 0
     this.isBlinkingEffectOn = false
     this.isSecondaryTimeZoneOn = true
+    this.isSplitViewOn = true
     this.position = Infinity
     this.loader = new Loader()
   }
