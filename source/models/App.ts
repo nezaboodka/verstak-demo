@@ -23,7 +23,7 @@ export class App extends ObservableObject {
     this.activeThemeIndex = 0
     this.isBlinkingEffectOn = false
     this.isSecondaryTimeZoneOn = true
-    this.isSplitViewOn = true
+    this.isSplitViewOn = false
     this.position = Infinity
     this.loader = new Loader()
   }
