@@ -19,7 +19,7 @@ export function MainWindow() {
         Theme.current = theme
 
         el.useStylingPreset(App.blinkingEffectMarker, app.isBlinkingEffectOn)
-        el.alignment = Align.stretchBoth
+        el.alignment = Align.stretchXY
         el.style.padding = "1em"
         el.style.gap = "1em"
 
@@ -31,7 +31,7 @@ export function MainWindow() {
           onChange: el => {
             el.useStylingPreset(app.theme.panel)
             el.width = { min: "10rem" }
-            el.alignment = Align.stretchHeight
+            el.alignment = Align.stretchY
             Note("Navigation Bar")
 
             rowBreak()
@@ -53,7 +53,7 @@ export function MainWindow() {
             rowBreak()
             Section({
               onChange: el => {
-                el.alignment = Align.stretchHeight
+                el.alignment = Align.stretchY
               }
             })
 
@@ -79,7 +79,7 @@ export function MainWindow() {
             base()
             el.useStylingPreset(theme.panel)
             el.useStylingPreset(theme.accent)
-            el.alignment = Align.stretchBoth
+            el.alignment = Align.stretchXY
             el.stretchingStrengthX = 3
           }
         })

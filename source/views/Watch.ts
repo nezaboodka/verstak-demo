@@ -20,8 +20,8 @@ export function Watch(area: string): RxNode<El<HTMLElement>> {
       mode: Mode.independentUpdate,
       onCreate: el => {
         const s = el.native.style
-        el.alignment = Align.stretchBoth
-        el.extraAlignment = Align.centerBoth
+        el.alignment = Align.stretchXY
+        el.extraAlignment = Align.centerXY
         // s.fontFamily = "Arial"
         s.cursor = "default"
       },

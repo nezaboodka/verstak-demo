@@ -41,12 +41,12 @@ export function toolBar() {
   })
   Section({
     onChange: el => {
-      el.alignment = Align.stretchWidth
+      el.alignment = Align.stretchX
       el.useStylingPreset(theme.panel)
       Section({
         mode: Mode.independentUpdate,
         onChange: el => {
-          el.alignment = Align.stretchWidth
+          el.alignment = Align.stretchX
           const position = app.position
           if (!Number.isFinite(position))
             Markdown(`**Verstak** v${app.version}`)

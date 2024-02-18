@@ -12,15 +12,15 @@ export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
         // Elements can be layed out automatically
         // based on their order and line feeds.
         rowBreak()
-        Ruler("1", Align.left | Align.centerHeight)
+        Ruler("1", Align.left | Align.centerY)
         cursor({ cellsOverWidth: -1, cellsOverHeight: 0 })
-        Ruler("A", Align.centerWidth | Align.top)
-        Ruler("B", Align.centerWidth | Align.top)
-        Ruler("C", Align.centerWidth | Align.top)
+        Ruler("A", Align.centerX | Align.top)
+        Ruler("B", Align.centerX | Align.top)
+        Ruler("C", Align.centerX | Align.top)
         rowBreak()
-        Ruler("2", Align.left | Align.centerHeight)
+        Ruler("2", Align.left | Align.centerY)
         rowBreak()
-        Ruler("3", Align.left | Align.centerHeight)
+        Ruler("3", Align.left | Align.centerY)
 
         // Elements can also be layed out
         // explicitly in exact cells.
@@ -67,8 +67,8 @@ function ExampleData(area: string) {
   return (
     Section({
       onCreate: el => {
-        el.alignment = Align.stretchBoth
-        el.extraAlignment = Align.centerBoth
+        el.alignment = Align.stretchXY
+        el.extraAlignment = Align.centerXY
       },
       onChange: el => {
         const theme = Theme.current as AppTheme

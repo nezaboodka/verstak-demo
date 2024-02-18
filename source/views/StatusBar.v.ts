@@ -64,7 +64,7 @@ export function statusBar() {
   Section({
     onChange: el => {
       el.useStylingPreset(theme.panel)
-      el.alignment = Align.stretchWidth
+      el.alignment = Align.stretchX
       el.extraAlignment = Align.right
       Field({
         onCreate: (el, base) => {
