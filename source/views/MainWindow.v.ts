@@ -27,7 +27,7 @@ export function MainWindow() {
 
         Section({
           onCreate: el => {
-            //el.alignment = Align.stretchX
+            el.alignment = Align.stretchX
             el.height = { min: "50px" }
           },
           onChange: el => {
@@ -124,6 +124,7 @@ export function MainWindow() {
         Section({
           onCreate: el => {
             el.height = { min: "50px" }
+            el.alignment = Align.stretchX
           },
           onChange: el => statusBar(),
         })
