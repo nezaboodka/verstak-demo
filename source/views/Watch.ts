@@ -96,7 +96,7 @@ export function Watch(area: string): RxNode<El<HTMLElement>> {
             })
 
             // radialDots(SecondaryLabelColor, 15, 15, 145)
-            radialDashes(SecondaryLabelColor, 24, 24, 15, 145)
+            radialDashes(SecondaryLabelColor, 12, 24, 15, 145)
             // radialDashes(BackColor, 18, 18, 45, 150)
             radialDashes(AccentColor, 4, 12, 6, 108)
             // radialDashes("#87F7A5", 12, 20, 30, 108)
@@ -158,7 +158,7 @@ export function Watch(area: string): RxNode<El<HTMLElement>> {
                   rotate(el.native, 105)
                 else
                   rotate(el.native, 0)
-                radialDashes(SecondaryLabelColor, 24, 24, 15, 45)
+                radialDashes(SecondaryLabelColor, 12, 24, 15, 45)
                 radialDashes(BezelBackColor, 26, 26, 45, 45)
                 radialLabels(svg, 441, 80, false, BezelLabelColor, true,
                   [0, 6, 12, 18], 15, 180)
