@@ -27,9 +27,12 @@ export function MainWindow() {
 
         Section({
           onCreate: el => {
+            //el.alignment = Align.stretchX
             el.height = { min: "50px" }
           },
-          onChange: el => toolBar(),
+          onChange: el => {
+            toolBar()
+          },
         })
 
         rowBreak()
