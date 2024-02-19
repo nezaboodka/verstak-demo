@@ -12,7 +12,7 @@ export function MainWindow() {
       mode: Mode.independentUpdate,
       onCreate: el => {
         el.native.sensors.focus // enable focus global manager
-        el.native.style.overflow = "hidden"
+        el.style.overflow = "hidden"
         el.splitView = App.current.isSplitViewOn ? SplitView.vertical : undefined
       },
       onChange: el => {

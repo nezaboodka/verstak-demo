@@ -27,7 +27,7 @@ Page({
   onChange: el => {
     App.current = app
     const t = app.theme
-    const s = el.native.style
+    const s = el.style
     s.color = t.textColor
     s.backgroundColor = t.spaceFillColor
     rowBreak() // WORKAROUND

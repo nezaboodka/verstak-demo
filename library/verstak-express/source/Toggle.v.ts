@@ -37,7 +37,7 @@ export function Toggle(declaration?: RxNodeDecl<El<HTMLElement, ToggleModel>>) {
           onChange: (el, base) => {
             base()
             el.useStylingPreset(toggleTheme.icon)
-            el.native.style.color = m.checked ? (theme.positiveColor ?? "") : "" // subscribe to ToggleModel.checked
+            el.style.color = m.checked ? (theme.positiveColor ?? "") : "" // subscribe to ToggleModel.checked
           },
         })
         if (m.label)

@@ -56,7 +56,7 @@ function Ruler(title: string, align: Align) {
     Section({
       onChange: el => {
         el.alignment = align
-        el.native.style.fontSize = "smaller"
+        el.style.fontSize = "smaller"
         Note(`&nbsp;${title}`, true)
       }
     })

@@ -22,9 +22,9 @@ export function Image(declaration?: RxNodeDecl<El<HTMLElement, ImageModel>>) {
       },
       onChange: el => {
         const m = el.model
-        el.native.style.backgroundImage = `url(${m.source})`
-        el.native.style.backgroundSize = "contain"
-        el.native.style.backgroundRepeat = "no-repeat"
+        el.style.backgroundImage = `url(${m.source})`
+        el.style.backgroundSize = "contain"
+        el.style.backgroundRepeat = "no-repeat"
       },
     })
   )

@@ -19,7 +19,7 @@ export function Watch(area: string): RxNode<El<HTMLElement>> {
     Section({
       mode: Mode.independentUpdate,
       onCreate: el => {
-        const s = el.native.style
+        const s = el.style
         el.alignment = Align.stretchXY
         el.extraAlignment = Align.centerXY
         // s.fontFamily = "Arial"
@@ -146,13 +146,13 @@ export function Watch(area: string): RxNode<El<HTMLElement>> {
             // Bezel (secondary time zone)
             G({
               onCreate: el => {
-                el.native.style.transition = "transform 1s ease"
+                el.style.transition = "transform 1s ease"
                 el.native.onclick = () => {
-                  el.native.style.transform = el.native.style.transform === "rotate(105deg)" ? "rotate(0deg)" : "rotate(105deg)"
+                  el.style.transform = el.style.transform === "rotate(105deg)" ? "rotate(0deg)" : "rotate(105deg)"
                 }
               },
               onChange: el => {
-                el.native.style.transform = el.native.style.transform === "rotate(105deg)" ? "rotate(0deg)" : "rotate(105deg)"
+                el.style.transform = el.style.transform === "rotate(105deg)" ? "rotate(0deg)" : "rotate(105deg)"
                 const app = App.current
                 if (app.isSecondaryTimeZoneOn)
                   rotate(el.native, 105)

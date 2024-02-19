@@ -18,7 +18,7 @@ export function toolBar() {
   //   },
   //   onChange: (el, base) => {
   //     base()
-  //     el.native.style.backgroundColor = app.blinkingEffect ? "red" : ""
+  //     el.style.backgroundColor = app.blinkingEffect ? "red" : ""
   //   }
   // })
   Section({ // Logo
@@ -26,11 +26,11 @@ export function toolBar() {
       el.useStylingPreset(theme.panel)
       // b.useStyle(s.Clickable)
       // b.useStyle(s.Logo)
-      el.native.style.outlineOffset = "-1px"
+      el.style.outlineOffset = "-1px"
       // b.native.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
     },
     onChange: el => {
-      el.native.style.boxShadow = app.isBlinkingEffectOn ? "0.025rem 0.025rem 0.35rem 0 red" : ""
+      el.style.boxShadow = app.isBlinkingEffectOn ? "0.025rem 0.025rem 0.35rem 0 red" : ""
       Img({
         onChange: (el, base) => {
           base()
