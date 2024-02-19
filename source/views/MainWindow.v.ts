@@ -13,6 +13,7 @@ export function MainWindow() {
       onCreate: el => {
         el.native.sensors.focus // enable focus global manager
         el.native.style.overflow = "hidden"
+        el.splitView = App.current.isSplitViewOn ? SplitView.vertical : undefined
       },
       onChange: el => {
         const app = App.current
@@ -21,24 +22,31 @@ export function MainWindow() {
 
         el.useStylingPreset(App.blinkingEffectMarker, app.isBlinkingEffectOn)
         el.alignment = Align.stretchXY
-        el.style.padding = "1em"
-        el.style.gap = "1em"
+        // el.style.padding = "1em"
+        // el.style.gap = "1em"
 
-        toolBar()
+        Section({
+          onCreate: el => {
+            el.height = { min: "50px" }
+          },
+          onChange: el => toolBar(),
+        })
 
         rowBreak()
 
         Section({
           onCreate: el => {
+            el.height = { min: "200px" }
             el.alignment = Align.stretchXY
             //el.style.gap = "1em"
+            el.stretchingStrengthY = 1
           },
           onChange: el => {
             el.splitView = app.isSplitViewOn ? SplitView.horizontal : undefined
             Section({
               onChange: el => {
                 el.useStylingPreset(app.theme.panel)
-                el.width = { min: "200px" }
+                el.width = { min: "180px" }
                 el.alignment = Align.stretchY
                 el.extraAlignment = Align.top
 
@@ -99,7 +107,7 @@ export function MainWindow() {
               onChange: el => {
                 el.useStylingPreset(theme.panel)
                 el.useStylingPreset(theme.markdown)
-                el.width = { min: "350", max: "500" }
+                el.width = { min: "350", max: "600" }
                 el.alignment = Align.stretchY
                 el.extraAlignment = Align.left + Align.top
                 Markdown(EXAMPLE_CODE)
@@ -110,7 +118,12 @@ export function MainWindow() {
 
         rowBreak()
 
-        statusBar()
+        Section({
+          onCreate: el => {
+            el.height = { min: "50px" }
+          },
+          onChange: el => statusBar(),
+        })
       },
     })
   )
