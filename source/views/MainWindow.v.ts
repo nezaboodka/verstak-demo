@@ -20,29 +20,18 @@ export function MainWindow() {
         Theme.current = theme
 
         el.useStylingPreset(App.blinkingEffectMarker, app.isBlinkingEffectOn)
-        el.splitView = app.isSplitViewOn ? SplitView.vertical : undefined
         el.alignment = Align.stretchXY
         // el.style.padding = "1em"
         // el.style.gap = "1em"
 
-        Section({
-          onCreate: el => {
-            el.alignment = Align.stretchX
-            el.height = { min: "50px" }
-          },
-          onChange: el => {
-            toolBar()
-          },
-        })
+        toolBar()
 
         rowBreak()
 
         Section({
           onCreate: el => {
-            el.height = { min: "200px" }
             el.alignment = Align.stretchXY
             //el.style.gap = "1em"
-            el.stretchingStrengthY = 1
           },
           onChange: el => {
             el.splitView = app.isSplitViewOn ? SplitView.horizontal : undefined
@@ -52,14 +41,20 @@ export function MainWindow() {
                 el.width = { min: "180px" }
                 el.alignment = Align.stretchY
                 el.extraAlignment = Align.top
+                el.splitView = app.isSplitViewOn ? SplitView.vertical : undefined
 
-                Note("Navigation Bar")
+                Note("Navigation Bar", false, {
+                  onCreate: el => {
+                    el.height = { min: "30px" }
+                  },
+                })
 
                 rowBreak()
                 Field({
                   onCreate: (el, base) => {
                     const loader = app.loader
                     el.width = { min: "10em" }
+                    el.height = { min: "30px" }
                     el.model = composeFieldModel({
                       icon: "fa-solid fa-search",
                       text: refs(loader).filter,
@@ -75,6 +70,7 @@ export function MainWindow() {
                 Section({
                   onChange: el => {
                     el.alignment = Align.stretchY
+                    // el.height = { max: "600px" }
                   }
                 })
 
@@ -83,6 +79,7 @@ export function MainWindow() {
                   onCreate: (el, base) => {
                     const loader = app.loader
                     el.width = { min: "10em" }
+                    el.height = { min: "30px" }
                     el.model = composeFieldModel({
                       text: refs(loader).filter,
                       options: refs(loader).loaded,
@@ -120,14 +117,7 @@ export function MainWindow() {
         })
 
         rowBreak()
-
-        Section({
-          onCreate: el => {
-            el.height = { min: "50px" }
-            el.alignment = Align.stretchX
-          },
-          onChange: el => statusBar(),
-        })
+        statusBar()
       },
     })
   )
