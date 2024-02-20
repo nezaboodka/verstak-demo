@@ -38,14 +38,14 @@ export function MainWindow() {
             Section({
               onChange: el => {
                 el.useStylingPreset(app.theme.panel)
-                el.width = { min: "180px" }
+                el.width = { min: "12em" }
                 el.alignment = Align.stretchY
                 el.extraAlignment = Align.top
                 el.splitView = app.isSplitViewOn ? SplitView.vertical : undefined
 
                 Note("Navigation Bar", false, {
                   onCreate: el => {
-                    el.height = { min: "30px" }
+                    el.height = { min: "1.5em" }
                     el.alignment = Align.top /* + Align.centerX */
                   },
                 })
@@ -55,7 +55,7 @@ export function MainWindow() {
                   onCreate: (el, base) => {
                     const loader = app.loader
                     el.width = { min: "10em" }
-                    el.height = { min: "30px" }
+                    el.height = { min: "1.5em" }
                     el.alignment = Align.top
                     el.model = composeFieldModel({
                       icon: "fa-solid fa-search",
@@ -81,7 +81,7 @@ export function MainWindow() {
                   onCreate: (el, base) => {
                     const loader = app.loader
                     el.width = { min: "10em" }
-                    el.height = { min: "30px" }
+                    el.height = { min: "1.5em" }
                     el.alignment = Align.bottom
                     el.model = composeFieldModel({
                       text: refs(loader).filter,
@@ -110,7 +110,7 @@ export function MainWindow() {
               onChange: el => {
                 el.useStylingPreset(theme.panel)
                 el.useStylingPreset(theme.markdown)
-                el.width = { min: "350", max: "600" }
+                el.width = { min: "350", max: "50%" }
                 el.alignment = Align.stretchY
                 el.extraAlignment = Align.left + Align.top
                 Markdown(EXAMPLE_CODE)
