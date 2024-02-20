@@ -13,7 +13,6 @@ export function MainWindow() {
       onCreate: el => {
         el.native.sensors.focus // enable focus global manager
         el.style.overflow = "hidden"
-        el.splitView = App.current.isSplitViewOn ? SplitView.vertical : undefined
       },
       onChange: el => {
         const app = App.current
@@ -21,6 +20,7 @@ export function MainWindow() {
         Theme.current = theme
 
         el.useStylingPreset(App.blinkingEffectMarker, app.isBlinkingEffectOn)
+        el.splitView = app.isSplitViewOn ? SplitView.vertical : undefined
         el.alignment = Align.stretchXY
         // el.style.padding = "1em"
         // el.style.gap = "1em"
