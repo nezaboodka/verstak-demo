@@ -46,6 +46,7 @@ export function MainWindow() {
                 Note("Navigation Bar", false, {
                   onCreate: el => {
                     el.height = { min: "30px" }
+                    el.alignment = Align.top /* + Align.centerX */
                   },
                 })
 
@@ -55,6 +56,7 @@ export function MainWindow() {
                     const loader = app.loader
                     el.width = { min: "10em" }
                     el.height = { min: "30px" }
+                    el.alignment = Align.top
                     el.model = composeFieldModel({
                       icon: "fa-solid fa-search",
                       text: refs(loader).filter,
@@ -80,6 +82,7 @@ export function MainWindow() {
                     const loader = app.loader
                     el.width = { min: "10em" }
                     el.height = { min: "30px" }
+                    el.alignment = Align.bottom
                     el.model = composeFieldModel({
                       text: refs(loader).filter,
                       options: refs(loader).loaded,
