@@ -1,5 +1,5 @@
 import { refs, Mode } from "reactronic"
-import { Section, Align, Note, rowBreak, SplitView } from "verstak"
+import { Section, Align, Note, rowBreak, SplitView, Dimension } from "verstak"
 import { Markdown, Field, Theme, composeFieldModel } from "verstak-express"
 import { App } from "models/App.js"
 import { toolBar } from "./ToolBar.v.js"
@@ -34,9 +34,11 @@ export function MainWindow() {
             //el.style.gap = "1em"
           },
           onChange: el => {
+            Dimension.lineSizePx = 20
             el.splitView = app.isSplitViewOn ? SplitView.horizontal : undefined
             Section({
               onChange: el => {
+                Dimension.lineSizePx = 40
                 el.useStylingPreset(app.theme.panel)
                 el.width = { min: "12em" }
                 el.alignment = Align.stretchY
@@ -48,6 +50,9 @@ export function MainWindow() {
                     el.height = { min: "1.5em" }
                     el.alignment = Align.top /* + Align.centerX */
                   },
+                  // onChange: el => {
+                  //   Dimension.fontSizePx = app.fontSizePx
+                  // }
                 })
 
                 rowBreak()
@@ -82,7 +87,7 @@ export function MainWindow() {
                     const loader = app.loader
                     el.width = { min: "10em" }
                     el.height = { min: "1.5em" }
-                    el.alignment = Align.bottom
+                    el.alignment = Align.top
                     el.model = composeFieldModel({
                       text: refs(loader).filter,
                       options: refs(loader).loaded,
@@ -99,7 +104,7 @@ export function MainWindow() {
                 base()
                 el.useStylingPreset(theme.panel)
                 el.useStylingPreset(theme.accent)
-                el.width = { min: "300" }
+                el.width = { min: "300px" }
                 el.alignment = Align.stretchXY
                 el.stretchingStrengthX = 3
               }
@@ -108,12 +113,36 @@ export function MainWindow() {
               mode: Mode.independentUpdate,
               triggers: { theme },
               onChange: el => {
+                el.splitView = app.isSplitViewOn ? SplitView.vertical : undefined
                 el.useStylingPreset(theme.panel)
                 el.useStylingPreset(theme.markdown)
-                el.width = { min: "350", max: "50%" }
-                el.alignment = Align.stretchY
+                el.width = { min: "300px", max: "40%" }
+                el.stretchingStrengthX = 3
+                el.alignment = Align.stretchXY
                 el.extraAlignment = Align.left + Align.top
-                Markdown(EXAMPLE_CODE)
+                Section({
+                  onChange: el => {
+                    el.height = { min: "300px" }
+                    el.alignment = Align.stretchY
+                    Markdown(EXAMPLE_CODE)
+                  },
+                })
+                Field({
+                  onCreate: (el, base) => {
+                    const loader = app.loader
+                    el.width = { min: "10em" }
+                    el.height = { min: "1.5em" }
+                    el.alignment = Align.top
+                    el.model = composeFieldModel({
+                      icon: "fa-solid fa-search",
+                      text: refs(loader).filter,
+                      options: refs(loader).loaded,
+                      isHotText: true,
+                      isMultiLineText: false,
+                    })
+                    base()
+                  },
+                })
               }
             })
           },
