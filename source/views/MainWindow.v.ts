@@ -41,13 +41,13 @@ export function MainWindow() {
                 Dimension.lineSizePx = 40
                 el.useStylingPreset(app.theme.panel)
                 el.width = { min: "12em" }
-                el.alignment = Align.stretchY
+                el.alignment = Align.stretchXY
                 el.extraAlignment = Align.top
                 el.splitView = app.isSplitViewOn ? SplitView.vertical : undefined
 
                 Note("Navigation Bar", false, {
                   onCreate: el => {
-                    el.height = { min: "1.5em" }
+                    el.height = { min: "500px" }
                     el.alignment = Align.top /* + Align.centerX */
                   },
                   // onChange: el => {
@@ -55,12 +55,12 @@ export function MainWindow() {
                   // }
                 })
 
-                rowBreak()
+                // rowBreak()
                 Field({
                   onCreate: (el, base) => {
                     const loader = app.loader
                     el.width = { min: "10em" }
-                    el.height = { min: "1.5em" }
+                    el.height = { min: "400px" }
                     el.alignment = Align.top
                     el.model = composeFieldModel({
                       icon: "fa-solid fa-search",
@@ -73,15 +73,16 @@ export function MainWindow() {
                   },
                 })
 
-                rowBreak()
+                // rowBreak()
                 Section({
                   onChange: el => {
                     el.alignment = Align.stretchY
+                    el.stretchingStrengthY = 1
                     // el.height = { max: "600px" }
                   }
                 })
 
-                rowBreak()
+                // rowBreak()
                 Field({
                   onCreate: (el, base) => {
                     const loader = app.loader
@@ -124,6 +125,7 @@ export function MainWindow() {
                   onChange: el => {
                     el.height = { min: "300px" }
                     el.alignment = Align.stretchY
+                    el.stretchingStrengthY = 1
                     Markdown(EXAMPLE_CODE)
                   },
                 })
