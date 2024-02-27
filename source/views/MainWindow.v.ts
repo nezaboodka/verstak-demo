@@ -21,8 +21,8 @@ export function MainWindow() {
 
         el.useStylingPreset(App.blinkingEffectMarker, app.isBlinkingEffectOn)
         el.alignment = Align.stretchXY
-        // el.style.padding = "1em"
-        // el.style.gap = "1em"
+        el.style.padding = "1em"
+        el.style.gap = "1em"
 
         toolBar()
 
@@ -31,7 +31,7 @@ export function MainWindow() {
         Section({
           onCreate: el => {
             el.alignment = Align.stretchXY
-            //el.style.gap = "1em"
+            // el.style.gap = "1em"
           },
           onChange: el => {
             // Dimension.gFontSizePx.value = 16
