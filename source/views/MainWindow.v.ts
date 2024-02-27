@@ -21,8 +21,8 @@ export function MainWindow() {
 
         el.useStylingPreset(App.blinkingEffectMarker, app.isBlinkingEffectOn)
         el.alignment = Align.stretchXY
-        // el.style.padding = "1em"
-        // el.style.gap = "1em"
+        el.style.padding = "1em"
+        el.style.gap = "1em"
 
         toolBar()
 
@@ -31,36 +31,38 @@ export function MainWindow() {
         Section({
           onCreate: el => {
             el.alignment = Align.stretchXY
-            //el.style.gap = "1em"
+            // el.style.gap = "1em"
           },
           onChange: el => {
+            // Dimension.gFontSizePx.value = 16
             Dimension.lineSizePx = 20
             el.splitView = app.isSplitViewOn ? SplitView.horizontal : undefined
             Section({
               onChange: el => {
+                // Dimension.gFontSizePx.value = 26
                 Dimension.lineSizePx = 40
                 el.useStylingPreset(app.theme.panel)
                 el.width = { min: "12em" }
-                el.alignment = Align.stretchY
+                el.alignment = Align.stretchXY
                 el.extraAlignment = Align.top
                 el.splitView = app.isSplitViewOn ? SplitView.vertical : undefined
 
                 Note("Navigation Bar", false, {
                   onCreate: el => {
-                    el.height = { min: "1.5em" }
+                    el.height = { min: "2em" }
                     el.alignment = Align.top /* + Align.centerX */
                   },
                   // onChange: el => {
-                  //   Dimension.fontSizePx = app.fontSizePx
-                  // }
+                  //   Dimension.gFontSizePx.value = app.activeThemeIndex > 0 ? 36 : 16
+                  // },
                 })
 
-                rowBreak()
+                // rowBreak()
                 Field({
                   onCreate: (el, base) => {
                     const loader = app.loader
                     el.width = { min: "10em" }
-                    el.height = { min: "1.5em" }
+                    el.height = { min: "2em" }
                     el.alignment = Align.top
                     el.model = composeFieldModel({
                       icon: "fa-solid fa-search",
@@ -73,20 +75,21 @@ export function MainWindow() {
                   },
                 })
 
-                rowBreak()
+                // rowBreak()
                 Section({
                   onChange: el => {
                     el.alignment = Align.stretchY
+                    el.stretchingStrengthY = 1
                     // el.height = { max: "600px" }
                   }
                 })
 
-                rowBreak()
+                // rowBreak()
                 Field({
                   onCreate: (el, base) => {
                     const loader = app.loader
                     el.width = { min: "10em" }
-                    el.height = { min: "1.5em" }
+                    el.height = { min: "2ln" }
                     el.alignment = Align.top
                     el.model = composeFieldModel({
                       text: refs(loader).filter,
@@ -124,6 +127,7 @@ export function MainWindow() {
                   onChange: el => {
                     el.height = { min: "300px" }
                     el.alignment = Align.stretchY
+                    el.stretchingStrengthY = 1
                     Markdown(EXAMPLE_CODE)
                   },
                 })
@@ -131,7 +135,7 @@ export function MainWindow() {
                   onCreate: (el, base) => {
                     const loader = app.loader
                     el.width = { min: "10em" }
-                    el.height = { min: "1.5em" }
+                    el.height = { min: "2ln" }
                     el.alignment = Align.top
                     el.model = composeFieldModel({
                       icon: "fa-solid fa-search",
