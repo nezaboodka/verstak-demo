@@ -34,10 +34,12 @@ export function MainWindow() {
             //el.style.gap = "1em"
           },
           onChange: el => {
+            // Dimension.gFontSizePx.value = 16
             Dimension.lineSizePx = 20
             el.splitView = app.isSplitViewOn ? SplitView.horizontal : undefined
             Section({
               onChange: el => {
+                // Dimension.gFontSizePx.value = 26
                 Dimension.lineSizePx = 40
                 el.useStylingPreset(app.theme.panel)
                 el.width = { min: "12em" }
@@ -47,12 +49,12 @@ export function MainWindow() {
 
                 Note("Navigation Bar", false, {
                   onCreate: el => {
-                    el.height = { min: "500px" }
+                    el.height = { min: "2em" }
                     el.alignment = Align.top /* + Align.centerX */
                   },
                   // onChange: el => {
-                  //   Dimension.fontSizePx = app.fontSizePx
-                  // }
+                  //   Dimension.gFontSizePx.value = app.activeThemeIndex > 0 ? 36 : 16
+                  // },
                 })
 
                 // rowBreak()
@@ -60,7 +62,7 @@ export function MainWindow() {
                   onCreate: (el, base) => {
                     const loader = app.loader
                     el.width = { min: "10em" }
-                    el.height = { min: "400px" }
+                    el.height = { min: "2em" }
                     el.alignment = Align.top
                     el.model = composeFieldModel({
                       icon: "fa-solid fa-search",
@@ -87,7 +89,7 @@ export function MainWindow() {
                   onCreate: (el, base) => {
                     const loader = app.loader
                     el.width = { min: "10em" }
-                    el.height = { min: "1.5em" }
+                    el.height = { min: "2ln" }
                     el.alignment = Align.top
                     el.model = composeFieldModel({
                       text: refs(loader).filter,
@@ -133,7 +135,7 @@ export function MainWindow() {
                   onCreate: (el, base) => {
                     const loader = app.loader
                     el.width = { min: "10em" }
-                    el.height = { min: "1.5em" }
+                    el.height = { min: "2ln" }
                     el.alignment = Align.top
                     el.model = composeFieldModel({
                       icon: "fa-solid fa-search",
