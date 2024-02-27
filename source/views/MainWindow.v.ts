@@ -44,7 +44,7 @@ export function MainWindow() {
                 el.useStylingPreset(app.theme.panel)
                 el.width = { min: "12em" }
                 el.alignment = Align.stretchXY
-                el.extraAlignment = Align.top
+                el.alignmentInside = Align.top
                 el.splitView = app.isSplitViewOn ? SplitView.vertical : undefined
 
                 Note("Navigation Bar", false, {
@@ -122,7 +122,7 @@ export function MainWindow() {
                 el.width = { min: "300px", max: "40%" }
                 el.stretchingStrengthX = 3
                 el.alignment = Align.stretchXY
-                el.extraAlignment = Align.left + Align.top
+                el.alignmentInside = Align.left + Align.top
                 Section({
                   onChange: el => {
                     el.height = { min: "300px" }

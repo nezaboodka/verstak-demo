@@ -21,7 +21,7 @@ export function Watch(area: string): RxNode<El<HTMLElement>> {
       onCreate: el => {
         const s = el.style
         el.alignment = Align.stretchXY
-        el.extraAlignment = Align.centerXY
+        el.alignmentInside = Align.centerXY
         // s.fontFamily = "Arial"
         s.cursor = "default"
       },
