@@ -103,11 +103,11 @@ export function Watch(area: string): RxNode<El<HTMLElement>> {
             radialDashes(BackColor, 14, 22, 30, 108)
 
             // Hours & Minutes
-            radialLabels(svg, 250, 130, false, LabelColor, undefined,
+            radialLabels(svg, 250, 90, false, LabelColor, undefined,
               [3, 9, 15, 21], 15, 180)
-            radialLabels(svg, 320, 130, false, LabelColor, undefined,
+            radialLabels(svg, 320, 90, false, LabelColor, undefined,
               [6, 12, 18], 15, 180)
-            radialLabels(svg, 225, 130, false, LabelColor, undefined,
+            radialLabels(svg, 225, 90, false, LabelColor, undefined,
               [0], 15, 180)
 
             radialLabels(svg, 380, 40, true, SecondaryLabelColor, false,
