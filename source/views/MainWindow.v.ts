@@ -43,11 +43,12 @@ export function MainWindow() {
                 Dimension.lineSizePx = 40
                 el.useStylingPreset(app.theme.panel)
                 el.width = { min: "12em" }
+                el.stretchingStrengthX = 0
                 el.alignment = Align.stretchXY
                 el.alignmentInside = Align.top
                 el.splitView = app.isSplitViewOn ? SplitView.vertical : undefined
 
-                Note("Navigation Bar", false, {
+                Note("Side Bar", false, {
                   onCreate: el => {
                     el.height = { min: "2em" }
                     el.alignment = Align.top /* + Align.centerX */
@@ -119,7 +120,7 @@ export function MainWindow() {
                 el.splitView = app.isSplitViewOn ? SplitView.vertical : undefined
                 el.useStylingPreset(theme.panel)
                 el.useStylingPreset(theme.markdown)
-                el.width = { min: "300px", max: "40%" }
+                el.width = { min: "300px", max: "50%" }
                 el.stretchingStrengthX = 3
                 el.alignment = Align.stretchXY
                 el.alignmentInside = Align.left + Align.top
