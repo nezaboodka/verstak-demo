@@ -8,7 +8,7 @@ export class AppTheme extends Theme {
   markdown: string = ""
 
   @cached
-  get window(): string { return css`
+  get page(): string { return css`
     .splitter {
       :hover {
         background-color: rgba(27, 127, 227, 1);

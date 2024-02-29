@@ -30,7 +30,7 @@ Page({
     const s = el.style
     s.color = t.textColor
     s.backgroundColor = t.spaceFillColor
-    el.useStylingPreset(t.window)
+    el.useStylingPreset(t.page)
     rowBreak() // WORKAROUND
     MainWindow()
   }
