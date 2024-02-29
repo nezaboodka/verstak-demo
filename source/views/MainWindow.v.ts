@@ -42,7 +42,8 @@ export function MainWindow() {
                 // Dimension.gFontSizePx.value = 26
                 Dimension.lineSizePx = 40
                 el.useStylingPreset(app.theme.panel)
-                el.width = { min: "12em" }
+                el.style.marginRight = "0.5em"
+                el.width = { min: "15em" }
                 el.stretchingStrengthX = 0
                 el.alignment = Align.stretchXY
                 el.alignmentInside = Align.top
@@ -110,6 +111,7 @@ export function MainWindow() {
                 base()
                 el.useStylingPreset(theme.panel)
                 el.useStylingPreset(theme.accent)
+                el.style.margin = "0 0.5em"
                 el.width = { min: "300px" }
                 el.alignment = Align.stretchXY
                 el.stretchingStrengthX = 3
@@ -122,6 +124,7 @@ export function MainWindow() {
                 el.splitView = app.isSplitViewOn ? SplitView.vertical : undefined
                 el.useStylingPreset(theme.panel)
                 el.useStylingPreset(theme.markdown)
+                el.style.marginLeft = "0.5em"
                 el.width = { min: "300px", max: "50%" }
                 el.stretchingStrengthX = 3
                 el.alignment = Align.stretchXY
