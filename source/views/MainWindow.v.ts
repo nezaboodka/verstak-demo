@@ -52,6 +52,7 @@ export function MainWindow() {
                   onCreate: el => {
                     el.height = { min: "2em" }
                     el.alignment = Align.top /* + Align.centerX */
+                    el.stretchingStrengthY = 0
                   },
                   // onChange: el => {
                   //   Dimension.gFontSizePx.value = app.activeThemeIndex > 0 ? 36 : 16
@@ -64,7 +65,7 @@ export function MainWindow() {
                     const loader = app.loader
                     el.width = { min: "10em" }
                     el.height = { min: "2em" }
-                    el.alignment = Align.top
+                    el.alignment = Align.bottom
                     el.model = composeFieldModel({
                       icon: "fa-solid fa-search",
                       text: refs(loader).filter,
@@ -92,6 +93,7 @@ export function MainWindow() {
                     el.width = { min: "10em" }
                     el.height = { min: "2ln" }
                     el.alignment = Align.top
+                    el.stretchingStrengthY = 0
                     el.model = composeFieldModel({
                       text: refs(loader).filter,
                       options: refs(loader).loaded,
@@ -138,6 +140,7 @@ export function MainWindow() {
                     el.width = { min: "10em" }
                     el.height = { min: "2ln" }
                     el.alignment = Align.top
+                    el.stretchingStrengthY = 0
                     el.model = composeFieldModel({
                       icon: "fa-solid fa-search",
                       text: refs(loader).filter,
