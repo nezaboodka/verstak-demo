@@ -106,7 +106,7 @@ export function MainWindow() {
                 Section({
                   onChange: el => {
                     el.alignment = Align.stretchY
-                    el.stretchingStrengthY = 1
+                    el.stretchingStrengthY = 2
                     // el.height = { max: "600px" }
                   }
                 })
