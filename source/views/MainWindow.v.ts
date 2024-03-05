@@ -1,10 +1,11 @@
 import { refs, Mode } from "reactronic"
-import { Section, Align, Note, rowBreak, SplitView, Dimension } from "verstak"
-import { Markdown, Field, Theme, composeFieldModel } from "verstak-express"
+import { Section, Align, Note, rowBreak, SplitView, Dimension, Span } from "verstak"
+import { Markdown, Field, Theme, composeFieldModel, observableModel } from "verstak-express"
 import { App } from "models/App.js"
 import { toolBar } from "./ToolBar.v.js"
 import { statusBar } from "./StatusBar.v.js"
 import { WorkArea } from "./WorkArea.v.js"
+import { Pane, PaneModel } from "./Pane.v.js"
 
 export function MainWindow() {
   return (
@@ -44,10 +45,34 @@ export function MainWindow() {
                 el.useStylingPreset(app.theme.panel)
                 el.style.marginRight = "0.5em"
                 el.width = { min: "15em" }
-                el.stretchingStrengthX = 0
+                el.stretchingStrengthX = 1
                 el.alignment = Align.stretchXY
-                el.alignmentInside = Align.top
+                el.alignmentInside = Align.top + Align.stretchX
                 el.splitView = app.isSplitViewOn ? SplitView.vertical : undefined
+
+                Pane({
+                  onCreate: (p, base) => {
+                    p.model = observableModel<PaneModel>({
+                      isExpanded: true,
+                      headerSizePx: { min: 16, max: 16 },
+                      bodySizePx: { min: 60, max: Number.POSITIVE_INFINITY },
+                      header: {
+                        onChange: (el, base) => {
+                          Span({ onChange: el => el.native.textContent = `${p.partitionSizeInSplitViewPx}px` })
+                          base()
+                        }
+                      },
+                      body: {
+                        key: "body", // get rid of this key
+                        onChange: (el, base) => {
+                          Markdown(EXAMPLE_CODE)
+                          base()
+                        }
+                      },
+                    })
+                    base()
+                  },
+                })
 
                 Note("Side Bar", false, {
                   onCreate: el => {
