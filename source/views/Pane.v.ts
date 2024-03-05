@@ -10,10 +10,10 @@ export type RangePx = { min: number, max: number }
 export type PaneModel = {
   isExpanded?: boolean,
 
-  header?: RxNodeDecl,
+  header?: RxNodeDecl<El<HTMLElement>>,
   headerSizePx?: RangePx,
 
-  body?: RxNodeDecl,
+  body?: RxNodeDecl<El<HTMLElement>>,
   bodySizePx?: RangePx,
 }
 
@@ -44,6 +44,7 @@ export function Pane(declaration?: RxNodeDecl<El<HTMLElement, PaneModel>>) {
           mode: Mode.independentUpdate,
           triggers: { headerSize },
           onCreate: el => {
+            el.native.className = "header"
             el.alignment = Align.top + Align.stretchX
           },
           onChange: el => {
@@ -60,7 +61,6 @@ export function Pane(declaration?: RxNodeDecl<El<HTMLElement, PaneModel>>) {
             triggers: { headerSize, bodySize },
             onCreate: el => {
               el.alignment = Align.stretchXY
-              el.style.backgroundColor = "red"
               el.style.overflow = "scroll"
             },
             onChange: el => {

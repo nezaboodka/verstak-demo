@@ -1,6 +1,6 @@
-import { refs, Mode } from "reactronic"
-import { Section, Align, Note, rowBreak, SplitView, Dimension, Span } from "verstak"
-import { Markdown, Field, Theme, composeFieldModel, observableModel } from "verstak-express"
+import { refs, Mode, RxNodeDecl } from "reactronic"
+import { Section, Align, Note, rowBreak, SplitView, Dimension, Span, El, equal } from "verstak"
+import { Markdown, Field, Theme, composeFieldModel, observableModel, Icon } from "verstak-express"
 import { App } from "models/App.js"
 import { toolBar } from "./ToolBar.v.js"
 import { statusBar } from "./StatusBar.v.js"
@@ -44,35 +44,11 @@ export function MainWindow() {
                 Dimension.lineSizePx = 40
                 el.useStylingPreset(app.theme.panel)
                 el.style.marginRight = "0.5em"
-                el.width = { min: "15em" }
+                el.width = { min: "19em" }
                 el.stretchingStrengthX = 0
                 el.alignment = Align.stretchXY
                 el.alignmentInside = Align.top + Align.stretchX
                 el.splitView = app.isSplitViewOn ? SplitView.vertical : undefined
-
-                Pane({
-                  onCreate: (p, base) => {
-                    p.model = observableModel<PaneModel>({
-                      isExpanded: true,
-                      headerSizePx: { min: 16, max: 16 },
-                      bodySizePx: { min: 60, max: Number.POSITIVE_INFINITY },
-                      header: {
-                        onChange: (el, base) => {
-                          Span({ onChange: el => el.native.textContent = `${p.partitionSizeInSplitViewPx}px` })
-                          base()
-                        }
-                      },
-                      body: {
-                        key: "body", // get rid of this key
-                        onChange: (el, base) => {
-                          Markdown(EXAMPLE_CODE)
-                          base()
-                        }
-                      },
-                    })
-                    base()
-                  },
-                })
 
                 Note("Side Bar", false, {
                   onCreate: el => {
@@ -83,6 +59,26 @@ export function MainWindow() {
                   // onChange: el => {
                   //   Dimension.gFontSizePx.value = app.activeThemeIndex > 0 ? 36 : 16
                   // },
+                })
+
+                Pane({
+                  onCreate: (p, base) => {
+                    p.useStylingPreset(app.theme.group)
+                    p.model = observableModel<PaneModel>({
+                      isExpanded: true,
+                      headerSizePx: { min: 20, max: 20 },
+                      bodySizePx: { min: 60, max: Number.POSITIVE_INFINITY },
+                      header: GroupHeader("Group", () => p.model.isExpanded ?? true, p),
+                      body: {
+                        key: "body", // get rid of this key
+                        onChange: (el, base) => {
+                          Markdown(EXAMPLE_CODE)
+                          base()
+                        }
+                      },
+                    })
+                    base()
+                  },
                 })
 
                 // rowBreak()
@@ -189,6 +185,52 @@ export function MainWindow() {
       },
     })
   )
+}
+
+function GroupHeader(caption: string, getIsExpanded: () => boolean, partitionElement: El<HTMLElement>): RxNodeDecl<El<HTMLElement>> {
+  return ({
+    onChange: (el, base) => {
+      Icon(getIsExpanded() ? "fa-solid fa-chevron-down fa-fw" : "fa-solid fa-chevron-right fa-fw")
+      Span({
+        mode: Mode.independentUpdate,
+        onChange: b => {
+          const heightPx = partitionElement.heightPx
+          b.native.innerText = `${caption}: ${heightPx.minPx}px ${heightPx.maxPx}px`
+        }
+      })
+      Span({ onCreate: b => b.native.style.flexGrow = "1" })
+      Span({
+        mode: Mode.independentUpdate,
+        onCreate: b => b.native.className = "size-tag",
+        onChange: b => {
+          b.native.style.display = "inline"
+          const sizePx = partitionElement.partitionSizeInSplitViewPx
+          const heightPx = partitionElement.heightPx
+          if (equal(sizePx, heightPx.minPx) && equal(sizePx, heightPx.maxPx)) {
+            b.native.innerText = "fixed"
+          }
+          else if (equal(sizePx, heightPx.minPx)) {
+            b.native.innerText = "min"
+          }
+          else if (equal(sizePx, heightPx.maxPx)) {
+            b.native.innerText = "max"
+          }
+          else {
+            b.native.style.display = "none"
+          }
+        }
+      })
+      Span({
+        mode: Mode.independentUpdate,
+        onCreate: b => b.native.className = "effective-size",
+        onChange: b => {
+          const sizePx = partitionElement.partitionSizeInSplitViewPx
+          b.native.innerText = `${sizePx === 0 ? "0" : sizePx.toFixed(2)}px`
+        }
+      })
+      base()
+    },
+  })
 }
 
 const EXAMPLE_CODE = `

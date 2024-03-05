@@ -34,4 +34,33 @@ export class AppTheme extends Theme {
   get accent(): string { return css`
     border: ${this.outlineWidth} solid ${this.accentColor};
   `}
+
+  @cached
+  get group(): string { return css`
+    .header {
+      white-space: nowrap;
+
+      .size-tag {
+        line-height: 14px;
+        font-size: 70%;
+        padding: 0 2px;
+        border-radius: 0.3em;
+        margin-right: 0.5em;
+        color: white;
+      }
+
+      .effective-size {
+        float: right;
+      }
+
+      i {
+        font-size: 80%;
+        margin-right: 0.5em;
+      }
+    }
+
+    &[rx-max=true] { .size-tag { background-color: orangered; border: 1px solid #be1a1a; } }
+    &[rx-min=true] { .size-tag { background-color: #00BB00; border: 1px solid green; } }
+    &[rx-min=true][rx-max=true] { .size-tag { background-color: #004eff; border: 1px solid #00309d; } }
+  `}
 }
