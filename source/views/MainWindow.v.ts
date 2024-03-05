@@ -67,7 +67,7 @@ export function MainWindow() {
                     p.model = observableModel<PaneModel>({
                       isExpanded: true,
                       headerSizePx: { min: 20, max: 20 },
-                      bodySizePx: { min: 60, max: Number.POSITIVE_INFINITY },
+                      bodySizePx: { min: 60, max: 300 },
                       header: GroupHeader("Group", () => p.model.isExpanded ?? true, p),
                       body: {
                         key: "body", // get rid of this key

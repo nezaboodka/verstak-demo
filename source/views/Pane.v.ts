@@ -37,7 +37,7 @@ export function Pane(declaration?: RxNodeDecl<El<HTMLElement, PaneModel>>) {
         const bodySize = m.bodySizePx ?? defaultBodySizePx
 
         p.height = m.isExpanded
-          ? { min: `${headerSize.min + bodySize.min}px` }
+          ? { min: `${headerSize.min + bodySize.min}px`, max: `${headerSize.max + bodySize.max}px` }
           : { min: `${headerSize.min}px`, max: `${headerSize.max}px` }
 
         if (header) {
