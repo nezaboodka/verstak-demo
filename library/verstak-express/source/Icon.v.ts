@@ -14,6 +14,7 @@ export function Icon(name: string,
   return (
     Section(declaration, {
       mode: Mode.independentUpdate,
+      triggers: { name },
       onChange: el => {
         const theme = Theme.current.icon
         el.useStylingPreset(name)
