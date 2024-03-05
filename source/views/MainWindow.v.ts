@@ -45,7 +45,7 @@ export function MainWindow() {
                 el.useStylingPreset(app.theme.panel)
                 el.style.marginRight = "0.5em"
                 el.width = { min: "15em" }
-                el.stretchingStrengthX = 1
+                el.stretchingStrengthX = 0
                 el.alignment = Align.stretchXY
                 el.alignmentInside = Align.top + Align.stretchX
                 el.splitView = app.isSplitViewOn ? SplitView.vertical : undefined
