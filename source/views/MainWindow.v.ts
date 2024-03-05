@@ -50,10 +50,10 @@ export function MainWindow() {
                 el.alignmentInside = Align.top + Align.stretchX
                 el.splitView = app.isSplitViewOn ? SplitView.vertical : undefined
 
-                Note("Side Bar", false, {
+                Note("SIDE BAR", false, {
                   onCreate: el => {
-                    el.height = { min: "2em" }
-                    el.alignment = Align.top /* + Align.centerX */
+                    el.height = { min: "2em", max: "2em" }
+                    el.alignment = Align.top
                     el.stretchingStrengthY = 0
                   },
                   // onChange: el => {
@@ -61,6 +61,27 @@ export function MainWindow() {
                   // },
                 })
 
+                // rowBreak()
+                Field({
+                  onCreate: (el, base) => {
+                    const loader = app.loader
+                    el.width = { min: "10em" }
+                    el.height = { min: "2em", max: "4em" }
+                    el.alignment = Align.centerY
+                    el.stretchingStrengthY = 0
+                    el.model = composeFieldModel({
+                      icon: "fa-solid fa-search",
+                      text: refs(loader).filter,
+                      options: refs(loader).loaded,
+                      isHotText: true,
+                      isMultiLineText: false,
+                    })
+                    base()
+                    el.style.marginBottom = "0.5em"
+                  },
+                })
+
+                // rowBreak()
                 Pane({
                   onCreate: (p, base) => {
                     p.useStylingPreset(app.theme.group)
@@ -76,24 +97,6 @@ export function MainWindow() {
                           base()
                         }
                       },
-                    })
-                    base()
-                  },
-                })
-
-                // rowBreak()
-                Field({
-                  onCreate: (el, base) => {
-                    const loader = app.loader
-                    el.width = { min: "10em" }
-                    el.height = { min: "2em" }
-                    el.alignment = Align.bottom
-                    el.model = composeFieldModel({
-                      icon: "fa-solid fa-search",
-                      text: refs(loader).filter,
-                      options: refs(loader).loaded,
-                      isHotText: true,
-                      isMultiLineText: false,
                     })
                     base()
                   },
@@ -193,6 +196,9 @@ function GroupHeader(caption: string, getIsExpanded: () => boolean, partitionEle
       Icon(getIsExpanded() ? "fa-solid fa-chevron-down fa-fw" : "fa-solid fa-chevron-right fa-fw")
       Span({
         mode: Mode.independentUpdate,
+        onCreate: el => {
+          el.style.fontWeight = "bold"
+        },
         onChange: el => {
           const heightPx = partitionElement.heightPx
           el.native.innerText = `${caption}: ${heightPx.minPx}px..${heightPx.maxPx}px`
