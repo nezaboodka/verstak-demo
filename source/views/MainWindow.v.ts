@@ -193,39 +193,39 @@ function GroupHeader(caption: string, getIsExpanded: () => boolean, partitionEle
       Icon(getIsExpanded() ? "fa-solid fa-chevron-down fa-fw" : "fa-solid fa-chevron-right fa-fw")
       Span({
         mode: Mode.independentUpdate,
-        onChange: b => {
+        onChange: el => {
           const heightPx = partitionElement.heightPx
-          b.native.innerText = `${caption}: ${heightPx.minPx}px..${heightPx.maxPx}px`
+          el.native.innerText = `${caption}: ${heightPx.minPx}px..${heightPx.maxPx}px`
         }
       })
-      Span({ onCreate: b => b.native.style.flexGrow = "1" })
+      Span({ onCreate: el => el.native.style.flexGrow = "1" })
       Span({
         mode: Mode.independentUpdate,
-        onCreate: b => b.native.className = "size-tag",
-        onChange: b => {
-          b.native.style.display = "inline"
+        onCreate: el => el.native.className = "size-tag",
+        onChange: el => {
+          el.native.style.display = "inline"
           const sizePx = partitionElement.partitionSizeInSplitViewPx
           const heightPx = partitionElement.heightPx
           if (equal(sizePx, heightPx.minPx) && equal(sizePx, heightPx.maxPx)) {
-            b.native.innerText = "fixed"
+            el.native.innerText = "fixed"
           }
           else if (equal(sizePx, heightPx.minPx)) {
-            b.native.innerText = "min"
+            el.native.innerText = "min"
           }
           else if (equal(sizePx, heightPx.maxPx)) {
-            b.native.innerText = "max"
+            el.native.innerText = "max"
           }
           else {
-            b.native.style.display = "none"
+            el.native.style.display = "none"
           }
         }
       })
       Span({
         mode: Mode.independentUpdate,
-        onCreate: b => b.native.className = "effective-size",
-        onChange: b => {
+        onCreate: el => el.native.className = "effective-size",
+        onChange: el => {
           const sizePx = partitionElement.partitionSizeInSplitViewPx
-          b.native.innerText = `${sizePx === 0 ? "0" : sizePx.toFixed(2)}px`
+          el.native.innerText = `${sizePx === 0 ? "0" : sizePx.toFixed(2)}px`
         }
       })
       base()
