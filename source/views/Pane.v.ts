@@ -25,33 +25,35 @@ export function Pane(declaration?: RxNodeDecl<El<HTMLElement, PaneModel>>) {
     Section(declaration, {
       mode: Mode.independentUpdate,
       onCreate: el => {
+        el.alignment = Align.stretchXY
         el.model ??= observableModel<PaneModel>({
           isExpanded: true,
-          headerSizePx: defaultHeaderSizePx,
         })
-        el.alignment = Align.stretchXY
       },
       onChange: p => {
         const m = p.model
-        const headerSize = m.headerSizePx ?? defaultHeaderSizePx
+        const header = m.header
+        const headerSize = m.headerSizePx ?? (header ? defaultHeaderSizePx : { min: 0, max: 0 })
         const bodySize = m.bodySizePx ?? defaultBodySizePx
         p.height = m.isExpanded
           ? { min: `${headerSize.min + bodySize.min}px` }
           : { min: `${headerSize.min}px`, max: `${headerSize.max}px` }
 
-        Section(m.header, {
-          key: "header",
-          mode: Mode.independentUpdate,
-          triggers: { headerSize },
-          onCreate: el => {
-            el.native.className = "header"
-            el.alignment = Align.top + Align.stretchX
-          },
-          onChange: el => {
-            el.height = { min: `${headerSize.min}px`, max: `${headerSize.max}px` }
-            OnClick(el.native, () => m.isExpanded = !m.isExpanded)
-          },
-        })
+        if (header) {
+          Section(header, {
+            key: "header",
+            mode: Mode.independentUpdate,
+            triggers: { headerSize },
+            onCreate: el => {
+              el.native.className = "header"
+              el.alignment = Align.top + Align.stretchX
+            },
+            onChange: el => {
+              el.height = { min: `${headerSize.min}px`, max: `${headerSize.max}px` }
+              OnClick(el.native, () => m.isExpanded = !m.isExpanded)
+            },
+          })
+        }
 
         if (m.isExpanded) {
           rowBreak()
