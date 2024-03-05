@@ -89,7 +89,7 @@ export function MainWindow() {
                       isExpanded: true,
                       headerSizePx: { min: 20, max: 20 },
                       bodySizePx: { min: 60, max: 300 },
-                      header: GroupHeader("Group", () => p.model.isExpanded ?? true, p),
+                      header: GroupHeader("Group", p),
                       body: {
                         key: "body", // get rid of this key
                         onChange: (el, base) => {
@@ -190,10 +190,10 @@ export function MainWindow() {
   )
 }
 
-function GroupHeader(caption: string, getIsExpanded: () => boolean, partitionElement: El<HTMLElement>): RxNodeDecl<El<HTMLElement>> {
+function GroupHeader(caption: string, partitionElement: El<HTMLElement>): RxNodeDecl<El<HTMLElement, PaneModel>> {
   return ({
     onChange: (el, base) => {
-      Icon(getIsExpanded() ? "fa-solid fa-chevron-down fa-fw" : "fa-solid fa-chevron-right fa-fw")
+      Icon(el.model.isExpanded ? "fa-solid fa-chevron-down fa-fw" : "fa-solid fa-chevron-right fa-fw")
       Span({
         mode: Mode.independentUpdate,
         onCreate: el => {
