@@ -38,6 +38,7 @@ export class AppTheme extends Theme {
   @cached
   get group(): string { return css`
     .header {
+      user-select: none;
       white-space: nowrap;
 
       .size-tag {
