@@ -195,7 +195,7 @@ function GroupHeader(caption: string, getIsExpanded: () => boolean, partitionEle
         mode: Mode.independentUpdate,
         onChange: b => {
           const heightPx = partitionElement.heightPx
-          b.native.innerText = `${caption}: ${heightPx.minPx}px ${heightPx.maxPx}px`
+          b.native.innerText = `${caption}: ${heightPx.minPx}px..${heightPx.maxPx}px`
         }
       })
       Span({ onCreate: b => b.native.style.flexGrow = "1" })
