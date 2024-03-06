@@ -20,6 +20,9 @@ export type PaneModel = {
 const defaultHeaderSizePx = Object.freeze({ min: 24, max: 24 })
 const defaultBodySizePx = Object.freeze({ min: 24, max: Number.POSITIVE_INFINITY })
 
+let sizePx = 0
+let cachedSizePx = 0
+
 export function Pane(declaration?: RxNodeDecl<El<HTMLElement, PaneModel>>) {
   return (
     Section(declaration, {
@@ -37,7 +40,7 @@ export function Pane(declaration?: RxNodeDecl<El<HTMLElement, PaneModel>>) {
         const bodySize = m.bodySizePx ?? defaultBodySizePx
 
         p.height = m.isExpanded
-          ? { min: `${headerSize.min + bodySize.min}px`, max: `${headerSize.max + bodySize.max}px` }
+          ? { min: `${headerSize.min + bodySize.min}px`, max: `${headerSize.max + bodySize.max}px`, preferred: `${sizePx}px` }
           : { min: `${headerSize.min}px`, max: `${headerSize.max}px` }
 
         if (header) {
@@ -52,7 +55,16 @@ export function Pane(declaration?: RxNodeDecl<El<HTMLElement, PaneModel>>) {
             },
             onChange: el => {
               el.height = { min: `${headerSize.min}px`, max: `${headerSize.max}px` }
-              OnClick(el.native, () => m.isExpanded = !m.isExpanded)
+              OnClick(el.native, () => {
+                m.isExpanded = !m.isExpanded
+                if (m.isExpanded) {
+                  sizePx = cachedSizePx
+                  cachedSizePx = 0
+                }
+                else {
+                  cachedSizePx = p.partitionSizeInSplitViewPx
+                }
+              })
             },
           })
         }
