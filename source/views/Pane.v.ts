@@ -74,7 +74,7 @@ export function Pane(declaration?: RxNodeDecl<El<HTMLElement, PaneModel>>) {
           Section(m.body, {
             key: "body",
             mode: Mode.independentUpdate,
-            triggers: { headerSize, bodySize },
+            triggers: { headerSize },
             onCreate: el => {
               el.model = m
               el.alignment = Align.stretchXY
