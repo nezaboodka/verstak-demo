@@ -136,7 +136,7 @@ export function MainWindow() {
                 el.useStylingPreset(theme.panel)
                 el.useStylingPreset(theme.accent)
                 el.style.margin = "0 0.5em"
-                el.width = { min: "300px" }
+                el.width = { min: "330px" }
                 el.alignment = Align.stretchXY
                 el.stretchingStrengthX = 3
               }
