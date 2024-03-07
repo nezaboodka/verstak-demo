@@ -6,6 +6,7 @@ import { toolBar } from "./ToolBar.v.js"
 import { statusBar } from "./StatusBar.v.js"
 import { WorkArea } from "./WorkArea.v.js"
 import { Pane, PaneModel } from "./Pane.v.js"
+import { Pane2 } from "./Pane2.v.js"
 
 export function MainWindow() {
   return (
@@ -13,17 +14,16 @@ export function MainWindow() {
       mode: Mode.independentUpdate,
       onCreate: el => {
         el.native.sensors.focus // enable focus global manager
+        el.alignment = Align.stretchXY
+        el.style.padding = "1em"
+        el.style.gap = "1em"
         el.style.overflow = "hidden"
       },
       onChange: el => {
         const app = App.current
         const theme = app.theme
         Theme.current = theme
-
         el.useStylingPreset(App.blinkingEffectMarker, app.isBlinkingEffectOn)
-        el.alignment = Align.stretchXY
-        el.style.padding = "1em"
-        el.style.gap = "1em"
 
         toolBar()
 
@@ -31,14 +31,16 @@ export function MainWindow() {
 
         Section({
           onCreate: el => {
+            el.splitView = SplitView.horizontal
             el.alignment = Align.stretchXY
-            // el.style.gap = "1em"
+            const hostEl = el.node.host.element as El
+            hostEl.style.flexGrow = "1"
           },
           onChange: el => {
             // Dimension.gFontSizePx.value = 16
             Dimension.lineSizePx = 20
-            el.splitView = app.isSplitViewOn ? SplitView.horizontal : undefined
             Section({
+              onCreate: el => { el.splitView = SplitView.vertical },
               onChange: el => {
                 // Dimension.gFontSizePx.value = 26
                 Dimension.lineSizePx = 40
@@ -48,7 +50,6 @@ export function MainWindow() {
                 el.stretchingStrengthX = 0
                 el.alignment = Align.stretchXY
                 el.alignmentInside = Align.top + Align.stretchX
-                el.splitView = app.isSplitViewOn ? SplitView.vertical : undefined
 
                 Note("SIDE BAR", false, {
                   onCreate: el => {
@@ -145,7 +146,6 @@ export function MainWindow() {
               mode: Mode.independentUpdate,
               triggers: { theme },
               onChange: el => {
-                el.splitView = app.isSplitViewOn ? SplitView.vertical : undefined
                 el.useStylingPreset(theme.panel)
                 el.useStylingPreset(theme.markdown)
                 el.style.marginLeft = "0.5em"
@@ -153,7 +153,16 @@ export function MainWindow() {
                 el.stretchingStrengthX = 3
                 el.alignment = Align.stretchXY
                 el.alignmentInside = Align.left + Align.top
-                Section({
+                Pane2({
+                  onCreate: el => {
+                    el.useStylingPreset(app.theme.group)
+                    el.model.header = {
+                      onCreate: el => {
+                        el.height = { min: "20px", max: "2em" }
+                      }
+                    }
+                    el.model.isHeaderVisible = true
+                  },
                   onChange: el => {
                     el.height = { min: "300px" }
                     el.alignment = Align.stretchY
@@ -178,6 +187,7 @@ export function MainWindow() {
                     base()
                   },
                 })
+                el.splitView = SplitView.vertical
               }
             })
           },
