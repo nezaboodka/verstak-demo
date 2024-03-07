@@ -28,7 +28,6 @@ export function Pane(declaration?: RxNodeDecl<El<HTMLElement, PaneModel>>) {
     Section(declaration, {
       mode: Mode.independentUpdate,
       onCreate: el => {
-        el.alignment = Align.stretchXY
         el.model ??= observableModel<PaneModel>({
           isExpanded: true,
         })
