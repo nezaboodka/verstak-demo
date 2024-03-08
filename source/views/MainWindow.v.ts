@@ -1,5 +1,5 @@
 import { refs, Mode, RxNodeDecl } from "reactronic"
-import { Section, Align, Note, rowBreak, SplitView, Dimension, Span, El, equal } from "verstak"
+import { Section, Alignment, VerticalAlignment, Note, rowBreak, SplitView, Dimension, Span, El, equal } from "verstak"
 import { Markdown, Field, Theme, composeFieldModel, observableModel, Icon } from "verstak-express"
 import { App } from "models/App.js"
 import { toolBar } from "./ToolBar.v.js"
@@ -14,7 +14,8 @@ export function MainWindow() {
       mode: Mode.independentUpdate,
       onCreate: el => {
         el.native.sensors.focus // enable focus global manager
-        el.alignment = Align.stretchXY
+        el.alignment = Alignment.stretch
+        el.verticalAlignment = VerticalAlignment.stretch
         el.style.padding = "1em"
         el.style.gap = "1em"
         el.style.overflow = "hidden"
@@ -32,7 +33,8 @@ export function MainWindow() {
         Section({
           onCreate: el => {
             el.splitView = SplitView.horizontal
-            el.alignment = Align.stretchXY
+            el.alignment = Alignment.stretch
+            el.verticalAlignment = VerticalAlignment.stretch
             const hostEl = el.node.host.element as El
             hostEl.style.flexGrow = "1"
           },
@@ -48,13 +50,15 @@ export function MainWindow() {
                 el.style.marginRight = "0.5em"
                 el.width = { min: "19em" }
                 el.stretchingStrengthX = 0
-                el.alignment = Align.stretchXY
-                el.alignmentInside = Align.top + Align.stretchX
+                el.alignment = Alignment.stretch
+                el.verticalAlignment = VerticalAlignment.stretch
+                el.alignmentInside = Alignment.stretch
+                el.verticalAlignmentInside = VerticalAlignment.top
 
                 Note("SIDE BAR", false, {
                   onCreate: el => {
                     el.height = { min: "2em", max: "2em" }
-                    el.alignment = Align.top
+                    el.verticalAlignment = VerticalAlignment.top /* + Align.centerX */
                     el.stretchingStrengthY = 0
                   },
                   // onChange: el => {
@@ -68,7 +72,7 @@ export function MainWindow() {
                     const loader = app.loader
                     el.width = { min: "10em" }
                     el.height = { min: "2em", max: "4em" }
-                    el.alignment = Align.centerY
+                    el.verticalAlignment = VerticalAlignment.center
                     el.stretchingStrengthY = 0
                     el.model = composeFieldModel({
                       icon: "fa-solid fa-search",
@@ -106,7 +110,7 @@ export function MainWindow() {
                 // rowBreak()
                 Section({
                   onChange: el => {
-                    el.alignment = Align.stretchY
+                    el.verticalAlignment = VerticalAlignment.stretch
                     el.stretchingStrengthY = 2
                     // el.height = { max: "600px" }
                   }
@@ -118,7 +122,7 @@ export function MainWindow() {
                     const loader = app.loader
                     el.width = { min: "10em" }
                     el.height = { min: "2ln" }
-                    el.alignment = Align.top
+                    el.verticalAlignment = VerticalAlignment.top
                     el.stretchingStrengthY = 0
                     el.model = composeFieldModel({
                       text: refs(loader).filter,
@@ -138,7 +142,8 @@ export function MainWindow() {
                 el.useStylingPreset(theme.accent)
                 el.style.margin = "0 0.5em"
                 el.width = { min: "330px" }
-                el.alignment = Align.stretchXY
+                el.alignment = Alignment.stretch
+                el.verticalAlignment = VerticalAlignment.stretch
                 el.stretchingStrengthX = 3
               }
             })
@@ -151,8 +156,10 @@ export function MainWindow() {
                 el.style.marginLeft = "0.5em"
                 el.width = { min: "300px", max: "50%" }
                 el.stretchingStrengthX = 3
-                el.alignment = Align.stretchXY
-                el.alignmentInside = Align.left + Align.top
+                el.alignment = Alignment.stretch
+                el.verticalAlignment = VerticalAlignment.stretch
+                el.alignmentInside = Alignment.left
+                el.verticalAlignmentInside = VerticalAlignment.top
                 Pane2({
                   onCreate: el => {
                     el.useStylingPreset(app.theme.group)
@@ -165,7 +172,8 @@ export function MainWindow() {
                   },
                   onChange: el => {
                     el.height = { min: "300px" }
-                    el.alignment = Align.stretchY
+                    el.alignment = Alignment.stretch
+                    el.verticalAlignment = VerticalAlignment.stretch
                     el.stretchingStrengthY = 1
                     Markdown(EXAMPLE_CODE)
                   },
@@ -175,7 +183,7 @@ export function MainWindow() {
                     const loader = app.loader
                     el.width = { min: "10em" }
                     el.height = { min: "2ln" }
-                    el.alignment = Align.top
+                    el.verticalAlignment = VerticalAlignment.top
                     el.stretchingStrengthY = 0
                     el.model = composeFieldModel({
                       icon: "fa-solid fa-search",
@@ -259,13 +267,13 @@ Table("Example", {
   update(b) {
     // Elements can be layed out automatically
     // based on their order and line feeds.
-    Ruler("1", Align.left | Align.centerY)
+    Ruler("1", Alignment.left, VerticalAlignment.center)
     cursor({ cellsOverWidth: -1, cellsOverHeight: 0 })
-    Ruler("A", Align.centerX | Align.top)
-    Ruler("B", Align.centerX | Align.top)
-    Ruler("C", Align.centerX | Align.top)
-    rowBreak(); Ruler("2", Align.left | Align.centerY)
-    rowBreak(); Ruler("3", Align.left | Align.centerY)
+    Ruler("A", Alignment.center, VerticalAlignment.top)
+    Ruler("B", Alignment.center, VerticalAlignment.top)
+    Ruler("C", Alignment.center, VerticalAlignment.top)
+    rowBreak(); Ruler("2", Alignment.left, VerticalAlignment.center)
+    rowBreak(); Ruler("3", Alignment.left, VerticalAlignment.center)
     // Elements can also be layed out
     // explicitly in exact cells.
     ExampleData("B2")

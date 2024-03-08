@@ -1,5 +1,5 @@
-import { refs, RxNodeDecl } from "reactronic"
-import { Section, Align, El } from "verstak"
+import { refs } from "reactronic"
+import { Section, Alignment, VerticalAlignment } from "verstak"
 import { Button, Toggle, Field, composeFieldModel, Theme, observableModel } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { App } from "models/App.js"
@@ -64,8 +64,8 @@ export function statusBar() {
   Section({
     onChange: el => {
       el.useStylingPreset(theme.panel)
-      el.alignment = Align.stretchX
-      el.alignmentInside = Align.right
+      el.alignment = Alignment.stretch
+      el.alignmentInside = Alignment.right
       Field({
         onCreate: (el, base) => {
           const loader = app.loader

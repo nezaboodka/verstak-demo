@@ -1,5 +1,5 @@
 import { Mode, RxNodeDecl } from "reactronic"
-import { Section, Align, rowBreak, El, OnClick } from "verstak"
+import { Section, Alignment, VerticalAlignment, rowBreak, El, OnClick } from "verstak"
 import { observableModel } from "verstak-express"
 
 // export type Concrete<T> = { [P in keyof T]-?: T[P] }
@@ -50,7 +50,8 @@ export function Pane(declaration?: RxNodeDecl<El<HTMLElement, PaneModel>>) {
             onCreate: el => {
               el.model = m
               el.native.className = "header"
-              el.alignment = Align.top + Align.stretchX
+              el.alignment = Alignment.stretch
+              el.verticalAlignment = VerticalAlignment.top
             },
             onChange: el => {
               el.height = { min: `${headerSize.min}px`, max: `${headerSize.max}px` }
@@ -76,7 +77,8 @@ export function Pane(declaration?: RxNodeDecl<El<HTMLElement, PaneModel>>) {
             triggers: { headerSize },
             onCreate: el => {
               el.model = m
-              el.alignment = Align.stretchXY
+              el.alignment = Alignment.stretch
+              el.verticalAlignment = VerticalAlignment.stretch
               el.style.overflow = "scroll"
             },
             onChange: el => {

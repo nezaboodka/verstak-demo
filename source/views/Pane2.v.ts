@@ -1,5 +1,5 @@
 import { Mode, ObservableObject, RxNodeDecl, Transaction } from "reactronic"
-import { Section, Align, rowBreak, El, OnClick } from "verstak"
+import { Section, Alignment, VerticalAlignment, rowBreak, El, OnClick } from "verstak"
 import { observableModel } from "verstak-express"
 
 // export type Concrete<T> = { [P in keyof T]-?: T[P] }
@@ -43,7 +43,7 @@ export function Pane2(declaration?: RxNodeDecl<El<HTMLElement, PaneModel>>) {
       mode: Mode.independentUpdate,
       onCreate: (el, base) => {
         el.model = Transaction.separate(() => new PaneModel())
-        el.alignmentInside = Align.stretchX
+        el.alignmentInside = Alignment.stretch
         // el.style.overflow = "scroll"
         base()
       },
@@ -57,7 +57,8 @@ export function Pane2(declaration?: RxNodeDecl<El<HTMLElement, PaneModel>>) {
               onCreate: (el, base) => {
                 el.model = m
                 el.native.className = "header"
-                el.alignment = Align.top + Align.stretchX
+                el.alignment = Alignment.stretch
+                el.verticalAlignment = VerticalAlignment.top
                 el.style.backgroundColor = "red"
                 base()
               },
