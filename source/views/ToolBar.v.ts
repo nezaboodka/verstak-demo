@@ -1,5 +1,5 @@
-import { Mode, refs, RxNodeDecl } from "reactronic"
-import { Section, Img, rowBreak, El, Align } from "verstak"
+import { Mode, refs } from "reactronic"
+import { Section, Img, rowBreak, Alignment, VerticalAlignment } from "verstak"
 import { Icon, Field, Theme, Markdown, composeFieldModel } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { App } from "models/App.js"
@@ -41,12 +41,12 @@ export function toolBar() {
   })
   Section({
     onChange: el => {
-      el.alignment = Align.stretchX
+      el.alignment = Alignment.stretch
       el.useStylingPreset(theme.panel)
       Section({
         mode: Mode.independentUpdate,
         onChange: el => {
-          el.alignment = Align.stretchX
+          el.alignment = Alignment.stretch
           const position = app.position
           if (!Number.isFinite(position))
             Markdown(`**Verstak** v${app.version}`)

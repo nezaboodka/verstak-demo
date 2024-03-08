@@ -1,5 +1,5 @@
 import { refs, RxNodeDecl } from "reactronic"
-import { Table, Section, Note, rowBreak, Align, cursor, El } from "verstak"
+import { Table, Section, Note, rowBreak, Alignment, cursor, El, VerticalAlignment } from "verstak"
 import { Theme, Toggle, observableModel } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { App } from "models/App.js"
@@ -12,15 +12,15 @@ export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
         // Elements can be layed out automatically
         // based on their order and line feeds.
         rowBreak()
-        Ruler("1", Align.left | Align.centerY)
+        Ruler("1", Alignment.left, VerticalAlignment.center)
         cursor({ cellsOverWidth: -1, cellsOverHeight: 0 })
-        Ruler("A", Align.centerX | Align.top)
-        Ruler("B", Align.centerX | Align.top)
-        Ruler("C", Align.centerX | Align.top)
+        Ruler("A", Alignment.center, VerticalAlignment.top)
+        Ruler("B", Alignment.center, VerticalAlignment.top)
+        Ruler("C", Alignment.center, VerticalAlignment.top)
         rowBreak()
-        Ruler("2", Align.left | Align.centerY)
+        Ruler("2", Alignment.left, VerticalAlignment.center)
         rowBreak()
-        Ruler("3", Align.left | Align.centerY)
+        Ruler("3", Alignment.left, VerticalAlignment.center)
 
         // Elements can also be layed out
         // explicitly in exact cells.
@@ -43,7 +43,8 @@ export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
             const theme = Theme.current as AppTheme
             el.native.classList.toggle(theme.panel, true)
             el.area = "B1"
-            el.alignment = Align.right | Align.bottom
+            el.alignment = Alignment.right
+            el.verticalAlignment = VerticalAlignment.bottom
           }
         })
       }},
@@ -51,11 +52,12 @@ export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
   )
 }
 
-function Ruler(title: string, align: Align) {
+function Ruler(title: string, alignX: Alignment, alignY: VerticalAlignment) {
   return (
     Section({
       onChange: el => {
-        el.alignment = align
+        el.alignment = alignX
+        el.verticalAlignment = alignY
         el.style.fontSize = "smaller"
         Note(`&nbsp;${title}`, true)
       }
@@ -67,8 +69,10 @@ function ExampleData(area: string) {
   return (
     Section({
       onCreate: el => {
-        el.alignment = Align.stretchXY
-        el.alignmentInside = Align.centerXY
+        el.alignment = Alignment.stretch
+        el.verticalAlignment = VerticalAlignment.stretch
+        el.alignmentInside = Alignment.center
+        el.verticalAlignmentInside = VerticalAlignment.center
       },
       onChange: el => {
         const theme = Theme.current as AppTheme
