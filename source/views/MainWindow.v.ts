@@ -94,6 +94,24 @@ export function MainWindow() {
                 }, {
                   onChange: () => Markdown(EXAMPLE_CODE)
                 }, GroupHeader("Group"))
+                // rowBreak()
+                Pane({
+                  onCreate: el => {
+                    el.useStylingPreset(app.theme.group)
+                    el.height = { min: "80px", max: "320px" }
+                  },
+                }, {
+                  onChange: () => Markdown(EXAMPLE_CODE)
+                }, GroupHeader("Group"))
+                // rowBreak()
+                Pane({
+                  onCreate: el => {
+                    el.useStylingPreset(app.theme.group)
+                    el.height = { min: "80px", max: "320px" }
+                  },
+                }, {
+                  onChange: () => Markdown(EXAMPLE_CODE)
+                }, GroupHeader("Group"))
 
                 // rowBreak()
                 Section({
@@ -189,7 +207,10 @@ export function MainWindow() {
 
 function GroupHeader(caption: string): RxNodeDecl<El<HTMLElement, PaneModel>> {
   return ({
-    onChange: (el, base) => {
+    onCreate: el => {
+      el.height = { min: "30px" }
+    },
+    onChange: el => {
       const m = el.model
       Icon(m.isExpanded ? "fa-solid fa-chevron-down fa-fw" : "fa-solid fa-chevron-right fa-fw")
       Span({
@@ -232,7 +253,6 @@ function GroupHeader(caption: string): RxNodeDecl<El<HTMLElement, PaneModel>> {
           el.native.innerText = `${sizePx === 0 ? "0" : sizePx.toFixed(2)}px`
         }
       })
-      base()
     },
   })
 }
