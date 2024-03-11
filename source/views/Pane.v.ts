@@ -5,18 +5,6 @@ import { observableModel } from "verstak-express"
 // export type Concrete<T> = { [P in keyof T]-?: T[P] }
 // export type ResolvedOptions<T, U extends keyof T | "" = ""> = Readonly<Concrete<Omit<T, U>> & Pick<T, Exclude<U, "">>>
 
-export type RangePx = { min: number, max: number }
-
-// export type PaneModel = {
-//   isExpanded?: boolean,
-
-//   header?: RxNodeDecl<El<HTMLElement, PaneModel>>,
-//   headerSizePx?: RangePx,
-
-//   body?: RxNodeDecl<El<HTMLElement, PaneModel>>,
-//   bodySizePx?: RangePx,
-// }
-
 export class PaneModel extends ObservableObject {
   @raw private readonly _el: El<HTMLElement, PaneModel>
   @raw readonly initialMinSize: string | undefined
