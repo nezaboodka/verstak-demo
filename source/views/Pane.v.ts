@@ -1,9 +1,5 @@
 import { Mode, ObservableObject, RxNode, RxNodeDecl, Transaction, raw, unobs } from "reactronic"
 import { Section, Alignment, VerticalAlignment, rowBreak, El, OnClick, SyntheticElement } from "verstak"
-import { observableModel } from "verstak-express"
-
-// export type Concrete<T> = { [P in keyof T]-?: T[P] }
-// export type ResolvedOptions<T, U extends keyof T | "" = ""> = Readonly<Concrete<Omit<T, U>> & Pick<T, Exclude<U, "">>>
 
 export class PaneModel extends ObservableObject {
   @raw private readonly _el: El<HTMLElement, PaneModel>
@@ -113,9 +109,3 @@ export function Pane(declaration: RxNodeDecl<El<HTMLElement, PaneModel>>, bodyDe
     }, declaration)
   )
 }
-
-// function resolveOptions(options?: PaneModel): ResolvedOptions<PaneModel> {
-//   return ({
-//     headerSize: options?.headerSize ?? "24px",
-//   })
-// }
