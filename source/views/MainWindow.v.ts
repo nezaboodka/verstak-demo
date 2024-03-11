@@ -6,7 +6,6 @@ import { toolBar } from "./ToolBar.v.js"
 import { statusBar } from "./StatusBar.v.js"
 import { WorkArea } from "./WorkArea.v.js"
 import { Pane, PaneModel } from "./Pane.v.js"
-import { Pane2 } from "./Pane2.v.js"
 
 export function MainWindow() {
   return (
@@ -87,25 +86,12 @@ export function MainWindow() {
                 })
 
                 // rowBreak()
-                Pane({
-                  onCreate: (p, base) => {
-                    p.useStylingPreset(app.theme.group)
-                    p.model = observableModel<PaneModel>({
-                      isExpanded: true,
-                      headerSizePx: { min: 20, max: 20 },
-                      bodySizePx: { min: 60, max: 300 },
-                      header: GroupHeader("Group", p),
-                      body: {
-                        key: "body", // get rid of this key
-                        onChange: (el, base) => {
-                          Markdown(EXAMPLE_CODE)
-                          base()
-                        }
-                      },
-                    })
-                    base()
-                  },
-                })
+                Pane(el => {
+                  el.useStylingPreset(app.theme.group)
+                  el.height = { min: "80px", max: "320px" }
+                }, {
+                  onChange: () => Markdown(EXAMPLE_CODE)
+                }, GroupHeader("Group"))
 
                 // rowBreak()
                 Section({
@@ -160,31 +146,21 @@ export function MainWindow() {
                 el.verticalAlignment = VerticalAlignment.stretch
                 el.alignmentInside = Alignment.left
                 el.verticalAlignmentInside = VerticalAlignment.top
-                Pane2({
-                  onCreate: el => {
-                    el.useStylingPreset(app.theme.group)
-                    el.model.header = {
-                      onCreate: el => {
-                        el.height = { min: "20px", max: "2em" }
-                      }
-                    }
-                    el.model.isHeaderVisible = true
-                  },
-                  onChange: el => {
-                    el.height = { min: "300px" }
-                    el.alignment = Alignment.stretch
-                    el.verticalAlignment = VerticalAlignment.stretch
-                    el.stretchingStrengthY = 1
-                    Markdown(EXAMPLE_CODE)
-                  },
-                })
+                el.splitView = SplitView.vertical
+                Pane(el => {
+                  el.useStylingPreset(app.theme.group)
+                  el.height = { min: "300px", max: "450px" }
+                  el.stretchingStrengthY = 1
+                }, {
+                  onChange: () => Markdown(EXAMPLE_CODE)
+                }, GroupHeader("Group"))
                 Field({
                   onCreate: (el, base) => {
                     const loader = app.loader
                     el.width = { min: "10em" }
                     el.height = { min: "2ln" }
                     el.verticalAlignment = VerticalAlignment.top
-                    el.stretchingStrengthY = 0
+                    el.stretchingStrengthY = 1
                     el.model = composeFieldModel({
                       icon: "fa-solid fa-search",
                       text: refs(loader).filter,
@@ -195,7 +171,6 @@ export function MainWindow() {
                     base()
                   },
                 })
-                el.splitView = SplitView.vertical
               }
             })
           },
@@ -208,17 +183,18 @@ export function MainWindow() {
   )
 }
 
-function GroupHeader(caption: string, partitionElement: El<HTMLElement>): RxNodeDecl<El<HTMLElement, PaneModel>> {
+function GroupHeader(caption: string): RxNodeDecl<El<HTMLElement, PaneModel>> {
   return ({
     onChange: (el, base) => {
-      Icon(el.model.isExpanded ? "fa-solid fa-chevron-down fa-fw" : "fa-solid fa-chevron-right fa-fw")
+      const m = el.model
+      Icon(m.isExpanded ? "fa-solid fa-chevron-down fa-fw" : "fa-solid fa-chevron-right fa-fw")
       Span({
         mode: Mode.independentUpdate,
         onCreate: el => {
           el.style.fontWeight = "bold"
         },
         onChange: el => {
-          const heightPx = partitionElement.heightPx
+          const heightPx = m.heightPx
           el.native.innerText = `${caption}: ${heightPx.minPx}px..${heightPx.maxPx}px`
         }
       })
@@ -228,8 +204,8 @@ function GroupHeader(caption: string, partitionElement: El<HTMLElement>): RxNode
         onCreate: el => el.native.className = "size-tag",
         onChange: el => {
           el.native.style.display = "inline"
-          const sizePx = partitionElement.partitionSizeInSplitViewPx
-          const heightPx = partitionElement.heightPx
+          const sizePx = m.partitionSizeInSplitViewPx
+          const heightPx = m.heightPx
           if (equal(sizePx, heightPx.minPx) && equal(sizePx, heightPx.maxPx)) {
             el.native.innerText = "fixed"
           }
@@ -248,7 +224,7 @@ function GroupHeader(caption: string, partitionElement: El<HTMLElement>): RxNode
         mode: Mode.independentUpdate,
         onCreate: el => el.native.className = "effective-size",
         onChange: el => {
-          const sizePx = partitionElement.partitionSizeInSplitViewPx
+          const sizePx = m.partitionSizeInSplitViewPx
           el.native.innerText = `${sizePx === 0 ? "0" : sizePx.toFixed(2)}px`
         }
       })
