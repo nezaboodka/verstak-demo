@@ -1,5 +1,5 @@
-import { Delegate, Mode, ObservableObject, RxNode, RxNodeDecl, Transaction, raw } from "reactronic"
-import { Section, Alignment, VerticalAlignment, rowBreak, El, OnClick, Handling } from "verstak"
+import { Mode, ObservableObject, RxNode, RxNodeDecl, Transaction, raw, unobs } from "reactronic"
+import { Section, Alignment, VerticalAlignment, rowBreak, El, OnClick, SyntheticElement } from "verstak"
 import { observableModel } from "verstak-express"
 
 // export type Concrete<T> = { [P in keyof T]-?: T[P] }
@@ -36,19 +36,21 @@ export class PaneModel extends ObservableObject {
   }
 }
 
-export function Pane(onCreate: Delegate<El<HTMLElement, PaneModel>>, bodyDeclaration: RxNodeDecl<El<HTMLElement, PaneModel>>, headerDeclaration?: RxNodeDecl<El<HTMLElement, PaneModel>>) {
+export function Pane(declaration: RxNodeDecl<El<HTMLElement, PaneModel>>, bodyDeclaration: RxNodeDecl<El<HTMLElement, PaneModel>>, headerDeclaration?: RxNodeDecl<El<HTMLElement, PaneModel>>) {
   return (
     Section<PaneModel>({
       mode: Mode.independentUpdate,
       onCreate: (el, base) => {
         const m = el.model = Transaction.separate(() => new PaneModel(el))
+        base()
         el.alignment = Alignment.stretch
         el.verticalAlignment = VerticalAlignment.stretch
-        onCreate(el, base)
         m.setInitialSizes(el.height.min, el.height.max)
       },
-      onChange: p => {
+      onChange: (p, base) => {
+        base()
         const m = p.model
+        unobs(() => m.setInitialSizes(p.height.min, p.height.max))
         let header: RxNode<El<HTMLElement>> | undefined = undefined
         if (headerDeclaration) {
           header = Section({
@@ -97,14 +99,18 @@ export function Pane(onCreate: Delegate<El<HTMLElement, PaneModel>>, bodyDeclara
             el.height = { min: `${minPx}px`, max: `${maxPx}px` }
           }
         }, bodyDeclaration)
-        Handling(() => {
-          const headerSizePx = header?.element.native.clientHeight ?? 0
-          p.height = m.isExpanded
-            ? { min: m.initialMinSize, max: m.initialMaxSize, preferred: `${m.sizePx}px` }
-            : { min: `${headerSizePx}px`, max: `${headerSizePx}px` }
+        SyntheticElement({
+          mode: Mode.independentUpdate,
+          triggers: { header, stamp: p.node.stamp },
+          onChange: () => {
+            const headerSizePx = header?.element.native.clientHeight ?? 0
+            p.height = m.isExpanded
+              ? { min: m.initialMinSize, max: m.initialMaxSize, preferred: `${m.sizePx}px` }
+              : { min: `${headerSizePx}px`, max: `${headerSizePx}px` }
+          },
         })
       },
-    })
+    }, declaration)
   )
 }
 

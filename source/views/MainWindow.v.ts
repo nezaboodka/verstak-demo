@@ -86,9 +86,11 @@ export function MainWindow() {
                 })
 
                 // rowBreak()
-                Pane(el => {
-                  el.useStylingPreset(app.theme.group)
-                  el.height = { min: "80px", max: "320px" }
+                Pane({
+                  onCreate: el => {
+                    el.useStylingPreset(app.theme.group)
+                    el.height = { min: "80px", max: "320px" }
+                  },
                 }, {
                   onChange: () => Markdown(EXAMPLE_CODE)
                 }, GroupHeader("Group"))
@@ -147,10 +149,12 @@ export function MainWindow() {
                 el.alignmentInside = Alignment.left
                 el.verticalAlignmentInside = VerticalAlignment.top
                 el.splitView = SplitView.vertical
-                Pane(el => {
-                  el.useStylingPreset(app.theme.group)
-                  el.height = { min: "300px", max: "450px" }
-                  el.stretchingStrengthY = 1
+                Pane({
+                  onCreate: el => {
+                    el.useStylingPreset(app.theme.group)
+                    el.height = { min: "300px", max: "450px" }
+                    el.stretchingStrengthY = 1
+                  },
                 }, {
                   onChange: () => Markdown(EXAMPLE_CODE)
                 }, GroupHeader("Group"))
