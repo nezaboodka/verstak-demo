@@ -1,5 +1,5 @@
 import { refs, Mode, RxNodeDecl } from "reactronic"
-import { Section, Alignment, VerticalAlignment, Note, rowBreak, SplitView, Dimension, Span, El, equal } from "verstak"
+import { Section, Alignment, VerticalAlignment, Note, rowBreak, Dimension, Span, El, equal, Direction } from "verstak"
 import { Markdown, Field, Theme, composeFieldModel, observableModel, Icon } from "verstak-express"
 import { App } from "models/App.js"
 import { toolBar } from "./ToolBar.v.js"
@@ -31,7 +31,7 @@ export function MainWindow() {
 
         Section({
           onCreate: el => {
-            el.splitView = SplitView.horizontal
+            el.splitView = Direction.horizontal
             el.alignment = Alignment.stretch
             el.verticalAlignment = VerticalAlignment.stretch
             const hostEl = el.node.host.element as El
@@ -41,7 +41,7 @@ export function MainWindow() {
             // Dimension.gFontSizePx.value = 16
             Dimension.lineSizePx = 20
             Section({
-              onCreate: el => { el.splitView = SplitView.vertical },
+              onCreate: el => { el.splitView = Direction.vertical },
               onChange: el => {
                 // Dimension.gFontSizePx.value = 26
                 Dimension.lineSizePx = 40
@@ -166,7 +166,7 @@ export function MainWindow() {
                 el.verticalAlignment = VerticalAlignment.stretch
                 el.alignmentInside = Alignment.left
                 el.verticalAlignmentInside = VerticalAlignment.top
-                el.splitView = SplitView.vertical
+                el.splitView = Direction.vertical
                 Pane({
                   onCreate: el => {
                     el.useStylingPreset(app.theme.group)
