@@ -84,7 +84,7 @@ export function statusBar() {
           // Spinner("Spinner", {
           //   onCreate: el => {
           //     el.model = observableModel({
-          //       active: refs(app.loader.monitor).isActive,
+          //       active: refs(app.loader.indicator).isActive,
           //       color: "red",
           //     })
           //   },
