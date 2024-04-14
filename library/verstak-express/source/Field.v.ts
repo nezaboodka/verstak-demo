@@ -6,7 +6,7 @@
 // automatically licensed under the license referred above.
 
 import { RxNodeDecl, Mode } from "reactronic"
-import { Section, Note, FocusModel, OnFocus, rowBreak, El, Handling, KeyboardSensor, KeyboardModifiers, Alignment, VerticalAlignment } from "verstak"
+import { Panel, Note, FocusModel, OnFocus, rowBreak, El, Handling, KeyboardSensor, KeyboardModifiers, PosH, PosV } from "verstak"
 import { observableModel, ValuesOrRefs } from "./common/Utils.js"
 import { Theme, FieldStyling } from "./Theme.js"
 import { Icon } from "./Icon.v.js"
@@ -25,7 +25,7 @@ export type FieldModel<T = string> = FocusModel & {
 
 export function Field(declaration?: RxNodeDecl<El<HTMLElement, FieldModel>>) {
   return (
-    Section<FieldModel>(declaration, {
+    Panel<FieldModel>(declaration, {
       mode: Mode.independentUpdate,
       onCreate: el => {
         el.model ??= composeFieldModel()
@@ -71,8 +71,8 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
       onCreate: (el, base) => {
         const e = el.native
         el.useStylingPreset(s.input)
-        el.alignment = Alignment.stretch
-        el.verticalAlignment = VerticalAlignment.stretch
+        el.horizontal = PosH.stretch
+        el.vertical = PosV.stretch
         e.tabIndex = 0
         e.contentEditable = "true"
         e.dataForSensor.focus = model
@@ -105,7 +105,7 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
 
 function FieldPopup(model: FieldModel, s: FieldStyling) {
   return (
-    Section({
+    Panel({
       key: FieldPopup.name,
       onChange: el => {
         el.useStylingPreset(s.popup)

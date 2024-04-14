@@ -6,7 +6,7 @@
 // automatically licensed under the license referred above.
 
 import { Transaction, RxNodeDecl, Mode, RxNode } from "reactronic"
-import { Section, Note, El } from "verstak"
+import { Panel, Note, El } from "verstak"
 import { observableModel } from "./common/Utils.js"
 import { Theme } from "./Theme.js"
 import { Icon } from "./Icon.v.js"
@@ -19,7 +19,7 @@ export type ToggleModel = {
 
 export function Toggle(declaration?: RxNodeDecl<El<HTMLElement, ToggleModel>>) {
   return (
-    Section<ToggleModel>(declaration, {
+    Panel<ToggleModel>(declaration, {
       mode: Mode.independentUpdate,
       onCreate: el => {
         el.model ??= observableModel({

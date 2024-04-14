@@ -1,5 +1,5 @@
 import { Mode, ObservableObject, RxNode, RxNodeDecl, Transaction, raw, unobs } from "reactronic"
-import { Section, Alignment, VerticalAlignment, rowBreak, El, OnClick, SyntheticElement } from "verstak"
+import { Panel, PosH, PosV, rowBreak, El, OnClick, SyntheticElement } from "verstak"
 
 export class PaneModel extends ObservableObject {
   @raw private readonly _el: El<HTMLElement, PaneModel>
@@ -34,13 +34,13 @@ export class PaneModel extends ObservableObject {
 
 export function Pane(declaration: RxNodeDecl<El<HTMLElement, PaneModel>>, bodyDeclaration: RxNodeDecl<El<HTMLElement, PaneModel>>, headerDeclaration?: RxNodeDecl<El<HTMLElement, PaneModel>>) {
   return (
-    Section<PaneModel>({
+    Panel<PaneModel>({
       mode: Mode.independentUpdate,
       onCreate: (el, base) => {
         const m = el.model = Transaction.separate(() => new PaneModel(el))
         base()
-        el.alignment = Alignment.stretch
-        el.verticalAlignment = VerticalAlignment.stretch
+        el.horizontal = PosH.stretch
+        el.vertical = PosV.stretch
         m.setInitialSizes(el.height.min, el.height.max)
       },
       onChange: (p, base) => {
@@ -49,15 +49,15 @@ export function Pane(declaration: RxNodeDecl<El<HTMLElement, PaneModel>>, bodyDe
         unobs(() => m.setInitialSizes(p.height.min, p.height.max))
         let header: RxNode<El<HTMLElement>> | undefined = undefined
         if (headerDeclaration) {
-          header = Section({
+          header = Panel({
             key: "header",
             mode: Mode.independentUpdate,
             onCreate: (el, base) => {
               el.model = m
               base()
               el.native.className = "header"
-              el.alignment = Alignment.stretch
-              el.verticalAlignment = VerticalAlignment.top
+              el.horizontal = PosH.stretch
+              el.vertical = PosV.top
             },
             onChange: (el, base) => {
               base()
@@ -75,7 +75,7 @@ export function Pane(declaration: RxNodeDecl<El<HTMLElement, PaneModel>>, bodyDe
           }, headerDeclaration)
           rowBreak()
         }
-        Section({
+        Panel({
           key: "body",
           mode: Mode.independentUpdate,
           triggers: { header },
@@ -84,8 +84,8 @@ export function Pane(declaration: RxNodeDecl<El<HTMLElement, PaneModel>>, bodyDe
             base()
             el.native.className = "body"
             el.style.overflow = "scroll"
-            el.alignment = Alignment.stretch
-            el.verticalAlignment = VerticalAlignment.stretch
+            el.horizontal = PosH.stretch
+            el.vertical = PosV.stretch
           },
           onChange: (el, base) => {
             base()

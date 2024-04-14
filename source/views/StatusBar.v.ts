@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { Section, Alignment, VerticalAlignment } from "verstak"
+import { Panel, PosH, PosV } from "verstak"
 import { Button, Toggle, Field, composeFieldModel, Theme, observableModel } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { App } from "models/App.js"
@@ -61,11 +61,11 @@ export function statusBar() {
       el.native.classList.toggle(theme.panel, true)
     }
   })
-  Section({
+  Panel({
     onChange: el => {
       el.useStylingPreset(theme.panel)
-      el.alignment = Alignment.stretch
-      el.alignmentInside = Alignment.right
+      el.horizontal = PosH.stretch
+      el.contentHorizontal = PosH.right
       Field({
         onCreate: (el, base) => {
           const loader = app.loader

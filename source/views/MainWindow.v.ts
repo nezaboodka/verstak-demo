@@ -1,5 +1,5 @@
 import { refs, Mode, RxNodeDecl } from "reactronic"
-import { Section, Alignment, VerticalAlignment, Note, rowBreak, Dimension, Span, El, equal, Direction } from "verstak"
+import { Panel, PosH, PosV, Note, rowBreak, Dimension, Span, El, equal, Direction } from "verstak"
 import { Markdown, Field, Theme, composeFieldModel, observableModel, Icon } from "verstak-express"
 import { App } from "models/App.js"
 import { toolBar } from "./ToolBar.v.js"
@@ -9,12 +9,12 @@ import { Pane, PaneModel } from "./Pane.v.js"
 
 export function MainWindow() {
   return (
-    Section({
+    Panel({
       mode: Mode.independentUpdate,
       onCreate: el => {
         el.native.sensors.focus // enable focus global manager
-        el.alignment = Alignment.stretch
-        el.verticalAlignment = VerticalAlignment.stretch
+        el.horizontal = PosH.stretch
+        el.vertical = PosV.stretch
         el.style.padding = "1em"
         el.style.gap = "1em"
         el.style.overflow = "hidden"
@@ -29,18 +29,18 @@ export function MainWindow() {
 
         rowBreak()
 
-        Section({
+        Panel({
           onCreate: el => {
             el.splitView = Direction.horizontal
-            el.alignment = Alignment.stretch
-            el.verticalAlignment = VerticalAlignment.stretch
+            el.horizontal = PosH.stretch
+            el.vertical = PosV.stretch
             const hostEl = el.node.host.element as El
             hostEl.style.flexGrow = "1"
           },
           onChange: el => {
             // Dimension.gFontSizePx.value = 16
             Dimension.lineSizePx = 20
-            Section({
+            Panel({
               onCreate: el => { el.splitView = Direction.vertical },
               onChange: el => {
                 // Dimension.gFontSizePx.value = 26
@@ -48,17 +48,17 @@ export function MainWindow() {
                 el.useStylingPreset(app.theme.panel)
                 el.style.marginRight = "0.5em"
                 el.width = { min: "19em" }
-                el.stretchingStrengthX = 0
-                el.alignment = Alignment.stretch
-                el.verticalAlignment = VerticalAlignment.stretch
-                el.alignmentInside = Alignment.stretch
-                el.verticalAlignmentInside = VerticalAlignment.top
+                el.stretchingStrengthH = 0
+                el.horizontal = PosH.stretch
+                el.vertical = PosV.stretch
+                el.contentHorizontal = PosH.stretch
+                el.contentVertical = PosV.top
 
                 Note("SIDE BAR", false, {
                   onCreate: el => {
                     el.height = { min: "2em", max: "2em" }
-                    el.verticalAlignment = VerticalAlignment.top /* + Align.centerX */
-                    el.stretchingStrengthY = 0
+                    el.vertical = PosV.top /* + Align.centerX */
+                    el.stretchingStrengthV = 0
                   },
                   // onChange: el => {
                   //   Dimension.gFontSizePx.value = app.activeThemeIndex > 0 ? 36 : 16
@@ -71,8 +71,8 @@ export function MainWindow() {
                     const loader = app.loader
                     el.width = { min: "10em" }
                     el.height = { min: "2em", max: "4em" }
-                    el.verticalAlignment = VerticalAlignment.center
-                    el.stretchingStrengthY = 0
+                    el.vertical = PosV.center
+                    el.stretchingStrengthV = 0
                     el.model = composeFieldModel({
                       icon: "fa-solid fa-search",
                       text: refs(loader).filter,
@@ -114,10 +114,10 @@ export function MainWindow() {
                 }, GroupHeader("Group"))
 
                 // rowBreak()
-                Section({
+                Panel({
                   onChange: el => {
-                    el.verticalAlignment = VerticalAlignment.stretch
-                    el.stretchingStrengthY = 2
+                    el.vertical = PosV.stretch
+                    el.stretchingStrengthV = 2
                     // el.height = { max: "600px" }
                   }
                 })
@@ -128,8 +128,8 @@ export function MainWindow() {
                     const loader = app.loader
                     el.width = { min: "10em" }
                     el.height = { min: "2ln" }
-                    el.verticalAlignment = VerticalAlignment.top
-                    el.stretchingStrengthY = 0
+                    el.vertical = PosV.top
+                    el.stretchingStrengthV = 0
                     el.model = composeFieldModel({
                       text: refs(loader).filter,
                       options: refs(loader).loaded,
@@ -148,12 +148,12 @@ export function MainWindow() {
                 el.useStylingPreset(theme.accent)
                 el.style.margin = "0 0.5em"
                 el.width = { min: "330px" }
-                el.alignment = Alignment.stretch
-                el.verticalAlignment = VerticalAlignment.stretch
-                el.stretchingStrengthX = 3
+                el.horizontal = PosH.stretch
+                el.vertical = PosV.stretch
+                el.stretchingStrengthH = 3
               }
             })
-            Section({
+            Panel({
               mode: Mode.independentUpdate,
               triggers: { theme },
               onChange: el => {
@@ -161,17 +161,17 @@ export function MainWindow() {
                 el.useStylingPreset(theme.markdown)
                 el.style.marginLeft = "0.5em"
                 el.width = { min: "300px", max: "50%" }
-                el.stretchingStrengthX = 3
-                el.alignment = Alignment.stretch
-                el.verticalAlignment = VerticalAlignment.stretch
-                el.alignmentInside = Alignment.left
-                el.verticalAlignmentInside = VerticalAlignment.top
+                el.stretchingStrengthH = 3
+                el.horizontal = PosH.stretch
+                el.vertical = PosV.stretch
+                el.contentHorizontal = PosH.left
+                el.contentVertical = PosV.top
                 el.splitView = Direction.vertical
                 Pane({
                   onCreate: el => {
                     el.useStylingPreset(app.theme.group)
                     el.height = { min: "300px", max: "450px" }
-                    el.stretchingStrengthY = 1
+                    el.stretchingStrengthV = 1
                   },
                 }, {
                   onChange: () => Markdown(EXAMPLE_CODE)
@@ -181,8 +181,8 @@ export function MainWindow() {
                     const loader = app.loader
                     el.width = { min: "10em" }
                     el.height = { min: "2ln" }
-                    el.verticalAlignment = VerticalAlignment.top
-                    el.stretchingStrengthY = 1
+                    el.vertical = PosV.top
+                    el.stretchingStrengthV = 1
                     el.model = composeFieldModel({
                       icon: "fa-solid fa-search",
                       text: refs(loader).filter,

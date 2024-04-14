@@ -6,8 +6,8 @@ element {
   align-self: center;
 } */
 
-/* элемент[вид="секция"],
-element[kind="section"] {
+/* элемент[вид="панель"],
+element[kind="panel"] {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,10 +25,10 @@ element[kind="table"] {
   text-align: initial;
 } */
 
-/* элемент[вид="секция"][перенос] > раздел,
-элемент[вид="секция"][перенос="да"] > раздел,
-element[kind="section"][wrapping] > partition,
-element[kind="section"][wrapping="true"] > partition {
+/* элемент[вид="панель"][перенос] > раздел,
+элемент[вид="панель"][перенос="да"] > раздел,
+element[kind="panel"][wrapping] > partition,
+element[kind="panel"][wrapping="true"] > partition {
   flex-flow: wrap;
 } */
 
@@ -68,13 +68,13 @@ element[kind="table"] > partition {
   display: none !important;
 } */
 
-/* элемент[вид="секция"] > элемент,
-element[kind="section"] > element {
+/* элемент[вид="панель"] > элемент,
+element[kind="panel"] > element {
   place-self: start center;
 }
 
-элемент[вид="таблица"] > элемент[вид="секция"],
-element[kind="table"] > element[kind="section"] {
+элемент[вид="таблица"] > элемент[вид="панель"],
+element[kind="table"] > element[kind="panel"] {
   place-self: stretch;
 } */
 

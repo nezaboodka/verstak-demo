@@ -1,5 +1,5 @@
 import { Mode, refs } from "reactronic"
-import { Section, Img, rowBreak, Alignment, VerticalAlignment } from "verstak"
+import { Panel, Img, rowBreak, PosH, PosV } from "verstak"
 import { Icon, Field, Theme, Markdown, composeFieldModel } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { App } from "models/App.js"
@@ -21,7 +21,7 @@ export function toolBar() {
   //     el.style.backgroundColor = app.blinkingEffect ? "red" : ""
   //   }
   // })
-  Section({ // Logo
+  Panel({ // Logo
     onCreate: el => {
       el.useStylingPreset(theme.panel)
       // b.useStyle(s.Clickable)
@@ -39,14 +39,14 @@ export function toolBar() {
       })
     }
   })
-  Section({
+  Panel({
     onChange: el => {
-      el.alignment = Alignment.stretch
+      el.horizontal = PosH.stretch
       el.useStylingPreset(theme.panel)
-      Section({
+      Panel({
         mode: Mode.independentUpdate,
         onChange: el => {
-          el.alignment = Alignment.stretch
+          el.horizontal = PosH.stretch
           const position = app.position
           if (!Number.isFinite(position))
             Markdown(`**Verstak** v${app.version}`)
@@ -73,7 +73,7 @@ export function toolBar() {
       })
     }
   })
-  Section({ // Account
+  Panel({ // Account
     onCreate: el => {
       // el.native.onclick = () => Transaction.run(null, () => app.nextTheme())
     },

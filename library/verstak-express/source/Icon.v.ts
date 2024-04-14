@@ -6,13 +6,13 @@
 // automatically licensed under the license referred above.
 
 import { RxNodeDecl, Mode } from "reactronic"
-import { Section, El } from "verstak"
+import { Panel, El } from "verstak"
 import { Theme } from "./Theme.js"
 
 export function Icon(name: string,
   declaration?: RxNodeDecl<El<HTMLElement, void>>) {
   return (
-    Section(declaration, {
+    Panel(declaration, {
       mode: Mode.independentUpdate,
       triggers: { name },
       onChange: el => {

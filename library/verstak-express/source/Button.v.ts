@@ -6,7 +6,7 @@
 // automatically licensed under the license referred above.
 
 import { RxNodeDecl, Mode, RxNode } from "reactronic"
-import { Section, Note, El, OnClick } from "verstak"
+import { Panel, Note, El, OnClick } from "verstak"
 import { observableModel } from "./common/Utils.js"
 import { Theme } from "./Theme.js"
 import { Icon } from "./Icon.v.js"
@@ -19,7 +19,7 @@ export type ButtonModel = {
 
 export function Button(declaration?: RxNodeDecl<El<HTMLElement, ButtonModel>>) {
   return (
-    Section<ButtonModel>(declaration, {
+    Panel<ButtonModel>(declaration, {
       mode: Mode.independentUpdate,
       onCreate: el => {
         el.model ??= observableModel({
