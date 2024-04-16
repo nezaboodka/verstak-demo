@@ -42,7 +42,7 @@ export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
             base()
             const theme = Theme.current as AppTheme
             el.native.classList.toggle(theme.panel, true)
-            el.area = "B1"
+            el.place = "B1"
             el.horizontal = PosH.right
             el.vertical = PosV.bottom
           }
@@ -65,7 +65,7 @@ function Ruler(title: string, posH: PosH, posV: PosV) {
   )
 }
 
-function ExampleData(area: string) {
+function ExampleData(place: string) {
   return (
     Panel({
       onCreate: el => {
@@ -76,9 +76,9 @@ function ExampleData(area: string) {
       },
       onChange: el => {
         const theme = Theme.current as AppTheme
-        el.area = area
+        el.place = place
         el.useStylingPreset(theme.accent)
-        Note(area)
+        Note(place)
       }
     })
   )

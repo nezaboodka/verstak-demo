@@ -14,7 +14,7 @@ const BezelLabelColor = "#444444"
 
 const clock = Transaction.run(null, () => new Clock(200))
 
-export function Watch(area: string): RxNode<El<HTMLElement>> {
+export function Watch(place: string): RxNode<El<HTMLElement>> {
   return (
     Panel({
       mode: Mode.independentUpdate,
@@ -29,7 +29,7 @@ export function Watch(area: string): RxNode<El<HTMLElement>> {
       },
       onChange: el => {
         const theme = Theme.current as AppTheme
-        el.area = area
+        el.place = place
         el.useStylingPreset(theme.accent)
         Svg({
           onChange: el => {
