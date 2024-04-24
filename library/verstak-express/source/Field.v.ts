@@ -27,17 +27,17 @@ export function Field(declaration?: RxNodeDecl<El<HTMLElement, FieldModel>>) {
   return (
     Panel<FieldModel>(declaration, {
       mode: Mode.independentUpdate,
-      onCreate: el => {
+      creation: el => {
         el.model ??= composeFieldModel()
         el.native.dataForSensor.focus = el.model
       },
-      onChange: el => {
+      script: el => {
         const m = el.model
         const theme = Theme.current.field
         el.useStylingPreset(theme.main)
         if (m.icon)
           Icon(m.icon, {
-            onChange: (el, base) => {
+            script: (el, base) => {
               base()
               el.useStylingPreset(theme.icon)
             },
@@ -68,7 +68,7 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
   return (
     Note(model.text, false, {
       key: FieldInput.name,
-      onCreate: (el, base) => {
+      creation: (el, base) => {
         const e = el.native
         el.useStylingPreset(s.input)
         el.horizontal = PosH.stretch
@@ -78,7 +78,7 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
         e.dataForSensor.focus = model
         base()
       },
-      onChange: el => {
+      script: el => {
         const e = el.native
         if (!model.isEditMode)
           e.innerText = model.text
@@ -107,7 +107,7 @@ function FieldPopup(model: FieldModel, s: FieldStyling) {
   return (
     Panel({
       key: FieldPopup.name,
-      onChange: el => {
+      script: el => {
         el.useStylingPreset(s.popup)
         Handling(() => model.position = el.native.sensors.scroll.y)
         const visible = el.overlayVisible = model.isEditMode
@@ -118,7 +118,7 @@ function FieldPopup(model: FieldModel, s: FieldStyling) {
               rowBreak()
               Note(x, false, {
                 key: x,
-                onCreate: el => {
+                creation: el => {
                   el.contentWrapping = false
                 },
               })

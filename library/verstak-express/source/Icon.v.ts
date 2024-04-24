@@ -15,7 +15,7 @@ export function Icon(name: string,
     Panel(declaration, {
       mode: Mode.independentUpdate,
       triggers: { name },
-      onChange: el => {
+      script: el => {
         const theme = Theme.current.icon
         el.useStylingPreset(name)
         el.useStylingPreset(theme.main)

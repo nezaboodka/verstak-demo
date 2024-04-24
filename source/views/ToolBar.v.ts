@@ -8,7 +8,7 @@ export function toolBar() {
   const app = App.current
   const theme = Theme.current as AppTheme
   // Image({ // logo
-  //   onCreate: (el, base) => {
+  //   creation: (el, base) => {
   //     base()
   //     el.contentAlignment = Align.stretch
   //     el.boundsAlignment = Align.stretch
@@ -16,23 +16,23 @@ export function toolBar() {
   //     el.native.className = cx(s.Panel, s.Clickable, s.Logo)
   //     el.native.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
   //   },
-  //   onChange: (el, base) => {
+  //   script: (el, base) => {
   //     base()
   //     el.style.backgroundColor = app.blinkingEffect ? "red" : ""
   //   }
   // })
   Panel({ // Logo
-    onCreate: el => {
+    creation: el => {
       el.useStylingPreset(theme.panel)
       // b.useStyle(s.Clickable)
       // b.useStyle(s.Logo)
       el.style.outlineOffset = "-1px"
       // b.native.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
     },
-    onChange: el => {
+    script: el => {
       el.style.boxShadow = app.isBlinkingEffectOn ? "0.025rem 0.025rem 0.35rem 0 red" : ""
       Img({
-        onChange: (el, base) => {
+        script: (el, base) => {
           base()
           el.native.src = "https://nezaboodka.com/img/star-768x768-circle.png"
         }
@@ -40,12 +40,12 @@ export function toolBar() {
     }
   })
   Panel({
-    onChange: el => {
+    script: el => {
       el.horizontal = PosH.stretch
       el.useStylingPreset(theme.panel)
       Panel({
         mode: Mode.independentUpdate,
-        onChange: el => {
+        script: el => {
           el.horizontal = PosH.stretch
           const position = app.position
           if (!Number.isFinite(position))
@@ -57,7 +57,7 @@ export function toolBar() {
         }
       })
       Field({
-        onCreate: (el, base) => {
+        creation: (el, base) => {
           const loader = app.loader
           el.width = { min: "7em" }
           el.model = composeFieldModel({
@@ -74,10 +74,10 @@ export function toolBar() {
     }
   })
   Panel({ // Account
-    onCreate: el => {
+    creation: el => {
       // el.native.onclick = () => Transaction.run(null, () => app.nextTheme())
     },
-    onChange: el => {
+    script: el => {
       el.useStylingPreset(theme.panel)
       // b.useStyle(s.Hint)
       // b.useStyle(s.Clickable)

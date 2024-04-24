@@ -12,7 +12,7 @@ export function statusBar() {
   const app = App.current
   const theme = Theme.current as AppTheme
   Toggle({ key: "Blinking",
-    onCreate: (el, base) => {
+    creation: (el, base) => {
       // We compose model from different pieces,
       // such as app and theme. Without the need
       // to implement interface in form of class.
@@ -22,14 +22,14 @@ export function statusBar() {
       })
       base()
     },
-    onChange: (el, base) => {
+    script: (el, base) => {
       base()
       // Style is not inside "initialize", because of theming
       el.native.classList.toggle(theme.panel, true)
     }
   })
   Button({ key: "Theme",
-    onCreate: (el, base) => {
+    creation: (el, base) => {
       el.model = observableModel({
         icon: "fa-solid fa-palette",
         label: "Switch Theme",
@@ -37,37 +37,37 @@ export function statusBar() {
       })
       base()
     },
-    onChange: (el,  base) => {
+    script: (el,  base) => {
       base()
       el.useStylingPreset(theme.panel)
     }
   })
   Toggle({ key: "SecondaryTimeZone",
-    onCreate: (el, base) => {
+    creation: (el, base) => {
       el.model = observableModel({
         label: "New York (GMT-7)",
         checked: refs(app).isSecondaryTimeZoneOn,
       })
       base()
     },
-    onChange: (el, base) => {
+    script: (el, base) => {
       base()
       el.native.classList.toggle(theme.panel, true)
     }
   })
   Toggle({
-    onChange: (el, base) => {
+    script: (el, base) => {
       base()
       el.native.classList.toggle(theme.panel, true)
     }
   })
   Panel({
-    onChange: el => {
+    script: el => {
       el.useStylingPreset(theme.panel)
       el.horizontal = PosH.stretch
       el.contentHorizontal = PosH.right
       Field({
-        onCreate: (el, base) => {
+        creation: (el, base) => {
           const loader = app.loader
           el.width = { min: "10em" }
           el.model = composeFieldModel({
@@ -79,10 +79,10 @@ export function statusBar() {
           })
           base()
         },
-        onChange: (el, base) => {
+        script: (el, base) => {
           base()
           // Spinner("Spinner", {
-          //   onCreate: el => {
+          //   creation: el => {
           //     el.model = observableModel({
           //       active: refs(app.loader.indicator).isActive,
           //       color: "red",

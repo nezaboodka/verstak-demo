@@ -11,7 +11,7 @@ export function MainWindow() {
   return (
     Panel({
       mode: Mode.independentUpdate,
-      onCreate: el => {
+      creation: el => {
         el.native.sensors.focus // enable focus global manager
         el.horizontal = PosH.stretch
         el.vertical = PosV.stretch
@@ -19,7 +19,7 @@ export function MainWindow() {
         el.style.gap = "1em"
         el.style.overflow = "hidden"
       },
-      onChange: el => {
+      script: el => {
         const app = App.current
         const theme = app.theme
         Theme.current = theme
@@ -30,19 +30,19 @@ export function MainWindow() {
         rowBreak()
 
         Panel({
-          onCreate: el => {
+          creation: el => {
             el.splitView = Direction.horizontal
             el.horizontal = PosH.stretch
             el.vertical = PosV.stretch
             const hostEl = el.node.host.element as El
             hostEl.style.flexGrow = "1"
           },
-          onChange: el => {
+          script: el => {
             // Dimension.gFontSizePx.value = 16
             Dimension.lineSizePx = 20
             Panel({
-              onCreate: el => { el.splitView = Direction.vertical },
-              onChange: el => {
+              creation: el => { el.splitView = Direction.vertical },
+              script: el => {
                 // Dimension.gFontSizePx.value = 26
                 Dimension.lineSizePx = 40
                 el.useStylingPreset(app.theme.panel)
@@ -55,19 +55,19 @@ export function MainWindow() {
                 el.contentVertical = PosV.top
 
                 Note("SIDE BAR", false, {
-                  onCreate: el => {
+                  creation: el => {
                     el.height = { min: "2em", max: "2em" }
                     el.vertical = PosV.top /* + Align.centerX */
                     el.stretchingStrengthV = 0
                   },
-                  // onChange: el => {
+                  // script: el => {
                   //   Dimension.gFontSizePx.value = app.activeThemeIndex > 0 ? 36 : 16
                   // },
                 })
 
                 // rowBreak()
                 Field({
-                  onCreate: (el, base) => {
+                  creation: (el, base) => {
                     const loader = app.loader
                     el.width = { min: "10em" }
                     el.height = { min: "2em", max: "4em" }
@@ -87,35 +87,35 @@ export function MainWindow() {
 
                 // rowBreak()
                 Pane({
-                  onCreate: el => {
+                  creation: el => {
                     el.useStylingPreset(app.theme.group)
                     el.height = { min: "80px", max: "320px" }
                   },
                 }, {
-                  onChange: () => Markdown(EXAMPLE_CODE)
+                  script: () => Markdown(EXAMPLE_CODE)
                 }, GroupHeader("Group"))
                 // rowBreak()
                 Pane({
-                  onCreate: el => {
+                  creation: el => {
                     el.useStylingPreset(app.theme.group)
                     el.height = { min: "80px", max: "320px" }
                   },
                 }, {
-                  onChange: () => Markdown(EXAMPLE_CODE)
+                  script: () => Markdown(EXAMPLE_CODE)
                 }, GroupHeader("Group"))
                 // rowBreak()
                 Pane({
-                  onCreate: el => {
+                  creation: el => {
                     el.useStylingPreset(app.theme.group)
                     el.height = { min: "80px", max: "320px" }
                   },
                 }, {
-                  onChange: () => Markdown(EXAMPLE_CODE)
+                  script: () => Markdown(EXAMPLE_CODE)
                 }, GroupHeader("Group"))
 
                 // rowBreak()
                 Panel({
-                  onChange: el => {
+                  script: el => {
                     el.vertical = PosV.stretch
                     el.stretchingStrengthV = 2
                     // el.height = { max: "600px" }
@@ -124,7 +124,7 @@ export function MainWindow() {
 
                 // rowBreak()
                 Field({
-                  onCreate: (el, base) => {
+                  creation: (el, base) => {
                     const loader = app.loader
                     el.width = { min: "10em" }
                     el.height = { min: "2ln" }
@@ -142,7 +142,7 @@ export function MainWindow() {
               }
             })
             WorkArea({
-              onChange: (el, base) => {
+              script: (el, base) => {
                 base()
                 el.useStylingPreset(theme.panel)
                 el.useStylingPreset(theme.accent)
@@ -156,7 +156,7 @@ export function MainWindow() {
             Panel({
               mode: Mode.independentUpdate,
               triggers: { theme },
-              onChange: el => {
+              script: el => {
                 el.useStylingPreset(theme.panel)
                 el.useStylingPreset(theme.markdown)
                 el.style.marginLeft = "0.5em"
@@ -168,16 +168,16 @@ export function MainWindow() {
                 el.contentVertical = PosV.top
                 el.splitView = Direction.vertical
                 Pane({
-                  onCreate: el => {
+                  creation: el => {
                     el.useStylingPreset(app.theme.group)
                     el.height = { min: "300px", max: "450px" }
                     el.stretchingStrengthV = 1
                   },
                 }, {
-                  onChange: () => Markdown(EXAMPLE_CODE)
+                  script: () => Markdown(EXAMPLE_CODE)
                 }, GroupHeader("Group"))
                 Field({
-                  onCreate: (el, base) => {
+                  creation: (el, base) => {
                     const loader = app.loader
                     el.width = { min: "10em" }
                     el.height = { min: "2ln" }
@@ -207,27 +207,27 @@ export function MainWindow() {
 
 function GroupHeader(caption: string): RxNodeDecl<El<HTMLElement, PaneModel>> {
   return ({
-    onCreate: el => {
+    creation: el => {
       el.height = { min: "30px" }
     },
-    onChange: el => {
+    script: el => {
       const m = el.model
       Icon(m.isExpanded ? "fa-solid fa-chevron-down fa-fw" : "fa-solid fa-chevron-right fa-fw")
       Span({
         mode: Mode.independentUpdate,
-        onCreate: el => {
+        creation: el => {
           el.style.fontWeight = "bold"
         },
-        onChange: el => {
+        script: el => {
           const heightPx = m.heightPx
           el.native.innerText = `${caption}: ${heightPx.minPx}px..${heightPx.maxPx}px`
         }
       })
-      Span({ onCreate: el => el.native.style.flexGrow = "1" })
+      Span({ creation: el => el.native.style.flexGrow = "1" })
       Span({
         mode: Mode.independentUpdate,
-        onCreate: el => el.native.className = "size-tag",
-        onChange: el => {
+        creation: el => el.native.className = "size-tag",
+        script: el => {
           el.native.style.display = "inline"
           const sizePx = m.partitionSizeInSplitViewPx
           const heightPx = m.heightPx
@@ -247,8 +247,8 @@ function GroupHeader(caption: string): RxNodeDecl<El<HTMLElement, PaneModel>> {
       })
       Span({
         mode: Mode.independentUpdate,
-        onCreate: el => el.native.className = "effective-size",
-        onChange: el => {
+        creation: el => el.native.className = "effective-size",
+        script: el => {
           const sizePx = m.partitionSizeInSplitViewPx
           el.native.innerText = `${sizePx === 0 ? "0" : sizePx.toFixed(2)}px`
         }

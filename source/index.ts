@@ -24,7 +24,7 @@ const app = Transaction.run(null, () =>
 
 Page({
   mode: Mode.independentUpdate,
-  onChange: el => {
+  script: el => {
     App.current = app
     const t = app.theme
     const s = el.style

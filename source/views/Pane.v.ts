@@ -36,14 +36,14 @@ export function Pane(declaration: RxNodeDecl<El<HTMLElement, PaneModel>>, bodyDe
   return (
     Panel<PaneModel>({
       mode: Mode.independentUpdate,
-      onCreate: (el, base) => {
+      creation: (el, base) => {
         const m = el.model = Transaction.separate(() => new PaneModel(el))
         base()
         el.horizontal = PosH.stretch
         el.vertical = PosV.stretch
         m.setInitialSizes(el.height.min, el.height.max)
       },
-      onChange: (p, base) => {
+      script: (p, base) => {
         base()
         const m = p.model
         unobs(() => m.setInitialSizes(p.height.min, p.height.max))
@@ -52,14 +52,14 @@ export function Pane(declaration: RxNodeDecl<El<HTMLElement, PaneModel>>, bodyDe
           header = Panel({
             key: "header",
             mode: Mode.independentUpdate,
-            onCreate: (el, base) => {
+            creation: (el, base) => {
               el.model = m
               base()
               el.native.className = "header"
               el.horizontal = PosH.stretch
               el.vertical = PosV.top
             },
-            onChange: (el, base) => {
+            script: (el, base) => {
               base()
               OnClick(el.native, () => {
                 m.isExpanded = !m.isExpanded
@@ -79,7 +79,7 @@ export function Pane(declaration: RxNodeDecl<El<HTMLElement, PaneModel>>, bodyDe
           key: "body",
           mode: Mode.independentUpdate,
           triggers: { header },
-          onCreate: (el, base) => {
+          creation: (el, base) => {
             el.model = m
             base()
             el.native.className = "body"
@@ -87,7 +87,7 @@ export function Pane(declaration: RxNodeDecl<El<HTMLElement, PaneModel>>, bodyDe
             el.horizontal = PosH.stretch
             el.vertical = PosV.stretch
           },
-          onChange: (el, base) => {
+          script: (el, base) => {
             base()
             const headerSizePx = header?.element.native.clientHeight ?? 0
             const minPx = Math.max(0, p.heightPx.minPx - headerSizePx)
@@ -98,7 +98,7 @@ export function Pane(declaration: RxNodeDecl<El<HTMLElement, PaneModel>>, bodyDe
         SyntheticElement({
           mode: Mode.independentUpdate,
           triggers: { header, stamp: p.node.stamp },
-          onChange: () => {
+          script: () => {
             const headerSizePx = header?.element.native.clientHeight ?? 0
             p.height = m.isExpanded
               ? { min: m.initialMinSize, max: m.initialMaxSize, preferred: `${m.sizePx}px` }

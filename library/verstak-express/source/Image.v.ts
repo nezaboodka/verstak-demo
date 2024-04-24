@@ -17,10 +17,10 @@ export function Image(declaration?: RxNodeDecl<El<HTMLElement, ImageModel>>) {
   return (
     Panel<ImageModel>(declaration, {
       mode: Mode.independentUpdate,
-      onCreate: el => {
+      creation: el => {
         el.model ??= observableModel({ source: undefined })
       },
-      onChange: el => {
+      script: el => {
         const m = el.model
         el.style.backgroundImage = `url(${m.source})`
         el.style.backgroundSize = "contain"

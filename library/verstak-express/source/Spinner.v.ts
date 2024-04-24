@@ -18,10 +18,10 @@ export function Spinner(declaration?: RxNodeDecl<El<HTMLElement, SpinnerModel>>)
   return (
     Panel<SpinnerModel>(declaration, {
       mode: Mode.independentUpdate,
-      onCreate: el => {
+      creation: el => {
         el.model ??= composeSpinnerModel()
       },
-      onChange: el => {
+      script: el => {
         const m = el.model
         m.active && Note("loading...")
       },
