@@ -147,7 +147,7 @@ export function MainWindow() {
                 el.useStylingPreset(theme.panel)
                 el.useStylingPreset(theme.accent)
                 el.style.margin = "0 0.5em"
-                el.width = { min: "330px" }
+                el.width = { min: "330px", max: "20%" }
                 el.horizontal = PosH.stretch
                 el.vertical = PosV.stretch
                 el.stretchingStrengthH = 3
@@ -164,7 +164,7 @@ export function MainWindow() {
                 el.stretchingStrengthH = 3
                 el.horizontal = PosH.stretch
                 el.vertical = PosV.stretch
-                el.contentHorizontal = PosH.left
+                el.contentHorizontal = PosH.stretch
                 el.contentVertical = PosV.top
                 el.splitView = Direction.vertical
                 Pane({
