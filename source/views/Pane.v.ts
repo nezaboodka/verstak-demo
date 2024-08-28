@@ -37,7 +37,7 @@ export function Pane(declaration: RxNodeDecl<El<HTMLElement, PaneModel>>, bodyDe
     Panel<PaneModel>({
       mode: Mode.independentUpdate,
       creation: (el, base) => {
-        const m = el.model = Transaction.separate(() => new PaneModel(el))
+        const m = el.model = Transaction.isolate(() => new PaneModel(el))
         base()
         el.horizontal = PosH.stretch
         el.vertical = PosV.stretch

@@ -10,7 +10,7 @@ export class Loader extends ObservableObject {
     this.filter = ""
     this.loaded = []
     this.indicator = Indicator.create("Loader.indicator", -1, -1, 1)
-    RxSystem.getReaction(this.load).configure({ indicator: this.indicator })
+    RxSystem.getOperation(this.load).configure({ indicator: this.indicator })
   }
 
   @reactive
