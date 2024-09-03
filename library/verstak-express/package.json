@@ -34,8 +34,8 @@
     "markdown-it": "^13.0.1",
     "markdown-it-prism": "^2.3.0",
     "prismjs": "^1.29.0",
-    "reactronic": "^0.24.301",
-    "verstak": "^0.24.301"
+    "reactronic": "^0.24.302",
+    "verstak": "^0.24.303"
   },
   "devDependencies": {
     "@types/markdown-it": "13.0.1",
