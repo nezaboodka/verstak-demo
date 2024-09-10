@@ -1,4 +1,4 @@
-import { Mode, ObservableObject, RxNode, RxNodeDecl, Transaction, raw, unobs } from "reactronic"
+import { Mode, ObservableObject, RxNode, RxNodeDecl, raw, unobs } from "reactronic"
 import { Panel, PosH, PosV, rowBreak, El, OnClick, SyntheticElement } from "verstak"
 
 export class PaneModel extends ObservableObject {
@@ -37,7 +37,7 @@ export function Pane(declaration: RxNodeDecl<El<HTMLElement, PaneModel>>, bodyDe
     Panel<PaneModel>({
       mode: Mode.independentUpdate,
       creation: (el, base) => {
-        const m = el.model = Transaction.isolate(() => new PaneModel(el))
+        const m = el.model = new PaneModel(el)
         base()
         el.horizontal = PosH.stretch
         el.vertical = PosV.stretch

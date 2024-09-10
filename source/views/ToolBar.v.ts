@@ -1,4 +1,4 @@
-import { Mode, refs } from "reactronic"
+import { Mode, pause, refs } from "reactronic"
 import { Panel, Img, rowBreak, PosH, PosV } from "verstak"
 import { Icon, Field, Theme, Markdown, composeFieldModel } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
@@ -29,8 +29,9 @@ export function toolBar() {
       el.style.outlineOffset = "-1px"
       // b.native.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
     },
-    script: el => {
+    scriptAsync: async el => {
       el.style.boxShadow = app.isBlinkingEffectOn ? "0.025rem 0.025rem 0.35rem 0 red" : ""
+      await pause(3000)
       Img({
         script: (el, base) => {
           base()
