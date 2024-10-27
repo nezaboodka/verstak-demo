@@ -5,7 +5,7 @@
 // By contributing, you agree that your contributions will be
 // automatically licensed under the license referred above.
 
-import { RxNodeDecl, Mode } from "reactronic"
+import { RxNodeDecl, Mode, RxNode } from "reactronic"
 import { Panel, Note, FocusModel, OnFocus, rowBreak, El, Handling, KeyboardSensor, KeyboardModifiers, PosH, PosV } from "verstak"
 import { observableModel, ValuesOrRefs } from "./common/Utils.js"
 import { Theme, FieldStyling } from "./Theme.js"
@@ -25,7 +25,7 @@ export type FieldModel<T = string> = FocusModel & {
 
 export function Field(declaration?: RxNodeDecl<El<HTMLElement, FieldModel>>) {
   return (
-    Panel<FieldModel>(declaration, {
+    Panel<FieldModel>(RxNode.rebased(declaration, {
       mode: Mode.independentUpdate,
       creation: el => {
         el.model ??= composeFieldModel()
@@ -45,7 +45,7 @@ export function Field(declaration?: RxNodeDecl<El<HTMLElement, FieldModel>>) {
         FieldInput(m, theme)
         FieldPopup(m, theme)
       },
-    })
+    }))
   )
 }
 

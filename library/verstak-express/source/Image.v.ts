@@ -5,7 +5,7 @@
 // By contributing, you agree that your contributions will be
 // automatically licensed under the license referred above.
 
-import { RxNodeDecl, Mode } from "reactronic"
+import { RxNodeDecl, Mode, RxNode } from "reactronic"
 import { Panel, El } from "verstak"
 import { observableModel } from "./common/Utils.js"
 
@@ -15,7 +15,7 @@ export type ImageModel = {
 
 export function Image(declaration?: RxNodeDecl<El<HTMLElement, ImageModel>>) {
   return (
-    Panel<ImageModel>(declaration, {
+    Panel<ImageModel>(RxNode.rebased(declaration, {
       mode: Mode.independentUpdate,
       creation: el => {
         el.model ??= observableModel({ source: undefined })
@@ -26,6 +26,6 @@ export function Image(declaration?: RxNodeDecl<El<HTMLElement, ImageModel>>) {
         el.style.backgroundSize = "contain"
         el.style.backgroundRepeat = "no-repeat"
       },
-    })
+    }))
   )
 }

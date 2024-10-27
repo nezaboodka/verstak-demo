@@ -19,7 +19,7 @@ export type ToggleModel = {
 
 export function Toggle(declaration?: RxNodeDecl<El<HTMLElement, ToggleModel>>) {
   return (
-    Panel<ToggleModel>(declaration, {
+    Panel<ToggleModel>(RxNode.rebased(declaration, {
       mode: Mode.independentUpdate,
       creation: el => {
         el.model ??= observableModel({
@@ -48,6 +48,6 @@ export function Toggle(declaration?: RxNodeDecl<El<HTMLElement, ToggleModel>>) {
             },
           })
       },
-    })
+    }))
   )
 }

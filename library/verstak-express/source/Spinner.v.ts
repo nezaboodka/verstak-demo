@@ -5,7 +5,7 @@
 // By contributing, you agree that your contributions will be
 // automatically licensed under the license referred above.
 
-import { RxNodeDecl, Mode } from "reactronic"
+import { RxNodeDecl, Mode, RxNode } from "reactronic"
 import { Panel, Note, El } from "verstak"
 import { observableModel, ValuesOrRefs } from "./common/Utils.js"
 
@@ -16,7 +16,7 @@ export type SpinnerModel = {
 
 export function Spinner(declaration?: RxNodeDecl<El<HTMLElement, SpinnerModel>>) {
   return (
-    Panel<SpinnerModel>(declaration, {
+    Panel<SpinnerModel>(RxNode.rebased(declaration, {
       mode: Mode.independentUpdate,
       creation: el => {
         el.model ??= composeSpinnerModel()
@@ -25,7 +25,7 @@ export function Spinner(declaration?: RxNodeDecl<El<HTMLElement, SpinnerModel>>)
         const m = el.model
         m.active && Note("loading...")
       },
-    })
+    }))
   )
 }
 

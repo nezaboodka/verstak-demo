@@ -1,4 +1,4 @@
-import { refs, RxNodeDecl } from "reactronic"
+import { refs, RxNodeDecl, RxNode } from "reactronic"
 import { Table, Panel, Note, rowBreak, PosH, PosV, cursor, El } from "verstak"
 import { Theme, Toggle, observableModel } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
@@ -7,7 +7,7 @@ import { Watch } from "./Watch.js"
 
 export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
   return (
-    Table(declaration, {
+    Table(RxNode.rebased(declaration, {
       script: el => {
         // Elements can be layed out automatically
         // based on their order and line feeds.
@@ -47,7 +47,7 @@ export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
             el.vertical = PosV.bottom
           }
         })
-      }},
+      }}),
     )
   )
 }

@@ -34,7 +34,7 @@ export class PaneModel extends ObservableObject {
 
 export function Pane(declaration: RxNodeDecl<El<HTMLElement, PaneModel>>, bodyDeclaration: RxNodeDecl<El<HTMLElement, PaneModel>>, headerDeclaration?: RxNodeDecl<El<HTMLElement, PaneModel>>) {
   return (
-    Panel<PaneModel>({
+    Panel<PaneModel>(RxNode.rebased({
       mode: Mode.independentUpdate,
       creation: (el, base) => {
         const m = el.model = new PaneModel(el)
@@ -49,7 +49,7 @@ export function Pane(declaration: RxNodeDecl<El<HTMLElement, PaneModel>>, bodyDe
         unobs(() => m.setInitialSizes(p.height.min, p.height.max))
         let header: RxNode<El<HTMLElement>> | undefined = undefined
         if (headerDeclaration) {
-          header = Panel({
+          header = Panel(RxNode.rebased({
             key: "header",
             mode: Mode.independentUpdate,
             creation: (el, base) => {
@@ -72,10 +72,10 @@ export function Pane(declaration: RxNodeDecl<El<HTMLElement, PaneModel>>, bodyDe
                 }
               })
             },
-          }, headerDeclaration)
+          }, headerDeclaration))
           rowBreak()
         }
-        Panel({
+        Panel(RxNode.rebased({
           key: "body",
           mode: Mode.independentUpdate,
           triggers: { header },
@@ -94,7 +94,7 @@ export function Pane(declaration: RxNodeDecl<El<HTMLElement, PaneModel>>, bodyDe
             const maxPx = p.partitionSizeInSplitViewPx - headerSizePx
             el.height = { min: `${minPx}px`, max: `${maxPx}px` }
           }
-        }, bodyDeclaration)
+        }, bodyDeclaration))
         SyntheticElement({
           mode: Mode.independentUpdate,
           triggers: { header, stamp: p.node.stamp },
@@ -106,6 +106,6 @@ export function Pane(declaration: RxNodeDecl<El<HTMLElement, PaneModel>>, bodyDe
           },
         })
       },
-    }, declaration)
+    }, declaration))
   )
 }

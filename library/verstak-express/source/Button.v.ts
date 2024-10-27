@@ -19,7 +19,7 @@ export type ButtonModel = {
 
 export function Button(declaration?: RxNodeDecl<El<HTMLElement, ButtonModel>>) {
   return (
-    Panel<ButtonModel>(declaration, {
+    Panel<ButtonModel>(RxNode.rebased(declaration, {
       mode: Mode.independentUpdate,
       creation: el => {
         el.model ??= observableModel({
@@ -49,6 +49,6 @@ export function Button(declaration?: RxNodeDecl<El<HTMLElement, ButtonModel>>) {
         }
         OnClick(el.native, m.action)
       },
-    })
+    }))
   )
 }
