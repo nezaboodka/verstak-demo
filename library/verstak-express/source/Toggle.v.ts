@@ -5,7 +5,7 @@
 // By contributing, you agree that your contributions will be
 // automatically licensed under the license referred above.
 
-import { Transaction, RxNodeDecl, Mode, RxNode } from "reactronic"
+import { Transaction, ReactiveNodeDecl, Mode, ReactiveNode } from "reactronic"
 import { Panel, Note, El } from "verstak"
 import { observableModel } from "./common/Utils.js"
 import { Theme } from "./Theme.js"
@@ -17,13 +17,13 @@ export type ToggleModel = {
   color?: string
 }
 
-export function Toggle(declaration?: RxNodeDecl<El<HTMLElement, ToggleModel>>) {
+export function Toggle(declaration?: ReactiveNodeDecl<El<HTMLElement, ToggleModel>>) {
   return (
-    Panel<ToggleModel>(RxNode.rebased(declaration, {
+    Panel<ToggleModel>(ReactiveNode.withBasis(declaration, {
       mode: Mode.independentUpdate,
       creation: el => {
         el.model ??= observableModel({
-          label: RxNode.key,
+          label: ReactiveNode.key,
           checked: true,
           color: "green" }) // model is either taken from parameter or created internally
         el.native.onclick = () => Transaction.run(null, () => el.model.checked = !el.model.checked)

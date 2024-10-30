@@ -1,4 +1,4 @@
-import { refs, Mode, RxNodeDecl } from "reactronic"
+import { refs, Mode, ReactiveNodeDecl } from "reactronic"
 import { Panel, Horizontal, Vertical, Note, rowBreak, Dimension, Span, El, equal, Direction } from "verstak"
 import { Markdown, Field, Theme, composeFieldModel, observableModel, Icon } from "verstak-express"
 import { App } from "models/App.js"
@@ -205,7 +205,7 @@ export function MainWindow() {
   )
 }
 
-function GroupHeader(caption: string): RxNodeDecl<El<HTMLElement, PaneModel>> {
+function GroupHeader(caption: string): ReactiveNodeDecl<El<HTMLElement, PaneModel>> {
   return ({
     creation: el => {
       el.height = { min: "30px" }

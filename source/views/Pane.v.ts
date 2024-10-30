@@ -1,4 +1,4 @@
-import { Mode, ObservableObject, RxNode, RxNodeDecl, raw, unobs } from "reactronic"
+import { Mode, ObservableObject, ReactiveNode, ReactiveNodeDecl, raw, unobs } from "reactronic"
 import { Panel, Horizontal, Vertical, rowBreak, El, OnClick, SyntheticElement } from "verstak"
 
 export class PaneModel extends ObservableObject {
@@ -32,9 +32,9 @@ export class PaneModel extends ObservableObject {
   }
 }
 
-export function Pane(declaration: RxNodeDecl<El<HTMLElement, PaneModel>>, bodyDeclaration: RxNodeDecl<El<HTMLElement, PaneModel>>, headerDeclaration?: RxNodeDecl<El<HTMLElement, PaneModel>>) {
+export function Pane(declaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, bodyDeclaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, headerDeclaration?: ReactiveNodeDecl<El<HTMLElement, PaneModel>>) {
   return (
-    Panel<PaneModel>(RxNode.rebased({
+    Panel<PaneModel>(ReactiveNode.withBasis({
       mode: Mode.independentUpdate,
       creation: (el, base) => {
         const m = el.model = new PaneModel(el)
@@ -47,9 +47,9 @@ export function Pane(declaration: RxNodeDecl<El<HTMLElement, PaneModel>>, bodyDe
         base()
         const m = p.model
         unobs(() => m.setInitialSizes(p.height.min, p.height.max))
-        let header: RxNode<El<HTMLElement>> | undefined = undefined
+        let header: ReactiveNode<El<HTMLElement>> | undefined = undefined
         if (headerDeclaration) {
-          header = Panel(RxNode.rebased({
+          header = Panel(ReactiveNode.withBasis({
             key: "header",
             mode: Mode.independentUpdate,
             creation: (el, base) => {
@@ -75,7 +75,7 @@ export function Pane(declaration: RxNodeDecl<El<HTMLElement, PaneModel>>, bodyDe
           }, headerDeclaration))
           rowBreak()
         }
-        Panel(RxNode.rebased({
+        Panel(ReactiveNode.withBasis({
           key: "body",
           mode: Mode.independentUpdate,
           triggers: { header },

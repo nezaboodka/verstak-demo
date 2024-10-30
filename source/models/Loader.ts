@@ -1,4 +1,4 @@
-import { ObservableObject, pause, reactive, Indicator, RxSystem } from "reactronic"
+import { ObservableObject, pause, reactive, Indicator, ReactiveSystem } from "reactronic"
 
 export class Loader extends ObservableObject {
   filter: string
@@ -10,7 +10,7 @@ export class Loader extends ObservableObject {
     this.filter = ""
     this.loaded = []
     this.indicator = Indicator.create("Loader.indicator", -1, -1, 1)
-    RxSystem.getOperation(this.load).configure({ indicator: this.indicator })
+    ReactiveSystem.getOperation(this.load).configure({ indicator: this.indicator })
   }
 
   @reactive

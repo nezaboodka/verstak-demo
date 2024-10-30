@@ -1,11 +1,11 @@
-import { ObservableObject, reactive, transactional, RxNodeVariable } from "reactronic"
+import { ObservableObject, reactive, transactional, ReactiveNodeVariable } from "reactronic"
 import { WebDriver } from "verstak"
 import { AppTheme } from "themes/AppTheme.js"
 import { Loader } from "./Loader.js"
 
 export class App extends ObservableObject {
   static readonly blinkingEffectMarker = "ё"
-  private static readonly gCurrent = new RxNodeVariable<App>()
+  private static readonly gCurrent = new ReactiveNodeVariable<App>()
 
   version: string
   allThemes: Array<AppTheme>

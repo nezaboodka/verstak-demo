@@ -5,7 +5,7 @@
 // By contributing, you agree that your contributions will be
 // automatically licensed under the license referred above.
 
-import { RxNodeDecl, Mode, RxNode } from "reactronic"
+import { ReactiveNodeDecl, Mode, ReactiveNode } from "reactronic"
 import { Panel, Note, El, OnClick } from "verstak"
 import { observableModel } from "./common/Utils.js"
 import { Theme } from "./Theme.js"
@@ -17,14 +17,14 @@ export type ButtonModel = {
   action?(): void
 }
 
-export function Button(declaration?: RxNodeDecl<El<HTMLElement, ButtonModel>>) {
+export function Button(declaration?: ReactiveNodeDecl<El<HTMLElement, ButtonModel>>) {
   return (
-    Panel<ButtonModel>(RxNode.rebased(declaration, {
+    Panel<ButtonModel>(ReactiveNode.withBasis(declaration, {
       mode: Mode.independentUpdate,
       creation: el => {
         el.model ??= observableModel({
           icon: "fa-solid fa-square",
-          label: RxNode.key,
+          label: ReactiveNode.key,
         })
       },
       script: el => {

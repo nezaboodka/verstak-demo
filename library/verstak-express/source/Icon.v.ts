@@ -5,14 +5,14 @@
 // By contributing, you agree that your contributions will be
 // automatically licensed under the license referred above.
 
-import { RxNodeDecl, Mode, RxNode } from "reactronic"
+import { ReactiveNodeDecl, Mode, ReactiveNode } from "reactronic"
 import { Panel, El } from "verstak"
 import { Theme } from "./Theme.js"
 
 export function Icon(name: string,
-  declaration?: RxNodeDecl<El<HTMLElement, void>>) {
+  declaration?: ReactiveNodeDecl<El<HTMLElement, void>>) {
   return (
-    Panel(RxNode.rebased(declaration, {
+    Panel(ReactiveNode.withBasis(declaration, {
       mode: Mode.independentUpdate,
       triggers: { name },
       script: el => {
