@@ -1,5 +1,5 @@
 import { Mode, pause, refs } from "reactronic"
-import { Panel, Img, rowBreak, PosH, PosV } from "verstak"
+import { Panel, Img, rowBreak, Horizontal } from "verstak"
 import { Icon, Field, Theme, Markdown, composeFieldModel } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { App } from "models/App.js"
@@ -42,12 +42,12 @@ export function toolBar() {
   })
   Panel({
     script: el => {
-      el.horizontal = PosH.stretch
+      el.horizontal = Horizontal.stretch
       el.useStylingPreset(theme.panel)
       Panel({
         mode: Mode.independentUpdate,
         script: el => {
-          el.horizontal = PosH.stretch
+          el.horizontal = Horizontal.stretch
           const position = app.position
           if (!Number.isFinite(position))
             Markdown(`**Verstak** v${app.version}`)

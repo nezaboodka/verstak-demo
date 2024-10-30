@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { Panel, PosH, PosV } from "verstak"
+import { Panel, Horizontal, Vertical } from "verstak"
 import { Button, Toggle, Field, composeFieldModel, Theme, observableModel } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { App } from "models/App.js"
@@ -64,8 +64,8 @@ export function statusBar() {
   Panel({
     script: el => {
       el.useStylingPreset(theme.panel)
-      el.horizontal = PosH.stretch
-      el.contentHorizontal = PosH.right
+      el.horizontal = Horizontal.stretch
+      el.contentHorizontal = Horizontal.right
       Field({
         creation: (el, base) => {
           const loader = app.loader

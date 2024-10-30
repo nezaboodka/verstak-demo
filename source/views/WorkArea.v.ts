@@ -1,5 +1,5 @@
 import { refs, RxNodeDecl, RxNode } from "reactronic"
-import { Table, Panel, Note, rowBreak, PosH, PosV, cursor, El } from "verstak"
+import { Table, Panel, Note, rowBreak, Horizontal, Vertical, cursor, El } from "verstak"
 import { Theme, Toggle, observableModel } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { App } from "models/App.js"
@@ -12,15 +12,15 @@ export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
         // Elements can be layed out automatically
         // based on their order and line feeds.
         rowBreak()
-        Ruler("1", PosH.left, PosV.center)
+        Ruler("1", Horizontal.left, Vertical.center)
         cursor({ cellsOverWidth: -1, cellsOverHeight: 0 })
-        Ruler("A", PosH.center, PosV.top)
-        Ruler("B", PosH.center, PosV.top)
-        Ruler("C", PosH.center, PosV.top)
+        Ruler("A", Horizontal.center, Vertical.top)
+        Ruler("B", Horizontal.center, Vertical.top)
+        Ruler("C", Horizontal.center, Vertical.top)
         rowBreak()
-        Ruler("2", PosH.left, PosV.center)
+        Ruler("2", Horizontal.left, Vertical.center)
         rowBreak()
-        Ruler("3", PosH.left, PosV.center)
+        Ruler("3", Horizontal.left, Vertical.center)
 
         // Elements can also be layed out
         // explicitly in exact cells.
@@ -43,8 +43,8 @@ export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
             const theme = Theme.current as AppTheme
             el.native.classList.toggle(theme.panel, true)
             el.place = "B1"
-            el.horizontal = PosH.right
-            el.vertical = PosV.bottom
+            el.horizontal = Horizontal.right
+            el.vertical = Vertical.bottom
           }
         })
       }}),
@@ -52,12 +52,12 @@ export function WorkArea(declaration?: RxNodeDecl<El<HTMLElement, void>>) {
   )
 }
 
-function Ruler(title: string, posH: PosH, posV: PosV) {
+function Ruler(title: string, horizontal: Horizontal, vertical: Vertical) {
   return (
     Panel({
       script: el => {
-        el.horizontal = posH
-        el.vertical = posV
+        el.horizontal = horizontal
+        el.vertical = vertical
         el.style.fontSize = "smaller"
         Note(`&nbsp;${title}`, true)
       }
@@ -69,10 +69,10 @@ function ExampleData(place: string) {
   return (
     Panel({
       creation: el => {
-        el.horizontal = PosH.stretch
-        el.vertical = PosV.stretch
-        el.contentHorizontal = PosH.center
-        el.contentVertical = PosV.center
+        el.horizontal = Horizontal.stretch
+        el.vertical = Vertical.stretch
+        el.contentHorizontal = Horizontal.center
+        el.contentVertical = Vertical.center
       },
       script: el => {
         const theme = Theme.current as AppTheme

@@ -1,5 +1,5 @@
 import { Mode, ObservableObject, RxNode, RxNodeDecl, raw, unobs } from "reactronic"
-import { Panel, PosH, PosV, rowBreak, El, OnClick, SyntheticElement } from "verstak"
+import { Panel, Horizontal, Vertical, rowBreak, El, OnClick, SyntheticElement } from "verstak"
 
 export class PaneModel extends ObservableObject {
   @raw private readonly _el: El<HTMLElement, PaneModel>
@@ -39,8 +39,8 @@ export function Pane(declaration: RxNodeDecl<El<HTMLElement, PaneModel>>, bodyDe
       creation: (el, base) => {
         const m = el.model = new PaneModel(el)
         base()
-        el.horizontal = PosH.stretch
-        el.vertical = PosV.stretch
+        el.horizontal = Horizontal.stretch
+        el.vertical = Vertical.stretch
         m.setInitialSizes(el.height.min, el.height.max)
       },
       script: (p, base) => {
@@ -56,8 +56,8 @@ export function Pane(declaration: RxNodeDecl<El<HTMLElement, PaneModel>>, bodyDe
               el.model = m
               base()
               el.native.className = "header"
-              el.horizontal = PosH.stretch
-              el.vertical = PosV.top
+              el.horizontal = Horizontal.stretch
+              el.vertical = Vertical.top
             },
             script: (el, base) => {
               base()
@@ -84,8 +84,8 @@ export function Pane(declaration: RxNodeDecl<El<HTMLElement, PaneModel>>, bodyDe
             base()
             el.native.className = "body"
             el.style.overflow = "scroll"
-            el.horizontal = PosH.stretch
-            el.vertical = PosV.stretch
+            el.horizontal = Horizontal.stretch
+            el.vertical = Vertical.stretch
           },
           script: (el, base) => {
             base()

@@ -1,5 +1,5 @@
 import { refs, Mode, RxNodeDecl } from "reactronic"
-import { Panel, PosH, PosV, Note, rowBreak, Dimension, Span, El, equal, Direction } from "verstak"
+import { Panel, Horizontal, Vertical, Note, rowBreak, Dimension, Span, El, equal, Direction } from "verstak"
 import { Markdown, Field, Theme, composeFieldModel, observableModel, Icon } from "verstak-express"
 import { App } from "models/App.js"
 import { toolBar } from "./ToolBar.v.js"
@@ -13,8 +13,8 @@ export function MainWindow() {
       mode: Mode.independentUpdate,
       creation: el => {
         el.native.sensors.focus // enable focus global manager
-        el.horizontal = PosH.stretch
-        el.vertical = PosV.stretch
+        el.horizontal = Horizontal.stretch
+        el.vertical = Vertical.stretch
         el.style.padding = "1em"
         el.style.gap = "1em"
         el.style.overflow = "hidden"
@@ -32,8 +32,8 @@ export function MainWindow() {
         Panel({
           creation: el => {
             el.splitView = Direction.horizontal
-            el.horizontal = PosH.stretch
-            el.vertical = PosV.stretch
+            el.horizontal = Horizontal.stretch
+            el.vertical = Vertical.stretch
             const hostEl = el.node.host.element as El
             hostEl.style.flexGrow = "1"
           },
@@ -49,15 +49,15 @@ export function MainWindow() {
                 el.style.marginRight = "0.5em"
                 el.width = { min: "19em" }
                 el.stretchingStrengthH = 0
-                el.horizontal = PosH.stretch
-                el.vertical = PosV.stretch
-                el.contentHorizontal = PosH.stretch
-                el.contentVertical = PosV.top
+                el.horizontal = Horizontal.stretch
+                el.vertical = Vertical.stretch
+                el.contentHorizontal = Horizontal.stretch
+                el.contentVertical = Vertical.top
 
                 Note("SIDE BAR", false, {
                   creation: el => {
                     el.height = { min: "2em", max: "2em" }
-                    el.vertical = PosV.top /* + Align.centerX */
+                    el.vertical = Vertical.top /* + Align.centerX */
                     el.stretchingStrengthV = 0
                   },
                   // script: el => {
@@ -71,7 +71,7 @@ export function MainWindow() {
                     const loader = app.loader
                     el.width = { min: "10em" }
                     el.height = { min: "2em", max: "4em" }
-                    el.vertical = PosV.center
+                    el.vertical = Vertical.center
                     el.stretchingStrengthV = 0
                     el.model = composeFieldModel({
                       icon: "fa-solid fa-search",
@@ -116,7 +116,7 @@ export function MainWindow() {
                 // rowBreak()
                 Panel({
                   script: el => {
-                    el.vertical = PosV.stretch
+                    el.vertical = Vertical.stretch
                     el.stretchingStrengthV = 2
                     // el.height = { max: "600px" }
                   }
@@ -128,7 +128,7 @@ export function MainWindow() {
                     const loader = app.loader
                     el.width = { min: "10em" }
                     el.height = { min: "2ln" }
-                    el.vertical = PosV.top
+                    el.vertical = Vertical.top
                     el.stretchingStrengthV = 0
                     el.model = composeFieldModel({
                       text: refs(loader).filter,
@@ -148,8 +148,8 @@ export function MainWindow() {
                 el.useStylingPreset(theme.accent)
                 el.style.margin = "0 0.5em"
                 el.width = { min: "330px" }
-                el.horizontal = PosH.stretch
-                el.vertical = PosV.stretch
+                el.horizontal = Horizontal.stretch
+                el.vertical = Vertical.stretch
                 el.stretchingStrengthH = 3
               }
             })
@@ -162,10 +162,10 @@ export function MainWindow() {
                 el.style.marginLeft = "0.5em"
                 el.width = { min: "300px", max: "50%" }
                 el.stretchingStrengthH = 3
-                el.horizontal = PosH.stretch
-                el.vertical = PosV.stretch
-                el.contentHorizontal = PosH.stretch
-                el.contentVertical = PosV.top
+                el.horizontal = Horizontal.stretch
+                el.vertical = Vertical.stretch
+                el.contentHorizontal = Horizontal.stretch
+                el.contentVertical = Vertical.top
                 el.splitView = Direction.vertical
                 Pane({
                   creation: el => {
@@ -181,7 +181,7 @@ export function MainWindow() {
                     const loader = app.loader
                     el.width = { min: "10em" }
                     el.height = { min: "2ln" }
-                    el.vertical = PosV.top
+                    el.vertical = Vertical.top
                     el.stretchingStrengthV = 1
                     el.model = composeFieldModel({
                       icon: "fa-solid fa-search",

@@ -1,5 +1,5 @@
 import { Transaction, Clock, Mode, RxNode } from "reactronic"
-import { Panel, PosH, PosV, Svg, Circle, Rect, Text, G, El, Polygon } from "verstak"
+import { Panel, Horizontal, Vertical, Svg, Circle, Rect, Text, G, El, Polygon } from "verstak"
 import { Theme } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { App } from "models/App.js"
@@ -20,10 +20,10 @@ export function Watch(place: string): RxNode<El<HTMLElement>> {
       mode: Mode.independentUpdate,
       creation: el => {
         const s = el.style
-        el.horizontal = PosH.stretch
-        el.vertical = PosV.stretch
-        el.contentHorizontal = PosH.center
-        el.contentVertical = PosV.center
+        el.horizontal = Horizontal.stretch
+        el.vertical = Vertical.stretch
+        el.contentHorizontal = Horizontal.center
+        el.contentVertical = Vertical.center
         // s.fontFamily = "Arial"
         s.cursor = "default"
       },
