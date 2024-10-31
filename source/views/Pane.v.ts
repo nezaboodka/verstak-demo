@@ -39,8 +39,8 @@ export function Pane(declaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, 
       creation: (el, base) => {
         const m = el.model = new PaneModel(el)
         base()
-        el.horizontal = Horizontal.stretch
-        el.vertical = Vertical.stretch
+        el.horizontally = Horizontal.stretch
+        el.vertically = Vertical.stretch
         m.setInitialSizes(el.height.min, el.height.max)
       },
       script: (p, base) => {
@@ -56,8 +56,8 @@ export function Pane(declaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, 
               el.model = m
               base()
               el.native.className = "header"
-              el.horizontal = Horizontal.stretch
-              el.vertical = Vertical.top
+              el.horizontally = Horizontal.stretch
+              el.vertically = Vertical.top
             },
             script: (el, base) => {
               base()
@@ -84,8 +84,8 @@ export function Pane(declaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, 
             base()
             el.native.className = "body"
             el.style.overflow = "scroll"
-            el.horizontal = Horizontal.stretch
-            el.vertical = Vertical.stretch
+            el.horizontally = Horizontal.stretch
+            el.vertically = Vertical.stretch
           },
           script: (el, base) => {
             base()

@@ -42,12 +42,12 @@ export function toolBar() {
   })
   Panel({
     script: el => {
-      el.horizontal = Horizontal.stretch
+      el.horizontally = Horizontal.stretch
       el.useStylingPreset(theme.panel)
       Panel({
         mode: Mode.independentUpdate,
         script: el => {
-          el.horizontal = Horizontal.stretch
+          el.horizontally = Horizontal.stretch
           const position = app.position
           if (!Number.isFinite(position))
             Markdown(`**Verstak** v${app.version}`)

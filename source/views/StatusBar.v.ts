@@ -64,8 +64,8 @@ export function statusBar() {
   Panel({
     script: el => {
       el.useStylingPreset(theme.panel)
-      el.horizontal = Horizontal.stretch
-      el.contentHorizontal = Horizontal.right
+      el.horizontally = Horizontal.stretch
+      el.contentHorizontally = Horizontal.right
       Field({
         creation: (el, base) => {
           const loader = app.loader

@@ -20,10 +20,10 @@ export function Watch(place: string): ReactiveNode<El<HTMLElement>> {
       mode: Mode.independentUpdate,
       creation: el => {
         const s = el.style
-        el.horizontal = Horizontal.stretch
-        el.vertical = Vertical.stretch
-        el.contentHorizontal = Horizontal.center
-        el.contentVertical = Vertical.center
+        el.horizontally = Horizontal.stretch
+        el.vertically = Vertical.stretch
+        el.contentHorizontally = Horizontal.center
+        el.contentVertically = Vertical.center
         // s.fontFamily = "Arial"
         s.cursor = "default"
       },

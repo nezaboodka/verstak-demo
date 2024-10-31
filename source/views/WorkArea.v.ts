@@ -43,8 +43,8 @@ export function WorkArea(declaration?: ReactiveNodeDecl<El<HTMLElement, void>>) 
             const theme = Theme.current as AppTheme
             el.native.classList.toggle(theme.panel, true)
             el.place = "B1"
-            el.horizontal = Horizontal.right
-            el.vertical = Vertical.bottom
+            el.horizontally = Horizontal.right
+            el.vertically = Vertical.bottom
           }
         })
       }}),
@@ -56,8 +56,8 @@ function Ruler(title: string, horizontal: Horizontal, vertical: Vertical) {
   return (
     Panel({
       script: el => {
-        el.horizontal = horizontal
-        el.vertical = vertical
+        el.horizontally = horizontal
+        el.vertically = vertical
         el.style.fontSize = "smaller"
         Note(`&nbsp;${title}`, true)
       }
@@ -69,10 +69,10 @@ function ExampleData(place: string) {
   return (
     Panel({
       creation: el => {
-        el.horizontal = Horizontal.stretch
-        el.vertical = Vertical.stretch
-        el.contentHorizontal = Horizontal.center
-        el.contentVertical = Vertical.center
+        el.horizontally = Horizontal.stretch
+        el.vertically = Vertical.stretch
+        el.contentHorizontally = Horizontal.center
+        el.contentVertically = Vertical.center
       },
       script: el => {
         const theme = Theme.current as AppTheme
