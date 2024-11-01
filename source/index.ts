@@ -23,8 +23,8 @@ const app = Transaction.run(null, () =>
     new PrintAppTheme()))
 
 Page({
-  mode: Mode.independentUpdate,
-  script: el => {
+  mode: Mode.autonomous,
+  content: el => {
     App.current = app
     const t = app.theme
     const s = el.style

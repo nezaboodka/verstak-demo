@@ -26,18 +26,18 @@ export type FieldModel<T = string> = FocusModel & {
 export function Field(declaration?: ReactiveNodeDecl<El<HTMLElement, FieldModel>>) {
   return (
     Panel<FieldModel>(ReactiveNode.withBasis(declaration, {
-      mode: Mode.independentUpdate,
+      mode: Mode.autonomous,
       creation: el => {
         el.model ??= composeFieldModel()
         el.native.dataForSensor.focus = el.model
       },
-      script: el => {
+      content: el => {
         const m = el.model
         const theme = Theme.current.field
         el.useStylingPreset(theme.main)
         if (m.icon)
           Icon(m.icon, {
-            script: (el, base) => {
+            content: (el, base) => {
               base()
               el.useStylingPreset(theme.icon)
             },
@@ -78,7 +78,7 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
         e.dataForSensor.focus = model
         base()
       },
-      script: el => {
+      content: el => {
         const e = el.native
         if (!model.isEditMode)
           e.innerText = model.text
@@ -107,7 +107,7 @@ function FieldPopup(model: FieldModel, s: FieldStyling) {
   return (
     Panel({
       key: FieldPopup.name,
-      script: el => {
+      content: el => {
         el.useStylingPreset(s.popup)
         Handling(() => model.position = el.native.sensors.scroll.y)
         const visible = el.overlayVisible = model.isEditMode

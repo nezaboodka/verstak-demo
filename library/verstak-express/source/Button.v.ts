@@ -20,20 +20,20 @@ export type ButtonModel = {
 export function Button(declaration?: ReactiveNodeDecl<El<HTMLElement, ButtonModel>>) {
   return (
     Panel<ButtonModel>(ReactiveNode.withBasis(declaration, {
-      mode: Mode.independentUpdate,
+      mode: Mode.autonomous,
       creation: el => {
         el.model ??= observableModel({
           icon: "fa-solid fa-square",
           label: ReactiveNode.key,
         })
       },
-      script: el => {
+      content: el => {
         const m = el.model
         const theme = Theme.current.button
         el.useStylingPreset(theme.main)
         if (m.icon) {
           Icon(m.icon, {
-            script: (el, base) => {
+            content: (el, base) => {
               base()
               el.useStylingPreset(theme.icon)
             },
@@ -41,7 +41,7 @@ export function Button(declaration?: ReactiveNodeDecl<El<HTMLElement, ButtonMode
         }
         if (m.label) {
           Note(m.label, false, {
-            script: (el, base) => {
+            content: (el, base) => {
               base()
               el.useStylingPreset(theme.label)
             },

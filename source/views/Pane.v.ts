@@ -35,7 +35,7 @@ export class PaneModel extends ObservableObject {
 export function Pane(declaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, bodyDeclaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, headerDeclaration?: ReactiveNodeDecl<El<HTMLElement, PaneModel>>) {
   return (
     Panel<PaneModel>(ReactiveNode.withBasis({
-      mode: Mode.independentUpdate,
+      mode: Mode.autonomous,
       creation: (el, base) => {
         const m = el.model = new PaneModel(el)
         base()
@@ -43,7 +43,7 @@ export function Pane(declaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, 
         el.vertically = Vertical.stretch
         m.setInitialSizes(el.height.min, el.height.max)
       },
-      script: (p, base) => {
+      content: (p, base) => {
         base()
         const m = p.model
         unobs(() => m.setInitialSizes(p.height.min, p.height.max))
@@ -51,7 +51,7 @@ export function Pane(declaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, 
         if (headerDeclaration) {
           header = Panel(ReactiveNode.withBasis({
             key: "header",
-            mode: Mode.independentUpdate,
+            mode: Mode.autonomous,
             creation: (el, base) => {
               el.model = m
               base()
@@ -59,7 +59,7 @@ export function Pane(declaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, 
               el.horizontally = Horizontal.stretch
               el.vertically = Vertical.top
             },
-            script: (el, base) => {
+            content: (el, base) => {
               base()
               OnClick(el.native, () => {
                 m.isExpanded = !m.isExpanded
@@ -77,7 +77,7 @@ export function Pane(declaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, 
         }
         Panel(ReactiveNode.withBasis({
           key: "body",
-          mode: Mode.independentUpdate,
+          mode: Mode.autonomous,
           triggers: { header },
           creation: (el, base) => {
             el.model = m
@@ -87,7 +87,7 @@ export function Pane(declaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, 
             el.horizontally = Horizontal.stretch
             el.vertically = Vertical.stretch
           },
-          script: (el, base) => {
+          content: (el, base) => {
             base()
             const headerSizePx = header?.element.native.clientHeight ?? 0
             const minPx = Math.max(0, p.heightPx.minPx - headerSizePx)
@@ -96,9 +96,9 @@ export function Pane(declaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, 
           }
         }, bodyDeclaration))
         SyntheticElement({
-          mode: Mode.independentUpdate,
+          mode: Mode.autonomous,
           triggers: { header, stamp: p.node.stamp },
-          script: () => {
+          content: () => {
             const headerSizePx = header?.element.native.clientHeight ?? 0
             p.height = m.isExpanded
               ? { min: m.initialMinSize, max: m.initialMaxSize, preferred: `${m.sizePx}px` }

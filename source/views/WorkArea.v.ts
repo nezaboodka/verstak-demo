@@ -8,7 +8,7 @@ import { Watch } from "./Watch.js"
 export function WorkArea(declaration?: ReactiveNodeDecl<El<HTMLElement, void>>) {
   return (
     Table(ReactiveNode.withBasis(declaration, {
-      script: el => {
+      content: el => {
         // Elements can be layed out automatically
         // based on their order and line feeds.
         rowBreak()
@@ -38,7 +38,7 @@ export function WorkArea(declaration?: ReactiveNodeDecl<El<HTMLElement, void>>) 
             })
             base()
           },
-          script: (el, base) => {
+          content: (el, base) => {
             base()
             const theme = Theme.current as AppTheme
             el.native.classList.toggle(theme.panel, true)
@@ -55,7 +55,7 @@ export function WorkArea(declaration?: ReactiveNodeDecl<El<HTMLElement, void>>) 
 function Ruler(title: string, horizontal: Horizontal, vertical: Vertical) {
   return (
     Panel({
-      script: el => {
+      content: el => {
         el.horizontally = horizontal
         el.vertically = vertical
         el.style.fontSize = "smaller"
@@ -74,7 +74,7 @@ function ExampleData(place: string) {
         el.contentHorizontally = Horizontal.center
         el.contentVertically = Vertical.center
       },
-      script: el => {
+      content: el => {
         const theme = Theme.current as AppTheme
         el.place = place
         el.useStylingPreset(theme.accent)

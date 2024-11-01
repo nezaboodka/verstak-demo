@@ -16,11 +16,11 @@ export type ImageModel = {
 export function Image(declaration?: ReactiveNodeDecl<El<HTMLElement, ImageModel>>) {
   return (
     Panel<ImageModel>(ReactiveNode.withBasis(declaration, {
-      mode: Mode.independentUpdate,
+      mode: Mode.autonomous,
       creation: el => {
         el.model ??= observableModel({ source: undefined })
       },
-      script: el => {
+      content: el => {
         const m = el.model
         el.style.backgroundImage = `url(${m.source})`
         el.style.backgroundSize = "contain"

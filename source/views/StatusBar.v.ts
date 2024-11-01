@@ -22,7 +22,7 @@ export function statusBar() {
       })
       base()
     },
-    script: (el, base) => {
+    content: (el, base) => {
       base()
       // Style is not inside "initialize", because of theming
       el.native.classList.toggle(theme.panel, true)
@@ -37,7 +37,7 @@ export function statusBar() {
       })
       base()
     },
-    script: (el,  base) => {
+    content: (el,  base) => {
       base()
       el.useStylingPreset(theme.panel)
     }
@@ -50,19 +50,19 @@ export function statusBar() {
       })
       base()
     },
-    script: (el, base) => {
+    content: (el, base) => {
       base()
       el.native.classList.toggle(theme.panel, true)
     }
   })
   Toggle({
-    script: (el, base) => {
+    content: (el, base) => {
       base()
       el.native.classList.toggle(theme.panel, true)
     }
   })
   Panel({
-    script: el => {
+    content: el => {
       el.useStylingPreset(theme.panel)
       el.horizontally = Horizontal.stretch
       el.contentHorizontally = Horizontal.right
@@ -79,7 +79,7 @@ export function statusBar() {
           })
           base()
         },
-        script: (el, base) => {
+        content: (el, base) => {
           base()
           // Spinner("Spinner", {
           //   creation: el => {

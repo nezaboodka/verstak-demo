@@ -17,11 +17,11 @@ export type SpinnerModel = {
 export function Spinner(declaration?: ReactiveNodeDecl<El<HTMLElement, SpinnerModel>>) {
   return (
     Panel<SpinnerModel>(ReactiveNode.withBasis(declaration, {
-      mode: Mode.independentUpdate,
+      mode: Mode.autonomous,
       creation: el => {
         el.model ??= composeSpinnerModel()
       },
-      script: el => {
+      content: el => {
         const m = el.model
         m.active && Note("loading...")
       },

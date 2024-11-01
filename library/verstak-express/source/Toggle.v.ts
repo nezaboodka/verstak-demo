@@ -20,7 +20,7 @@ export type ToggleModel = {
 export function Toggle(declaration?: ReactiveNodeDecl<El<HTMLElement, ToggleModel>>) {
   return (
     Panel<ToggleModel>(ReactiveNode.withBasis(declaration, {
-      mode: Mode.independentUpdate,
+      mode: Mode.autonomous,
       creation: el => {
         el.model ??= observableModel({
           label: ReactiveNode.key,
@@ -28,13 +28,13 @@ export function Toggle(declaration?: ReactiveNodeDecl<El<HTMLElement, ToggleMode
           color: "green" }) // model is either taken from parameter or created internally
         el.native.onclick = () => Transaction.run(null, () => el.model.checked = !el.model.checked)
       },
-      script: el => {
+      content: el => {
         const m = el.model
         const theme = Theme.current
         const toggleTheme = theme.toggle
         el.useStylingPreset(toggleTheme.main)
         Icon(`fa-solid fa-toggle-${m.checked ? "on" : "off"}`, {
-          script: (el, base) => {
+          content: (el, base) => {
             base()
             el.useStylingPreset(toggleTheme.icon)
             el.style.color = m.checked ? (theme.positiveColor ?? "") : "" // subscribe to ToggleModel.checked
@@ -42,7 +42,7 @@ export function Toggle(declaration?: ReactiveNodeDecl<El<HTMLElement, ToggleMode
         })
         if (m.label)
           Note(m.label, false, {
-            script: (el, base) => {
+            content: (el, base) => {
               base()
               el.useStylingPreset(toggleTheme.label)
             },

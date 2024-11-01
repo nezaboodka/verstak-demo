@@ -13,9 +13,9 @@ export function Icon(name: string,
   declaration?: ReactiveNodeDecl<El<HTMLElement, void>>) {
   return (
     Panel(ReactiveNode.withBasis(declaration, {
-      mode: Mode.independentUpdate,
+      mode: Mode.autonomous,
       triggers: { name },
-      script: el => {
+      content: el => {
         const theme = Theme.current.icon
         el.useStylingPreset(name)
         el.useStylingPreset(theme.main)
