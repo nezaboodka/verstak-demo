@@ -17,7 +17,7 @@ export function Image(declaration?: ReactiveNodeDecl<El<HTMLElement, ImageModel>
   return (
     Panel<ImageModel>(ReactiveNode.withBasis(declaration, {
       mode: Mode.autonomous,
-      creation: el => {
+      preparation: el => {
         el.model ??= observableModel({ source: undefined })
       },
       content: el => {

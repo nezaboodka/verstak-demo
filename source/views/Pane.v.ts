@@ -36,7 +36,7 @@ export function Pane(declaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, 
   return (
     Panel<PaneModel>(ReactiveNode.withBasis({
       mode: Mode.autonomous,
-      creation: (el, base) => {
+      preparation: (el, base) => {
         const m = el.model = new PaneModel(el)
         base()
         el.horizontally = Horizontal.stretch
@@ -52,7 +52,7 @@ export function Pane(declaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, 
           header = Panel(ReactiveNode.withBasis({
             key: "header",
             mode: Mode.autonomous,
-            creation: (el, base) => {
+            preparation: (el, base) => {
               el.model = m
               base()
               el.native.className = "header"
@@ -79,7 +79,7 @@ export function Pane(declaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, 
           key: "body",
           mode: Mode.autonomous,
           triggers: { header },
-          creation: (el, base) => {
+          preparation: (el, base) => {
             el.model = m
             base()
             el.native.className = "body"

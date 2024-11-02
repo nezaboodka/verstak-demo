@@ -27,7 +27,7 @@ export function Field(declaration?: ReactiveNodeDecl<El<HTMLElement, FieldModel>
   return (
     Panel<FieldModel>(ReactiveNode.withBasis(declaration, {
       mode: Mode.autonomous,
-      creation: el => {
+      preparation: el => {
         el.model ??= composeFieldModel()
         el.native.dataForSensor.focus = el.model
       },
@@ -68,7 +68,7 @@ function FieldInput(model: FieldModel, s: FieldStyling) {
   return (
     Note(model.text, false, {
       key: FieldInput.name,
-      creation: (el, base) => {
+      preparation: (el, base) => {
         const e = el.native
         el.useStylingPreset(s.input)
         el.horizontally = Horizontal.stretch
@@ -118,7 +118,7 @@ function FieldPopup(model: FieldModel, s: FieldStyling) {
               rowBreak()
               Note(x, false, {
                 key: x,
-                creation: el => {
+                preparation: el => {
                   el.contentWrapping = false
                 },
               })

@@ -12,7 +12,7 @@ export function statusBar() {
   const app = App.current
   const theme = Theme.current as AppTheme
   Toggle({ key: "Blinking",
-    creation: (el, base) => {
+    preparation: (el, base) => {
       // We compose model from different pieces,
       // such as app and theme. Without the need
       // to implement interface in form of class.
@@ -29,7 +29,7 @@ export function statusBar() {
     }
   })
   Button({ key: "Theme",
-    creation: (el, base) => {
+    preparation: (el, base) => {
       el.model = observableModel({
         icon: "fa-solid fa-palette",
         label: "Switch Theme",
@@ -43,7 +43,7 @@ export function statusBar() {
     }
   })
   Toggle({ key: "SecondaryTimeZone",
-    creation: (el, base) => {
+    preparation: (el, base) => {
       el.model = observableModel({
         label: "New York (GMT-7)",
         checked: refs(app).isSecondaryTimeZoneOn,
@@ -67,7 +67,7 @@ export function statusBar() {
       el.horizontally = Horizontal.stretch
       el.contentHorizontally = Horizontal.right
       Field({
-        creation: (el, base) => {
+        preparation: (el, base) => {
           const loader = app.loader
           el.width = { min: "10em" }
           el.model = composeFieldModel({
@@ -82,7 +82,7 @@ export function statusBar() {
         content: (el, base) => {
           base()
           // Spinner("Spinner", {
-          //   creation: el => {
+          //   preparation: el => {
           //     el.model = observableModel({
           //       active: refs(app.loader.indicator).isActive,
           //       color: "red",

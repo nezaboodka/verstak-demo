@@ -11,7 +11,7 @@ export function MainWindow() {
   return (
     Panel({
       mode: Mode.autonomous,
-      creation: el => {
+      preparation: el => {
         el.native.sensors.focus // enable focus global manager
         el.horizontally = Horizontal.stretch
         el.vertically = Vertical.stretch
@@ -30,7 +30,7 @@ export function MainWindow() {
         rowBreak()
 
         Panel({
-          creation: el => {
+          preparation: el => {
             el.splitView = Direction.horizontal
             el.horizontally = Horizontal.stretch
             el.vertically = Vertical.stretch
@@ -41,7 +41,7 @@ export function MainWindow() {
             // Dimension.gFontSizePx.value = 16
             Dimension.lineSizePx = 20
             Panel({
-              creation: el => { el.splitView = Direction.vertical },
+              preparation: el => { el.splitView = Direction.vertical },
               content: el => {
                 // Dimension.gFontSizePx.value = 26
                 Dimension.lineSizePx = 40
@@ -55,7 +55,7 @@ export function MainWindow() {
                 el.contentVertically = Vertical.top
 
                 Note("SIDE BAR", false, {
-                  creation: el => {
+                  preparation: el => {
                     el.height = { min: "2em", max: "2em" }
                     el.vertically = Vertical.top /* + Align.centerX */
                     el.stretchingStrengthVertically = 0
@@ -67,7 +67,7 @@ export function MainWindow() {
 
                 // rowBreak()
                 Field({
-                  creation: (el, base) => {
+                  preparation: (el, base) => {
                     const loader = app.loader
                     el.width = { min: "10em" }
                     el.height = { min: "2em", max: "4em" }
@@ -87,7 +87,7 @@ export function MainWindow() {
 
                 // rowBreak()
                 Pane({
-                  creation: el => {
+                  preparation: el => {
                     el.useStylingPreset(app.theme.group)
                     el.height = { min: "80px", max: "320px" }
                   },
@@ -96,7 +96,7 @@ export function MainWindow() {
                 }, GroupHeader("Group"))
                 // rowBreak()
                 Pane({
-                  creation: el => {
+                  preparation: el => {
                     el.useStylingPreset(app.theme.group)
                     el.height = { min: "80px", max: "320px" }
                   },
@@ -105,7 +105,7 @@ export function MainWindow() {
                 }, GroupHeader("Group"))
                 // rowBreak()
                 Pane({
-                  creation: el => {
+                  preparation: el => {
                     el.useStylingPreset(app.theme.group)
                     el.height = { min: "80px", max: "320px" }
                   },
@@ -124,7 +124,7 @@ export function MainWindow() {
 
                 // rowBreak()
                 Field({
-                  creation: (el, base) => {
+                  preparation: (el, base) => {
                     const loader = app.loader
                     el.width = { min: "10em" }
                     el.height = { min: "2ln" }
@@ -168,7 +168,7 @@ export function MainWindow() {
                 el.contentVertically = Vertical.top
                 el.splitView = Direction.vertical
                 Pane({
-                  creation: el => {
+                  preparation: el => {
                     el.useStylingPreset(app.theme.group)
                     el.height = { min: "300px", max: "450px" }
                     el.stretchingStrengthVertically = 1
@@ -177,7 +177,7 @@ export function MainWindow() {
                   content: () => Markdown(EXAMPLE_CODE)
                 }, GroupHeader("Group"))
                 Field({
-                  creation: (el, base) => {
+                  preparation: (el, base) => {
                     const loader = app.loader
                     el.width = { min: "10em" }
                     el.height = { min: "2ln" }
@@ -207,7 +207,7 @@ export function MainWindow() {
 
 function GroupHeader(caption: string): ReactiveNodeDecl<El<HTMLElement, PaneModel>> {
   return ({
-    creation: el => {
+    preparation: el => {
       el.height = { min: "30px" }
     },
     content: el => {
@@ -215,7 +215,7 @@ function GroupHeader(caption: string): ReactiveNodeDecl<El<HTMLElement, PaneMode
       Icon(m.isExpanded ? "fa-solid fa-chevron-down fa-fw" : "fa-solid fa-chevron-right fa-fw")
       Span({
         mode: Mode.autonomous,
-        creation: el => {
+        preparation: el => {
           el.style.fontWeight = "bold"
         },
         content: el => {
@@ -223,10 +223,10 @@ function GroupHeader(caption: string): ReactiveNodeDecl<El<HTMLElement, PaneMode
           el.native.innerText = `${caption}: ${heightPx.minPx}px..${heightPx.maxPx}px`
         }
       })
-      Span({ creation: el => el.native.style.flexGrow = "1" })
+      Span({ preparation: el => el.native.style.flexGrow = "1" })
       Span({
         mode: Mode.autonomous,
-        creation: el => el.native.className = "size-tag",
+        preparation: el => el.native.className = "size-tag",
         content: el => {
           el.native.style.display = "inline"
           const sizePx = m.partitionSizeInSplitViewPx
@@ -247,7 +247,7 @@ function GroupHeader(caption: string): ReactiveNodeDecl<El<HTMLElement, PaneMode
       })
       Span({
         mode: Mode.autonomous,
-        creation: el => el.native.className = "effective-size",
+        preparation: el => el.native.className = "effective-size",
         content: el => {
           const sizePx = m.partitionSizeInSplitViewPx
           el.native.innerText = `${sizePx === 0 ? "0" : sizePx.toFixed(2)}px`

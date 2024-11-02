@@ -8,7 +8,7 @@ export function toolBar() {
   const app = App.current
   const theme = Theme.current as AppTheme
   // Image({ // logo
-  //   creation: (el, base) => {
+  //   preparation: (el, base) => {
   //     base()
   //     el.contentAlignment = Align.stretch
   //     el.boundsAlignment = Align.stretch
@@ -22,7 +22,7 @@ export function toolBar() {
   //   }
   // })
   Panel({ // Logo
-    creation: el => {
+    preparation: el => {
       el.useStylingPreset(theme.panel)
       // b.useStyle(s.Clickable)
       // b.useStyle(s.Logo)
@@ -58,7 +58,7 @@ export function toolBar() {
         }
       })
       Field({
-        creation: (el, base) => {
+        preparation: (el, base) => {
           const loader = app.loader
           el.width = { min: "7em" }
           el.model = composeFieldModel({
@@ -75,7 +75,7 @@ export function toolBar() {
     }
   })
   Panel({ // Account
-    creation: el => {
+    preparation: el => {
       // el.native.onclick = () => Transaction.run(null, () => app.nextTheme())
     },
     content: el => {

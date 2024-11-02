@@ -21,7 +21,7 @@ export function Button(declaration?: ReactiveNodeDecl<El<HTMLElement, ButtonMode
   return (
     Panel<ButtonModel>(ReactiveNode.withBasis(declaration, {
       mode: Mode.autonomous,
-      creation: el => {
+      preparation: el => {
         el.model ??= observableModel({
           icon: "fa-solid fa-square",
           label: ReactiveNode.key,

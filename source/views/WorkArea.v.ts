@@ -30,7 +30,7 @@ export function WorkArea(declaration?: ReactiveNodeDecl<El<HTMLElement, void>>) 
         ExampleData("B3:C3")
         ExampleData("A2:A3")
         Toggle({ key: "SecondaryTimeZone",
-          creation: (el, base) => {
+          preparation: (el, base) => {
             const app = App.current
             el.model = observableModel({
               label: "Watch Bezel",
@@ -68,7 +68,7 @@ function Ruler(title: string, horizontal: Horizontal, vertical: Vertical) {
 function ExampleData(place: string) {
   return (
     Panel({
-      creation: el => {
+      preparation: el => {
         el.horizontally = Horizontal.stretch
         el.vertically = Vertical.stretch
         el.contentHorizontally = Horizontal.center

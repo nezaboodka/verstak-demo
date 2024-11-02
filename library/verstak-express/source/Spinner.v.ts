@@ -18,7 +18,7 @@ export function Spinner(declaration?: ReactiveNodeDecl<El<HTMLElement, SpinnerMo
   return (
     Panel<SpinnerModel>(ReactiveNode.withBasis(declaration, {
       mode: Mode.autonomous,
-      creation: el => {
+      preparation: el => {
         el.model ??= composeSpinnerModel()
       },
       content: el => {

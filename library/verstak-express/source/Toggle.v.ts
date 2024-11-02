@@ -21,7 +21,7 @@ export function Toggle(declaration?: ReactiveNodeDecl<El<HTMLElement, ToggleMode
   return (
     Panel<ToggleModel>(ReactiveNode.withBasis(declaration, {
       mode: Mode.autonomous,
-      creation: el => {
+      preparation: el => {
         el.model ??= observableModel({
           label: ReactiveNode.key,
           checked: true,

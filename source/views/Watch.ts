@@ -18,7 +18,7 @@ export function Watch(place: string): ReactiveNode<El<HTMLElement>> {
   return (
     Panel({
       mode: Mode.autonomous,
-      creation: el => {
+      preparation: el => {
         const s = el.style
         el.horizontally = Horizontal.stretch
         el.vertically = Vertical.stretch
@@ -147,7 +147,7 @@ export function Watch(place: string): ReactiveNode<El<HTMLElement>> {
 
             // Bezel (secondary time zone)
             G({
-              creation: el => {
+              preparation: el => {
                 el.style.transition = "transform 1s ease"
                 el.native.onclick = () => {
                   el.style.transform = el.style.transform === "rotate(105deg)" ? "rotate(0deg)" : "rotate(105deg)"
