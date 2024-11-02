@@ -1,6 +1,6 @@
 import { refs, ReactiveNodeDecl, ReactiveNode } from "reactronic"
 import { Table, Panel, Note, rowBreak, Horizontal, Vertical, cursor, El } from "verstak"
-import { Theme, Toggle, observableModel } from "verstak-express"
+import { Theme, Toggle, observableModel } from "verstak/express"
 import { AppTheme } from "themes/AppTheme.js"
 import { App } from "models/App.js"
 import { Watch } from "./Watch.js"

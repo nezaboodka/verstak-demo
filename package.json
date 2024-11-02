@@ -15,7 +15,7 @@
     "start:prod": "npm run pack && vite preview",
     "build": "tsc && eslint source/**.ts library/**/*.ts",
     "pack": "vite build",
-    "install-all": "npm i && npm i --prefix library/reactronic && npm i --prefix library/verstak && npm i --prefix library/verstak-express"
+    "install-all": "npm i && npm i --prefix library/reactronic && npm i --prefix library/verstak"
   },
   "dependencies": {
     "markdown-it": "^14.1.0",

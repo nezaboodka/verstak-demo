@@ -1,6 +1,6 @@
 import { cached } from "reactronic"
 import { css } from "@emotion/css"
-import { Theme } from "verstak-express"
+import { Theme } from "verstak/express"
 
 export class AppTheme extends Theme {
   accentColor: string = ""

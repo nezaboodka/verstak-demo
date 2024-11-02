@@ -1,7 +1,7 @@
 import { Transaction, Clock, Mode, ReactiveNode } from "reactronic"
 import { Panel, Horizontal, Vertical, El } from "verstak"
 import { Svg, Circle, Rect, Text, G, Polygon } from "verstak/html"
-import { Theme } from "verstak-express"
+import { Theme } from "verstak/express"
 import { AppTheme } from "themes/AppTheme.js"
 import { App } from "models/App.js"
 
