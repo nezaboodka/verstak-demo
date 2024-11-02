@@ -1,5 +1,6 @@
 import { Mode, pause, refs } from "reactronic"
-import { Panel, Img, rowBreak, Horizontal } from "verstak"
+import { Panel, rowBreak, Horizontal } from "verstak"
+import { Img } from "verstak/html"
 import { Icon, Field, Theme, Markdown, composeFieldModel } from "verstak-express"
 import { AppTheme } from "themes/AppTheme.js"
 import { App } from "models/App.js"
