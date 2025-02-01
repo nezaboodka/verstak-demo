@@ -43,7 +43,7 @@ export function Pane(declaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, 
         el.vertically = Vertical.stretch
         m.setInitialSizes(el.height.min, el.height.max)
       },
-      content: (p, base) => {
+      script: (p, base) => {
         base()
         const m = p.model
         unobs(() => m.setInitialSizes(p.height.min, p.height.max))
@@ -59,7 +59,7 @@ export function Pane(declaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, 
               el.horizontally = Horizontal.stretch
               el.vertically = Vertical.top
             },
-            content: (el, base) => {
+            script: (el, base) => {
               base()
               OnClick(el.native, () => {
                 m.isExpanded = !m.isExpanded
@@ -87,7 +87,7 @@ export function Pane(declaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, 
             el.horizontally = Horizontal.stretch
             el.vertically = Vertical.stretch
           },
-          content: (el, base) => {
+          script: (el, base) => {
             base()
             const headerSizePx = header?.element.native.clientHeight ?? 0
             const minPx = Math.max(0, p.heightPx.minPx - headerSizePx)
@@ -98,7 +98,7 @@ export function Pane(declaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, 
         SyntheticElement({
           mode: Mode.autonomous,
           triggers: { header, stamp: p.node.stamp },
-          content: () => {
+          script: () => {
             const headerSizePx = header?.element.native.clientHeight ?? 0
             p.height = m.isExpanded
               ? { min: m.initialMinSize, max: m.initialMaxSize, preferred: `${m.sizePx}px` }

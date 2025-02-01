@@ -24,7 +24,7 @@ const app = Transaction.run(null, () =>
 
 Window({
   mode: Mode.autonomous,
-  content: el => {
+  script: el => {
     App.current = app
     const t = app.theme
     const s = el.style

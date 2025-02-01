@@ -17,7 +17,7 @@ export function toolBar() {
   //     el.native.className = cx(s.Panel, s.Clickable, s.Logo)
   //     el.native.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
   //   },
-  //   content: (el, base) => {
+  //   script: (el, base) => {
   //     base()
   //     el.style.backgroundColor = app.blinkingEffect ? "red" : ""
   //   }
@@ -30,11 +30,11 @@ export function toolBar() {
       el.style.outlineOffset = "-1px"
       // b.native.onclick = () => Transaction.run(null, () => app.blinkingEffect = !app.blinkingEffect)
     },
-    contentAsync: async el => {
+    scriptAsync: async el => {
       el.style.boxShadow = app.isBlinkingEffectOn ? "0.025rem 0.025rem 0.35rem 0 red" : ""
       await pause(3000)
       Img({
-        content: (el, base) => {
+        script: (el, base) => {
           base()
           el.native.src = "https://nezaboodka.com/img/star-768x768-circle.png"
         }
@@ -42,12 +42,12 @@ export function toolBar() {
     }
   })
   Panel({
-    content: el => {
+    script: el => {
       el.horizontally = Horizontal.stretch
       el.useStylingPreset(theme.panel)
       Panel({
         mode: Mode.autonomous,
-        content: el => {
+        script: el => {
           el.horizontally = Horizontal.stretch
           const position = app.position
           if (!Number.isFinite(position))
@@ -79,7 +79,7 @@ export function toolBar() {
     preparation: el => {
       // el.native.onclick = () => Transaction.run(null, () => app.nextTheme())
     },
-    content: el => {
+    script: el => {
       el.useStylingPreset(theme.panel)
       // b.useStyle(s.Hint)
       // b.useStyle(s.Clickable)

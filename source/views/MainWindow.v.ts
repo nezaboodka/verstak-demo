@@ -20,7 +20,7 @@ export function MainWindow() {
         el.style.gap = "1em"
         el.style.overflow = "hidden"
       },
-      content: el => {
+      script: el => {
         const app = App.current
         const theme = app.theme
         Theme.current = theme
@@ -38,12 +38,12 @@ export function MainWindow() {
             const hostEl = el.node.host.element as El
             hostEl.style.flexGrow = "1"
           },
-          content: el => {
+          script: el => {
             // Dimension.gFontSizePx.value = 16
             Dimension.lineSizePx = 20
             Panel({
               preparation: el => { el.splitView = Direction.vertical },
-              content: el => {
+              script: el => {
                 // Dimension.gFontSizePx.value = 26
                 Dimension.lineSizePx = 40
                 el.useStylingPreset(app.theme.panel)
@@ -61,7 +61,7 @@ export function MainWindow() {
                     el.vertically = Vertical.top /* + Align.centerX */
                     el.stretchingStrengthVertically = 0
                   },
-                  // content: el => {
+                  // script: el => {
                   //   Dimension.gFontSizePx.value = app.activeThemeIndex > 0 ? 36 : 16
                   // },
                 })
@@ -93,7 +93,7 @@ export function MainWindow() {
                     el.height = { min: "80px", max: "320px" }
                   },
                 }, {
-                  content: () => Markdown(EXAMPLE_CODE)
+                  script: () => Markdown(EXAMPLE_CODE)
                 }, GroupHeader("Group"))
                 // rowBreak()
                 Pane({
@@ -102,7 +102,7 @@ export function MainWindow() {
                     el.height = { min: "80px", max: "320px" }
                   },
                 }, {
-                  content: () => Markdown(EXAMPLE_CODE)
+                  script: () => Markdown(EXAMPLE_CODE)
                 }, GroupHeader("Group"))
                 // rowBreak()
                 Pane({
@@ -111,12 +111,12 @@ export function MainWindow() {
                     el.height = { min: "80px", max: "320px" }
                   },
                 }, {
-                  content: () => Markdown(EXAMPLE_CODE)
+                  script: () => Markdown(EXAMPLE_CODE)
                 }, GroupHeader("Group"))
 
                 // rowBreak()
                 Panel({
-                  content: el => {
+                  script: el => {
                     el.vertically = Vertical.stretch
                     el.stretchingStrengthVertically = 2
                     // el.height = { max: "600px" }
@@ -143,7 +143,7 @@ export function MainWindow() {
               }
             })
             WorkArea({
-              content: (el, base) => {
+              script: (el, base) => {
                 base()
                 el.useStylingPreset(theme.panel)
                 el.useStylingPreset(theme.accent)
@@ -157,7 +157,7 @@ export function MainWindow() {
             Panel({
               mode: Mode.autonomous,
               triggers: { theme },
-              content: el => {
+              script: el => {
                 el.useStylingPreset(theme.panel)
                 el.useStylingPreset(theme.markdown)
                 el.style.marginLeft = "0.5em"
@@ -175,7 +175,7 @@ export function MainWindow() {
                     el.stretchingStrengthVertically = 1
                   },
                 }, {
-                  content: () => Markdown(EXAMPLE_CODE)
+                  script: () => Markdown(EXAMPLE_CODE)
                 }, GroupHeader("Group"))
                 Field({
                   preparation: (el, base) => {
@@ -211,7 +211,7 @@ function GroupHeader(caption: string): ReactiveNodeDecl<El<HTMLElement, PaneMode
     preparation: el => {
       el.height = { min: "30px" }
     },
-    content: el => {
+    script: el => {
       const m = el.model
       Icon(m.isExpanded ? "fa-solid fa-chevron-down fa-fw" : "fa-solid fa-chevron-right fa-fw")
       Span({
@@ -219,7 +219,7 @@ function GroupHeader(caption: string): ReactiveNodeDecl<El<HTMLElement, PaneMode
         preparation: el => {
           el.style.fontWeight = "bold"
         },
-        content: el => {
+        script: el => {
           const heightPx = m.heightPx
           el.native.innerText = `${caption}: ${heightPx.minPx}px..${heightPx.maxPx}px`
         }
@@ -228,7 +228,7 @@ function GroupHeader(caption: string): ReactiveNodeDecl<El<HTMLElement, PaneMode
       Span({
         mode: Mode.autonomous,
         preparation: el => el.native.className = "size-tag",
-        content: el => {
+        script: el => {
           el.native.style.display = "inline"
           const sizePx = m.partitionSizeInSplitViewPx
           const heightPx = m.heightPx
@@ -249,7 +249,7 @@ function GroupHeader(caption: string): ReactiveNodeDecl<El<HTMLElement, PaneMode
       Span({
         mode: Mode.autonomous,
         preparation: el => el.native.className = "effective-size",
-        content: el => {
+        script: el => {
           const sizePx = m.partitionSizeInSplitViewPx
           el.native.innerText = `${sizePx === 0 ? "0" : sizePx.toFixed(2)}px`
         }
@@ -265,7 +265,7 @@ size of each user.
 
 \`\`\` js
 Table("Example", {
-  content(b) {
+  script(b) {
     // Elements can be layed out automatically
     // based on their order and line feeds.
     Ruler("1", Alignment.left, VerticalAlignment.center)
