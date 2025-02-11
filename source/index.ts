@@ -1,4 +1,4 @@
-import { Transaction, Mode } from "reactronic"
+import { impact, Mode } from "reactronic"
 import { Window, rowBreak } from "verstak"
 import { configureDebugging } from "dbg.js"
 import { App } from "models/App.js"
@@ -16,7 +16,7 @@ const version: string = "0.1"
 
 configureDebugging()
 
-const app = Transaction.run(null, () =>
+const app = impact(() =>
   new App(version,
     new LightAppTheme(),
     new DarkAppTheme(),
