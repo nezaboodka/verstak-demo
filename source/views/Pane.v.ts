@@ -61,6 +61,7 @@ export function Pane(declaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, 
             },
             script: (el, base) => {
               base()
+
               OnClick(el.native, () => {
                 m.isExpanded = !m.isExpanded
                 if (m.isExpanded) {

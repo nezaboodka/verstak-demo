@@ -166,6 +166,7 @@ export function Watch(place: string): ReactiveNode<El<HTMLElement>> {
                   [3, 9, 15, 21], 15, 180)
                 RadialLabel(174, "Jet", BezelLabelColor, 445, 40, "normal", true, svg)
                 RadialLabel(186.5, "Lag", BezelLabelColor, 445, 40, "normal", true, svg)
+
                 OnClick(el.native, () => {
                   app.isSecondaryTimeZoneOn = !app.isSecondaryTimeZoneOn
                 })

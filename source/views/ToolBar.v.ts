@@ -19,6 +19,7 @@ export function toolBar() {
   //   script: (el, base) => {
   //     base()
   //     el.style.backgroundColor = app.blinkingEffect ? "red" : ""
+  //
   //     OnClick(el.native, () => {
   //       app.blinkingEffect = !app.blinkingEffect
   //     })
@@ -40,6 +41,7 @@ export function toolBar() {
           el.native.src = "https://nezaboodka.com/img/star-768x768-circle.png"
         }
       })
+      //
       // OnClick(el.native, () => {
       //   app.blinkingEffect = !app.blinkingEffect
       // })
@@ -85,6 +87,7 @@ export function toolBar() {
       // b.useStyle(s.Hint)
       // b.useStyle(s.Clickable)
       Icon("fa-solid fa-bars")
+      //
       // OnClick(el.native, () => {
       //   app.nextTheme()
       // })
