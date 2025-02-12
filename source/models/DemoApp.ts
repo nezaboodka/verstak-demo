@@ -3,9 +3,9 @@ import { WebDriver } from "verstak"
 import { AppTheme } from "themes/AppTheme.js"
 import { Loader } from "./Loader.js"
 
-export class App extends ObservableObject {
+export class DemoApp extends ObservableObject {
   static readonly blinkingEffectMarker = "ё"
-  private static readonly gCurrent = new ReactiveNodeVariable<App>()
+  private static readonly gCurrent = new ReactiveNodeVariable<DemoApp>()
 
   version: string
   allThemes: Array<AppTheme>
@@ -28,11 +28,11 @@ export class App extends ObservableObject {
     this.loader = new Loader()
   }
 
-  static get current(): App {
-    return App.gCurrent.value
+  static get current(): DemoApp {
+    return DemoApp.gCurrent.value
   }
-  static set current(value: App) {
-    App.gCurrent.value = value
+  static set current(value: DemoApp) {
+    DemoApp.gCurrent.value = value
   }
 
   get theme(): AppTheme {
@@ -51,6 +51,6 @@ export class App extends ObservableObject {
 
   @reaction
   protected actualizeBlinkingEffect(): void {
-    WebDriver.blinkingEffectMarker = this.isBlinkingEffectOn ? App.blinkingEffectMarker : undefined
+    WebDriver.blinkingEffectMarker = this.isBlinkingEffectOn ? DemoApp.blinkingEffectMarker : undefined
   }
 }

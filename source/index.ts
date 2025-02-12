@@ -1,7 +1,7 @@
 import { apply, Mode } from "reactronic"
 import { Window, rowBreak } from "verstak"
 import { configureDebugging } from "dbg.js"
-import { App } from "models/App.js"
+import { DemoApp } from "models/DemoApp.js"
 import { MainWindow } from "views/MainWindow.v.js"
 import { LightAppTheme } from "themes/LightAppTheme.s.js"
 import { DarkAppTheme } from "themes/DarkAppTheme.s.js"
@@ -19,13 +19,13 @@ configureDebugging()
 Window({
   mode: Mode.autonomous,
   preparation: el => {
-    App.current = new App(version,
+    DemoApp.current = new DemoApp(version,
       new LightAppTheme(),
       new DarkAppTheme(),
       new PrintAppTheme())
   },
   script: el => {
-    const t = App.current.theme
+    const t = DemoApp.current.theme
     const s = el.style
     s.color = t.textColor
     s.backgroundColor = t.spaceFillColor
