@@ -16,17 +16,16 @@ const version: string = "0.1"
 
 configureDebugging()
 
-const app = apply(() =>
-  new App(version,
-    new LightAppTheme(),
-    new DarkAppTheme(),
-    new PrintAppTheme()))
-
 Window({
   mode: Mode.autonomous,
+  preparation: el => {
+    App.current = new App(version,
+      new LightAppTheme(),
+      new DarkAppTheme(),
+      new PrintAppTheme())
+  },
   script: el => {
-    App.current = app
-    const t = app.theme
+    const t = App.current.theme
     const s = el.style
     s.color = t.textColor
     s.backgroundColor = t.spaceFillColor
