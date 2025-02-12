@@ -15,7 +15,7 @@ export function toolBar() {
   //     el.boundsAlignment = Align.stretch
   //     el.model.source = "https://nezaboodka.com/img/star-768x768-circle.png"
   //     el.native.className = cx(s.Panel, s.Clickable, s.Logo)
-  //     el.native.onclick = () => impact(() => app.blinkingEffect = !app.blinkingEffect)
+  //     el.native.onclick = () => apply(() => app.blinkingEffect = !app.blinkingEffect)
   //   },
   //   script: (el, base) => {
   //     base()
@@ -28,7 +28,7 @@ export function toolBar() {
       // b.useStyle(s.Clickable)
       // b.useStyle(s.Logo)
       el.style.outlineOffset = "-1px"
-      // b.native.onclick = () => impact(() => app.blinkingEffect = !app.blinkingEffect)
+      // b.native.onclick = () => apply(() => app.blinkingEffect = !app.blinkingEffect)
     },
     scriptAsync: async el => {
       el.style.boxShadow = app.isBlinkingEffectOn ? "0.025rem 0.025rem 0.35rem 0 red" : ""
@@ -77,7 +77,7 @@ export function toolBar() {
   })
   Panel({ // Account
     preparation: el => {
-      // el.native.onclick = () => impact(() => app.nextTheme())
+      // el.native.onclick = () => apply(() => app.nextTheme())
     },
     script: el => {
       el.useStylingPreset(theme.panel)

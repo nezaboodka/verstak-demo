@@ -1,4 +1,4 @@
-import { ObservableObject, impact, reaction, ReactiveNodeVariable } from "reactronic"
+import { ObservableObject, apply, reaction, ReactiveNodeVariable } from "reactronic"
 import { WebDriver } from "verstak"
 import { AppTheme } from "themes/AppTheme.js"
 import { Loader } from "./Loader.js"
@@ -39,7 +39,7 @@ export class App extends ObservableObject {
     return this.allThemes[this.activeThemeIndex]
   }
 
-  @impact
+  @apply
   nextTheme(): void {
     this.activeThemeIndex = (this.activeThemeIndex + 1) % this.allThemes.length
   }
