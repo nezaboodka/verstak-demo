@@ -50,7 +50,7 @@ export class App extends ObservableObject {
   }
 
   @reaction
-  protected applyBlinkingEffect(): void {
+  protected actualizeBlinkingEffect(): void {
     WebDriver.blinkingEffectMarker = this.isBlinkingEffectOn ? App.blinkingEffectMarker : undefined
   }
 }
