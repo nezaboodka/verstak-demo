@@ -1,5 +1,5 @@
 import { Mode, pause, refs } from "reactronic"
-import { Panel, rowBreak, Horizontal } from "verstak"
+import { Panel, rowBreak, Horizontal, OnClick } from "verstak"
 import { Img } from "verstak/html"
 import { Icon, Field, Theme, Markdown, composeFieldModel } from "verstak/express"
 import { AppTheme } from "themes/AppTheme.js"
@@ -15,11 +15,13 @@ export function toolBar() {
   //     el.boundsAlignment = Align.stretch
   //     el.model.source = "https://nezaboodka.com/img/star-768x768-circle.png"
   //     el.native.className = cx(s.Panel, s.Clickable, s.Logo)
-  //     el.native.onclick = () => apply(() => app.blinkingEffect = !app.blinkingEffect)
   //   },
   //   script: (el, base) => {
   //     base()
   //     el.style.backgroundColor = app.blinkingEffect ? "red" : ""
+  //     OnClick(el.native, () => {
+  //       app.blinkingEffect = !app.blinkingEffect
+  //     })
   //   }
   // })
   Panel({ // Logo
@@ -28,7 +30,6 @@ export function toolBar() {
       // b.useStyle(s.Clickable)
       // b.useStyle(s.Logo)
       el.style.outlineOffset = "-1px"
-      // b.native.onclick = () => apply(() => app.blinkingEffect = !app.blinkingEffect)
     },
     scriptAsync: async el => {
       el.style.boxShadow = app.isBlinkingEffectOn ? "0.025rem 0.025rem 0.35rem 0 red" : ""
@@ -39,6 +40,9 @@ export function toolBar() {
           el.native.src = "https://nezaboodka.com/img/star-768x768-circle.png"
         }
       })
+      // OnClick(el.native, () => {
+      //   app.blinkingEffect = !app.blinkingEffect
+      // })
     }
   })
   Panel({
@@ -76,14 +80,14 @@ export function toolBar() {
     }
   })
   Panel({ // Account
-    preparation: el => {
-      // el.native.onclick = () => apply(() => app.nextTheme())
-    },
     script: el => {
       el.useStylingPreset(theme.panel)
       // b.useStyle(s.Hint)
       // b.useStyle(s.Clickable)
       Icon("fa-solid fa-bars")
+      // OnClick(el.native, () => {
+      //   app.nextTheme()
+      // })
     }
   })
 }

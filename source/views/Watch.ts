@@ -1,5 +1,5 @@
 import { apply, Clock, Mode, ReactiveNode } from "reactronic"
-import { Panel, Horizontal, Vertical, El } from "verstak"
+import { Panel, Horizontal, Vertical, El, OnClick } from "verstak"
 import { Svg, Circle, Rect, Text, G, Polygon } from "verstak/html"
 import { Theme } from "verstak/express"
 import { AppTheme } from "themes/AppTheme.js"
@@ -150,9 +150,6 @@ export function Watch(place: string): ReactiveNode<El<HTMLElement>> {
             G({
               preparation: el => {
                 el.style.transition = "transform 1s ease"
-                el.native.onclick = () => {
-                  el.style.transform = el.style.transform === "rotate(105deg)" ? "rotate(0deg)" : "rotate(105deg)"
-                }
               },
               script: el => {
                 el.style.transform = el.style.transform === "rotate(105deg)" ? "rotate(0deg)" : "rotate(105deg)"
@@ -169,6 +166,9 @@ export function Watch(place: string): ReactiveNode<El<HTMLElement>> {
                   [3, 9, 15, 21], 15, 180)
                 RadialLabel(174, "Jet", BezelLabelColor, 445, 40, "normal", true, svg)
                 RadialLabel(186.5, "Lag", BezelLabelColor, 445, 40, "normal", true, svg)
+                OnClick(el.native, () => {
+                  app.isSecondaryTimeZoneOn = !app.isSecondaryTimeZoneOn
+                })
               },
             })
           },
