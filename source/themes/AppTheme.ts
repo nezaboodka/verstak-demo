@@ -1,4 +1,4 @@
-import { cache } from "reactronic"
+import { cachedResult } from "reactronic"
 import { css } from "@emotion/css"
 import { Theme } from "verstak/express"
 
@@ -7,7 +7,7 @@ export class AppTheme extends Theme {
   spaceFillColor: string = ""
   markdown: string = ""
 
-  @cache
+  @cachedResult
   get page(): string { return css`
     .splitter {
       :hover {
@@ -22,7 +22,7 @@ export class AppTheme extends Theme {
     }
   `}
 
-  @cache
+  @cachedResult
   get panel(): string { return css`
     padding: 0.75rem;
     box-shadow: ${this.shadow};
@@ -30,12 +30,12 @@ export class AppTheme extends Theme {
     background-color: ${this.fillColor};
   `}
 
-  @cache
+  @cachedResult
   get accent(): string { return css`
     border: ${this.outlineWidth} solid ${this.accentColor};
   `}
 
-  @cache
+  @cachedResult
   get group(): string { return css`
     .header {
       user-select: none;
