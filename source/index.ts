@@ -1,4 +1,4 @@
-import { apply, Mode } from "reactronic"
+import { atomicAction, Mode } from "reactronic"
 import { Window, rowBreak } from "verstak"
 import { configureDebugging } from "dbg.js"
 import { DemoApp } from "models/DemoApp.js"

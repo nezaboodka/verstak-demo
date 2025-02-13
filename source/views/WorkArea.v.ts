@@ -2,7 +2,7 @@ import { refs, ReactiveNodeDecl, ReactiveNode } from "reactronic"
 import { Table, Panel, Note, rowBreak, Horizontal, Vertical, cursor, El } from "verstak"
 import { Theme, Toggle, observableModel } from "verstak/express"
 import { AppTheme } from "themes/AppTheme.js"
-import { App } from "models/App.js"
+import { DemoApp } from "models/DemoApp.js"
 import { Watch } from "./Watch.js"
 
 export function WorkArea(declaration?: ReactiveNodeDecl<El<HTMLElement, void>>) {
@@ -31,7 +31,7 @@ export function WorkArea(declaration?: ReactiveNodeDecl<El<HTMLElement, void>>) 
         ExampleData("A2:A3")
         Toggle({ key: "SecondaryTimeZone",
           preparation: (el, base) => {
-            const app = App.current
+            const app = DemoApp.current
             el.model = observableModel({
               label: "Watch Bezel",
               checked: refs(app).isSecondaryTimeZoneOn,

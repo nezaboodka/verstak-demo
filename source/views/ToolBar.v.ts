@@ -3,10 +3,10 @@ import { Panel, rowBreak, Horizontal, OnClick } from "verstak"
 import { Img } from "verstak/html"
 import { Icon, Field, Theme, Markdown, composeFieldModel } from "verstak/express"
 import { AppTheme } from "themes/AppTheme.js"
-import { App } from "models/App.js"
+import { DemoApp } from "models/DemoApp.js"
 
 export function toolBar() {
-  const app = App.current
+  const app = DemoApp.current
   const theme = Theme.current as AppTheme
   // Image({ // logo
   //   preparation: (el, base) => {

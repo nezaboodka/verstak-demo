@@ -1,9 +1,9 @@
-import { apply, Clock, Mode, ReactiveNode } from "reactronic"
+import { atomicAction, Clock, Mode, ReactiveNode } from "reactronic"
 import { Panel, Horizontal, Vertical, El, OnClick } from "verstak"
 import { Svg, Circle, Rect, Text, G, Polygon } from "verstak/html"
 import { Theme } from "verstak/express"
 import { AppTheme } from "themes/AppTheme.js"
-import { App } from "models/App.js"
+import { DemoApp } from "models/DemoApp.js"
 
 const BackColor = "#1a3043" // "white" // "#1a3043"
 const LabelColor = "#F0F0F0" // "#87F7A5"
@@ -13,7 +13,7 @@ const AccentColor = "silver" // "#87F7A5" // "#93CAEC" // "#93CAEC" // "#87F7A5"
 const BezelBackColor = "silver"
 const BezelLabelColor = "#444444"
 
-const clock = apply(() => new Clock(200))
+const clock = atomicAction(() => new Clock(200))
 
 export function Watch(place: string): ReactiveNode<El<HTMLElement>> {
   return (
@@ -153,7 +153,7 @@ export function Watch(place: string): ReactiveNode<El<HTMLElement>> {
               },
               script: el => {
                 el.style.transform = el.style.transform === "rotate(105deg)" ? "rotate(0deg)" : "rotate(105deg)"
-                const app = App.current
+                const app = DemoApp.current
                 if (app.isSecondaryTimeZoneOn)
                   rotate(el.native, 105)
                 else

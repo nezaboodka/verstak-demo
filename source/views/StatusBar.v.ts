@@ -2,14 +2,14 @@ import { refs } from "reactronic"
 import { Panel, Horizontal, Vertical } from "verstak"
 import { Button, Toggle, Field, composeFieldModel, Theme, observableModel } from "verstak/express"
 import { AppTheme } from "themes/AppTheme.js"
-import { App } from "models/App.js"
+import { DemoApp } from "models/DemoApp.js"
 
 export function statusBar() {
   // We get app and theme as a context variables
   // (instead of functional parameters) in order
   // to avoid passing app/theme in each and every
   // node through update of a tree.
-  const app = App.current
+  const app = DemoApp.current
   const theme = Theme.current as AppTheme
   Toggle({ key: "Blinking",
     preparation: (el, base) => {
