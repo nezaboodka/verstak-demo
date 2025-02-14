@@ -1,4 +1,4 @@
-import { ObservableObject, atomicAction, reactiveProcess, ReactiveNodeVariable } from "reactronic"
+import { ObservableObject, atomic, reactive, ReactiveNodeVariable } from "reactronic"
 import { WebDriver } from "verstak"
 import { AppTheme } from "themes/AppTheme.js"
 import { Loader } from "./Loader.js"
@@ -39,17 +39,17 @@ export class DemoApp extends ObservableObject {
     return this.allThemes[this.activeThemeIndex]
   }
 
-  @atomicAction
+  @atomic
   nextTheme(): void {
     this.activeThemeIndex = (this.activeThemeIndex + 1) % this.allThemes.length
   }
 
-  @reactiveProcess
+  @reactive
   protected actualizeBrowserTitle(): void {
     document.title = `Verstak Demo ${this.version}`
   }
 
-  @reactiveProcess
+  @reactive
   protected actualizeBlinkingEffect(): void {
     WebDriver.blinkingEffectMarker = this.isBlinkingEffectOn ? DemoApp.blinkingEffectMarker : undefined
   }

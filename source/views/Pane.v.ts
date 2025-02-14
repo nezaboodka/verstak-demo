@@ -1,4 +1,4 @@
-import { Mode, ObservableObject, ReactiveNode, ReactiveNodeDecl, unobservable, nonreactive } from "reactronic"
+import { Mode, ObservableObject, ReactiveNode, ReactiveNodeDecl, unobservable, nonReactiveRun } from "reactronic"
 import { Panel, Horizontal, Vertical, rowBreak, El, OnClick, SyntheticElement } from "verstak"
 
 export class PaneModel extends ObservableObject {
@@ -46,7 +46,7 @@ export function Pane(declaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, 
       script: (p, base) => {
         base()
         const m = p.model
-        nonreactive(() => m.setInitialSizes(p.height.min, p.height.max))
+        nonReactiveRun(() => m.setInitialSizes(p.height.min, p.height.max))
         let header: ReactiveNode<El<HTMLElement>> | undefined = undefined
         if (headerDeclaration) {
           header = Panel(ReactiveNode.withBasis({

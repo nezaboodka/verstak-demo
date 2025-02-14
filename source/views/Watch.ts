@@ -1,4 +1,4 @@
-import { atomically, Clock, Mode, ReactiveNode } from "reactronic"
+import { atomicRun, Clock, Mode, ReactiveNode } from "reactronic"
 import { Panel, Horizontal, Vertical, El, OnClick } from "verstak"
 import { Svg, Circle, Rect, Text, G, Polygon } from "verstak/html"
 import { Theme } from "verstak/express"
@@ -13,7 +13,7 @@ const AccentColor = "silver" // "#87F7A5" // "#93CAEC" // "#93CAEC" // "#87F7A5"
 const BezelBackColor = "silver"
 const BezelLabelColor = "#444444"
 
-const clock = atomically(() => new Clock(200))
+const clock = atomicRun(() => new Clock(200))
 
 export function Watch(place: string): ReactiveNode<El<HTMLElement>> {
   return (

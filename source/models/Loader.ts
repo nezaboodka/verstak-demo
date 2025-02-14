@@ -1,4 +1,4 @@
-import { ObservableObject, pause, reactiveProcess, Indicator, ReactiveSystem } from "reactronic"
+import { ObservableObject, pause, reactive, Indicator, ReactiveSystem } from "reactronic"
 
 export class Loader extends ObservableObject {
   filter: string
@@ -13,7 +13,7 @@ export class Loader extends ObservableObject {
     ReactiveSystem.getOperation(this.load).configure({ indicator: this.indicator })
   }
 
-  @reactiveProcess
+  @reactive
   protected async load(): Promise<void> {
     await pause(100)
     const f = this.filter.toLocaleLowerCase()
