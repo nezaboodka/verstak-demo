@@ -43,14 +43,14 @@
       "verstak": [
         "../library/verstak/source/api.ts"
       ],
+      "verstak/core": [
+        "../library/verstak/source/core/api.ts"
+      ],
       "verstak/html": [
         "../library/verstak/source/html/api.ts"
       ],
       "verstak/svg": [
         "../library/verstak/source/svg/api.ts"
-      ],
-      "verstak/express": [
-        "../library/verstak/source/express/api.ts"
       ],
     },
     "plugins": [

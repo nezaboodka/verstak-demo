@@ -1,6 +1,5 @@
 import { refs } from "reactronic"
-import { Panel, Horizontal, Vertical } from "verstak"
-import { Button, Toggle, Field, composeFieldModel, Theme, observableModel } from "verstak/express"
+import { Panel, Horizontal, Button, Toggle, Field, composeFieldModel, Theme, observableModel } from "verstak"
 import { AppTheme } from "themes/AppTheme.js"
 import { DemoApp } from "models/DemoApp.js"
 

@@ -1,7 +1,6 @@
 import { refs, Mode, ReactiveNodeDecl } from "reactronic"
-import { Panel, Horizontal, Vertical, Note, rowBreak, Dimension, El, Direction, equal } from "verstak"
+import { Panel, Horizontal, Vertical, Note, rowBreak, Dimension, El, Direction, equal, Markdown, Field, Theme, composeFieldModel, Icon } from "verstak"
 import { Span } from "verstak/html"
-import { Markdown, Field, Theme, composeFieldModel, Icon } from "verstak/express"
 import { DemoApp } from "models/DemoApp.js"
 import { toolBar } from "./ToolBar.v.js"
 import { statusBar } from "./StatusBar.v.js"
