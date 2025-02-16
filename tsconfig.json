@@ -46,6 +46,9 @@
       "verstak/html": [
         "../library/verstak/source/html/api.ts"
       ],
+      "verstak/svg": [
+        "../library/verstak/source/svg/api.ts"
+      ],
       "verstak/express": [
         "../library/verstak/source/express/api.ts"
       ],
