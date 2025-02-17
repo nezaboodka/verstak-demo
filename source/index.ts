@@ -1,4 +1,4 @@
-import { atomic, Mode } from "reactronic"
+import { atomic, Clock, Mode } from "reactronic"
 import { Window, rowBreak } from "verstak"
 import { configureDebugging } from "dbg.js"
 import { DemoApp } from "models/DemoApp.js"
@@ -25,12 +25,13 @@ Window({
       new PrintAppTheme())
   },
   script: el => {
+    const clock = new Clock(200)
     const t = DemoApp.current.theme
     const s = el.style
     s.color = t.textColor
     s.backgroundColor = t.spaceFillColor
     el.useStylingPreset(t.page)
     rowBreak() // WORKAROUND
-    MainWindow()
+    MainWindow(clock)
   }
 })

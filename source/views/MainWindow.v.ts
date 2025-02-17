@@ -1,4 +1,4 @@
-import { refs, Mode, ReactiveNodeDecl } from "reactronic"
+import { refs, Mode, ReactiveNodeDecl, Clock } from "reactronic"
 import { Panel, Horizontal, Vertical, Note, rowBreak, Dimension, El, Direction, equal, Markdown, Field, Theme, composeFieldModel, Icon } from "verstak"
 import { Span } from "verstak/html"
 import { DemoApp } from "models/DemoApp.js"
@@ -7,7 +7,7 @@ import { statusBar } from "./StatusBar.v.js"
 import { WorkArea } from "./WorkArea.v.js"
 import { Pane, PaneModel } from "./Pane.v.js"
 
-export function MainWindow() {
+export function MainWindow(clock: Clock) {
   return (
     Panel({
       mode: Mode.autonomous,
@@ -141,7 +141,7 @@ export function MainWindow() {
                 })
               }
             })
-            WorkArea({
+            WorkArea(clock, {
               script: (el, base) => {
                 base()
                 el.useStylingPreset(theme.panel)

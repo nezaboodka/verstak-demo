@@ -1,10 +1,10 @@
-import { refs, ReactiveNodeDecl, ReactiveNode } from "reactronic"
+import { refs, ReactiveNodeDecl, ReactiveNode, Clock } from "reactronic"
 import { Table, Panel, Note, rowBreak, Horizontal, Vertical, cursor, El, Theme, Toggle, observableModel } from "verstak"
 import { AppTheme } from "themes/AppTheme.js"
 import { DemoApp } from "models/DemoApp.js"
 import { Watch } from "./Watch.js"
 
-export function WorkArea(declaration?: ReactiveNodeDecl<El<HTMLElement, void>>) {
+export function WorkArea(clock: Clock, declaration?: ReactiveNodeDecl<El<HTMLElement, void>>) {
   return (
     Table(ReactiveNode.withBasis(declaration, {
       script: el => {
@@ -23,7 +23,7 @@ export function WorkArea(declaration?: ReactiveNodeDecl<El<HTMLElement, void>>) 
 
         // Elements can also be layed out
         // explicitly in exact cells.
-        Watch("B2")
+        Watch("B2", clock)
         ExampleData("A1:B1")
         ExampleData("C1:C2")
         ExampleData("B3:C3")

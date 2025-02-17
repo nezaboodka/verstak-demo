@@ -12,9 +12,7 @@ const AccentColor = "silver" // "#87F7A5" // "#93CAEC" // "#93CAEC" // "#87F7A5"
 const BezelBackColor = "silver"
 const BezelLabelColor = "#444444"
 
-const clock = atomicRun(() => new Clock(200))
-
-export function Watch(place: string): ReactiveNode<El<HTMLElement>> {
+export function Watch(place: string, clock: Clock): ReactiveNode<El<HTMLElement>> {
   return (
     Panel({
       mode: Mode.autonomous,
