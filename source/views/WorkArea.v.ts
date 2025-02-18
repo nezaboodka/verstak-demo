@@ -1,10 +1,10 @@
-import { refs, ReactiveNodeDecl, ReactiveNode, Clock } from "reactronic"
+import { refs, ReactiveNodeDecl, ReactiveNode, RealTimeClock } from "reactronic"
 import { Table, Panel, Note, rowBreak, Horizontal, Vertical, cursor, El, Theme, Toggle, observableModel } from "verstak"
 import { AppTheme } from "themes/AppTheme.js"
 import { DemoApp } from "models/DemoApp.js"
 import { Watch } from "./Watch.js"
 
-export function WorkArea(clock: Clock, declaration?: ReactiveNodeDecl<El<HTMLElement, void>>) {
+export function WorkArea(clock: RealTimeClock, declaration?: ReactiveNodeDecl<El<HTMLElement, void>>) {
   return (
     Table(ReactiveNode.withBasis(declaration, {
       script: el => {

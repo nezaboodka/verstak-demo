@@ -1,4 +1,4 @@
-import { atomic, Clock, Mode } from "reactronic"
+import { atomic, RealTimeClock, Mode } from "reactronic"
 import { Window, rowBreak } from "verstak"
 import { configureDebugging } from "dbg.js"
 import { DemoApp } from "models/DemoApp.js"
@@ -25,7 +25,7 @@ Window({
       new PrintAppTheme())
   },
   script: el => {
-    const clock = new Clock(200)
+    const clock = new RealTimeClock(200)
     const t = DemoApp.current.theme
     const s = el.style
     s.color = t.textColor
