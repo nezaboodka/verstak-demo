@@ -2,13 +2,13 @@ import { css } from "@emotion/css"
 import { AppTheme } from "./AppTheme.js"
 
 export class LightAppTheme extends AppTheme {
-  name = "Light Theme"
-  fillColor = "white"
-  textColor = "black"
-  spaceFillColor = "#F0F0F0"
-  accentColor = "crimson"
+  override name = "Light Theme"
+  override fillColor = "white"
+  override textColor = "black"
+  override spaceFillColor = "#F0F0F0"
+  override accentColor = "crimson"
 
-  markdown = css`
+  override markdown = css`
     .toc-inner {
       background-color: unset;
       border: ${this.outlineWidth} solid rgba(0, 0, 0, 0.25);

@@ -2,16 +2,16 @@ import { css } from "@emotion/css"
 import { AppTheme } from "./AppTheme.js"
 
 export class DarkAppTheme extends AppTheme {
-  name = "Dark Theme"
-  fillColor = "#14344F"
-  textColor = "white"
-  positiveColor = "rgb(160, 237, 49)"
-  negativeColor = "orangered"
-  shadow = "0.1rem 0.1rem 0.5rem 0 black"
-  spaceFillColor = "#15293e"
-  accentColor = "#FFFFA0"
+  override name = "Dark Theme"
+  override fillColor = "#14344F"
+  override textColor = "white"
+  override positiveColor = "rgb(160, 237, 49)"
+  override negativeColor = "orangered"
+  override shadow = "0.1rem 0.1rem 0.5rem 0 black"
+  override spaceFillColor = "#15293e"
+  override accentColor = "#FFFFA0"
 
-  markdown = css`
+  override markdown = css`
     .toc-inner {
       background-color: rgba(0, 0, 0, 0.2);
       border: ${this.outlineWidth} solid rgba(0, 0, 0, 0.15);

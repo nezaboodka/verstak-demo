@@ -2,15 +2,15 @@ import { css } from "@emotion/css"
 import { AppTheme } from "./AppTheme.js"
 
 export class PrintAppTheme extends AppTheme {
-  name = "Print Theme"
-  fillColor = "white"
-  textColor = "black"
-  positiveColor = "black"
-  negativeColor = "black"
-  spaceFillColor = "white"
-  accentColor = "black"
+  override name = "Print Theme"
+  override fillColor = "white"
+  override textColor = "black"
+  override positiveColor = "black"
+  override negativeColor = "black"
+  override spaceFillColor = "white"
+  override accentColor = "black"
 
-  markdown = css`
+  override markdown = css`
     .toc-inner {
       background-color: unset;
       border: ${this.outlineWidth} solid rgba(0, 0, 0, 0.25);
