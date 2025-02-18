@@ -11,5 +11,5 @@ export function configureDebugging(): void {
     repetitiveUsageWarningThreshold: 5,
     garbageCollectionSummaryInterval: Number.MAX_SAFE_INTEGER,
   })
-  // VerstakNode.setDefaultLoggingOptions(LoggingLevel.ErrorsOnly)
+  // ReactiveNode.setDefaultLoggingOptions(LoggingLevel.ErrorsOnly)
 }
