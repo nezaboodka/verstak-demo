@@ -1,5 +1,5 @@
-import { atomic, RealTimeClock, Mode } from "reactronic"
-import { Window, rowBreak } from "verstak"
+import { Mode } from "reactronic"
+import { RealTimeClock, Window, rowBreak } from "verstak"
 import { configureDebugging } from "dbg.js"
 import { DemoApp } from "models/DemoApp.js"
 import { MainWindow } from "views/MainWindow.v.js"

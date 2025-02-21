@@ -1,5 +1,5 @@
-import { refs, ReactiveNodeDecl, ReactiveNode, RealTimeClock } from "reactronic"
-import { Table, Panel, Note, rowBreak, Horizontal, Vertical, cursor, El, Theme, Toggle, observableModel } from "verstak"
+import { refs, ReactiveNodeDecl, ReactiveNode } from "reactronic"
+import { RealTimeClock, Table, Panel, Note, rowBreak, Horizontal, Vertical, cursor, El, Theme, Toggle, observableModel } from "verstak"
 import { AppTheme } from "themes/AppTheme.js"
 import { DemoApp } from "models/DemoApp.js"
 import { Watch } from "./Watch.js"

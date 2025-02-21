@@ -1,5 +1,5 @@
-import { atomicRun, RealTimeClock, Mode, ReactiveNode } from "reactronic"
-import { Panel, Horizontal, Vertical, El, OnClick, Theme } from "verstak"
+import { Mode, ReactiveNode } from "reactronic"
+import { RealTimeClock, Panel, Horizontal, Vertical, El, OnClick, Theme } from "verstak"
 import { Svg, Circle, Rect, Text, G, Polygon } from "verstak/svg"
 import { AppTheme } from "themes/AppTheme.js"
 import { DemoApp } from "models/DemoApp.js"

@@ -1,5 +1,5 @@
-import { refs, Mode, ReactiveNodeDecl, RealTimeClock } from "reactronic"
-import { Panel, Horizontal, Vertical, Note, rowBreak, Dimension, El, Direction, equal, Markdown, Field, Theme, composeFieldModel, Icon } from "verstak"
+import { refs, Mode, ReactiveNodeDecl } from "reactronic"
+import { RealTimeClock, Panel, Horizontal, Vertical, Note, rowBreak, Dimension, El, Direction, equal, Markdown, Field, Theme, composeFieldModel, Icon } from "verstak"
 import { Span } from "verstak/html"
 import { DemoApp } from "models/DemoApp.js"
 import { toolBar } from "./ToolBar.v.js"
