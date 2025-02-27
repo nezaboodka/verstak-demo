@@ -1,5 +1,5 @@
 import { refs, Mode, ReactiveNodeDecl } from "reactronic"
-import { RealTimeClock, Panel, Horizontal, Vertical, Note, rowBreak, Dimension, El, Direction, equal, Markdown, Field, Theme, composeFieldModel, Icon } from "verstak"
+import { RealTimeClock, Panel, Horizontal, Vertical, TextBlock, rowBreak, Dimension, El, Direction, equal, Markdown, Field, Theme, composeFieldModel, Icon } from "verstak"
 import { Span } from "verstak/html"
 import { DemoApp } from "models/DemoApp.js"
 import { toolBar } from "./ToolBar.v.js"
@@ -54,7 +54,7 @@ export function MainWindow(clock: RealTimeClock) {
                 el.contentHorizontally = Horizontal.stretch
                 el.contentVertically = Vertical.top
 
-                Note("SIDE BAR", false, {
+                TextBlock("SIDE BAR", false, {
                   preparation: el => {
                     el.height = { min: "2em", max: "2em" }
                     el.vertically = Vertical.top /* + Align.centerX */
