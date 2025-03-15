@@ -1,5 +1,5 @@
 import { Mode, pause, refs } from "reactronic"
-import { Panel, rowBreak, Horizontal, Icon, Field, Theme, Markdown, composeFieldModel } from "verstak"
+import { Division, rowBreak, Horizontal, Icon, Input, Theme, Markdown, composeInputModel } from "verstak"
 import { Img } from "verstak/html"
 import { AppTheme } from "themes/AppTheme.js"
 import { DemoApp } from "models/DemoApp.js"
@@ -24,7 +24,7 @@ export function toolBar() {
   //     })
   //   }
   // })
-  Panel({ // Logo
+  Division({ // Logo
     preparation: el => {
       el.useStylingPreset(theme.panel)
       // b.useStyle(s.Clickable)
@@ -46,11 +46,11 @@ export function toolBar() {
       // })
     }
   })
-  Panel({
+  Division({
     script: el => {
       el.horizontally = Horizontal.stretch
       el.useStylingPreset(theme.panel)
-      Panel({
+      Division({
         mode: Mode.autonomous,
         script: el => {
           el.horizontally = Horizontal.stretch
@@ -63,11 +63,11 @@ export function toolBar() {
           Markdown("Try to *change* window size")
         }
       })
-      Field({
+      Input({
         preparation: (el, base) => {
           const loader = app.loader
           el.width = { min: "7em" }
-          el.model = composeFieldModel({
+          el.model = composeInputModel({
             icon: "fa-solid fa-search",
             text: refs(loader).filter,
             options: refs(loader).loaded,
@@ -80,7 +80,7 @@ export function toolBar() {
       })
     }
   })
-  Panel({ // Account
+  Division({ // Account
     script: el => {
       el.useStylingPreset(theme.panel)
       // b.useStyle(s.Hint)

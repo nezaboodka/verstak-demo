@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { Panel, Horizontal, Button, Toggle, Field, composeFieldModel, Theme, observableModel } from "verstak"
+import { Division, Horizontal, Button, Toggle, Input, composeInputModel, Theme, observableModel } from "verstak"
 import { AppTheme } from "themes/AppTheme.js"
 import { DemoApp } from "models/DemoApp.js"
 
@@ -60,16 +60,16 @@ export function statusBar() {
       el.native.classList.toggle(theme.panel, true)
     }
   })
-  Panel({
+  Division({
     script: el => {
       el.useStylingPreset(theme.panel)
       el.horizontally = Horizontal.stretch
       el.contentHorizontally = Horizontal.right
-      Field({
+      Input({
         preparation: (el, base) => {
           const loader = app.loader
           el.width = { min: "10em" }
-          el.model = composeFieldModel({
+          el.model = composeInputModel({
             icon: "fa-solid fa-search",
             text: refs(loader).filter,
             options: refs(loader).loaded,

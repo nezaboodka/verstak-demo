@@ -1,5 +1,5 @@
 import { refs, Mode, ReactiveNodeDecl } from "reactronic"
-import { RealTimeClock, Panel, Horizontal, Vertical, TextBlock, rowBreak, Dimension, El, Direction, equal, Markdown, Field, Theme, composeFieldModel, Icon } from "verstak"
+import { RealTimeClock, Division, Horizontal, Vertical, JustText, rowBreak, Dimension, El, Direction, equal, Markdown, Input, Theme, composeInputModel, Icon } from "verstak"
 import { Span } from "verstak/html"
 import { DemoApp } from "models/DemoApp.js"
 import { toolBar } from "./ToolBar.v.js"
@@ -9,7 +9,7 @@ import { Pane, PaneModel } from "./Pane.v.js"
 
 export function MainWindow(clock: RealTimeClock) {
   return (
-    Panel({
+    Division({
       mode: Mode.autonomous,
       preparation: el => {
         el.native.sensors.focus // enable focus global manager
@@ -29,7 +29,7 @@ export function MainWindow(clock: RealTimeClock) {
 
         rowBreak()
 
-        Panel({
+        Division({
           preparation: el => {
             el.splitView = Direction.horizontal
             el.horizontally = Horizontal.stretch
@@ -40,7 +40,7 @@ export function MainWindow(clock: RealTimeClock) {
           script: el => {
             // Dimension.gFontSizePx.value = 16
             Dimension.lineSizePx = 20
-            Panel({
+            Division({
               preparation: el => { el.splitView = Direction.vertical },
               script: el => {
                 // Dimension.gFontSizePx.value = 26
@@ -54,7 +54,7 @@ export function MainWindow(clock: RealTimeClock) {
                 el.contentHorizontally = Horizontal.stretch
                 el.contentVertically = Vertical.top
 
-                TextBlock("SIDE BAR", false, {
+                JustText("SIDE BAR", false, {
                   preparation: el => {
                     el.height = { min: "2em", max: "2em" }
                     el.vertically = Vertical.top /* + Align.centerX */
@@ -66,14 +66,14 @@ export function MainWindow(clock: RealTimeClock) {
                 })
 
                 // rowBreak()
-                Field({
+                Input({
                   preparation: (el, base) => {
                     const loader = app.loader
                     el.width = { min: "10em" }
                     el.height = { min: "2em", max: "4em" }
                     el.vertically = Vertical.center
                     el.stretchingStrengthVertically = 0
-                    el.model = composeFieldModel({
+                    el.model = composeInputModel({
                       icon: "fa-solid fa-search",
                       text: refs(loader).filter,
                       options: refs(loader).loaded,
@@ -114,7 +114,7 @@ export function MainWindow(clock: RealTimeClock) {
                 }, GroupHeader("Group"))
 
                 // rowBreak()
-                Panel({
+                Division({
                   script: el => {
                     el.vertically = Vertical.stretch
                     el.stretchingStrengthVertically = 2
@@ -123,14 +123,14 @@ export function MainWindow(clock: RealTimeClock) {
                 })
 
                 // rowBreak()
-                Field({
+                Input({
                   preparation: (el, base) => {
                     const loader = app.loader
                     el.width = { min: "10em" }
                     el.height = { min: "2ln" }
                     el.vertically = Vertical.top
                     el.stretchingStrengthVertically = 0
-                    el.model = composeFieldModel({
+                    el.model = composeInputModel({
                       text: refs(loader).filter,
                       options: refs(loader).loaded,
                       isHotText: true,
@@ -153,7 +153,7 @@ export function MainWindow(clock: RealTimeClock) {
                 el.stretchingStrengthHorizontally = 3
               }
             })
-            Panel({
+            Division({
               mode: Mode.autonomous,
               triggers: { theme },
               script: el => {
@@ -176,14 +176,14 @@ export function MainWindow(clock: RealTimeClock) {
                 }, {
                   script: () => Markdown(EXAMPLE_CODE)
                 }, GroupHeader("Group"))
-                Field({
+                Input({
                   preparation: (el, base) => {
                     const loader = app.loader
                     el.width = { min: "10em" }
                     el.height = { min: "2ln" }
                     el.vertically = Vertical.top
                     el.stretchingStrengthVertically = 1
-                    el.model = composeFieldModel({
+                    el.model = composeInputModel({
                       icon: "fa-solid fa-search",
                       text: refs(loader).filter,
                       options: refs(loader).loaded,

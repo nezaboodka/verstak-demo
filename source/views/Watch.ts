@@ -1,5 +1,5 @@
 import { Mode, ReactiveNode } from "reactronic"
-import { RealTimeClock, Panel, Horizontal, Vertical, El, OnClick, Theme } from "verstak"
+import { RealTimeClock, Division, Horizontal, Vertical, El, OnClick, Theme } from "verstak"
 import { Svg, Circle, Rect, Text, G, Polygon } from "verstak/svg"
 import { AppTheme } from "themes/AppTheme.js"
 import { DemoApp } from "models/DemoApp.js"
@@ -14,7 +14,7 @@ const BezelLabelColor = "#444444"
 
 export function Watch(place: string, clock: RealTimeClock): ReactiveNode<El<HTMLElement>> {
   return (
-    Panel({
+    Division({
       mode: Mode.autonomous,
       preparation: el => {
         const s = el.style

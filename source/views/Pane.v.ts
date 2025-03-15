@@ -1,5 +1,5 @@
 import { Mode, ObservableObject, ReactiveNode, ReactiveNodeDecl, unobservable, nonReactiveRun } from "reactronic"
-import { Panel, Horizontal, Vertical, rowBreak, El, OnClick, SyntheticElement } from "verstak"
+import { Division, Horizontal, Vertical, rowBreak, El, OnClick, PseudoElement } from "verstak"
 
 export class PaneModel extends ObservableObject {
   @unobservable private readonly _el: El<HTMLElement, PaneModel>
@@ -34,7 +34,7 @@ export class PaneModel extends ObservableObject {
 
 export function Pane(declaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, bodyDeclaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, headerDeclaration?: ReactiveNodeDecl<El<HTMLElement, PaneModel>>) {
   return (
-    Panel<PaneModel>(ReactiveNode.withBasis({
+    Division<PaneModel>(ReactiveNode.withBasis({
       mode: Mode.autonomous,
       preparation: (el, base) => {
         const m = el.model = new PaneModel(el)
@@ -49,7 +49,7 @@ export function Pane(declaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, 
         nonReactiveRun(() => m.setInitialSizes(p.height.min, p.height.max))
         let header: ReactiveNode<El<HTMLElement>> | undefined = undefined
         if (headerDeclaration) {
-          header = Panel(ReactiveNode.withBasis({
+          header = Division(ReactiveNode.withBasis({
             key: "header",
             mode: Mode.autonomous,
             preparation: (el, base) => {
@@ -76,7 +76,7 @@ export function Pane(declaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, 
           }, headerDeclaration))
           rowBreak()
         }
-        Panel(ReactiveNode.withBasis({
+        Division(ReactiveNode.withBasis({
           key: "body",
           mode: Mode.autonomous,
           triggers: { header },
@@ -96,7 +96,7 @@ export function Pane(declaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, 
             el.height = { min: `${minPx}px`, max: `${maxPx}px` }
           }
         }, bodyDeclaration))
-        SyntheticElement({
+        PseudoElement({
           mode: Mode.autonomous,
           triggers: { header, stamp: p.node.stamp },
           script: () => {

@@ -1,5 +1,5 @@
 import { refs, ReactiveNodeDecl, ReactiveNode } from "reactronic"
-import { RealTimeClock, Table, Panel, TextBlock, rowBreak, Horizontal, Vertical, cursor, El, Theme, Toggle, observableModel } from "verstak"
+import { RealTimeClock, Table, Division, JustText, rowBreak, Horizontal, Vertical, cursor, El, Theme, Toggle, observableModel } from "verstak"
 import { AppTheme } from "themes/AppTheme.js"
 import { DemoApp } from "models/DemoApp.js"
 import { Watch } from "./Watch.js"
@@ -53,12 +53,12 @@ export function WorkArea(clock: RealTimeClock, declaration?: ReactiveNodeDecl<El
 
 function Ruler(title: string, horizontal: Horizontal, vertical: Vertical) {
   return (
-    Panel({
+    Division({
       script: el => {
         el.horizontally = horizontal
         el.vertically = vertical
         el.style.fontSize = "smaller"
-        TextBlock(`&nbsp;${title}`, true)
+        JustText(`&nbsp;${title}`, true)
       }
     })
   )
@@ -66,7 +66,7 @@ function Ruler(title: string, horizontal: Horizontal, vertical: Vertical) {
 
 function ExampleData(place: string) {
   return (
-    Panel({
+    Division({
       preparation: el => {
         el.horizontally = Horizontal.stretch
         el.vertically = Vertical.stretch
@@ -77,7 +77,7 @@ function ExampleData(place: string) {
         const theme = Theme.current as AppTheme
         el.place = place
         el.useStylingPreset(theme.accent)
-        TextBlock(place)
+        JustText(place)
       }
     })
   )
