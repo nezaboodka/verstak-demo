@@ -26,11 +26,11 @@ Window({
   },
   script: el => {
     const clock = new RealTimeClock(200)
-    const t = DemoApp.current.theme
+    const theme = DemoApp.current.theme
     const s = el.style
-    s.color = t.textColor
-    s.backgroundColor = t.spaceFillColor
-    el.useStylingPreset(t.page)
+    s.color = theme.textColor
+    s.backgroundColor = theme.spaceFillColor
+    el.useStylingPreset(theme.page)
     rowBreak() // WORKAROUND
     MainWindow(clock)
   }
