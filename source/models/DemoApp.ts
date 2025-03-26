@@ -1,9 +1,9 @@
-import { ObservableObject, atomic, reactive, ReactiveNodeVariable } from "reactronic"
+import { TriggeringObject, atomic, reactive, ReactiveNodeVariable } from "reactronic"
 import { WebDriver } from "verstak"
 import { AppTheme } from "themes/AppTheme.js"
 import { Loader } from "./Loader.js"
 
-export class DemoApp extends ObservableObject {
+export class DemoApp extends TriggeringObject {
   static readonly blinkingEffectMarker = "ё"
   private static readonly gCurrent = new ReactiveNodeVariable<DemoApp>()
 

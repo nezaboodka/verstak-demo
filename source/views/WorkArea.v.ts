@@ -1,5 +1,5 @@
 import { refs, ReactiveNodeDecl, ReactiveNode } from "reactronic"
-import { RealTimeClock, Table, Division, JustText, rowBreak, Horizontal, Vertical, cursor, El, Theme, Toggle, observableModel } from "verstak"
+import { RealTimeClock, Table, Division, JustText, rowBreak, Horizontal, Vertical, cursor, El, Theme, Toggle, triggeringModel } from "verstak"
 import { AppTheme } from "themes/AppTheme.js"
 import { DemoApp } from "models/DemoApp.js"
 import { Watch } from "./Watch.js"
@@ -8,7 +8,7 @@ export function WorkArea(clock: RealTimeClock, declaration?: ReactiveNodeDecl<El
   return (
     Table(ReactiveNode.withBasis(declaration, {
       script: el => {
-        // Elements can be layed out automatically
+        // Elements can be laid out automatically
         // based on their order and line feeds.
         rowBreak()
         Ruler("1", Horizontal.left, Vertical.center)
@@ -21,7 +21,7 @@ export function WorkArea(clock: RealTimeClock, declaration?: ReactiveNodeDecl<El
         rowBreak()
         Ruler("3", Horizontal.left, Vertical.center)
 
-        // Elements can also be layed out
+        // Elements can also be laid out
         // explicitly in exact cells.
         Watch("B2", clock)
         ExampleData("A1:B1")
@@ -31,7 +31,7 @@ export function WorkArea(clock: RealTimeClock, declaration?: ReactiveNodeDecl<El
         Toggle({ key: "SecondaryTimeZone",
           preparation: (el, base) => {
             const app = DemoApp.current
-            el.model = observableModel({
+            el.model = triggeringModel({
               label: "Watch Bezel",
               checked: refs(app).isSecondaryTimeZoneOn,
             })

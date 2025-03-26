@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { Division, Horizontal, Button, Toggle, Input, composeInputModel, Theme, observableModel } from "verstak"
+import { Division, Horizontal, Button, Toggle, Input, composeInputModel, Theme, triggeringModel } from "verstak"
 import { AppTheme } from "themes/AppTheme.js"
 import { DemoApp } from "models/DemoApp.js"
 
@@ -15,7 +15,7 @@ export function statusBar() {
       // We compose model from different pieces,
       // such as app and theme. Without the need
       // to implement interface in form of class.
-      el.model = observableModel({
+      el.model = triggeringModel({
         label: "Blinking Rendering",
         checked: refs(app).isBlinkingEffectOn,
       })
@@ -29,7 +29,7 @@ export function statusBar() {
   })
   Button({ key: "Theme",
     preparation: (el, base) => {
-      el.model = observableModel({
+      el.model = triggeringModel({
         icon: "fa-solid fa-palette",
         label: "Switch Theme",
         action() { app.nextTheme() }
@@ -43,7 +43,7 @@ export function statusBar() {
   })
   Toggle({ key: "SecondaryTimeZone",
     preparation: (el, base) => {
-      el.model = observableModel({
+      el.model = triggeringModel({
         label: "New York (GMT-7)",
         checked: refs(app).isSecondaryTimeZoneOn,
       })
@@ -82,7 +82,7 @@ export function statusBar() {
           base()
           // Spinner("Spinner", {
           //   preparation: el => {
-          //     el.model = observableModel({
+          //     el.model = triggeringModel({
           //       active: refs(app.loader.indicator).isActive,
           //       color: "red",
           //     })

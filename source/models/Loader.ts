@@ -1,6 +1,6 @@
-import { ObservableObject, pause, reactive, Indicator, ReactiveSystem } from "reactronic"
+import { TriggeringObject, pause, reactive, Indicator, ReactiveSystem } from "reactronic"
 
-export class Loader extends ObservableObject {
+export class Loader extends TriggeringObject {
   filter: string
   loaded: Array<string>
   indicator: Indicator

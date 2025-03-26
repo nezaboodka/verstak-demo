@@ -1,10 +1,10 @@
-import { Mode, ObservableObject, ReactiveNode, ReactiveNodeDecl, unobservable, nonReactiveRun } from "reactronic"
+import { Mode, TriggeringObject, ReactiveNode, ReactiveNodeDecl, trigger, nonReactiveRun } from "reactronic"
 import { Division, Horizontal, Vertical, rowBreak, El, OnClick, PseudoElement } from "verstak"
 
-export class PaneModel extends ObservableObject {
-  @unobservable private readonly _el: El<HTMLElement, PaneModel>
-  @unobservable readonly initialMinSize: string | undefined
-  @unobservable readonly initialMaxSize: string | undefined
+export class PaneModel extends TriggeringObject {
+  @trigger(false) private readonly _el: El<HTMLElement, PaneModel>
+  @trigger(false) readonly initialMinSize: string | undefined
+  @trigger(false) readonly initialMaxSize: string | undefined
 
   isExpanded: boolean
   sizePx: number
