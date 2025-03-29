@@ -1,0 +1,32 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "library", "library", "{50A17DA1-3556-4046-CEDC-33EB466D9C32}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "reactronic", "reactronic", "{507F3917-BE92-0FFD-0AC5-C13762ECBE48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotnet", "library\reactronic\dotnet\dotnet.csproj", "{EB0003C5-C718-D878-4DDA-18D458BCAB1E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EB0003C5-C718-D878-4DDA-18D458BCAB1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB0003C5-C718-D878-4DDA-18D458BCAB1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB0003C5-C718-D878-4DDA-18D458BCAB1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB0003C5-C718-D878-4DDA-18D458BCAB1E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{507F3917-BE92-0FFD-0AC5-C13762ECBE48} = {50A17DA1-3556-4046-CEDC-33EB466D9C32}
+		{EB0003C5-C718-D878-4DDA-18D458BCAB1E} = {507F3917-BE92-0FFD-0AC5-C13762ECBE48}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7DC1928A-835F-46D7-A7E9-908B8ECF9164}
+	EndGlobalSection
+EndGlobal

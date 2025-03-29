@@ -1,4 +1,4 @@
-import { TriggeringObject, pause, reactive, Indicator, ReactiveSystem } from "reactronic"
+import { TriggeringObject, pause, reaction, Indicator, ReactiveSystem } from "reactronic"
 
 export class Loader extends TriggeringObject {
   filter: string
@@ -13,7 +13,7 @@ export class Loader extends TriggeringObject {
     ReactiveSystem.getOperation(this.load).configure({ indicator: this.indicator })
   }
 
-  @reactive
+  @reaction
   protected async load(): Promise<void> {
     await pause(100)
     const f = this.filter.toLocaleLowerCase()
