@@ -1,4 +1,4 @@
-import { Mode, TriggeringObject, ReactiveNode, ReactiveNodeDecl, trigger, nonReactiveRun } from "reactronic"
+import { Mode, TriggeringObject, ReactiveNode, ReactiveNodeDecl, trigger, runNonReactively } from "reactronic"
 import { Division, Horizontal, Vertical, rowBreak, El, OnClick, PseudoElement } from "verstak"
 
 export class PaneModel extends TriggeringObject {
@@ -46,7 +46,7 @@ export function Pane(declaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, 
       script: (p, base) => {
         base()
         const m = p.model
-        nonReactiveRun(() => m.setInitialSizes(p.height.min, p.height.max))
+        runNonReactively(() => m.setInitialSizes(p.height.min, p.height.max))
         let header: ReactiveNode<El<HTMLElement>> | undefined = undefined
         if (headerDeclaration) {
           header = Division(ReactiveNode.withBasis({

@@ -1,4 +1,4 @@
-import { TriggeringObject, atomicBlock, reaction, ReactiveNodeVariable } from "reactronic"
+import { TriggeringObject, atomic, reaction, ReactiveNodeVariable } from "reactronic"
 import { WebDriver } from "verstak"
 import { AppTheme } from "themes/AppTheme.js"
 import { Loader } from "./Loader.js"
@@ -39,7 +39,7 @@ export class DemoApp extends TriggeringObject {
     return this.allThemes[this.activeThemeIndex]
   }
 
-  @atomicBlock
+  @atomic
   nextTheme(): void {
     this.activeThemeIndex = (this.activeThemeIndex + 1) % this.allThemes.length
   }
