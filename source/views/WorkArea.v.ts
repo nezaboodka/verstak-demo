@@ -1,12 +1,12 @@
-import { refs, ReactiveNodeDecl, ReactiveNode } from "reactronic"
+import { ReactiveTree, ReactiveTreeNodeDecl, refs } from "reactronic"
 import { RealTimeClock, Table, Division, JustText, rowBreak, Horizontal, Vertical, cursor, El, Theme, Toggle, triggeringModel } from "verstak"
 import { AppTheme } from "themes/AppTheme.js"
 import { DemoApp } from "models/DemoApp.js"
 import { Watch } from "./Watch.js"
 
-export function WorkArea(clock: RealTimeClock, declaration?: ReactiveNodeDecl<El<HTMLElement, void>>) {
+export function WorkArea(clock: RealTimeClock, declaration?: ReactiveTreeNodeDecl<El<HTMLElement, void>>) {
   return (
-    Table(ReactiveNode.withBasis(declaration, {
+    Table(ReactiveTree.withBasis(declaration, {
       script: el => {
         // Elements can be laid out automatically
         // based on their order and line feeds.

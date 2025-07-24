@@ -1,6 +1,6 @@
-import { TriggeringObject, pause, reaction, Indicator, ReactiveSystem } from "reactronic"
+import { ObservableObject, pause, reactive, Indicator, manageReactiveOperation } from "reactronic"
 
-export class Loader extends TriggeringObject {
+export class Loader extends ObservableObject {
   filter: string
   loaded: Array<string>
   indicator: Indicator
@@ -10,10 +10,10 @@ export class Loader extends TriggeringObject {
     this.filter = ""
     this.loaded = []
     this.indicator = Indicator.create("Loader.indicator", -1, -1, 1)
-    ReactiveSystem.getOperation(this.load).configure({ indicator: this.indicator })
+    manageReactiveOperation(this.load).configure({ indicator: this.indicator })
   }
 
-  @reaction
+  @reactive
   protected async load(): Promise<void> {
     await pause(100)
     const f = this.filter.toLocaleLowerCase()

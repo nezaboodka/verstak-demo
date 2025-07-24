@@ -1,11 +1,11 @@
-import { TriggeringObject, atomic, reaction, ReactiveNodeVariable } from "reactronic"
+import { ObservableObject, atomic, reactive, ReactiveTreeVariable } from "reactronic"
 import { WebDriver } from "verstak"
 import { AppTheme } from "themes/AppTheme.js"
 import { Loader } from "./Loader.js"
 
-export class DemoApp extends TriggeringObject {
+export class DemoApp extends ObservableObject {
   static readonly blinkingEffectMarker = "ё"
-  private static readonly gCurrent = new ReactiveNodeVariable<DemoApp>()
+  private static readonly gCurrent = new ReactiveTreeVariable<DemoApp>()
 
   version: string
   allThemes: Array<AppTheme>
@@ -44,12 +44,12 @@ export class DemoApp extends TriggeringObject {
     this.activeThemeIndex = (this.activeThemeIndex + 1) % this.allThemes.length
   }
 
-  @reaction
+  @reactive
   protected actualizeBrowserTitle(): void {
     document.title = `Verstak Demo ${this.version}`
   }
 
-  @reaction
+  @reactive
   protected actualizeBlinkingEffect(): void {
     WebDriver.blinkingEffectMarker = this.isBlinkingEffectOn ? DemoApp.blinkingEffectMarker : undefined
   }

@@ -1,10 +1,10 @@
-import { Mode, TriggeringObject, ReactiveNode, ReactiveNodeDecl, trigger, runNonReactively } from "reactronic"
+import { Mode, ObservableObject, ReactiveTree, ReactiveTreeNode, ReactiveTreeNodeDecl, observable, runNonReactively } from "reactronic"
 import { Division, Horizontal, Vertical, rowBreak, El, OnClick, PseudoElement } from "verstak"
 
-export class PaneModel extends TriggeringObject {
-  @trigger(false) private readonly _el: El<HTMLElement, PaneModel>
-  @trigger(false) readonly initialMinSize: string | undefined
-  @trigger(false) readonly initialMaxSize: string | undefined
+export class PaneModel extends ObservableObject {
+  @observable(false) private readonly _el: El<HTMLElement, PaneModel>
+  @observable(false) readonly initialMinSize: string | undefined
+  @observable(false) readonly initialMaxSize: string | undefined
 
   isExpanded: boolean
   sizePx: number
@@ -32,9 +32,9 @@ export class PaneModel extends TriggeringObject {
   }
 }
 
-export function Pane(declaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, bodyDeclaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, headerDeclaration?: ReactiveNodeDecl<El<HTMLElement, PaneModel>>) {
+export function Pane(declaration: ReactiveTreeNodeDecl<El<HTMLElement, PaneModel>>, bodyDeclaration: ReactiveTreeNodeDecl<El<HTMLElement, PaneModel>>, headerDeclaration?: ReactiveTreeNodeDecl<El<HTMLElement, PaneModel>>) {
   return (
-    Division<PaneModel>(ReactiveNode.withBasis({
+    Division<PaneModel>(ReactiveTree.withBasis({
       mode: Mode.autonomous,
       preparation: (el, base) => {
         const m = el.model = new PaneModel(el)
@@ -47,9 +47,9 @@ export function Pane(declaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, 
         base()
         const m = p.model
         runNonReactively(() => m.setInitialSizes(p.height.min, p.height.max))
-        let header: ReactiveNode<El<HTMLElement>> | undefined = undefined
+        let header: ReactiveTreeNode<El<HTMLElement>> | undefined = undefined
         if (headerDeclaration) {
-          header = Division(ReactiveNode.withBasis({
+          header = Division(ReactiveTree.withBasis({
             key: "header",
             mode: Mode.autonomous,
             preparation: (el, base) => {
@@ -76,7 +76,7 @@ export function Pane(declaration: ReactiveNodeDecl<El<HTMLElement, PaneModel>>, 
           }, headerDeclaration))
           rowBreak()
         }
-        Division(ReactiveNode.withBasis({
+        Division(ReactiveTree.withBasis({
           key: "body",
           mode: Mode.autonomous,
           triggers: { header },

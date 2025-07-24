@@ -1,4 +1,4 @@
-import { refs, Mode, ReactiveNodeDecl } from "reactronic"
+import { refs, Mode, ReactiveTreeNodeDecl } from "reactronic"
 import { RealTimeClock, Division, Horizontal, Vertical, JustText, rowBreak, Dimension, El, Direction, equal, Markdown, Input, Theme, composeInputModel, Icon } from "verstak"
 import { Span } from "verstak/html"
 import { DemoApp } from "models/DemoApp.js"
@@ -205,7 +205,7 @@ export function MainWindow(clock: RealTimeClock) {
   )
 }
 
-function GroupHeader(caption: string): ReactiveNodeDecl<El<HTMLElement, PaneModel>> {
+function GroupHeader(caption: string): ReactiveTreeNodeDecl<El<HTMLElement, PaneModel>> {
   return ({
     preparation: el => {
       el.height = { min: "30px" }

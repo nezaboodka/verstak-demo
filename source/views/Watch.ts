@@ -1,4 +1,4 @@
-import { Mode, ReactiveNode } from "reactronic"
+import { Mode, ReactiveTreeNode } from "reactronic"
 import { RealTimeClock, Division, Horizontal, Vertical, El, OnClick, Theme } from "verstak"
 import { Svg, Circle, Rect, Text, G, Polygon } from "verstak/svg"
 import { AppTheme } from "themes/AppTheme.js"
@@ -12,7 +12,7 @@ const AccentColor = "silver" // "#87F7A5" // "#93CAEC" // "#93CAEC" // "#87F7A5"
 const BezelBackColor = "silver"
 const BezelLabelColor = "#444444"
 
-export function Watch(place: string, clock: RealTimeClock): ReactiveNode<El<HTMLElement>> {
+export function Watch(place: string, clock: RealTimeClock): ReactiveTreeNode<El<HTMLElement>> {
   return (
     Division({
       mode: Mode.autonomous,
@@ -221,7 +221,7 @@ function radialDots(color: string, step: number, major: number, indent: number):
 
 function Arrow(widthA: number, widthB: number, margin: number, length: number,
   degrees: number, duration: number, color: string, stroke: string,
-  shadow: boolean, svg: SVGSVGElement): ReactiveNode<El<SVGPolygonElement>> {
+  shadow: boolean, svg: SVGSVGElement): ReactiveTreeNode<El<SVGPolygonElement>> {
   return (
     Polygon({
       script: el => {
@@ -258,7 +258,7 @@ function Arrow(widthA: number, widthB: number, margin: number, length: number,
 }
 
 function ArrowEx(segments: Array<number | string>, degrees: number,
-  duration: number, color: string, stroke: string): ReactiveNode<El<SVGPolygonElement>> {
+  duration: number, color: string, stroke: string): ReactiveTreeNode<El<SVGPolygonElement>> {
   return (
     Polygon({
       script: el => {
@@ -286,7 +286,7 @@ function ArrowEx(segments: Array<number | string>, degrees: number,
 
 function RadialLabel(degree: number, content: string, color: string,
   radius: number, size: number, weight: string, bezel: boolean | undefined,
-  root: SVGSVGElement): ReactiveNode<El<SVGTextElement>> {
+  root: SVGSVGElement): ReactiveTreeNode<El<SVGTextElement>> {
   return (
     Text({
       script: el => {
