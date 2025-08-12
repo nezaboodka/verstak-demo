@@ -1,4 +1,4 @@
-import { Mode } from "reactronic"
+import { Mode, ReactiveTreeNode } from "reactronic"
 import { RealTimeClock, Window, rowBreak } from "verstak"
 import { configureDebugging } from "dbg.js"
 import { DemoApp } from "models/DemoApp.js"
@@ -16,7 +16,7 @@ const version: string = "0.1"
 
 configureDebugging()
 
-Window({
+const win = Window({
   mode: Mode.autonomous,
   preparation: el => {
     DemoApp.current = new DemoApp(version,
@@ -35,3 +35,5 @@ Window({
     MainWindow(clock)
   }
 })
+
+console.log(win.lookupTreeNodeByUri("node://·A·Window@index.ts:16:13/·B·MainWindow@index.ts:34:5/Theme"))
