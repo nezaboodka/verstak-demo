@@ -1,5 +1,5 @@
-import { Mode, ReactiveTreeNode } from "reactronic"
-import { RealTimeClock, Window, rowBreak } from "verstak"
+import { Mode } from "reactronic"
+import { RealTimeClock, WebDriver, Window, rowBreak } from "verstak"
 import { configureDebugging } from "dbg.js"
 import { DemoApp } from "models/DemoApp.js"
 import { MainWindow } from "views/MainWindow.v.js"
@@ -35,5 +35,7 @@ const win = Window({
     MainWindow(clock)
   }
 })
+
+console.log(WebDriver.getOwnReactiveTreeNodeOfNativeElement(win.element.native))
 
 console.log(win.lookupTreeNodeByUri("node://·A·Window@index.ts:16:13/·B·MainWindow@index.ts:34:5/Theme"))
