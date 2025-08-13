@@ -36,6 +36,6 @@ const win = Window({
   }
 })
 
-console.log(WebDriver.getOwnReactiveTreeNodeOfNativeElement(win.element.native))
+console.log(WebDriver.getOwnNodeOfNativeElement(win.element.native))
 
 console.log(win.lookupTreeNodeByUri("node://·A·Window@index.ts:16:13/·B·MainWindow@index.ts:34:5/Theme"))
