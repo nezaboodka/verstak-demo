@@ -1,12 +1,12 @@
-import { ReactiveTreeNode, ReactiveTreeNodeDecl, refs } from "reactronic"
-import { RealTimeClock, Table, Division, JustText, rowBreak, Horizontal, Vertical, cursor, El, Theme, Toggle, triggeringModel } from "verstak"
+import { ReactiveTreeNodeDecl, derived, refs } from "reactronic"
+import { RealTimeClock, Table, Division, JustText, rowBreak, Horizontal, Vertical, cursor, El, Theme, Toggle, observableModel } from "verstak"
 import { AppTheme } from "themes/AppTheme.js"
 import { DemoApp } from "models/DemoApp.js"
 import { Watch } from "./Watch.js"
 
 export function WorkArea(clock: RealTimeClock, declaration?: ReactiveTreeNodeDecl<El<HTMLElement, void>>) {
   return (
-    Table(ReactiveTreeNode.withBasis(declaration, {
+    Table(derived(declaration, {
       script: el => {
         // Elements can be laid out automatically
         // based on their order and line feeds.
@@ -31,7 +31,7 @@ export function WorkArea(clock: RealTimeClock, declaration?: ReactiveTreeNodeDec
         Toggle({ key: "SecondaryTimeZone",
           preparation: (el, base) => {
             const app = DemoApp.current
-            el.model = triggeringModel({
+            el.model = observableModel({
               label: "Watch Bezel",
               checked: refs(app).isSecondaryTimeZoneOn,
             })
