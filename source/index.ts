@@ -16,7 +16,7 @@ const version: string = "0.1"
 
 configureDebugging()
 
-const win = launch(
+launch(
   Window({
     mode: Mode.autonomous,
     preparation: el => {
@@ -37,5 +37,5 @@ const win = launch(
     }
   }))
 
-console.log(WebDriver.getOwnNodeOfNativeElement(win.element.native))
-console.log(win.lookupTreeNodeByUri("node://·A·Window@index.ts:17:3/·B·MainWindow@index.ts:34:5/Theme"))
+// console.log(WebDriver.getOwnNodeOfNativeElement(win.element.native))
+// console.log(win.lookupTreeNodeByUri("node://·A·Window@index.ts:17:3/·B·MainWindow@index.ts:34:5/Theme"))
