@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { Division, Horizontal, Button, Toggle, Input, composeInputModel, Theme, observableModel } from "verstak"
+import { Block, Horizontal, Button, Toggle, Input, composeInputModel, Theme, observableModel } from "verstak"
 import { AppTheme } from "themes/AppTheme.js"
 import { DemoApp } from "models/DemoApp.js"
 
@@ -60,7 +60,7 @@ export function statusBar() {
       el.native.classList.toggle(theme.panel, true)
     }
   })
-  Division({
+  Block({
     script: el => {
       el.useStylingPreset(theme.panel)
       el.horizontally = Horizontal.stretch

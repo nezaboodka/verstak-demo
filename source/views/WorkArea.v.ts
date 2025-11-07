@@ -1,5 +1,5 @@
 import { ReactiveTreeNodeDecl, derivative, refs } from "reactronic"
-import { RealTimeClock, Table, Division, JustText, rowBreak, Horizontal, Vertical, cursor, El, Theme, Toggle, observableModel } from "verstak"
+import { RealTimeClock, Table, Block, JustText, rowBreak, Horizontal, Vertical, cursor, El, Theme, Toggle, observableModel } from "verstak"
 import { AppTheme } from "themes/AppTheme.js"
 import { DemoApp } from "models/DemoApp.js"
 import { Watch } from "./Watch.js"
@@ -53,7 +53,7 @@ export function WorkArea(clock: RealTimeClock, declaration?: ReactiveTreeNodeDec
 
 function Ruler(title: string, horizontal: Horizontal, vertical: Vertical) {
   return (
-    Division({
+    Block({
       script: el => {
         el.horizontally = horizontal
         el.vertically = vertical
@@ -66,7 +66,7 @@ function Ruler(title: string, horizontal: Horizontal, vertical: Vertical) {
 
 function ExampleData(place: string) {
   return (
-    Division({
+    Block({
       preparation: el => {
         el.horizontally = Horizontal.stretch
         el.vertically = Vertical.stretch

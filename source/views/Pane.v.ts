@@ -1,5 +1,5 @@
 import { Mode, ObservableObject, ReactiveTreeNode, ReactiveTreeNodeDecl, observable, runNonReactively, derivative } from "reactronic"
-import { Division, Horizontal, Vertical, rowBreak, El, OnClick, PseudoElement } from "verstak"
+import { Block, Horizontal, Vertical, rowBreak, El, OnClick, PseudoElement } from "verstak"
 
 export class PaneModel extends ObservableObject {
   @observable(false) private readonly _el: El<HTMLElement, PaneModel>
@@ -34,7 +34,7 @@ export class PaneModel extends ObservableObject {
 
 export function Pane(declaration: ReactiveTreeNodeDecl<El<HTMLElement, PaneModel>>, bodyDeclaration: ReactiveTreeNodeDecl<El<HTMLElement, PaneModel>>, headerDeclaration?: ReactiveTreeNodeDecl<El<HTMLElement, PaneModel>>) {
   return (
-    Division<PaneModel>(derivative({
+    Block<PaneModel>(derivative({
       mode: Mode.autonomous,
       preparation: (el, base) => {
         const m = el.model = new PaneModel(el)
@@ -49,7 +49,7 @@ export function Pane(declaration: ReactiveTreeNodeDecl<El<HTMLElement, PaneModel
         runNonReactively(() => m.setInitialSizes(p.height.min, p.height.max))
         let header: ReactiveTreeNode<El<HTMLElement>> | undefined = undefined
         if (headerDeclaration) {
-          header = Division(derivative({
+          header = Block(derivative({
             key: "header",
             mode: Mode.autonomous,
             preparation: (el, base) => {
@@ -76,7 +76,7 @@ export function Pane(declaration: ReactiveTreeNodeDecl<El<HTMLElement, PaneModel
           }, headerDeclaration))
           rowBreak()
         }
-        Division(derivative({
+        Block(derivative({
           key: "body",
           mode: Mode.autonomous,
           triggers: { header },

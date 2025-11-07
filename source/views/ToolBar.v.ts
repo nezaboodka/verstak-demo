@@ -1,5 +1,5 @@
 import { Mode, pause, refs } from "reactronic"
-import { Division, rowBreak, Horizontal, Icon, Input, Theme, Markdown, composeInputModel } from "verstak"
+import { Block, rowBreak, Horizontal, Icon, Input, Theme, Markdown, composeInputModel } from "verstak"
 import { Img } from "verstak/html"
 import { AppTheme } from "themes/AppTheme.js"
 import { DemoApp } from "models/DemoApp.js"
@@ -24,7 +24,7 @@ export function toolBar() {
   //     })
   //   }
   // })
-  Division({ // Logo
+  Block({ // Logo
     preparation: el => {
       el.useStylingPreset(theme.panel)
       // b.useStyle(s.Clickable)
@@ -46,11 +46,11 @@ export function toolBar() {
       // })
     }
   })
-  Division({
+  Block({
     script: el => {
       el.horizontally = Horizontal.stretch
       el.useStylingPreset(theme.panel)
-      Division({
+      Block({
         mode: Mode.autonomous,
         script: el => {
           el.horizontally = Horizontal.stretch
@@ -80,7 +80,7 @@ export function toolBar() {
       })
     }
   })
-  Division({ // Account
+  Block({ // Account
     script: el => {
       el.useStylingPreset(theme.panel)
       // b.useStyle(s.Hint)

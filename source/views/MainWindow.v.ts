@@ -1,5 +1,5 @@
 import { refs, Mode, ReactiveTreeNodeDecl } from "reactronic"
-import { RealTimeClock, Division, Horizontal, Vertical, JustText, rowBreak, Dimension, El, Direction, equal, Markdown, Input, Theme, composeInputModel, Icon } from "verstak"
+import { RealTimeClock, Block, Horizontal, Vertical, JustText, rowBreak, Dimension, El, Direction, equal, Markdown, Input, Theme, composeInputModel, Icon } from "verstak"
 import { Span } from "verstak/html"
 import { DemoApp } from "models/DemoApp.js"
 import { toolBar } from "./ToolBar.v.js"
@@ -9,7 +9,7 @@ import { Pane, PaneModel } from "./Pane.v.js"
 
 export function MainWindow(clock: RealTimeClock) {
   return (
-    Division({
+    Block({
       mode: Mode.autonomous,
       preparation: el => {
         el.native.sensors.focus // enable focus global manager
@@ -29,7 +29,7 @@ export function MainWindow(clock: RealTimeClock) {
 
         rowBreak()
 
-        Division({
+        Block({
           preparation: el => {
             el.splitView = Direction.horizontal
             el.horizontally = Horizontal.stretch
@@ -40,7 +40,7 @@ export function MainWindow(clock: RealTimeClock) {
           script: el => {
             // Dimension.gFontSizePx.value = 16
             Dimension.lineSizePx = 20
-            Division({
+            Block({
               preparation: el => { el.splitView = Direction.vertical },
               script: el => {
                 // Dimension.gFontSizePx.value = 26
@@ -114,7 +114,7 @@ export function MainWindow(clock: RealTimeClock) {
                 }, GroupHeader("Group"))
 
                 // rowBreak()
-                Division({
+                Block({
                   script: el => {
                     el.vertically = Vertical.stretch
                     el.stretchingStrengthVertically = 2
@@ -153,7 +153,7 @@ export function MainWindow(clock: RealTimeClock) {
                 el.stretchingStrengthHorizontally = 3
               }
             })
-            Division({
+            Block({
               mode: Mode.autonomous,
               triggers: { theme },
               script: el => {
