@@ -1,10 +1,10 @@
-import { Mode, ObservableObject, ReactiveTreeNode, ReactiveTreeNodeDecl, observable, runNonReactively, derivative } from "reactronic"
+import { Mode, SxObject, ReactiveTreeNode, ReactiveTreeNodeDecl, signal, runNonReactive, derivative } from "reactronic"
 import { Block, Horizontal, Vertical, rowBreak, El, OnClick, PseudoElement } from "verstak"
 
-export class PaneModel extends ObservableObject {
-  @observable(false) private readonly _el: El<HTMLElement, PaneModel>
-  @observable(false) readonly initialMinSize: string | undefined
-  @observable(false) readonly initialMaxSize: string | undefined
+export class PaneModel extends SxObject {
+  @signal(false) private readonly _el: El<HTMLElement, PaneModel>
+  @signal(false) readonly initialMinSize: string | undefined
+  @signal(false) readonly initialMaxSize: string | undefined
 
   isExpanded: boolean
   sizePx: number
@@ -46,7 +46,7 @@ export function Pane(declaration: ReactiveTreeNodeDecl<El<HTMLElement, PaneModel
       script: (p, base) => {
         base()
         const m = p.model
-        runNonReactively(() => m.setInitialSizes(p.height.min, p.height.max))
+        runNonReactive(() => m.setInitialSizes(p.height.min, p.height.max))
         let header: ReactiveTreeNode<El<HTMLElement>> | undefined = undefined
         if (headerDeclaration) {
           header = Block(derivative({

@@ -1,6 +1,6 @@
-import { ObservableObject, pause, reactive, Indicator, manageReactiveOperation } from "reactronic"
+import { SxObject, pause, reaction, Indicator, manageReaction } from "reactronic"
 
-export class Loader extends ObservableObject {
+export class Loader extends SxObject {
   filter: string
   loaded: Array<string>
   indicator: Indicator
@@ -10,10 +10,10 @@ export class Loader extends ObservableObject {
     this.filter = ""
     this.loaded = []
     this.indicator = Indicator.create("Loader.indicator", -1, -1, 1)
-    manageReactiveOperation(this.load).configure({ indicator: this.indicator })
+    manageReaction(this.load).configure({ indicator: this.indicator })
   }
 
-  @reactive
+  @reaction
   protected async load(): Promise<void> {
     await pause(100)
     const f = this.filter.toLocaleLowerCase()
