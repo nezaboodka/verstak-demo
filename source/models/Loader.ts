@@ -1,6 +1,6 @@
-import { SxObject, pause, reaction, Indicator, manageReaction } from "reactronic"
+import { RxObject, pause, reaction, Indicator, manageReaction } from "reactronic"
 
-export class Loader extends SxObject {
+export class Loader extends RxObject {
   filter: string
   loaded: Array<string>
   indicator: Indicator

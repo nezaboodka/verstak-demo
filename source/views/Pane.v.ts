@@ -1,7 +1,7 @@
-import { Mode, SxObject, ReactiveTreeNode, ReactiveTreeNodeDecl, signal, runNonReactive, derivative } from "reactronic"
+import { Mode, RxObject, ReactiveTreeNode, ReactiveTreeNodeDecl, signal, runNonReactive, derivative } from "reactronic"
 import { Block, Horizontal, Vertical, rowBreak, El, OnClick, PseudoElement } from "verstak"
 
-export class PaneModel extends SxObject {
+export class PaneModel extends RxObject {
   @signal(false) private readonly _el: El<HTMLElement, PaneModel>
   @signal(false) readonly initialMinSize: string | undefined
   @signal(false) readonly initialMaxSize: string | undefined

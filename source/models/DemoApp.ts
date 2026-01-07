@@ -1,9 +1,9 @@
-import { SxObject, transaction, reaction, ReactiveTreeVariable } from "reactronic"
+import { RxObject, transaction, reaction, ReactiveTreeVariable } from "reactronic"
 import { WebDriver } from "verstak"
 import { AppTheme } from "themes/AppTheme.js"
 import { Loader } from "./Loader.js"
 
-export class DemoApp extends SxObject {
+export class DemoApp extends RxObject {
   static readonly blinkingEffectMarker = "ё"
   private static readonly gCurrent = new ReactiveTreeVariable<DemoApp>()
 

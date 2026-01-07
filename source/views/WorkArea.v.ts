@@ -1,5 +1,5 @@
 import { ReactiveTreeNodeDecl, derivative, refs } from "reactronic"
-import { RealTimeClock, Table, Block, JustText, rowBreak, Horizontal, Vertical, cursor, El, Theme, Toggle, observableModel } from "verstak"
+import { RealTimeClock, Table, Block, JustText, rowBreak, Horizontal, Vertical, cursor, El, Theme, Toggle, rxModel } from "verstak"
 import { AppTheme } from "themes/AppTheme.js"
 import { DemoApp } from "models/DemoApp.js"
 import { Watch } from "./Watch.js"
@@ -31,7 +31,7 @@ export function WorkArea(clock: RealTimeClock, declaration?: ReactiveTreeNodeDec
         Toggle({ key: "SecondaryTimeZone",
           preparation: (el, base) => {
             const app = DemoApp.current
-            el.model = observableModel({
+            el.model = rxModel({
               label: "Watch Bezel",
               checked: refs(app).isSecondaryTimeZoneOn,
             })
