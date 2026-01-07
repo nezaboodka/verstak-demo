@@ -11,65 +11,65 @@ export function statusBar() {
   const app = DemoApp.current
   const theme = Theme.current as AppTheme
   Toggle({ key: "Blinking",
-    preparation: (el, base) => {
+    preparation(el, base) {
       // We compose model from different pieces,
       // such as app and theme. Without the need
       // to implement interface in form of class.
-      el.model = rxModel({
+      this.model = rxModel({
         label: "Blinking Rendering",
         checked: refs(app).isBlinkingEffectOn,
       })
       base()
     },
-    script: (el, base) => {
+    script(el, base) {
       base()
       // Style is not inside "initialize", because of theming
-      el.native.classList.toggle(theme.panel, true)
+      this.native.classList.toggle(theme.panel, true)
     }
   })
   Button({ key: "Theme",
-    preparation: (el, base) => {
-      el.model = rxModel({
+    preparation(el, base) {
+      this.model = rxModel({
         icon: "fa-solid fa-palette",
         label: "Switch Theme",
         action() { app.nextTheme() }
       })
       base()
     },
-    script: (el,  base) => {
+    script(el,  base) {
       base()
-      el.useStylingPreset(theme.panel)
+      this.useStylingPreset(theme.panel)
     }
   })
   Toggle({ key: "SecondaryTimeZone",
-    preparation: (el, base) => {
-      el.model = rxModel({
+    preparation(el, base) {
+      this.model = rxModel({
         label: "New York (GMT-7)",
         checked: refs(app).isSecondaryTimeZoneOn,
       })
       base()
     },
-    script: (el, base) => {
+    script(el, base) {
       base()
-      el.native.classList.toggle(theme.panel, true)
+      this.native.classList.toggle(theme.panel, true)
     }
   })
   Toggle({
-    script: (el, base) => {
+    script(el, base) {
       base()
-      el.native.classList.toggle(theme.panel, true)
+      this.native.classList.toggle(theme.panel, true)
     }
   })
   Block({
-    script: el => {
-      el.useStylingPreset(theme.panel)
-      el.horizontally = Horizontal.stretch
-      el.contentHorizontally = Horizontal.right
+    script() {
+      this.useStylingPreset(theme.panel)
+      this.horizontally = Horizontal.stretch
+      this.contentHorizontally = Horizontal.right
       Input({
-        preparation: (el, base) => {
+        preparation(el, base) {
           const loader = app.loader
-          el.width = { min: "10em" }
-          el.model = composeInputModel({
+          this.width = { min: "10em" }
+          this.model = composeInputModel({
             icon: "fa-solid fa-search",
             text: refs(loader).filter,
             options: refs(loader).loaded,
@@ -78,11 +78,11 @@ export function statusBar() {
           })
           base()
         },
-        script: (el, base) => {
+        script(el, base) {
           base()
           // Spinner("Spinner", {
-          //   preparation: el => {
-          //     el.model = observableModel({
+          //   preparation() {
+          //     this.model = observableModel({
           //       active: refs(app.loader.indicator).isActive,
           //       color: "red",
           //     })

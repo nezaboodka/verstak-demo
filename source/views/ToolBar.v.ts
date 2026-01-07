@@ -8,36 +8,36 @@ export function toolBar() {
   const app = DemoApp.current
   const theme = Theme.current as AppTheme
   // Image({ // logo
-  //   preparation: (el, base) => {
+  //   preparation(el, base) {
   //     base()
-  //     el.contentAlignment = Align.stretch
-  //     el.boundsAlignment = Align.stretch
-  //     el.model.source = "https://nezaboodka.com/img/star-768x768-circle.png"
-  //     el.native.className = cx(s.Panel, s.Clickable, s.Logo)
+  //     this.contentAlignment = Align.stretch
+  //     this.boundsAlignment = Align.stretch
+  //     this.model.source = "https://nezaboodka.com/img/star-768x768-circle.png"
+  //     this.native.className = cx(s.Panel, s.Clickable, s.Logo)
   //   },
-  //   script: (el, base) => {
+  //   script(el, base) {
   //     base()
-  //     el.style.backgroundColor = app.blinkingEffect ? "red" : ""
+  //     this.style.backgroundColor = app.blinkingEffect ? "red" : ""
   //
-  //     OnClick(el.native, () => {
+  //     OnClick(this.native, () => {
   //       app.blinkingEffect = !app.blinkingEffect
   //     })
   //   }
   // })
   Block({ // Logo
-    preparation: el => {
-      el.useStylingPreset(theme.panel)
+    preparation() {
+      this.useStylingPreset(theme.panel)
       // b.useStyle(s.Clickable)
       // b.useStyle(s.Logo)
-      el.style.outlineOffset = "-1px"
+      this.style.outlineOffset = "-1px"
     },
-    scriptAsync: async el => {
-      el.style.boxShadow = app.isBlinkingEffectOn ? "0.025rem 0.025rem 0.35rem 0 red" : ""
+    async scriptAsync() {
+      this.style.boxShadow = app.isBlinkingEffectOn ? "0.025rem 0.025rem 0.35rem 0 red" : ""
       await pause(3000)
       Img({
-        script: (el, base) => {
+        script(el, base) {
           base()
-          el.native.src = "https://nezaboodka.com/img/star-768x768-circle.png"
+          this.native.src = "https://nezaboodka.com/img/star-768x768-circle.png"
         }
       })
       //
@@ -47,13 +47,13 @@ export function toolBar() {
     }
   })
   Block({
-    script: el => {
-      el.horizontally = Horizontal.stretch
-      el.useStylingPreset(theme.panel)
+    script() {
+      this.horizontally = Horizontal.stretch
+      this.useStylingPreset(theme.panel)
       Block({
         mode: Mode.autonomous,
-        script: el => {
-          el.horizontally = Horizontal.stretch
+        script() {
+          this.horizontally = Horizontal.stretch
           const position = app.position
           if (!Number.isFinite(position))
             Markdown(`**Verstak** v${app.version}`)
@@ -64,10 +64,10 @@ export function toolBar() {
         }
       })
       Input({
-        preparation: (el, base) => {
+        preparation(el, base) {
           const loader = app.loader
-          el.width = { min: "7em" }
-          el.model = composeInputModel({
+          this.width = { min: "7em" }
+          this.model = composeInputModel({
             icon: "fa-solid fa-search",
             text: refs(loader).filter,
             options: refs(loader).loaded,
@@ -81,8 +81,8 @@ export function toolBar() {
     }
   })
   Block({ // Account
-    script: el => {
-      el.useStylingPreset(theme.panel)
+    script() {
+      this.useStylingPreset(theme.panel)
       // b.useStyle(s.Hint)
       // b.useStyle(s.Clickable)
       Icon("fa-solid fa-bars")

@@ -7,7 +7,7 @@ import { Watch } from "./Watch.js"
 export function WorkArea(clock: RealTimeClock, declaration?: ReactiveTreeNodeDecl<El<HTMLElement, void>>) {
   return (
     Table(derivative(declaration, {
-      script: el => {
+      script() {
         // Elements can be laid out automatically
         // based on their order and line feeds.
         rowBreak()
@@ -29,21 +29,21 @@ export function WorkArea(clock: RealTimeClock, declaration?: ReactiveTreeNodeDec
         ExampleData("B3:C3")
         ExampleData("A2:A3")
         Toggle({ key: "SecondaryTimeZone",
-          preparation: (el, base) => {
+          preparation(el, base) {
             const app = DemoApp.current
-            el.model = rxModel({
+            this.model = rxModel({
               label: "Watch Bezel",
               checked: refs(app).isSecondaryTimeZoneOn,
             })
             base()
           },
-          script: (el, base) => {
+          script(el, base) {
             base()
             const theme = Theme.current as AppTheme
-            el.native.classList.toggle(theme.panel, true)
-            el.place = "B1"
-            el.horizontally = Horizontal.right
-            el.vertically = Vertical.bottom
+            this.native.classList.toggle(theme.panel, true)
+            this.place = "B1"
+            this.horizontally = Horizontal.right
+            this.vertically = Vertical.bottom
           }
         })
       }}),
@@ -54,10 +54,10 @@ export function WorkArea(clock: RealTimeClock, declaration?: ReactiveTreeNodeDec
 function Ruler(title: string, horizontal: Horizontal, vertical: Vertical) {
   return (
     Block({
-      script: el => {
-        el.horizontally = horizontal
-        el.vertically = vertical
-        el.style.fontSize = "smaller"
+      script() {
+        this.horizontally = horizontal
+        this.vertically = vertical
+        this.style.fontSize = "smaller"
         JustText(`&nbsp;${title}`, true)
       }
     })
@@ -67,16 +67,16 @@ function Ruler(title: string, horizontal: Horizontal, vertical: Vertical) {
 function ExampleData(place: string) {
   return (
     Block({
-      preparation: el => {
-        el.horizontally = Horizontal.stretch
-        el.vertically = Vertical.stretch
-        el.contentHorizontally = Horizontal.center
-        el.contentVertically = Vertical.center
+      preparation() {
+        this.horizontally = Horizontal.stretch
+        this.vertically = Vertical.stretch
+        this.contentHorizontally = Horizontal.center
+        this.contentVertically = Vertical.center
       },
-      script: el => {
+      script() {
         const theme = Theme.current as AppTheme
-        el.place = place
-        el.useStylingPreset(theme.accent)
+        this.place = place
+        this.useStylingPreset(theme.accent)
         JustText(place)
       }
     })

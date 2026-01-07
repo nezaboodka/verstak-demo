@@ -36,33 +36,34 @@ export function Pane(declaration: ReactiveTreeNodeDecl<El<HTMLElement, PaneModel
   return (
     Block<PaneModel>(derivative({
       mode: Mode.autonomous,
-      preparation: (el, base) => {
-        const m = el.model = new PaneModel(el)
+      preparation(el, base) {
+        const m = this.model = new PaneModel(this)
         base()
-        el.horizontally = Horizontal.stretch
-        el.vertically = Vertical.stretch
-        m.setInitialSizes(el.height.min, el.height.max)
+        this.horizontally = Horizontal.stretch
+        this.vertically = Vertical.stretch
+        m.setInitialSizes(this.height.min, this.height.max)
       },
-      script: (p, base) => {
+      script(el, base) {
+        const p = this
         base()
-        const m = p.model
-        runNonReactive(() => m.setInitialSizes(p.height.min, p.height.max))
+        const m = this.model
+        runNonReactive(() => m.setInitialSizes(this.height.min, this.height.max))
         let header: ReactiveTreeNode<El<HTMLElement>> | undefined = undefined
         if (headerDeclaration) {
           header = Block(derivative({
             key: "header",
             mode: Mode.autonomous,
-            preparation: (el, base) => {
-              el.model = m
+            preparation(el, base) {
+              this.model = m
               base()
-              el.native.className = "header"
-              el.horizontally = Horizontal.stretch
-              el.vertically = Vertical.top
+              this.native.className = "header"
+              this.horizontally = Horizontal.stretch
+              this.vertically = Vertical.top
             },
-            script: (el, base) => {
+            script(el, base) {
               base()
 
-              OnClick(el.native, () => {
+              OnClick(this.native, () => {
                 m.isExpanded = !m.isExpanded
                 if (m.isExpanded) {
                   m.sizePx = m.cachedSizePx
@@ -80,26 +81,26 @@ export function Pane(declaration: ReactiveTreeNodeDecl<El<HTMLElement, PaneModel
           key: "body",
           mode: Mode.autonomous,
           triggers: { header },
-          preparation: (el, base) => {
-            el.model = m
+          preparation(el, base) {
+            this.model = m
             base()
-            el.native.className = "body"
-            el.style.overflow = "scroll"
-            el.horizontally = Horizontal.stretch
-            el.vertically = Vertical.stretch
+            this.native.className = "body"
+            this.style.overflow = "scroll"
+            this.horizontally = Horizontal.stretch
+            this.vertically = Vertical.stretch
           },
-          script: (el, base) => {
+          script(el, base) {
             base()
             const headerSizePx = header?.element.native.clientHeight ?? 0
             const minPx = Math.max(0, p.heightPx.minPx - headerSizePx)
             const maxPx = p.partitionSizeInSplitViewPx - headerSizePx
-            el.height = { min: `${minPx}px`, max: `${maxPx}px` }
+            this.height = { min: `${minPx}px`, max: `${maxPx}px` }
           }
         }, bodyDeclaration))
         PseudoElement({
           mode: Mode.autonomous,
           triggers: { header, stamp: p.node.stamp },
-          script: () => {
+          script() {
             const headerSizePx = header?.element.native.clientHeight ?? 0
             p.height = m.isExpanded
               ? { min: m.initialMinSize, max: m.initialMaxSize, preferred: `${m.sizePx}px` }

@@ -19,19 +19,19 @@ configureDebugging()
 launch(
   Window({
     mode: Mode.autonomous,
-    preparation: el => {
+    preparation() {
       DemoApp.current = new DemoApp(version,
         new LightAppTheme(),
         new DarkAppTheme(),
         new PrintAppTheme())
     },
-    script: el => {
+    script() {
       const clock = new RealTimeClock(200)
       const theme = DemoApp.current.theme
-      const s = el.style
+      const s = this.style
       s.color = theme.textColor
       s.backgroundColor = theme.spaceFillColor
-      el.useStylingPreset(theme.page)
+      this.useStylingPreset(theme.page)
       rowBreak() // WORKAROUND
       MainWindow(clock)
     }

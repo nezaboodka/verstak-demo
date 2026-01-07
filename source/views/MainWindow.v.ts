@@ -11,69 +11,69 @@ export function MainWindow(clock: RealTimeClock) {
   return (
     Block({
       mode: Mode.autonomous,
-      preparation: el => {
-        el.native.sensors.focus // enable focus global manager
-        el.horizontally = Horizontal.stretch
-        el.vertically = Vertical.stretch
-        el.style.padding = "1em"
-        el.style.gap = "1em"
-        el.style.overflow = "hidden"
+      preparation() {
+        this.native.sensors.focus // enable focus global manager
+        this.horizontally = Horizontal.stretch
+        this.vertically = Vertical.stretch
+        this.style.padding = "1em"
+        this.style.gap = "1em"
+        this.style.overflow = "hidden"
       },
-      script: el => {
+      script() {
         const app = DemoApp.current
         const theme = app.theme
         Theme.current = theme
-        el.useStylingPreset(DemoApp.blinkingEffectMarker, app.isBlinkingEffectOn)
+        this.useStylingPreset(DemoApp.blinkingEffectMarker, app.isBlinkingEffectOn)
 
         toolBar()
 
         rowBreak()
 
         Block({
-          preparation: el => {
-            el.splitView = Direction.horizontal
-            el.horizontally = Horizontal.stretch
-            el.vertically = Vertical.stretch
-            const hostEl = el.node.host.element as El
+          preparation() {
+            this.splitView = Direction.horizontal
+            this.horizontally = Horizontal.stretch
+            this.vertically = Vertical.stretch
+            const hostEl = this.node.host.element as El
             hostEl.style.flexGrow = "1"
           },
-          script: el => {
+          script() {
             // Dimension.gFontSizePx.value = 16
             Dimension.lineSizePx = 20
             Block({
-              preparation: el => { el.splitView = Direction.vertical },
-              script: el => {
+              preparation() { this.splitView = Direction.vertical },
+              script() {
                 // Dimension.gFontSizePx.value = 26
                 Dimension.lineSizePx = 40
-                el.useStylingPreset(app.theme.panel)
-                el.style.marginRight = "0.5em"
-                el.width = { min: "19em" }
-                el.stretchingStrengthHorizontally = 0
-                el.horizontally = Horizontal.stretch
-                el.vertically = Vertical.stretch
-                el.contentHorizontally = Horizontal.stretch
-                el.contentVertically = Vertical.top
+                this.useStylingPreset(app.theme.panel)
+                this.style.marginRight = "0.5em"
+                this.width = { min: "19em" }
+                this.stretchingStrengthHorizontally = 0
+                this.horizontally = Horizontal.stretch
+                this.vertically = Vertical.stretch
+                this.contentHorizontally = Horizontal.stretch
+                this.contentVertically = Vertical.top
 
                 JustText("SIDE BAR", false, {
-                  preparation: el => {
-                    el.height = { min: "2em", max: "2em" }
-                    el.vertically = Vertical.top /* + Align.centerX */
-                    el.stretchingStrengthVertically = 0
+                  preparation() {
+                    this.height = { min: "2em", max: "2em" }
+                    this.vertically = Vertical.top /* + Align.centerX */
+                    this.stretchingStrengthVertically = 0
                   },
-                  // script: el => {
+                  // script() {
                   //   Dimension.gFontSizePx.value = app.activeThemeIndex > 0 ? 36 : 16
                   // },
                 })
 
                 // rowBreak()
                 Input({
-                  preparation: (el, base) => {
+                  preparation(el, base) {
                     const loader = app.loader
-                    el.width = { min: "10em" }
-                    el.height = { min: "2em", max: "4em" }
-                    el.vertically = Vertical.center
-                    el.stretchingStrengthVertically = 0
-                    el.model = composeInputModel({
+                    this.width = { min: "10em" }
+                    this.height = { min: "2em", max: "4em" }
+                    this.vertically = Vertical.center
+                    this.stretchingStrengthVertically = 0
+                    this.model = composeInputModel({
                       icon: "fa-solid fa-search",
                       text: refs(loader).filter,
                       options: refs(loader).loaded,
@@ -81,56 +81,62 @@ export function MainWindow(clock: RealTimeClock) {
                       isMultiLineText: false,
                     })
                     base()
-                    el.style.marginBottom = "0.5em"
+                    this.style.marginBottom = "0.5em"
                   },
                 })
 
                 // rowBreak()
                 Pane({
-                  preparation: el => {
-                    el.useStylingPreset(app.theme.group)
-                    el.height = { min: "80px", max: "320px" }
+                  preparation() {
+                    this.useStylingPreset(app.theme.group)
+                    this.height = { min: "80px", max: "320px" }
                   },
                 }, {
-                  script: () => Markdown(EXAMPLE_CODE)
+                  script() {
+                    Markdown(EXAMPLE_CODE)
+                  },
                 }, GroupHeader("Group"))
                 // rowBreak()
                 Pane({
-                  preparation: el => {
-                    el.useStylingPreset(app.theme.group)
-                    el.height = { min: "80px", max: "320px" }
+                  preparation() {
+                    this.useStylingPreset(app.theme.group)
+                    this.height = { min: "80px", max: "320px" }
                   },
                 }, {
-                  script: () => Markdown(EXAMPLE_CODE)
+                  script() {
+                    Markdown(EXAMPLE_CODE)
+                  },
                 }, GroupHeader("Group"))
                 // rowBreak()
                 Pane({
-                  preparation: el => {
-                    el.useStylingPreset(app.theme.group)
-                    el.height = { min: "80px", max: "320px" }
+                  preparation() {
+                    this.useStylingPreset(app.theme.group)
+                    this.height = { min: "80px", max: "320px" }
                   },
                 }, {
-                  script: () => Markdown(EXAMPLE_CODE)
+                  script() {
+                    Markdown(EXAMPLE_CODE)
+                  },
                 }, GroupHeader("Group"))
 
                 // rowBreak()
                 Block({
-                  script: el => {
-                    el.vertically = Vertical.stretch
-                    el.stretchingStrengthVertically = 2
+                  script() {
+                    this.vertically = Vertical.stretch
+                    this.stretchingStrengthVertically = 2
                     // el.height = { max: "600px" }
                   }
                 })
 
                 // rowBreak()
                 Input({
-                  preparation: (el, base) => {
+                  preparation(el, base) {
                     const loader = app.loader
-                    el.width = { min: "10em" }
-                    el.height = { min: "2ln" }
-                    el.vertically = Vertical.top
-                    el.stretchingStrengthVertically = 0
-                    el.model = composeInputModel({
+                    this.width = { min: "10em" }
+                    this.height = { min: "2ln" }
+                    this.vertically = Vertical.top
+                    this.stretchingStrengthVertically = 0
+                    this.model = composeInputModel({
                       text: refs(loader).filter,
                       options: refs(loader).loaded,
                       isHotText: true,
@@ -142,48 +148,50 @@ export function MainWindow(clock: RealTimeClock) {
               }
             })
             WorkArea(clock, {
-              script: (el, base) => {
+              script(el, base) {
                 base()
-                el.useStylingPreset(theme.panel)
-                el.useStylingPreset(theme.accent)
-                el.style.margin = "0 0.5em"
-                el.width = { min: "330px" }
-                el.horizontally = Horizontal.stretch
-                el.vertically = Vertical.stretch
-                el.stretchingStrengthHorizontally = 3
+                this.useStylingPreset(theme.panel)
+                this.useStylingPreset(theme.accent)
+                this.style.margin = "0 0.5em"
+                this.width = { min: "330px" }
+                this.horizontally = Horizontal.stretch
+                this.vertically = Vertical.stretch
+                this.stretchingStrengthHorizontally = 3
               }
             })
             Block({
               mode: Mode.autonomous,
               triggers: { theme },
-              script: el => {
-                el.useStylingPreset(theme.panel)
-                el.useStylingPreset(theme.markdown)
-                el.style.marginLeft = "0.5em"
-                el.width = { min: "300px", max: "50%" }
-                el.stretchingStrengthHorizontally = 3
-                el.horizontally = Horizontal.stretch
-                el.vertically = Vertical.stretch
-                el.contentHorizontally = Horizontal.stretch
-                el.contentVertically = Vertical.top
-                el.splitView = Direction.vertical
+              script() {
+                this.useStylingPreset(theme.panel)
+                this.useStylingPreset(theme.markdown)
+                this.style.marginLeft = "0.5em"
+                this.width = { min: "300px", max: "50%" }
+                this.stretchingStrengthHorizontally = 3
+                this.horizontally = Horizontal.stretch
+                this.vertically = Vertical.stretch
+                this.contentHorizontally = Horizontal.stretch
+                this.contentVertically = Vertical.top
+                this.splitView = Direction.vertical
                 Pane({
-                  preparation: el => {
-                    el.useStylingPreset(app.theme.group)
-                    el.height = { min: "300px", max: "450px" }
-                    el.stretchingStrengthVertically = 1
+                  preparation() {
+                    this.useStylingPreset(app.theme.group)
+                    this.height = { min: "300px", max: "450px" }
+                    this.stretchingStrengthVertically = 1
                   },
                 }, {
-                  script: () => Markdown(EXAMPLE_CODE)
+                  script() {
+                    Markdown(EXAMPLE_CODE)
+                  },
                 }, GroupHeader("Group"))
                 Input({
-                  preparation: (el, base) => {
+                  preparation(el, base) {
                     const loader = app.loader
-                    el.width = { min: "10em" }
-                    el.height = { min: "2ln" }
-                    el.vertically = Vertical.top
-                    el.stretchingStrengthVertically = 1
-                    el.model = composeInputModel({
+                    this.width = { min: "10em" }
+                    this.height = { min: "2ln" }
+                    this.vertically = Vertical.top
+                    this.stretchingStrengthVertically = 1
+                    this.model = composeInputModel({
                       icon: "fa-solid fa-search",
                       text: refs(loader).filter,
                       options: refs(loader).loaded,
@@ -207,50 +215,50 @@ export function MainWindow(clock: RealTimeClock) {
 
 function GroupHeader(caption: string): ReactiveTreeNodeDecl<El<HTMLElement, PaneModel>> {
   return ({
-    preparation: el => {
-      el.height = { min: "30px" }
+    preparation() {
+      this.height = { min: "30px" }
     },
-    script: el => {
-      const m = el.model
+    script() {
+      const m = this.model
       Icon(m.isExpanded ? "fa-solid fa-chevron-down fa-fw" : "fa-solid fa-chevron-right fa-fw")
       Span({
         mode: Mode.autonomous,
-        preparation: el => {
-          el.style.fontWeight = "bold"
+        preparation() {
+          this.style.fontWeight = "bold"
         },
-        script: el => {
+        script() {
           const heightPx = m.heightPx
-          el.native.innerText = `${caption}: ${heightPx.minPx}px..${heightPx.maxPx}px`
+          this.native.innerText = `${caption}: ${heightPx.minPx}px..${heightPx.maxPx}px`
         }
       })
-      Span({ preparation: el => el.native.style.flexGrow = "1" })
+      Span({ preparation() { this.native.style.flexGrow = "1" }})
       Span({
         mode: Mode.autonomous,
-        preparation: el => el.native.className = "size-tag",
-        script: el => {
-          el.native.style.display = "inline"
+        preparation() { this.native.className = "size-tag" },
+        script() {
+          this.native.style.display = "inline"
           const sizePx = m.partitionSizeInSplitViewPx
           const heightPx = m.heightPx
           if (equal(sizePx, heightPx.minPx) && equal(sizePx, heightPx.maxPx)) {
-            el.native.innerText = "fixed"
+            this.native.innerText = "fixed"
           }
           else if (equal(sizePx, heightPx.minPx)) {
-            el.native.innerText = "min"
+            this.native.innerText = "min"
           }
           else if (equal(sizePx, heightPx.maxPx)) {
-            el.native.innerText = "max"
+            this.native.innerText = "max"
           }
           else {
-            el.native.style.display = "none"
+            this.native.style.display = "none"
           }
         }
       })
       Span({
         mode: Mode.autonomous,
-        preparation: el => el.native.className = "effective-size",
-        script: el => {
+        preparation() { this.native.className = "effective-size" },
+        script() {
           const sizePx = m.partitionSizeInSplitViewPx
-          el.native.innerText = `${sizePx === 0 ? "0" : sizePx.toFixed(2)}px`
+          this.native.innerText = `${sizePx === 0 ? "0" : sizePx.toFixed(2)}px`
         }
       })
     },
