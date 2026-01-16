@@ -14,16 +14,16 @@ body {
   font-size: min(5vw, 0.4cm);
 }
 
-body > эль[вид="панель"],
+/* body > эль[вид="панель"],
 body > el[kind="panel"],
 body > эль[вид="группа"] > эль[вид="панель"],
 body > el[kind="group"] > el[kind="panel"] {
   flex-grow: 1;
-}
+} */
 
-p:not(:last-child) {
+/* p:not(:last-child) {
   margin-bottom: 1em;
-}
+} */
 
 pre {
   border-radius: 0.2em;

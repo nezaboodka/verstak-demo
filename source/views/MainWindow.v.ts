@@ -1,5 +1,5 @@
 import { refs, Mode, ReactiveTreeNodeDecl } from "reactronic"
-import { RealTimeClock, Block, Horizontal, Vertical, JustText, rowBreak, Dimension, El, Direction, equal, Markdown, Input, Theme, composeInputModel, Icon } from "verstak"
+import { RealTimeClock, Block, Horizontal, Vertical, rowBreak, Dimension, El, Direction, equal, Markdown, Input, Theme, composeInputModel, Icon } from "verstak"
 import { Span } from "verstak/html"
 import { DemoApp } from "models/DemoApp.js"
 import { toolBar } from "./ToolBar.v.js"
@@ -54,15 +54,17 @@ export function MainWindow(clock: RealTimeClock) {
                 this.contentHorizontally = Horizontal.stretch
                 this.contentVertically = Vertical.top
 
-                JustText("SIDE BAR", false, {
+                Block({
                   preparation() {
                     this.height = { min: "2em", max: "2em" }
                     this.vertically = Vertical.top /* + Align.centerX */
                     this.stretchingStrengthVertically = 0
                   },
-                  // script() {
-                  //   Dimension.gFontSizePx.value = app.activeThemeIndex > 0 ? 36 : 16
-                  // },
+                  script() {
+                    this.style.display = "block"
+                    this.text = "SIDE BAR"
+                    // Dimension.gFontSizePx.value = app.activeThemeIndex > 0 ? 36 : 16
+                  },
                 })
 
                 // rowBreak()
@@ -161,7 +163,7 @@ export function MainWindow(clock: RealTimeClock) {
             })
             Block({
               mode: Mode.autonomous,
-              triggers: { theme },
+              signalArgs: { theme },
               script() {
                 this.useStylingPreset(theme.panel)
                 this.useStylingPreset(theme.markdown)

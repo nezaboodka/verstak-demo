@@ -80,7 +80,7 @@ export function Pane(declaration: ReactiveTreeNodeDecl<El<HTMLElement, PaneModel
         Block(derivative({
           key: "body",
           mode: Mode.autonomous,
-          triggers: { header },
+          signalArgs: { header },
           preparation(el, base) {
             this.model = m
             base()
@@ -99,7 +99,7 @@ export function Pane(declaration: ReactiveTreeNodeDecl<El<HTMLElement, PaneModel
         }, bodyDeclaration))
         PseudoElement({
           mode: Mode.autonomous,
-          triggers: { header, stamp: p.node.stamp },
+          signalArgs: { header, stamp: p.node.stamp },
           script() {
             const headerSizePx = header?.element.native.clientHeight ?? 0
             p.height = m.isExpanded

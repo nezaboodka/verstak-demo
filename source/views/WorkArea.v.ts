@@ -1,5 +1,5 @@
 import { ReactiveTreeNodeDecl, derivative, refs } from "reactronic"
-import { RealTimeClock, Table, Block, JustText, rowBreak, Horizontal, Vertical, cursor, El, Theme, Toggle, rxModel } from "verstak"
+import { RealTimeClock, Table, Block, rowBreak, Horizontal, Vertical, cursor, El, Theme, Toggle, rxModel } from "verstak"
 import { AppTheme } from "themes/AppTheme.js"
 import { DemoApp } from "models/DemoApp.js"
 import { Watch } from "./Watch.js"
@@ -58,8 +58,14 @@ function Ruler(title: string, horizontal: Horizontal, vertical: Vertical) {
         this.horizontally = horizontal
         this.vertically = vertical
         this.style.fontSize = "smaller"
-        JustText(`&nbsp;${title}`, true)
-      }
+        Block({
+          script() {
+            this.isTextFormatted = true
+            this.text = `&nbsp;${title}`
+            this.style.display = "block"
+          },
+        })
+      },
     })
   )
 }
@@ -77,7 +83,12 @@ function ExampleData(place: string) {
         const theme = Theme.current as AppTheme
         this.place = place
         this.useStylingPreset(theme.accent)
-        JustText(place)
+        Block({
+          script() {
+            this.text = place
+            this.style.display = "block"
+          }
+        })
       }
     })
   )
