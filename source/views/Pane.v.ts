@@ -43,7 +43,7 @@ export function Pane(declaration: ReactiveTreeNodeDecl<El<HTMLElement, PaneModel
         this.vertically = Vertical.stretch
         m.setInitialSizes(this.height.min, this.height.max)
       },
-      script(el, base) {
+      body(el, base) {
         const p = this
         base()
         const m = this.model
@@ -60,7 +60,7 @@ export function Pane(declaration: ReactiveTreeNodeDecl<El<HTMLElement, PaneModel
               this.horizontally = Horizontal.stretch
               this.vertically = Vertical.top
             },
-            script(el, base) {
+            body(el, base) {
               base()
 
               OnClick(this.native, () => {
@@ -89,7 +89,7 @@ export function Pane(declaration: ReactiveTreeNodeDecl<El<HTMLElement, PaneModel
             this.horizontally = Horizontal.stretch
             this.vertically = Vertical.stretch
           },
-          script(el, base) {
+          body(el, base) {
             base()
             const headerSizePx = header?.element.native.clientHeight ?? 0
             const minPx = Math.max(0, p.heightPx.minPx - headerSizePx)
@@ -100,7 +100,7 @@ export function Pane(declaration: ReactiveTreeNodeDecl<El<HTMLElement, PaneModel
         PseudoElement({
           mode: Mode.autonomous,
           signalArgs: { header, stamp: p.node.stamp },
-          script() {
+          body() {
             const headerSizePx = header?.element.native.clientHeight ?? 0
             p.height = m.isExpanded
               ? { min: m.initialMinSize, max: m.initialMaxSize, preferred: `${m.sizePx}px` }

@@ -25,7 +25,7 @@ launch(
         new DarkAppTheme(),
         new PrintAppTheme())
     },
-    script() {
+    body() {
       const clock = new RealTimeClock(200)
       const theme = DemoApp.current.theme
       const s = this.style

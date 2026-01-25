@@ -7,7 +7,7 @@ import { Watch } from "./Watch.js"
 export function WorkArea(clock: RealTimeClock, declaration?: ReactiveTreeNodeDecl<El<HTMLElement, void>>) {
   return (
     Table(derivative(declaration, {
-      script() {
+      body() {
         // Elements can be laid out automatically
         // based on their order and line feeds.
         rowBreak()
@@ -37,7 +37,7 @@ export function WorkArea(clock: RealTimeClock, declaration?: ReactiveTreeNodeDec
             })
             base()
           },
-          script(el, base) {
+          body(el, base) {
             base()
             const theme = Theme.current as AppTheme
             this.native.classList.toggle(theme.panel, true)
@@ -54,13 +54,13 @@ export function WorkArea(clock: RealTimeClock, declaration?: ReactiveTreeNodeDec
 function Ruler(title: string, horizontal: Horizontal, vertical: Vertical) {
   return (
     Block({
-      script() {
+      body() {
         this.horizontally = horizontal
         this.vertically = vertical
         this.style.fontSize = "smaller"
         Block({
-          script() {
-            this.isTextFormatted = true
+          body() {
+            this.textIsFormatted = true
             this.text = `&nbsp;${title}`
             this.style.display = "block"
           },
@@ -79,12 +79,12 @@ function ExampleData(place: string) {
         this.contentHorizontally = Horizontal.center
         this.contentVertically = Vertical.center
       },
-      script() {
+      body() {
         const theme = Theme.current as AppTheme
         this.place = place
         this.useStylingPreset(theme.accent)
         Block({
-          script() {
+          body() {
             this.text = place
             this.style.display = "block"
           }

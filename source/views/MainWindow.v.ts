@@ -19,7 +19,7 @@ export function MainWindow(clock: RealTimeClock) {
         this.style.gap = "1em"
         this.style.overflow = "hidden"
       },
-      script() {
+      body() {
         const app = DemoApp.current
         const theme = app.theme
         Theme.current = theme
@@ -37,12 +37,12 @@ export function MainWindow(clock: RealTimeClock) {
             const hostEl = this.node.host.element as El
             hostEl.style.flexGrow = "1"
           },
-          script() {
+          body() {
             // Dimension.gFontSizePx.value = 16
             Dimension.lineSizePx = 20
             Block({
               preparation() { this.splitView = Direction.vertical },
-              script() {
+              body() {
                 // Dimension.gFontSizePx.value = 26
                 Dimension.lineSizePx = 40
                 this.useStylingPreset(app.theme.panel)
@@ -60,7 +60,7 @@ export function MainWindow(clock: RealTimeClock) {
                     this.vertically = Vertical.top /* + Align.centerX */
                     this.stretchingStrengthVertically = 0
                   },
-                  script() {
+                  body() {
                     this.style.display = "block"
                     this.text = "SIDE BAR"
                     // Dimension.gFontSizePx.value = app.activeThemeIndex > 0 ? 36 : 16
@@ -94,7 +94,7 @@ export function MainWindow(clock: RealTimeClock) {
                     this.height = { min: "80px", max: "320px" }
                   },
                 }, {
-                  script() {
+                  body() {
                     Markdown(EXAMPLE_CODE)
                   },
                 }, GroupHeader("Group"))
@@ -105,7 +105,7 @@ export function MainWindow(clock: RealTimeClock) {
                     this.height = { min: "80px", max: "320px" }
                   },
                 }, {
-                  script() {
+                  body() {
                     Markdown(EXAMPLE_CODE)
                   },
                 }, GroupHeader("Group"))
@@ -116,14 +116,14 @@ export function MainWindow(clock: RealTimeClock) {
                     this.height = { min: "80px", max: "320px" }
                   },
                 }, {
-                  script() {
+                  body() {
                     Markdown(EXAMPLE_CODE)
                   },
                 }, GroupHeader("Group"))
 
                 // rowBreak()
                 Block({
-                  script() {
+                  body() {
                     this.vertically = Vertical.stretch
                     this.stretchingStrengthVertically = 2
                     // el.height = { max: "600px" }
@@ -150,7 +150,7 @@ export function MainWindow(clock: RealTimeClock) {
               }
             })
             WorkArea(clock, {
-              script(el, base) {
+              body(el, base) {
                 base()
                 this.useStylingPreset(theme.panel)
                 this.useStylingPreset(theme.accent)
@@ -164,7 +164,7 @@ export function MainWindow(clock: RealTimeClock) {
             Block({
               mode: Mode.autonomous,
               signalArgs: { theme },
-              script() {
+              body() {
                 this.useStylingPreset(theme.panel)
                 this.useStylingPreset(theme.markdown)
                 this.style.marginLeft = "0.5em"
@@ -182,7 +182,7 @@ export function MainWindow(clock: RealTimeClock) {
                     this.stretchingStrengthVertically = 1
                   },
                 }, {
-                  script() {
+                  body() {
                     Markdown(EXAMPLE_CODE)
                   },
                 }, GroupHeader("Group"))
@@ -220,7 +220,7 @@ function GroupHeader(caption: string): ReactiveTreeNodeDecl<El<HTMLElement, Pane
     preparation() {
       this.height = { min: "30px" }
     },
-    script() {
+    body() {
       const m = this.model
       Icon(m.isExpanded ? "fa-solid fa-chevron-down fa-fw" : "fa-solid fa-chevron-right fa-fw")
       Span({
@@ -228,7 +228,7 @@ function GroupHeader(caption: string): ReactiveTreeNodeDecl<El<HTMLElement, Pane
         preparation() {
           this.style.fontWeight = "bold"
         },
-        script() {
+        body() {
           const heightPx = m.heightPx
           this.native.innerText = `${caption}: ${heightPx.minPx}px..${heightPx.maxPx}px`
         }
@@ -237,7 +237,7 @@ function GroupHeader(caption: string): ReactiveTreeNodeDecl<El<HTMLElement, Pane
       Span({
         mode: Mode.autonomous,
         preparation() { this.native.className = "size-tag" },
-        script() {
+        body() {
           this.native.style.display = "inline"
           const sizePx = m.partitionSizeInSplitViewPx
           const heightPx = m.heightPx
@@ -258,7 +258,7 @@ function GroupHeader(caption: string): ReactiveTreeNodeDecl<El<HTMLElement, Pane
       Span({
         mode: Mode.autonomous,
         preparation() { this.native.className = "effective-size" },
-        script() {
+        body() {
           const sizePx = m.partitionSizeInSplitViewPx
           this.native.innerText = `${sizePx === 0 ? "0" : sizePx.toFixed(2)}px`
         }
@@ -274,7 +274,7 @@ size of each user.
 
 \`\`\` js
 Table("Example", {
-  script(b) {
+  body(b) {
     // Elements can be layed out automatically
     // based on their order and line feeds.
     Ruler("1", Alignment.left, VerticalAlignment.center)

@@ -31,11 +31,11 @@ export function toolBar() {
       // b.useStyle(s.Logo)
       this.style.outlineOffset = "-1px"
     },
-    async scriptAsync() {
+    async bodyTask() {
       this.style.boxShadow = app.isBlinkingEffectOn ? "0.025rem 0.025rem 0.35rem 0 red" : ""
       await pause(3000)
       Img({
-        script(el, base) {
+        body(el, base) {
           base()
           this.native.src = "https://nezaboodka.com/img/star-768x768-circle.png"
         }
@@ -47,12 +47,12 @@ export function toolBar() {
     }
   })
   Block({
-    script() {
+    body() {
       this.horizontally = Horizontal.stretch
       this.useStylingPreset(theme.panel)
       Block({
         mode: Mode.autonomous,
-        script() {
+        body() {
           this.horizontally = Horizontal.stretch
           const position = app.position
           if (!Number.isFinite(position))
@@ -81,7 +81,7 @@ export function toolBar() {
     }
   })
   Block({ // Account
-    script() {
+    body() {
       this.useStylingPreset(theme.panel)
       // b.useStyle(s.Hint)
       // b.useStyle(s.Clickable)

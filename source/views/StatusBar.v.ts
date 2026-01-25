@@ -21,7 +21,7 @@ export function statusBar() {
       })
       base()
     },
-    script(el, base) {
+    body(el, base) {
       base()
       // Style is not inside "initialize", because of theming
       this.native.classList.toggle(theme.panel, true)
@@ -36,7 +36,7 @@ export function statusBar() {
       })
       base()
     },
-    script(el,  base) {
+    body(el,  base) {
       base()
       this.useStylingPreset(theme.panel)
     }
@@ -49,19 +49,19 @@ export function statusBar() {
       })
       base()
     },
-    script(el, base) {
+    body(el, base) {
       base()
       this.native.classList.toggle(theme.panel, true)
     }
   })
   Toggle({
-    script(el, base) {
+    body(el, base) {
       base()
       this.native.classList.toggle(theme.panel, true)
     }
   })
   Block({
-    script() {
+    body() {
       this.useStylingPreset(theme.panel)
       this.horizontally = Horizontal.stretch
       this.contentHorizontally = Horizontal.right
@@ -78,7 +78,7 @@ export function statusBar() {
           })
           base()
         },
-        script(el, base) {
+        body(el, base) {
           base()
           // Spinner("Spinner", {
           //   preparation() {

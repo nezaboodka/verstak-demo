@@ -25,12 +25,12 @@ export function Watch(place: string, clock: RealTimeClock): ReactiveTreeNode<El<
         // s.fontFamily = "Arial"
         s.cursor = "default"
       },
-      script() {
+      body() {
         const theme = Theme.current as AppTheme
         this.place = place
         this.useStylingPreset(theme.accent)
         Svg({
-          script() {
+          body() {
             const svg = this.native
             svg.style.width = "48mm"
             svg.style.height = "48mm"
@@ -38,7 +38,7 @@ export function Watch(place: string, clock: RealTimeClock): ReactiveTreeNode<El<
             svg.viewBox.baseVal.height = 1000
 
             Rect({
-              script() {
+              body() {
                 const e = this.native
                 const s = e.style
                 e.x.baseVal.value = 250
@@ -53,7 +53,7 @@ export function Watch(place: string, clock: RealTimeClock): ReactiveTreeNode<El<
               },
             })
             Rect({
-              script() {
+              body() {
                 const e = this.native
                 const s = e.style
                 e.x.baseVal.value = 980
@@ -70,7 +70,7 @@ export function Watch(place: string, clock: RealTimeClock): ReactiveTreeNode<El<
               },
             })
             Circle({
-              script() {
+              body() {
                 const e = this.native
                 const s = e.style
                 e.cx.baseVal.value = 500
@@ -83,7 +83,7 @@ export function Watch(place: string, clock: RealTimeClock): ReactiveTreeNode<El<
               },
             })
             Circle({
-              script() {
+              body() {
                 const e = this.native
                 const s = e.style
                 e.cx.baseVal.value = 500
@@ -131,7 +131,7 @@ export function Watch(place: string, clock: RealTimeClock): ReactiveTreeNode<El<
             const secondDeg = 360 / 60 * (clock.second + (1 / 1000 * clock.ms))
             Arrow(10, 2, -0.05, 0.835, secondDeg, 60, LabelColor, LabelColor, true, svg)
             Circle({
-              script() {
+              body() {
                 const e = this.native
                 const s = e.style
                 e.cx.baseVal.value = 500
@@ -148,7 +148,7 @@ export function Watch(place: string, clock: RealTimeClock): ReactiveTreeNode<El<
               preparation() {
                 this.style.transition = "transform 1s ease"
               },
-              script() {
+              body() {
                 this.style.transform = (this.style.transform === "rotate(105deg)" ? "rotate(0deg)" : "rotate(105deg)")
                 const app = DemoApp.current
                 if (app.isSecondaryTimeZoneOn)
@@ -184,7 +184,7 @@ function rotate(e: SVGGraphicsElement, degrees: number): void {
 function radialDashes(color: string, width: number, height: number, step: number, indent: number): void {
   for (let deg = 0; deg < 360; deg += step) {
     Rect({
-      script() {
+      body() {
         const e = this.native
         const s = e.style
         e.x.baseVal.value = 500 - width / 2
@@ -203,7 +203,7 @@ function radialDashes(color: string, width: number, height: number, step: number
 function radialDots(color: string, step: number, major: number, indent: number): void {
   for (let deg = 0; deg < 360; deg += step) {
     Circle({
-      script() {
+      body() {
         const r = major !== 0 && deg % major === 0 ? 12 : 6
         const e = this.native
         const s = e.style
@@ -224,7 +224,7 @@ function Arrow(widthA: number, widthB: number, margin: number, length: number,
   shadow: boolean, svg: SVGSVGElement): ReactiveTreeNode<El<SVGPolygonElement>> {
   return (
     Polygon({
-      script() {
+      body() {
         const e = this.native
         const s = e.style
         const m = Math.floor(500 * margin)
@@ -261,7 +261,7 @@ function ArrowEx(segments: Array<number | string>, degrees: number,
   duration: number, color: string, stroke: string): ReactiveTreeNode<El<SVGPolygonElement>> {
   return (
     Polygon({
-      script() {
+      body() {
         const e = this.native
         // const s = e.style
         // const l = Math.floor(500 * length)
@@ -289,7 +289,7 @@ function RadialLabel(degree: number, content: string, color: string,
   root: SVGSVGElement): ReactiveTreeNode<El<SVGTextElement>> {
   return (
     Text({
-      script() {
+      body() {
         const e = this.native
         const s = e.style
         s.fill = color
