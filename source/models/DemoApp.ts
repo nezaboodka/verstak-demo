@@ -5,7 +5,7 @@ import { Loader } from "./Loader.js"
 
 export class DemoApp extends RxObject {
   static readonly blinkingEffectMarker = "ё"
-  private static readonly gCurrent = new ReactiveTreeVariable<DemoApp>()
+  private static readonly gCurrent = new ReactiveTreeVariable<DemoApp>(DemoApp.name)
 
   version: string
   allThemes: Array<AppTheme>
