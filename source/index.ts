@@ -16,7 +16,7 @@ const version: string = "0.1"
 
 configureDebugging()
 
-launch(
+launch(() =>
   Window({
     mode: Mode.autonomous,
     preparation() {
