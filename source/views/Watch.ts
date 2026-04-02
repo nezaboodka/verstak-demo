@@ -15,7 +15,6 @@ const BezelLabelColor = "#444444"
 export function Watch(place: string, clock: RealTimeClock): ReactiveTreeNode<El<HTMLElement>> {
   return (
     Block({
-      mode: Mode.autonomous,
       preparation() {
         const s = this.style
         this.horizontally = Horizontal.stretch
@@ -30,6 +29,7 @@ export function Watch(place: string, clock: RealTimeClock): ReactiveTreeNode<El<
         this.place = place
         this.useStylingPreset(theme.accent)
         Svg({
+          mode: Mode.primitive,
           body() {
             const svg = this.native
             svg.style.width = "48mm"
@@ -38,6 +38,7 @@ export function Watch(place: string, clock: RealTimeClock): ReactiveTreeNode<El<
             svg.viewBox.baseVal.height = 1000
 
             Rect({
+              mode: Mode.primitive,
               body() {
                 const e = this.native
                 const s = e.style
@@ -53,6 +54,7 @@ export function Watch(place: string, clock: RealTimeClock): ReactiveTreeNode<El<
               },
             })
             Rect({
+              mode: Mode.primitive,
               body() {
                 const e = this.native
                 const s = e.style
@@ -70,6 +72,7 @@ export function Watch(place: string, clock: RealTimeClock): ReactiveTreeNode<El<
               },
             })
             Circle({
+              mode: Mode.primitive,
               body() {
                 const e = this.native
                 const s = e.style
@@ -83,6 +86,7 @@ export function Watch(place: string, clock: RealTimeClock): ReactiveTreeNode<El<
               },
             })
             Circle({
+              mode: Mode.primitive,
               body() {
                 const e = this.native
                 const s = e.style
@@ -131,6 +135,7 @@ export function Watch(place: string, clock: RealTimeClock): ReactiveTreeNode<El<
             const secondDeg = 360 / 60 * (clock.second + (1 / 1000 * clock.ms))
             Arrow(10, 2, -0.05, 0.835, secondDeg, 60, LabelColor, LabelColor, true, svg)
             Circle({
+              mode: Mode.primitive,
               body() {
                 const e = this.native
                 const s = e.style
@@ -145,6 +150,7 @@ export function Watch(place: string, clock: RealTimeClock): ReactiveTreeNode<El<
 
             // Bezel (secondary time zone)
             G({
+              mode: Mode.primitive,
               preparation() {
                 this.style.transition = "transform 1s ease"
               },
@@ -184,6 +190,7 @@ function rotate(e: SVGGraphicsElement, degrees: number): void {
 function radialDashes(color: string, width: number, height: number, step: number, indent: number): void {
   for (let deg = 0; deg < 360; deg += step) {
     Rect({
+      mode: Mode.primitive,
       body() {
         const e = this.native
         const s = e.style
@@ -203,6 +210,7 @@ function radialDashes(color: string, width: number, height: number, step: number
 function radialDots(color: string, step: number, major: number, indent: number): void {
   for (let deg = 0; deg < 360; deg += step) {
     Circle({
+      mode: Mode.primitive,
       body() {
         const r = major !== 0 && deg % major === 0 ? 12 : 6
         const e = this.native
@@ -224,6 +232,7 @@ function Arrow(widthA: number, widthB: number, margin: number, length: number,
   shadow: boolean, svg: SVGSVGElement): ReactiveTreeNode<El<SVGPolygonElement>> {
   return (
     Polygon({
+      mode: Mode.primitive,
       body() {
         const e = this.native
         const s = e.style
@@ -261,6 +270,7 @@ function ArrowEx(segments: Array<number | string>, degrees: number,
   duration: number, color: string, stroke: string): ReactiveTreeNode<El<SVGPolygonElement>> {
   return (
     Polygon({
+      mode: Mode.primitive,
       body() {
         const e = this.native
         // const s = e.style
@@ -289,6 +299,7 @@ function RadialLabel(degree: number, content: string, color: string,
   root: SVGSVGElement): ReactiveTreeNode<El<SVGTextElement>> {
   return (
     Text({
+      mode: Mode.primitive,
       body() {
         const e = this.native
         const s = e.style

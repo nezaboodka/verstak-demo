@@ -1,5 +1,5 @@
 import { Mode, RxObject, ReactiveTreeNode, ReactiveTreeNodeDecl, signal, runNonReactive, derivative } from "reactronic"
-import { Block, Horizontal, Vertical, rowBreak, El, OnClick, PseudoElement } from "verstak"
+import { Block, Horizontal, Vertical, rowBreak, El, OnClick, Fragment } from "verstak"
 
 export class PaneModel extends RxObject {
   @signal(false) private readonly _el: El<HTMLElement, PaneModel>
@@ -35,7 +35,6 @@ export class PaneModel extends RxObject {
 export function Pane(declaration: ReactiveTreeNodeDecl<El<HTMLElement, PaneModel>>, bodyDeclaration: ReactiveTreeNodeDecl<El<HTMLElement, PaneModel>>, headerDeclaration?: ReactiveTreeNodeDecl<El<HTMLElement, PaneModel>>) {
   return (
     Block<PaneModel>(derivative({
-      mode: Mode.autonomous,
       preparation(el, base) {
         const m = this.model = new PaneModel(this)
         base()
@@ -52,7 +51,6 @@ export function Pane(declaration: ReactiveTreeNodeDecl<El<HTMLElement, PaneModel
         if (headerDeclaration) {
           header = Block(derivative({
             key: "header",
-            mode: Mode.autonomous,
             preparation(el, base) {
               this.model = m
               base()
@@ -79,7 +77,6 @@ export function Pane(declaration: ReactiveTreeNodeDecl<El<HTMLElement, PaneModel
         }
         Block(derivative({
           key: "body",
-          mode: Mode.autonomous,
           signalArgs: { header },
           preparation(el, base) {
             this.model = m
@@ -97,8 +94,7 @@ export function Pane(declaration: ReactiveTreeNodeDecl<El<HTMLElement, PaneModel
             this.height = { min: `${minPx}px`, max: `${maxPx}px` }
           }
         }, bodyDeclaration))
-        PseudoElement({
-          mode: Mode.autonomous,
+        Fragment({
           signalArgs: { header, stamp: p.node.stamp },
           body() {
             const headerSizePx = header?.element.native.clientHeight ?? 0

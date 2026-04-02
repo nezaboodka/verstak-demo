@@ -25,16 +25,17 @@ export function toolBar() {
   //   }
   // })
   Block({ // Logo
+    mode: Mode.primitive,
     preparation() {
       this.useStylingPreset(theme.panel)
       // b.useStyle(s.Clickable)
       // b.useStyle(s.Logo)
       this.style.outlineOffset = "-1px"
     },
-    async bodyTask() {
+    body() {
       this.style.boxShadow = app.isBlinkingEffectOn ? "0.025rem 0.025rem 0.35rem 0 red" : ""
-      await pause(3000)
       Img({
+        mode: Mode.primitive,
         body(el, base) {
           base()
           this.native.src = "https://nezaboodka.com/img/star-768x768-circle.png"
@@ -44,14 +45,29 @@ export function toolBar() {
       // OnClick(el.native, () => {
       //   app.blinkingEffect = !app.blinkingEffect
       // })
-    }
+    },
+    // async bodyTask() {
+    //   this.style.boxShadow = app.isBlinkingEffectOn ? "0.025rem 0.025rem 0.35rem 0 red" : ""
+    //   await pause(3000)
+    //   Img({
+    //     mode: Mode.primitive,
+    //     body(el, base) {
+    //       base()
+    //       this.native.src = "https://nezaboodka.com/img/star-768x768-circle.png"
+    //     }
+    //   })
+    //   //
+    //   // OnClick(el.native, () => {
+    //   //   app.blinkingEffect = !app.blinkingEffect
+    //   // })
+    // }
   })
   Block({
+    mode: Mode.primitive,
     body() {
       this.horizontally = Horizontal.stretch
       this.useStylingPreset(theme.panel)
       Block({
-        mode: Mode.autonomous,
         body() {
           this.horizontally = Horizontal.stretch
           const position = app.position
@@ -81,6 +97,7 @@ export function toolBar() {
     }
   })
   Block({ // Account
+    mode: Mode.primitive,
     body() {
       this.useStylingPreset(theme.panel)
       // b.useStyle(s.Hint)

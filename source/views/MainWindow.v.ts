@@ -10,7 +10,6 @@ import { Pane, PaneModel } from "./Pane.v.js"
 export function MainWindow(clock: RealTimeClock) {
   return (
     Block({
-      mode: Mode.autonomous,
       preparation() {
         this.native.sensors.focus // enable focus global manager
         this.horizontally = Horizontal.stretch
@@ -30,6 +29,7 @@ export function MainWindow(clock: RealTimeClock) {
         rowBreak()
 
         Block({
+          mode: Mode.primitive,
           preparation() {
             this.splitView = Direction.horizontal
             this.horizontally = Horizontal.stretch
@@ -41,6 +41,7 @@ export function MainWindow(clock: RealTimeClock) {
             // Dimension.gFontSizePx.value = 16
             Dimension.lineSizePx = 20
             Block({
+              mode: Mode.primitive,
               preparation() { this.splitView = Direction.vertical },
               body() {
                 // Dimension.gFontSizePx.value = 26
@@ -55,6 +56,7 @@ export function MainWindow(clock: RealTimeClock) {
                 this.contentVertically = Vertical.top
 
                 Block({
+                  mode: Mode.primitive,
                   preparation() {
                     this.height = { min: "2em", max: "2em" }
                     this.vertically = Vertical.top /* + Align.centerX */
@@ -123,6 +125,7 @@ export function MainWindow(clock: RealTimeClock) {
 
                 // rowBreak()
                 Block({
+                  mode: Mode.primitive,
                   body() {
                     this.vertically = Vertical.stretch
                     this.stretchingStrengthVertically = 2
@@ -162,7 +165,6 @@ export function MainWindow(clock: RealTimeClock) {
               }
             })
             Block({
-              mode: Mode.autonomous,
               signalArgs: { theme },
               body() {
                 this.useStylingPreset(theme.panel)
@@ -224,7 +226,6 @@ function GroupHeader(caption: string): ReactiveTreeNodeDecl<El<HTMLElement, Pane
       const m = this.model
       Icon(m.isExpanded ? "fa-solid fa-chevron-down fa-fw" : "fa-solid fa-chevron-right fa-fw")
       Span({
-        mode: Mode.autonomous,
         preparation() {
           this.style.fontWeight = "bold"
         },
@@ -233,9 +234,8 @@ function GroupHeader(caption: string): ReactiveTreeNodeDecl<El<HTMLElement, Pane
           this.native.innerText = `${caption}: ${heightPx.minPx}px..${heightPx.maxPx}px`
         }
       })
-      Span({ preparation() { this.native.style.flexGrow = "1" }})
+      Span({ mode: Mode.primitive, preparation() { this.native.style.flexGrow = "1" }})
       Span({
-        mode: Mode.autonomous,
         preparation() { this.native.className = "size-tag" },
         body() {
           this.native.style.display = "inline"
@@ -256,7 +256,6 @@ function GroupHeader(caption: string): ReactiveTreeNodeDecl<El<HTMLElement, Pane
         }
       })
       Span({
-        mode: Mode.autonomous,
         preparation() { this.native.className = "effective-size" },
         body() {
           const sizePx = m.partitionSizeInSplitViewPx

@@ -2,7 +2,8 @@
 {
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
-  "typescript.preferences.quoteStyle": "double",
+  "js/ts.preferences.quoteStyle": "double",
+  "js/ts.tsdk.path": "node_modules/typescript/lib",
   "files.exclude": {
     "**/node_modules/": true,
     // "**/build/": true,
@@ -13,7 +14,6 @@
     "**/build/": true,
     "**/Build/": true,
   },
-  "typescript.tsdk": "node_modules/typescript/lib",
   "cSpell.ignorePaths": [
     "node_modules",
     "**/node_modules",

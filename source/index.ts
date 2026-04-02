@@ -18,7 +18,6 @@ configureDebugging()
 
 launch(() =>
   Window({
-    mode: Mode.autonomous,
     preparation() {
       DemoApp.current = new DemoApp(version,
         new LightAppTheme(),
