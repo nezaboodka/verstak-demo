@@ -274,7 +274,7 @@ size of each user.
 \`\`\` js
 Table("Example", {
   body(b) {
-    // Elements can be layed out automatically
+    // Elements can be laid out automatically
     // based on their order and line feeds.
     Ruler("1", Alignment.left, VerticalAlignment.center)
     cursor({ cellsOverWidth: -1, cellsOverHeight: 0 })
@@ -283,7 +283,7 @@ Table("Example", {
     Ruler("C", Alignment.center, VerticalAlignment.top)
     rowBreak(); Ruler("2", Alignment.left, VerticalAlignment.center)
     rowBreak(); Ruler("3", Alignment.left, VerticalAlignment.center)
-    // Elements can also be layed out
+    // Elements can also be laid out
     // explicitly in exact cells.
     ExampleData("B2")
     ExampleData("A1:B1")
