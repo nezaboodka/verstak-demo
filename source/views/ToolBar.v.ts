@@ -1,5 +1,5 @@
 import { Mode, pause, refs } from "reactronic"
-import { Block, rowBreak, Horizontal, Icon, Input, Theme, Markdown, composeInputModel } from "verstak"
+import { Element, rowBreak, H, Icon, Input, Theme, Markdown, composeInputModel } from "verstak"
 import { Img } from "verstak/html"
 import { AppTheme } from "themes/AppTheme.js"
 import { DemoApp } from "models/DemoApp.js"
@@ -8,12 +8,12 @@ export function toolBar() {
   const app = DemoApp.current
   const theme = Theme.current as AppTheme
   // Image({ // logo
-  //   preparation(el, base) {
+  //   creation(el, base) {
   //     base()
   //     this.contentAlignment = Align.stretch
   //     this.boundsAlignment = Align.stretch
   //     this.model.source = "https://nezaboodka.com/img/star-768x768-circle.png"
-  //     this.native.className = cx(s.Panel, s.Clickable, s.Logo)
+  //     this.native.classList.add(cx(s.Panel, s.Clickable, s.Logo))
   //   },
   //   script(el, base) {
   //     base()
@@ -24,19 +24,19 @@ export function toolBar() {
   //     })
   //   }
   // })
-  Block({ // Logo
+  Element({ // Logo
     mode: Mode.primitive,
-    preparation() {
+    creation() {
       this.useStylingPreset(theme.panel)
       // b.useStyle(s.Clickable)
       // b.useStyle(s.Logo)
       this.style.outlineOffset = "-1px"
     },
-    body() {
+    setup() {
       this.style.boxShadow = app.isBlinkingEffectOn ? "0.025rem 0.025rem 0.35rem 0 red" : ""
       Img({
         mode: Mode.primitive,
-        body(el, base) {
+        setup(el, base) {
           base()
           this.native.src = "https://nezaboodka.com/img/star-768x768-circle.png"
         }
@@ -51,7 +51,7 @@ export function toolBar() {
     //   await pause(3000)
     //   Img({
     //     mode: Mode.primitive,
-    //     body(el, base) {
+    //     setup(el, base) {
     //       base()
     //       this.native.src = "https://nezaboodka.com/img/star-768x768-circle.png"
     //     }
@@ -62,14 +62,14 @@ export function toolBar() {
     //   // })
     // }
   })
-  Block({
+  Element({
     mode: Mode.primitive,
-    body() {
-      this.horizontally = Horizontal.stretch
-      this.useStylingPreset(theme.panel)
-      Block({
-        body() {
-          this.horizontally = Horizontal.stretch
+    setup() {
+      // this.useStylingPreset(theme.panel)
+      this.selfAlignmentHorizontal = H.stretch
+      this.alignmentHorizontal = H.stretch
+      Element({
+        setup(el, base) {
           const position = app.position
           if (!Number.isFinite(position))
             Markdown(`**Verstak** v${app.version}`)
@@ -80,7 +80,7 @@ export function toolBar() {
         }
       })
       Input({
-        preparation(el, base) {
+        creation(el, base) {
           const loader = app.loader
           this.width = { min: "7em" }
           this.model = composeInputModel({
@@ -96,9 +96,9 @@ export function toolBar() {
       })
     }
   })
-  Block({ // Account
+  Element({ // Account
     mode: Mode.primitive,
-    body() {
+    setup() {
       this.useStylingPreset(theme.panel)
       // b.useStyle(s.Hint)
       // b.useStyle(s.Clickable)

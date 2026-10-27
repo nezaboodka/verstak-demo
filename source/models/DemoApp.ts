@@ -1,11 +1,10 @@
-import { RxObject, transaction, reaction, ReactiveTreeVariable } from "reactronic"
+import { RxObject, transaction, reaction, RtVariable } from "reactronic"
 import { WebDriver } from "verstak"
 import { AppTheme } from "themes/AppTheme.js"
 import { Loader } from "./Loader.js"
 
 export class DemoApp extends RxObject {
-  static readonly blinkingEffectMarker = "ё"
-  private static readonly gCurrent = new ReactiveTreeVariable<DemoApp>(DemoApp.name)
+  private static readonly gCurrent = new RtVariable<DemoApp>(DemoApp.name)
 
   version: string
   allThemes: Array<AppTheme>
@@ -51,6 +50,6 @@ export class DemoApp extends RxObject {
 
   @reaction
   protected actualizeBlinkingEffect(): void {
-    WebDriver.blinkingEffectMarker = this.isBlinkingEffectOn ? DemoApp.blinkingEffectMarker : undefined
+    WebDriver.blinkingEffect = this.isBlinkingEffectOn
   }
 }

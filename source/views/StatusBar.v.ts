@@ -1,5 +1,5 @@
 import { refs } from "reactronic"
-import { Block, Horizontal, Button, Toggle, Input, composeInputModel, Theme, rxModel } from "verstak"
+import { Element, H, Button, Toggle, Input, composeInputModel, Theme, rxModel } from "verstak"
 import { AppTheme } from "themes/AppTheme.js"
 import { DemoApp } from "models/DemoApp.js"
 
@@ -11,7 +11,7 @@ export function statusBar() {
   const app = DemoApp.current
   const theme = Theme.current as AppTheme
   Toggle({ key: "Blinking",
-    preparation(el, base) {
+    creation(el, base) {
       // We compose model from different pieces,
       // such as app and theme. Without the need
       // to implement interface in form of class.
@@ -21,14 +21,14 @@ export function statusBar() {
       })
       base()
     },
-    body(el, base) {
+    setup(el, base) {
       base()
       // Style is not inside "initialize", because of theming
       this.native.classList.toggle(theme.panel, true)
     }
   })
   Button({ key: "Theme",
-    preparation(el, base) {
+    creation(el, base) {
       this.model = rxModel({
         icon: "fa-solid fa-palette",
         label: "Switch Theme",
@@ -36,37 +36,37 @@ export function statusBar() {
       })
       base()
     },
-    body(el,  base) {
+    setup(el,  base) {
       base()
       this.useStylingPreset(theme.panel)
     }
   })
   Toggle({ key: "SecondaryTimeZone",
-    preparation(el, base) {
+    creation(el, base) {
       this.model = rxModel({
         label: "New York (GMT-7)",
         checked: refs(app).isSecondaryTimeZoneOn,
       })
       base()
     },
-    body(el, base) {
+    setup(el, base) {
       base()
       this.native.classList.toggle(theme.panel, true)
     }
   })
   Toggle({
-    body(el, base) {
+    setup(el, base) {
       base()
       this.native.classList.toggle(theme.panel, true)
     }
   })
-  Block({
-    body() {
+  Element({
+    setup() {
       this.useStylingPreset(theme.panel)
-      this.horizontally = Horizontal.stretch
-      this.contentHorizontally = Horizontal.right
+      this.selfAlignmentHorizontal = H.stretch
+      this.alignmentHorizontal = H.right
       Input({
-        preparation(el, base) {
+        creation(el, base) {
           const loader = app.loader
           this.width = { min: "10em" }
           this.model = composeInputModel({
@@ -78,10 +78,10 @@ export function statusBar() {
           })
           base()
         },
-        body(el, base) {
+        setup(el, base) {
           base()
           // Spinner("Spinner", {
-          //   preparation() {
+          //   creation() {
           //     this.model = observableModel({
           //       active: refs(app.loader.indicator).isActive,
           //       color: "red",

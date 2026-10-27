@@ -1,0 +1,109 @@
+import { Mode, RxObject, ReactiveTreeNode, ReactiveTreeNodeDesc, signal, runNonReactive } from "reactronic"
+import { Element, H, V, rowBreak, El, OnClick, Fragment } from "verstak"
+
+export class PaneModel extends RxObject {
+  @signal(false) private readonly _el: El<HTMLElement, PaneModel>
+  @signal(false) readonly initialMinSize: string | undefined
+  @signal(false) readonly initialMaxSize: string | undefined
+
+  isExpanded: boolean
+  sizePx: number
+  cachedSizePx: number
+
+  get heightPx(): { minPx: number, maxPx: number } {
+    return this._el.heightPx
+  }
+
+  get partitionSizeInSplitViewPx(): number {
+    return this._el.partitionSizeInSplitViewPx
+  }
+
+  constructor(el: El<HTMLElement, PaneModel>) {
+    super()
+    this._el = el
+    this.isExpanded = true
+    this.sizePx = 0
+    this.cachedSizePx = 0
+  }
+
+  setInitialSizes(min?: string, max?: string): void {
+    (this.initialMinSize as any) = min;
+    (this.initialMaxSize as any) = max
+  }
+}
+
+export function Pane(description: ReactiveTreeNodeDesc<El<HTMLElement, PaneModel>>, bodyDescription: ReactiveTreeNodeDesc<El<HTMLElement, PaneModel>>, headerDescription?: ReactiveTreeNodeDesc<El<HTMLElement, PaneModel>>) {
+  return (
+    Element<PaneModel>({
+      creation(el, base) {
+        const m = this.model = new PaneModel(this)
+        base()
+        this.selfAlignmentHorizontal = H.stretch
+        this.selfAlignmentVertical = V.stretch
+        m.setInitialSizes(this.height.min, this.height.max)
+      },
+      setup(el, base) {
+        const p = this
+        base()
+        const m = this.model
+        runNonReactive(() => m.setInitialSizes(this.height.min, this.height.max))
+        let header: ReactiveTreeNode<El<HTMLElement>> | undefined = undefined
+        if (headerDescription) {
+          header = Element({
+            key: "header",
+            creation(el, base) {
+              this.model = m
+              base()
+              this.native.classList.add("header")
+              this.selfAlignmentHorizontal = H.stretch
+              this.selfAlignmentVertical = V.top
+            },
+            setup(el, base) {
+              base()
+
+              OnClick(this.native, () => {
+                m.isExpanded = !m.isExpanded
+                if (m.isExpanded) {
+                  m.sizePx = m.cachedSizePx
+                  m.cachedSizePx = 0
+                }
+                else {
+                  m.cachedSizePx = p.partitionSizeInSplitViewPx
+                }
+              })
+            },
+          }, headerDescription)
+          rowBreak()
+        }
+        Element({
+          key: "body",
+          signalArgs: { header },
+          creation(el, base) {
+            this.model = m
+            base()
+            this.native.classList.add("body")
+            this.style.overflow = "scroll"
+            this.selfAlignmentHorizontal = H.stretch
+            this.selfAlignmentVertical = V.stretch
+          },
+          setup(el, base) {
+            base()
+            const headerSizePx = header?.element.native.clientHeight ?? 0
+            const minPx = Math.max(0, p.heightPx.minPx - headerSizePx)
+            const maxPx = p.partitionSizeInSplitViewPx - headerSizePx
+            this.height = { min: `${minPx}px`, max: `${maxPx}px` }
+          },
+        }, bodyDescription)
+        Fragment({
+          signalArgs: { header, stamp: p.node.stamp },
+          setup() {
+            const headerSizePx = header?.element.native.clientHeight ?? 0
+            p.height = m.isExpanded
+              ? { min: m.initialMinSize, max: m.initialMaxSize, preferred: `${m.sizePx}px` }
+              : { min: `${headerSizePx}px`, max: `${headerSizePx}px`, preferred: `${headerSizePx}px` }
+          },
+        })
+      },
+    }, description)
+  )
+}

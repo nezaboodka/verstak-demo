@@ -1,5 +1,5 @@
-import { refs, Mode, ReactiveTreeNodeDecl } from "reactronic"
-import { RealTimeClock, Block, Horizontal, Vertical, rowBreak, Dimension, El, Direction, equal, Markdown, Input, Theme, composeInputModel, Icon } from "verstak"
+import { refs, Mode, Conf } from "reactronic"
+import { LiveTime, Element, H, V, rowBreak, Dimension, El, Direction, equal, Markdown, Input, Theme, composeInputModel, Icon } from "verstak"
 import { Span } from "verstak/html"
 import { DemoApp } from "models/DemoApp.js"
 import { toolBar } from "./ToolBar.v.js"
@@ -7,62 +7,66 @@ import { statusBar } from "./StatusBar.v.js"
 import { WorkArea } from "./WorkArea.v.js"
 import { Pane, PaneModel } from "./Pane.v.js"
 
-export function MainWindow(clock: RealTimeClock) {
+export function Main(clock: LiveTime) {
   return (
-    Block({
-      preparation() {
+    Element({
+      creation() {
         this.native.sensors.focus // enable focus global manager
-        this.horizontally = Horizontal.stretch
-        this.vertically = Vertical.stretch
+        this.selfAlignmentHorizontal = H.stretch
+        this.selfAlignmentVertical = V.stretch
+        // this.alignmentHorizontal = H.stretch
+        // this.alignmentVertical = V.stretch
         this.style.padding = "1em"
         this.style.gap = "1em"
         this.style.overflow = "hidden"
       },
-      body() {
+      setup() {
         const app = DemoApp.current
         const theme = app.theme
         Theme.current = theme
-        this.useStylingPreset(DemoApp.blinkingEffectMarker, app.isBlinkingEffectOn)
 
         toolBar()
 
         rowBreak()
 
-        Block({
+        Element({
           mode: Mode.primitive,
-          preparation() {
+          creation() {
             this.splitView = Direction.horizontal
-            this.horizontally = Horizontal.stretch
-            this.vertically = Vertical.stretch
+            this.selfAlignmentHorizontal = H.stretch
+            this.selfAlignmentVertical = V.stretch
             const hostEl = this.node.host.element as El
             hostEl.style.flexGrow = "1"
           },
-          body() {
+          setup() {
             // Dimension.gFontSizePx.value = 16
             Dimension.lineSizePx = 20
-            Block({
+            Element({
+              key: "Sidebar",
               mode: Mode.primitive,
-              preparation() { this.splitView = Direction.vertical },
-              body() {
+              creation() {
+                this.splitView = Direction.vertical
+              },
+              setup() {
                 // Dimension.gFontSizePx.value = 26
                 Dimension.lineSizePx = 40
                 this.useStylingPreset(app.theme.panel)
                 this.style.marginRight = "0.5em"
                 this.width = { min: "19em" }
-                this.stretchingStrengthHorizontally = 0
-                this.horizontally = Horizontal.stretch
-                this.vertically = Vertical.stretch
-                this.contentHorizontally = Horizontal.stretch
-                this.contentVertically = Vertical.top
+                this.selfStretchingStrengthHorizontal = 0
+                this.selfAlignmentHorizontal = H.stretch
+                this.selfAlignmentVertical = V.stretch
+                this.alignmentHorizontal = H.stretch
+                this.alignmentVertical = V.top
 
-                Block({
+                Element({
                   mode: Mode.primitive,
-                  preparation() {
+                  creation() {
                     this.height = { min: "2em", max: "2em" }
-                    this.vertically = Vertical.top /* + Align.centerX */
-                    this.stretchingStrengthVertically = 0
+                    this.selfAlignmentVertical = V.top /* + Align.centerX */
+                    this.selfStretchingStrengthVertical = 0
                   },
-                  body() {
+                  setup() {
                     this.style.display = "block"
                     this.text = "SIDE BAR"
                     // Dimension.gFontSizePx.value = app.activeThemeIndex > 0 ? 36 : 16
@@ -71,12 +75,12 @@ export function MainWindow(clock: RealTimeClock) {
 
                 // rowBreak()
                 Input({
-                  preparation(el, base) {
+                  creation(el, base) {
                     const loader = app.loader
                     this.width = { min: "10em" }
                     this.height = { min: "2em", max: "4em" }
-                    this.vertically = Vertical.center
-                    this.stretchingStrengthVertically = 0
+                    this.selfAlignmentVertical = V.center
+                    this.selfStretchingStrengthVertical = 0
                     this.model = composeInputModel({
                       icon: "fa-solid fa-search",
                       text: refs(loader).filter,
@@ -91,56 +95,56 @@ export function MainWindow(clock: RealTimeClock) {
 
                 // rowBreak()
                 Pane({
-                  preparation() {
+                  creation() {
                     this.useStylingPreset(app.theme.group)
                     this.height = { min: "80px", max: "320px" }
                   },
                 }, {
-                  body() {
+                  setup() {
                     Markdown(EXAMPLE_CODE)
                   },
                 }, GroupHeader("Group"))
                 // rowBreak()
                 Pane({
-                  preparation() {
+                  creation() {
                     this.useStylingPreset(app.theme.group)
                     this.height = { min: "80px", max: "320px" }
                   },
                 }, {
-                  body() {
+                  setup() {
                     Markdown(EXAMPLE_CODE)
                   },
                 }, GroupHeader("Group"))
                 // rowBreak()
                 Pane({
-                  preparation() {
+                  creation() {
                     this.useStylingPreset(app.theme.group)
                     this.height = { min: "80px", max: "320px" }
                   },
                 }, {
-                  body() {
+                  setup() {
                     Markdown(EXAMPLE_CODE)
                   },
                 }, GroupHeader("Group"))
 
                 // rowBreak()
-                Block({
+                Element({
                   mode: Mode.primitive,
-                  body() {
-                    this.vertically = Vertical.stretch
-                    this.stretchingStrengthVertically = 2
+                  setup() {
+                    this.selfAlignmentVertical = V.stretch
+                    this.selfStretchingStrengthVertical = 2
                     // el.height = { max: "600px" }
                   }
                 })
 
                 // rowBreak()
                 Input({
-                  preparation(el, base) {
+                  creation(el, base) {
                     const loader = app.loader
                     this.width = { min: "10em" }
                     this.height = { min: "2ln" }
-                    this.vertically = Vertical.top
-                    this.stretchingStrengthVertically = 0
+                    this.selfAlignmentVertical = V.top
+                    this.selfStretchingStrengthVertical = 0
                     this.model = composeInputModel({
                       text: refs(loader).filter,
                       options: refs(loader).loaded,
@@ -153,48 +157,49 @@ export function MainWindow(clock: RealTimeClock) {
               }
             })
             WorkArea(clock, {
-              body(el, base) {
+              key: "WorkArea",
+              setup(el, base) {
                 base()
                 this.useStylingPreset(theme.panel)
                 this.useStylingPreset(theme.accent)
                 this.style.margin = "0 0.5em"
                 this.width = { min: "330px" }
-                this.horizontally = Horizontal.stretch
-                this.vertically = Vertical.stretch
-                this.stretchingStrengthHorizontally = 3
+                this.selfAlignmentHorizontal = H.stretch
+                this.selfAlignmentVertical = V.stretch
+                this.selfStretchingStrengthHorizontal = 3
               }
             })
-            Block({
+            Element({
               signalArgs: { theme },
-              body() {
+              setup() {
                 this.useStylingPreset(theme.panel)
                 this.useStylingPreset(theme.markdown)
                 this.style.marginLeft = "0.5em"
                 this.width = { min: "300px", max: "50%" }
-                this.stretchingStrengthHorizontally = 3
-                this.horizontally = Horizontal.stretch
-                this.vertically = Vertical.stretch
-                this.contentHorizontally = Horizontal.stretch
-                this.contentVertically = Vertical.top
+                this.selfStretchingStrengthHorizontal = 3
+                this.selfAlignmentHorizontal = H.stretch
+                this.selfAlignmentVertical = V.stretch
+                this.alignmentHorizontal = H.stretch
+                this.alignmentVertical = V.top
                 this.splitView = Direction.vertical
                 Pane({
-                  preparation() {
+                  creation() {
                     this.useStylingPreset(app.theme.group)
                     this.height = { min: "300px", max: "450px" }
-                    this.stretchingStrengthVertically = 1
+                    this.selfStretchingStrengthVertical = 1
                   },
                 }, {
-                  body() {
+                  setup() {
                     Markdown(EXAMPLE_CODE)
                   },
                 }, GroupHeader("Group"))
                 Input({
-                  preparation(el, base) {
+                  creation(el, base) {
                     const loader = app.loader
                     this.width = { min: "10em" }
                     this.height = { min: "2ln" }
-                    this.vertically = Vertical.top
-                    this.stretchingStrengthVertically = 1
+                    this.selfAlignmentVertical = V.top
+                    this.selfStretchingStrengthVertical = 1
                     this.model = composeInputModel({
                       icon: "fa-solid fa-search",
                       text: refs(loader).filter,
@@ -217,27 +222,29 @@ export function MainWindow(clock: RealTimeClock) {
   )
 }
 
-function GroupHeader(caption: string): ReactiveTreeNodeDecl<El<HTMLElement, PaneModel>> {
+function GroupHeader(caption: string): Conf<El<HTMLElement, PaneModel>> {
   return ({
-    preparation() {
+    creation() {
       this.height = { min: "30px" }
     },
-    body() {
+    setup() {
       const m = this.model
       Icon(m.isExpanded ? "fa-solid fa-chevron-down fa-fw" : "fa-solid fa-chevron-right fa-fw")
       Span({
-        preparation() {
+        creation() {
           this.style.fontWeight = "bold"
         },
-        body() {
+        setup() {
           const heightPx = m.heightPx
           this.native.innerText = `${caption}: ${heightPx.minPx}px..${heightPx.maxPx}px`
         }
       })
-      Span({ mode: Mode.primitive, preparation() { this.native.style.flexGrow = "1" }})
+      Span({ mode: Mode.primitive, creation() { this.native.style.flexGrow = "1" }})
       Span({
-        preparation() { this.native.className = "size-tag" },
-        body() {
+        creation() {
+          this.native.classList.add("size-tag")
+        },
+        setup() {
           this.native.style.display = "inline"
           const sizePx = m.partitionSizeInSplitViewPx
           const heightPx = m.heightPx
@@ -256,8 +263,10 @@ function GroupHeader(caption: string): ReactiveTreeNodeDecl<El<HTMLElement, Pane
         }
       })
       Span({
-        preparation() { this.native.className = "effective-size" },
-        body() {
+        creation() {
+          this.native.classList.add("effective-size")
+        },
+        setup() {
           const sizePx = m.partitionSizeInSplitViewPx
           this.native.innerText = `${sizePx === 0 ? "0" : sizePx.toFixed(2)}px`
         }

@@ -1,5 +1,5 @@
-import { Mode, RxObject, ReactiveTreeNode, ReactiveTreeNodeDecl, signal, runNonReactive, derivative } from "reactronic"
-import { Block, Horizontal, Vertical, rowBreak, El, OnClick, Fragment } from "verstak"
+import { Mode, RxObject, RtNode, Conf, signal, runNonReactive, inherit } from "reactronic"
+import { Element, H, V, rowBreak, El, OnClick, Fragment } from "verstak"
 
 export class PaneModel extends RxObject {
   @signal(false) private readonly _el: El<HTMLElement, PaneModel>
@@ -32,33 +32,33 @@ export class PaneModel extends RxObject {
   }
 }
 
-export function Pane(declaration: ReactiveTreeNodeDecl<El<HTMLElement, PaneModel>>, bodyDeclaration: ReactiveTreeNodeDecl<El<HTMLElement, PaneModel>>, headerDeclaration?: ReactiveTreeNodeDecl<El<HTMLElement, PaneModel>>) {
+export function Pane(description: Conf<El<HTMLElement, PaneModel>>, bodyDescription: Conf<El<HTMLElement, PaneModel>>, headerDescription?: Conf<El<HTMLElement, PaneModel>>) {
   return (
-    Block<PaneModel>(derivative({
-      preparation(el, base) {
+    Element<PaneModel>(inherit({
+      creation(el, base) {
         const m = this.model = new PaneModel(this)
         base()
-        this.horizontally = Horizontal.stretch
-        this.vertically = Vertical.stretch
+        this.selfAlignmentHorizontal = H.stretch
+        this.selfAlignmentVertical = V.stretch
         m.setInitialSizes(this.height.min, this.height.max)
       },
-      body(el, base) {
+      setup(el, base) {
         const p = this
         base()
         const m = this.model
         runNonReactive(() => m.setInitialSizes(this.height.min, this.height.max))
-        let header: ReactiveTreeNode<El<HTMLElement>> | undefined = undefined
-        if (headerDeclaration) {
-          header = Block(derivative({
+        let header: RtNode<El<HTMLElement>> | undefined = undefined
+        if (headerDescription) {
+          header = Element(inherit({
             key: "header",
-            preparation(el, base) {
+            creation(el, base) {
               this.model = m
               base()
-              this.native.className = "header"
-              this.horizontally = Horizontal.stretch
-              this.vertically = Vertical.top
+              this.native.classList.add("header")
+              this.selfAlignmentHorizontal = H.stretch
+              this.selfAlignmentVertical = V.top
             },
-            body(el, base) {
+            setup(el, base) {
               base()
 
               OnClick(this.native, () => {
@@ -72,31 +72,31 @@ export function Pane(declaration: ReactiveTreeNodeDecl<El<HTMLElement, PaneModel
                 }
               })
             },
-          }, headerDeclaration))
+          }, headerDescription))
           rowBreak()
         }
-        Block(derivative({
+        Element(inherit({
           key: "body",
           signalArgs: { header },
-          preparation(el, base) {
+          creation(el, base) {
             this.model = m
             base()
-            this.native.className = "body"
+            this.native.classList.add("body")
             this.style.overflow = "scroll"
-            this.horizontally = Horizontal.stretch
-            this.vertically = Vertical.stretch
+            this.selfAlignmentHorizontal = H.stretch
+            this.selfAlignmentVertical = V.stretch
           },
-          body(el, base) {
+          setup(el, base) {
             base()
             const headerSizePx = header?.element.native.clientHeight ?? 0
             const minPx = Math.max(0, p.heightPx.minPx - headerSizePx)
             const maxPx = p.partitionSizeInSplitViewPx - headerSizePx
             this.height = { min: `${minPx}px`, max: `${maxPx}px` }
-          }
-        }, bodyDeclaration))
+          },
+        }, bodyDescription))
         Fragment({
           signalArgs: { header, stamp: p.node.stamp },
-          body() {
+          setup() {
             const headerSizePx = header?.element.native.clientHeight ?? 0
             p.height = m.isExpanded
               ? { min: m.initialMinSize, max: m.initialMaxSize, preferred: `${m.sizePx}px` }
@@ -104,6 +104,6 @@ export function Pane(declaration: ReactiveTreeNodeDecl<El<HTMLElement, PaneModel
           },
         })
       },
-    }, declaration))
+    }, description))
   )
 }

@@ -1,5 +1,5 @@
-import { Mode, ReactiveTreeNode } from "reactronic"
-import { RealTimeClock, Block, Horizontal, Vertical, El, OnClick, Theme } from "verstak"
+import { Mode, RtNode } from "reactronic"
+import { LiveTime, Element, H, V, El, OnClick, Theme } from "verstak"
 import { Svg, Circle, Rect, Text, G, Polygon } from "verstak/svg"
 import { AppTheme } from "themes/AppTheme.js"
 import { DemoApp } from "models/DemoApp.js"
@@ -12,25 +12,25 @@ const AccentColor = "silver" // "#87F7A5" // "#93CAEC" // "#93CAEC" // "#87F7A5"
 const BezelBackColor = "silver"
 const BezelLabelColor = "#444444"
 
-export function Watch(place: string, clock: RealTimeClock): ReactiveTreeNode<El<HTMLElement>> {
+export function Watch(place: string, clock: LiveTime): RtNode<El<HTMLElement>> {
   return (
-    Block({
-      preparation() {
+    Element({
+      creation() {
         const s = this.style
-        this.horizontally = Horizontal.stretch
-        this.vertically = Vertical.stretch
-        this.contentHorizontally = Horizontal.center
-        this.contentVertically = Vertical.center
+        this.selfAlignmentHorizontal = H.stretch
+        this.selfAlignmentVertical = V.stretch
+        this.alignmentHorizontal = H.center
+        this.alignmentVertical = V.center
         // s.fontFamily = "Arial"
         s.cursor = "default"
       },
-      body() {
+      setup() {
         const theme = Theme.current as AppTheme
         this.place = place
         this.useStylingPreset(theme.accent)
         Svg({
           mode: Mode.primitive,
-          body() {
+          setup() {
             const svg = this.native
             svg.style.width = "48mm"
             svg.style.height = "48mm"
@@ -39,7 +39,7 @@ export function Watch(place: string, clock: RealTimeClock): ReactiveTreeNode<El<
 
             Rect({
               mode: Mode.primitive,
-              body() {
+              setup() {
                 const e = this.native
                 const s = e.style
                 e.x.baseVal.value = 250
@@ -55,7 +55,7 @@ export function Watch(place: string, clock: RealTimeClock): ReactiveTreeNode<El<
             })
             Rect({
               mode: Mode.primitive,
-              body() {
+              setup() {
                 const e = this.native
                 const s = e.style
                 e.x.baseVal.value = 980
@@ -73,7 +73,7 @@ export function Watch(place: string, clock: RealTimeClock): ReactiveTreeNode<El<
             })
             Circle({
               mode: Mode.primitive,
-              body() {
+              setup() {
                 const e = this.native
                 const s = e.style
                 e.cx.baseVal.value = 500
@@ -87,7 +87,7 @@ export function Watch(place: string, clock: RealTimeClock): ReactiveTreeNode<El<
             })
             Circle({
               mode: Mode.primitive,
-              body() {
+              setup() {
                 const e = this.native
                 const s = e.style
                 e.cx.baseVal.value = 500
@@ -136,7 +136,7 @@ export function Watch(place: string, clock: RealTimeClock): ReactiveTreeNode<El<
             Arrow(10, 2, -0.05, 0.835, secondDeg, 60, LabelColor, LabelColor, true, svg)
             Circle({
               mode: Mode.primitive,
-              body() {
+              setup() {
                 const e = this.native
                 const s = e.style
                 e.cx.baseVal.value = 500
@@ -151,10 +151,10 @@ export function Watch(place: string, clock: RealTimeClock): ReactiveTreeNode<El<
             // Bezel (secondary time zone)
             G({
               mode: Mode.primitive,
-              preparation() {
+              creation() {
                 this.style.transition = "transform 1s ease"
               },
-              body() {
+              setup() {
                 this.style.transform = (this.style.transform === "rotate(105deg)" ? "rotate(0deg)" : "rotate(105deg)")
                 const app = DemoApp.current
                 if (app.isSecondaryTimeZoneOn)
@@ -191,7 +191,7 @@ function radialDashes(color: string, width: number, height: number, step: number
   for (let deg = 0; deg < 360; deg += step) {
     Rect({
       mode: Mode.primitive,
-      body() {
+      setup() {
         const e = this.native
         const s = e.style
         e.x.baseVal.value = 500 - width / 2
@@ -211,7 +211,7 @@ function radialDots(color: string, step: number, major: number, indent: number):
   for (let deg = 0; deg < 360; deg += step) {
     Circle({
       mode: Mode.primitive,
-      body() {
+      setup() {
         const r = major !== 0 && deg % major === 0 ? 12 : 6
         const e = this.native
         const s = e.style
@@ -229,11 +229,11 @@ function radialDots(color: string, step: number, major: number, indent: number):
 
 function Arrow(widthA: number, widthB: number, margin: number, length: number,
   degrees: number, duration: number, color: string, stroke: string,
-  shadow: boolean, svg: SVGSVGElement): ReactiveTreeNode<El<SVGPolygonElement>> {
+  shadow: boolean, svg: SVGSVGElement): RtNode<El<SVGPolygonElement>> {
   return (
     Polygon({
       mode: Mode.primitive,
-      body() {
+      setup() {
         const e = this.native
         const s = e.style
         const m = Math.floor(500 * margin)
@@ -267,11 +267,11 @@ function Arrow(widthA: number, widthB: number, margin: number, length: number,
 }
 
 function ArrowEx(segments: Array<number | string>, degrees: number,
-  duration: number, color: string, stroke: string): ReactiveTreeNode<El<SVGPolygonElement>> {
+  duration: number, color: string, stroke: string): RtNode<El<SVGPolygonElement>> {
   return (
     Polygon({
       mode: Mode.primitive,
-      body() {
+      setup() {
         const e = this.native
         // const s = e.style
         // const l = Math.floor(500 * length)
@@ -296,11 +296,11 @@ function ArrowEx(segments: Array<number | string>, degrees: number,
 
 function RadialLabel(degree: number, content: string, color: string,
   radius: number, size: number, weight: string, bezel: boolean | undefined,
-  root: SVGSVGElement): ReactiveTreeNode<El<SVGTextElement>> {
+  root: SVGSVGElement): RtNode<El<SVGTextElement>> {
   return (
     Text({
       mode: Mode.primitive,
-      body() {
+      setup() {
         const e = this.native
         const s = e.style
         s.fill = color

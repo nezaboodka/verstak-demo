@@ -1,25 +1,25 @@
-import { ReactiveTreeNodeDecl, derivative, refs } from "reactronic"
-import { RealTimeClock, Table, Block, rowBreak, Horizontal, Vertical, cursor, El, Theme, Toggle, rxModel } from "verstak"
+import { Conf, inherit, refs } from "reactronic"
+import { LiveTime, Table, Element, rowBreak, H, V, cursor, El, Theme, Toggle, rxModel } from "verstak"
 import { AppTheme } from "themes/AppTheme.js"
 import { DemoApp } from "models/DemoApp.js"
 import { Watch } from "./Watch.js"
 
-export function WorkArea(clock: RealTimeClock, declaration?: ReactiveTreeNodeDecl<El<HTMLElement, void>>) {
+export function WorkArea(clock: LiveTime, description?: Conf<El<HTMLElement, void>>) {
   return (
-    Table(derivative(declaration, {
-      body() {
+    Table(inherit(description, {
+      setup() {
         // Elements can be laid out automatically
         // based on their order and line feeds.
         rowBreak()
-        Ruler("1", Horizontal.left, Vertical.center)
+        Ruler("1", H.left, V.center)
         cursor({ cellsOverWidth: -1, cellsOverHeight: 0 })
-        Ruler("A", Horizontal.center, Vertical.top)
-        Ruler("B", Horizontal.center, Vertical.top)
-        Ruler("C", Horizontal.center, Vertical.top)
+        Ruler("A", H.center, V.top)
+        Ruler("B", H.center, V.top)
+        Ruler("C", H.center, V.top)
         rowBreak()
-        Ruler("2", Horizontal.left, Vertical.center)
+        Ruler("2", H.left, V.center)
         rowBreak()
-        Ruler("3", Horizontal.left, Vertical.center)
+        Ruler("3", H.left, V.center)
 
         // Elements can also be laid out
         // explicitly in exact cells.
@@ -29,7 +29,7 @@ export function WorkArea(clock: RealTimeClock, declaration?: ReactiveTreeNodeDec
         ExampleData("B3:C3")
         ExampleData("A2:A3")
         Toggle({ key: "SecondaryTimeZone",
-          preparation(el, base) {
+          creation(el, base) {
             const app = DemoApp.current
             this.model = rxModel({
               label: "Watch Bezel",
@@ -37,29 +37,29 @@ export function WorkArea(clock: RealTimeClock, declaration?: ReactiveTreeNodeDec
             })
             base()
           },
-          body(el, base) {
+          setup(el, base) {
             base()
             const theme = Theme.current as AppTheme
             this.native.classList.toggle(theme.panel, true)
             this.place = "B1"
-            this.horizontally = Horizontal.right
-            this.vertically = Vertical.bottom
+            this.selfAlignmentHorizontal = H.right
+            this.selfAlignmentVertical = V.bottom
           }
         })
-      }}),
-    )
+      }
+    }))
   )
 }
 
-function Ruler(title: string, horizontal: Horizontal, vertical: Vertical) {
+function Ruler(title: string, horizontal: H, vertical: V) {
   return (
-    Block({
-      body() {
-        this.horizontally = horizontal
-        this.vertically = vertical
+    Element({
+      setup() {
+        this.selfAlignmentHorizontal = horizontal
+        this.selfAlignmentVertical = vertical
         this.style.fontSize = "smaller"
-        Block({
-          body() {
+        Element({
+          setup() {
             this.textIsFormatted = true
             this.text = `&nbsp;${title}`
             this.style.display = "block"
@@ -72,19 +72,19 @@ function Ruler(title: string, horizontal: Horizontal, vertical: Vertical) {
 
 function ExampleData(place: string) {
   return (
-    Block({
-      preparation() {
-        this.horizontally = Horizontal.stretch
-        this.vertically = Vertical.stretch
-        this.contentHorizontally = Horizontal.center
-        this.contentVertically = Vertical.center
+    Element({
+      creation() {
+        this.selfAlignmentHorizontal = H.stretch
+        this.selfAlignmentVertical = V.stretch
+        this.alignmentHorizontal = H.center
+        this.alignmentVertical = V.center
       },
-      body() {
+      setup() {
         const theme = Theme.current as AppTheme
         this.place = place
         this.useStylingPreset(theme.accent)
-        Block({
-          body() {
+        Element({
+          setup() {
             this.text = place
             this.style.display = "block"
           }
