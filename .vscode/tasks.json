@@ -83,5 +83,19 @@
         "panel": "shared"
       }
     },
+    {
+      "label": "Test Reactronic  -  ava",
+      "type": "shell",
+      "command": "npm --prefix library/reactronic run test",
+      "isBackground": true,
+      "group": "build",
+      "problemMatcher": [],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared"
+      }
+    },
   ]
 }
